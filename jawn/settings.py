@@ -92,10 +92,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'jawn3',
-        'USER': 'root',
-        'PASSWORD': 'mysecretpassword',
-        'HOST': '192.168.59.103',
-        'PORT': '32771',
+        'USER': os.environ["POSTGRES_ENV_POSTGRES_USER"],
+        'PASSWORD': os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"],
+        'HOST': os.environ["POSTGRES_PORT_5432_TCP_ADDR"],
+        'PORT': os.environ["POSTGRES_PORT_5432_TCP_PORT"],
     }
 }
 
@@ -133,7 +133,7 @@ MEDIA_URL = '/'
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://172.17.0.4:6379/0",
+        "LOCATION": "redis://" + os.environ["REDIS_PORT_6379_TCP_ADDR"] + ":" + os.environ["REDIS_PORT_6379_TCP_PORT"] + "/0",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "SERIALIZER": "django_redis.serializers.json.JSONSerializer",
@@ -147,11 +147,11 @@ WS4REDIS_EXPIRE = 7200
 WS4REDIS_HEARTBEAT = '--heartbeat--'
 WS4REDIS_PREFIX = ':1'
 WS4REDIS_CONNECTION = {
-    'host': '172.17.0.4',
-    'port': 6379,
+    'host': os.environ["REDIS_PORT_6379_TCP_ADDR"],
+    'port': os.environ["REDIS_PORT_6379_TCP_PORT"],
 }
 
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_PREFIX = 'session'
-SESSION_REDIS_HOST = '172.17.0.4'
-SESSION_REDIS_PORT = 6379
+SESSION_REDIS_HOST = os.environ["REDIS_PORT_6379_TCP_ADDR"]
+SESSION_REDIS_PORT = os.environ["REDIS_PORT_6379_TCP_PORT"]
