@@ -42,14 +42,14 @@ class ImageMessage(Message):
     caption = models.TextField(max_length=1000, blank=True, null=True)
 
     def as_json(self):
-        return dict(
+        return str(dict(
             date_posted = self.date_posted.isoformat(),
             jawn_user_id = self.jawn_user.id,
             channel = self.channel.name.__str__(),
             type = self.type,
             image_url = self.image_url.url,
             caption = self.caption.__str__(),
-        )
+        )).replace("'", '"')
 
 class TextMessage(Message):
     CHOICES = (('text', 'text'),)
@@ -57,11 +57,11 @@ class TextMessage(Message):
     text = models.TextField(max_length=1000)
 
     def as_json(self):
-        return dict(
+        return str(dict(
             date_posted = self.date_posted.isoformat(),
             jawn_user_id = self.jawn_user.id,
             channel = self.channel.name.__str__(),
             type = self.type,
             text = self.text.__str__(),
-        )
+        )).replace("'", '"')
 

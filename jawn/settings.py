@@ -145,7 +145,7 @@ WEBSOCKET_URL = '/ws/'
 # Set the number of seconds each message shall persited
 WS4REDIS_EXPIRE = 7200
 WS4REDIS_HEARTBEAT = '--heartbeat--'
-WS4REDIS_PREFIX = ':1'
+WS4REDIS_PREFIX = 'demo'
 WS4REDIS_CONNECTION = {
     'host': os.environ["REDIS_PORT_6379_TCP_ADDR"],
     'port': os.environ["REDIS_PORT_6379_TCP_PORT"],
