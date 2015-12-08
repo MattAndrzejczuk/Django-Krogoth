@@ -26,11 +26,11 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         return user
 
 class JawnUserSerializer(serializers.HyperlinkedModelSerializer):
-    #base_user = serializers.PrimaryKeyRelatedField(source='user.id',  many=False, queryset=User.objects.all())
+    base_user = UserSerializer(many=False, read_only=True)
 
     class Meta:
         model = JawnUser
-        fields = ('id', 'url', 'profile_pic', 'about_me', 'follows', 'date_of_birth', 'sex', 'base_user')
+        fields = ('id', 'url', 'profile_pic', 'about_me', 'follows', 'date_of_birth', 'sex', 'base_user', 'followers')
         #depth = 2
 
     # def create(self, validated_data):
@@ -97,12 +97,12 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
         if isinstance(value, ImageMessage):
             return ImageMessageSerializer(value, context=self.context).to_representation(value)
 
-    def create(self, validated_data):
-        c = Message.objects.create(**validated_data)
-        print c.as_json()
-        message = RedisMessage(str(c.as_json()))
-        RedisPublisher(facility=validated_data['name'], broadcast=True).publish_message(message)
-        return Company(**validated_data)
+    # def create(self, validated_data):
+    #     c = Message.objects.create(**validated_data)
+    #     print c.as_json()
+    #     message = RedisMessage(str(c.as_json()))
+    #     RedisPublisher(facility=validated_data['name'], broadcast=True).publish_message(message)
+    #     return Company(**validated_data)
 
 class ChannelSerializer(serializers.HyperlinkedModelSerializer):
     messages = MessageSerializer(many=True, read_only=True,)

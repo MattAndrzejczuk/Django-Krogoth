@@ -8,7 +8,7 @@ class JawnUser(models.Model):
     base_user = models.OneToOneField(User, related_name='jawn_user', )
     profile_pic = models.ImageField(upload_to="media/", blank=True, null=True)
     about_me = models.CharField(max_length=400, blank=True, null=True)
-    follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False, null=True, blank=True)
+    follows = models.ManyToManyField('self', related_name='followers', symmetrical=False, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     SEX = (
         ('male', 'Male'),
