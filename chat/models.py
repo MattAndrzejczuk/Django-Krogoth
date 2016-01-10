@@ -31,7 +31,7 @@ class Channel(models.Model):
 
 class Message(PolymorphicModel):
     date_posted = models.DateTimeField(auto_now_add=True)
-    jawn_user = models.ForeignKey(JawnUser, related_name='user')
+    jawn_user = models.ForeignKey(JawnUser, related_name='user', blank=True, null=True)
     channel = models.ForeignKey(Channel, related_name='messages')
 
 
