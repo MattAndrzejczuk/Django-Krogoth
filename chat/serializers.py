@@ -26,7 +26,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         return user
 
 class JawnUserSerializer(serializers.HyperlinkedModelSerializer):
-    base_user = UserSerializer(many=False, read_only=True)
+    base_user = User.objects.all()
 
     class Meta:
         model = JawnUser

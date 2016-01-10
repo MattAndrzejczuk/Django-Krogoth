@@ -24,3 +24,12 @@ def application(environ, start_response):
     if environ.get('PATH_INFO').startswith(settings.WEBSOCKET_URL):
         return _websocket_app(environ, start_response)
     return _django_app(environ, start_response)
+
+
+# docker run -d -P --name=jawn-redis redis
+# docker run -d -P -e POSTGRES_USER=ubuntu -e POSTGRES_PASSWORD=sau4tgiudnf --name=jawn-postgres postgres
+# docker run -d -p 80:80 -v ~/jawn-backend/:/opt/django/app/ --link jawn-postgres:postgres --link jawn-redis:redis --name=jawn-backend domface/jawn:1.2
+
+# docker run -d -p 80:80 -v ~/portfolio-app/:/opt/django/app/ --link jawn-postgres:postgres --link jawn-redis:redis --name=morado-backend domface/jawn:1.2
+
+# docker run -d -P --name=morado-redis redis && docker run -d -P -e POSTGRES_USER=ubuntu -e POSTGRES_PASSWORD=sau4tgiudnf --name=morado-postgres postgres && ./ma
