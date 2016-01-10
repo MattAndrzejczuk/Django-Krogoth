@@ -58,7 +58,7 @@ class ImageMessageSerializer(serializers.HyperlinkedModelSerializer):
 
     def create(self, validated_data):
         c = ImageMessage.objects.create(**validated_data)
-        print c.as_json()
+        # print c.as_json()
         message = RedisMessage(str(c.as_json()))
         RedisPublisher(facility=validated_data['channel'], broadcast=True).publish_message(message)
         return ImageMessage(**validated_data)
@@ -74,7 +74,7 @@ class TextMessageSerializer(serializers.HyperlinkedModelSerializer):
 
     def create(self, validated_data):
         c = TextMessage.objects.create(**validated_data)
-        print c.as_json()
+        # print c.as_json()
         message = RedisMessage(str(c.as_json()))
         RedisPublisher(facility=validated_data['channel'], broadcast=True).publish_message(message)
         return TextMessage(**validated_data)

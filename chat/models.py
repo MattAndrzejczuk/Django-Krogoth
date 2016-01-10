@@ -23,7 +23,7 @@ class JawnUser(models.Model):
 class Channel(models.Model):
     name = models.CharField(max_length=400)
     created = models.DateTimeField(auto_now_add=True)
-    creator = models.ForeignKey(JawnUser, related_name='creator')
+    creator = models.ForeignKey(JawnUser, related_name='creator', blank=True, null=True)
 
     def __str__(self):
         return self.name
