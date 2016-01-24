@@ -18,6 +18,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework import renderers
 from rest_framework.routers import DefaultRouter
 from chat.views import *
+from django.contrib import admin
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -32,4 +33,6 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/', include('rest_framework_swagger.urls')),
     url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'^admin/', admin.site.urls),
 ]
