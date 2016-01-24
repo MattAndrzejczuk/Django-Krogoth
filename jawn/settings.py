@@ -53,6 +53,8 @@ INSTALLED_APPS = (
     'ws4redis',
     'rest_framework',
     'rest_framework_swagger',
+    'rest_framework.authtoken',
+    'rest_auth',
     'chat',
 )
 
@@ -95,7 +97,7 @@ WSGI_APPLICATION = 'jawn.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'jawn3',
+        'NAME': 'jawn1',
         'USER': os.environ["POSTGRES_ENV_POSTGRES_USER"],
         'PASSWORD': os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"],
         'HOST': os.environ["POSTGRES_PORT_5432_TCP_ADDR"],

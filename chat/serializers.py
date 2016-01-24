@@ -23,7 +23,7 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 class JawnUserSerializer(serializers.ModelSerializer):
-    base_user = User.objects.all()
+    base_user = UserSerializer(many=False, read_only=True)
 
     class Meta:
         model = JawnUser
@@ -46,7 +46,7 @@ class JawnUserSerializer(serializers.ModelSerializer):
 
 
 class ImageMessageSerializer(serializers.ModelSerializer):
-    #jawn_user = serializers.HyperlinkedRelatedField(many=False, read_only=True, view_name='jawn_user-detail', source='jawn_user.id')
+    jawn_user = JawnUserSerializer(many=False, read_only=True)
 
     class Meta:
         model = ImageMessage
@@ -62,7 +62,7 @@ class ImageMessageSerializer(serializers.ModelSerializer):
 
 
 class TextMessageSerializer(serializers.ModelSerializer):
-    #jawn_user = serializers.HyperlinkedRelatedField(many=False, read_only=True, view_name='jawn_user-detail', source='jawn_user.id')
+    jawn_user = JawnUserSerializer(many=False, read_only=True)
 
     class Meta:
         model = TextMessage
@@ -81,12 +81,12 @@ class TextMessageSerializer(serializers.ModelSerializer):
 class MessageSerializer(serializers.ModelSerializer):
     jawn_user = JawnUserSerializer(many=False, read_only=True)
 
-    #channel = serializers.HyperlinkedRelatedField(source='channel.id', view_name='channel-detail', many=False, required=True, queryset=Channel.objects.all())
-
     class Meta:
         model = Message
         fields = ('id', 'date_posted', 'channel', 'jawn_user', 'url')
-        depth = 2
+        depth = 1
+
+
 
     def to_representation(self, value):
         if isinstance(value, TextMessage):

@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('date_of_birth', models.DateField(null=True, blank=True)),
                 ('sex', models.CharField(blank=True, max_length=10, null=True, choices=[(b'male', b'Male'), (b'female', b'Female')])),
                 ('base_user', models.OneToOneField(related_name='jawn_user', to=settings.AUTH_USER_MODEL)),
-                ('follows', models.ManyToManyField(related_name='followed_by', null=True, to='chat.JawnUser', blank=True)),
+                ('follows', models.ManyToManyField(related_name='followers', null=True, to='chat.JawnUser', blank=True)),
             ],
         ),
         migrations.CreateModel(
@@ -76,7 +76,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='message',
             name='jawn_user',
-            field=models.ForeignKey(related_name='user', to='chat.JawnUser'),
+            field=models.ForeignKey(related_name='user', blank=True, to='chat.JawnUser', null=True),
         ),
         migrations.AddField(
             model_name='message',
@@ -86,6 +86,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='channel',
             name='creator',
-            field=models.ForeignKey(related_name='creator', to='chat.JawnUser'),
+            field=models.ForeignKey(related_name='creator', blank=True, to='chat.JawnUser', null=True),
         ),
     ]
