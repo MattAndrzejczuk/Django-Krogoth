@@ -4,11 +4,8 @@ from django.contrib.auth.models import User
 from ws4redis.redis_store import RedisMessage
 from ws4redis.publisher import RedisPublisher
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    jawn_user = serializers.HyperlinkedRelatedField(source='jawn_user.id',
-                                                    view_name='jawnuser-detail',
-                                                    many=False,
-                                                    read_only=True)
+class UserSerializer(serializers.ModelSerializer):
+
 
     class Meta:
         model = User
@@ -25,7 +22,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         user.save()
         return user
 
-class JawnUserSerializer(serializers.HyperlinkedModelSerializer):
+class JawnUserSerializer(serializers.ModelSerializer):
     base_user = User.objects.all()
 
     class Meta:
@@ -48,7 +45,7 @@ class JawnUserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 
-class ImageMessageSerializer(serializers.HyperlinkedModelSerializer):
+class ImageMessageSerializer(serializers.ModelSerializer):
     #jawn_user = serializers.HyperlinkedRelatedField(many=False, read_only=True, view_name='jawn_user-detail', source='jawn_user.id')
 
     class Meta:
@@ -64,7 +61,7 @@ class ImageMessageSerializer(serializers.HyperlinkedModelSerializer):
         return ImageMessage(**validated_data)
 
 
-class TextMessageSerializer(serializers.HyperlinkedModelSerializer):
+class TextMessageSerializer(serializers.ModelSerializer):
     #jawn_user = serializers.HyperlinkedRelatedField(many=False, read_only=True, view_name='jawn_user-detail', source='jawn_user.id')
 
     class Meta:
@@ -81,14 +78,14 @@ class TextMessageSerializer(serializers.HyperlinkedModelSerializer):
 
 
 
-class MessageSerializer(serializers.HyperlinkedModelSerializer):
+class MessageSerializer(serializers.ModelSerializer):
     jawn_user = JawnUserSerializer(many=False, read_only=True)
 
     #channel = serializers.HyperlinkedRelatedField(source='channel.id', view_name='channel-detail', many=False, required=True, queryset=Channel.objects.all())
 
     class Meta:
         model = Message
-        fields = ('date_posted', 'channel', 'jawn_user', 'id', 'url')
+        fields = ('id', 'date_posted', 'channel', 'jawn_user', 'url')
         depth = 2
 
     def to_representation(self, value):
@@ -104,8 +101,16 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
     #     RedisPublisher(facility=validated_data['name'], broadcast=True).publish_message(message)
     #     return Company(**validated_data)
 
-class ChannelSerializer(serializers.HyperlinkedModelSerializer):
-    messages = MessageSerializer(many=True, read_only=True,)
+class ChannelSerializer(serializers.ModelSerializer):
+    # messages = MessageSerializer(many=True, read_only=True,)
+
+    messages = serializers.SerializerMethodField('get_messages_ordered')
+
+    def get_messages_ordered(self, channel):
+        qset = Message.objects.filter(channel=channel).order_by('-date_posted')
+        serialized_data = MessageSerializer(qset, many=True, read_only=True, context=self.context)
+        return serialized_data.data
+
 
     class Meta:
         model = Channel

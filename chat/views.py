@@ -12,6 +12,16 @@ from rest_framework.reverse import reverse
 from rest_framework import renderers
 from rest_framework import viewsets, filters
 from rest_framework.decorators import detail_route
+import django_filters
+
+class ChannelFilter(django_filters.FilterSet):
+    # name = django_filters.CharFilter(name="name", lookup_type="startswith")
+    region = django_filters.CharFilter(name="name", lookup_type="startswith")
+
+    class Meta:
+        model = Channel
+        fields = ['created', 'name', 'id', 'creator', 'region']
+
 
 class UserViewSet(viewsets.ModelViewSet):
 
@@ -45,11 +55,16 @@ class ChannelViewSet(viewsets.ModelViewSet):
     queryset = Channel.objects.all()
     serializer_class = ChannelSerializer
     permission_classes = (permissions.IsAuthenticated, )
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('name', 'id', 'creator',)
+    filter_class = ChannelFilter
 
 
 class MessageViewSet(viewsets.ModelViewSet):
 
-    queryset = Message.objects.all()
+    queryset = Message.objects.all().extra(order_by=['-id'])
     serializer_class = MessageSerializer
     permission_classes = (permissions.IsAuthenticated, )
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('id', )
 

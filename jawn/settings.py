@@ -31,15 +31,14 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 100,
+    'PAGE_SIZE': 20,
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+        'rest_framework.permissions.IsAuthenticated',),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-   )
+        'rest_framework.authentication.SessionAuthentication',),
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
 
 }
 
