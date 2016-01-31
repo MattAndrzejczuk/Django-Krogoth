@@ -23,11 +23,13 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 class JawnUserSerializer(serializers.ModelSerializer):
-    base_user = UserSerializer(many=False, read_only=True)
+    #base_user = UserSerializer(many=False, read_only=True)
 
     class Meta:
         model = JawnUser
-        fields = ('id', 'url', 'profile_pic', 'about_me', 'follows', 'date_of_birth', 'sex', 'base_user', 'followers')
+        fields = ('id', 'url', 'profile_pic', 'about_me', 'follows', 'date_of_birth', 'sex',
+                  'base_user',
+                  'followers')
         #depth = 2
 
     # def create(self, validated_data):
@@ -62,7 +64,7 @@ class ImageMessageSerializer(serializers.ModelSerializer):
 
 
 class TextMessageSerializer(serializers.ModelSerializer):
-    jawn_user = JawnUserSerializer(many=False, read_only=True)
+    #jawn_user = JawnUserSerializer(many=False, read_only=True)
 
     class Meta:
         model = TextMessage
