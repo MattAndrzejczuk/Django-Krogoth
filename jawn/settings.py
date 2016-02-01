@@ -150,7 +150,7 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = ('/')
 
-MEDIA_ROOT = '/opt/django/app/media/'
+MEDIA_ROOT = '/opt/django/app/'
 MEDIA_URL = '/'
 
 CACHES = {

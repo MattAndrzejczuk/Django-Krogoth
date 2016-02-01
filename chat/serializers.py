@@ -56,11 +56,11 @@ class ImageMessageSerializer(serializers.ModelSerializer):
         #depth = 1
 
     def create(self, validated_data):
-        c = ImageMessage.objects.create(**validated_data)
-        # print c.as_json()
+        jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
+        c = ImageMessage.objects.create(channel=validated_data['channel'], image_url=validated_data['image_url'], jawn_user=jawn_user, caption=validated_data['caption'])
         message = RedisMessage(str(c.as_json()))
         RedisPublisher(facility=validated_data['channel'], broadcast=True).publish_message(message)
-        return ImageMessage(**validated_data)
+        return c
 
 
 class TextMessageSerializer(serializers.ModelSerializer):
@@ -72,11 +72,12 @@ class TextMessageSerializer(serializers.ModelSerializer):
         #depth = 1
 
     def create(self, validated_data):
-        c = TextMessage.objects.create(**validated_data)
+        jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
+        c = TextMessage.objects.create(channel=validated_data['channel'], text=validated_data['text'], jawn_user=jawn_user)
         # print c.as_json()
         message = RedisMessage(str(c.as_json()))
         RedisPublisher(facility=validated_data['channel'], broadcast=True).publish_message(message)
-        return TextMessage(**validated_data)
+        return c
 
 
 

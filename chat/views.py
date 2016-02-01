@@ -44,6 +44,14 @@ class ImageMessageViewSet(viewsets.ModelViewSet):
     serializer_class = ImageMessageSerializer
     permission_classes = (permissions.IsAuthenticated, )
 
+    def post(self, request, format=None):
+        serializer_class = ImageMessageSerializer(data=request.DATA, files=request.FILES)
+        if serializer_class.is_valid():
+           serializer_class.save()
+           return Response(serializer_class.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer_class.errors, status=serializer_class.HTTP_400_BAD_REQUEST)
+
 
 class TextMessageViewSet(viewsets.ModelViewSet):
 
