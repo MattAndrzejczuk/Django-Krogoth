@@ -34,6 +34,8 @@ class JawnUserViewSet(viewsets.ModelViewSet):
     queryset = JawnUser.objects.all()
     serializer_class = JawnUserSerializer
     permission_classes = (permissions.IsAuthenticated, )
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('base_user', )
 
 
 class ImageMessageViewSet(viewsets.ModelViewSet):
