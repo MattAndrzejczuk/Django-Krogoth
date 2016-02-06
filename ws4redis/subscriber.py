@@ -65,7 +65,7 @@ class RedisSubscriber(RedisStore):
         """
         return self._subscription.connection and self._subscription.connection._sock.fileno()
 
-    def release(self):
+    def release(self, request):
         """
         New implementation to free up Redis subscriptions when websockets close. This prevents
         memory sap when Redis Output Buffer and Output Lists build when websockets are abandoned.

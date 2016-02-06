@@ -68,7 +68,6 @@ class RedisMessage(six.binary_type):
             if isinstance(value, str):
                 if value != settings.WS4REDIS_HEARTBEAT:
                     value = value.encode()
-                    print 'foo'
                     return super(RedisMessage, cls).__new__(cls, value)
             elif isinstance(value, bytes):
                 if value != settings.WS4REDIS_HEARTBEAT.encode():

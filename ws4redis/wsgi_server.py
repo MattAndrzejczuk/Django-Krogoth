@@ -16,6 +16,8 @@ from django.utils.functional import SimpleLazyObject
 from ws4redis import settings as private_settings
 from ws4redis.redis_store import RedisMessage
 from ws4redis.exceptions import WebSocketError, HandshakeError, UpgradeRequiredError
+from django.contrib.sessions.models import Session
+from django.contrib.auth.models import User
 
 try:
     # django >= 1.8 && python >= 2.7
@@ -49,13 +51,17 @@ class WebsocketWSGIServer(object):
             raise HandshakeError('Client does not wish to upgrade to a websocket')
 
     def process_request(self, request):
+        print(request.COOKIES)
         request.session = None
         request.user = None
         session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
         if session_key is not None:
+            print(session_key)
             engine = import_module(settings.SESSION_ENGINE)
             request.session = engine.SessionStore(session_key)
+            # session = Session.objects.get(session_key=session_key)
             request.user = SimpleLazyObject(lambda: get_user(request))
+            print(request.user)
 
 
     def process_subscriptions(self, request):
@@ -142,7 +148,7 @@ class WebsocketWSGIServer(object):
         else:
             response = http.HttpResponse()
         finally:
-            subscriber.release()
+            subscriber.release(request)
             if websocket:
                 websocket.close(code=1001, message='Websocket Closed')
             else:
