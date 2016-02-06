@@ -116,6 +116,9 @@ class RedisStore(object):
             if expire > 0:
                 self._connection.setex(channel, expire, message)
 
+    def publish_count_up(self, facility):
+
+
     @staticmethod
     def get_prefix():
         return settings.WS4REDIS_PREFIX and '{0}:'.format(settings.WS4REDIS_PREFIX) or ''

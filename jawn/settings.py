@@ -172,6 +172,8 @@ WS4REDIS_PREFIX = 'demo'
 WS4REDIS_CONNECTION = {
     'host': os.environ["REDIS_PORT_6379_TCP_ADDR"],
     'port': os.environ["REDIS_PORT_6379_TCP_PORT"],
+    'db': 0,
+    'password': None,
 }
 
 SESSION_ENGINE = 'redis_sessions.session'

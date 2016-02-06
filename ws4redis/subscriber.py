@@ -14,6 +14,14 @@ class RedisSubscriber(RedisStore):
         self._subscription = None
         super(RedisSubscriber, self).__init__(connection)
 
+    def count_user_entering_channel(self, request):
+        """
+        Add a user to the count channel when he/she has entered
+        """
+        facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
+
+
+
     def parse_response(self):
         """
         Parse a message response sent by the Redis datastore on a subscribed channel.
