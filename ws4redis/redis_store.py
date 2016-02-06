@@ -108,6 +108,7 @@ class RedisStore(object):
         if not isinstance(message, RedisMessage):
             raise ValueError('message object is not of type RedisMessage')
         for channel in self._publishers:
+            print(str(channel))
             self._connection.publish(channel, message)
             if expire > 0:
                 self._connection.setex(channel, expire, message)
