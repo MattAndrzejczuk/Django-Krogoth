@@ -26,6 +26,8 @@ class RedisSubscriber(RedisStore):
         """
         facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
 
+        print(request.user + " has entered " + channels)
+
         # initialize publishers
         audience = {
             'users': 'publish-user' in channels and [SELF] or [],
@@ -70,6 +72,7 @@ class RedisSubscriber(RedisStore):
         New implementation to free up Redis subscriptions when websockets close. This prevents
         memory sap when Redis Output Buffer and Output Lists build when websockets are abandoned.
         """
+        print(request.user + " has left the channel")
         if self._subscription and self._subscription.subscribed:
             self._subscription.unsubscribe()
             self._subscription.reset()

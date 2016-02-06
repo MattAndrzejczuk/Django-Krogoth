@@ -52,7 +52,6 @@ class WebsocketWSGIServer(object):
             raise HandshakeError('Client does not wish to upgrade to a websocket')
 
     def process_request(self, request):
-        print(request.META['HTTP_AUTHORIZATION'])
         request.session = None
         request.user = None
         session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
@@ -63,6 +62,7 @@ class WebsocketWSGIServer(object):
             # session = Session.objects.get(session_key=session_key)
             request.user = SimpleLazyObject(lambda: get_user(request))
         elif request.META['HTTP_AUTHORIZATION']:
+            print(request.META['HTTP_AUTHORIZATION'])
             a = request.META['HTTP_AUTHORIZATION']
             array = a.split()
             token = array[1]
