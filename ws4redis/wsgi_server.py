@@ -57,7 +57,7 @@ class WebsocketWSGIServer(object):
         request.session = None
         request.user = None
         session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
-        print(request)
+        print(dir(request))
         request.user = SimpleLazyObject(lambda: get_user(request))
         print(request.user)
         if session_key is not None:
