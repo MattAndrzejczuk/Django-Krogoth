@@ -18,6 +18,7 @@ from ws4redis.redis_store import RedisMessage
 from ws4redis.exceptions import WebSocketError, HandshakeError, UpgradeRequiredError
 from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
 
 try:
     # django >= 1.8 && python >= 2.7
@@ -51,7 +52,7 @@ class WebsocketWSGIServer(object):
             raise HandshakeError('Client does not wish to upgrade to a websocket')
 
     def process_request(self, request):
-        print(request)
+        print(request.META['HTTP_AUTHORIZATION'])
         request.session = None
         request.user = None
         session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
@@ -61,6 +62,12 @@ class WebsocketWSGIServer(object):
             request.session = engine.SessionStore(session_key)
             # session = Session.objects.get(session_key=session_key)
             request.user = SimpleLazyObject(lambda: get_user(request))
+        elif request.META['HTTP_AUTHORIZATION']:
+            a = request.META['HTTP_AUTHORIZATION']
+            array = a.split()
+            token = array[1]
+            request.user = User.object.get(id=Token.objects.get(key=token).user_id)
+            print(request.user)
             # print(request.user)
 
 
