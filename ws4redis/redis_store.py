@@ -117,7 +117,7 @@ class RedisStore(object):
                 self._connection.setex(channel, expire, message)
 
     def publish_count_up(self, facility):
-
+        pass
 
     @staticmethod
     def get_prefix():
