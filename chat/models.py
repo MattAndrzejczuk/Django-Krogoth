@@ -24,8 +24,8 @@ class Channel(models.Model):
     name = models.CharField(max_length=400)
     created = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(JawnUser, related_name='creator', blank=True, null=True)
-    latitude = models.FloatField()
-    longitude = models.FloatField()
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
     description = models.TextField(max_length=400, blank=True, null=True)
 
     def __str__(self):
