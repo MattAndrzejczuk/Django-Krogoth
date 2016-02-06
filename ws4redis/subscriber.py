@@ -26,7 +26,7 @@ class RedisSubscriber(RedisStore):
         """
         facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
 
-        print(request.user + " has entered " + channels)
+        print(str(request.user) + " has entered " + str(channels))
 
         # initialize publishers
         audience = {
