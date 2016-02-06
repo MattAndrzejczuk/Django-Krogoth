@@ -66,7 +66,7 @@ class WebsocketWSGIServer(object):
             a = request.META['HTTP_AUTHORIZATION']
             array = a.split()
             token = array[1]
-            request.user = User.object.get(id=Token.objects.get(key=token).user_id)
+            request.user = User.objects.get(id=Token.objects.get(key=token).user_id)
             print(request.user)
             # print(request.user)
 
