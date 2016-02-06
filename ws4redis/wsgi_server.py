@@ -40,7 +40,7 @@ class WebsocketWSGIServer(object):
         self.possible_channels = Subscriber.subscription_channels + Subscriber.publish_channels
         self._redis_connection = redis_connection and redis_connection or StrictRedis(**private_settings.WS4REDIS_CONNECTION)
         self.Subscriber = Subscriber
-        print('foo')
+        print('foo bar')
         print(self.possible_channels)
 
     def assure_protocol_requirements(self, environ):
@@ -57,7 +57,9 @@ class WebsocketWSGIServer(object):
         request.session = None
         request.user = None
         session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
-        print(str(SimpleLazyObject(lambda: get_user(request))))
+        print(request)
+        request.user = SimpleLazyObject(lambda: get_user(request))
+        print(request.user)
         if session_key is not None:
             # print(session_key)
             engine = import_module(settings.SESSION_ENGINE)
