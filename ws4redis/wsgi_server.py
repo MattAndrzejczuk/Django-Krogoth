@@ -41,6 +41,7 @@ class WebsocketWSGIServer(object):
         self._redis_connection = redis_connection and redis_connection or StrictRedis(**private_settings.WS4REDIS_CONNECTION)
         self.Subscriber = Subscriber
         print('foo')
+        print(self.possible_channels)
 
     def assure_protocol_requirements(self, environ):
         if environ.get('REQUEST_METHOD') != 'GET':
