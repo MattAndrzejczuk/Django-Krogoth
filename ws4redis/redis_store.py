@@ -117,12 +117,16 @@ class RedisStore(object):
         return settings.WS4REDIS_PREFIX and '{0}:'.format(settings.WS4REDIS_PREFIX) or ''
 
     def _get_message_channels(self, request=None, facility='{facility}', broadcast=False,
-                              groups=(), users=(), sessions=()):
+                              groups=(), users=(), sessions=(), count=True):
         prefix = self.get_prefix()
         channels = []
         if broadcast is True:
             # broadcast message to each subscriber listening on the named facility
             channels.append('{prefix}broadcast:{facility}'.format(prefix=prefix, facility=facility))
+
+        if count is True:
+            # broadcast message to each subscriber listening on the named facility
+            channels.append('{prefix}count:{facility}'.format(prefix=prefix, facility=facility))
 
         # handle group messaging
         if isinstance(groups, (list, tuple)):

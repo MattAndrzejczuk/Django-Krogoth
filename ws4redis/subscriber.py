@@ -7,8 +7,8 @@ class RedisSubscriber(RedisStore):
     """
     Subscriber class, used by the websocket code to listen for subscribed channels
     """
-    subscription_channels = ['subscribe-session', 'subscribe-group', 'subscribe-user', 'subscribe-broadcast']
-    publish_channels = ['publish-session', 'publish-group', 'publish-user', 'publish-broadcast']
+    subscription_channels = ['subscribe-session', 'subscribe-group', 'subscribe-user', 'subscribe-broadcast', 'subscribe-count']
+    publish_channels = ['publish-session', 'publish-group', 'publish-user', 'publish-broadcast', 'publish-count']
 
     def __init__(self, connection):
         self._subscription = None
@@ -34,6 +34,7 @@ class RedisSubscriber(RedisStore):
             'groups': 'publish-group' in channels and [SELF] or [],
             'sessions': 'publish-session' in channels and [SELF] or [],
             'broadcast': 'publish-broadcast' in channels,
+            'count': 'publish-count' in channels,
         }
         self._publishers = set()
         for key in self._get_message_channels(request=request, facility=facility, **audience):
@@ -45,6 +46,7 @@ class RedisSubscriber(RedisStore):
             'groups': 'subscribe-group' in channels and [SELF] or [],
             'sessions': 'subscribe-session' in channels and [SELF] or [],
             'broadcast': 'subscribe-broadcast' in channels,
+            'count': 'subscribe-count' in channels,
         }
         self._subscription = self._connection.pubsub()
         for key in self._get_message_channels(request=request, facility=facility, **audience):
