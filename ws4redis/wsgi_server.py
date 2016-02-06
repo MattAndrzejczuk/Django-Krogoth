@@ -54,19 +54,9 @@ class WebsocketWSGIServer(object):
             raise HandshakeError('Client does not wish to upgrade to a websocket')
 
     def process_request(self, request):
-        print(dir(request))
-        print(" ")
-        print(request.GET)
-        print(" ")
-        print(request.body)
-        print(" ")
-        print(request.META)
-        print(" ")
         request.session = None
         request.user = None
         session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
-        request.user = SimpleLazyObject(lambda: get_user(request))
-        print(request.user)
         if session_key is not None:
             # print(session_key)
             engine = import_module(settings.SESSION_ENGINE)
