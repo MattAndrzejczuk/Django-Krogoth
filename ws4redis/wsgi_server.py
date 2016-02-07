@@ -99,8 +99,11 @@ class WebsocketWSGIServer(object):
                 private_settings.WS4REDIS_PROCESS_REQUEST(request)
             else:
                 self.process_request(request)
-                subscriber.count_user_entering_channel(request)
             channels, echo_message = self.process_subscriptions(request)
+            if 'subscribe-broadcast' in request.get_full_path():
+                subscriber.count_user_entering_channel(request)
+                enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has entered the channel",  "id":"'+ str(request.user) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
+                subscriber.publish_message(enter_channel_message)
             if callable(private_settings.WS4REDIS_ALLOWED_CHANNELS):
                 channels = list(private_settings.WS4REDIS_ALLOWED_CHANNELS(request, channels))
             elif private_settings.WS4REDIS_ALLOWED_CHANNELS is not None:
@@ -120,9 +123,10 @@ class WebsocketWSGIServer(object):
             if redis_fd:
                 listening_fds.append(redis_fd)
             subscriber.send_persited_messages(websocket)
+            if 'subscribe-broadcast' in request.get_full_path():
+                enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has entered the channel",  "id":"'+ str(request.user) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
+                subscriber.publish_message(enter_channel_message)
             recvmsg = None
-            enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has entered the channel",  "id":"'+ str(request.user) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
-            snd = subscriber.publish_message(enter_channel_message)
             while websocket and not websocket.closed:
                 ready = self.select(listening_fds, [], [], 4.0)[0]
                 if not ready:
@@ -164,7 +168,8 @@ class WebsocketWSGIServer(object):
             response = http.HttpResponse()
         finally:
             leave_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has left the channel",  "id":"'+ str(request.user) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
-            subscriber.publish_message(leave_channel_message)
+            if 'subscribe-broadcast' in request.get_full_path():
+                subscriber.publish_message(leave_channel_message)
             subscriber.release(request)
             if websocket:
                 websocket.close(code=1001, message='Websocket Closed')
