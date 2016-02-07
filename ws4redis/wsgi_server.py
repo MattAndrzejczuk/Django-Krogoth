@@ -99,6 +99,8 @@ class WebsocketWSGIServer(object):
             else:
                 self.process_request(request)
                 print 'this'
+                enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + '" has entered the channel,  "id":"'+ str(request.user) + '"}')
+                subscriber.publish_message(enter_channel_message)
                 subscriber.count_user_entering_channel(request)
                 print 'that'
             channels, echo_message = self.process_subscriptions(request)
@@ -161,6 +163,8 @@ class WebsocketWSGIServer(object):
         else:
             response = http.HttpResponse()
         finally:
+            leave_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + '" has left the channel,  "id":"'+ str(request.user) + '"}')
+            subscriber.publish_message(leave_channel_message)
             subscriber.release(request)
             if websocket:
                 websocket.close(code=1001, message='Websocket Closed')
