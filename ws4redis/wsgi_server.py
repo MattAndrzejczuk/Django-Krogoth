@@ -19,6 +19,7 @@ from ws4redis.exceptions import WebSocketError, HandshakeError, UpgradeRequiredE
 from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
+import datetime
 
 try:
     # django >= 1.8 && python >= 2.7
@@ -98,11 +99,11 @@ class WebsocketWSGIServer(object):
                 private_settings.WS4REDIS_PROCESS_REQUEST(request)
             else:
                 self.process_request(request)
-                print 'this'
-                enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has entered the channel",  "id":"'+ str(request.user) + '"}')
+                print ''
+                enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has entered the channel",  "id":"'+ str(request.user) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
                 subscriber.publish_message(enter_channel_message)
                 subscriber.count_user_entering_channel(request)
-                print 'that'
+                print '#####'
             channels, echo_message = self.process_subscriptions(request)
             if callable(private_settings.WS4REDIS_ALLOWED_CHANNELS):
                 channels = list(private_settings.WS4REDIS_ALLOWED_CHANNELS(request, channels))
@@ -163,7 +164,7 @@ class WebsocketWSGIServer(object):
         else:
             response = http.HttpResponse()
         finally:
-            leave_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has left the channel",  "id":"'+ str(request.user) + '"}')
+            leave_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has left the channel",  "id":"'+ str(request.user) + '" "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
             subscriber.publish_message(leave_channel_message)
             subscriber.release(request)
             if websocket:
