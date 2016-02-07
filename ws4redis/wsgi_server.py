@@ -99,7 +99,7 @@ class WebsocketWSGIServer(object):
             else:
                 self.process_request(request)
                 print 'this'
-                self.count_user_entering_channel(request)
+                subscriber.count_user_entering_channel(request)
                 print 'that'
             channels, echo_message = self.process_subscriptions(request)
             if callable(private_settings.WS4REDIS_ALLOWED_CHANNELS):
