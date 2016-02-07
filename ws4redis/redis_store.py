@@ -122,12 +122,16 @@ class RedisStore(object):
         prefix = self.get_prefix()
         channel = '{prefix}count:{facility}'.format(prefix=prefix, facility=facility)
         self._connection.incr(channel, 1)
+        count = self._connection.get(channel)
+        self._connection.publish(channel, count)
 
 
     def publish_count_down(self, facility):
         prefix = self.get_prefix()
         channel = '{prefix}count:{facility}'.format(prefix=prefix, facility=facility)
         self._connection.incr(channel, -1)
+        count = self._connection.get(channel)
+        self._connection.publish(channel, count)
 
     @staticmethod
     def get_prefix():
