@@ -137,6 +137,7 @@ class WebsocketWSGIServer(object):
                     elif fd == redis_fd:
                         sendmsg = RedisMessage(subscriber.parse_response())
                         if sendmsg and (echo_message or sendmsg != recvmsg):
+                            print(sendmsg)
                             websocket.send(sendmsg)
                     else:
                         logger.error('Invalid file descriptor: {0}'.format(fd))
