@@ -164,7 +164,7 @@ class WebsocketWSGIServer(object):
         else:
             response = http.HttpResponse()
         finally:
-            leave_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has left the channel",  "id":"'+ str(request.user) + '" "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
+            leave_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has left the channel",  "id":"'+ str(request.user) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
             subscriber.publish_message(leave_channel_message)
             subscriber.release(request)
             if websocket:
