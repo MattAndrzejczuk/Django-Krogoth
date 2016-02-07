@@ -99,11 +99,7 @@ class WebsocketWSGIServer(object):
                 private_settings.WS4REDIS_PROCESS_REQUEST(request)
             else:
                 self.process_request(request)
-                print ''
-                enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has entered the channel",  "id":"'+ str(request.user) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
-                subscriber.publish_message(enter_channel_message)
                 subscriber.count_user_entering_channel(request)
-                print '#####'
             channels, echo_message = self.process_subscriptions(request)
             if callable(private_settings.WS4REDIS_ALLOWED_CHANNELS):
                 channels = list(private_settings.WS4REDIS_ALLOWED_CHANNELS(request, channels))
@@ -125,6 +121,8 @@ class WebsocketWSGIServer(object):
                 listening_fds.append(redis_fd)
             subscriber.send_persited_messages(websocket)
             recvmsg = None
+            enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has entered the channel",  "id":"'+ str(request.user) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
+            subscriber.publish_message(enter_channel_message)
             while websocket and not websocket.closed:
                 ready = self.select(listening_fds, [], [], 4.0)[0]
                 if not ready:
