@@ -117,7 +117,15 @@ class RedisStore(object):
                 self._connection.setex(channel, expire, message)
 
     def publish_count_up(self, facility):
-        pass
+        prefix = self.get_prefix()
+        channel = '{prefix}count:{facility}'.format(prefix=prefix, facility=facility)
+        self._connection.incr(channel, 1)
+
+
+    def publish_count_down(self, facility):
+        prefix = self.get_prefix()
+        channel = '{prefix}count:{facility}'.format(prefix=prefix, facility=facility)
+        self._connection.incr(channel, -1)
 
     @staticmethod
     def get_prefix():

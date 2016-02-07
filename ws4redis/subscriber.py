@@ -19,6 +19,7 @@ class RedisSubscriber(RedisStore):
         Add a user to the count channel when he/she has entered
         """
         facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
+        self.publish_count_up(self, facility=facility)
 
 
 
@@ -83,6 +84,7 @@ class RedisSubscriber(RedisStore):
         memory sap when Redis Output Buffer and Output Lists build when websockets are abandoned.
         """
         print(str(request.user) + " has left the channel")
+        self.publish_count_down(facility=request.path_info.replace(settings.WEBSOCKET_URL, '', 1))
         if self._subscription and self._subscription.subscribed:
             self._subscription.unsubscribe()
             self._subscription.reset()
