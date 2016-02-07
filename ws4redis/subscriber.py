@@ -21,7 +21,7 @@ class RedisSubscriber(RedisStore):
         print('blah;')
         facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
         print(facility)
-        self.publish_count_up(self, facility=facility)
+        self.publish_count_up(facility)
 
 
 
