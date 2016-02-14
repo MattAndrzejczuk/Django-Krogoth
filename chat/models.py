@@ -66,5 +66,6 @@ class TextMessage(Message):
             channel = self.channel.name.__str__(),
             type = self.type,
             text = self.text.__str__(),
+            id = self.pk
         )).replace("'", '"')
 

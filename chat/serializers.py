@@ -3,6 +3,8 @@ from chat.models import *
 from django.contrib.auth.models import User
 from ws4redis.redis_store import RedisMessage
 from ws4redis.publisher import RedisPublisher
+import json
+from rest_framework.parsers import JSONParser
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -74,10 +76,18 @@ class TextMessageSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
         c = TextMessage.objects.create(channel=validated_data['channel'], text=validated_data['text'], jawn_user=jawn_user)
-        # print c.as_json()
+
         message = RedisMessage(str(c.as_json()))
         RedisPublisher(facility=validated_data['channel'], broadcast=True).publish_message(message)
         return c
+
+    def update(self, instance, validated_data):
+        for key in validated_data.keys():
+            setattr(instance, key, validated_data[key])
+        instance.save()
+        message = RedisMessage(str(instance.as_json()))
+        RedisPublisher(facility=instance.channel, broadcast=True).publish_message(message)
+        return instance
 
 
 
