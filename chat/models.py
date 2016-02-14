@@ -49,10 +49,10 @@ class ImageMessage(Message):
             date_posted = self.date_posted.isoformat(),
             jawn_user_id = self.jawn_user.id,
             channel = self.channel.name.__str__(),
-            type = self.type.__str__(),
+            type = self.type,
             image_url = self.image_url.url,
             caption = self.caption.__str__(),
-        )).replace("'", '"')
+        )).replace("u'", "'").replace("'", '"')
 
 class TextMessage(Message):
     CHOICES = (('text', 'text'),)
@@ -64,8 +64,8 @@ class TextMessage(Message):
             date_posted = self.date_posted.isoformat(),
             jawn_user_id = self.jawn_user.id,
             channel = self.channel.name.__str__(),
-            type = self.type.__str__(),
+            type = self.type,
             text = self.text.__str__(),
             id = self.pk
-        )).replace("'", '"')
+        )).replace("u'", "'").replace("'", '"')
 
