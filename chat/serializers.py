@@ -76,7 +76,7 @@ class TextMessageSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
         c = TextMessage.objects.create(channel=validated_data['channel'], text=validated_data['text'], jawn_user=jawn_user)
-
+        print(validated_data['channel'])
         message = RedisMessage(str(c.as_json()))
         RedisPublisher(facility=validated_data['channel'], broadcast=True).publish_message(message)
         return c
@@ -85,7 +85,7 @@ class TextMessageSerializer(serializers.ModelSerializer):
         for key in validated_data.keys():
             setattr(instance, key, validated_data[key])
         instance.save()
-        print(instance)
+        print(instance.channel)
         print(instance.as_json())
         message = RedisMessage(str(instance.as_json()))
         RedisPublisher(facility=instance.channel, broadcast=True).publish_message(message)
