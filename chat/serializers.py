@@ -85,6 +85,8 @@ class TextMessageSerializer(serializers.ModelSerializer):
         for key in validated_data.keys():
             setattr(instance, key, validated_data[key])
         instance.save()
+        print(instance)
+        print(instance.as_json())
         message = RedisMessage(str(instance.as_json()))
         RedisPublisher(facility=instance.channel, broadcast=True).publish_message(message)
         return instance
