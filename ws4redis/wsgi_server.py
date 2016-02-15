@@ -138,12 +138,12 @@ class WebsocketWSGIServer(object):
                     if fd == websocket_fd:
                         recvmsg = RedisMessage(websocket.receive())
                         if recvmsg:
-                            print(recvmsg + " recvmessage")
+                            print(str(recvmsg) + " recvmessage")
                             subscriber.publish_message(recvmsg)
                     elif fd == redis_fd:
                         sendmsg = RedisMessage(subscriber.parse_response())
                         if sendmsg and (echo_message or sendmsg != recvmsg):
-                            print(sendmsg + " this is inside the websocket loop (sendmsg)")
+                            print(str(sendmsg) + " this is inside the websocket loop (sendmsg)")
                             websocket.send(sendmsg)
                     else:
                         logger.error('Invalid file descriptor: {0}'.format(fd))

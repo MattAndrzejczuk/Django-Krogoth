@@ -103,7 +103,7 @@ class RedisStore(object):
         published, also be persisted in the Redis datastore. If unset, it defaults to the
         configuration settings ``WS4REDIS_EXPIRE``.
         """
-        print(message + " printed inside RedisStore publish_message")
+        print(str(message) + " printed inside RedisStore publish_message")
         if expire is None:
             expire = self._expire
         if not isinstance(message, RedisMessage):
