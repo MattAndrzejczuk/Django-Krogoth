@@ -20,6 +20,7 @@ from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 import datetime
+import json
 
 try:
     # django >= 1.8 && python >= 2.7
@@ -41,8 +42,6 @@ class WebsocketWSGIServer(object):
         self.possible_channels = Subscriber.subscription_channels + Subscriber.publish_channels
         self._redis_connection = redis_connection and redis_connection or StrictRedis(**private_settings.WS4REDIS_CONNECTION)
         self.Subscriber = Subscriber
-        print('foo bar')
-        print(self.possible_channels)
 
     def assure_protocol_requirements(self, environ):
         if environ.get('REQUEST_METHOD') != 'GET':
@@ -65,11 +64,13 @@ class WebsocketWSGIServer(object):
             # session = Session.objects.get(session_key=session_key)
             request.user = SimpleLazyObject(lambda: get_user(request))
         elif request.META['HTTP_AUTHORIZATION']:
+
             print(request.META['HTTP_AUTHORIZATION'])
             a = request.META['HTTP_AUTHORIZATION']
             array = a.split()
             token = array[1]
-            request.user = User.objects.get(id=Token.objects.get(key=token).user_id)
+            request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
+            # request.user = User.objects.get(id=Token.objects.get(key=token).user_id)
             print(request.user)
             # print(request.user)
 
@@ -102,7 +103,7 @@ class WebsocketWSGIServer(object):
             channels, echo_message = self.process_subscriptions(request)
             if 'subscribe-broadcast' in request.get_full_path():
                 subscriber.count_user_entering_channel(request)
-                enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has entered the channel",  "id":"'+ str(request.user) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
+                enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(str(request.user['base_user']['username'])) + ' has entered the channel",  "id":"'+ str(str(request.user['base_user']['username'])) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
                 subscriber.publish_message(enter_channel_message)
             if callable(private_settings.WS4REDIS_ALLOWED_CHANNELS):
                 channels = list(private_settings.WS4REDIS_ALLOWED_CHANNELS(request, channels))
@@ -124,7 +125,7 @@ class WebsocketWSGIServer(object):
                 listening_fds.append(redis_fd)
             subscriber.send_persited_messages(websocket)
             if 'subscribe-broadcast' in request.get_full_path():
-                enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has entered the channel",  "id":"'+ str(request.user) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
+                enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user['base_user']['username']) + ' has entered the channel",  "id":"'+ str(request.user['base_user']['username']) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
                 subscriber.publish_message(enter_channel_message)
             recvmsg = None
             while websocket and not websocket.closed:
@@ -167,7 +168,7 @@ class WebsocketWSGIServer(object):
         else:
             response = http.HttpResponse()
         finally:
-            leave_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user) + ' has left the channel",  "id":"'+ str(request.user) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
+            leave_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(str(request.user['base_user']['username'])) + ' has left the channel",  "id":"'+ str(str(request.user['base_user']['username'])) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
             if 'subscribe-broadcast' in request.get_full_path():
                 subscriber.publish_message(leave_channel_message)
             subscriber.release(request)

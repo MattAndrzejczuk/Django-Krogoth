@@ -3,15 +3,15 @@ from chat.models import *
 from django.contrib.auth.models import User
 from ws4redis.redis_store import RedisMessage
 from ws4redis.publisher import RedisPublisher
-import json
-from rest_framework.parsers import JSONParser
+from rest_framework.authtoken.models import Token
+from rest_framework.renderers import JSONRenderer
 
 class UserSerializer(serializers.ModelSerializer):
 
 
     class Meta:
         model = User
-        fields = ('id', 'url', 'username', 'last_login', 'date_joined', 'password', 'email', 'jawn_user')
+        fields = ('id', 'username', 'last_login', 'date_joined', 'password', 'email', 'jawn_user')
         extra_kwargs = {'password': {'write_only': True}}
         #depth = 1
 
@@ -25,15 +25,14 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 class JawnUserSerializer(serializers.ModelSerializer):
-    #base_user = UserSerializer(many=False, read_only=True)
+    base_user = UserSerializer(many=False, read_only=False)
 
     class Meta:
         model = JawnUser
-        fields = ('id', 'url', 'profile_pic', 'about_me', 'follows', 'date_of_birth', 'sex',
+        fields = ('id', 'profile_pic', 'about_me', 'follows', 'date_of_birth', 'sex',
                   'base_user',
                   'followers')
         #depth = 2
-
 
 
 
@@ -43,30 +42,38 @@ class ImageMessageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ImageMessage
-        fields = ('date_posted', 'channel', 'type', 'image_url', 'caption', 'jawn_user', 'id', 'url')
+        fields = ('id', 'date_posted', 'channel', 'type', 'image_url', 'caption', 'jawn_user', )
         #depth = 1
 
     def create(self, validated_data):
         jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
         c = ImageMessage.objects.create(channel=validated_data['channel'], image_url=validated_data['image_url'], jawn_user=jawn_user, caption=validated_data['caption'])
-        message = RedisMessage(str(c.as_json()))
+
+        j = ImageMessageSerializer(c, context=self.context)
+        json = JSONRenderer().render(j.data)
+        message = RedisMessage(json.decode("utf-8"))
+
         RedisPublisher(facility=validated_data['channel'], broadcast=True).publish_message(message)
         return c
 
 
 class TextMessageSerializer(serializers.ModelSerializer):
-    #jawn_user = JawnUserSerializer(many=False, read_only=True)
+    jawn_user = JawnUserSerializer(many=False, read_only=True)
 
     class Meta:
         model = TextMessage
-        fields = ('date_posted', 'channel', 'type', 'text', 'jawn_user', 'id', 'url')
+        fields = ('id', 'date_posted', 'channel', 'type', 'text', 'jawn_user', )
         #depth = 1
 
     def create(self, validated_data):
         jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
         c = TextMessage.objects.create(channel=validated_data['channel'], text=validated_data['text'], jawn_user=jawn_user)
         print(validated_data['channel'])
-        message = RedisMessage(str(c.as_json()))
+
+        j = TextMessageSerializer(c, context=self.context)
+        json = JSONRenderer().render(j.data)
+        message = RedisMessage(json.decode("utf-8"))
+
         RedisPublisher(facility=validated_data['channel'], broadcast=True).publish_message(message)
         return c
 
@@ -74,9 +81,11 @@ class TextMessageSerializer(serializers.ModelSerializer):
         for key in validated_data.keys():
             setattr(instance, key, validated_data[key])
         instance.save()
-        print(instance.channel)
-        print(instance.as_json())
-        message = RedisMessage(str(instance.as_json()))
+
+        j = TextMessageSerializer(instance, context=self.context)
+        json = JSONRenderer().render(j.data)
+        message = RedisMessage(json.decode("utf-8"))
+
         RedisPublisher(facility=instance.channel, broadcast=True).publish_message(message)
         return instance
 
@@ -87,7 +96,7 @@ class MessageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Message
-        fields = ('id', 'date_posted', 'channel', 'jawn_user', 'url')
+        fields = ('id', 'date_posted', 'channel', 'jawn_user', )
         depth = 1
 
 
