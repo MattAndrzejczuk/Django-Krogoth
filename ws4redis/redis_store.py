@@ -103,7 +103,7 @@ class RedisStore(object):
         published, also be persisted in the Redis datastore. If unset, it defaults to the
         configuration settings ``WS4REDIS_EXPIRE``.
         """
-        print(message)
+        print(message + " printed inside RedisStore publish_message")
         if expire is None:
             expire = self._expire
         if not isinstance(message, RedisMessage):
@@ -118,7 +118,7 @@ class RedisStore(object):
                 self._connection.setex(channel, expire, message)
 
     def publish_count_up(self, facility):
-        print('gaaa')
+        print('count up for ' + facility)
         prefix = self.get_prefix()
         channel = '{prefix}count:{facility}'.format(prefix=prefix, facility=facility)
         self._connection.incr(channel, 1)
@@ -127,9 +127,12 @@ class RedisStore(object):
 
 
     def publish_count_down(self, facility):
+        print('count down for ' + facility)
         prefix = self.get_prefix()
         channel = '{prefix}count:{facility}'.format(prefix=prefix, facility=facility)
-        self._connection.incr(channel, -1)
+        if self._connection.get(channel):
+            if int(self._connection.get(channel)) > 0:
+                self._connection.decr(channel, 1)
         count = self._connection.get(channel)
         self._connection.publish(channel, count)
 

@@ -128,6 +128,7 @@ class WebsocketWSGIServer(object):
                 enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user['base_user']['username']) + ' has entered the channel",  "id":"'+ str(request.user['base_user']['username']) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
                 subscriber.publish_message(enter_channel_message)
             recvmsg = None
+
             while websocket and not websocket.closed:
                 ready = self.select(listening_fds, [], [], 4.0)[0]
                 if not ready:
@@ -137,12 +138,12 @@ class WebsocketWSGIServer(object):
                     if fd == websocket_fd:
                         recvmsg = RedisMessage(websocket.receive())
                         if recvmsg:
-                            print(recvmsg)
+                            print(recvmsg + " recvmessage")
                             subscriber.publish_message(recvmsg)
                     elif fd == redis_fd:
                         sendmsg = RedisMessage(subscriber.parse_response())
                         if sendmsg and (echo_message or sendmsg != recvmsg):
-                            print(sendmsg)
+                            print(sendmsg + " this is inside the websocket loop (sendmsg)")
                             websocket.send(sendmsg)
                     else:
                         logger.error('Invalid file descriptor: {0}'.format(fd))

@@ -18,7 +18,6 @@ class RedisSubscriber(RedisStore):
         """
         Add a user to the count channel when he/she has entered
         """
-        print('blah;')
         facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
         print(facility)
         self.publish_count_up(facility)
