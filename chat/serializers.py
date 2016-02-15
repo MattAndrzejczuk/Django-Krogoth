@@ -5,13 +5,15 @@ from ws4redis.redis_store import RedisMessage
 from ws4redis.publisher import RedisPublisher
 from rest_framework.authtoken.models import Token
 from rest_framework.renderers import JSONRenderer
+from django.forms import ValidationError
+
 
 class UserSerializer(serializers.ModelSerializer):
 
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'last_login', 'date_joined', 'password', 'email', 'jawn_user')
+        fields = ('id', 'username', 'last_login', 'date_joined', 'password', 'email',)
         extra_kwargs = {'password': {'write_only': True}}
         #depth = 1
 
@@ -20,9 +22,14 @@ class UserSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             username=validated_data['username']
         )
+        if User.objects.filter(email=validated_data['email']).exists():
+            raise serializers.ValidationError("This email is already used")
         user.set_password(validated_data['password'])
         user.save()
+        jawn_user = JawnUser(base_user=user)
+        jawn_user.save()
         return user
+
 
 class JawnUserSerializer(serializers.ModelSerializer):
     base_user = UserSerializer(many=False, read_only=False)

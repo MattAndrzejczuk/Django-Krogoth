@@ -13,6 +13,7 @@ from rest_framework import renderers
 from rest_framework import viewsets, filters
 from rest_framework.decorators import detail_route
 import django_filters
+from django.views.decorators.csrf import csrf_exempt
 
 class ChannelFilter(django_filters.FilterSet):
     # name = django_filters.CharFilter(name="name", lookup_type="startswith")
@@ -22,12 +23,15 @@ class ChannelFilter(django_filters.FilterSet):
         model = Channel
         fields = ['created', 'name', 'id', 'creator', 'region']
 
-
 class UserViewSet(viewsets.ModelViewSet):
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (permissions.IsAuthenticated, )
+
+    def get_permissions(self):
+        # allow non-authenticated user to create via POST
+        return (permissions.AllowAny() if self.request.method == 'POST'
+                else permissions.IsAuthenticated()),
 
 class JawnUserViewSet(viewsets.ModelViewSet):
 

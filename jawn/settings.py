@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.core.mail import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -37,7 +38,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',),
+        # 'rest_framework.authentication.SessionAuthentication',
+        ),
     'DEFAULT_FILTER_BACKENDS': (
         'rest_framework.filters.DjangoFilterBackend',),
 }
@@ -180,3 +182,6 @@ SESSION_REDIS_PREFIX = 'session'
 SESSION_REDIS_HOST = os.environ["REDIS_PORT_6379_TCP_ADDR"]
 SESSION_REDIS_PORT = os.environ["REDIS_PORT_6379_TCP_PORT"]
 
+SITE_ID = 2
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
