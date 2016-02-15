@@ -21,6 +21,7 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 import datetime
 import json
+import time
 
 try:
     # django >= 1.8 && python >= 2.7
@@ -103,8 +104,6 @@ class WebsocketWSGIServer(object):
             channels, echo_message = self.process_subscriptions(request)
             if 'subscribe-broadcast' in request.get_full_path():
                 subscriber.count_user_entering_channel(request)
-                enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(str(request.user['base_user']['username'])) + ' has entered the channel",  "id":"'+ str(str(request.user['base_user']['username'])) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
-                subscriber.publish_message(enter_channel_message)
             if callable(private_settings.WS4REDIS_ALLOWED_CHANNELS):
                 channels = list(private_settings.WS4REDIS_ALLOWED_CHANNELS(request, channels))
             elif private_settings.WS4REDIS_ALLOWED_CHANNELS is not None:
@@ -124,18 +123,28 @@ class WebsocketWSGIServer(object):
             if redis_fd:
                 listening_fds.append(redis_fd)
             subscriber.send_persited_messages(websocket)
-            if 'subscribe-broadcast' in request.get_full_path():
-                enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user['base_user']['username']) + ' has entered the channel",  "id":"'+ str(request.user['base_user']['username']) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
-                subscriber.publish_message(enter_channel_message)
             recvmsg = None
-
+            enter_msg_counter = 0
             while websocket and not websocket.closed:
                 ready = self.select(listening_fds, [], [], 4.0)[0]
+                print(ready)
                 if not ready:
                     # flush empty socket
                     websocket.flush()
                 for fd in ready:
-                    if fd == websocket_fd:
+                    print(fd)
+                    if enter_msg_counter == 0:
+                        if 'subscribe-broadcast' in request.get_full_path():
+                            enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user['base_user']['username']) + ' has entered the channel",  "id":"'+ str(request.user['base_user']['username']) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
+                            print('blah ##########')
+                            subscriber.publish_message(enter_channel_message)
+                            time.sleep(1)
+                            sendmsg = RedisMessage(subscriber.parse_response())
+                            print(sendmsg)
+                            websocket.send(enter_channel_message)
+
+                            enter_msg_counter += 1
+                    elif fd == websocket_fd:
                         recvmsg = RedisMessage(websocket.receive())
                         if recvmsg:
                             print(str(recvmsg) + " recvmessage")
@@ -171,6 +180,7 @@ class WebsocketWSGIServer(object):
         finally:
             leave_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(str(request.user['base_user']['username'])) + ' has left the channel",  "id":"'+ str(str(request.user['base_user']['username'])) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
             if 'subscribe-broadcast' in request.get_full_path():
+                print('foo')
                 subscriber.publish_message(leave_channel_message)
             subscriber.release(request)
             if websocket:
