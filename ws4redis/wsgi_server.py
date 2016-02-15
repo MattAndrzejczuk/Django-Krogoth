@@ -127,6 +127,7 @@ class WebsocketWSGIServer(object):
             if 'subscribe-broadcast' in request.get_full_path():
                 enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user['base_user']['username']) + ' has entered the channel",  "id":"'+ str(request.user['base_user']['username']) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
                 subscriber.publish_message(enter_channel_message)
+                websocket.send(enter_channel_message)
             recvmsg = None
 
             while websocket and not websocket.closed:
