@@ -185,3 +185,9 @@ SESSION_REDIS_PORT = os.environ["REDIS_PORT_6379_TCP_PORT"]
 SITE_ID = 2
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'chat.serializers.GetUserSerializer',
+}
+

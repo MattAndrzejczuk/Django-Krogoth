@@ -42,7 +42,21 @@ class JawnUserSerializer(serializers.ModelSerializer):
                   'followers')
         #depth = 2
 
+class GetJawnUserSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = JawnUser
+        fields = ('id', 'profile_pic', 'about_me', 'follows', 'date_of_birth', 'sex',
+                  'followers')
+        #depth = 2
+
+class GetUserSerializer(serializers.ModelSerializer):
+
+    jawn_user = GetJawnUserSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'last_login', 'date_joined', 'password', 'email', 'jawn_user', )
 
 
 class ImageMessageSerializer(serializers.ModelSerializer):
