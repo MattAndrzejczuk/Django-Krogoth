@@ -28,7 +28,7 @@ def application(environ, start_response):
 
 # docker run -d -P --name=jawn-redis redis
 # docker run -d -P -e POSTGRES_USER=ubuntu -e POSTGRES_PASSWORD=sau4tgiudnf --name=jawn-postgres postgres
-# docker run -d -p 80:80 -v ~/jawn-backend/:/opt/django/app/ --link jawn-postgres:postgres --link jawn-redis:redis --name=jawn-backend domface/jawn:1.2
+# docker run -d -p 80:80 -v ~/jawn-backend/:/opt/django/app/ --link jawn-postgres:postgres --link jawn-redis:redis --name=jawn-backend domface/jawn:1.4
 
 # docker run -d -p 80:80 -v ~/portfolio-app/:/opt/django/app/ --link jawn-postgres:postgres --link jawn-redis:redis --name=morado-backend domface/jawn:1.2
 

@@ -34,18 +34,7 @@ class JawnUserSerializer(serializers.ModelSerializer):
                   'followers')
         #depth = 2
 
-    # def create(self, validated_data):
-    #     # print validated_data['user']['id']
-    #     # print validated_data
-    #     jawnuser = JawnUser(
-    #         base_user=validated_data['user']['id'],
-    #         profile_pic=validated_data['profile_pic'],
-    #         about_me=validated_data['about_me'],
-    #         date_of_birth=validated_data['date_of_birth'],
-    #         sex=validated_data['sex'],
-    #     )
-    #     jawnuser.save()
-    #     return jawnuser
+
 
 
 
@@ -109,12 +98,7 @@ class MessageSerializer(serializers.ModelSerializer):
         if isinstance(value, ImageMessage):
             return ImageMessageSerializer(value, context=self.context).to_representation(value)
 
-    # def create(self, validated_data):
-    #     c = Message.objects.create(**validated_data)
-    #     print c.as_json()
-    #     message = RedisMessage(str(c.as_json()))
-    #     RedisPublisher(facility=validated_data['name'], broadcast=True).publish_message(message)
-    #     return Company(**validated_data)
+
 
 class ChannelSerializer(serializers.ModelSerializer):
     # messages = MessageSerializer(many=True, read_only=True,)

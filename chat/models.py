@@ -1,5 +1,5 @@
 from django.db import models
-from polymorphic import PolymorphicModel
+from polymorphic.models import PolymorphicModel
 from django.contrib.auth.models import User
 
 

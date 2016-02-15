@@ -1,7 +1,8 @@
+import gevent
 import gevent.monkey
 gevent.monkey.patch_all()
-import gevent_psycopg2
-gevent_psycopg2.monkey_patch()
+import psycogreen.gevent
+psycogreen.gevent.patch_psycopg()
 from uwsgidecorators import timer
 from django.utils import autoreload
 import uwsgi
