@@ -67,7 +67,8 @@ class RedisMessage(six.binary_type):
         if six.PY3:
             if isinstance(value, str):
                 if value != settings.WS4REDIS_HEARTBEAT:
-                    value = value.encode()
+                    print(value)
+                    value = value.encode('ascii')
                     return super(RedisMessage, cls).__new__(cls, value)
             elif isinstance(value, bytes):
                 if value != settings.WS4REDIS_HEARTBEAT.encode():
@@ -75,6 +76,8 @@ class RedisMessage(six.binary_type):
             elif isinstance(value, list):
                 if len(value) >= 2 and value[0] == b'message':
                     return super(RedisMessage, cls).__new__(cls, value[2])
+            elif isinstance(value, list):
+                return super(RedisMessage, cls).__new__(cls, value)
         else:
             if isinstance(value, six.string_types):
                 if value != settings.WS4REDIS_HEARTBEAT:
@@ -117,40 +120,57 @@ class RedisStore(object):
             if expire > 0:
                 self._connection.setex(channel, expire, message)
 
-    def publish_count_up(self, facility):
-        print('count up for ' + facility)
+    def add_user_to_chatroom(self, request):
+        """
+        grabs the current user and the current facility and creates a new
+        key inside the redis store for the chatroom
+
+        :param request:
+        :return:
+        """
+        print(request)
+        facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
         prefix = self.get_prefix()
-        channel = '{prefix}count:{facility}'.format(prefix=prefix, facility=facility)
-        self._connection.incr(channel, 1)
-        count = self._connection.get(channel)
-        self._connection.publish(channel, count)
+        channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
+        print(channel)
+        self._connection.set(channel, "")
+
+    def get_list_of_users_in_chatroom(self, request):
+        """
+        returns list of users in the current request's chatroom
+        :param request:
+        :return:
+        """
+        facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
+        prefix = self.get_prefix()
+        channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
+        return self._connection.keys('{prefix}broadcast:{facility}:chatroom*'.format(prefix=prefix, facility=facility,))
 
 
-    def publish_count_down(self, facility):
-        print('count down for ' + facility)
+    def remove_user_from_chatroom(self, request):
+        """
+        grabs the current user and the current facility and deletes the
+        key inside the redis store for the chatroom
+
+        :param request:
+        :return:
+        """
+        facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
         prefix = self.get_prefix()
-        channel = '{prefix}count:{facility}'.format(prefix=prefix, facility=facility)
-        if self._connection.get(channel):
-            if int(self._connection.get(channel)) > 0:
-                self._connection.decr(channel, 1)
-        count = self._connection.get(channel)
-        self._connection.publish(channel, count)
+        channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
+        self._connection.delete(channel, "")
 
     @staticmethod
     def get_prefix():
         return settings.WS4REDIS_PREFIX and '{0}:'.format(settings.WS4REDIS_PREFIX) or ''
 
     def _get_message_channels(self, request=None, facility='{facility}', broadcast=False,
-                              groups=(), users=(), sessions=(), count=True):
+                              groups=(), users=(), sessions=(),):
         prefix = self.get_prefix()
         channels = []
         if broadcast is True:
             # broadcast message to each subscriber listening on the named facility
             channels.append('{prefix}broadcast:{facility}'.format(prefix=prefix, facility=facility))
-
-        if count is True:
-            # broadcast message to each subscriber listening on the named facility
-            channels.append('{prefix}count:{facility}'.format(prefix=prefix, facility=facility))
 
         # handle group messaging
         if isinstance(groups, (list, tuple)):

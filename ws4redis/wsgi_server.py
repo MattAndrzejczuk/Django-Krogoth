@@ -58,12 +58,16 @@ class WebsocketWSGIServer(object):
         request.session = None
         request.user = None
         session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
-        if session_key is not None:
-            # print(session_key)
-            engine = import_module(settings.SESSION_ENGINE)
-            request.session = engine.SessionStore(session_key)
-            # session = Session.objects.get(session_key=session_key)
-            request.user = SimpleLazyObject(lambda: get_user(request))
+        # if session_key is not None:
+        #     # print(session_key)
+        #     engine = import_module(settings.SESSION_ENGINE)
+        #     request.session = engine.SessionStore(session_key)
+        #     # session = Session.objects.get(session_key=session_key)
+        #     request.user = SimpleLazyObject(lambda: get_user(request))
+        if 'Token' in request.META['REQUEST_URI']:
+            token = request.META['REQUEST_URI'].split('Token', 1)[1]
+            request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
+            print(request.user)
         elif request.META['HTTP_AUTHORIZATION']:
 
             print(request.META['HTTP_AUTHORIZATION'])
@@ -102,8 +106,6 @@ class WebsocketWSGIServer(object):
             else:
                 self.process_request(request)
             channels, echo_message = self.process_subscriptions(request)
-            if 'subscribe-broadcast' in request.get_full_path():
-                subscriber.count_user_entering_channel(request)
             if callable(private_settings.WS4REDIS_ALLOWED_CHANNELS):
                 channels = list(private_settings.WS4REDIS_ALLOWED_CHANNELS(request, channels))
             elif private_settings.WS4REDIS_ALLOWED_CHANNELS is not None:
@@ -126,33 +128,52 @@ class WebsocketWSGIServer(object):
             recvmsg = None
             enter_msg_counter = 0
             while websocket and not websocket.closed:
+                if enter_msg_counter == 0:
+                    subscriber.add_user_to_chatroom(request=request)
+                    enter_msg_counter += 1
                 ready = self.select(listening_fds, [], [], 4.0)[0]
                 print(ready)
                 if not ready:
                     # flush empty socket
                     websocket.flush()
                 for fd in ready:
-                    print(fd)
-                    if enter_msg_counter == 0:
-                        if 'subscribe-broadcast' in request.get_full_path():
-                            enter_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(request.user['base_user']['username']) + ' has entered the channel",  "id":"'+ str(request.user['base_user']['username']) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
-                            print('blah ##########')
-                            subscriber.publish_message(enter_channel_message)
-                            time.sleep(1)
-                            sendmsg = RedisMessage(subscriber.parse_response())
-                            print(sendmsg)
-                            websocket.send(enter_channel_message)
+                    list_o_users = subscriber.get_list_of_users_in_chatroom(request)
+                    print(list_o_users)
+                    a = RedisMessage(str(list_o_users))
+                    websocket.send(a)
+                    if fd == websocket_fd:
+                        """
+                        I need to create a parser here which knows to publish
+                        the correct message into the correct prefix....
 
-                            enter_msg_counter += 1
-                    elif fd == websocket_fd:
-                        recvmsg = RedisMessage(websocket.receive())
+                        i.e. {prefix}:{region}#{channel name}:{type}
+                        type can be: chatroom, typing, text, etc.
+                        """
+                        print(websocket.receive().decode('utf8'))
+                        rec = websocket.receive().decode('utf8')
+                        recvmsg = RedisMessage(rec)
                         if recvmsg:
                             print(str(recvmsg) + " recvmessage")
                             subscriber.publish_message(recvmsg)
                     elif fd == redis_fd:
-                        sendmsg = RedisMessage(subscriber.parse_response())
+                        print('SHIT!!')
+                        raw = subscriber.parse_response()
+                        print(raw)
+                        msg = subscriber.clean_up_response(raw)
+                        print(msg)
+                        ### check and see if there is JSON inside msg['data']
+                        try:
+                            new_dict = json.loads(msg['data'])
+                            msg['data'] = new_dict
+                        except ValueError:
+                            pass
+                        except TypeError:
+                            pass
+                        m = json.dumps(msg, ensure_ascii=False)
+                        sendmsg = RedisMessage(m)
+                        print(sendmsg)
                         if sendmsg and (echo_message or sendmsg != recvmsg):
-                            print(str(sendmsg) + " this is inside the websocket loop (sendmsg)")
+                            print(m + " this is inside the websocket loop (sendmsg)")
                             websocket.send(sendmsg)
                     else:
                         logger.error('Invalid file descriptor: {0}'.format(fd))
@@ -178,10 +199,7 @@ class WebsocketWSGIServer(object):
         else:
             response = http.HttpResponse()
         finally:
-            leave_channel_message = RedisMessage('{"type":"alert", "text":"'+ str(str(request.user['base_user']['username'])) + ' has left the channel",  "id":"'+ str(str(request.user['base_user']['username'])) + '", "date": "'+ str(datetime.datetime.now().isoformat()) +'"}')
-            if 'subscribe-broadcast' in request.get_full_path():
-                print('foo')
-                subscriber.publish_message(leave_channel_message)
+            subscriber.remove_user_from_chatroom(request=request)
             subscriber.release(request)
             if websocket:
                 websocket.close(code=1001, message='Websocket Closed')

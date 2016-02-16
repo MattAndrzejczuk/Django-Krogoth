@@ -14,14 +14,6 @@ class RedisSubscriber(RedisStore):
         self._subscription = None
         super(RedisSubscriber, self).__init__(connection)
 
-    def count_user_entering_channel(self, request):
-        """
-        Add a user to the count channel when he/she has entered
-        """
-        facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
-        print(facility)
-        self.publish_count_up(facility)
-
 
 
     def parse_response(self):
@@ -31,11 +23,52 @@ class RedisSubscriber(RedisStore):
 
         return self._subscription.parse_response()
 
+    def clean_up_response(self, raw_sndmsg):
+        """
+        Listen for messages on channels this client has been subscribed to
+        """
+        r = []
+        for i in raw_sndmsg:
+            if isinstance(i, bytes):
+                r.append(i.decode('utf8'))
+            else:
+                r.append(i)
+
+        if r[0] == 'pmessage':
+            msg = {
+                'type': r[0],
+                'pattern': r[1],
+                'channel': r[2],
+                'data': r[3]
+            }
+        else:
+            msg = {
+                'type': r[0],
+                'pattern': None,
+                'channel': r[1],
+                'data': r[2]
+            }
+        return msg
+
+        # return self._subscription.listen()
+
     def set_pubsub_channels(self, request, channels):
         """
         Initialize the channels used for publishing and subscribing messages through the message queue.
+
+        A facility looks like:                     US~CA#General
+        Using the example above, a region is:      US~CA
+        and the corresponding chatroom is          #General
+
+
         """
         facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
+
+        region = facility.split('#')[0]
+
+        chat_room = facility.split('#')[1]
+
+        print(region)
 
         print(str(str(request.user['base_user']['username'])) + " has entered " + str(facility))
 
@@ -45,7 +78,6 @@ class RedisSubscriber(RedisStore):
             'groups': 'publish-group' in channels and [SELF] or [],
             'sessions': 'publish-session' in channels and [SELF] or [],
             'broadcast': 'publish-broadcast' in channels,
-            'count': 'publish-count' in channels,
         }
         self._publishers = set()
         for key in self._get_message_channels(request=request, facility=facility, **audience):
@@ -57,11 +89,12 @@ class RedisSubscriber(RedisStore):
             'groups': 'subscribe-group' in channels and [SELF] or [],
             'sessions': 'subscribe-session' in channels and [SELF] or [],
             'broadcast': 'subscribe-broadcast' in channels,
-            'count': 'subscribe-count' in channels,
         }
         self._subscription = self._connection.pubsub()
+        print(audience)
         for key in self._get_message_channels(request=request, facility=facility, **audience):
-            self._subscription.subscribe(key)
+            print(key)
+            self._subscription.psubscribe('*' + key + '*')
 
     def send_persited_messages(self, websocket):
         """
@@ -86,7 +119,6 @@ class RedisSubscriber(RedisStore):
         memory sap when Redis Output Buffer and Output Lists build when websockets are abandoned.
         """
         print(str(str(request.user['base_user']['username'])) + " has left the channel " + request.path_info.replace(settings.WEBSOCKET_URL, '', 1))
-        self.publish_count_down(facility=request.path_info.replace(settings.WEBSOCKET_URL, '', 1))
         if self._subscription and self._subscription.subscribed:
             self._subscription.unsubscribe()
             self._subscription.reset()
