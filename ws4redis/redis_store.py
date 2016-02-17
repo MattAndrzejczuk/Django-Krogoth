@@ -143,7 +143,6 @@ class RedisStore(object):
         """
         facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
         prefix = self.get_prefix()
-        channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
         return self._connection.keys('{prefix}broadcast:{facility}:chatroom*'.format(prefix=prefix, facility=facility,))
 
 
@@ -159,6 +158,20 @@ class RedisStore(object):
         prefix = self.get_prefix()
         channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
         self._connection.delete(channel, "")
+
+    def user_is_typing(self, request, expiration=3):
+        """
+        Creates a key with an expiry that tells all subscribers that
+        the current user is typing
+
+        :param request:
+        :param expiration:
+        :return:
+        """
+        facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
+        prefix = self.get_prefix()
+        channel = '{prefix}broadcast:{facility}:typing:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
+        self._connection.setex(channel, expiration, "")
 
     @staticmethod
     def get_prefix():

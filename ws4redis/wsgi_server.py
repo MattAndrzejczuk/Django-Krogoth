@@ -139,23 +139,63 @@ class WebsocketWSGIServer(object):
                 for fd in ready:
                     list_o_users = subscriber.get_list_of_users_in_chatroom(request)
                     print(list_o_users)
-                    a = RedisMessage(str(list_o_users))
-                    websocket.send(a)
+                    # a = RedisMessage(str(list_o_users))
+                    # websocket.send(a)
                     if fd == websocket_fd:
                         """
+                        ################
+                        EVERYTHING THIS LOOP HAPPENS WHEN THE WEBSOCKET RECEIVES A MESSAGE
+                        I.E. A CLIENT SENDING SOMETHING UPSTREAM
+                        ################
+
                         I need to create a parser here which knows to publish
                         the correct message into the correct prefix....
 
                         i.e. {prefix}:{region}#{channel name}:{type}
                         type can be: chatroom, typing, text, etc.
                         """
-                        print(websocket.receive().decode('utf8'))
-                        rec = websocket.receive().decode('utf8')
-                        recvmsg = RedisMessage(rec)
+
+                        rec = websocket.receive()
+                        """
+                        the parser should begin here, where we figure out what kind of message this is,
+                        but first we need to weed out the strings from the JSON strings
+                        """
+                        print(rec)
+                        recv_dict = {}
+                        try:
+                            recv_dict = json.loads(rec.decode('utf8'))
+                            print(recv_dict)
+                            recvmsg = None
+                        except ValueError:
+                            recvmsg = RedisMessage(rec)
+                        except TypeError:
+                            recvmsg = RedisMessage(rec)
+                        print(str(recv_dict) + " this is HERE")
+                        # rec_dict = json.loads(recvmsg)
+                        # print(rec_dict)
+                        """
+                        if recvmsg is of type RedisMessage, this means it was
+                        """
                         if recvmsg:
                             print(str(recvmsg) + " recvmessage")
                             subscriber.publish_message(recvmsg)
+                        if recv_dict:
+                            if recv_dict['type'] == 'action':
+                                if recv_dict['action'] == 'typing':
+                                    print('typing typing typing typing typing')
+                                    subscriber.user_is_typing(request=request, expiration=15)
+                                    pass
+                                    # run some typing method in here
+                                elif recv_dict['action'] == 'upvote':
+                                    pass
+                                    # run upvote method logic here
                     elif fd == redis_fd:
+                        """
+                        ################
+                        EVERYTHING THIS LOOP HAPPENS WHEN THE REDIS QUEUE RECEIVES A MESSAGE
+                        I.E. A REDIS NOTIFICATION OR PUBSUB EVENT
+                        ################
+                        """
                         print('SHIT!!')
                         raw = subscriber.parse_response()
                         print(raw)
@@ -166,9 +206,11 @@ class WebsocketWSGIServer(object):
                             new_dict = json.loads(msg['data'])
                             msg['data'] = new_dict
                         except ValueError:
+                            # logger.warning('Got ValueError on when parsing {}'.format(str(msg)), exc_info=sys.exc_info())
                             pass
                         except TypeError:
                             pass
+                            # logger.warning('Got TypeError on when parsing {}'.format(str(msg)), exc_info=sys.exc_info())
                         m = json.dumps(msg, ensure_ascii=False)
                         sendmsg = RedisMessage(m)
                         print(sendmsg)
