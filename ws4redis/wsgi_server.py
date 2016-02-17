@@ -55,6 +55,11 @@ class WebsocketWSGIServer(object):
             raise HandshakeError('Client does not wish to upgrade to a websocket')
 
     def process_request(self, request):
+        """
+        NEED TO SET UP A SECURE WAY TO HANDLE REQUESTS THAT DONT HAVE AN ACCESS TOKEN
+        :param request:
+        :return:
+        """
         request.session = None
         request.user = None
         session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
@@ -160,7 +165,7 @@ class WebsocketWSGIServer(object):
                         the parser should begin here, where we figure out what kind of message this is,
                         but first we need to weed out the strings from the JSON strings
                         """
-                        print(rec)
+                        print(channels)
                         recv_dict = {}
                         try:
                             recv_dict = json.loads(rec.decode('utf8'))

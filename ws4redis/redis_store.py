@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import six
 import warnings
+import json
 from ws4redis import settings
 
 
@@ -120,12 +121,16 @@ class RedisStore(object):
             if expire > 0:
                 self._connection.setex(channel, expire, message)
 
-    def add_user_to_chatroom(self, request):
+    def add_user_to_chatroom(self, request, write_user=False):
         """
         grabs the current user and the current facility and creates a new
-        key inside the redis store for the chatroom
+        key inside the redis store for the chatroom.
+
+        Optional parameter to write the entire user data to the key for
+        retrieval later.
 
         :param request:
+        :param write_user:
         :return:
         """
         print(request)
@@ -133,7 +138,30 @@ class RedisStore(object):
         prefix = self.get_prefix()
         channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
         print(channel)
-        self._connection.set(channel, "")
+        if write_user:
+            self._connection.set(channel, json.dumps(request.user))
+        else:
+            self._connection.set(channel, "")
+        self.broadcast_users_in_chatroom(prefix=prefix, facility=facility)
+
+    def broadcast_users_in_chatroom(self, prefix, facility):
+        """
+        Provided an app prefix and the current facility, this function
+        sends a message to the {prefix}broadcast:{facility}:chatroom,
+        which is a JSON Payload....
+        Ex. {"type": "chatroom", "data": [{"username": "nooch"}, {"username": "dom"}]}
+        :param prefix:
+        :param facility:
+        :return:
+        """
+        u = []
+        users_bytes = self._connection.keys('{prefix}broadcast:{facility}:chatroom:*'.format(prefix=prefix, facility=facility))
+        users_unparsed = [i.decode('utf8') for i in users_bytes]
+        users_dirty = [i.split(':chatroom:', 1) for i in users_unparsed]
+        [u.append({'user': i[1]}) for i in users_dirty]
+        u_pre = {'type': 'chatroom', 'facility': facility, 'data': u}
+        self._connection.set('{prefix}broadcast:{facility}:chatroom'.format(prefix=prefix, facility=facility), json.dumps(u_pre))
+
 
     def get_list_of_users_in_chatroom(self, request):
         """
@@ -157,7 +185,10 @@ class RedisStore(object):
         facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
         prefix = self.get_prefix()
         channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
-        self._connection.delete(channel, "")
+        self._connection.delete(channel)
+        self.broadcast_users_in_chatroom(prefix=prefix, facility=facility)
+        # Broadcast the list of users in the chatroom to the {prefix}broadcast:{facility}:chatroom key
+
 
     def user_is_typing(self, request, expiration=3):
         """

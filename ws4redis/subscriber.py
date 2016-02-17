@@ -64,6 +64,8 @@ class RedisSubscriber(RedisStore):
         """
         facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
 
+        prefix = self.get_prefix()
+
         region = facility.split('#')[0]
 
         chat_room = facility.split('#')[1]
@@ -92,9 +94,16 @@ class RedisSubscriber(RedisStore):
         }
         self._subscription = self._connection.pubsub()
         print(audience)
+        ### SUBSCRIBE TO THE CURRENT REGIONS CHATROOMS ONLY TO GET INFORMATION ON CHATROOMS
+        ### FOR NOW, I WILL ONLY SEND THE CLIENT LIST OF PEOPLE PER CHATROOM IN REAL TIME
+
+        ## for chatroom in self._subscription.keys('demo:broadcast:US~CA#*:chatroom'):
+        ##      subscribe to all keys in this loop
+        self._subscription.subscribe('{prefix}broadcast:{facility}:chatroom'.format(prefix=prefix, facility=facility))
         for key in self._get_message_channels(request=request, facility=facility, **audience):
             print(key)
             self._subscription.psubscribe('*' + key + '*')
+            self._subscription.subscribe(key)
 
     def send_persited_messages(self, websocket):
         """
