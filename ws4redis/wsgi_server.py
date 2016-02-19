@@ -256,7 +256,7 @@ class WebsocketWSGIServer(object):
                                     msg = new_outgoing_dict
                                 elif msg['data'] == 'expire':
                                     msg = None
-                            elif msg['channel'] == '__keyspace@0__:' + prefix + 'broadcast:' + facility or msg['channel'] == '__keyspace@0__:' + prefix + 'broadcast:' + facility + ':chatroom':
+                            elif msg['channel'] == '__keyspace@0__:' + prefix + 'broadcast:' + facility or msg['channel'] == '__keyspace@0__:' + prefix + 'broadcast:' + facility + ':chatroom' or prefix + 'broadcast:' + facility:
                                 msg = None
                         elif msg['data'] == private_settings.WS4REDIS_HEARTBEAT:
                             msg = None
