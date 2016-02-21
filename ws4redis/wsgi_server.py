@@ -79,6 +79,7 @@ class WebsocketWSGIServer(object):
             array = a.split()
             token = array[1]
             print(token)
+            print(self._redis_connection.get('tokens:' + token))
             request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
             # request.user = User.objects.get(id=Token.objects.get(key=token).user_id)
             print(request.user)
