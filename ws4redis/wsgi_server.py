@@ -62,7 +62,7 @@ class WebsocketWSGIServer(object):
         """
         request.session = None
         request.user = None
-        session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
+        # session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
         # if session_key is not None:
         #     # print(session_key)
         #     engine = import_module(settings.SESSION_ENGINE)
@@ -78,6 +78,7 @@ class WebsocketWSGIServer(object):
             a = request.META['HTTP_AUTHORIZATION']
             array = a.split()
             token = array[1]
+            print(token)
             request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
             # request.user = User.objects.get(id=Token.objects.get(key=token).user_id)
             print(request.user)
