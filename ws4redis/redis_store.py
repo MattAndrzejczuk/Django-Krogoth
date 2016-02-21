@@ -67,13 +67,13 @@ class RedisMessage(six.binary_type):
     def __new__(cls, value):
         if six.PY3:
             if isinstance(value, str):
-                if value != settings.WS4REDIS_HEARTBEAT:
-                    print(value)
-                    value = value.encode('ascii')
-                    return super(RedisMessage, cls).__new__(cls, value)
+                #if value != settings.WS4REDIS_HEARTBEAT:
+                print(value)
+                value = value.encode('ascii')
+                return super(RedisMessage, cls).__new__(cls, value)
             elif isinstance(value, bytes):
-                if value != settings.WS4REDIS_HEARTBEAT.encode():
-                    return super(RedisMessage, cls).__new__(cls, value)
+                # if value != settings.WS4REDIS_HEARTBEAT.encode():
+                return super(RedisMessage, cls).__new__(cls, value)
             elif isinstance(value, list):
                 if len(value) >= 2 and value[0] == b'message':
                     return super(RedisMessage, cls).__new__(cls, value[2])
@@ -81,8 +81,8 @@ class RedisMessage(six.binary_type):
                 return super(RedisMessage, cls).__new__(cls, value)
         else:
             if isinstance(value, six.string_types):
-                if value != settings.WS4REDIS_HEARTBEAT:
-                    return six.binary_type.__new__(cls, value)
+                #if value != settings.WS4REDIS_HEARTBEAT:
+                return six.binary_type.__new__(cls, value)
             elif isinstance(value, list):
                 if len(value) >= 2 and value[0] == 'message':
                     return six.binary_type.__new__(cls, value[2])
@@ -160,6 +160,7 @@ class RedisStore(object):
         users_dirty = [i.split(':chatroom:', 1) for i in users_unparsed]
         [u.append({'user': i[1]}) for i in users_dirty]
         u_pre = {'type': 'chatroom_list', 'facility': facility, 'data': u}
+        self._connection.set('{prefix}broadcast:{facility}:chatroom'.format(prefix=prefix, facility=facility), json.dumps(u_pre))
         self._connection.publish('{prefix}broadcast:{facility}:chatroom'.format(prefix=prefix, facility=facility), json.dumps(u_pre))
 
 
@@ -203,6 +204,20 @@ class RedisStore(object):
         prefix = self.get_prefix()
         channel = '{prefix}broadcast:{facility}:typing:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
         self._connection.setex(channel, expiration, "")
+
+
+
+    def user_not_typing(self, request):
+        """
+        removes user typing key in Redis Store
+        :param request:
+        :return:
+        """
+        facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
+        prefix = self.get_prefix()
+        channel = '{prefix}broadcast:{facility}:typing:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
+        self._connection.delete(channel)
+
 
     @staticmethod
     def get_prefix():

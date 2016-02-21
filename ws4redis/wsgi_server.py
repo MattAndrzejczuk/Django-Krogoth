@@ -69,12 +69,11 @@ class WebsocketWSGIServer(object):
         #     request.session = engine.SessionStore(session_key)
         #     # session = Session.objects.get(session_key=session_key)
         #     request.user = SimpleLazyObject(lambda: get_user(request))
-        if 'Token' in request.META['REQUEST_URI']:
-            token = request.META['REQUEST_URI'].split('Token', 1)[1]
-            request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
-            print(request.user)
-        elif request.META['HTTP_AUTHORIZATION']:
-
+        # if 'Token' in request.META['REQUEST_URI']:
+        #     token = request.META['REQUEST_URI'].split('Token', 1)[1]
+        #     request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
+        #     print(request.user)
+        if request.META['HTTP_AUTHORIZATION']:
             print(request.META['HTTP_AUTHORIZATION'])
             a = request.META['HTTP_AUTHORIZATION']
             array = a.split()
@@ -129,12 +128,14 @@ class WebsocketWSGIServer(object):
             redis_fd = subscriber.get_file_descriptor()
             if redis_fd:
                 listening_fds.append(redis_fd)
-            subscriber.send_persited_messages(websocket)
             recvmsg = None
             enter_msg_counter = 0
             while websocket and not websocket.closed:
+                prefix = subscriber.get_prefix()
+                facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
                 if enter_msg_counter == 0:
                     subscriber.add_user_to_chatroom(request=request)
+                    subscriber.send_persited_messages(websocket)
                     enter_msg_counter += 1
                 ready = self.select(listening_fds, [], [], 4.0)[0]
                 print(ready)
@@ -142,8 +143,6 @@ class WebsocketWSGIServer(object):
                     # flush empty socket
                     websocket.flush()
                 for fd in ready:
-                    list_o_users = subscriber.get_list_of_users_in_chatroom(request)
-                    print(list_o_users)
                     # a = RedisMessage(str(list_o_users))
                     # websocket.send(a)
                     if fd == websocket_fd:
@@ -165,7 +164,6 @@ class WebsocketWSGIServer(object):
                         the parser should begin here, where we figure out what kind of message this is,
                         but first we need to weed out the strings from the JSON strings
                         """
-                        print(channels)
                         recv_dict = {}
                         try:
                             recv_dict = json.loads(rec.decode('utf8'))
@@ -187,13 +185,23 @@ class WebsocketWSGIServer(object):
                         if recv_dict:
                             if recv_dict['type'] == 'action':
                                 if recv_dict['action'] == 'typing':
-                                    print('typing typing typing typing typing')
-                                    subscriber.user_is_typing(request=request, expiration=2)
-                                    pass
+                                    subscriber.user_is_typing(request=request, expiration=15)
                                     # run some typing method in here
                                 elif recv_dict['action'] == 'upvote':
                                     pass
+                                elif recv_dict['action'] == 'message sent':
+                                    print('typing typing typing typing typing #########################')
+                                    subscriber.user_not_typing(request=request)
                                     # run upvote method logic here
+                            elif recv_dict['type'] == 'text':
+                                """
+                                if client is sending a message upstream as "ephemeral" instead of
+                                permenantly to the DB
+                                """
+                                recv_dict['jawn_user'] = request.user
+                                message = json.dumps(recv_dict)
+                                recvmsg = RedisMessage(message)
+                                subscriber.publish_message(recvmsg)
                     elif fd == redis_fd:
                         """
                         ################
@@ -203,9 +211,7 @@ class WebsocketWSGIServer(object):
                         """
                         print('SHIT!!')
                         raw = subscriber.parse_response()
-                        print(raw)
                         msg = subscriber.clean_up_response(raw)
-                        print(msg)
                         ### check and see if there is JSON inside msg['data']
                         try:
                             new_dict = json.loads(msg['data'])
@@ -216,9 +222,45 @@ class WebsocketWSGIServer(object):
                         except TypeError:
                             pass
                             # logger.warning('Got TypeError on when parsing {}'.format(str(msg)), exc_info=sys.exc_info())
+                        if msg['type'] == 'pmessage':
+                            new_outgoing_dict = {}
+                            new_outgoing_dict['data'] = 'action'
+                            if ':typing:' in msg['channel']:
+                                user = msg['channel'].split(':typing:', 1)[1]
+                                new_outgoing_dict['user'] = user
+                                new_outgoing_dict['facility'] = facility
+                                new_outgoing_dict['type'] = 'typing'
+                                if msg['data'] == 'set':
+                                    new_outgoing_dict['action'] = 'started'
+                                    new_outgoing_dict['message'] = user + ' is typing'
+                                    msg = new_outgoing_dict
+                                elif msg['data'] == 'expired' or msg['data'] == 'del':
+                                    new_outgoing_dict['action'] = 'stopped'
+                                    new_outgoing_dict['message'] = user + ' stopped typing'
+                                    msg = new_outgoing_dict
+                                elif msg['data'] == 'expire':
+                                    msg = None
+                            elif ':chatroom:' in msg['channel']:
+                                user = msg['channel'].split(':chatroom:', 1)[1]
+                                new_outgoing_dict['user'] = user
+                                new_outgoing_dict['facility'] = facility
+                                new_outgoing_dict['type'] = 'chatroom'
+                                if msg['data'] == 'set':
+                                    new_outgoing_dict['action'] = 'joined'
+                                    new_outgoing_dict['message'] = user + ' has joined the channel'
+                                    msg = new_outgoing_dict
+                                elif msg['data'] == 'expired' or msg['data'] == 'del':
+                                    new_outgoing_dict['action'] = 'left'
+                                    new_outgoing_dict['message'] = user + ' has left the channel'
+                                    msg = new_outgoing_dict
+                                elif msg['data'] == 'expire':
+                                    msg = None
+                            elif msg['channel'] == '__keyspace@0__:' + prefix + 'broadcast:' + facility or msg['channel'] == '__keyspace@0__:' + prefix + 'broadcast:' + facility + ':chatroom' or prefix + 'broadcast:' + facility:
+                                msg = None
+                        elif msg['data'] == private_settings.WS4REDIS_HEARTBEAT:
+                            msg = None
                         m = json.dumps(msg, ensure_ascii=False)
                         sendmsg = RedisMessage(m)
-                        print(sendmsg)
                         if sendmsg and (echo_message or sendmsg != recvmsg):
                             print(m + " this is inside the websocket loop (sendmsg)")
                             websocket.send(sendmsg)
