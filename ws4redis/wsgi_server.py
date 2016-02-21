@@ -188,7 +188,7 @@ class WebsocketWSGIServer(object):
                             if recv_dict['type'] == 'action':
                                 if recv_dict['action'] == 'typing':
                                     print('typing typing typing typing typing')
-                                    subscriber.user_is_typing(request=request, expiration=15)
+                                    subscriber.user_is_typing(request=request, expiration=2)
                                     pass
                                     # run some typing method in here
                                 elif recv_dict['action'] == 'upvote':
