@@ -62,23 +62,24 @@ class WebsocketWSGIServer(object):
         """
         request.session = None
         request.user = None
-        session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
+        # session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
         # if session_key is not None:
         #     # print(session_key)
         #     engine = import_module(settings.SESSION_ENGINE)
         #     request.session = engine.SessionStore(session_key)
         #     # session = Session.objects.get(session_key=session_key)
         #     request.user = SimpleLazyObject(lambda: get_user(request))
-        if 'Token' in request.META['REQUEST_URI']:
-            token = request.META['REQUEST_URI'].split('Token', 1)[1]
-            request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
-            print(request.user)
-        elif request.META['HTTP_AUTHORIZATION']:
-
+        # if 'Token' in request.META['REQUEST_URI']:
+        #     token = request.META['REQUEST_URI'].split('Token', 1)[1]
+        #     request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
+        #     print(request.user)
+        if request.META['HTTP_AUTHORIZATION']:
             print(request.META['HTTP_AUTHORIZATION'])
             a = request.META['HTTP_AUTHORIZATION']
             array = a.split()
             token = array[1]
+            print(token)
+            print(self._redis_connection)
             request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
             # request.user = User.objects.get(id=Token.objects.get(key=token).user_id)
             print(request.user)

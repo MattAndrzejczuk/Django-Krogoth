@@ -159,7 +159,7 @@ class RedisStore(object):
         users_unparsed = [i.decode('utf8') for i in users_bytes]
         users_dirty = [i.split(':chatroom:', 1) for i in users_unparsed]
         [u.append({'user': i[1]}) for i in users_dirty]
-        u_pre = {'type': 'chatroom', 'facility': facility, 'data': u}
+        u_pre = {'type': 'chatroom_list', 'facility': facility, 'data': u}
         self._connection.set('{prefix}broadcast:{facility}:chatroom'.format(prefix=prefix, facility=facility), json.dumps(u_pre))
         self._connection.publish('{prefix}broadcast:{facility}:chatroom'.format(prefix=prefix, facility=facility), json.dumps(u_pre))
 
