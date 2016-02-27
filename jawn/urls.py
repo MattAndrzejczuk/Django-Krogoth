@@ -27,6 +27,7 @@ router.register(r'image-messages', ImageMessageViewSet)
 router.register(r'text-messages', TextMessageViewSet)
 router.register(r'channels', ChannelViewSet)
 router.register(r'messages', MessageViewSet)
+router.register(r'link-messages', LinkMessageViewSet)
 
 urlpatterns = [
     url(r'^api/', include(router.urls)),

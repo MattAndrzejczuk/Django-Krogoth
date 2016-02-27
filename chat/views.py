@@ -64,6 +64,13 @@ class TextMessageViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, )
 
 
+class LinkMessageViewSet(viewsets.ModelViewSet):
+
+    queryset = LinkMessage.objects.all()
+    serializer_class = LinkMessageSerializer
+    permission_classes = (permissions.IsAuthenticated, )
+
+
 class ChannelViewSet(viewsets.ModelViewSet):
 
     queryset = Channel.objects.all()
