@@ -121,7 +121,7 @@ class LinkMessageSerializer(serializers.ModelSerializer):
                   'channel',
                   'type',
                   'text',
-                  'iamge_url',
+                  'image_url',
                   'headline',
                   'organization',
                   'jawn_user',
@@ -130,7 +130,7 @@ class LinkMessageSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
-        c = LinkMessage.objects.create(channel=validated_data['channel'], text=validated_data['text'], jawn_user=jawn_user, image_url=validated_data['iamge_url'], headline=validated_data['headline'], organization=validated_data['organization'])
+        c = LinkMessage.objects.create(channel=validated_data['channel'], text=validated_data['text'], jawn_user=jawn_user, image_url=validated_data['image_url'], headline=validated_data['headline'], organization=validated_data['organization'])
         j = LinkMessageSerializer(c, context=self.context)
         json = JSONRenderer().render(j.data)
         message = RedisMessage(json.decode("utf-8"))

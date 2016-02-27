@@ -56,7 +56,7 @@ class LinkMessage(Message):
     CHOICES = (('text', 'text'),)
     type = models.CharField(max_length=50, default='link', choices=CHOICES)
     text = models.TextField(max_length=1000)
-    iamge_url = models.URLField(null=True, blank=True)
+    image_url = models.URLField(null=True, blank=True)
     headline = models.CharField(max_length=250)
     organization = models.CharField(max_length=250)
 
