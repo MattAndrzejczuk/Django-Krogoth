@@ -1,10 +1,102 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Title</title>
 </head>
 <body>
 
+Websockets Documentation
+<br>
+<br>
+Client side:
+
+Typing:
+
+Each time the client begins typing, the client should publish a message upstream, to the websocket, every 2.5 seconds with the following payload:
+<pre>
+{
+    "type": "action",
+    "action": "typing"
+}
+</pre>
+The websocket server parses each response and assigns the requesting user to each request.
+
+When the user has finished typing, but HAS NOT sent a message, the server will respond with a typing expiration message after 3 seconds.
+
+IF HOWEVER, the user has sent a message before a typing expiration is established, the client will need to send the following payload upstream to the
+websocket to let the websocket server know that a message has been sent. This will consequentally send a typing expiration from the server back to all clients. This message can be sent on every send payload.
+<pre>
+{
+    "type": "action",
+    "action": "message sent"
+}
+</pre>
+
+Server Side:
+
+When a client is typing, the server will respond on the websocket with the following payload:
+<pre>
+{
+    "action": "started",
+    "user": "domin",
+    "facility": "US~CA~Santa|Clara|County~University|South#General",
+    "type": "typing",
+    "message": "domin is typing",
+    "data": "action"
+}
+</pre>
+When the user has stopped typing, the server will respond with  the following payload:
+<pre>
+{
+    "action": "stopped",
+    "user": "dom",
+    "facility": "US~CA~Santa|Clara|County~University|South#General",
+    "type": "typing",
+    "message": "dom stopped typing",
+    "data": "action"
+}
+</pre>
+When a user has joined a channel,  the server will respond with  the following payload:
+<pre>
+{
+    "action": "joined",
+    "user": "domin",
+    "facility": "US~CA~Santa|Clara|County~University|South#General",
+    "type": "chatroom",
+    "message": "domin has joined the channel",
+    "data": "action"
+}
+</pre>
+When a user has left a channel,  the server will respond with  the following payload:
+<pre>
+{
+    "action": "left",
+    "user": "domin",
+    "facility": "US~CA~Santa|Clara|County~University|South#General",
+    "type": "chatroom",
+    "message": "domin has left the channel",
+    "data": "action"
+}
+</pre>
+The server will also send a payload message about the channel the user is currently logged into, which is a list of users in the channel. The server
+will respond with this message, each time a user joins or leaves a channel, such that the client can update its list of current users:
+<pre>
+{
+    "facility": "US~CA~Santa|Clara|County~University|South#General",
+    "type": "chatroom-list",
+    "data": [
+        {
+            "user": "DickHead"
+        },
+        {
+            "user": "dom"
+        },
+        {
+            "user": "domin"
+        }
+    ]
+}
+</pre>
 </body>
 </html>
