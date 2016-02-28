@@ -134,7 +134,6 @@ class LinkMessageSerializer(serializers.ModelSerializer):
         j = LinkMessageSerializer(c, context=self.context)
         json = JSONRenderer().render(j.data)
         message = RedisMessage(json.decode("utf-8"))
-
         RedisPublisher(facility=validated_data['channel'], broadcast=True).publish_message(message)
         return c
 
@@ -154,6 +153,8 @@ class MessageSerializer(serializers.ModelSerializer):
             return TextMessageSerializer(value, context=self.context).to_representation(value)
         if isinstance(value, ImageMessage):
             return ImageMessageSerializer(value, context=self.context).to_representation(value)
+        if isinstance(value, LinkMessage):
+            return LinkMessageSerializer(value, context=self.context).to_representation(value)
 
 
 
