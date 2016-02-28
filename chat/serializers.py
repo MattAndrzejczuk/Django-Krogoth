@@ -6,6 +6,8 @@ from ws4redis.publisher import RedisPublisher
 from rest_framework.authtoken.models import Token
 from rest_framework.renderers import JSONRenderer
 from django.forms import ValidationError
+from django.db import connection
+
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -171,5 +173,15 @@ class ChannelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Channel
-        fields = ('id', 'name', 'created', 'creator', 'messages')
+        fields = ('id', 'name', 'description', 'created', 'creator', 'messages')
+        #depth = 1
+
+
+class ChannelListSerializer(serializers.ModelSerializer):
+
+
+
+    class Meta:
+        model = Channel
+        fields =  ('id', 'name', 'description', 'created', 'creator',)
         #depth = 1

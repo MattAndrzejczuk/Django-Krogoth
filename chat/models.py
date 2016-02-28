@@ -2,7 +2,6 @@ from django.db import models
 from polymorphic.models import PolymorphicModel
 from django.contrib.auth.models import User
 
-
 # Create your models here.
 class JawnUser(models.Model):
     base_user = models.OneToOneField(User, related_name='jawn_user', )
