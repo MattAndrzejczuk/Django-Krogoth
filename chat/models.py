@@ -21,7 +21,7 @@ class JawnUser(models.Model):
 
 
 class Channel(models.Model):
-    name = models.CharField(max_length=400)
+    name = models.CharField(max_length=400, unique=True)
     created = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(JawnUser, related_name='creator', blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
