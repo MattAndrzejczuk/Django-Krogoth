@@ -1,0 +1,15 @@
+django
+djangorestframework
+markdown
+django-filter
+django-rest-auth
+jsonfield
+django-allauth
+simple_salesforce
+django-cors-headers
+django-suit
+django-polymorphic
+django-rest-swagger
+redis
+Pillow
+django-redis-sessions

@@ -145,14 +145,14 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
 
-    os.path.join(BASE_DIR, 'static'),
+    #os.path.join(BASE_DIR, 'static'),
     #'/Users/Dominooch/Dropbox/Dev/theEmpire/static/',
 )
 
-STATIC_ROOT = ('/')
+STATIC_ROOT = ('/usr/src/volatile/static/')
 
-MEDIA_ROOT = '/opt/django/app/'
-MEDIA_URL = '/'
+MEDIA_ROOT = '/usr/src/persistent/media/'
+MEDIA_URL = '/media/'
 
 CACHES = {
     "default": {
