@@ -80,5 +80,30 @@ class MessageViewSet(viewsets.ModelViewSet):
     serializer_class = MessageSerializer
     permission_classes = (permissions.IsAuthenticated, )
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('id', )
+    filter_fields = ('id', 'channel', )
 
+
+
+class RegionFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(name="name", lookup_type="startswith")
+
+    class Meta:
+        model = Region
+        fields = ['name']
+
+class RegionViewSet(viewsets.ModelViewSet):
+    queryset = Region.objects.all()
+    serializer_class = RegionSerializer
+    permission_classes = (permissions.IsAuthenticated, )
+    filter_backends = (filters.DjangoFilterBackend, )
+    filter_fields = ('name')
+    filter_class = RegionFilter
+
+
+
+class PrivateMessageRelationshipSet(viewsets.ModelViewSet):
+    queryset = PrivateMessageRelationships.objects.all()
+    serializer_class = PrivateMessageSerializer
+    permission_classes = (permissions.IsAuthenticated, )
+    filter_backends = (filters.DjangoFilterBackend, )
+    filter_fields = ('user_recipient', 'user_sender', )
