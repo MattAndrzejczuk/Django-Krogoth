@@ -69,3 +69,16 @@ class TextMessage(Message):
             id = self.pk
         )).replace("'", '"')
 
+
+class Region(models.Model):
+    name = models.CharField(max_length=150)
+    coordinates_long = models.DecimalField(max_digits=8, decimal_places=8)
+    coordinates_lat = models.DecimalField(max_digits=8, decimal_places=8)
+    flickr_image = models.CharField(max_length=150, null=True)
+
+
+class PrivateMessageRelationships(models.Model):
+    channel = models.OneToOneField(Channel, related_name='channel', )
+    user_recipient = models.ForeignKey(User, related_name='user_recipient', )
+    user_sender = models.ForeignKey(User, related_name='user_sender', )
+    channel_name = models.CharField(max_length=150) # may need to remove this later.
