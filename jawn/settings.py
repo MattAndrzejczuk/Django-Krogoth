@@ -111,28 +111,28 @@ WSGI_APPLICATION = 'jawn.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'jawn2',
-        'USER': os.environ["POSTGRES_ENV_POSTGRES_USER"],
-        'PASSWORD': os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"],
-        'HOST': os.environ["POSTGRES_PORT_5432_TCP_ADDR"],
-        'PORT': os.environ["POSTGRES_PORT_5432_TCP_PORT"],
-    }
-}
-
+#
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'jawn',
-#         'USER': 'ubuntu',
-#         'PASSWORD': 'sau4tgiudnf',
-#         'HOST': '12.226.201.62',
-#         'PORT': '32769',
+#         'USER': os.environ["POSTGRES_ENV_POSTGRES_USER"],
+#         'PASSWORD': os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"],
+#         'HOST': os.environ["POSTGRES_PORT_5432_TCP_ADDR"],
+#         'PORT': os.environ["POSTGRES_PORT_5432_TCP_PORT"],
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'jawn',
+        'USER': 'ubuntu',
+        'PASSWORD': 'sau4tgiudnf',
+        'HOST': '12.226.201.62',
+        'PORT': '32769',
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

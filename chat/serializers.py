@@ -161,7 +161,7 @@ class MessageSerializer(serializers.ModelSerializer):
 class ChannelSerializer(serializers.ModelSerializer):
     # messages = MessageSerializer(many=True, read_only=True,)
 
-    messages = serializers.SerializerMethodField('get_messages_ordered')
+    #messages = serializers.SerializerMethodField('get_messages_ordered')
 
     def get_messages_ordered(self, channel):
         qset = Message.objects.filter(channel=channel).order_by('-date_posted')
@@ -171,7 +171,7 @@ class ChannelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Channel
-        fields = ('id', 'name', 'description', 'created', 'creator', 'messages')
+        fields = ('id', 'name', 'description', 'created', 'creator', )
         #depth = 1
 
 
@@ -194,14 +194,22 @@ class PrivateMessageSerializer(serializers.ModelSerializer):
 
 
 class RegionSerializer(serializers.ModelSerializer):
-    total_channels = serializers.SerializerMethodField()
+    total_channels = serializers.SerializerMethodField(read_only=True)
 
-    def get_total_channels(self):
-        pass
+    def get_total_channels(self, data):
+        #print(data)
+        return None
+        #Channel.objects.filter(name_istartswith=)
+
+    def create(self, validated_data):
+        instance = Region.objects.create_region(**validated_data)
+        print(instance.name)
+        return instance
 
     class Meta:
         model = Region
-        fields = ('name', 'coordinates_long', 'coordinates_lat', 'flickr_image', )
+        fields = ('name', 'coordinates_long', 'coordinates_lat', 'flickr_image', 'total_channels', )
+        read_only_fields = ('total_channels',)
 
 class LinkMessageSerializer(serializers.ModelSerializer):
     jawn_user = JawnUserSerializer(many=False, read_only=True)

@@ -117,12 +117,8 @@ class RegionFilter(django_filters.FilterSet):
 
 class RegionViewSet(viewsets.ModelViewSet):
     serializer_class = RegionSerializer
-
-    def get_queryset(self):
-        print('hello')
-        print(dir(self.request))
-        return Region.objects.all()
-
+    queryset = Region.objects.all()
+    permission_classes = (permissions.IsAuthenticated, )
 
 
 class PrivateMessageRelationshipSet(viewsets.ModelViewSet):

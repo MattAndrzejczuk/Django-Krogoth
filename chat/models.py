@@ -1,7 +1,9 @@
 from django.db import models
 from polymorphic.models import PolymorphicModel
 from django.contrib.auth.models import User
-
+import json
+from urllib.request import urlopen
+from django.contrib.postgres.fields import JSONField
 # Create your models here.
 class JawnUser(models.Model):
     base_user = models.OneToOneField(User, related_name='jawn_user', )
@@ -59,21 +61,41 @@ class LinkMessage(Message):
     headline = models.CharField(max_length=250)
     organization = models.CharField(max_length=250)
 
+class RegionManager(models.Manager):
+    def create_region(self, **kwargs):
+        print(kwargs)
+        kwargs['flickr_image'] = 'hellooooo'
+        region = self.create(**kwargs)
+        return region
+
 
 
 class Region(models.Model):
     name = models.CharField(max_length=150)
-    coordinates_long = models.DecimalField(max_digits=12, decimal_places=8)
-    coordinates_lat = models.DecimalField(max_digits=12, decimal_places=8)
+    coordinates_long = models.FloatField()
+    coordinates_lat = models.FloatField()
     flickr_image = models.CharField(max_length=150, null=True)
+    google_json = JSONField()
 
-    def save(self):
-        # Run logic when a new object is created.
+
+    objects = RegionManager()
+
+    def create(self, **kwargs):
         self.flickr_image = "IT WORKS!"# self.get_flickr_image(lat, long)
         self.save()
-        print(self)
+        print(kwargs)
+        print(self.flickr_image)
         print(dir(self))
-        return Super(Region, self).save(self)
+
+
+    # @classmethod
+    # def save(self):
+    #     # Run logic when a new object is created.
+    #     self.flickr_image = "IT WORKS!"# self.get_flickr_image(lat, long)
+    #     self.save()
+    #     print(self)
+    #     print(dir(self))
+    #     return Super(Region, self).save(self)
 
     def get_flickr_image(self, lat, long):
         pass
