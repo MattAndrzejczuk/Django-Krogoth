@@ -202,3 +202,29 @@ class RegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
         fields = ('name', 'coordinates_long', 'coordinates_lat', 'flickr_image', )
+
+class LinkMessageSerializer(serializers.ModelSerializer):
+    jawn_user = JawnUserSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = LinkMessage
+        fields = ('id',
+                  'date_posted',
+                  'channel',
+                  'type',
+                  'text',
+                  'image_url',
+                  'headline',
+                  'organization',
+                  'jawn_user',
+                  )
+        #depth = 1
+
+    def create(self, validated_data):
+        jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
+        c = LinkMessage.objects.create(channel=validated_data['channel'], text=validated_data['text'], jawn_user=jawn_user, image_url=validated_data['image_url'], headline=validated_data['headline'], organization=validated_data['organization'])
+        j = LinkMessageSerializer(c, context=self.context)
+        json = JSONRenderer().render(j.data)
+        message = RedisMessage(json.decode("utf-8"))
+        RedisPublisher(facility=validated_data['channel'], broadcast=True).publish_message(message)
+        return c

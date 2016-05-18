@@ -131,3 +131,9 @@ class PrivateMessageRelationshipSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, )
     filter_backends = (filters.DjangoFilterBackend, )
     filter_fields = ('user_recipient', 'user_sender', )
+
+class LinkMessageViewSet(viewsets.ModelViewSet):
+
+    queryset = LinkMessage.objects.all()
+    serializer_class = LinkMessageSerializer
+    permission_classes = (permissions.IsAuthenticated, )
