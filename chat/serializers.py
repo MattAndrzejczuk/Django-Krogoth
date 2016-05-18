@@ -139,11 +139,21 @@ class ChannelSerializer(serializers.ModelSerializer):
         serialized_data = MessageSerializer(qset, many=True, read_only=True, context=self.context)
         return serialized_data.data
 
+
     class Meta:
         model = Channel
-        fields = ('id', 'name', 'created', 'creator', 'messages')
+        fields = ('id', 'name', 'description', 'created', 'creator', 'messages')
         #depth = 1
 
+
+class ChannelListSerializer(serializers.ModelSerializer):
+
+
+
+    class Meta:
+        model = Channel
+        fields =  ('id', 'name', 'description', 'created', 'creator',)
+        #depth = 1
 
 
 class PrivateMessageSerializer(serializers.ModelSerializer):
@@ -154,6 +164,11 @@ class PrivateMessageSerializer(serializers.ModelSerializer):
 
 
 class RegionSerializer(serializers.ModelSerializer):
+    total_channels = serializers.SerializerMethodField()
+
+    def get_total_channels(self):
+        pass
+
     class Meta:
         model = Region
         fields = ('name', 'coordinates_long', 'coordinates_lat', 'flickr_image', )

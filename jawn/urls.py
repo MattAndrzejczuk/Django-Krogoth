@@ -21,14 +21,15 @@ from chat.views import *
 from django.contrib import admin
 
 router = DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'jawn-users', JawnUserViewSet)
-router.register(r'image-messages', ImageMessageViewSet)
-router.register(r'text-messages', TextMessageViewSet)
-router.register(r'channels', ChannelViewSet)
-router.register(r'messages', MessageViewSet)
-router.register(r'private-message-relationships', PrivateMessageRelationshipSet)
-router.register(r'regions', RegionViewSet, base_name="Region")
+router.register(r'users', UserViewSet, 'User')
+router.register(r'jawn-users', JawnUserViewSet, 'Jawn User')
+router.register(r'image-messages', ImageMessageViewSet, 'Image Message')
+router.register(r'text-messages', TextMessageViewSet, 'Text Message')
+router.register(r'channels', ChannelViewSet, 'Channel')
+router.register(r'messages', MessageViewSet, 'Message')
+router.register(r'private-message-relationships', PrivateMessageRelationshipSet, 'Private Message')
+router.register(r'regions', RegionViewSet, 'Region')
+
 
 urlpatterns = [
     url(r'^api/', include(router.urls)),
@@ -38,4 +39,5 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(r'channel-list/', ChannelList.as_view()),
 ]

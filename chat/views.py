@@ -82,7 +82,15 @@ class MessageViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('id', 'channel', )
 
+class ChannelList(generics.ListAPIView):
 
+    queryset = Channel.objects.all()
+    print(len(connection.queries))
+    serializer_class = ChannelListSerializer
+    permission_classes = (permissions.IsAuthenticated, )
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('name', 'id', 'creator',)
+    filter_class = ChannelFilter
 
 class RegionFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(name="name", lookup_type="startswith")
