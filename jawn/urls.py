@@ -28,6 +28,8 @@ router.register(r'text-messages', TextMessageViewSet)
 router.register(r'channels', ChannelViewSet)
 router.register(r'messages', MessageViewSet)
 router.register(r'link-messages', LinkMessageViewSet)
+router.register(r'private-message-relationships', PrivateMessageRelationshipSet)
+router.register(r'regions', RegionViewSet, base_name="Region")
 
 urlpatterns = [
     url(r'^api/', include(router.urls)),

@@ -148,8 +148,6 @@ class MessageSerializer(serializers.ModelSerializer):
         fields = ('id', 'date_posted', 'channel', 'jawn_user', )
         depth = 1
 
-
-
     def to_representation(self, value):
         if isinstance(value, TextMessage):
             return TextMessageSerializer(value, context=self.context).to_representation(value)
@@ -170,18 +168,20 @@ class ChannelSerializer(serializers.ModelSerializer):
         serialized_data = MessageSerializer(qset, many=True, read_only=True, context=self.context)
         return serialized_data.data
 
-
     class Meta:
         model = Channel
         fields = ('id', 'name', 'description', 'created', 'creator', 'messages')
         #depth = 1
 
 
-class ChannelListSerializer(serializers.ModelSerializer):
-
-
-
+class PrivateMessageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Channel
-        fields =  ('id', 'name', 'description', 'created', 'creator',)
-        #depth = 1
+        model = PrivateMessageRelationships
+        fields = ('id', 'channel', 'user_recipient', 'user_sender', 'channel_name', )
+
+
+
+class RegionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Region
+        fields = ('name', 'coordinates_long', 'coordinates_lat', 'flickr_image', )
