@@ -6,6 +6,8 @@ from ws4redis.publisher import RedisPublisher
 from rest_framework.authtoken.models import Token
 from rest_framework.renderers import JSONRenderer
 from django.forms import ValidationError
+from django.db import connection
+
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -111,6 +113,31 @@ class TextMessageSerializer(serializers.ModelSerializer):
         RedisPublisher(facility=instance.channel, broadcast=True).publish_message(message)
         return instance
 
+class LinkMessageSerializer(serializers.ModelSerializer):
+    jawn_user = JawnUserSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = LinkMessage
+        fields = ('id',
+                  'date_posted',
+                  'channel',
+                  'type',
+                  'text',
+                  'image_url',
+                  'headline',
+                  'organization',
+                  'jawn_user',
+                  )
+        #depth = 1
+
+    def create(self, validated_data):
+        jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
+        c = LinkMessage.objects.create(channel=validated_data['channel'], text=validated_data['text'], jawn_user=jawn_user, image_url=validated_data['image_url'], headline=validated_data['headline'], organization=validated_data['organization'])
+        j = LinkMessageSerializer(c, context=self.context)
+        json = JSONRenderer().render(j.data)
+        message = RedisMessage(json.decode("utf-8"))
+        RedisPublisher(facility=validated_data['channel'], broadcast=True).publish_message(message)
+        return c
 
 
 class MessageSerializer(serializers.ModelSerializer):
@@ -126,6 +153,8 @@ class MessageSerializer(serializers.ModelSerializer):
             return TextMessageSerializer(value, context=self.context).to_representation(value)
         if isinstance(value, ImageMessage):
             return ImageMessageSerializer(value, context=self.context).to_representation(value)
+        if isinstance(value, LinkMessage):
+            return LinkMessageSerializer(value, context=self.context).to_representation(value)
 
 
 
@@ -141,9 +170,8 @@ class ChannelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Channel
-        fields = ('id', 'name', 'created', 'creator', 'messages')
+        fields = ('id', 'name', 'description', 'created', 'creator', 'messages')
         #depth = 1
-
 
 
 class PrivateMessageSerializer(serializers.ModelSerializer):
@@ -157,8 +185,3 @@ class RegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
         fields = ('name', 'coordinates_long', 'coordinates_lat', 'flickr_image', )
-
-
-
-
-

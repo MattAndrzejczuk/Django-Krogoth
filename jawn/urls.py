@@ -27,6 +27,7 @@ router.register(r'image-messages', ImageMessageViewSet)
 router.register(r'text-messages', TextMessageViewSet)
 router.register(r'channels', ChannelViewSet)
 router.register(r'messages', MessageViewSet)
+router.register(r'link-messages', LinkMessageViewSet)
 router.register(r'private-message-relationships', PrivateMessageRelationshipSet)
 router.register(r'regions', RegionViewSet, base_name="Region")
 
@@ -38,4 +39,5 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(r'channel-list/', ChannelList.as_view())
 ]

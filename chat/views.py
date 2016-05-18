@@ -14,6 +14,10 @@ from rest_framework import viewsets, filters
 from rest_framework.decorators import detail_route
 import django_filters
 from django.views.decorators.csrf import csrf_exempt
+from django.db import connection
+
+
+
 
 class ChannelFilter(django_filters.FilterSet):
     # name = django_filters.CharFilter(name="name", lookup_type="startswith")
@@ -47,6 +51,7 @@ class ImageMessageViewSet(viewsets.ModelViewSet):
     queryset = ImageMessage.objects.all()
     serializer_class = ImageMessageSerializer
     permission_classes = (permissions.IsAuthenticated, )
+    print(len(connection.queries))
 
     def post(self, request, format=None):
         serializer_class = ImageMessageSerializer(data=request.DATA, files=request.FILES)
@@ -62,11 +67,20 @@ class TextMessageViewSet(viewsets.ModelViewSet):
     queryset = TextMessage.objects.all()
     serializer_class = TextMessageSerializer
     permission_classes = (permissions.IsAuthenticated, )
+    print(len(connection.queries))
+
+
+class LinkMessageViewSet(viewsets.ModelViewSet):
+
+    queryset = LinkMessage.objects.all()
+    serializer_class = LinkMessageSerializer
+    permission_classes = (permissions.IsAuthenticated, )
 
 
 class ChannelViewSet(viewsets.ModelViewSet):
 
     queryset = Channel.objects.all()
+    print(len(connection.queries))
     serializer_class = ChannelSerializer
     permission_classes = (permissions.IsAuthenticated, )
     filter_backends = (filters.DjangoFilterBackend,)
@@ -77,12 +91,11 @@ class ChannelViewSet(viewsets.ModelViewSet):
 class MessageViewSet(viewsets.ModelViewSet):
 
     queryset = Message.objects.all().extra(order_by=['-id'])
+    print(len(connection.queries))
     serializer_class = MessageSerializer
     permission_classes = (permissions.IsAuthenticated, )
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('id', 'channel', )
-
-
 
 class RegionFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(name="name", lookup_type="startswith")

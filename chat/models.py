@@ -2,7 +2,6 @@ from django.db import models
 from polymorphic.models import PolymorphicModel
 from django.contrib.auth.models import User
 
-
 # Create your models here.
 class JawnUser(models.Model):
     base_user = models.OneToOneField(User, related_name='jawn_user', )
@@ -21,7 +20,7 @@ class JawnUser(models.Model):
 
 
 class Channel(models.Model):
-    name = models.CharField(max_length=400)
+    name = models.CharField(max_length=400, unique=True)
     created = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(JawnUser, related_name='creator', blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
@@ -44,30 +43,22 @@ class ImageMessage(Message):
     image_url = models.ImageField(upload_to='media/')
     caption = models.TextField(max_length=1000, blank=True, null=True)
 
-    def as_json(self):
-        return str(dict(
-            date_posted = self.date_posted.isoformat(),
-            jawn_user_id = self.jawn_user.id,
-            channel = self.channel.name.__str__(),
-            type = str(self.type),
-            image_url = self.image_url.url,
-            caption = self.caption.__str__(),
-        )).replace("'", '"')
 
 class TextMessage(Message):
     CHOICES = (('text', 'text'),)
     type = models.CharField(max_length=50, default='text', choices=CHOICES)
     text = models.TextField(max_length=1000)
 
-    def as_json(self):
-        return str(dict(
-            date_posted = self.date_posted.isoformat(),
-            jawn_user_id = self.jawn_user.id,
-            channel = self.channel.name.__str__(),
-            type = str(self.type),
-            text = self.text.__str__(),
-            id = self.pk
-        )).replace("'", '"')
+
+
+class LinkMessage(Message):
+    CHOICES = (('text', 'text'),)
+    type = models.CharField(max_length=50, default='link', choices=CHOICES)
+    text = models.TextField(max_length=1000)
+    image_url = models.URLField(null=True, blank=True)
+    headline = models.CharField(max_length=250)
+    organization = models.CharField(max_length=250)
+
 
 
 class Region(models.Model):
