@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from django.core import mail
+from django.core.mail import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -115,14 +115,24 @@ WSGI_APPLICATION = 'jawn.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'jawn',
-        'USER': 'ubuntu',
-        'PASSWORD': 'sau4tgiudnf',
-        'HOST': '12.226.201.62',
-        'PORT': '32769',
+        'NAME': 'jawn2',
+        'USER': os.environ["POSTGRES_ENV_POSTGRES_USER"],
+        'PASSWORD': os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"],
+        'HOST': os.environ["POSTGRES_PORT_5432_TCP_ADDR"],
+        'PORT': os.environ["POSTGRES_PORT_5432_TCP_PORT"],
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'jawn',
+#         'USER': 'ubuntu',
+#         'PASSWORD': 'sau4tgiudnf',
+#         'HOST': '12.226.201.62',
+#         'PORT': '32769',
+#     }
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -184,14 +194,10 @@ SESSION_REDIS_PORT = os.environ["REDIS_PORT_6379_TCP_PORT"]
 
 SITE_ID = 2
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'chat.serializers.GetUserSerializer',
 }
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'dom@domfac.es'
-EMAIL_HOST_PASSWORD = 'cent4heard'
