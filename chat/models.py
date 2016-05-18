@@ -63,8 +63,13 @@ class LinkMessage(Message):
 
 class RegionManager(models.Manager):
     def create_region(self, **kwargs):
+        js = kwargs['google_json']
+        njs = json.loads(js)
+        kwargs['google_json'] = njs
+        print(kwargs['google_json']['geometry']['location']['lat'])
+        print(kwargs['google_json']['geometry']['location']['lng'])
+        kwargs['flickr_image'] = get_flickr_url(lat=kwargs['google_json']['geometry']['location']['lat'], long=kwargs['google_json']['geometry']['location']['lng'], type=kwargs['google_json']['types'][0])
         print(kwargs)
-        kwargs['flickr_image'] = 'hellooooo'
         region = self.create(**kwargs)
         return region
 
@@ -80,13 +85,6 @@ class Region(models.Model):
 
     objects = RegionManager()
 
-    def create(self, **kwargs):
-        self.flickr_image = "IT WORKS!"# self.get_flickr_image(lat, long)
-        self.save()
-        print(kwargs)
-        print(self.flickr_image)
-        print(dir(self))
-
 
     # @classmethod
     # def save(self):
@@ -97,13 +95,52 @@ class Region(models.Model):
     #     print(dir(self))
     #     return Super(Region, self).save(self)
 
-    def get_flickr_image(self, lat, long):
-        pass
-        # Run logic for retreiving flickr img
-
 
 class PrivateMessageRelationships(models.Model):
     channel = models.OneToOneField(Channel, related_name='channel', )
     user_recipient = models.ForeignKey(User, related_name='user_recipient', )
     user_sender = models.ForeignKey(User, related_name='user_sender', )
     channel_name = models.CharField(max_length=150) # may need to remove this later.
+
+
+def get_flickr_url(lat, long, type, accuracy='11'):
+    url_ = 'https://api.flickr.com/services/rest/?method=flickr.photos.search'
+    API_key = '7d246b0b6518d209b4cde09e0d485832'
+    format_ = 'json&nojsoncallback=1'
+    text_ = type
+    lat_ = lat
+    long_ = long
+    accuracy_ = accuracy
+    strurl = url_+'&api_key='+API_key+'&tags='+text_+'&lat='+str(lat_)+'&lon='+str(long_)+'&format='+format_+'&accuracy='+accuracy_+'&tag_mode=any'+'&in_gallery=1&content_type=1'
+    i = -1
+    while i < 20:
+        i = i + 1
+        request = urlopen(strurl)
+        response = request.read().decode("utf-8")
+        data = json.loads(response)
+        pic = 0
+        #dummy https://domfa.de/get_image/?text=niceview&lat=37.4451198&long=-122.1561692
+        try:
+            print(data)
+            print(i)
+            farm_id = str(data['photos']['photo'][i]['farm'])
+            server_id = str(data['photos']['photo'][i]['server'])
+            image_id = str(data['photos']['photo'][i]['id'])
+            image_secret = str(data['photos']['photo'][i]['secret'])
+        except IndexError:
+            #if "aerial" in text_:
+            #if lat_ == '{$num_lat$}':
+            #    text_ = 'outdoors'
+            strurl = url_+'&api_key='+API_key+'&tags='+text_+'&lat='+str(lat_)+'&lon='+str(long_)+'&format='+format_
+            request = urlopen(strurl)
+            response = request.read().decode("utf-8")
+            data = json.loads(response)
+            print(response)
+            print(data)
+            farm_id = str(data['photos']['photo'][i]['farm'])
+            server_id = str(data['photos']['photo'][i]['server'])
+            image_id = str(data['photos']['photo'][i]['id'])
+            image_secret = str(data['photos']['photo'][i]['secret'])
+        flickrURL = 'https://farm'+farm_id+'.staticflickr.com/'+server_id+'/'+image_id+'_'+image_secret+'.jpg'
+        print(flickrURL)
+        return flickrURL

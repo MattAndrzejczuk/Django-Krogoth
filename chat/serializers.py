@@ -8,7 +8,14 @@ from rest_framework.renderers import JSONRenderer
 from django.forms import ValidationError
 from django.db import connection
 
+class JSONSerializerField(serializers.Field):
+    """ Serializer for JSONField -- required to make field writable"""
 
+    def to_internal_value(self, data):
+        return data
+
+    def to_representation(self, value):
+        return value
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -195,6 +202,7 @@ class PrivateMessageSerializer(serializers.ModelSerializer):
 
 class RegionSerializer(serializers.ModelSerializer):
     total_channels = serializers.SerializerMethodField(read_only=True)
+    google_json = JSONSerializerField()
 
     def get_total_channels(self, data):
         #print(data)
@@ -208,8 +216,8 @@ class RegionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Region
-        fields = ('name', 'coordinates_long', 'coordinates_lat', 'flickr_image', 'total_channels', )
-        read_only_fields = ('total_channels',)
+        fields = ('name', 'coordinates_long', 'coordinates_lat', 'flickr_image', 'total_channels', 'google_json')
+        read_only_fields = ('total_channels', 'google_json')
 
 class LinkMessageSerializer(serializers.ModelSerializer):
     jawn_user = JawnUserSerializer(many=False, read_only=True)
