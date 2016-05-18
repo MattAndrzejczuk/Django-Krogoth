@@ -72,9 +72,21 @@ class TextMessage(Message):
 
 class Region(models.Model):
     name = models.CharField(max_length=150)
-    coordinates_long = models.DecimalField(max_digits=8, decimal_places=8)
-    coordinates_lat = models.DecimalField(max_digits=8, decimal_places=8)
+    coordinates_long = models.DecimalField(max_digits=12, decimal_places=8)
+    coordinates_lat = models.DecimalField(max_digits=12, decimal_places=8)
     flickr_image = models.CharField(max_length=150, null=True)
+
+    def save(self):
+        # Run logic when a new object is created.
+        self.flickr_image = "IT WORKS!"# self.get_flickr_image(lat, long)
+        self.save()
+        print(self)
+        print(dir(self))
+        return Super(Region, self).save(self)
+
+    def get_flickr_image(self, lat, long):
+        pass
+        # Run logic for retreiving flickr img
 
 
 class PrivateMessageRelationships(models.Model):

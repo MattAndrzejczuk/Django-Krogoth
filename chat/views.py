@@ -92,12 +92,12 @@ class RegionFilter(django_filters.FilterSet):
         fields = ['name']
 
 class RegionViewSet(viewsets.ModelViewSet):
-    queryset = Region.objects.all()
     serializer_class = RegionSerializer
-    permission_classes = (permissions.IsAuthenticated, )
-    filter_backends = (filters.DjangoFilterBackend, )
-    filter_fields = ('name')
-    filter_class = RegionFilter
+
+    def get_queryset(self):
+        print('hello')
+        print(dir(self.request))
+        return Region.objects.all()
 
 
 
