@@ -156,7 +156,7 @@ class PrivateMessageSerializer(serializers.ModelSerializer):
 class RegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
-        fields = ('channel', 'coordinates_long', 'coordinates_lat', 'flickr_image', )
+        fields = ('name', 'coordinates_long', 'coordinates_lat', 'flickr_image', )
 
 
 
