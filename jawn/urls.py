@@ -30,12 +30,13 @@ router.register(r'messages', MessageViewSet, 'Message')
 router.register(r'private-message-relationships', PrivateMessageRelationshipSet, 'Private Message')
 router.register(r'regions', RegionViewSet, 'Region')
 router.register(r'link-messages', LinkMessageViewSet)
+router.register(r'youtube-messages', YouTubeMessageViewSet)
+router.register(r'youtube', YouTubeMessageViewSet) # LEGACY SUPPORT OF iOS 8 VERSION, THE iOS 8 CLIENT MUST BE UPDATED SO WE CAN REMOVE THIS LINE LATER
 
 urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api/channel-list/', ChannelList.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^docs/', include('rest_framework_swagger.urls')),
     url(r'^rest-auth/', include('rest_auth.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', admin.site.urls),

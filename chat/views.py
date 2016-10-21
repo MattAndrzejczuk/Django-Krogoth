@@ -77,6 +77,15 @@ class LinkMessageViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, )
 
 
+
+class YouTubeMessageViewSet(viewsets.ModelViewSet):
+
+    queryset = YouTubeMessage.objects.all()
+    serializer_class = YouTubeMessageSerializer
+    permission_classes = (permissions.IsAuthenticated, )
+
+
+
 class ChannelViewSet(viewsets.ModelViewSet):
 
     queryset = Channel.objects.all()
@@ -119,6 +128,9 @@ class RegionViewSet(viewsets.ModelViewSet):
     serializer_class = RegionSerializer
     queryset = Region.objects.all()
     permission_classes = (permissions.IsAuthenticated, )
+    filter_backends = (filters.DjangoFilterBackend, )
+    filter_fields = ('name', )
+    filter_class = RegionFilter
 
 
 class PrivateMessageRelationshipSet(viewsets.ModelViewSet):

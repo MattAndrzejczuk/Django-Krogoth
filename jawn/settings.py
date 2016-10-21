@@ -69,7 +69,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'ws4redis',
     'rest_framework',
-    'rest_framework_swagger',
     'rest_framework.authtoken',
     'rest_auth',
     'chat',

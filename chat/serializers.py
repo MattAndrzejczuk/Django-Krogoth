@@ -145,6 +145,33 @@ class LinkMessageSerializer(serializers.ModelSerializer):
         message = RedisMessage(json.decode("utf-8"))
         RedisPublisher(facility=validated_data['channel'], broadcast=True).publish_message(message)
         return c
+        
+        
+class YouTubeMessageSerializer(serializers.ModelSerializer):
+    jawn_user = JawnUserSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = YouTubeMessage
+        fields = ('id',
+                  'date_posted',
+                  'channel',
+                  'type',
+                  'text',
+                  'name',
+                  'youtube_url',
+                  'youtube_id',
+                  'jawn_user',
+                  )
+        #depth = 1
+
+    def create(self, validated_data):
+        jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
+        c = YouTubeMessage.objects.create(channel=validated_data['channel'], text=validated_data['text'], jawn_user=jawn_user, name=validated_data['name'], youtube_url=validated_data['youtube_url'], youtube_id=validated_data['youtube_id'])
+        j = YouTubeMessageSerializer(c, context=self.context)
+        json = JSONRenderer().render(j.data)
+        message = RedisMessage(json.decode("utf-8"))
+        RedisPublisher(facility=validated_data['channel'], broadcast=True).publish_message(message)
+        return c
 
 
 class MessageSerializer(serializers.ModelSerializer):
@@ -162,6 +189,8 @@ class MessageSerializer(serializers.ModelSerializer):
             return ImageMessageSerializer(value, context=self.context).to_representation(value)
         if isinstance(value, LinkMessage):
             return LinkMessageSerializer(value, context=self.context).to_representation(value)
+        if isinstance(value, YouTubeMessage):
+            return YouTubeMessageSerializer(value, context=self.context).to_representation(value)
 
 
 
@@ -216,7 +245,7 @@ class RegionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Region
-        fields = ('name', 'coordinates_long', 'coordinates_lat', 'flickr_image', 'total_channels', 'google_json')
+        fields = ('name', 'coordinates_long', 'coordinates_lat', 'flickr_image', 'flickr_image_large', 'total_channels', 'google_json', )
         read_only_fields = ('total_channels', 'google_json')
 
 class LinkMessageSerializer(serializers.ModelSerializer):
