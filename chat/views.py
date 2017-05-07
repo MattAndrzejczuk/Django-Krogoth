@@ -118,7 +118,7 @@ class ChannelList(generics.ListAPIView):
     filter_class = ChannelFilter
 
 class RegionFilter(django_filters.FilterSet):
-    name = django_filters.CharFilter(name="name", lookup_type="startswith")
+    name = django_filters.CharFilter(name="name")
 
     class Meta:
         model = Region
