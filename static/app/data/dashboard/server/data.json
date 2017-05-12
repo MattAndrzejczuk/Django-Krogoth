@@ -1,0 +1,168 @@
+{
+    "widget1": {
+        "title": "Physical Memory Usage",
+        "chart": [
+            {
+                "key": "Free Memory",
+                "values": [
+                    {"x": 1, "y": 1},
+                    {"x": 2, "y": 2}
+                ]
+            },
+            {
+                "key": "Available Memory",
+                "values": [
+                ]
+            },
+            {
+                "key": "Used Memory",
+                "values": [
+                ]
+            }
+        ]
+    },
+    "widget2": {
+        "title": "Storage",
+        "value": {
+            "used": "74.2Gb",
+            "total": "110Gb",
+            "percentage": 67.45
+        },
+        "detail": "Storage JSON"
+    },
+    "widget3": {
+        "title": "Bandwidth",
+        "value": {
+            "used": "221Gb",
+            "total": "3.5Tb",
+            "percentage": 6.31
+        },
+        "detail": "This is the back side. You can show detailed information here."
+    },
+    "widget4": {
+        "title": "RAM Usage",
+        "value": "21ms",
+        "footnote": "Higher than average",
+        "detail": "This is the back side. You can show detailed information here.",
+        "chart": [
+            {
+                "key": "Latency",
+                "values": [
+                    {"x": 1, "y": 1}
+                ]
+            }
+        ]
+    },
+    "widget5": {
+        "title": "Cluster Load",
+        "value": "75%",
+        "detail": "This is the back side. You can show detailed information here.",
+        "footnote": "Lower than average"
+    },
+    "widget6": {
+        "title": "Average CPU Usage (Live)",
+        "chart": [
+            {
+                "key": "Average CPU Usage",
+                "values": [
+                    {"x": 5, "y": 0},
+                    {"x": 10, "y": 0},
+                    {"x": 15, "y": 0},
+                    {"x": 20, "y": 0},
+                    {"x": 25, "y": 0},
+                    {"x": 30, "y": 0},
+                    {"x": 35, "y": 0},
+                    {"x": 40, "y": 0},
+                    {"x": 45, "y": 0},
+                    {"x": 50, "y": 0},
+                    {"x": 55, "y": 0},
+                    {"x": 60, "y": 0},
+                    {"x": 65, "y": 0},
+                    {"x": 70, "y": 0},
+                    {"x": 75, "y": 0},
+                    {"x": 80, "y": 0},
+                    {"x": 85, "y": 0},
+                    {"x": 90, "y": 0},
+                    {"x": 95, "y": 0},
+                    {"x": 100, "y": 0},
+                    {"x": 105, "y": 0},
+                    {"x": 110, "y": 0},
+                    {"x": 115, "y": 0},
+                    {"x": 120, "y": 0},
+                    {"x": 125, "y": 0},
+                    {"x": 130, "y": 0},
+                    {"x": 135, "y": 0},
+                    {"x": 140, "y": 0},
+                    {"x": 145, "y": 0},
+                    {"x": 150, "y": 0}
+                ]
+            }
+        ]
+    },
+
+    "widget8": {
+        "title": "I/O Activity",
+        "activities": [
+            {
+                "process" : "queueprocd",
+                "type": "Input",
+                "value": "50KB"
+            },
+            {
+                "process" : "queueprocd",
+                "type": "Input",
+                "value": "24.5Mb"
+            },
+            {
+                "process" : "queueprocd",
+                "type": "Output",
+                "value": "887Kb"
+            },
+            {
+                "process" : "sshd",
+                "type": "Output",
+                "value": "441B"
+            },
+            {
+                "process" : "queueprocd",
+                "type": "Input",
+                "value": "6.27Kb"
+            },
+            {
+                "process" : "init",
+                "type": "Output",
+                "value": "13.8Kb"
+            },
+            {
+                "process" : "queueprocd",
+                "type": "Output",
+                "value": "5.6Mb"
+            },
+            {
+                "process" : "init",
+                "type": "Output",
+                "value": "44.6Kb"
+            },
+            {
+                "process" : "queueprocd",
+                "type": "Input",
+                "value": "5Mb"
+            },
+            {
+                "process" : "tailwatchd",
+                "type": "Output",
+                "value": "1.1Kb"
+            },
+            {
+                "process" : "pure-authd",
+                "type": "Input",
+                "value": "5.3Kb"
+            },
+            {
+                "process" : "init",
+                "type": "Output",
+                "value": "176Kb"
+            }
+        ]
+    }
+}
