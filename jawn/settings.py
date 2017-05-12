@@ -158,7 +158,8 @@ STATICFILES_DIRS = (
     #'/Users/Dominooch/Dropbox/Dev/theEmpire/static/',
 )
 
-STATIC_ROOT = ('/usr/src/volatile/static/')
+# STATIC_ROOT = ('/usr/src/volatile/static/')
+STATIC_ROOT = ('/usr/arm-prime/static/')
 
 MEDIA_ROOT = '/usr/src/persistent/media/'
 MEDIA_URL = '/media/'
