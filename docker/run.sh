@@ -4,7 +4,7 @@ parentdir="$(dirname "$dir")"
 docker build -t jawn ./app/
 docker run --name jawn-postgres -e POSTGRES_PASSWORD=58bdf87d93a3f325574900aa2f5626e3844a903ffb64bed152ae124d2e79aab9 -e POSTGRES_USER=jawn -d postgres
 docker run -d -P --name=jawn-redis redis
-docker run -d -P -v $parentdir:/usr/src/app/ --link jawn-postgres:postgres --link jawn-redis:redis --name=jawn jawn
+docker run -d -p 80:80 -v $parentdir:/usr/src/app/ --link jawn-postgres:postgres --link jawn-redis:redis --name=jawn jawn
 echo "Running Containers...."
 sleep 3
 docker exec -it jawn ./manage.py migrate
