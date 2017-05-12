@@ -14,6 +14,8 @@ from chat.serializers import JawnUserSerializer
 from rest_framework.renderers import JSONRenderer
 from redis import ConnectionPool, StrictRedis
 from jawn import settings as redis_settings
+from django.template import loader
+from django.http import HttpResponse
 
 from .app_settings import (
     TokenSerializer, UserDetailsSerializer, LoginSerializer,
@@ -22,6 +24,20 @@ from .app_settings import (
 )
 
 redis_connection_pool = ConnectionPool(**redis_settings.WS4REDIS_CONNECTION)
+
+
+
+
+
+
+
+
+def index(request):
+    template = loader.get_template('index.html')
+    context = {
+        "message": "Welcome to CiniCrafts official website!",
+    }
+    return HttpResponse(template.render(context, request))
 
 
 class LoginView(GenericAPIView):

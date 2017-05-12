@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, url
+from rest_auth import views
 
 from rest_auth.views import (
     LoginView, LogoutView, UserDetailsView, PasswordChangeView,
@@ -8,11 +9,13 @@ from rest_auth.views import (
 urlpatterns = patterns(
     '',
     # URLs that do not require a session or valid token
+    url(r'^armprime/$', views.index),
     url(r'^password/reset/$', PasswordResetView.as_view(),
         name='rest_password_reset'),
     url(r'^password/reset/confirm/$', PasswordResetConfirmView.as_view(),
         name='rest_password_reset_confirm'),
     url(r'^login/$', LoginView.as_view(), name='rest_login'),
+    url(r'^armprime/$', ArmPrimeView.as_view(), name='arm_prime'),
     # URLs that require a user to be logged in with a valid session / token.
     url(r'^logout/$', LogoutView.as_view(), name='rest_logout'),
     url(r'^user/$', UserDetailsView.as_view(), name='rest_user_details'),
