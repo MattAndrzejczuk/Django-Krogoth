@@ -15,7 +15,7 @@
                 url      : '/pages/timeline',
                 views    : {
                     'content@app': {
-                        templateUrl: '/static/app/main/pages/timeline/timeline.html',
+                        templateUrl: 'app/main/pages/timeline/timeline.html',
                         controller : 'TimelineController as vm'
                     }
                 },
@@ -31,7 +31,7 @@
                 url      : '/pages/timeline-left',
                 views    : {
                     'content@app': {
-                        templateUrl: '/static/app/main/pages/timeline/timeline-left.html',
+                        templateUrl: 'app/main/pages/timeline/timeline-left.html',
                         controller : 'TimelineController as vm'
                     }
                 },
@@ -47,7 +47,7 @@
                 url      : '/pages/timeline-right',
                 views    : {
                     'content@app': {
-                        templateUrl: '/static/app/main/pages/timeline/timeline-right.html',
+                        templateUrl: 'app/main/pages/timeline/timeline-right.html',
                         controller : 'TimelineController as vm'
                     }
                 },
@@ -61,9 +61,9 @@
             });
 
         // API
-        msApiProvider.register('timeline.page1', ['/static/app/data/timeline/page-1.json']);
-        msApiProvider.register('timeline.page2', ['/static/app/data/timeline/page-2.json']);
-        msApiProvider.register('timeline.page3', ['/static/app/data/timeline/page-3.json']);
+        msApiProvider.register('timeline.page1', ['app/data/timeline/page-1.json']);
+        msApiProvider.register('timeline.page2', ['app/data/timeline/page-2.json']);
+        msApiProvider.register('timeline.page3', ['app/data/timeline/page-3.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('pages.timeline', {

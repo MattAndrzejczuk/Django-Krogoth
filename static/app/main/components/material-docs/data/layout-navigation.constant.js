@@ -5,7 +5,7 @@ angular.module('app.components.material-docs')
             stateName  : 'material_components_layout_introduction',
             id         : 'layoutIntro',
             url        : 'layout/introduction',
-            templateUrl: '/static/layout/layout-introduction.tmpl.html',
+            templateUrl: 'layout/layout-introduction.tmpl.html',
             weight     : 1
         },
         {
@@ -13,7 +13,7 @@ angular.module('app.components.material-docs')
             stateName  : 'material_components_layout_containers',
             id         : 'layoutContainers',
             url        : 'layout/container',
-            templateUrl: '/static/layout/layout-container.tmpl.html',
+            templateUrl: 'layout/layout-container.tmpl.html',
             weight     : 2
         },
         {
@@ -21,7 +21,7 @@ angular.module('app.components.material-docs')
             stateName  : 'material_components_layout_grid',
             id         : 'layoutGrid',
             url        : 'layout/children',
-            templateUrl: '/static/layout/layout-children.tmpl.html',
+            templateUrl: 'layout/layout-children.tmpl.html',
             weight     : 3
         },
         {
@@ -29,7 +29,7 @@ angular.module('app.components.material-docs')
             stateName  : 'material_components_layout_align',
             id         : 'layoutAlign',
             url        : 'layout/alignment',
-            templateUrl: '/static/layout/layout-alignment.tmpl.html',
+            templateUrl: 'layout/layout-alignment.tmpl.html',
             weight     : 4
         },
         {
@@ -37,7 +37,7 @@ angular.module('app.components.material-docs')
             stateName  : 'material_components_layout_options',
             id         : 'layoutOptions',
             url        : 'layout/options',
-            templateUrl: '/static/layout/layout-options.tmpl.html',
+            templateUrl: 'layout/layout-options.tmpl.html',
             weight     : 5
         },
         {
@@ -45,7 +45,7 @@ angular.module('app.components.material-docs')
             stateName  : 'material_components_layout_tips',
             id         : 'layoutTips',
             url        : 'layout/tips',
-            templateUrl: '/static/layout/layout-tips.tmpl.html',
+            templateUrl: 'layout/layout-tips.tmpl.html',
             weight     : 6
         }
     ]);

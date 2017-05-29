@@ -13,7 +13,7 @@
             url      : '/ui/typography',
             views    : {
                 'content@app': {
-                    templateUrl: '/static/app/main/ui/typography/typography.html',
+                    templateUrl: 'app/main/ui/typography/typography.html',
                     controller : 'TypographyController as vm'
                 }
             },

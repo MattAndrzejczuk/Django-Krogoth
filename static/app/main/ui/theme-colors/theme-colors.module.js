@@ -13,7 +13,7 @@
             url      : '/ui/theme-colors',
             views    : {
                 'content@app': {
-                    templateUrl: '/static/app/main/ui/theme-colors/theme-colors.html',
+                    templateUrl: 'app/main/ui/theme-colors/theme-colors.html',
                     controller : 'ThemeColorsController as vm'
                 }
             },

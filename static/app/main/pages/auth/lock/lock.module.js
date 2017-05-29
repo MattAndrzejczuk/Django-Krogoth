@@ -14,11 +14,11 @@
             url      : '/pages/auth/lock',
             views    : {
                 'main@'                      : {
-                    templateUrl: '/static/app/core/layouts/content-only.html',
+                    templateUrl: 'app/core/layouts/content-only.html',
                     controller : 'MainController as vm'
                 },
                 'content@app.pages_auth_lock': {
-                    templateUrl: '/static/app/main/pages/auth/lock/lock.html',
+                    templateUrl: 'app/main/pages/auth/lock/lock.html',
                     controller : 'LockController as vm'
                 }
             },
@@ -26,7 +26,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('/static/app/main/pages/auth/lock');
+        $translatePartialLoaderProvider.addPart('app/main/pages/auth/lock');
 
         // Navigation
         msNavigationServiceProvider.saveItem('pages.auth.lock', {

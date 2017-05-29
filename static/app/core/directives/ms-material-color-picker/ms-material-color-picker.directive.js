@@ -162,7 +162,7 @@
             },
             controller : 'msMaterialColorPickerController as vm',
             transclude : true,
-            templateUrl: '/static/app/core/directives/ms-material-color-picker/ms-material-color-picker.html',
+            templateUrl: 'app/core/directives/ms-material-color-picker/ms-material-color-picker.html',
             link       : function (scope, element, attrs, controllers, transclude)
             {
                 var ctrl = controllers[0];

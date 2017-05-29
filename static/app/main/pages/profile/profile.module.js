@@ -13,7 +13,7 @@
             url      : '/pages/profile',
             views    : {
                 'content@app': {
-                    templateUrl: '/static/app/main/pages/profile/profile.html',
+                    templateUrl: 'app/main/pages/profile/profile.html',
                     controller : 'ProfileController as vm'
                 }
             },
@@ -35,12 +35,12 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('/static/app/main/pages/profile');
+        $translatePartialLoaderProvider.addPart('app/main/pages/profile');
 
         // Api
-        msApiProvider.register('profile.timeline', ['/static/app/data/profile/timeline.json']);
-        msApiProvider.register('profile.about', ['/static/app/data/profile/about.json']);
-        msApiProvider.register('profile.photosVideos', ['/static/app/data/profile/photos-videos.json']);
+        msApiProvider.register('profile.timeline', ['app/data/profile/timeline.json']);
+        msApiProvider.register('profile.about', ['app/data/profile/about.json']);
+        msApiProvider.register('profile.photosVideos', ['app/data/profile/photos-videos.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('pages.profile', {

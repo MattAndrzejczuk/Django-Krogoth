@@ -13,7 +13,7 @@
             url  : '/ui/material-colors',
             views: {
                 'content@app': {
-                    templateUrl: '/static/app/main/ui/material-colors/material-colors.html',
+                    templateUrl: 'app/main/ui/material-colors/material-colors.html',
                     controller : 'MaterialColorsController as vm'
                 }
             }

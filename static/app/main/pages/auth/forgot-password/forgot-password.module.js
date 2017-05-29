@@ -14,11 +14,11 @@
             url      : '/pages/auth/forgot-password',
             views    : {
                 'main@'                                 : {
-                    templateUrl: '/static/app/core/layouts/content-only.html',
+                    templateUrl: 'app/core/layouts/content-only.html',
                     controller : 'MainController as vm'
                 },
                 'content@app.pages_auth_forgot-password': {
-                    templateUrl: '/static/app/main/pages/auth/forgot-password/forgot-password.html',
+                    templateUrl: 'app/main/pages/auth/forgot-password/forgot-password.html',
                     controller : 'ForgotPasswordController as vm'
                 }
             },
@@ -26,7 +26,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('/static/app/main/pages/auth/forgot-password');
+        $translatePartialLoaderProvider.addPart('app/main/pages/auth/forgot-password');
 
         // Navigation
         msNavigationServiceProvider.saveItem('pages.auth.forgot-password', {

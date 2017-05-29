@@ -18,7 +18,7 @@
             url  : '/components/charts/chart-js',
             views: {
                 'content@app': {
-                    templateUrl: '/static/app/main/components/charts/chart-js/chart-js.html',
+                    templateUrl: 'app/main/components/charts/chart-js/chart-js.html',
                     controller : 'ChartJsController as vm'
                 }
             }

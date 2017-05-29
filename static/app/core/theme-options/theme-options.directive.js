@@ -29,32 +29,32 @@
             {
                 label : 'Vertical Navigation',
                 value : 'verticalNavigation',
-                figure: '/static/assets/images/theme-options/vertical-nav.jpg'
+                figure: '/assets/images/theme-options/vertical-nav.jpg'
             },
             {
                 label : 'Vertical Navigation with Fullwidth Toolbar',
                 value : 'verticalNavigationFullwidthToolbar',
-                figure: '/static/assets/images/theme-options/vertical-nav-with-full-toolbar.jpg'
+                figure: '/assets/images/theme-options/vertical-nav-with-full-toolbar.jpg'
             },
             {
                 label : 'Vertical Navigation with Fullwidth Toolbar 2',
                 value : 'verticalNavigationFullwidthToolbar2',
-                figure: '/static/assets/images/theme-options/vertical-nav-with-full-toolbar-2.jpg'
+                figure: '/assets/images/theme-options/vertical-nav-with-full-toolbar-2.jpg'
             },
             {
                 label : 'Horizontal Navigation',
                 value : 'horizontalNavigation',
-                figure: '/static/assets/images/theme-options/horizontal-nav.jpg'
+                figure: '/assets/images/theme-options/horizontal-nav.jpg'
             },
             {
                 label : 'Content with Toolbar',
                 value : 'contentWithToolbar',
-                figure: '/static/assets/images/theme-options/content-with-toolbar.jpg'
+                figure: '/assets/images/theme-options/content-with-toolbar.jpg'
             },
             {
                 label : 'Content Only',
                 value : 'contentOnly',
-                figure: '/static/assets/images/theme-options/content-only.jpg'
+                figure: '/assets/images/theme-options/content-only.jpg'
             },
         ];
 
@@ -120,7 +120,7 @@
             restrict   : 'E',
             scope      : {},
             controller : 'MsThemeOptionsController as vm',
-            templateUrl: '/static/app/core/theme-options/theme-options.html',
+            templateUrl: 'app/core/theme-options/theme-options.html',
             compile    : function (tElement)
             {
                 tElement.addClass('ms-theme-options');

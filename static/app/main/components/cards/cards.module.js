@@ -13,7 +13,7 @@
             url    : '/components/cards',
             views  : {
                 'content@app': {
-                    templateUrl: '/static/app/main/components/cards/cards.html',
+                    templateUrl: 'app/main/components/cards/cards.html',
                     controller : 'CardsController as vm'
                 }
             },
@@ -26,7 +26,7 @@
         });
 
         // Api
-        msApiProvider.register('cards', ['/static/app/data/cards/cards.json']);
+        msApiProvider.register('cards', ['app/data/cards/cards.json']);
     }
 
 })();

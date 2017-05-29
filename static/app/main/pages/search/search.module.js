@@ -14,7 +14,7 @@
             url      : '/pages/search',
             views    : {
                 'content@app': {
-                    templateUrl: '/static/app/main/pages/search/search.html',
+                    templateUrl: 'app/main/pages/search/search.html',
                     controller : 'SearchController as vm'
                 }
             },
@@ -40,13 +40,13 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('/static/app/main/pages/search');
+        $translatePartialLoaderProvider.addPart('app/main/pages/search');
 
         // Api
-        msApiProvider.register('search.classic', ['/static/app/data/search/classic.json']);
-        msApiProvider.register('search.mails', ['/static/app/data/search/mails.json']);
-        msApiProvider.register('search.users', ['/static/app/data/search/users.json']);
-        msApiProvider.register('search.contacts', ['/static/app/data/search/contacts.json']);
+        msApiProvider.register('search.classic', ['app/data/search/classic.json']);
+        msApiProvider.register('search.mails', ['app/data/search/mails.json']);
+        msApiProvider.register('search.users', ['app/data/search/users.json']);
+        msApiProvider.register('search.contacts', ['app/data/search/contacts.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('pages.search', {

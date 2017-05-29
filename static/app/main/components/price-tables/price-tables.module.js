@@ -13,7 +13,7 @@
             url  : '/components/price-tables',
             views: {
                 'content@app': {
-                    templateUrl: '/static/app/main/components/price-tables/price-tables.html'
+                    templateUrl: 'app/main/components/price-tables/price-tables.html'
                 }
             }
         });

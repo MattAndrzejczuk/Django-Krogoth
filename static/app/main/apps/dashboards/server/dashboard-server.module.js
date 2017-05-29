@@ -20,7 +20,7 @@
             url      : '/dashboard-server',
             views    : {
                 'content@app': {
-                    templateUrl: '/static/app/main/apps/dashboards/server/dashboard-server.html',
+                    templateUrl: 'app/main/apps/dashboards/server/dashboard-server.html',
                     controller : 'DashboardServerController as vm'
                 }
             },
@@ -34,7 +34,7 @@
         });
 
         // Api
-        msApiProvider.register('dashboard.server', ['/static/app/data/dashboard/server/data.json']);
+        msApiProvider.register('dashboard.server', ['app/data/dashboard/server/data.json']);
     }
 
 })();

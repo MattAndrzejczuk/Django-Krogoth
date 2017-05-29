@@ -13,7 +13,7 @@
             url      : '/ui/icons',
             views    : {
                 'content@app': {
-                    templateUrl: '/static/app/main/ui/icons/icons.html',
+                    templateUrl: 'app/main/ui/icons/icons.html',
                     controller : 'IconsController as vm'
                 }
             },
@@ -27,7 +27,7 @@
         });
 
         // Api
-        msApiProvider.register('icons', ['/static/assets/icons/selection.json']);
+        msApiProvider.register('icons', ['assets/icons/selection.json']);
     }
 
 })();

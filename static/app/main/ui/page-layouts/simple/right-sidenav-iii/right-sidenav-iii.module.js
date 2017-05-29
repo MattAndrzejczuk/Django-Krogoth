@@ -13,7 +13,7 @@
             url  : '/ui/page-layouts/simple/right-sidenav-iii',
             views: {
                 'content@app': {
-                    templateUrl: '/static/app/main/ui/page-layouts/simple/right-sidenav-iii/right-sidenav-iii.html',
+                    templateUrl: 'app/main/ui/page-layouts/simple/right-sidenav-iii/right-sidenav-iii.html',
                     controller : 'SimpleRightSidenavIIIController as vm'
                 }
             }

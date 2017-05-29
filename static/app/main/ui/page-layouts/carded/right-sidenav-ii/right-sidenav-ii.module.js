@@ -13,7 +13,7 @@
             url  : '/ui/page-layouts/carded/right-sidenav-ii',
             views: {
                 'content@app': {
-                    templateUrl: '/static/app/main/ui/page-layouts/carded/right-sidenav-ii/right-sidenav-ii.html',
+                    templateUrl: 'app/main/ui/page-layouts/carded/right-sidenav-ii/right-sidenav-ii.html',
                     controller : 'CardedRightSidenavIIController as vm'
                 }
             }

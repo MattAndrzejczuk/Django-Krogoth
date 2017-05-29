@@ -13,7 +13,7 @@
             restrict   : 'E',
             scope      : {},
             transclude : true,
-            templateUrl: '/static/app/core/directives/ms-info-bar/ms-info-bar.html',
+            templateUrl: 'app/core/directives/ms-info-bar/ms-info-bar.html',
             link       : function (scope, iElement)
             {
                 var body = $document.find('body'),

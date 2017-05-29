@@ -13,7 +13,7 @@
             url  : '/ui/page-layouts/simple/tabbed',
             views: {
                 'content@app': {
-                    templateUrl: '/static/app/main/ui/page-layouts/simple/tabbed/tabbed.html',
+                    templateUrl: 'app/main/ui/page-layouts/simple/tabbed/tabbed.html',
                     controller : 'SimpleTabbedController as vm'
                 }
             }

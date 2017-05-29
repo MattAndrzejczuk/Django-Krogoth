@@ -13,7 +13,7 @@
             url  : '/components/table/simple-table',
             views: {
                 'content@app': {
-                    templateUrl: '/static/app/main/components/tables/simple-table/simple-table.html',
+                    templateUrl: 'app/main/components/tables/simple-table/simple-table.html',
                     controller : 'SimpleTableController as vm'
                 }
             },
@@ -26,7 +26,7 @@
         });
 
         // Api
-        msApiProvider.register('tables.employees', ['/static/app/data/tables/employees.json']);
+        msApiProvider.register('tables.employees', ['app/data/tables/employees.json']);
     }
 
 })();

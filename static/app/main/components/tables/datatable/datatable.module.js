@@ -18,7 +18,7 @@
             url    : '/components/table/datatable',
             views  : {
                 'content@app': {
-                    templateUrl: '/static/app/main/components/tables/datatable/datatable.html',
+                    templateUrl: 'app/main/components/tables/datatable/datatable.html',
                     controller : 'DatatableController as vm'
                 }
             },
@@ -31,7 +31,7 @@
         });
 
         // Api
-        msApiProvider.register('tables.employees100', ['/static/app/data/tables/employees100.json']);
+        msApiProvider.register('tables.employees100', ['app/data/tables/employees100.json']);
     }
 
 })();

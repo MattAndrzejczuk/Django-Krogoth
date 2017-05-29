@@ -14,11 +14,11 @@
             url      : '/pages/maintenance',
             views    : {
                 'main@'                        : {
-                    templateUrl: '/static/app/core/layouts/content-only.html',
+                    templateUrl: 'app/core/layouts/content-only.html',
                     controller : 'MainController as vm'
                 },
                 'content@app.pages_maintenance': {
-                    templateUrl: '/static/app/main/pages/maintenance/maintenance.html',
+                    templateUrl: 'app/main/pages/maintenance/maintenance.html',
                     controller : 'MaintenanceController as vm'
                 }
             },
@@ -26,7 +26,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('/static/app/main/pages/maintenance');
+        $translatePartialLoaderProvider.addPart('app/main/pages/maintenance');
 
         // Navigation
         msNavigationServiceProvider.saveItem('pages.maintenance', {

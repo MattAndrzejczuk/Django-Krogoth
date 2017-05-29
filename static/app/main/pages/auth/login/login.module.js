@@ -14,11 +14,11 @@
             url      : '/pages/auth/login',
             views    : {
                 'main@'                       : {
-                    templateUrl: '/static/app/core/layouts/content-only.html',
+                    templateUrl: 'app/core/layouts/content-only.html',
                     controller : 'MainController as vm'
                 },
                 'content@app.pages_auth_login': {
-                    templateUrl: '/static/app/main/pages/auth/login/login.html',
+                    templateUrl: 'app/main/pages/auth/login/login.html',
                     controller : 'LoginController as vm'
                 }
             },
@@ -26,7 +26,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('/static/app/main/pages/auth/login');
+        $translatePartialLoaderProvider.addPart('app/main/pages/auth/login');
 
         // Navigation
         msNavigationServiceProvider.saveItem('pages.auth', {

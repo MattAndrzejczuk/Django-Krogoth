@@ -13,7 +13,7 @@
             url  : '/ui/page-layouts/carded/fullwidth',
             views: {
                 'content@app': {
-                    templateUrl: '/static/app/main/ui/page-layouts/carded/fullwidth/fullwidth.html',
+                    templateUrl: 'app/main/ui/page-layouts/carded/fullwidth/fullwidth.html',
                     controller : 'CardedFullwidthController as vm'
                 }
             }

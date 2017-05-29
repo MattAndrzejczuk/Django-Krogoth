@@ -236,16 +236,6 @@
                         '_path'      : 'apps.notes',
                         'uisref'     : 'app.notes',
                         'hasShortcut': true
-                    }, {
-                        'title'      : 'Sample',
-                        'icon'       : 'icon-tile-four',
-                        'state'      : 'app.sample',
-                        'weight'     : 1,
-                        'children'   : [],
-                        '_id'        : 'sample',
-                        '_path'      : 'apps.sample',
-                        'uisref'     : 'app.sample',
-                        'hasShortcut': true
                     }
                 ];
 
@@ -516,7 +506,7 @@
             require         : 'msShortcuts',
             controller      : 'MsShortcutsController as MsShortcuts',
             bindToController: {},
-            templateUrl     : '/static/app/core/directives/ms-shortcuts/ms-shortcuts.html',
+            templateUrl     : 'app/core/directives/ms-shortcuts/ms-shortcuts.html',
             compile         : function (tElement)
             {
                 // Add class
