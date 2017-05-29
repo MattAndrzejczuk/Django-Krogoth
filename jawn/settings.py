@@ -161,8 +161,8 @@ STATICFILES_DIRS = (
 print('STATIC FILES: ')
 print(os.path.join(BASE_DIR, 'static'))
 
-# STATIC_ROOT = ('/usr/src/volatile/static/')
-STATIC_ROOT = ('/usr/arm-prime/static/')
+STATIC_ROOT = ('/usr/src/volatile/static/')
+#STATIC_ROOT = ('/usr/arm-prime/static/')
 
 MEDIA_ROOT = '/usr/src/persistent/media/'
 MEDIA_URL = '/media/'
