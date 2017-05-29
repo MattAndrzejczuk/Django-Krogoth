@@ -158,6 +158,9 @@ STATICFILES_DIRS = (
     #'/Users/Dominooch/Dropbox/Dev/theEmpire/static/',
 )
 
+print('STATIC FILES: ')
+print(os.path.join(BASE_DIR, 'static'))
+
 # STATIC_ROOT = ('/usr/src/volatile/static/')
 STATIC_ROOT = ('/usr/arm-prime/static/')
 
