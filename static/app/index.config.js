@@ -7,10 +7,9 @@
         .config(config);
 
     /** @ngInject */
-    function config(uiGmapGoogleMapApiProvider, $translateProvider, $provide, $interpolateProvider)
+    function config(uiGmapGoogleMapApiProvider, $translateProvider, $provide)
     {
         // Put your common app configurations here
-
 
         // uiGmapgoogle-maps configuration
         uiGmapGoogleMapApiProvider.configure({
