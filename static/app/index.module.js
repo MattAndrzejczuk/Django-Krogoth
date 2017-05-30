@@ -31,7 +31,7 @@
             //'app.e-commerce',
             //'app.mail',
             //'app.chat',
-            'app.file-manager',
+            //'app.file-manager',
             //'app.gantt-chart',
             //'app.scrumboard',
             //'app.todo',
