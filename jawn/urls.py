@@ -43,5 +43,5 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
-    url(r'^$', rest_auth.views.index),
+    url(r'^', rest_auth.views.index),
 ]
