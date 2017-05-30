@@ -37,6 +37,7 @@
             'app.todo',
             'app.contacts',
             'app.notes',
+            'app.sample',
 
             // Pages
             'app.pages',
