@@ -23,7 +23,7 @@
             'app.toolbar',
 
             // Quick Panel
-            'app.quick-panel',
+            //'app.quick-panel',
 
             // Apps
             'app.dashboards',
