@@ -90,7 +90,7 @@ class LazarusListUnits(APIView):
                         jsonResponse.append({'thumbnail': imgSaveTo, 'object_name':filename})
                     except:
                         print('OHHHH SHIT!!!')
-                break
+                #break
 
         print(jsonResponse)
         return jsonResponse
