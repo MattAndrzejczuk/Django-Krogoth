@@ -94,7 +94,7 @@ class LazarusListUnits(APIView):
 
         print("RAHHHH@H@@@@")
         print(self.jsonResponse)
-        return jsonResponse
+        return self.jsonResponse
 
     def printContents(self):
         jsonFinal = []
