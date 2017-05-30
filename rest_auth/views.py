@@ -51,7 +51,7 @@ def list_ta_units(request):
         unitListPrettyJSON.jsonResponse, status=status.HTTP_200_OK
     )
 
-class LazarusListUnits(GenericAPIView):
+class LazarusListUnits():
     f = []
     d = []
     output_final = open('workfile', 'w')
