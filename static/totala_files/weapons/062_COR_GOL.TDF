@@ -1,0 +1,33 @@
+[COR_GOL]
+{
+	ID=62;
+	name=Goliath Heavy Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=500;
+	reloadtime=1.5;
+	weaponvelocity=270;
+	areaofeffect=64;
+	soundstart=cannhvy2;
+	soundhit=xplomed4;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=250;
+	}
+}
+
+

@@ -1,0 +1,15 @@
+[SHRUBBURN]		// Oh, no!  The Burning Bush!
+	{
+	ID=246;
+	name=Burning Bush;
+	unitsonly=1;
+
+	areaofeffect=48;
+	edgeeffectiveness=0.5;
+
+	[DAMAGE]
+		{
+		default=50;
+		}
+	}
+

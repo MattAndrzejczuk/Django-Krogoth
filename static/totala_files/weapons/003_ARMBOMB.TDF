@@ -1,0 +1,34 @@
+[ARMBOMB]
+	{
+	ID=3;
+	name=Bombs;
+	rendertype=6;
+	dropped=1;
+
+	model=bomb;
+
+	range=1280;
+	reloadtime=.18;
+	areaofeffect=48;
+	soundstart=bombrel;
+	soundhit=xplomed2;
+	commandfire=1;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+	
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	metal=10;
+	energy=50;
+
+	[DAMAGE]
+		{
+		default=158;
+		}
+	}
+

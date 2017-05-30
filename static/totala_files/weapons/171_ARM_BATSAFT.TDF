@@ -1,0 +1,37 @@
+[ARM_BATSAFT]
+{
+	ID=171;
+	name=Super Plasma;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=quadplasma;
+
+	range=1024;
+	reloadtime=4;
+	weapontimer=2;
+	weaponvelocity=800;
+	startvelocity=800;
+	weaponacceleration=120;
+	areaofeffect=210;
+	metalpershot=0;
+	energypershot=1750;
+	edgeeffectiveness=1;
+	
+	noexplode=1;
+	commandfire=1;	
+
+	soundstart=xplonuk4;
+	soundhit=xplonuk3;
+
+	firestarter=0;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+	
+	[DAMAGE]
+		{
+		default=2400;
+		}
+	}

@@ -1,0 +1,47 @@
+[ARMLEMM_BLAST]
+{
+	ID=249;
+	name=Low-yield Wide-area Bomb;
+	rendertype=4;
+	ballistic=1;
+
+	range=480;
+	reloadtime=3.6;
+	edgeeffectiveness=0.95;
+	weaponvelocity=250;
+	areaofeffect=320;
+	soundstart=largegun;
+	soundhit=xplonuk3;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	[DAMAGE]
+	{
+		default=50;
+		armmine1=1;
+		armmine2=1;
+		armmine3=1;
+		armmine4=1;
+		armmine5=1;
+		armmine6=1;
+		armmine7=1;
+		armempm=1;
+		cormine1=1;
+		cormine2=1;
+		cormine3=1;
+		cormine4=1;
+		cormine5=1;
+		cormine6=1;
+		cormine7=1;
+		cortronm=1;
+		ARMLEMM=5;
+		Corscorp=5;
+	}
+}

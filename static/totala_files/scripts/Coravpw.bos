@@ -1,0 +1,356 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, pad, beam1, beam2, wing1, wing2, wing3, drawer1,
+       drawer2, gun2, gun1, blink;
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3, Static_Var_4;
+
+
+activatescr()
+{
+	if( TRUE )
+	{
+		turn wing1 to x-axis <0.> now;
+		turn wing1 to x-axis <-90.> speed <180.>;
+		turn wing2 to z-axis <0.> now;
+		turn wing2 to z-axis <90.> speed <180.>;
+		turn wing3 to x-axis <0.> now;
+		turn wing3 to x-axis <90.> speed <180.>;
+		sleep 498;
+	}
+	if( TRUE )
+	{
+		turn wing1 to x-axis <-180.> speed <180.>;
+		turn wing2 to z-axis <179.> speed <179.>;
+		turn wing3 to x-axis <179.> speed <179.>;
+		sleep 498;
+	}
+	if( TRUE )
+	{
+		move drawer1 to y-axis [8.] speed [13.];
+		move drawer2 to y-axis [8.] speed [13.];
+		move pad to x-axis [9.] speed [14.];
+		sleep 628;
+	}
+	if( TRUE )
+	{
+		move gun2 to z-axis [-3.] speed [6.];
+		move gun2 to x-axis [3.] speed [6.];
+		move gun1 to z-axis [3.] speed [6.];
+		move gun1 to x-axis [3.] speed [6.];
+		sleep 470;
+	}
+	sleep 6;
+	return (0);
+	// Build by COBBLER Ver4.0 Copyright @1998 DIGITAL CONCEPT SOFTWARE (MANU@inext.fr) / http://www.annihilationcenter.com/DCS/  
+}
+
+deactivatescr()
+{
+	if( TRUE )
+	{
+		move drawer1 to y-axis [8.] now;
+		move drawer2 to y-axis [8.] now;
+		move pad to x-axis [9.] now;
+		move gun2 to z-axis [-3.] now;
+		move gun2 to z-axis [0.] speed [3.];
+		move gun2 to x-axis [3.] now;
+		move gun2 to x-axis [0.] speed [3.];
+		move gun1 to z-axis [3.] now;
+		move gun1 to z-axis [0.] speed [3.];
+		move gun1 to x-axis [3.] now;
+		move gun1 to x-axis [0.] speed [3.];
+		turn wing1 to x-axis <180.> now;
+		turn wing2 to z-axis <179.> now;
+		turn wing3 to x-axis <179.> now;
+		sleep 968;
+	}
+	if( TRUE )
+	{
+		move drawer1 to y-axis [0.] speed [13.];
+		move drawer2 to y-axis [0.] speed [12.];
+		move pad to x-axis [0.] speed [14.];
+		sleep 631;
+	}
+	if( TRUE )
+	{
+		turn wing1 to x-axis <-90.> speed <358.>;
+		turn wing2 to z-axis <90.> speed <356.>;
+		turn wing3 to x-axis <90.> speed <356.>;
+		sleep 251;
+	}
+	if( TRUE )
+	{
+		turn wing1 to x-axis <0.> speed <358.>;
+		turn wing2 to z-axis <0.> speed <358.>;
+		turn wing3 to x-axis <0.> speed <358.>;
+		sleep 251;
+	}
+	sleep 12;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+OpenYard()
+{
+	set YARD_OPEN to 1;
+	while( !get YARD_OPEN )
+	{
+		set BUGGER_OFF to 1;
+		sleep 1500;
+		set YARD_OPEN to 1;
+	}
+	set BUGGER_OFF to 0;
+}
+
+CloseYard()
+{
+	set YARD_OPEN to 0;
+	while( get YARD_OPEN )
+	{
+		set BUGGER_OFF to 1;
+		sleep 1500;
+		set YARD_OPEN to 0;
+	}
+	set BUGGER_OFF to 0;
+}
+
+Go()
+{
+	dont-cache beam1;
+	dont-cache beam2;
+	dont-cache drawer1;
+	dont-cache drawer2;
+	dont-cache gun1;
+	dont-cache gun2;
+	dont-cache pad;
+	dont-cache wing1;
+	dont-cache wing2;
+	dont-cache wing3;
+	call-script activatescr();
+	call-script OpenYard();
+	set INBUILDSTANCE to 1;
+}
+
+Stop()
+{
+	set INBUILDSTANCE to 0;
+	call-script CloseYard();
+	call-script deactivatescr();
+	cache beam1;
+	cache beam2;
+	cache drawer1;
+	cache drawer2;
+	cache gun1;
+	cache gun2;
+	cache pad;
+	cache wing1;
+	cache wing2;
+	cache wing3;
+}
+
+InitState()
+{
+	Static_Var_3 = 1;
+	Static_Var_4 = 0;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( Static_Var_4 )
+	{
+		Static_Var_3 = requestedstate;
+		return (0);
+	}
+	Static_Var_4 = 1;
+	currentstate = Static_Var_3;
+	Static_Var_3 = requestedstate;
+	while( Static_Var_3 != currentstate )
+	{
+		if( Static_Var_3 == 0 )
+		{
+			call-script Go();
+			currentstate = 0;
+		}
+		if( Static_Var_3 == 1 )
+		{
+			call-script Stop();
+			currentstate = 1;
+		}
+	}
+	Static_Var_4 = 0;
+}
+
+Create()
+{
+	dont-shade blink;
+	dont-cache blink;
+	dont-shade beam1;
+	dont-shade beam2;
+	dont-shade drawer1;
+	dont-shade drawer2;
+	dont-shade gun1;
+	dont-shade gun2;
+	dont-shade pad;
+	dont-shade wing1;
+	dont-shade wing2;
+	dont-shade wing3;
+	Static_Var_2 = 0;
+	Static_Var_1 = 0;
+	call-script InitState();
+	start-script SmokeUnit();
+}
+
+QueryNanoPiece(piecenum)
+{
+	if( Static_Var_1 == 0 )
+	{
+		piecenum = beam1;
+		Static_Var_1 = 1;
+		return (0);
+	}
+	if( Static_Var_1 == 1 )
+	{
+		piecenum = beam2;
+		Static_Var_1 = 0;
+	}
+}
+
+Demo()
+{
+	Static_Var_2 = 1;
+}
+
+Activate()
+{
+	signal 2;
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	signal 2;
+	set-signal-mask 2;
+	if( !Static_Var_2 )
+	{
+		sleep 5000;
+	}
+	set-signal-mask 0;
+	start-script RequestState(1);
+}
+
+StartBuilding()
+{
+	spin pad around y-axis speed <30.>;
+}
+
+StopBuilding()
+{
+	stop-spin pad around y-axis;
+}
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = pad;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam1 type BITMAPONLY | BITMAP2;
+		explode beam2 type BITMAPONLY | BITMAP3;
+		explode blink type BITMAPONLY | BITMAP4;
+		explode drawer1 type BITMAPONLY | BITMAP5;
+		explode drawer2 type BITMAPONLY | BITMAP1;
+		explode gun1 type BITMAPONLY | BITMAP2;
+		explode gun2 type BITMAPONLY | BITMAP3;
+		explode pad type BITMAPONLY | BITMAP4;
+		explode wing1 type BITMAPONLY | BITMAP5;
+		explode wing2 type BITMAPONLY | BITMAP1;
+		explode wing3 type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam1 type FALL | BITMAP2;
+		explode beam2 type FALL | BITMAP3;
+		explode blink type SHATTER | BITMAP4;
+		explode drawer1 type FALL | BITMAP5;
+		explode drawer2 type FALL | BITMAP1;
+		explode gun1 type FALL | BITMAP2;
+		explode gun2 type FALL | BITMAP3;
+		explode pad type BITMAPONLY | BITMAP4;
+		explode wing1 type BITMAPONLY | BITMAP5;
+		explode wing2 type BITMAPONLY | BITMAP1;
+		explode wing3 type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode blink type SHATTER | BITMAP4;
+		explode drawer1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode drawer2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode gun1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode gun2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode pad type BITMAPONLY | BITMAP4;
+		explode wing1 type BITMAPONLY | BITMAP5;
+		explode wing2 type BITMAPONLY | BITMAP1;
+		explode wing3 type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode blink type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode drawer1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode drawer2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode gun1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode gun2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode pad type BITMAPONLY | BITMAP4;
+	explode wing1 type BITMAPONLY | BITMAP5;
+	explode wing2 type BITMAPONLY | BITMAP1;
+	explode wing3 type BITMAPONLY | BITMAP2;
+}

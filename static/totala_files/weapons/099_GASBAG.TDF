@@ -1,0 +1,14 @@
+[GASBAG]		// Gas Bags of death
+	{
+	ID=99;
+	name=Gas Bag;
+	unitsonly=1;
+
+	areaofeffect=240;
+	edgeeffectiveness=0.5;
+
+	[DAMAGE]
+		{
+		default=500;
+		}
+	}

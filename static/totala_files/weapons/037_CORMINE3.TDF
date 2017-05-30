@@ -1,0 +1,37 @@
+[cormine3]
+	{
+	ID=37;
+	name=Greyhound Massdriver;
+	rendertype=4;
+	lineofsight=1;
+	turret=1;
+
+	range=596;
+	reloadtime=3.2;
+	weaponvelocity=825;
+	areaofeffect=32;
+	tolerance=500;
+	accuracy=120;
+
+	energypershot=125;
+	metalpershot=30;
+
+	soundstart=cannhvy1;
+	soundhit=xplosml3;
+
+	explosiongaf=fx;
+	explosionart=explode4;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=876;
+		}
+	}

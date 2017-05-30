@@ -1,0 +1,157 @@
+[CORSEAP_WEAPON3]
+{
+	ID=98;
+	Name=KAAT Anti Air Missiles;
+	RenderType=1;
+	LineOfSight=1;
+	Turret=1;
+	noautorange=1;
+
+	Model=missile;
+
+	Range=1100;
+	ReloadTime=.8;
+	WeaponTimer=8;
+	WeaponVelocity=1300;
+	StartVelocity=300;
+	WeaponAcceleration=100;
+	Turnrate=60768;
+	AreaOfEffect=48;
+	MetalPerShot=0;
+
+	SoundStart=launch;
+	SoundHit=impact;
+	SoundWater=SplsSml;
+
+	FireStarter=80;
+	SmokeDelay=.1;
+	Guidance=1;
+	Tracks=1;
+	SelfProp=1;
+	SmokeTrail=1;
+	Tolerance=10000;
+
+	Explosiongaf=fx;
+	Explosionart=explode3;
+
+	WaterExplosiongaf=fx;
+	WaterExplosionart=h2o;
+
+	LavaExplosiongaf=fx;
+	LavaExplosionart=lavasplash;
+
+	StartSmoke=1;
+
+	toairweapon=1;
+
+[DAMAGE]
+	{
+		default=2;
+		ARMTHUND=150;
+		ARMBRAWL=150;
+		ARMPEEP=150;
+		ARMFIG=150;
+		ARMCA=150;
+		ARMACA=150;
+		ARMATLAS=150;
+		ARMPNIX=150;
+		ARMHAWK=150;
+		ARMLANCE=150;
+		ARMAWAC=150;
+		CORAWAC=150;
+		CORFINK=150;
+		CORVENG=150;
+		CORVAMP=150;
+		CORHURC=150;
+		CORTITAN=150;
+		CORACA=150;
+		CORSHAD=150;
+		CORAPE=150;
+		CORCA=150;
+		CORVALK=150;
+		ARMCSA=150;
+		ARMSEHAK=150;
+		ARMSEAP=150;
+		ARMSFIG=150;
+		CORCSA=150;
+		CORHUNT=150;
+		CORSFIG=150;
+		CORSEAP=150;
+		AAICA=150;
+		AAIACA=150;
+		AAICSA=150;
+		CAICA=150;
+		CAIACA=150;
+		CAICSA=150;
+		ARMSABER=150;
+		ARMSB=150;
+		CORCUT=150;
+		CORSB=150;
+		AAICP=150;
+		CAICP=150;
+		ARMCP=150;
+		CORCP=150;
+		ARMDFLY=150;
+		AAITHUND=150;
+		AAIBRAWL=150;
+		AAIFIG=150;
+		AAIPNIX=150;
+		AAIHAWK=150;
+		AAILANCE=150;
+		CAIVENG=150;
+		CAIVAMP=150;
+		CAIHURC=150;
+		CAITITAN=150;
+		CAISHAD=150;
+		CAIAPE=150;
+		AAISEAP=150;
+		AAISFIG=150;
+		CAISFIG=150;
+		CAISEAP=150;
+		AAISABER=150;
+		AAISB=150;
+		CAICUT=150;
+		CAISB=150;
+		AAIDFLY=150;
+		ARMBANI=150;
+		ARMJUGG=150;
+		ARMSPARROW=150;
+		CDRAGON=150;
+		CORMOSQ=150;
+		CORRAG=150;
+		GRYPHON=150;
+		SALTER=150;
+		AAISPARROW=150;
+		AAIBANI=150;
+		AIGRYPHON=150;
+		AIYPHON=150;
+		CAIMOSQ=150;
+		CAIDRAGON=150;
+		CAIRAG=150;
+		ARMMSA=150;
+		CORMSA=150;
+		ARMANS=150;
+		CORANS=150;
+		ARMMOUCHE=150;
+		armmauler=150;
+		gryphon=150;
+		CORRAG=150;
+		CORWING=150;
+		ARMCYBR=150;
+		CORBOMBN=150;
+		ARMSTRAT=150;
+		cdragon=150;
+		CORCRW=150;
+		CORVAMPIRO=150;
+		CORFALC=150;
+		RONDINE=150;
+		blackeagle=150;
+		blackar=150;
+		dragoth=150;
+		armcbomb=150;
+		advcb=150;
+		sqal=150;
+		blight=150;
+	}
+}
+

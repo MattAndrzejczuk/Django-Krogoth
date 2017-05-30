@@ -1,0 +1,45 @@
+[CORAMPH_WEAPON1]
+{
+	ID=159;
+	name=Gimp Torpedo;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=torpedo;
+	propeller=1;
+
+	range=350;
+	reloadtime=2.6;
+	weapontimer=3;
+	weaponvelocity=100;
+	startvelocity=100;
+	weaponacceleration=15;
+	areaofeffect=16;
+	
+	soundstart=torpedo1;
+	soundhit=xplodep2;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+	{
+		default=125;
+		armsub=80;
+		armsubk=80;
+		corsub=80;
+		corssub=80;
+		corshark=80;
+	}
+}
+

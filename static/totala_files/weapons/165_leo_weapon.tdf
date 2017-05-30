@@ -1,0 +1,32 @@
+[LeoGAUSS]
+	{
+	ID=165; 
+	name=Rapid Gauss Cannon;
+	rendertype=4;
+	lineofsight=1;
+	turret=1;
+	minbarrelangle=-15;
+
+	range=680;
+	reloadtime=0.90;
+	weaponvelocity=350;
+	areaofeffect=8;
+	soundstart=BERTHA3;
+	soundhit=xplomed2;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=120;
+		}
+	}

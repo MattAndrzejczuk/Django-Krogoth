@@ -1,0 +1,52 @@
+[BLIGHT1]
+	{
+	ID=119;
+	name=Bomber Rockets;
+	rendertype=1;
+	lineofsight=1;
+	vlaunch=1;
+
+	model=BLIGHT1;
+
+	range=700;
+	reloadtime=8;
+	burst=15;
+	burstrate=0.2;
+	weapontimer=1;
+	flighttime=1;
+
+	weaponvelocity=600;
+	startvelocity=100;
+	weaponacceleration=50;
+	turnrate=45000;
+	areaofeffect=300;
+	metalpershot=0;
+
+	soundstart=BLIGHTfire;
+	soundhit=BLIGHThit;
+	soundtrigger=1;
+
+	firestarter=100;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=9000;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=150;
+		}
+	}

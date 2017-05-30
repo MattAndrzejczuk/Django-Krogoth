@@ -1,0 +1,1622 @@
+plan easy
+
+Weight ARM 0.2
+Weight CORE 0.2
+
+// ARM ENTRIES
+// WEIGHTS
+// Construction Buildings
+Weight ARMLAB 6
+Weight ARMVP 6
+Weight ARMAP 1
+
+Weight ARMALAB 3
+Weight ARMAVP 3
+Weight ARMAAP 8
+
+// Kbots, Level 1
+Weight ARMCK 5
+Weight ARMJETH 3
+Weight ARMPW 2
+Weight ARMROCK 3
+Weight ARMHAM 3
+Weight ARMWAR 3
+
+// Kbots, Level 2
+Weight ARMACK 5
+Weight ARMAMPH 2
+Weight ARMFAST 1
+Weight ARMDECOM 1
+Weight ARMFIDO 3
+Weight ARMMAV 2
+Weight ARMSPID 0.5
+Weight ARMSNIPE 0.5
+Weight ARMZEUS 1.5
+
+//  Vehicles, Level 1
+Weight ARMCV 5
+Weight ARMFAV 8
+Weight ARMFLASH 4
+Weight ARMSAM 2
+Weight ARMSTUMP 3
+
+// Vehicles, Level 2
+Weight ARMACV 5
+Weight ARMBULL 3
+Weight ARMLATNK 4
+Weight ARMMANNI 1
+Weight ARMMART 2
+Weight ARMMERL 2
+Weight ARMREF 2.5
+Weight ARMSPTK 2
+Weight ARMYORK 1
+
+// Aircraft, Level 1
+Weight ARMCA 5
+Weight ARMFIG 3
+Weight ARMPEEP 1
+Weight ARMTHUND 1
+
+// Aircraft, Level 2
+Weight ARMACA 3
+Weight ARMBRAWL 5
+Weight ARMHAWK 5
+Weight ARMPNIX 1
+
+// Resource Production and Storage
+Weight ARMMEX 1
+Weight ARMSOLAR 2
+Weight ARMMMKR 0.5
+Weight ARMDF 1
+Weight ARMFUS 3
+Weight ARMGEO 2
+Weight ARMMOHO 2
+
+// Defenses and LRPC
+Weight AGEOLIT 2
+Weight ARMPB 2
+Weight ARMAMB 4
+Weight ARMANNI 2
+Weight ARMBRTHA 1
+Weight ARMCENT 1
+Weight ARMDEVA 2
+Weight ARMFLAK 4
+Weight ARMGUARD 1
+Weight ARMHLT 2
+Weight ARMLLT 1
+Weight ARMRL 8
+
+// Radar, Sonar, and Miscellaneous Uncategorizable Units
+Weight ARMVEIL 3
+
+// LIMITS
+// Construction Buildings
+Limit ARMLAB 2
+Limit ARMVP 2
+Limit ARMAP 1
+Limit ARMSY 0
+Limit ARMHP 0
+Limit ARMPLAT 0
+Limit ARMFHP 0
+
+Limit ARMALAB 2
+Limit ARMAVP 2
+Limit ARMAAP 2
+Limit ARMASY 0
+
+// Kbots, Level 1
+Limit ARMCK 2
+Limit ARMFLEA 0
+Limit ARMJETH 10
+Limit ARMPW 15
+Limit ARMROCK 10
+Limit ARMHAM 10
+Limit ARMWAR 10
+
+// Kbots, Level 2
+Limit ARMACK 1
+Limit ARMAMPH 5
+Limit ARMASER 0
+Limit ARMFAST 5
+Limit ARMDECOM 1
+Limit ARMFIDO 10
+Limit ARMHACK 0
+Limit ARMMARK 0
+Limit ARMMAV 10
+Limit ARMSNIPE 1
+Limit ARMSPID 5
+Limit ARMSPY 0
+Limit ARMVADER 0
+Limit ARMZEUS 10
+
+//  Vehicles, Level 1
+Limit ARMCV 2
+Limit ARMFAV 2
+Limit ARMFLASH 20
+Limit ARMLEMM 0
+Limit ARMMLV 0
+Limit ARMSAM 10
+Limit ARMSTUMP 15
+
+// Vehicles, Level 2
+Limit ARMACV 1
+Limit ARMBULL 15
+Limit ARMCROC 0
+Limit ARMJAM 0
+Limit ARMLATNK 20
+Limit ARMMANNI 3
+Limit ARMMART 10
+Limit ARMMERL 5
+Limit ARMREF 10
+Limit ARMSCAB 0
+Limit ARMSPTK 10
+Limit ARMSEER 0
+Limit ARMYORK 2
+
+// Aircraft, Level 1
+Limit ARMCA 2
+Limit ARMATLAS 0
+Limit ARMFIG 20
+Limit ARMPEEP 5
+Limit ARMTHUND 5
+
+// Aircraft, Level 2
+Limit ARMACA 3
+Limit ARMAWAC 0
+Limit ARMBRAWL 15
+Limit ARMHAWK 15
+Limit ARMLANCE 0
+Limit ARMPNIX 5
+Limit ARMDFLY 0
+
+// Navy, Level 1
+Limit ARMCS 0
+Limit ARMPT 0
+Limit ARMROY 0
+Limit ARMSUB 0
+Limit ARMTSHIP 0
+
+// Navy, Level 2
+Limit ARMACSUB 0
+Limit ARMAAS 0
+Limit ARMBATS 0
+Limit ARMCARRY 0
+Limit ARMCRUS 0
+Limit ARMMSHIP 0
+Limit ARMSCRAM 0
+Limit ARMSJAM 0
+Limit ARMSUBK 0
+
+// Hovercraft
+Limit ARMCH 0
+Limit ARMAH 0
+Limit ARMANAC 0
+Limit ARMMH 0
+Limit ARMSH 0
+Limit ARMTHOVR 0
+
+// Seaplanes
+Limit ARMCSA 0
+Limit ARMSEAP 0
+Limit ARMSEHAK 0
+Limit ARMSFIG 0
+Limit ARMSB 0
+Limit ARMSABER 0
+
+// Mines
+Limit ARMEMPM 0
+Limit ARMMINE1 0
+Limit ARMMINE2 0
+Limit ARMMINE3 0
+Limit ARMMINE4 0
+Limit ARMMINE5 0
+Limit ARMMINE6 0
+Limit ARMMINE7 0
+
+// Resource Production and Storage
+Limit ARMMEX 30
+Limit ARMMMKR 1
+Limit ARMSOLAR 30
+Limit ARMDF 2
+Limit ARMCKFUS 0
+Limit ARMESTOR 0
+Limit ARMFMKR 0
+Limit ARMFUS 1
+Limit ARMGEO 2
+Limit ARMGMM 0
+Limit ARMMAKR 0
+Limit ARMMOHO 2
+Limit ARMMSTOR 0
+Limit ARMUWES 0
+Limit ARMUWFUS 0
+Limit ARMUWMS 0
+Limit ARMWIN 0
+
+// Defenses and LRPC
+Limit AGEOLIT 1
+Limit AMINTMAN 0
+Limit ARMAMB 2
+Limit ARMAMD 0
+Limit ARMANNI 1
+Limit ARMATL 0
+Limit ARMBRTHA 1
+Limit ARMCENT 1
+Limit ARMCLAW 0
+Limit ARMDEVA 1
+Limit ARMDL 0
+Limit ARMDRAG 0
+Limit ARMEMP 0
+Limit ARMFDRAG 0
+Limit ARMFHLT 0
+Limit ARMFLAK 4
+Limit ARMFORT 0
+Limit ARMFRT 0
+Limit ARMGUARD 4
+Limit ARMHLT 10
+Limit ARMLLT 5
+Limit ARMPB 2
+Limit ARMRL 20
+Limit ARMSILO 0
+Limit ARMTL 0
+Limit ARMTRID 0
+Limit ARMVULC 0
+Limit NUKEA 0
+
+// Radar, Sonar, and Miscellaneous Uncategorizable Units
+Limit ARMARAD 0
+Limit ARMASON 0
+Limit ARMASP 0
+Limit ARMEYES 0
+Limit ARMRAD 0
+Limit ARMSONAR 0
+Limit ARMTARG 0
+Limit ARMUEYES 0
+Limit ARMVEIL 1
+
+
+// CORE ENTRIES
+// WEIGHTS
+// Construction Buildings
+Weight CORLAB 6
+Weight CORVP 6
+Weight CORAP 1
+
+Weight CORALAB 3
+Weight CORAVP 3
+Weight CORAAP 8
+
+// Kbots, Level 1
+Weight CORCK 5
+Weight CORAK 2
+Weight CORSTORM 3
+Weight CORTHUD 2
+Weight CORCRASH 1.5
+
+// Kbots, Level 2
+Weight CORACK 5
+Weight CORAMPH 0.5
+Weight CORCAN 2
+Weight CORDECOM 1
+Weight CORFAST 3
+Weight CORHRK 4
+Weight CORMORT 4
+Weight CORPYRO 3
+Weight CORSUMO 1
+
+// Vehicles, Level 1
+Weight CORCV 5
+Weight CORFAV 8
+Weight CORGATOR 6
+Weight CORLEVLR 3
+Weight CORMIST 2
+Weight CORRAID 4
+
+// Vehicles, Level 2
+Weight CORACV 5
+Weight CORGOL 5
+Weight CORMART 2
+Weight CORREAP 2
+Weight CORVROC 2
+Weight CORSENT 1
+
+// Aircraft, Level 1
+Weight CORCA 5
+Weight CORFINK 1
+Weight CORSHAD 1
+Weight CORVENG 3
+
+// Aircraft, Level 2
+Weight CORACA 3
+Weight CORAPE 5
+Weight CORHURC 1
+Weight CORVAMP 5
+
+// Resource Production and Storage
+Weight COREXP 0.5
+Weight CORMEX 1
+Weight CORMMKR 0.5
+Weight CORSOLAR 2
+Weight CORFUS 3
+Weight CORGEO 2
+Weight CORMEXP 1
+Weight CORMOHO 1
+
+// Defenses and LRPC
+Weight CORBHMTH 3
+Weight CORDOOM 2
+Weight CORFLAK 4
+Weight CORHLT 2
+Weight CORINT 1
+Weight CORLLT 1
+Weight CORPLAS 1
+Weight CORPUN 1
+Weight CORRL 8
+Weight CORTOAST 5
+Weight CORVIPE 2
+
+// Radar, Sonar, and Miscellaneous Uncategorizable Units
+Weight CORSHROUD 3
+
+// LIMITS
+// Construction Buildings
+Limit CORLAB 2
+Limit CORVP 2
+Limit CORAP 1
+Limit CORSY 0
+Limit CORHP 0
+Limit CORPLAT 0
+Limit CORFHP 0
+
+Limit CORALAB 2
+Limit CORAVP 2
+Limit CORAAP 2
+Limit CORASY 0
+Limit CORGANT 0
+
+// Kbots, Level 1
+Limit CORCK 2
+Limit CORAK 10
+Limit CORSTORM 15
+Limit CORTHUD 15
+Limit CORCRASH 10
+
+// Kbots, Level 2
+Limit CORACK 2
+Limit CORAMPH 2
+Limit CORCAN 10
+Limit CORDECOM 1
+Limit CORFAST 2
+Limit CORHRK 10
+Limit CORMORT 10
+Limit CORPYRO 7
+Limit CORROACH 0
+Limit CORSKTL 0
+Limit CORSPEC 0
+Limit CORSPY 0
+Limit CORSUMO 5
+Limit CORVOYR 0
+
+// Kbots, Level 3
+Limit CORKROG 0
+
+// Vehicles, Level 1
+Limit CORCV 2
+Limit CORFAV 2
+Limit CORGATOR 25
+Limit CORLEVLR 10
+Limit CORMIST 10
+Limit CORMLV 0
+Limit CORRAID 15
+
+// Vehicles, Level 2
+Limit CORACV 2
+Limit CORETER 0
+Limit CORGOL 15
+Limit CORMABM 0
+Limit CORMART 10
+Limit CORREAP 10
+Limit CORSEAL 0
+Limit CORSENT 2
+Limit CORVRAD 0
+Limit CORVROC 5
+
+// Aircraft, Level 1
+Limit CORCA 2
+Limit CORFINK 5
+Limit CORSHAD 5
+Limit CORVALK 0
+Limit CORVENG 15
+
+// Aircraft, Level 2
+Limit CORACA 3
+Limit CORAPE 15
+Limit CORAWAC 0
+Limit CORHURC 5
+Limit CORTITAN 0
+Limit CORVAMP 15
+
+// Navy, Level 1
+Limit CORCS 0
+Limit CORMANTA 0
+Limit CORPT 0
+Limit CORROY 0
+Limit CORSUB 0
+Limit CORTSHIP 0
+
+// Navy, Level 2
+Limit CORACSUB 0
+Limit CORARCH 0
+Limit CORBATS 0
+Limit CORCARRY 0
+Limit CORCRUS 0
+Limit CORMSHIP 0
+Limit CORSHARK 0
+Limit CORSJAM 0
+Limit CORSSUB 0
+Limit CORSQUID 0
+
+// Hovercraft
+Limit CORAH 0
+Limit CORCH 0
+Limit CORMH 0
+Limit CORSH 0
+Limit CORSNAP 0
+Limit CORTHOVR 0
+
+// Seaplanes
+Limit CORCSA 0
+Limit CORHUNT 0
+Limit CORSEAP 0
+Limit CORSFIG 0
+Limit CORSB 0
+Limit CORCUT 0
+
+// Mines
+Limit CORMINE1 0
+Limit CORMINE2 0
+Limit CORMINE3 0
+Limit CORMINE4 0
+Limit CORMINE5 0
+Limit CORMINE6 0
+Limit CORMINE7 0
+
+// Resource Production and Storage
+Limit COREXP 20
+Limit CORMEX 10
+Limit CORMMKR 1
+Limit CORSOLAR 30
+Limit CORCKFUS 0
+Limit CORESTOR 0
+Limit CORFMKR 0
+Limit CORFUS 1
+Limit CORGEO 2
+Limit CORMAKR 0
+Limit CORMEXP 2
+Limit CORMOHO 2
+Limit CORMSTOR 0
+Limit CORUWES 0
+Limit CORUWFUS 0
+Limit CORUWMS 0
+Limit CORWIN 0
+
+// Defenses and LRPC
+Limit CORATL 0
+Limit CORBHMTH 1
+Limit CORBUZZ 0
+Limit CORCLLT 0
+Limit CORDL 0
+Limit CORDOOM 1
+Limit CORDRAG 0
+Limit COREWALL 0
+Limit COREWALL2 0
+Limit CORFDRAG 0
+Limit CORFHLT 0
+Limit CORFLAK 4
+Limit CORFMD 0
+Limit CORFORT 0
+Limit CORFRT 0
+Limit CORHLT 5
+Limit CORINT 1
+Limit CORKRAK 0
+Limit CORLLT 5
+Limit CORPLAS 3
+Limit CORPUN 4
+Limit CORRL 20
+Limit CORSILO 0
+Limit CORTL 0
+Limit CORTOAST 2
+Limit CORTRON 0
+Limit CORVIPE 5
+Limit CORWIDMKR 0
+Limit NUKEC 0
+
+// Radar, Sonar, and Miscellaneous Uncategorizable Units
+Limit CORARAD 0
+Limit CORASON 0
+Limit CORASP 0
+Limit COREYES 0
+Limit CORRAD 0
+Limit CORSHROUD 1
+Limit CORSONAR 0
+Limit CORTARG 0
+Limit CORUEYES 0
+
+
+// MEDIUMMEDIUMMEDIUMMEDIUMMEDIUMMEDIUMMEDIUMMEDIUMMEDIUMMEDIUMMEDIUM
+plan medium 
+
+Weight ARM 0.2
+Weight CORE 0.2
+
+// WEIGHTS
+// Construction Buildings
+Weight ARMLAB 7
+Weight ARMVP 9
+Weight ARMAP 0.5
+
+Weight ARMALAB 4
+Weight ARMAVP 4
+Weight ARMAAP 9
+
+// Kbots, Level 1
+Weight ARMCK 1
+Weight ARMJETH 2
+Weight ARMROCK 5
+Weight ARMHAM 3
+Weight ARMPW 2
+Weight ARMWAR 3
+
+// Kbots, Level 2
+Weight ARMACK 3
+Weight ARMFAST 1
+Weight ARMFIDO 7
+Weight ARMDECOM 0.5
+Weight ARMAMPH 2
+Weight ARMMAV 4
+Weight ARMSNIPE 1
+Weight ARMZEUS 2
+
+//  Vehicles, Level 1
+Weight ARMCV 1
+Weight ARMFAV 8
+Weight ARMFLASH 9
+Weight ARMSAM 3
+Weight ARMSTUMP 5
+
+// Vehicles, Level 2
+Weight ARMACV 3
+Weight ARMBULL 4
+Weight ARMLATNK 5
+Weight ARMMANNI 1
+Weight ARMMART 2.5
+Weight ARMMERL 2
+Weight ARMREF 3
+Weight ARMSPTK 2
+Weight ARMYORK 0.5
+
+// Aircraft, Level 1
+Weight ARMCA 9
+Weight ARMFIG 4
+
+// Aircraft, Level 2
+Weight ARMACA 1
+Weight ARMBRAWL 3
+Weight ARMHAWK 3
+
+// Resource Production and Storage
+Weight ARMCK 1.5
+Weight ARMMEX 1
+Weight ARMMMKR 0.5
+Weight ARMSOLAR 2
+Weight ARMFUS 3
+Weight ARMDF 1
+
+// Defenses and LRPC
+Weight AGEOLIT 2
+Weight AMINTMAN 0.5
+Weight ARMPB 2
+Weight ARMAMB 5
+Weight ARMANNI 2
+Weight ARMBRTHA 0.5
+Weight ARMCENT 0.5
+Weight ARMDEVA 2
+Weight ARMFLAK 4
+Weight ARMGUARD 1
+Weight ARMHLT 2
+Weight ARMLLT 0.5
+Weight ARMRL 8
+
+// Radar, Sonar, and Miscellaneous Uncategorizable Units
+Weight ARMASP 1
+Weight ARMVEIL 3
+
+// LIMITS
+// Construction Buildings
+Limit ARMLAB 2
+Limit ARMVP 2
+Limit ARMAP 1
+Limit ARMSY 0
+Limit ARMHP 0
+Limit ARMPLAT 0
+Limit ARMFHP 0
+
+Limit ARMALAB 2
+Limit ARMAVP 2
+Limit ARMAAP 2
+Limit ARMASY 0
+
+// Kbots, Level 1
+Limit ARMCK 2
+Limit ARMFLEA 0
+Limit ARMJETH 15
+Limit ARMPW 10
+Limit ARMROCK 30
+Limit ARMHAM 20
+Limit ARMWAR 20
+
+// Kbots, Level 2
+Limit ARMACK 1
+Limit ARMAMPH 10
+Limit ARMASER 0
+Limit ARMFAST 10
+Limit ARMDECOM 0
+Limit ARMFIDO 25
+Limit ARMHACK 0
+Limit ARMMARK 0
+Limit ARMMAV 15
+Limit ARMSNIPE 3
+Limit ARMSPID 0
+Limit ARMSPY 0
+Limit ARMVADER 0
+Limit ARMZEUS 15
+
+//  Vehicles, Level 1
+Limit ARMCV 2
+Limit ARMFAV 2
+Limit ARMFLASH 50
+Limit ARMLEMM 0
+Limit ARMMLV 0
+Limit ARMSAM 10
+Limit ARMSTUMP 25
+
+// Vehicles, Level 2
+Limit ARMACV 1
+Limit ARMBULL 20
+Limit ARMCROC 0
+Limit ARMJAM 0
+Limit ARMLATNK 30
+Limit ARMMANNI 5
+Limit ARMMART 15
+Limit ARMMERL 10
+Limit ARMREF 15
+Limit ARMSCAB 0
+Limit ARMSPTK 15
+Limit ARMSEER 0
+Limit ARMYORK 2
+
+// Aircraft, Level 1
+Limit ARMCA 1
+Limit ARMATLAS 0
+Limit ARMFIG 15
+Limit ARMPEEP 0
+Limit ARMTHUND 0
+
+// Aircraft, Level 2
+Limit ARMACA 2
+Limit ARMAWAC 0
+Limit ARMBRAWL 20
+Limit ARMHAWK 20
+Limit ARMLANCE 0
+Limit ARMPNIX 0
+Limit ARMDFLY 0
+
+// Navy, Level 1
+Limit ARMCS 0
+Limit ARMPT 0
+Limit ARMROY 0
+Limit ARMSUB 0
+Limit ARMTSHIP 0
+
+// Navy, Level 2
+Limit ARMACSUB 0
+Limit ARMAAS 0
+Limit ARMBATS 0
+Limit ARMCARRY 0
+Limit ARMCRUS 0
+Limit ARMMSHIP 0
+Limit ARMSCRAM 0
+Limit ARMSJAM 0
+Limit ARMSUBK 0
+
+// Hovercraft
+Limit ARMCH 0
+Limit ARMAH 0
+Limit ARMANAC 0
+Limit ARMMH 0
+Limit ARMSH 0
+Limit ARMTHOVR 0
+
+// Seaplanes
+Limit ARMCSA 0
+Limit ARMSEAP 0
+Limit ARMSEHAK 0
+Limit ARMSFIG 0
+Limit ARMSABER 0
+Limit ARMSB 0
+
+// Mines
+Limit ARMEMPM 0
+Limit ARMMINE1 0
+Limit ARMMINE2 0
+Limit ARMMINE3 0
+Limit ARMMINE4 0
+Limit ARMMINE5 0
+Limit ARMMINE6 0
+Limit ARMMINE7 0
+
+// Resource Production and Storage
+Limit ARMMEX 30
+Limit ARMMMKR 2
+Limit ARMSOLAR 30
+Limit ARMDF 2
+Limit ARMCKFUS 0
+Limit ARMESTOR 0
+Limit ARMFMKR 0
+Limit ARMFUS 1
+Limit ARMGEO 0
+Limit ARMGMM 0
+Limit ARMMAKR 0
+Limit ARMMOHO 0
+Limit ARMMSTOR 0
+Limit ARMUWES 0
+Limit ARMUWFUS 0
+Limit ARMUWMS 0
+Limit ARMWIN 0
+
+// Defenses and LRPC
+Limit AGEOLIT 2
+Limit AMINTMAN 1
+Limit ARMPB 4
+Limit ARMAMB 5
+Limit ARMAMD 0
+Limit ARMANNI 2
+Limit ARMATL 0
+Limit ARMBRTHA 2
+Limit ARMCENT 3
+Limit ARMCLAW 0
+Limit ARMDEVA 2
+Limit ARMDL 0
+Limit ARMDRAG 0
+Limit ARMEMP 0
+Limit ARMFDRAG 0
+Limit ARMFHLT 0
+Limit ARMFLAK 5
+Limit ARMFORT 0
+Limit ARMFRT 0
+Limit ARMGUARD 8
+Limit ARMHLT 20
+Limit ARMLLT 8
+Limit ARMRL 25
+Limit ARMSILO 0
+Limit ARMTL 0
+Limit ARMTRID 0
+Limit ARMVULC 0
+Limit NUKEA 0
+
+// Radar, Sonar, and Miscellaneous Uncategorizable Units
+Limit ARMARAD 0
+Limit ARMASON 0
+Limit ARMASP 1
+Limit ARMEYES 0
+Limit ARMRAD 0
+Limit ARMSONAR 0
+Limit ARMTARG 0
+Limit ARMUEYES 0
+Limit ARMVEIL 2
+
+
+// CORE ENTRIES
+// WEIGHTS
+// Construction Buildings
+Weight CORLAB 8
+Weight CORVP 8
+Weight CORAP 0.5
+
+Weight CORALAB 4
+Weight CORAVP 4
+Weight CORAAP 9
+
+// Kbots, Level 1
+Weight CORCK 1
+Weight CORAK 2
+Weight CORSTORM 5
+Weight CORTHUD 3
+Weight CORCRASH 2
+
+// Kbots, Level 2
+Weight CORACK 3
+Weight CORCAN 4
+Weight CORDECOM 0.5
+Weight CORFAST 2
+Weight CORHRK 5
+Weight CORMORT 5
+Weight CORPYRO 4
+Weight CORSUMO 2
+
+// Vehicles, Level 1
+Weight CORCV 1
+Weight CORFAV 9
+Weight CORGATOR 9
+Weight CORLEVLR 4
+Weight CORMIST 2
+Weight CORRAID 5
+
+// Vehicles, Level 2
+Weight CORACV 3
+Weight CORGOL 5
+Weight CORMART 3
+Weight CORREAP 2
+Weight CORVROC 2
+Weight CORSENT 0.5
+
+// Aircraft, Level 1
+Weight CORCA 9
+Weight CORVENG 4
+
+// Aircraft, Level 2
+Weight CORACA 1
+Weight CORAPE 3
+Weight CORVAMP 3
+
+// Resource Production and Storage
+Weight CORCKFUS 1.5
+Weight COREXP 0.5
+Weight CORMEX 1
+Weight CORMMKR 0.5
+Weight CORSOLAR 2
+Weight CORFUS 3
+Weight CORMEXP 1.5
+
+// Defenses and LRPC
+Weight CORBHMTH 4
+Weight CORDOOM 2
+Weight CORFLAK 4
+Weight CORHLT 1
+Weight CORINT 0.5
+Weight CORLLT 0.5
+Weight CORPLAS 1
+Weight CORPUN 1
+Weight CORRL 8
+Weight CORTOAST 5
+Weight CORVIPE 2
+Weight CORWIDMKR 0.5
+
+// Radar, Sonar, and Miscellaneous Uncategorizable Units
+Weight CORASP 1
+Weight CORSHROUD 3
+
+// LIMITS
+// Construction Buildings
+Limit CORLAB 2
+Limit CORVP 2
+Limit CORAP 1
+Limit CORSY 0
+Limit CORHP 0
+Limit CORPLAT 0
+Limit CORFHP 0
+
+Limit CORALAB 2
+Limit CORAVP 2
+Limit CORAAP 2
+Limit CORASY 0
+Limit CORGANT 0
+
+// Kbots, Level 1
+Limit CORCK 2
+Limit CORAK 10
+Limit CORSTORM 30
+Limit CORTHUD 20
+Limit CORCRASH 15
+
+// Kbots, Level 2
+Limit CORACK 1
+Limit CORAMPH 0
+Limit CORCAN 10
+Limit CORDECOM 0
+Limit CORFAST 2
+Limit CORHRK 15
+Limit CORMORT 20
+Limit CORPYRO 10
+Limit CORROACH 0
+Limit CORSKTL 0
+Limit CORSPEC 0
+Limit CORSPY 0
+Limit CORSUMO 4
+Limit CORVOYR 0
+
+// Kbots, Level 3
+Limit CORKROG 0
+
+// Vehicles, Level 1
+Limit CORCV 2
+Limit CORFAV 2
+Limit CORGATOR 40
+Limit CORLEVLR 15
+Limit CORMIST 10
+Limit CORMLV 0
+Limit CORRAID 20
+
+// Vehicles, Level 2
+Limit CORACV 1
+Limit CORETER 0
+Limit CORGOL 25
+Limit CORMABM 0
+Limit CORMART 15
+Limit CORREAP 15
+Limit CORSEAL 0
+Limit CORSENT 2
+Limit CORVRAD 0
+Limit CORVROC 10
+
+// Aircraft, Level 1
+Limit CORCA 1
+Limit CORFINK 0
+Limit CORSHAD 0
+Limit CORVALK 0
+Limit CORVENG 15
+
+// Aircraft, Level 2
+Limit CORACA 2
+Limit CORAPE 20
+Limit CORAWAC 0
+Limit CORHURC 0
+Limit CORTITAN 0
+Limit CORVAMP 20
+
+// Navy, Level 1
+Limit CORCS 0
+Limit CORMANTA 0
+Limit CORPT 0
+Limit CORROY 0
+Limit CORSUB 0
+Limit CORTSHIP 0
+
+// Navy, Level 2
+Limit CORACSUB 0
+Limit CORARCH 0
+Limit CORBATS 0
+Limit CORCARRY 0
+Limit CORCRUS 0
+Limit CORMSHIP 0
+Limit CORSHARK 0
+Limit CORSJAM 0
+Limit CORSSUB 0
+Limit CORSQUID 0
+
+// Hovercraft
+Limit CORAH 0
+Limit CORCH 0
+Limit CORMH 0
+Limit CORSH 0
+Limit CORSNAP 0
+Limit CORTHOVR 0
+
+// Seaplanes
+Limit CORCSA 0
+Limit CORHUNT 0
+Limit CORSEAP 0
+Limit CORSFIG 0
+Limit CORSB 0
+Limit CORCUT 0
+
+// Mines
+Limit CORMINE1 0
+Limit CORMINE2 0
+Limit CORMINE3 0
+Limit CORMINE4 0
+Limit CORMINE5 0
+Limit CORMINE6 0
+Limit CORMINE7 0
+
+// Resource Production and Storage
+Limit COREXP 20
+Limit CORMEX 10
+Limit CORMMKR 2
+Limit CORSOLAR 30
+Limit CORCKFUS 0
+Limit CORESTOR 0
+Limit CORFMKR 0
+Limit CORFUS 1
+Limit CORGEO 0
+Limit CORMAKR 0
+Limit CORMEXP 3
+Limit CORMOHO 0
+Limit CORMSTOR 0
+Limit CORUWES 0
+Limit CORUWFUS 0
+Limit CORUWMS 0
+Limit CORWIN 0
+
+// Defenses and LRPC
+Limit CORATL 0
+Limit CORBHMTH 2
+Limit CORBUZZ 0
+Limit CORCLLT 0
+Limit CORDL 0
+Limit CORDOOM 2
+Limit CORDRAG 0
+Limit COREWALL 0
+Limit COREWALL2 0
+Limit CORFDRAG 0
+Limit CORFHLT 0
+Limit CORFLAK 5
+Limit CORFMD 0
+Limit CORFORT 0
+Limit CORFRT 0
+Limit CORHLT 12
+Limit CORINT 2
+Limit CORKRAK 0
+Limit CORLLT 8
+Limit CORPLAS 5
+Limit CORPUN 8
+Limit CORRL 25
+Limit CORSILO 0
+Limit CORTL 0
+Limit CORTOAST 5
+Limit CORTRON 0
+Limit CORVIPE 8
+Limit CORWIDMKR 1
+Limit NUKEC 0
+
+// Radar, Sonar, and Miscellaneous Uncategorizable Units
+Limit CORARAD 0
+Limit CORASON 0
+Limit CORASP 1
+Limit COREYES 0
+Limit CORRAD 0
+Limit CORSHROUD 2
+Limit CORSONAR 0
+Limit CORTARG 0
+Limit CORUEYES 0
+
+// HARDHARDHARDHARDHARDHARDHARDHARDHARDHARDHARDHARDHARDHARDHARDHARDHARD
+plan hard
+
+Weight ARM 0.2
+Weight CORE 0.2
+
+// WEIGHTS
+// Construction Buildings
+Weight ARMLAB 7
+Weight ARMVP 9
+Weight ARMAP 1
+
+Weight ARMALAB 6
+Weight ARMAVP 6
+Weight ARMAAP 9
+
+// Kbots, Level 1
+Weight ARMCK 1
+Weight ARMJETH 1
+Weight ARMROCK 5
+Weight ARMHAM 3
+Weight ARMPW 1.5
+Weight ARMWAR 3
+
+// Kbots, Level 2
+Weight ARMACK 3
+Weight ARMFAST 1
+Weight ARMFIDO 7
+Weight ARMDECOM 0.5
+Weight ARMAMPH 2
+Weight ARMMAV 4
+Weight ARMSNIPE 1
+Weight ARMZEUS 2
+
+//  Vehicles, Level 1
+Weight ARMCV 1
+Weight ARMFAV 8
+Weight ARMFLASH 9
+Weight ARMSAM 3
+Weight ARMSTUMP 6
+
+// Vehicles, Level 2
+Weight ARMACV 3
+Weight ARMBULL 4
+Weight ARMLATNK 5
+Weight ARMMANNI 1
+Weight ARMMART 3
+Weight ARMMERL 2
+Weight ARMREF 3
+Weight ARMSPTK 2
+Weight ARMYORK 0.5
+
+// Aircraft, Level 1
+Weight ARMCA 9
+Weight ARMFIG 4
+
+// Aircraft, Level 2
+Weight ARMACA 1
+Weight ARMBRAWL 4
+Weight ARMHAWK 4
+
+// Resource Production and Storage
+Weight ARMCK 2
+Weight ARMMEX 1
+Weight ARMMMKR 0.5
+Weight ARMSOLAR 2
+Weight ARMFUS 3
+Weight ARMDF 1
+
+// Defenses and LRPC
+Weight AGEOLIT 2
+Weight AMINTMAN 0.5
+Weight ARMPB 2
+Weight ARMAMB 5
+Weight ARMANNI 2
+Weight ARMBRTHA 1
+Weight ARMCENT 0.5
+Weight ARMDEVA 2
+Weight ARMFLAK 4
+Weight ARMGUARD 1
+Weight ARMHLT 2
+Weight ARMLLT 0.5
+Weight ARMRL 8
+
+// Radar, Sonar, and Miscellaneous Uncategorizable Units
+Weight ARMASP 1
+Weight ARMVEIL 3
+
+// LIMITS
+// Construction Buildings
+Limit ARMLAB 3
+Limit ARMVP 3
+Limit ARMAP 2
+Limit ARMSY 0
+Limit ARMHP 0
+Limit ARMPLAT 0
+Limit ARMFHP 0
+
+Limit ARMALAB 3
+Limit ARMAVP 3
+Limit ARMAAP 3
+Limit ARMASY 0
+
+// Kbots, Level 1
+Limit ARMCK 3
+Limit ARMFLEA 0
+Limit ARMJETH 15
+Limit ARMPW 10
+Limit ARMROCK 30
+Limit ARMHAM 20
+Limit ARMWAR 20
+
+// Kbots, Level 2
+Limit ARMACK 2
+Limit ARMAMPH 10
+Limit ARMASER 0
+Limit ARMFAST 10
+Limit ARMDECOM 0
+Limit ARMFIDO 25
+Limit ARMHACK 0
+Limit ARMMARK 0
+Limit ARMMAV 15
+Limit ARMSNIPE 5
+Limit ARMSPID 0
+Limit ARMSPY 0
+Limit ARMVADER 0
+Limit ARMZEUS 15
+
+//  Vehicles, Level 1
+Limit ARMCV 3
+Limit ARMFAV 2
+Limit ARMFLASH 50
+Limit ARMLEMM 0
+Limit ARMMLV 0
+Limit ARMSAM 10
+Limit ARMSTUMP 25
+
+// Vehicles, Level 2
+Limit ARMACV 2
+Limit ARMBULL 20
+Limit ARMCROC 0
+Limit ARMJAM 0
+Limit ARMLATNK 30
+Limit ARMMANNI 8
+Limit ARMMART 15
+Limit ARMMERL 10
+Limit ARMREF 15
+Limit ARMSCAB 0
+Limit ARMSPTK 15
+Limit ARMSEER 0
+Limit ARMYORK 2
+
+// Aircraft, Level 1
+Limit ARMCA 3
+Limit ARMATLAS 0
+Limit ARMFIG 15
+Limit ARMPEEP 0
+Limit ARMTHUND 0
+
+// Aircraft, Level 2
+Limit ARMACA 2
+Limit ARMAWAC 0
+Limit ARMBRAWL 20
+Limit ARMHAWK 20
+Limit ARMLANCE 0
+Limit ARMPNIX 0
+Limit ARMDFLY 0
+
+// Navy, Level 1
+Limit ARMCS 0
+Limit ARMPT 0
+Limit ARMROY 0
+Limit ARMSUB 0
+Limit ARMTSHIP 0
+
+// Navy, Level 2
+Limit ARMACSUB 0
+Limit ARMAAS 0
+Limit ARMBATS 0
+Limit ARMCARRY 0
+Limit ARMCRUS 0
+Limit ARMMSHIP 0
+Limit ARMSCRAM 0
+Limit ARMSJAM 0
+Limit ARMSUBK 0
+
+// Hovercraft
+Limit ARMCH 0
+Limit ARMAH 0
+Limit ARMANAC 0
+Limit ARMMH 0
+Limit ARMSH 0
+Limit ARMTHOVR 0
+
+// Seaplanes
+Limit ARMCSA 0
+Limit ARMSEAP 0
+Limit ARMSEHAK 0
+Limit ARMSFIG 0
+Limit ARMSB 0
+Limit ARMSABER 0
+
+// Mines
+Limit ARMEMPM 0
+Limit ARMMINE1 0
+Limit ARMMINE2 0
+Limit ARMMINE3 0
+Limit ARMMINE4 0
+Limit ARMMINE5 0
+Limit ARMMINE6 0
+Limit ARMMINE7 0
+
+// Resource Production and Storage
+Limit ARMMEX 30
+Limit ARMMMKR 2
+Limit ARMSOLAR 30
+Limit ARMDF 2
+Limit ARMCKFUS 0
+Limit ARMESTOR 0
+Limit ARMFMKR 0
+Limit ARMFUS 1
+Limit ARMGEO 0
+Limit ARMGMM 0
+Limit ARMMAKR 0
+Limit ARMMOHO 0
+Limit ARMMSTOR 0
+Limit ARMUWES 0
+Limit ARMUWFUS 0
+Limit ARMUWMS 0
+Limit ARMWIN 0
+
+// Defenses and LRPC
+Limit AGEOLIT 3
+Limit AMINTMAN 1
+Limit ARMPB 5
+Limit ARMAMB 5
+Limit ARMAMD 0
+Limit ARMANNI 2
+Limit ARMATL 0
+Limit ARMBRTHA 2
+Limit ARMCENT 5
+Limit ARMCLAW 0
+Limit ARMDEVA 3
+Limit ARMDL 0
+Limit ARMDRAG 0
+Limit ARMEMP 0
+Limit ARMFDRAG 0
+Limit ARMFHLT 0
+Limit ARMFLAK 5
+Limit ARMFORT 0
+Limit ARMFRT 0
+Limit ARMGUARD 8
+Limit ARMHLT 20
+Limit ARMLLT 8
+Limit ARMRL 25
+Limit ARMSILO 0
+Limit ARMTL 0
+Limit ARMTRID 0
+Limit ARMVULC 0
+Limit NUKEA 0
+
+// Radar, Sonar, and Miscellaneous Uncategorizable Units
+Limit ARMARAD 0
+Limit ARMASON 0
+Limit ARMASP 1
+Limit ARMEYES 0
+Limit ARMRAD 0
+Limit ARMSONAR 0
+Limit ARMTARG 0
+Limit ARMUEYES 0
+Limit ARMVEIL 3
+
+
+// CORE ENTRIES
+// WEIGHTS
+// Construction Buildings
+Weight CORLAB 8
+Weight CORVP 8
+Weight CORAP 1
+
+Weight CORALAB 6
+Weight CORAVP 6
+Weight CORAAP 9
+
+Weight CORGANT 0.5
+
+// Kbots, Level 1
+Weight CORCK 1
+Weight CORAK 1.5
+Weight CORSTORM 5
+Weight CORTHUD 3
+Weight CORCRASH 1.5
+
+// Kbots, Level 2
+Weight CORACK 3
+Weight CORCAN 4
+Weight CORDECOM 0.5
+Weight CORFAST 1
+Weight CORHRK 5
+Weight CORMORT 5
+Weight CORPYRO 4
+Weight CORSUMO 2
+
+// Kbots, Level 3
+Weight CORKROG 1
+
+// Vehicles, Level 1
+Weight CORCV 1
+Weight CORFAV 9
+Weight CORGATOR 9
+Weight CORLEVLR 4
+Weight CORMIST 2
+Weight CORRAID 5
+
+// Vehicles, Level 2
+Weight CORACV 3
+Weight CORGOL 6
+Weight CORMART 4
+Weight CORREAP 3
+Weight CORVROC 2
+Weight CORSENT 0.5
+
+// Aircraft, Level 1
+Weight CORCA 9
+Weight CORVENG 4
+
+// Aircraft, Level 2
+Weight CORACA 1
+Weight CORAPE 4
+Weight CORVAMP 4
+
+// Resource Production and Storage
+Weight CORCKFUS 2
+Weight COREXP 0.5
+Weight CORMEX 1
+Weight CORMMKR 0.5
+Weight CORSOLAR 2
+Weight CORFUS 3
+Weight CORMEXP 2
+
+// Defenses and LRPC
+Weight CORBHMTH 5
+Weight CORDOOM 2
+Weight CORFLAK 4
+Weight CORHLT 1
+Weight CORINT 1
+Weight CORLLT 0.5
+Weight CORPLAS 1
+Weight CORPUN 1
+Weight CORRL 8
+Weight CORTOAST 5
+Weight CORVIPE 2
+Weight CORWIDMKR 1
+
+// Radar, Sonar, and Miscellaneous Uncategorizable Units
+Weight CORASP 1
+Weight CORSHROUD 3
+
+// LIMITS
+// Construction Buildings
+Limit CORLAB 3
+Limit CORVP 3
+Limit CORAP 2
+Limit CORSY 0
+Limit CORHP 0
+Limit CORPLAT 0
+Limit CORFHP 0
+
+Limit CORALAB 3
+Limit CORAVP 3
+Limit CORAAP 3
+Limit CORASY 0
+Limit CORGANT 0
+
+// Kbots, Level 1
+Limit CORCK 3
+Limit CORAK 10
+Limit CORSTORM 30
+Limit CORTHUD 20
+Limit CORCRASH 15
+
+// Kbots, Level 2
+Limit CORACK 2
+Limit CORAMPH 0
+Limit CORCAN 10
+Limit CORDECOM 0
+Limit CORFAST 2
+Limit CORHRK 15
+Limit CORMORT 20
+Limit CORPYRO 10
+Limit CORROACH 0
+Limit CORSKTL 0
+Limit CORSPEC 0
+Limit CORSPY 0
+Limit CORSUMO 4
+Limit CORVOYR 0
+
+// Kbots, Level 3
+Limit CORKROG 6
+
+// Vehicles, Level 1
+Limit CORCV 3
+Limit CORFAV 2
+Limit CORGATOR 40
+Limit CORLEVLR 15
+Limit CORMIST 10
+Limit CORMLV 0
+Limit CORRAID 20
+
+// Vehicles, Level 2
+Limit CORACV 2
+Limit CORETER 0
+Limit CORGOL 25
+Limit CORMABM 0
+Limit CORMART 15
+Limit CORREAP 15
+Limit CORSEAL 0
+Limit CORSENT 2
+Limit CORVRAD 0
+Limit CORVROC 10
+
+// Aircraft, Level 1
+Limit CORCA 3
+Limit CORFINK 0
+Limit CORSHAD 0
+Limit CORVALK 0
+Limit CORVENG 15
+
+// Aircraft, Level 2
+Limit CORACA 2
+Limit CORAPE 20
+Limit CORAWAC 0
+Limit CORHURC 0
+Limit CORTITAN 0
+Limit CORVAMP 20
+
+// Navy, Level 1
+Limit CORCS 0
+Limit CORMANTA 0
+Limit CORPT 0
+Limit CORROY 0
+Limit CORSUB 0
+Limit CORTSHIP 0
+
+// Navy, Level 2
+Limit CORACSUB 0
+Limit CORARCH 0
+Limit CORBATS 0
+Limit CORCARRY 0
+Limit CORCRUS 0
+Limit CORMSHIP 0
+Limit CORSHARK 0
+Limit CORSJAM 0
+Limit CORSSUB 0
+Limit CORSQUID 0
+
+// Hovercraft
+Limit CORAH 0
+Limit CORCH 0
+Limit CORMH 0
+Limit CORSH 0
+Limit CORSNAP 0
+Limit CORTHOVR 0
+
+// Seaplanes
+Limit CORCSA 0
+Limit CORHUNT 0
+Limit CORSEAP 0
+Limit CORSFIG 0
+Limit CORSB 0
+Limit CORCUT 0
+
+// Mines
+Limit CORMINE1 0
+Limit CORMINE2 0
+Limit CORMINE3 0
+Limit CORMINE4 0
+Limit CORMINE5 0
+Limit CORMINE6 0
+Limit CORMINE7 0
+
+// Resource Production and Storage
+Limit COREXP 20
+Limit CORMEX 10
+Limit CORMMKR 2
+Limit CORSOLAR 30
+Limit CORCKFUS 0
+Limit CORESTOR 0
+Limit CORFMKR 0
+Limit CORFUS 1
+Limit CORGEO 0
+Limit CORMAKR 0
+Limit CORMEXP 4
+Limit CORMOHO 0
+Limit CORMSTOR 0
+Limit CORUWES 0
+Limit CORUWFUS 0
+Limit CORUWMS 0
+Limit CORWIN 0
+
+// Defenses and LRPC
+Limit CORATL 0
+Limit CORBHMTH 3
+Limit CORBUZZ 0
+Limit CORCLLT 0
+Limit CORDL 0
+Limit CORDOOM 2
+Limit CORDRAG 0
+Limit COREWALL 0
+Limit COREWALL2 0
+Limit CORFDRAG 0
+Limit CORFHLT 0
+Limit CORFLAK 5
+Limit CORFMD 0
+Limit CORFORT 0
+Limit CORFRT 0
+Limit CORHLT 12
+Limit CORINT 2
+Limit CORKRAK 0
+Limit CORLLT 8
+Limit CORPLAS 8
+Limit CORPUN 8
+Limit CORRL 25
+Limit CORSILO 0
+Limit CORTL 0
+Limit CORTOAST 5
+Limit CORTRON 0
+Limit CORVIPE 8
+Limit CORWIDMKR 1
+Limit NUKEC 0
+
+// Radar, Sonar, and Miscellaneous Uncategorizable Units
+Limit CORARAD 0
+Limit CORASON 0
+Limit CORASP 1
+Limit COREYES 0
+Limit CORRAD 0
+Limit CORSHROUD 3
+Limit CORSONAR 0
+Limit CORTARG 0
+Limit CORUEYES 0

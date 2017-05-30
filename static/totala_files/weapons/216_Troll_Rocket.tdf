@@ -1,0 +1,43 @@
+[Troll_Rocket]
+	{
+	ID=216;
+	name=Troll Rocket;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+	model=TrollRocket;
+	range=695;
+	reloadtime=6.5;
+	weapontimer=4;
+	weaponvelocity=410;
+	startvelocity=280;
+	weaponacceleration=150;
+	turnrate=24000;
+	areaofeffect=125;
+	metalpershot=15;
+	energypershot=200;
+	soundstart=S_Rocket_Launch;
+	soundhit=S_Rocket_Hit;
+	firestarter=85;
+	smokedelay=.0091;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=6000;
+	explosiongaf=towers;
+	explosionart=bigboom;
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+	startsmoke=1;
+	shakemagnitude=9;
+	shakeduration=1;
+	[DAMAGE]
+		{
+		default=1850;
+		}
+	}
+
+

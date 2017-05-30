@@ -1,0 +1,489 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  support, flare, Thigh1, Thigh2, Torso, Shoulder, Barrel, Foot2,
+       Foot1, Forearm, Leg2, Leg1, ground;
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3, Static_Var_4, Static_Var_5,
+            Static_Var_6;
+
+
+walk()
+{
+	if( TRUE )
+	{
+		move Thigh1 to z-axis [0.] now;
+		move Thigh2 to z-axis [0.] now;
+		move Torso to x-axis [0.] now;
+		move Torso to y-axis [-0.] now;
+		move Shoulder to x-axis [0.] now;
+		move support to y-axis [0.] now;
+		move support to z-axis [0.] now;
+		move Barrel to x-axis [0.] now;
+		move Foot2 to z-axis [0.] now;
+		move Foot1 to x-axis [0.] now;
+		move Foot1 to z-axis [0.] now;
+		turn Thigh1 to x-axis <17.> now;
+		turn Thigh2 to x-axis <-46.> now;
+		turn Torso to x-axis <2.> now;
+		turn Torso to z-axis <-1.> now;
+		turn Shoulder to x-axis <-6.> now;
+		turn Forearm to x-axis <-16.> now;
+		turn Leg2 to x-axis <51.> now;
+		turn Foot1 to x-axis <-17.> now;
+		sleep 100;
+	}
+	if( TRUE )
+	{
+		move Torso to y-axis [0.] now;
+		turn Thigh1 to x-axis <24.> now;
+		turn Thigh2 to x-axis <-41.> now;
+		turn Torso to x-axis <0.> now;
+		turn Torso to z-axis <-0.> now;
+		turn Shoulder to x-axis <-13.> now;
+		turn Forearm to x-axis <-23.> now;
+		turn Leg2 to x-axis <43.> now;
+		turn Foot1 to x-axis <-12.> now;
+		sleep 102;
+	}
+	if( TRUE )
+	{
+		turn Thigh1 to x-axis <38.> now;
+		turn Thigh2 to x-axis <-26.> now;
+		turn Torso to x-axis <0.> now;
+		turn Torso to z-axis <0.> now;
+		turn Shoulder to x-axis <-19.> now;
+		turn Forearm to x-axis <-21.> now;
+		turn Leg2 to x-axis <26.> now;
+		turn Leg1 to x-axis <8.> now;
+		sleep 104;
+	}
+	if( TRUE )
+	{
+		move Torso to y-axis [-0.] now;
+		turn Thigh1 to x-axis <22.> now;
+		turn Thigh2 to x-axis <-12.> now;
+		turn Torso to x-axis <0.> now;
+		turn Shoulder to x-axis <-18.> now;
+		turn Forearm to x-axis <-5.> now;
+		turn Leg2 to x-axis <12.> now;
+		turn Leg1 to x-axis <27.> now;
+		sleep 102;
+	}
+	if( TRUE )
+	{
+		move Torso to y-axis [-0.] now;
+		turn Thigh1 to x-axis <3.> now;
+		turn Thigh2 to x-axis <7.> now;
+		turn Torso to x-axis <2.> now;
+		turn Torso to z-axis <1.> now;
+		turn Shoulder to x-axis <-5.> now;
+		turn Forearm to x-axis <0.> now;
+		turn Leg2 to x-axis <-1.> now;
+		turn Foot2 to x-axis <-6.> now;
+		turn Leg1 to x-axis <53.> now;
+		sleep 102;
+	}
+	if( TRUE )
+	{
+		move Torso to y-axis [-0.] now;
+		turn Thigh1 to x-axis <-21.> now;
+		turn Thigh2 to x-axis <21.> now;
+		turn Torso to x-axis <2.> now;
+		turn Torso to z-axis <1.> now;
+		turn Shoulder to x-axis <2.> now;
+		turn Foot2 to x-axis <-20.> now;
+		turn Leg1 to x-axis <61.> now;
+		sleep 103;
+	}
+	if( TRUE )
+	{
+		move Torso to y-axis [-0.] now;
+		turn Thigh1 to x-axis <-39.> now;
+		turn Thigh2 to x-axis <28.> now;
+		turn Torso to x-axis <1.> now;
+		turn Shoulder to x-axis <1.> now;
+		turn Foot2 to x-axis <-27.> now;
+		sleep 103;
+	}
+	if( TRUE )
+	{
+		move Torso to y-axis [0.] now;
+		turn Thigh1 to x-axis <-44.> now;
+		turn Thigh2 to x-axis <35.> now;
+		turn Torso to x-axis <0.> now;
+		turn Torso to z-axis <0.> now;
+		turn Shoulder to x-axis <1.> now;
+		turn Foot2 to x-axis <-20.> now;
+		turn Leg1 to x-axis <44.> now;
+		turn Foot1 to x-axis <0.> now;
+		sleep 103;
+	}
+	if( TRUE )
+	{
+		turn Thigh1 to x-axis <-32.> now;
+		turn Thigh2 to x-axis <36.> now;
+		turn Torso to x-axis <0.> now;
+		turn Torso to z-axis <0.> now;
+		turn Shoulder to x-axis <0.> now;
+		turn Leg2 to x-axis <16.> now;
+		turn Foot2 to x-axis <-14.> now;
+		turn Leg1 to x-axis <32.> now;
+		sleep 103;
+	}
+	if( TRUE )
+	{
+		move Torso to y-axis [-0.] now;
+		turn Thigh1 to x-axis <-24.> now;
+		turn Thigh2 to x-axis <24.> now;
+		turn Leg2 to x-axis <40.> now;
+		turn Leg1 to x-axis <24.> now;
+		sleep 103;
+	}
+	if( TRUE )
+	{
+		move Torso to y-axis [-0.] now;
+		turn Thigh1 to x-axis <-1.> now;
+		turn Thigh2 to x-axis <-14.> now;
+		turn Torso to x-axis <2.> now;
+		turn Torso to z-axis <-2.> now;
+		turn Shoulder to x-axis <-1.> now;
+		turn Leg2 to x-axis <69.> now;
+		turn Leg1 to x-axis <2.> now;
+		sleep 103;
+	}
+	move Torso to y-axis [-0.] now;
+	turn Thigh1 to x-axis <12.> now;
+	turn Thigh2 to x-axis <-35.> now;
+	turn Torso to z-axis <-1.> now;
+	turn Shoulder to x-axis <-2.> now;
+	turn Forearm to x-axis <-4.> now;
+	turn Leg2 to x-axis <77.> now;
+	turn Foot1 to x-axis <-14.> now;
+	sleep 103;
+}
+
+walklegs()
+{
+	if( TRUE )
+	{
+		turn Thigh1 to x-axis <17.> now;
+		turn Thigh2 to x-axis <-46.> now;
+		turn Leg2 to x-axis <51.> now;
+		turn Foot1 to x-axis <-17.> now;
+		sleep 100;
+	}
+	if( TRUE )
+	{
+		turn Thigh1 to x-axis <24.> now;
+		turn Thigh2 to x-axis <-41.> now;
+		turn Leg2 to x-axis <43.> now;
+		turn Foot1 to x-axis <-12.> now;
+		sleep 100;
+	}
+	if( TRUE )
+	{
+		turn Thigh1 to x-axis <38.> now;
+		turn Thigh2 to x-axis <-26.> now;
+		turn Leg2 to x-axis <26.> now;
+		turn Leg1 to x-axis <8.> now;
+		sleep 100;
+	}
+	if( TRUE )
+	{
+		turn Thigh1 to x-axis <22.> now;
+		turn Thigh2 to x-axis <-12.> now;
+		turn Leg2 to x-axis <12.> now;
+		turn Leg1 to x-axis <27.> now;
+		sleep 100;
+	}
+	if( TRUE )
+	{
+		turn Thigh1 to x-axis <3.> now;
+		turn Thigh2 to x-axis <7.> now;
+		turn Leg2 to x-axis <-1.> now;
+		turn Foot2 to x-axis <-6.> now;
+		turn Leg1 to x-axis <53.> now;
+		sleep 100;
+	}
+	if( TRUE )
+	{
+		turn Thigh1 to x-axis <-21.> now;
+		turn Thigh2 to x-axis <21.> now;
+		turn Foot2 to x-axis <-20.> now;
+		turn Leg1 to x-axis <61.> now;
+		sleep 100;
+	}
+	if( TRUE )
+	{
+		turn Thigh1 to x-axis <-39.> now;
+		turn Thigh2 to x-axis <28.> now;
+		turn Foot2 to x-axis <-27.> now;
+		sleep 100;
+	}
+	if( TRUE )
+	{
+		turn Thigh1 to x-axis <-44.> now;
+		turn Thigh2 to x-axis <35.> now;
+		turn Foot2 to x-axis <-20.> now;
+		turn Leg1 to x-axis <44.> now;
+		turn Foot1 to x-axis <0.> now;
+		sleep 100;
+	}
+	if( TRUE )
+	{
+		turn Thigh1 to x-axis <-32.> now;
+		turn Thigh2 to x-axis <36.> now;
+		turn Leg2 to x-axis <16.> now;
+		turn Foot2 to x-axis <-14.> now;
+		turn Leg1 to x-axis <32.> now;
+		sleep 100;
+	}
+	if( TRUE )
+	{
+		turn Thigh1 to x-axis <-24.> now;
+		turn Thigh2 to x-axis <24.> now;
+		turn Leg2 to x-axis <40.> now;
+		turn Leg1 to x-axis <24.> now;
+		sleep 100;
+	}
+	if( TRUE )
+	{
+		turn Thigh1 to x-axis <-1.> now;
+		turn Thigh2 to x-axis <-14.> now;
+		turn Leg2 to x-axis <69.> now;
+		turn Leg1 to x-axis <2.> now;
+		sleep 100;
+	}
+	turn Thigh1 to x-axis <12.> now;
+	turn Thigh2 to x-axis <-35.> now;
+	turn Leg2 to x-axis <77.> now;
+	turn Foot1 to x-axis <-14.> now;
+	sleep 100;
+}
+
+stand()
+{
+	move Thigh1 to z-axis [0.] now;
+	move Thigh2 to z-axis [0.] now;
+	move Torso to x-axis [0.] now;
+	move Shoulder to x-axis [0.] now;
+	move support to y-axis [0.] now;
+	move support to z-axis [0.] now;
+	move Barrel to x-axis [0.] now;
+	move Foot2 to z-axis [0.] now;
+	move Foot1 to x-axis [0.] now;
+	move Foot1 to z-axis [0.] now;
+	sleep 200;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from Torso;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+MotionControl(moving, aiming, justmoved)
+{
+	justmoved = TRUE;
+	while( TRUE )
+	{
+		moving = Static_Var_1;
+		aiming = Static_Var_2;
+		if( moving )
+		{
+			if( aiming )
+			{
+				Static_Var_3 = 1;
+				call-script walklegs();
+			}
+			if( !aiming )
+			{
+				Static_Var_3 = 0;
+				call-script walk();
+			}
+			justmoved = TRUE;
+		}
+		if( !moving )
+		{
+			Static_Var_3 = 1;
+			if( justmoved )
+			{
+				call-script stand();
+				justmoved = FALSE;
+			}
+			sleep 100;
+		}
+	}
+}
+
+Create()
+{
+	Static_Var_1 = 0;
+	Static_Var_2 = 0;
+	Static_Var_3 = 1;
+	hide flare;
+	dont-cache flare;
+	Static_Var_4 = 2000;
+	start-script SmokeUnit();
+	start-script MotionControl();
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	Static_Var_4 = Func_Var_1 * 2;
+}
+
+StartMoving()
+{
+	Static_Var_1 = 1;
+}
+
+StopMoving()
+{
+	Static_Var_1 = 0;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = Torso;
+}
+
+RestoreAfterDelay()
+{
+	sleep Static_Var_4;
+	turn Torso to y-axis <0.> speed <90.>;
+	turn support to x-axis <0.> speed <45.>;
+	Static_Var_2 = 0;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	Static_Var_2 = 1;
+	while( !Static_Var_3 )
+	{
+		sleep 100;
+	}
+	turn Torso to y-axis heading speed <190.>;
+	turn support to x-axis <0.> - pitch speed <150.>;
+	wait-for-turn Torso around y-axis;
+	wait-for-turn support around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	move Barrel to z-axis [-5.] speed [500.];
+	show flare;
+	sleep 150;
+	turn Torso to x-axis <-10.> speed <500.>;
+	sleep 150;
+	hide flare;
+	turn Torso to x-axis <0.> speed <20.>;
+	move Barrel to z-axis [0.] speed [3.];
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = support;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode ground type BITMAPONLY | BITMAP1;
+		explode Barrel type BITMAPONLY | BITMAP2;
+		explode Foot1 type BITMAPONLY | BITMAP4;
+		explode Foot2 type BITMAPONLY | BITMAP5;
+		explode Forearm type BITMAPONLY | BITMAP1;
+		explode Leg1 type BITMAPONLY | BITMAP2;
+		explode Leg2 type BITMAPONLY | BITMAP3;
+		explode Shoulder type BITMAPONLY | BITMAP4;
+		explode support type BITMAPONLY | BITMAP5;
+		explode Thigh1 type BITMAPONLY | BITMAP1;
+		explode Thigh2 type BITMAPONLY | BITMAP2;
+		explode Torso type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode ground type FALL | BITMAP1;
+		explode Barrel type BITMAPONLY | BITMAP2;
+		explode Foot1 type FALL | BITMAP3;
+		explode Foot2 type FALL | BITMAP4;
+		explode Forearm type FALL | BITMAP5;
+		explode Leg1 type FALL | BITMAP1;
+		explode Leg2 type FALL | BITMAP2;
+		explode Shoulder type FALL | BITMAP3;
+		explode support type FALL | BITMAP4;
+		explode Thigh1 type FALL | BITMAP5;
+		explode Thigh2 type FALL | BITMAP1;
+		explode Torso type SHATTER | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode ground type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode Barrel type BITMAPONLY | BITMAP2;
+		explode Foot1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode Foot2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode Forearm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode Leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode Leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Shoulder type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode support type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode Thigh1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode Thigh2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode Torso type SHATTER | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode ground type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode Barrel type BITMAPONLY | BITMAP2;
+	explode Foot1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Foot2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode Forearm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode Leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode Leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Shoulder type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode support type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode Thigh1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode Thigh2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode Torso type SHATTER | BITMAP5;
+}

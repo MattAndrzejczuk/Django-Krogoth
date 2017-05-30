@@ -1,0 +1,39 @@
+[CORSUMO_WEAPON]
+{
+	ID=174;
+	name=Sumo Laser;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	range=360;
+	reloadtime=.55;
+	energypershot=100;
+	weaponvelocity=700;
+	areaofeffect=18;
+	soundstart=lasrhvy3;
+	soundhit=lasrhit1;
+	firestarter=90;
+	beamweapon=1;
+	color=96;	/* blue */
+	color2=98;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	model=rbshot;
+	[DAMAGE]
+	{
+		default=350;
+		ARMREF=23;
+		ARMCOM=190;
+		CORCOM=190;
+	}
+}
+

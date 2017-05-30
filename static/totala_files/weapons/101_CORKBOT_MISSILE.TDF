@@ -1,0 +1,39 @@
+[CORKBOT_MISSILE]
+{
+	ID=101;
+	name=Mumbo Rapid Fire Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=400;
+	reloadtime=0.162;
+	energypershot=10;
+	weaponvelocity=800;
+	areaofeffect=8;
+
+	soundstart=Lasrfir2;
+	soundhit=lasrhit1;
+
+	firestarter=100;
+	beamweapon=1;
+	color=126;	/* blue */
+	color2=128;
+
+	tolerance=8000;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=23;
+		ARMREF=1;
+		}
+	}

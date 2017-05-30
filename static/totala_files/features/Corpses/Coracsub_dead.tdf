@@ -1,0 +1,16 @@
+[coracsub_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=coracsub_dead;
+	footprintx=4;
+	footprintz=4;
+	height=20;
+	blocking=0;
+	hitdensity=100;
+	metal=552;
+	damage=296;
+	reclaimable=1;
+	seqnamereclamate=tree1reclamate;
+}

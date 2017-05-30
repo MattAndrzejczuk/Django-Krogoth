@@ -1,0 +1,57 @@
+[COREPT_LASER]
+{
+	ID=90;
+	name=PT Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=220;
+	reloadtime=.9;
+	weaponvelocity=750;
+	areaofeffect=8;
+	burstrate=.2;
+	duration=.02;
+	soundtrigger=1;
+
+	soundstart=lasrfir1;
+	soundhit=lasrhit2;
+
+	firestarter=50;
+	beamweapon=1;
+	color=208;	/* Yellow */
+	color2=0;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+
+
+	[DAMAGE]
+	{
+		default=30;
+		ARMREF=2;
+		COREXP=6;
+		CAIEXPE=6;
+		CAIEXPM=6;
+		CAIEXPH=6;
+		CORLEVLR=10;
+		ARMWAR=15;
+		armbrawl=8;
+		corape=8;
+		armsaber=8;
+		corcut=8;
+		armlance=8;
+		cortitan=8;
+		armseap=8;
+		corseap=8;
+	}
+}
+
+

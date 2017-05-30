@@ -1,0 +1,41 @@
+[ARM_FAST]
+{
+	ID=83;
+	name=Zipper EMG Burst;
+	rendertype=1;
+	model=EMG;
+	lineofsight=1;
+	turret=1;
+
+	range=230;
+	reloadtime=2;
+	weapontimer=0.6;
+	weaponvelocity=400;
+	areaofeffect=16;
+	burst=4;
+	burstrate=0.05;
+	soundstart=fastemg;
+	tolerance=1000;
+
+	startsmoke=0;
+	endsmoke=0;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+	{
+		default=25;
+		COREXP=5;
+		CAIEXPE=5;
+		CAIEXPM=5;
+		CAIEXPH=5;
+		CORLEVLR=8;
+		ARMWAR=13;
+	}
+}
+
+

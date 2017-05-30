@@ -1,0 +1,15 @@
+[TREEBURN]		// Damage caused by a burning tree
+	{
+	ID=245;
+	name=Burning Tree;
+	unitsonly=1;
+
+	areaofeffect=64;
+	edgeeffectiveness=0.5;
+
+	[DAMAGE]
+		{
+		default=100;
+		}
+	}
+

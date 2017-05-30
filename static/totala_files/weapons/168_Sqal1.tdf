@@ -1,0 +1,50 @@
+[SQAL1]
+	{
+	ID=168;
+	name=Plasma Blanket Bombs;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=SQAL1;
+
+	weapontimer=10;
+	flighttime=10;
+	range=600;
+	burst=15;
+	burstrate=0;
+	sprayangle=10000;
+	reloadtime=8;
+	metalpershot=0;
+	energypershot=1;
+	areaofeffect=250;
+	edgeeffectiveness=0.3;
+	soundstart=twractv1;
+	soundhit=SQALhit;
+	soundtrigger=1;
+	randomdecay=0.1;
+
+	weaponvelocity=100;
+	tolerance=200;
+
+	explosiongaf=CAExp2;
+	explosionart=cluster2;
+	
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+
+
+
+	
+	[DAMAGE]
+		{
+		default=120;
+		armcom=50;
+		corcom=50;
+		}
+	}
+

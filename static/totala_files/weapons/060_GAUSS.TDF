@@ -1,0 +1,36 @@
+[GAUSS]
+{
+	ID=60;
+	name=Gauss Cannon;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+	minbarrelangle=-15;
+
+	range=480;
+	reloadtime=2.6;
+	weaponvelocity=450;
+	areaofeffect=8;
+	soundstart=cannhvy1;
+	soundhit=xplomed2;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	startsmoke=1;
+
+	Model=Gauss;
+
+	[DAMAGE]
+	{
+		default=140;
+	}
+}
+
+

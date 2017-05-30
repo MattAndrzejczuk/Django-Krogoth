@@ -1,0 +1,248 @@
+[armfwllt_dead]
+{
+	world=allworld;
+	description=Fortification Wall;
+	category=dragonteeth;
+	object=armfort;
+	footprintx=2;
+	footprintz=2;
+	height=55;
+	blocking=1;
+	hitdensity=97;
+	metal=22;
+	damage=4500;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=smudge01;
+	featuredead=RockTeeth;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+}
+
+[Fortification-h]
+{
+	world=allworld;
+	description=Fortification Wall;
+	category=dragonteeth;
+	object=armforth;
+	footprintx=6;
+	footprintz=2;
+	height=55;
+	blocking=1;
+	hitdensity=97;
+	metal=66;
+
+	featurereclamate=scarfw-h;
+
+	damage=9000;
+	reclaimable=1;
+	autoreclaimable=0;
+	featuredead=rockteeth-h;
+	nodrawundergray=1;
+}
+
+[Fortification-v]
+{
+	world=allworld;
+	description=Fortification Wall;
+	category=dragonteeth;
+	object=armfortv;
+	footprintx=2;
+	footprintz=6;
+	height=55;
+	blocking=1;
+	hitdensity=97;
+	metal=66;
+
+	featurereclamate=scarfw-v;
+
+	damage=9000;
+	reclaimable=1;
+	autoreclaimable=0;
+	featuredead=rockteeth-v;
+	nodrawundergray=1;
+}
+
+[rockteeth-h]
+{
+	world=greenworld;
+	description=Rubble;
+	category=rocks;
+	animating=0;
+	footprintx=6;
+	footprintz=2;
+	height=20;
+	filename=fwrocks;
+	seqname=rocksh;
+	seqnameshad=rockshadh;
+	metal=18;
+
+	featurereclamate=scarfw-h;
+	featuredead=scarfw-h;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+}
+
+[rockteeth-v]
+{
+	world=greenworld;
+	description=Rubble;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=6;
+	height=20;
+	filename=fwrocks;
+	seqname=rocksv;
+	seqnameshad=rockshadv;
+	metal=18;
+
+	featurereclamate=scarfw-v;
+	featuredead=scarfw-v;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+}
+
+[scarfw-h]
+{
+	world=allworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=6;
+	footprintz=2;
+	height=0;
+	filename=fwrocks;
+	seqname=scarfwh;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+}
+
+[scarfw-v]
+{
+	world=allworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=6;
+	height=0;
+	filename=fwrocks;
+	seqname=scarfwv;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+}
+
+[armfwhg_dead]
+{
+	world=allworld;
+	description=Rubble;
+	category=rocks;
+	animating=0;
+	footprintx=10;
+	footprintz=2;
+	height=20;
+	filename=fwrocks;
+	seqname=gateh;
+	seqnameshad=gatehsh;
+	metal=35;
+
+	featurereclamate=scarg-h;
+	featuredead=scarg-h;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+}
+
+[scarg-h]
+{
+	world=allworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=10;
+	footprintz=2;
+	height=0;
+	filename=fwrocks;
+	seqname=scargh;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+}
+
+[armfwvg_dead]
+{
+	world=greenworld;
+	description=Rubble;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=10;
+	height=20;
+	filename=fwrocks;
+	seqname=gatev;
+	seqnameshad=gatevsh;
+	metal=35;
+
+	featurereclamate=scarg-v;
+	featuredead=scarg-v;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+}
+
+[scarg-v]
+{
+	world=allworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=10;
+	height=0;
+	filename=fwrocks;
+	seqname=scargv;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+}

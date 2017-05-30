@@ -1,0 +1,55 @@
+[ARMSCORP_WEAPON]
+{
+	ID=145;
+	name=Zonal destruction Funnel;
+	rendertype=1;
+	lineofsight=1;
+	model=dragfunnel;
+	
+	propeller=1;
+	range=1100;
+	reloadtime=7;
+	burst=4;
+	burstrate=0.4;
+	sprayangle=20000;
+	weapontimer=6;
+	noexplode=1;
+	soundtrigger=1;
+
+	startvelocity=250;
+	weaponacceleration=250;
+	weaponvelocity=750;
+	turnrate=56000;
+	areaofeffect=30;
+	metalpershot=0;
+
+	soundstart=drgms2;
+	soundhit=xplosml2;
+
+	firestarter=70;
+	guidance=1;
+	tracks=1;
+	btracks=1;
+	selfprop=1;
+	propeller=1;
+	burnblow=0;
+	unitsonly=1;
+
+	tolerance=11000;
+	pitchtolerance=15000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	[DAMAGE]
+		{
+		default=200;
+		dragoth=10;
+		}
+	}

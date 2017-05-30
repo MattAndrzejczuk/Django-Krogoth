@@ -1,0 +1,39 @@
+[CORE_INTIMIDATOR]
+{
+	ID=73;
+	name=Intimidator Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=5120;
+	reloadtime=8;
+	weaponvelocity=1000;
+	energypershot=6000;
+	areaofeffect=100;
+
+	soundstart=xplonuk3;
+	soundhit=xplonuk1;
+	soundwater=splshbig;
+
+	accuracy=750;
+	aimrate=2500;
+	holdtime=1;
+
+	explosiongaf=fx;
+	explosionart=NUKE1;
+
+	waterexplosiongaf=fx2;
+	waterexplosionart=h2obpboom;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=2400;
+	}
+}
+

@@ -1,0 +1,41 @@
+[ARMAMB_GUN]
+{
+	ID=40;
+	name=Orcone Particle Cannon;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=Orcgun;
+
+	range=975;
+	reloadtime=0.95;
+	guidance=1;
+	weaponvelocity=515;
+	areaofeffect=100;
+	soundstart=Orcfire;
+	soundhit=xplomed2;
+
+	Selfprop=1;
+	Propeller=1;
+	smoketrail=1;
+	smokedelay=0.08;
+	turnrate=2600;
+	Tolerance=3000;
+
+	explosiongaf=Orcweap;
+	explosionart=Orcweap;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=840;
+		}
+	}

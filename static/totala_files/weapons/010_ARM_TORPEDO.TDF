@@ -1,0 +1,46 @@
+[ARM_TORPEDO]
+{
+	ID=10;
+	name=Pike Guided Torpedo;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=Advtorpedo;
+	propeller=1;
+
+	range=650;
+	reloadtime=4.5;
+	weapontimer=3;
+	weaponvelocity=100;
+	startvelocity=60;
+	weaponacceleration=15;
+
+	turnrate=45500;
+	areaofeffect=26;
+	soundstart=torpedo1;
+	soundhit=xplodep1;
+	guidance=1;
+	tracks=1;
+	waterweapon=1;
+	startsmoke=1;
+	burnblow=1;
+	selfprop=1;
+
+	tolerance=37152;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=1000;
+		armcom=800;
+		corcom=800;
+		}
+	}

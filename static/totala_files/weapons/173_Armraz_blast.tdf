@@ -1,0 +1,35 @@
+[MECH_BLAST]
+	{
+	ID=173;
+	name=Razorback-Blaster;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+	model=RazPlasma;
+	range=580;
+	reloadtime=5;
+	weapontimer=2;
+	energypershot=1500;
+	weaponvelocity=780;
+	areaofeffect=100;
+	accuracy=1000;
+	soundstart=RazPlasma;
+	firestarter=0;
+	beamweapon=1;
+	noexplode=1;
+	tolerance=6000;
+ 	pitchtolerance=12000;
+	explosiongaf=RazFX2;
+	explosionart=exploblu;
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+	[DAMAGE]
+		{
+		default=300;
+		armcom=200;
+		corcom=200;
+		}
+	}
+

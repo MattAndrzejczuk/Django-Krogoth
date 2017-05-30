@@ -1,0 +1,43 @@
+[CORBUZZ_WEAPON]
+{
+	ID=84;
+	name=Buzzsaw Rapid-fire LRPC;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+	color=2;
+
+	range=10200;
+	reloadtime=3;
+	weaponvelocity=1350;
+	energypershot=12000;
+	areaofeffect=120;
+	edgeeffectiveness=0.99;
+
+	soundstart=Buzzsaw;
+	soundhit=rflrpc3;
+	burst=6;
+	burstrate=0.5;
+	weapontimer=15;
+	randomdecay=14;
+	sprayangle=1024;
+
+	accuracy=1200;
+
+	explosiongaf=fx;
+	explosionart=NUKE1;
+
+	waterexplosiongaf=fx2;
+	waterexplosionart=h2obpboom;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=0;
+
+	[DAMAGE]
+	{
+		default=1800;
+	}
+}
+

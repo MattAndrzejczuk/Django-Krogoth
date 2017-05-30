@@ -1,0 +1,40 @@
+[CORSENT_GUN]
+{
+	ID=133;
+	name=Copperhead Flak Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+	toairweapon=1;
+
+	range=690;
+	reloadtime=.55;
+	weapontimer=1;
+	weaponvelocity=900;
+	areaofeffect=110;
+	edgeeffectiveness=0.90;
+	soundstart=flakfire;
+	soundhit=flakhit;
+
+	minbarrelangle=-24;
+
+	tolerance=767;	
+	burnblow=1;
+
+	explosiongaf=flakboom;
+	explosionart=flakboom;
+
+	waterexplosiongaf=flakboom;
+	waterexplosionart=flakboom;
+
+	lavaexplosiongaf=flakboom;
+	lavaexplosionart=flakboom;
+
+	color=1;
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=140;
+	}
+}

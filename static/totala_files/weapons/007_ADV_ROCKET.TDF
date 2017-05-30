@@ -1,0 +1,45 @@
+[ADV_ROCKET]
+{
+	ID=7;
+	name=Recluse Heavy Rocket;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=shipmissile;
+
+	range=500;
+	reloadtime=4;
+	weapontimer=5;
+	weaponvelocity=325;
+	startvelocity=250;
+	weaponacceleration=120;
+	areaofeffect=48;
+	metalpershot=0;
+
+	soundstart=rockhvy3;
+	soundhit=xplosml1;
+
+	firestarter=70;
+	smokedelay=.1;
+	selfprop=1;
+	smoketrail=1;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=200;
+		armsptk=100;
+	}
+}
+

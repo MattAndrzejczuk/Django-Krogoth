@@ -1,0 +1,48 @@
+[CORE_LASER]
+{
+	ID=88;
+	name=Thor Cluster Missiles;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=ArmThor_Missl;
+
+	range=750;
+	reloadtime=0.8;
+	weapontimer=3;
+	flighttime=20;
+	weaponvelocity=300;
+	sprayangle=3072;
+	areaofeffect=80;
+	smokedelay=.05;
+	burnblow=1;
+
+	soundstart=Mislite1;
+	soundhit=xplosml3;
+	
+	firestarter=70;
+	smokedelay=.1;
+	turnrate=48000;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=9000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=190;
+		}
+	}

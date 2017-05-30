@@ -1,0 +1,31 @@
+[METEOR]
+	{
+	ID=225;
+	name=Meteor;
+	rendertype=1;
+	meteor=1;
+
+	model=asteroid6;
+
+	weaponvelocity=300;
+	areaofeffect=100;
+	edgeeffectiveness=0.5;
+
+	soundhit=xplomed2;
+	soundwater=splshbig;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=100;
+		}
+	}
+

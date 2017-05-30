@@ -1,0 +1,38 @@
+[MECH_RAPIDLASER]
+	{
+	ID=170;
+	name=Razorback Mech-Rapid Laser;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+	range=560;
+	reloadtime=0.26;
+	weapontimer=4;
+	energypershot=150;
+	weaponvelocity=920;
+	areaofeffect=15;
+	soundtrigger=1;
+	tolerance =1000;
+	soundstart=lasfirerb;
+	soundhit=lasrhit1b;
+	firestarter=10;
+	beamweapon=1;
+	model=rbshot;
+	noexplode=0;
+	explosiongaf=fx;
+	explosionart=explode5;
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=110;
+		armcom=100;
+		corcom=100;
+		ARMREF=5;
+		}
+	}
+

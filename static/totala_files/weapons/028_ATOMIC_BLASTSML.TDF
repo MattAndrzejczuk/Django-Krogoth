@@ -1,0 +1,33 @@
+[ATOMIC_BLASTSML]
+	{
+	ID=28;
+	name=Atomic Blast Weapon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=256;
+	soundstart=largegun;
+	soundhit=xplonuk3;
+
+	explosiongaf=atomicboomsml;
+	explosionart=atomicboomsml;
+
+	waterexplosiongaf=atomicboomsml;
+	waterexplosionart=atomicboomsml;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	shakemagnitude=24;
+	shakeduration=1.5;
+
+	[DAMAGE]
+		{
+		default=1000;
+		}
+	}
+

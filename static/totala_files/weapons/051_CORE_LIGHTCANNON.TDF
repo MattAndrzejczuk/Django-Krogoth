@@ -1,0 +1,33 @@
+[CORE_LIGHTCANNON]
+{
+	ID=51;
+	name=Light Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=250;
+	reloadtime=1.25;
+	weaponvelocity=170;
+	areaofeffect=32;
+	soundstart=canlite3;
+	soundhit=xplosml3;
+	tolerance=250;
+
+	explosiongaf=fx;
+	explosionart=explode4;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=75;
+	}
+}
+

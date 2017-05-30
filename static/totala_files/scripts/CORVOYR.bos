@@ -1,0 +1,291 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  body, thigh1, thigh2, leg2, foot2, leg1, foot1, dish1,
+       arm1, arm2;
+
+static-var  Static_Var_1, Static_Var_2;
+
+
+walkscr()
+{
+	if( TRUE )
+	{
+		move body to y-axis [-0.] now;
+		move body to y-axis [-0.] speed [1.];
+		move thigh1 to x-axis [0.] now;
+		move thigh2 to x-axis [0.] now;
+		move leg2 to y-axis [0.] now;
+		move leg2 to z-axis [0.] now;
+		move foot2 to z-axis [0.] now;
+		move leg1 to y-axis [0.] now;
+		move leg1 to z-axis [0.] now;
+		move foot1 to z-axis [0.] now;
+		turn body to z-axis <-9.> now;
+		turn body to z-axis <-6.> speed <39.>;
+		turn thigh1 to x-axis <-28.> now;
+		turn thigh1 to x-axis <-11.> speed <203.>;
+		turn thigh2 to x-axis <20.> now;
+		turn thigh2 to x-axis <15.> speed <70.>;
+		turn leg2 to x-axis <1.> now;
+		turn leg2 to x-axis <-14.> speed <177.>;
+		turn foot2 to x-axis <-3.> now;
+		turn foot2 to x-axis <12.> speed <184.>;
+		turn leg1 to x-axis <4.> now;
+		turn leg1 to x-axis <2.> speed <19.>;
+		turn foot1 to x-axis <23.> now;
+		turn foot1 to x-axis <7.> speed <193.>;
+		sleep 82;
+	}
+	if( TRUE )
+	{
+		move body to y-axis [-0.] speed [1.];
+		turn body to z-axis <-4.> speed <17.>;
+		turn thigh1 to x-axis <2.> speed <146.>;
+		turn thigh2 to x-axis <1.> speed <145.>;
+		turn foot2 to x-axis <20.> speed <82.>;
+		turn leg1 to x-axis <5.> speed <26.>;
+		turn foot1 to x-axis <-6.> speed <146.>;
+		sleep 92;
+	}
+	if( TRUE )
+	{
+		move body to y-axis [0.] speed [3.];
+		turn body to z-axis <-1.> speed <33.>;
+		turn thigh1 to x-axis <10.> speed <82.>;
+		turn thigh2 to x-axis <-27.> speed <289.>;
+		turn leg2 to x-axis <-10.> speed <38.>;
+		turn foot2 to x-axis <31.> speed <118.>;
+		turn leg1 to x-axis <15.> speed <107.>;
+		turn foot1 to x-axis <-25.> speed <198.>;
+		sleep 96;
+	}
+	if( TRUE )
+	{
+		move body to y-axis [-1.] speed [9.];
+		turn body to z-axis <13.> speed <145.>;
+		turn thigh1 to x-axis <21.> speed <119.>;
+		turn thigh2 to x-axis <-58.> speed <339.>;
+		turn leg2 to x-axis <21.> speed <338.>;
+		turn foot2 to x-axis <37.> speed <61.>;
+		turn leg1 to x-axis <17.> speed <17.>;
+		turn foot1 to x-axis <-6.> speed <213.>;
+		sleep 93;
+	}
+	if( TRUE )
+	{
+		move body to y-axis [-1.] speed [3.];
+		turn body to z-axis <9.> speed <35.>;
+		turn thigh1 to x-axis <18.> speed <35.>;
+		turn thigh2 to x-axis <-41.> speed <193.>;
+		turn leg2 to x-axis <12.> speed <97.>;
+		turn foot2 to x-axis <28.> speed <97.>;
+		turn leg1 to x-axis <7.> speed <106.>;
+		turn foot1 to x-axis <-11.> speed <62.>;
+		sleep 90;
+	}
+	if( TRUE )
+	{
+		move body to y-axis [-0.] speed [2.];
+		turn body to z-axis <6.> speed <42.>;
+		turn thigh1 to x-axis <9.> speed <93.>;
+		turn thigh2 to x-axis <-18.> speed <244.>;
+		turn leg2 to x-axis <4.> speed <93.>;
+		turn foot2 to x-axis <14.> speed <152.>;
+		turn leg1 to x-axis <-5.> speed <126.>;
+		turn foot1 to x-axis <10.> speed <227.>;
+		sleep 94;
+	}
+	if( TRUE )
+	{
+		move body to y-axis [-0.] speed [2.];
+		turn thigh1 to x-axis <-12.> speed <227.>;
+		turn thigh2 to x-axis <4.> speed <227.>;
+		turn leg2 to x-axis <3.> speed <8.>;
+		turn foot2 to x-axis <-8.> speed <227.>;
+		turn leg1 to x-axis <-5.> speed <0.>;
+		turn foot1 to x-axis <17.> speed <76.>;
+		sleep 94;
+	}
+	if( TRUE )
+	{
+		move body to y-axis [0.] speed [2.];
+		turn body to z-axis <0.> speed <60.>;
+		turn thigh1 to x-axis <-28.> speed <170.>;
+		turn thigh2 to x-axis <17.> speed <145.>;
+		turn leg2 to x-axis <13.> speed <111.>;
+		turn foot2 to x-axis <-15.> speed <77.>;
+		turn foot1 to x-axis <24.> speed <68.>;
+		sleep 93;
+	}
+	if( TRUE )
+	{
+		move body to y-axis [-1.] speed [9.];
+		turn body to z-axis <-9.> speed <93.>;
+		turn thigh1 to x-axis <-53.> speed <269.>;
+		turn thigh2 to x-axis <23.> speed <59.>;
+		turn foot2 to x-axis <-12.> speed <34.>;
+		turn leg1 to x-axis <17.> speed <236.>;
+		turn foot1 to x-axis <36.> speed <126.>;
+		sleep 94;
+	}
+	sleep 94;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from body;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+MotionControl(Func_Var_1, Func_Var_2)
+{
+	Func_Var_2 = 1;
+	while( TRUE )
+	{
+		Func_Var_1 = Static_Var_1;
+		if( Func_Var_1 )
+		{
+			Func_Var_2 = 1;
+			call-script walkscr();
+		}
+		if( !Func_Var_1 )
+		{
+			turn body to z-axis <0.> speed <200.>;
+			move body to y-axis [0.] speed [1.];
+			turn leg1 to x-axis <0.> speed <200.>;
+			turn foot1 to x-axis <0.> speed <200.>;
+			turn thigh2 to x-axis <0.> speed <200.>;
+			turn leg2 to x-axis <0.> speed <200.>;
+			turn foot2 to x-axis <0.> speed <200.>;
+			Func_Var_2 = 0;
+		}
+		sleep 100;
+	}
+}
+
+Create()
+{
+	Static_Var_1 = 0;
+	Static_Var_2 = 1000;
+	start-script MotionControl();
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	signal 2;
+	set-signal-mask 2;
+	spin dish1 around y-axis speed <100.>;
+}
+
+Deactivate()
+{
+	signal 2;
+	set-signal-mask 2;
+	turn dish1 to y-axis <0.> speed <100.>;
+	wait-for-turn dish1 around y-axis;
+}
+
+StartMoving()
+{
+	Static_Var_1 = 1;
+}
+
+StopMoving()
+{
+	Static_Var_1 = 0;
+}
+
+RestoreAfterDelay()
+{
+	sleep Static_Var_2;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = body;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type BITMAPONLY | BITMAP2;
+		explode body type BITMAPONLY | BITMAP3;
+		explode dish1 type BITMAPONLY | BITMAP4;
+		explode foot1 type BITMAPONLY | BITMAP5;
+		explode foot2 type BITMAPONLY | BITMAP1;
+		explode leg1 type BITMAPONLY | BITMAP2;
+		explode leg2 type BITMAPONLY | BITMAP3;
+		explode thigh1 type BITMAPONLY | BITMAP4;
+		explode thigh2 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode arm1 type FALL | BITMAP1;
+		explode arm2 type FALL | BITMAP2;
+		explode body type BITMAPONLY | BITMAP3;
+		explode dish1 type SHATTER | BITMAP4;
+		explode foot1 type FALL | BITMAP5;
+		explode foot2 type FALL | BITMAP1;
+		explode leg1 type FALL | BITMAP2;
+		explode leg2 type FALL | BITMAP3;
+		explode thigh1 type FALL | BITMAP4;
+		explode thigh2 type FALL | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode arm1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode arm2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode body type BITMAPONLY | BITMAP3;
+		explode dish1 type SHATTER | BITMAP4;
+		explode foot1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode foot2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode thigh1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode thigh2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode arm1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode arm2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode body type BITMAPONLY | BITMAP3;
+	explode dish1 type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode foot1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode foot2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode thigh1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode thigh2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+}

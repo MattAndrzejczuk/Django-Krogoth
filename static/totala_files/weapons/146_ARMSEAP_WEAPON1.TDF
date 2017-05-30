@@ -1,0 +1,38 @@
+[ARMSEAP_WEAPON1]
+{
+	ID=146;
+	name=Bantha Energy focus;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=700;
+	reloadtime=4;
+	energypershot=1000;
+	weaponvelocity=1000;
+	areaofeffect=8;
+
+	soundstart=annigun1;
+	soundhit=xplolrg1;
+
+	firestarter=90;
+	beamweapon=1;
+	color=192;
+	color2=196;
+
+	tolerance=500;
+
+	explosiongaf=fx;
+	explosionart=nuke1;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=1800;
+		}
+	}

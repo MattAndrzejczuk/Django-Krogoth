@@ -1,0 +1,39 @@
+[cormine6]
+	{
+	ID=74;
+	name=Blitz Barrage Rocket;
+	rendertype=1;
+	ballistic=1;
+	turret=1;
+
+	model=rocketo;
+
+	range=1275;
+	tolerance=2000;
+	reloadtime=1;
+	sprayangle=3048;
+	weaponvelocity=350;
+	areaofeffect=190;
+	accuracy=200;
+	soundstart=mislite2;
+	soundhit=expmb;
+
+	smoketrail=1;
+	smokedelay=0.1;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	edgeeffectiveness=0.02;
+
+	[DAMAGE]
+		{
+		default=400;
+		}
+	}

@@ -1,0 +1,158 @@
+[CORKROG_ROCKET]
+{
+	ID=151;
+	name=Krogoth Heavy Rockets;
+	rendertype=1;
+	lineofsight=1;
+	vlaunch=1;
+
+	model=fmdmisl;
+
+	range=900;
+	reloadtime=1.4;
+	weapontimer=0.5;
+	flighttime=3;
+	twophase=1;
+
+	weaponvelocity=550;
+	startvelocity=250;
+	weaponacceleration=200;
+	turnrate=63000;
+	areaofeffect=80;
+	metalpershot=0;
+
+	soundstart=rocklit1;
+	soundhit=xplosml2;
+
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=9000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=131;
+		ARMTHUND=383;
+		ARMBRAWL=383;
+		ARMPEEP=383;
+		ARMFIG=383;
+		ARMCA=383;
+		ARMACA=383;
+		ARMATLAS=383;
+		ARMPNIX=383;
+		ARMHAWK=383;
+		ARMLANCE=383;
+		ARMAWAC=383;
+		CORAWAC=383;
+		CORFINK=383;
+		CORVENG=383;
+		CORVAMP=383;
+		CORHURC=383;
+		CORTITAN=383;
+		CORACA=383;
+		CORSHAD=383;
+		CORAPE=383;
+		CORCA=383;
+		CORVALK=383;
+		ARMCSA=383;
+		ARMSEHAK=383;
+		ARMSEAP=383;
+		ARMSFIG=383;
+		CORCSA=383;
+		CORHUNT=383;
+		CORSFIG=383;
+		CORSEAP=383;
+		AAICA=383;
+		AAIACA=383;
+		AAICSA=383;
+		CAICA=383;
+		CAIACA=383;
+		CAICSA=383;
+		ARMSABER=383;
+		ARMSB=383;
+		CORCUT=383;
+		CORSB=383;
+		AAICP=383;
+		CAICP=383;
+		ARMCP=383;
+		CORCP=383;
+		ARMDFLY=383;
+		AAITHUND=383;
+		AAIBRAWL=383;
+		AAIFIG=383;
+		AAIPNIX=383;
+		AAIHAWK=383;
+		AAILANCE=383;
+		CAIVENG=383;
+		CAIVAMP=383;
+		CAIHURC=383;
+		CAITITAN=383;
+		CAISHAD=383;
+		CAIAPE=383;
+		AAISEAP=383;
+		AAISFIG=383;
+		CAISFIG=383;
+		CAISEAP=383;
+		AAISABER=383;
+		AAISB=383;
+		CAICUT=383;
+		CAISB=383;
+		AAIDFLY=383;
+		ARMBANI=383;
+		ARMJUGG=383;
+		ARMSPARROW=383;
+		CDRAGON=383;
+		CORMOSQ=383;
+		CORRAG=383;
+		GRYPHON=383;
+		SALTER=383;
+		AAISPARROW=383;
+		AAIBANI=383;
+		AIGRYPHON=383;
+		AIYPHON=383;
+		CAIMOSQ=383;
+		CAIDRAGON=383;
+		CAIRAG=383;
+		ARMMSA=383;
+		CORMSA=383;
+		ARMANS=383;
+		CORANS=383;
+		ARMMOUCHE=383;
+		armmauler=383;
+		gryphon=383;
+		CORRAG=383;
+		CORWING=383;
+		ARMCYBR=383;
+		CORBOMBN=383;
+		ARMSTRAT=383;
+		cdragon=383;
+		CORCRW=383;
+		CORVAMPIRO=383;
+		CORFALC=383;
+		RONDINE=383;
+		blackeagle=383;
+		blackar=383;
+		dragoth=383;
+		armcbomb=383;
+		advcb=383;
+		sqal=383;
+		blight=383;
+	}
+}
+
+
+

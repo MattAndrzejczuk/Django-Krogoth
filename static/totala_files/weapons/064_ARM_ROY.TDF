@@ -1,0 +1,33 @@
+[ARM_ROY]
+{
+	ID=64;
+	name=Destroyer Heavy Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+	minbarrelangle=-25;
+
+	range=660;
+	reloadtime=2;
+	weaponvelocity=300;
+	areaofeffect=48;
+	soundstart=cannon3;
+	soundhit=xplomed2;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=165;
+		}
+	}
+

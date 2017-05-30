@@ -1,0 +1,43 @@
+[ARMSFIG_WEAPON2]
+{
+	ID=96;
+	name=Gauss Cannon;
+	rendertype=4;
+	lineofsight=1;
+	range=700;
+	reloadtime=3;
+	weaponvelocity=950;
+	areaofeffect=8;
+	weapontimer=2;
+	burst=7;
+	sprayangle=1024;
+	soundtrigger=0;
+	unitsonly=1;
+
+	smoketrail=1;
+	smokedelay=0.0;
+
+	soundstart=drgms3;
+	soundhit=xplomed2;
+
+	tolerance=4000;
+	pitchtolerance=12000;
+
+
+	explosiongaf=fx;
+	explosionart=explode4;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	startsmoke=1;
+
+
+	[DAMAGE]
+		{
+		default=429;
+		}
+	}

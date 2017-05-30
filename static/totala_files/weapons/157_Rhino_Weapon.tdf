@@ -1,0 +1,37 @@
+[Rhino_Weapon]
+	{
+	ID=157;
+	name=Rhino Weapon;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=springy;
+
+	range=1190;
+	reloadtime=0.05;
+	weaponvelocity=500;
+	areaofeffect=12;
+
+	soundstart=Rhinofire;
+	soundhit=Rhinohit;
+
+	firestarter=80;
+	beamweapon=1;
+
+	tolerance=1000;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+	
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=95;
+		}
+	}

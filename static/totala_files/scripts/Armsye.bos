@@ -1,0 +1,311 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  turret1, turret2, light, beam1, beam2, base, slip, nano2,
+       nano1, exlpode1, explode2, explode3;
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3, Static_Var_4;
+
+
+activatescr()
+{
+	if( TRUE )
+	{
+		move nano2 to y-axis [0.] now;
+		move nano2 to y-axis [8.] speed [10.];
+		move nano1 to y-axis [0.] now;
+		move nano1 to y-axis [8.] speed [10.];
+		sleep 751;
+	}
+	if( TRUE )
+	{
+		turn nano2 to z-axis <-311.> speed <411.>;
+		turn nano1 to z-axis <-312.> speed <412.>;
+		sleep 758;
+	}
+	if( TRUE )
+	{
+		turn turret1 to y-axis <-45.> speed <59.>;
+		turn turret2 to y-axis <45.> speed <59.>;
+		sleep 760;
+	}
+	sleep 37;
+	return (0);
+	// Build by COBBLER Ver4.0 Copyright @1998 DIGITAL CONCEPT SOFTWARE (MANU@inext.fr) / http://www.annihilationcenter.com/DCS/  
+}
+
+deactivatescr()
+{
+	if( TRUE )
+	{
+		move nano2 to y-axis [8.] now;
+		move nano1 to y-axis [8.] now;
+		turn turret1 to y-axis <-45.> now;
+		turn turret1 to y-axis <0.> speed <60.>;
+		turn turret2 to y-axis <45.> now;
+		turn turret2 to y-axis <0.> speed <60.>;
+		turn nano2 to z-axis <-312.> now;
+		turn nano1 to z-axis <-312.> now;
+		sleep 750;
+	}
+	if( TRUE )
+	{
+		turn nano2 to z-axis <0.> speed <412.>;
+		turn nano1 to z-axis <0.> speed <412.>;
+		sleep 757;
+	}
+	if( TRUE )
+	{
+		move nano2 to y-axis [0.] speed [10.];
+		move nano1 to y-axis [0.] speed [10.];
+		sleep 760;
+	}
+	sleep 37;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+OpenYard()
+{
+	set YARD_OPEN to 1;
+	while( !get YARD_OPEN )
+	{
+		set BUGGER_OFF to 1;
+		sleep 1500;
+		set YARD_OPEN to 1;
+	}
+	set BUGGER_OFF to 0;
+}
+
+CloseYard()
+{
+	set YARD_OPEN to 0;
+	while( get YARD_OPEN )
+	{
+		set BUGGER_OFF to 1;
+		sleep 1500;
+		set YARD_OPEN to 0;
+	}
+	set BUGGER_OFF to 0;
+}
+
+Go()
+{
+	dont-cache beam1;
+	dont-cache beam2;
+	dont-cache nano1;
+	dont-cache nano2;
+	dont-cache slip;
+	dont-cache turret1;
+	dont-cache turret1;
+	call-script activatescr();
+	call-script OpenYard();
+	set INBUILDSTANCE to 1;
+}
+
+Stop()
+{
+	set INBUILDSTANCE to 0;
+	call-script CloseYard();
+	call-script deactivatescr();
+	cache beam1;
+	cache beam2;
+	cache nano1;
+	cache nano2;
+	cache slip;
+	cache turret1;
+	cache turret1;
+}
+
+InitState()
+{
+	Static_Var_3 = 1;
+	Static_Var_4 = 0;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( Static_Var_4 )
+	{
+		Static_Var_3 = requestedstate;
+		return (0);
+	}
+	Static_Var_4 = 1;
+	currentstate = Static_Var_3;
+	Static_Var_3 = requestedstate;
+	while( Static_Var_3 != currentstate )
+	{
+		if( Static_Var_3 == 0 )
+		{
+			call-script Go();
+			currentstate = 0;
+		}
+		if( Static_Var_3 == 1 )
+		{
+			call-script Stop();
+			currentstate = 1;
+		}
+	}
+	Static_Var_4 = 0;
+}
+
+Create()
+{
+	dont-shade light;
+	dont-cache light;
+	dont-shade beam1;
+	dont-shade beam2;
+	dont-shade nano1;
+	dont-shade nano2;
+	dont-shade slip;
+	dont-shade turret1;
+	dont-shade turret1;
+	Static_Var_2 = 0;
+	Static_Var_1 = 0;
+	call-script InitState();
+	start-script SmokeUnit();
+	turn slip to y-axis <90.> now;
+}
+
+QueryNanoPiece(piecenum)
+{
+	if( Static_Var_1 == 0 )
+	{
+		piecenum = beam1;
+		Static_Var_1 = 1;
+		return (0);
+	}
+	if( Static_Var_1 == 1 )
+	{
+		piecenum = beam2;
+		Static_Var_1 = 0;
+	}
+}
+
+Demo()
+{
+	Static_Var_2 = 1;
+}
+
+Activate()
+{
+	signal 2;
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	signal 2;
+	set-signal-mask 2;
+	if( !Static_Var_2 )
+	{
+		sleep 5000;
+	}
+	set-signal-mask 0;
+	start-script RequestState(1);
+}
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = slip;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = light;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam1 type BITMAPONLY | BITMAP2;
+		explode beam2 type BITMAPONLY | BITMAP3;
+		explode light type BITMAPONLY | BITMAP1;
+		explode nano1 type BITMAPONLY | BITMAP5;
+		explode nano2 type BITMAPONLY | BITMAP1;
+		explode slip type BITMAPONLY | BITMAP2;
+		explode turret1 type BITMAPONLY | BITMAP3;
+		explode turret2 type BITMAPONLY | BITMAP4;
+		explode exlpode1 type BITMAPONLY | BITMAP1;
+		explode explode2 type BITMAPONLY | BITMAP2;
+		explode explode3 type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode beam1 type FALL | BITMAP2;
+		explode beam2 type FALL | BITMAP3;
+		explode light type FALL | BITMAP4;
+		explode nano1 type FALL | BITMAP5;
+		explode nano2 type FALL | BITMAP1;
+		explode slip type FALL | BITMAP2;
+		explode turret1 type FALL | BITMAP3;
+		explode turret2 type FALL | BITMAP4;
+		explode exlpode1 type FALL | BITMAP1;
+		explode explode2 type FALL | BITMAP2;
+		explode explode3 type FALL | BITMAP3;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode light type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode nano1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode nano2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode slip type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode turret1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode turret2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode exlpode1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode explode2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode explode3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode light type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode nano1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode nano2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode slip type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode turret1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode turret2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode exlpode1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode explode2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode explode3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+}

@@ -1,0 +1,45 @@
+[ARM_LASERH1]
+{
+	ID=91;
+	name=HLT Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=500;
+	reloadtime=.965;
+	energypershot=75;
+	weaponvelocity=800;
+	areaofeffect=8;
+
+	soundstart=Lasrmas2;
+	soundhit=lasrhit1;
+
+	firestarter=90;
+	beamweapon=1;
+	color=96;	/* blue */
+	color2=98;
+
+	tolerance=8000;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+
+	[DAMAGE]
+	{
+		default=180;
+		ARMREF=9;
+		armbrawl=45;
+		corape=45;
+		armsaber=45;
+		corcut=45;
+	}
+}
+

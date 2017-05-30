@@ -1,0 +1,35 @@
+[coruwmme_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=coruwmme_dead;
+	featuredead=coruwmme_heap;
+	footprintx=5;
+	footprintz=5;
+	height=150;
+	blocking=1;
+	hitdensity=100;
+	metal=1237;
+	damage=1658;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+}
+
+[coruwmme_heap]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5c;
+	footprintx=5;
+	footprintz=5;
+	height=5;
+	blocking=0;
+	hitdensity=100;
+	metal=619;
+	damage=1658;
+	reclaimable=1;
+	seqnamereclamate=tree1reclamate;
+}

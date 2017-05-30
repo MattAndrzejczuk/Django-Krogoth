@@ -1,0 +1,51 @@
+[ARM_PARALYZER]
+{
+	ID=29;
+	name=Paralyzer;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+	paralyzer=1;
+	minbarrelangle=0;
+
+	range=220;
+	reloadtime=1.2;
+	weaponvelocity=800;
+	areaofeffect=8;
+	duration=.01;
+	soundtrigger=1;
+
+	soundstart=hackshot;
+	soundhit=lashit;
+
+	beamweapon=1;
+	color=209;	/* Redish */
+	color2=211;
+
+	explosiongaf=Paralyze;
+	explosionart=Paralyze;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	[DAMAGE]
+	{
+		default=300;		/* 5 seconds of paralysis */
+		armbrawl=120;
+		corape=120;
+		armsaber=120;
+		armbull=120;
+		armroy=120;
+		armcrus=120;
+		armcarry=120;
+		armbats=120;
+		corcut=120;
+		corsumo=120;
+		corcan=120;
+		corgol=120;
+		corroy=120;
+		corcrus=120;
+		corbats=120;
+	}
+}
+

@@ -1,0 +1,38 @@
+[ARMDRAKE_MINIGUN]
+	{
+	ID=241;
+	name=Drake-AutoCanon;
+	rendertype=3;
+	lineofsight=1;
+	turret=1;
+	model=armheadhburst;
+	tolerance=1000;
+	range=310;
+	reloadtime=0.75;
+	burst=3;
+	burstrate=0.25;
+	sprayangle=2048;
+
+	soundtrigger=0;
+	weapontimer=0.7;
+	energypershot=102;
+	metalpershot=0;
+	weaponvelocity=400;
+	areaofeffect=42;
+
+	soundstart=drake_mg1;
+	soundhit=LASRHIT3;
+
+	firestarter=0;
+	beamweapon=1;
+	noexplode=1;
+
+	explosiongaf=parablast;
+	explosionart=parablast;
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=80;
+		}
+	}

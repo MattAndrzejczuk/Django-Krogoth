@@ -1,0 +1,32 @@
+[ARM_BULL]
+{
+	ID=56;
+	name=Bulldog Plasma Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=460;
+	reloadtime=1.4;
+	weaponvelocity=250;
+	areaofeffect=64;
+	soundstart=cannon3;
+	soundhit=xplomed2;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=175;
+	}
+}
+

@@ -1,0 +1,28 @@
+[CORARCH_WEAPON1]
+	{
+	ID=178;
+	name=AB AutoCannon;
+	rendertype=4;
+	lineofsight=1;
+	turret=1;
+	minbarrelangle=-15;
+	range=800;
+	reloadtime=0.2;
+	weaponvelocity=400;
+	areaofeffect=70;
+	soundstart=mortar1;
+	soundhit=ac_gunhit;
+	accuracy=70;
+	tolerance=500;
+	explosiongaf=fx;
+	explosionart=explode5;
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+	startsmoke=1;
+	[DAMAGE]
+		{
+		default=400;
+		}
+	}

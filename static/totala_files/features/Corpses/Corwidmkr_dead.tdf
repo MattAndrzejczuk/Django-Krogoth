@@ -1,0 +1,56 @@
+[corwidmkr_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=corwidmkr_dead;
+	featuredead=corwidmkr_dead2;
+	footprintx=7;
+	footprintz=3;
+	height=20;
+	blocking=1;
+	hitdensity=150;
+	metal=6129;
+	damage=1680;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+}
+
+[corwidmkr_dead2]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=corwidmkr_dead;
+	featuredead=corwidmkr_heap;
+	footprintx=7;
+	footprintz=3;
+	height=20;
+	blocking=1;
+	hitdensity=150;
+	metal=3065;
+	damage=1680;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+}
+
+[corwidmkr_heap]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4c;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=1533;
+	damage=1680;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+}

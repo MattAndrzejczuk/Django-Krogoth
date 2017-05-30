@@ -1,0 +1,41 @@
+[CORLEVLR_WEAPON]
+{
+	ID=172;
+	name=Leveler Riot Cannon;
+	rendertype=4;
+	lineofsight=1;
+	turret=1;
+
+	range=260;
+	reloadtime=1.83;
+	weaponvelocity=750;
+	areaofeffect=96;
+	soundstart=canlite3;
+	soundhit=xplosml3;
+	tolerance=1000;
+	burnblow=1;
+	
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=180;
+		armbrawl=9;
+		corape=9;
+		armsaber=9;
+		corcut=9;
+		armpw=270;
+		armflash=270;
+		corak=270;
+		corgator=270;
+	}
+}

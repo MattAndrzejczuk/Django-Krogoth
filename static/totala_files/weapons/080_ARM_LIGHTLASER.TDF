@@ -1,0 +1,40 @@
+[ARM_LIGHTLASER]
+{
+	ID=80;
+	name=Long Range Plasma Cannon;
+	rendertype=1;
+	ballistic=1;
+	turret=1;
+
+	model=obuscan3g;
+
+
+	range=13980;
+	reloadtime=30;
+	weaponvelocity=1600;
+	areaofeffect=128;
+	energypershot=50000;
+	metalpershot=500;
+
+	aimrate=2500;
+	holdtime=1;
+
+	soundstart=largegun;
+	soundhit=GP_Plasmahit;
+
+	explosiongaf=fireball;
+	explosionart=fireball;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=1913;
+		}
+	}

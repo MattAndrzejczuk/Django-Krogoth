@@ -1,0 +1,103 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, patch, prop1, prop2, wake1, wake2;
+
+static-var  Static_Var_1;
+
+
+Create()
+{
+	dont-cache prop1;
+	dont-cache prop2;
+	Static_Var_1 = 1;
+	return (0);
+	// Build by COBBLER Ver4.0 Copyright @1998 DIGITAL CONCEPT SOFTWARE (MANU@inext.fr) / http://www.annihilationcenter.com/DCS/  
+}
+
+StartMoving()
+{
+	signal 2;
+	set-signal-mask 2;
+	spin prop1 around z-axis speed <-270.> accelerate <25.>;
+	spin prop2 around z-axis speed <-270.> accelerate <25.>;
+	while( TRUE )
+	{
+		emit-sfx 259 from wake1;
+		emit-sfx 259 from wake2;
+		sleep 250;
+	}
+}
+
+StopMoving()
+{
+	stop-spin prop1 around z-axis decelerate <25.>;
+	stop-spin prop2 around z-axis decelerate <25.>;
+	signal 2;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+AimPrimary(heading, pitch)
+{
+	while( !Static_Var_1 )
+	{
+		sleep 250;
+	}
+	return (1);
+}
+
+FirePrimary()
+{
+	Static_Var_1 = 0;
+	sleep 3000;
+	Static_Var_1 = 1;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = base;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide patch;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode prop1 type BITMAPONLY | BITMAP2;
+		explode prop2 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP2;
+		explode prop1 type BITMAPONLY | BITMAP3;
+		explode prop2 type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP2;
+		explode prop1 type BITMAPONLY | BITMAP3;
+		explode prop2 type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP2;
+	explode prop1 type BITMAPONLY | BITMAP3;
+	explode prop2 type BITMAPONLY | BITMAP2;
+}

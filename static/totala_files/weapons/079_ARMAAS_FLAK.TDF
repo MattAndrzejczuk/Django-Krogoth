@@ -1,0 +1,33 @@
+[ARMAAS_FLAK]
+{
+	ID=79;
+	name=Infidel Riot Cannon;
+	rendertype=4;
+	lineofsight=1;
+	turret=1;
+
+	range=360;
+	reloadtime=1.23;
+	weaponvelocity=750;
+	areaofeffect=64;
+	soundstart=canlite3;
+	soundhit=xplosml3;
+	tolerance=1000;
+	burnblow=1;
+	
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=210;
+	}
+}

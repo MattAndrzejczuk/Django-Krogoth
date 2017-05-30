@@ -1,0 +1,46 @@
+[DEPTHCHARGE]
+{
+	ID=34;
+	name=Destroyer Depth Charge;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=DEPTHCHARGE;
+	propeller=1;
+
+	range=300;
+	reloadtime=2.6;
+	weapontimer=3;
+	weaponvelocity=100;
+	startvelocity=100;
+	weaponacceleration=15;	
+
+	turnrate=2500;
+	areaofeffect=32;
+	edgeeffectiveness=0.99;
+	soundstart=torpedo1;
+	soundhit=xplodep2;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	tolerance=32767;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+	{
+		default=120;
+	}
+}
+

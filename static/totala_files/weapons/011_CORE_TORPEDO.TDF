@@ -1,0 +1,51 @@
+[CORE_TORPEDO]
+{
+	ID=11;
+	name=Unguided Torpedo;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=torpedo;
+	propeller=1;
+
+	range=500;
+	reloadtime=2.71;
+	weapontimer=3;
+	weaponvelocity=100;
+	startvelocity=100;
+	weaponacceleration=15;
+	turnrate=500;
+	areaofeffect=16;	
+	soundstart=torpedo2;
+	soundhit=xplodep3;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	tolerance=32767;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+	{
+		default=370;
+		armsubk=74;
+		corshark=74;
+		armtl=94;
+		cortl=94;
+		armatl=94;
+		coratl=94;
+		coramph=670;
+		intruder=670;
+	}
+}
+
+

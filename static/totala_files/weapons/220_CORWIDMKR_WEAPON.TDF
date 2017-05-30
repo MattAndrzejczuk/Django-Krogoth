@@ -1,0 +1,37 @@
+[CORWIDMKR_WEAPON]
+{
+	ID=220;
+	name=Widowmaker Burst LRPC;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=4550;
+	reloadtime=0.5;
+	weaponvelocity=850;
+	energypershot=5600;
+	areaofeffect=120;
+
+	soundstart=xplonuk3;
+	soundhit=xplonuk1;
+	soundwater=splshbig;
+
+	accuracy=1000;
+	aimrate=2500;
+
+	explosiongaf=fx;
+	explosionart=nuke1;
+
+	waterexplosiongaf=fx2;
+	waterexplosionart=h2obpboom;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=2450;
+	}
+}

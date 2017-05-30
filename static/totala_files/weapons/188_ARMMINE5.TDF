@@ -1,0 +1,49 @@
+[armmine5]
+	{
+	ID=188;
+	name=Karganeth's Rocket;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=Karg_rocket;
+
+	range=1375;
+	reloadtime=6.1;
+	weapontimer=5.5;
+	weaponvelocity=605;
+	startvelocity=410;
+	weaponacceleration=290;
+	turnrate=66500;
+	areaofeffect=272;
+	metalpershot=5;
+	energypershot=450;
+
+	soundstart=Karg_rocket;
+	soundhit=Kargrockethit;
+
+	firestarter=45;
+	smokedelay=.04;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=5000;
+	propeller=1;
+
+	explosiongaf=Towers;
+	explosionart=Bigboom;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=970;
+		}
+	}

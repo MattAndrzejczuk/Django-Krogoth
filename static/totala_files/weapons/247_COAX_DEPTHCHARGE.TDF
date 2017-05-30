@@ -1,0 +1,49 @@
+[COAX_DEPTHCHARGE]
+{
+	ID=247;
+	name=Shore-launched Depth Charge;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=depthcharge;
+	propeller=1;
+
+	range=475;
+	reloadtime=3.2;
+	weapontimer=6;
+	weaponvelocity=200;
+	startvelocity=200;
+	weaponacceleration=15;	
+
+	turnrate=10000;
+	areaofeffect=96;
+	edgeeffectiveness=0.99;
+	soundstart=torpedo1;
+	soundhit=xplodep2;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	tolerance=32767;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+	{
+		default=185;
+		ARMDL=5;
+		CORDL=5;
+		AAIDL=5;
+		CAIDL=5;
+	}
+}

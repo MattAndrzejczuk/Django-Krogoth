@@ -1,0 +1,39 @@
+[ARM_BERTHACANNON]
+{
+	ID=72;
+	name=Bertha Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=5096;
+	reloadtime=7;
+	weaponvelocity=1000;
+	energypershot=5500;
+	areaofeffect=80;
+
+	soundstart=xplonuk4;
+	soundhit=xplonuk1;
+	soundwater=splshbig;
+
+	accuracy=750;
+	aimrate=2500;
+	holdtime=1;
+
+	explosiongaf=fx;
+	explosionart=NUKE1;
+
+	waterexplosiongaf=fx2;
+	waterexplosionart=h2obpboom;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=2000;
+	}
+}
+

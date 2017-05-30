@@ -1,0 +1,17 @@
+[Armss_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=Armss_dead;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=2740;
+	damage=2120;
+	reclaimable=1;
+	seqnamereclamate=tree1reclamate;
+}
+

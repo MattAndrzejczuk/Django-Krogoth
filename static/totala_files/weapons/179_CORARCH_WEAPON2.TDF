@@ -1,0 +1,36 @@
+[CORARCH_WEAPON2]
+	{
+	ID=179;
+	name=Sniper Wolf Cannon;
+	rendertype=4;
+	lineofsight=1;
+	turret=1;
+	minbarrelangle=-15;
+
+	range=630;
+	reloadtime=1.1;
+	weaponvelocity=700;
+	areaofeffect=16;
+	soundstart=wolf_fire;
+	soundhit=wolf_fire_hit;
+
+	tolerance=500;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=300;
+		armcom=50;
+		corcom=50;
+		}
+	}

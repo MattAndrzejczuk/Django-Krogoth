@@ -1,0 +1,55 @@
+[CORMANTA_TORPEDO]
+{
+	ID=244;
+	name=Shockwave Torpedo;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=torpedo;
+	propeller=1;
+
+	range=600;
+
+	reloadtime=30;
+	noautorange=1;
+	weapontimer=5;
+	weaponvelocity=100;
+	startvelocity=100;
+	weaponacceleration=10;
+	turnrate=500;
+	areaofeffect=500;
+	edgeeffectiveness=0.99;
+
+	energypershot=500;
+	metalpershot=20;
+
+	stockpile=1;
+	commandfire=1;
+
+	soundstart=torpedo1;
+	soundhit=xplodep2;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	explosiongaf=ringboom;
+	explosionart=ringboom;
+
+	waterexplosiongaf=ringboom;
+	waterexplosionart=ringboom;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+	{
+		default=0;
+		armscram=50;
+		armsjam=50;
+		corsjam=50;
+		cormanta=20;
+	}
+}

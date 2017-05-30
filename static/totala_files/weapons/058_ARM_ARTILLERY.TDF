@@ -1,0 +1,33 @@
+[ARM_ARTILLERY]
+{
+	ID=58;
+	name=Mobile Artillery Plasma Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=930;
+	reloadtime=3.85;
+	weaponvelocity=360;
+	areaofeffect=148;
+	soundstart=cannhvy2;
+	soundhit=xplomed4;
+	accuracy=300;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=145;
+	}
+}
+

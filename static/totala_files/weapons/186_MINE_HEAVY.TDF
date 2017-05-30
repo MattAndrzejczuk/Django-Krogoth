@@ -1,0 +1,57 @@
+[MINE_HEAVY]
+{
+	ID=186;
+	name=Heavy Mine;
+	rendertype=4;
+	ballistic=1;
+	
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=300;
+	soundstart=largegun;
+	soundhit=xplolrg3;
+	edgeeffectiveness=0.95;
+
+	explosiongaf=mineboom;
+	explosionart=mineboom;
+
+	waterexplosiongaf=mineboom;
+	waterexplosionart=mineboom;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	[DAMAGE]
+	{
+		default=1250;
+		armmine2=2;
+		armmine3=2;
+		armmine4=2;
+		armmine5=2;
+		armmine6=2;
+		armmine7=2;
+		armfmine1=2;
+		armfmine2=2;
+		armfmine3=2;
+		armfmine4=2;
+		armfmine5=2;
+		armfmine6=2;
+		armfmine7=2;
+		armempm=2;
+		cormine1=2;
+		cormine2=2;
+		cormine4=2;
+		cormine5=2;
+		cormine6=2;
+		cormine7=2;
+		corfmine1=2;
+		corfmine2=2;
+		corfmine3=2;
+		corfmine4=2;
+		corfmine5=2;
+		corfmine6=2;
+		corfmine7=2;
+		cortronm=2;
+	}
+}

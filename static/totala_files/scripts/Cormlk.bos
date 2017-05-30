@@ -1,0 +1,607 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  ssbase, sshead, sstoparm2, sstoparm5, sstoparm6, ssmidarm6, ssmidarm4, ssbotarm4,
+       ssmidarm3, sstoes3, ssbotarm2, sstoes2, ssmidarm1, ssbotarm1, sstoes1, sslmand,
+       ssrmand, sslowjaw, ssbody, sstoparm1, ssbotarm6, ssmidarm5, ssbotarm5, ssmidarm2,
+       sstoparm4, sstoparm3, ssbotarm3, sstail1, sstail2, sstail3, sstail4, sstail5,
+       ssnano, ssemit;
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3, Static_Var_4;
+
+
+walklegs()
+{
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] now;
+		move sshead to y-axis [-1.] speed [0.];
+		move sshead to z-axis [0.] now;
+		move sstoparm2 to y-axis [0.] now;
+		move sstoparm2 to z-axis [0.] now;
+		move sstoparm5 to y-axis [0.] now;
+		move sstoparm6 to z-axis [0.] now;
+		move ssmidarm6 to z-axis [0.] now;
+		move ssmidarm4 to y-axis [0.] now;
+		move ssbotarm4 to x-axis [0.] now;
+		move ssmidarm3 to z-axis [0.] now;
+		move sstoes3 to x-axis [0.] now;
+		move sstoes3 to y-axis [0.] now;
+		move ssbotarm2 to z-axis [0.] now;
+		move sstoes2 to z-axis [0.] now;
+		move ssmidarm1 to y-axis [0.] now;
+		move ssbotarm1 to z-axis [0.] now;
+		move sstoes1 to y-axis [0.] now;
+		move sslmand to y-axis [0.] now;
+		move ssrmand to x-axis [0.] now;
+		move ssrmand to y-axis [0.] now;
+		move sslowjaw to z-axis [0.] now;
+		turn sshead to y-axis <-4.> now;
+		turn sshead to y-axis <-2.> speed <19.>;
+		turn sstoparm1 to z-axis <13.> now;
+		turn sstoparm1 to z-axis <8.> speed <46.>;
+		turn sstoparm2 to z-axis <3.> now;
+		turn sstoparm2 to z-axis <9.> speed <78.>;
+		turn sstoparm5 to z-axis <-5.> now;
+		turn sstoparm5 to z-axis <-2.> speed <26.>;
+		turn sstoparm6 to z-axis <-12.> now;
+		turn sstoparm6 to z-axis <-18.> speed <78.>;
+		turn ssmidarm6 to y-axis <11.> now;
+		turn ssmidarm6 to y-axis <-4.> speed <187.>;
+		turn ssbotarm6 to z-axis <3.> now;
+		turn ssbotarm6 to z-axis <-6.> speed <119.>;
+		turn ssmidarm5 to y-axis <-31.> now;
+		turn ssmidarm5 to y-axis <-23.> speed <93.>;
+		turn ssbotarm5 to z-axis <-23.> now;
+		turn ssbotarm5 to z-axis <-11.> speed <145.>;
+		turn ssmidarm4 to y-axis <61.> now;
+		turn ssmidarm4 to y-axis <60.> speed <0.>;
+		turn ssmidarm3 to y-axis <7.> now;
+		turn ssmidarm3 to y-axis <1.> speed <67.>;
+		turn ssmidarm2 to y-axis <-58.> now;
+		turn ssmidarm2 to y-axis <-33.> speed <306.>;
+		turn ssbotarm2 to y-axis <0.> now;
+		turn ssbotarm2 to y-axis <0.> speed <0.>;
+		turn ssbotarm2 to z-axis <-4.> now;
+		turn ssbotarm2 to z-axis <-11.> speed <98.>;
+		turn sstoes2 to z-axis <-20.> now;
+		turn sstoes2 to z-axis <-20.> speed <5.>;
+		turn ssmidarm1 to y-axis <45.> now;
+		turn ssmidarm1 to y-axis <38.> speed <91.>;
+		turn ssbotarm1 to z-axis <45.> now;
+		turn ssbotarm1 to z-axis <33.> speed <141.>;
+		turn sstoes1 to z-axis <-30.> now;
+		turn sstoes1 to z-axis <-19.> speed <135.>;
+		turn sslowjaw to x-axis <-27.> now;
+		turn sslowjaw to x-axis <-27.> speed <0.>;
+		sleep 79;
+	}
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] speed [0.];
+		turn sshead to y-axis <-1.> speed <13.>;
+		turn sstoparm1 to z-axis <5.> speed <43.>;
+		turn sstoparm2 to z-axis <12.> speed <34.>;
+		turn sstoparm4 to z-axis <-3.> speed <38.>;
+		turn sstoparm5 to z-axis <0.> speed <34.>;
+		turn sstoparm6 to z-axis <-24.> speed <73.>;
+		turn ssmidarm6 to y-axis <-19.> speed <180.>;
+		turn ssbotarm6 to z-axis <-31.> speed <292.>;
+		turn ssmidarm5 to y-axis <-6.> speed <204.>;
+		turn ssbotarm5 to z-axis <0.> speed <131.>;
+		turn ssmidarm4 to y-axis <58.> speed <24.>;
+		turn ssmidarm3 to y-axis <-14.> speed <189.>;
+		turn ssmidarm2 to y-axis <-10.> speed <277.>;
+		turn ssbotarm2 to z-axis <-2.> speed <102.>;
+		turn sstoes2 to z-axis <-40.> speed <238.>;
+		turn ssmidarm1 to y-axis <31.> speed <85.>;
+		turn ssbotarm1 to z-axis <22.> speed <132.>;
+		turn sstoes1 to z-axis <-8.> speed <126.>;
+		turn sslowjaw to x-axis <-25.> speed <22.>;
+		sleep 84;
+	}
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] speed [0.];
+		turn sshead to y-axis <0.> speed <7.>;
+		turn sstoparm1 to z-axis <2.> speed <30.>;
+		turn sstoparm2 to z-axis <18.> speed <69.>;
+		turn sstoparm4 to z-axis <-9.> speed <69.>;
+		turn sstoparm6 to z-axis <-18.> speed <65.>;
+		turn ssmidarm6 to y-axis <-35.> speed <190.>;
+		turn ssbotarm6 to z-axis <-44.> speed <153.>;
+		turn ssmidarm5 to y-axis <-1.> speed <60.>;
+		turn ssmidarm4 to y-axis <33.> speed <278.>;
+		turn ssbotarm4 to z-axis <3.> speed <41.>;
+		turn ssmidarm3 to y-axis <-37.> speed <255.>;
+		turn ssmidarm2 to y-axis <4.> speed <167.>;
+		turn ssbotarm2 to z-axis <6.> speed <106.>;
+		turn sstoes2 to z-axis <-40.> speed <4.>;
+		turn ssmidarm1 to y-axis <23.> speed <81.>;
+		turn ssbotarm1 to z-axis <11.> speed <126.>;
+		turn sstoes1 to z-axis <-4.> speed <51.>;
+		turn sslowjaw to x-axis <-24.> speed <10.>;
+		sleep 88;
+	}
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] speed [0.];
+		turn sshead to y-axis <0.> speed <7.>;
+		turn sstoparm1 to z-axis <0.> speed <32.>;
+		turn sstoparm2 to z-axis <24.> speed <74.>;
+		turn sstoparm4 to z-axis <-12.> speed <34.>;
+		turn sstoparm6 to z-axis <-12.> speed <74.>;
+		turn ssmidarm6 to y-axis <-45.> speed <108.>;
+		turn ssbotarm6 to z-axis <-33.> speed <133.>;
+		turn ssmidarm5 to y-axis <14.> speed <193.>;
+		turn ssmidarm4 to y-axis <10.> speed <282.>;
+		turn ssbotarm4 to z-axis <8.> speed <59.>;
+		turn ssmidarm3 to y-axis <-60.> speed <277.>;
+		turn ssmidarm2 to y-axis <19.> speed <183.>;
+		turn ssbotarm2 to z-axis <31.> speed <296.>;
+		turn ssmidarm1 to y-axis <6.> speed <210.>;
+		turn ssbotarm1 to z-axis <0.> speed <134.>;
+		turn sstoes1 to z-axis <0.> speed <54.>;
+		turn sslowjaw to x-axis <-21.> speed <40.>;
+		sleep 83;
+	}
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] speed [0.];
+		turn sshead to y-axis <0.> speed <8.>;
+		turn sstoparm2 to z-axis <18.> speed <68.>;
+		turn sstoparm4 to z-axis <-18.> speed <73.>;
+		turn sstoparm6 to z-axis <-8.> speed <43.>;
+		turn ssmidarm6 to y-axis <-38.> speed <77.>;
+		turn ssbotarm6 to z-axis <-22.> speed <131.>;
+		turn ssmidarm5 to y-axis <37.> speed <267.>;
+		turn ssmidarm4 to y-axis <-4.> speed <175.>;
+		turn ssbotarm4 to z-axis <2.> speed <77.>;
+		turn ssmidarm3 to y-axis <-60.> speed <0.>;
+		turn ssmidarm2 to y-axis <35.> speed <199.>;
+		turn ssbotarm2 to z-axis <44.> speed <160.>;
+		turn sstoes2 to z-axis <-35.> speed <58.>;
+		turn ssmidarm1 to y-axis <1.> speed <65.>;
+		turn sslowjaw to x-axis <-25.> speed <50.>;
+		sleep 84;
+	}
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] speed [0.];
+		turn sshead to y-axis <1.> speed <7.>;
+		turn sstoparm2 to z-axis <12.> speed <70.>;
+		turn sstoparm3 to z-axis <3.> speed <37.>;
+		turn sstoparm4 to z-axis <-24.> speed <70.>;
+		turn sstoparm6 to z-axis <-5.> speed <42.>;
+		turn ssmidarm6 to y-axis <-31.> speed <84.>;
+		turn ssbotarm6 to z-axis <-11.> speed <127.>;
+		turn ssmidarm5 to y-axis <60.> speed <264.>;
+		turn ssmidarm4 to y-axis <-19.> speed <174.>;
+		turn ssbotarm4 to z-axis <-6.> speed <103.>;
+		turn ssmidarm3 to y-axis <-58.> speed <18.>;
+		turn ssbotarm3 to z-axis <-9.> speed <108.>;
+		turn ssmidarm2 to y-axis <45.> speed <103.>;
+		turn ssbotarm2 to z-axis <44.> speed <0.>;
+		turn sstoes2 to z-axis <-30.> speed <56.>;
+		turn ssmidarm1 to y-axis <-14.> speed <181.>;
+		turn sslowjaw to x-axis <-27.> speed <21.>;
+		sleep 87;
+	}
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] speed [0.];
+		turn sshead to y-axis <2.> speed <13.>;
+		turn sstoparm2 to z-axis <8.> speed <43.>;
+		turn sstoparm3 to z-axis <9.> speed <73.>;
+		turn sstoparm4 to z-axis <-13.> speed <131.>;
+		turn sstoparm6 to z-axis <-2.> speed <34.>;
+		turn ssmidarm6 to y-axis <-23.> speed <87.>;
+		turn ssbotarm6 to z-axis <0.> speed <136.>;
+		turn ssmidarm5 to y-axis <60.> speed <0.>;
+		turn ssmidarm4 to y-axis <-35.> speed <199.>;
+		turn ssbotarm4 to z-axis <-31.> speed <287.>;
+		turn ssmidarm3 to y-axis <-33.> speed <292.>;
+		turn ssbotarm3 to z-axis <-11.> speed <24.>;
+		turn ssmidarm2 to y-axis <38.> speed <77.>;
+		turn ssbotarm2 to z-axis <33.> speed <131.>;
+		turn sstoes2 to z-axis <-19.> speed <126.>;
+		turn ssmidarm1 to y-axis <-37.> speed <270.>;
+		turn sslowjaw to x-axis <-27.> speed <0.>;
+		sleep 84;
+	}
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] speed [0.];
+		turn sshead to y-axis <3.> speed <17.>;
+		turn sstoparm2 to z-axis <5.> speed <43.>;
+		turn sstoparm3 to z-axis <12.> speed <34.>;
+		turn sstoparm4 to z-axis <-12.> speed <9.>;
+		turn sstoparm5 to z-axis <-3.> speed <38.>;
+		turn sstoparm6 to z-axis <0.> speed <29.>;
+		turn ssmidarm6 to y-axis <-6.> speed <204.>;
+		turn ssmidarm5 to y-axis <58.> speed <24.>;
+		turn ssbotarm5 to z-axis <3.> speed <43.>;
+		turn ssmidarm4 to y-axis <-45.> speed <112.>;
+		turn ssbotarm4 to z-axis <-44.> speed <160.>;
+		turn ssmidarm3 to y-axis <-10.> speed <282.>;
+		turn ssbotarm3 to z-axis <-2.> speed <102.>;
+		turn ssmidarm2 to y-axis <31.> speed <87.>;
+		turn ssbotarm2 to z-axis <21.> speed <141.>;
+		turn sstoes2 to z-axis <-8.> speed <126.>;
+		turn ssmidarm1 to y-axis <-60.> speed <270.>;
+		turn sslowjaw to x-axis <-27.> speed <0.>;
+		sleep 84;
+	}
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] speed [0.];
+		turn sshead to y-axis <2.> speed <15.>;
+		turn sstoparm2 to z-axis <2.> speed <33.>;
+		turn sstoparm3 to z-axis <18.> speed <70.>;
+		turn sstoparm4 to z-axis <-8.> speed <42.>;
+		turn sstoparm5 to z-axis <-9.> speed <70.>;
+		turn ssmidarm6 to y-axis <-1.> speed <61.>;
+		turn ssmidarm5 to y-axis <33.> speed <278.>;
+		turn ssbotarm5 to z-axis <9.> speed <66.>;
+		turn ssmidarm4 to y-axis <-38.> speed <80.>;
+		turn ssbotarm4 to z-axis <-33.> speed <127.>;
+		turn ssmidarm3 to y-axis <4.> speed <165.>;
+		turn ssbotarm3 to z-axis <6.> speed <108.>;
+		turn ssmidarm2 to y-axis <23.> speed <84.>;
+		turn ssbotarm2 to z-axis <11.> speed <118.>;
+		turn sstoes2 to z-axis <-4.> speed <51.>;
+		turn sslowjaw to x-axis <-26.> speed <10.>;
+		sleep 87;
+	}
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] speed [0.];
+		turn sshead to y-axis <1.> speed <13.>;
+		turn sstoparm1 to z-axis <3.> speed <38.>;
+		turn sstoparm2 to z-axis <0.> speed <29.>;
+		turn sstoparm3 to z-axis <24.> speed <73.>;
+		turn sstoparm4 to z-axis <-5.> speed <43.>;
+		turn sstoparm5 to z-axis <-12.> speed <34.>;
+		turn ssmidarm6 to y-axis <14.> speed <189.>;
+		turn ssmidarm5 to y-axis <10.> speed <277.>;
+		turn ssbotarm5 to z-axis <11.> speed <19.>;
+		turn ssmidarm4 to y-axis <-31.> speed <87.>;
+		turn ssbotarm4 to z-axis <-22.> speed <131.>;
+		turn ssmidarm3 to y-axis <19.> speed <180.>;
+		turn ssbotarm3 to z-axis <31.> speed <292.>;
+		turn ssmidarm2 to y-axis <6.> speed <204.>;
+		turn ssbotarm2 to z-axis <0.> speed <136.>;
+		turn sstoes2 to z-axis <0.> speed <53.>;
+		turn ssmidarm1 to y-axis <-58.> speed <17.>;
+		turn ssbotarm1 to z-axis <-3.> speed <43.>;
+		turn sslowjaw to x-axis <-24.> speed <22.>;
+		sleep 84;
+	}
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] speed [0.];
+		turn sshead to y-axis <0.> speed <8.>;
+		turn sstoparm1 to z-axis <9.> speed <70.>;
+		turn sstoparm3 to z-axis <18.> speed <66.>;
+		turn sstoparm4 to z-axis <-2.> speed <33.>;
+		turn sstoparm5 to z-axis <-18.> speed <70.>;
+		turn ssmidarm6 to y-axis <36.> speed <254.>;
+		turn ssmidarm5 to y-axis <-4.> speed <169.>;
+		turn ssbotarm5 to z-axis <2.> speed <99.>;
+		turn ssmidarm4 to y-axis <-23.> speed <84.>;
+		turn ssbotarm4 to z-axis <-11.> speed <132.>;
+		turn ssmidarm3 to y-axis <35.> speed <193.>;
+		turn ssbotarm3 to z-axis <44.> speed <155.>;
+		turn ssmidarm2 to y-axis <1.> speed <61.>;
+		turn ssmidarm1 to y-axis <-33.> speed <285.>;
+		turn ssbotarm1 to z-axis <-9.> speed <64.>;
+		turn sstoes1 to z-axis <-20.> speed <233.>;
+		turn sslowjaw to x-axis <-25.> speed <16.>;
+		sleep 87;
+	}
+	if( TRUE )
+	{
+		turn sshead to y-axis <0.> speed <8.>;
+		turn sstoparm1 to z-axis <12.> speed <34.>;
+		turn sstoparm3 to z-axis <12.> speed <73.>;
+		turn sstoparm4 to z-axis <0.> speed <29.>;
+		turn sstoparm5 to z-axis <-24.> speed <73.>;
+		turn ssmidarm6 to y-axis <60.> speed <277.>;
+		turn ssmidarm5 to y-axis <-19.> speed <180.>;
+		turn ssbotarm5 to z-axis <-6.> speed <102.>;
+		turn ssmidarm4 to y-axis <-6.> speed <204.>;
+		turn ssbotarm4 to z-axis <0.> speed <131.>;
+		turn ssmidarm3 to y-axis <45.> speed <112.>;
+		turn ssbotarm3 to z-axis <44.> speed <0.>;
+		turn ssmidarm2 to y-axis <-14.> speed <189.>;
+		turn ssmidarm1 to y-axis <-10.> speed <277.>;
+		turn ssbotarm1 to z-axis <-11.> speed <23.>;
+		turn sstoes1 to z-axis <-40.> speed <241.>;
+		turn sslowjaw to x-axis <-26.> speed <5.>;
+		sleep 84;
+	}
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] speed [0.];
+		turn sshead to y-axis <0.> speed <7.>;
+		turn sstoparm1 to z-axis <18.> speed <73.>;
+		turn sstoparm3 to z-axis <8.> speed <43.>;
+		turn sstoparm5 to z-axis <-18.> speed <68.>;
+		turn ssmidarm5 to y-axis <-35.> speed <199.>;
+		turn ssbotarm5 to z-axis <-31.> speed <306.>;
+		turn ssmidarm4 to y-axis <-1.> speed <63.>;
+		turn ssmidarm3 to y-axis <38.> speed <82.>;
+		turn ssbotarm3 to z-axis <33.> speed <131.>;
+		turn ssmidarm2 to y-axis <-36.> speed <263.>;
+		turn ssmidarm1 to y-axis <4.> speed <177.>;
+		turn ssbotarm1 to z-axis <-2.> speed <103.>;
+		turn sstoes1 to z-axis <-40.> speed <2.>;
+		turn sslowjaw to x-axis <-27.> speed <11.>;
+		sleep 84;
+	}
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] speed [0.];
+		turn sshead to y-axis <-1.> speed <8.>;
+		turn sstoparm1 to z-axis <24.> speed <70.>;
+		turn sstoparm3 to z-axis <5.> speed <42.>;
+		turn sstoparm5 to z-axis <-12.> speed <70.>;
+		turn sstoparm6 to z-axis <-3.> speed <37.>;
+		turn ssmidarm6 to y-axis <58.> speed <23.>;
+		turn ssbotarm6 to z-axis <3.> speed <42.>;
+		turn ssmidarm5 to y-axis <-45.> speed <108.>;
+		turn ssbotarm5 to z-axis <-44.> speed <146.>;
+		turn ssmidarm4 to y-axis <14.> speed <184.>;
+		turn ssmidarm3 to y-axis <31.> speed <84.>;
+		turn ssbotarm3 to z-axis <22.> speed <127.>;
+		turn ssmidarm2 to y-axis <-60.> speed <269.>;
+		turn ssmidarm1 to y-axis <19.> speed <172.>;
+		turn ssbotarm1 to z-axis <6.> speed <100.>;
+		turn sstoes1 to z-axis <-40.> speed <2.>;
+		turn sslowjaw to x-axis <-28.> speed <10.>;
+		sleep 87;
+	}
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] speed [0.];
+		turn sshead to y-axis <-2.> speed <12.>;
+		turn sstoparm1 to z-axis <18.> speed <69.>;
+		turn sstoparm3 to z-axis <2.> speed <33.>;
+		turn sstoparm5 to z-axis <-8.> speed <43.>;
+		turn sstoparm6 to z-axis <-9.> speed <71.>;
+		turn ssmidarm6 to y-axis <33.> speed <282.>;
+		turn ssbotarm6 to z-axis <11.> speed <91.>;
+		turn ssmidarm5 to y-axis <-38.> speed <81.>;
+		turn ssbotarm5 to z-axis <-33.> speed <129.>;
+		turn ssmidarm4 to y-axis <37.> speed <263.>;
+		turn ssmidarm3 to y-axis <23.> speed <86.>;
+		turn ssbotarm3 to z-axis <11.> speed <134.>;
+		turn ssmidarm2 to y-axis <-60.> speed <0.>;
+		turn ssmidarm1 to y-axis <35.> speed <196.>;
+		turn ssbotarm1 to z-axis <31.> speed <292.>;
+		turn sstoes1 to z-axis <-35.> speed <57.>;
+		turn sslowjaw to x-axis <-27.> speed <5.>;
+		sleep 85;
+	}
+	if( TRUE )
+	{
+		move sshead to y-axis [-1.] speed [0.];
+		turn sshead to y-axis <-3.> speed <17.>;
+		turn sstoparm1 to z-axis <12.> speed <70.>;
+		turn sstoparm2 to z-axis <3.> speed <38.>;
+		turn sstoparm3 to z-axis <0.> speed <29.>;
+		turn sstoparm5 to z-axis <-4.> speed <48.>;
+		turn sstoparm6 to z-axis <-12.> speed <34.>;
+		turn ssmidarm6 to y-axis <10.> speed <277.>;
+		turn ssbotarm6 to z-axis <2.> speed <102.>;
+		turn ssmidarm5 to y-axis <-31.> speed <87.>;
+		turn ssbotarm5 to z-axis <-22.> speed <131.>;
+		turn ssmidarm4 to y-axis <60.> speed <277.>;
+		turn ssmidarm3 to y-axis <6.> speed <204.>;
+		turn ssbotarm3 to z-axis <0.> speed <131.>;
+		turn ssmidarm2 to y-axis <-58.> speed <24.>;
+		turn ssbotarm2 to y-axis <0.> speed <0.>;
+		turn ssbotarm2 to z-axis <-3.> speed <43.>;
+		turn sstoes2 to z-axis <-20.> speed <238.>;
+		turn ssmidarm1 to y-axis <45.> speed <112.>;
+		turn ssbotarm1 to z-axis <44.> speed <160.>;
+		turn sstoes1 to z-axis <-30.> speed <58.>;
+		turn sslowjaw to x-axis <-27.> speed <5.>;
+		sleep 84;
+	}
+	sleep 4;
+	return (0);
+	// Build by COBBLER Ver4.0 Copyright @1998 DIGITAL CONCEPT SOFTWARE (MANU@inext.fr) / http://www.annihilationcenter.com/DCS/  
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from ssbase;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Go()
+{
+	turn ssnano to y-axis Static_Var_2 speed <160.>;
+	wait-for-turn ssnano around y-axis;
+	set INBUILDSTANCE to 1;
+}
+
+Stop()
+{
+	set INBUILDSTANCE to 0;
+	turn ssnano to y-axis <0.> speed <160.>;
+	wait-for-turn ssnano around y-axis;
+}
+
+InitState()
+{
+	Static_Var_3 = 1;
+	Static_Var_4 = 0;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( Static_Var_4 )
+	{
+		Static_Var_3 = requestedstate;
+		return (0);
+	}
+	Static_Var_4 = 1;
+	currentstate = Static_Var_3;
+	Static_Var_3 = requestedstate;
+	while( Static_Var_3 != currentstate )
+	{
+		if( Static_Var_3 == 0 )
+		{
+			call-script Go();
+			currentstate = 0;
+		}
+		if( Static_Var_3 == 1 )
+		{
+			call-script Stop();
+			currentstate = 1;
+		}
+	}
+	Static_Var_4 = 0;
+}
+
+MotionControl(moving, aiming, justmoved)
+{
+	while( TRUE )
+	{
+		moving = Static_Var_1;
+		if( moving )
+		{
+			call-script walklegs();
+		}
+		if( !moving )
+		{
+			sleep 100;
+		}
+	}
+}
+
+Create()
+{
+	Static_Var_1 = 0;
+	Static_Var_2 = 0;
+	call-script InitState();
+	start-script MotionControl();
+	start-script SmokeUnit();
+}
+
+StartBuilding(Func_Var_1)
+{
+	Static_Var_2 = Func_Var_1;
+	start-script RequestState(0);
+}
+
+StopBuilding()
+{
+	start-script RequestState(1);
+}
+
+TargetHeading(Func_Var_1)
+{
+	Static_Var_2 = 0 - Func_Var_1;
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = ssemit;
+}
+
+StartMoving()
+{
+	Static_Var_1 = 1;
+}
+
+StopMoving()
+{
+	Static_Var_1 = 0;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = ssbase;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode ssbody type BITMAPONLY | BITMAP3;
+		explode sshead type BITMAPONLY | BITMAP2;
+		explode ssnano type BITMAPONLY | BITMAP3;
+		explode ssbotarm1 type BITMAPONLY | BITMAP4;
+		explode ssbotarm2 type BITMAPONLY | BITMAP3;
+		explode ssbotarm3 type BITMAPONLY | BITMAP2;
+		explode ssbotarm4 type BITMAPONLY | BITMAP4;
+		explode ssbotarm5 type BITMAPONLY | BITMAP2;
+		explode ssbotarm6 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode ssbody type BITMAPONLY | BITMAP3;
+		explode sshead type BITMAPONLY | BITMAP2;
+		explode ssnano type SHATTER | BITMAP3;
+		explode ssbotarm1 type FALL | BITMAP4;
+		explode ssbotarm2 type BITMAPONLY | BITMAP3;
+		explode ssbotarm3 type FALL | BITMAP2;
+		explode ssbotarm4 type BITMAPONLY | BITMAP4;
+		explode ssbotarm5 type FALL | BITMAP2;
+		explode ssbotarm6 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode ssbody type SHATTER | BITMAP3;
+		explode sshead type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode ssnano type SHATTER | BITMAP3;
+		explode ssbotarm1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode ssbotarm2 type BITMAPONLY | BITMAP3;
+		explode ssbotarm3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode ssbotarm4 type BITMAPONLY | BITMAP4;
+		explode ssbotarm5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode ssbotarm6 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode ssbody type SHATTER | BITMAP3;
+	explode sshead type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode ssnano type SHATTER | BITMAP3;
+	explode ssbotarm1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode ssbotarm2 type BITMAPONLY | BITMAP3;
+	explode ssbotarm3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode ssbotarm4 type BITMAPONLY | BITMAP4;
+	explode ssbotarm5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode ssbotarm6 type BITMAPONLY | BITMAP1;
+}

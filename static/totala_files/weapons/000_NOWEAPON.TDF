@@ -1,0 +1,12 @@
+[NOWEAPON]
+	{
+	ID=0;
+	name=No Weapon;
+	range=16;
+
+	[DAMAGE]
+		{
+		default=0;
+		}
+	}
+

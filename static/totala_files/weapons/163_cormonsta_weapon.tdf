@@ -1,0 +1,34 @@
+[CORMONSTA_GUN]
+	{
+	ID=163;
+	name=Monstro Tanker Canon;
+	rendertype=4;
+	lineofsight=1;
+	turret=1;
+	minbarrelangle=-15;
+
+	range=1000;
+	reloadtime=0.4;
+	weaponvelocity=700;
+	areaofeffect=75;
+	soundstart=tirtankercanon;
+	soundhit=xplomed2;
+
+	tolerance=500;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=150;
+		}
+	}

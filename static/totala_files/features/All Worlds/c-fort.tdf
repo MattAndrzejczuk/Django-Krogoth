@@ -1,0 +1,117 @@
+[corfwllt_dead]
+{
+	world=allworld;
+	description=Fortification Wall;
+	category=dragonteeth;
+	object=corfort;
+	footprintx=2;
+	footprintz=2;
+	height=55;
+	blocking=1;
+	hitdensity=95;
+	metal=18;
+	damage=4500;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=smudge01;
+	featuredead=RockTeeth;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+}
+
+[Fortification_Core-h]
+{
+	world=allworld;
+	description=Fortification Wall;
+	category=dragonteeth;
+	object=corforth;
+	footprintx=6;
+	footprintz=2;
+	height=55;
+	blocking=1;
+	hitdensity=97;
+	metal=59;
+
+	featurereclamate=scarfw-h;
+
+	damage=9000;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=smudge01;
+	featuredead=rockteeth-h;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+}
+
+[Fortification_Core-v]
+{
+	world=allworld;
+	description=Fortification Wall;
+	category=dragonteeth;
+	object=corfortv;
+	footprintx=2;
+	footprintz=6;
+	height=55;
+	blocking=1;
+	hitdensity=97;
+	metal=59;
+
+	featurereclamate=scarfw-v;
+
+	damage=9000;
+	reclaimable=1;
+	autoreclaimable=0;
+	featuredead=rockteeth-v;
+	nodrawundergray=1;
+}
+
+
+[corfwhg_dead]
+{
+	world=allworld;
+	description=Rubble;
+	category=rocks;
+	animating=0;
+	footprintx=10;
+	footprintz=2;
+	height=20;
+	filename=fwrocks;
+	seqname=gateh;
+	seqnameshad=gatehsh;
+	metal=37;
+
+	featurereclamate=scarg-h;
+	featuredead=scarg-h;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+}
+
+[corfwvg_dead]
+{
+	world=greenworld;
+	description=Rubble;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=10;
+	height=20;
+	filename=fwrocks;
+	seqname=gatev;
+	seqnameshad=gatevsh;
+	metal=37;
+
+	featurereclamate=scarg-v;
+	featuredead=scarg-v;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+}

@@ -1,0 +1,51 @@
+[CORRL_MISSILE]
+{
+	ID=107;
+	name=Tiger Ion Cannon;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=ionshell;
+
+	range=940;
+	reloadtime=4.4;
+	weapontimer=5;
+	weaponvelocity=700;
+	startvelocity=700;
+	weaponacceleration=500;
+	turnrate=30;
+	areaofeffect=362;
+	edgeeffectiveness=0.25;
+	energypershot=1285;
+
+	soundstart=largegun;
+	soundhit=exmine4;
+
+	firestarter=70;
+	smokedelay=.1;
+	smoketrail=0;
+	tolerance=9000;
+
+	explosiongaf=IMMBOOM;
+	explosionart=IMMBOOM;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oBoom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	shakemagnitude=3;
+	shakeduration=.5;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=875;
+		armcom=80;
+		corcom=80;
+		armtigre=50;
+		}
+}

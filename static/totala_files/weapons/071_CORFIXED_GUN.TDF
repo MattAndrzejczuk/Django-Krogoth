@@ -1,0 +1,32 @@
+[CORFIXED_GUN]
+{
+	ID=71;
+	name=Punisher Plasma Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=1200;
+	reloadtime=2.8;
+	weaponvelocity=370;
+	areaofeffect=85;
+	soundstart=cannhvy5;
+	soundhit=xplomed2;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=320;
+	}
+}
+

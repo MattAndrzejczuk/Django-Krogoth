@@ -1,0 +1,60 @@
+[ARM_LIGHTCANNON]
+{
+	ID=50;
+	name=Air-launch Starburst missle;
+	rendertype=1;
+	lineofsight=1;
+	vlaunch=1;
+	twophase=1;
+
+	model=MissileVulcano;
+
+	range=1060;
+	reloadtime=2;
+
+	noautorange=1;
+	weapontimer=4;
+	flighttime=10;
+	weaponvelocity=600;
+	startvelocity=200;
+	weaponacceleration=130;
+	turnrate=34444;
+	EnergyPerShot=50;
+	metalpershot=5;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=8000;
+
+	areaofeffect=64;
+	edgeeffectiveness=.85;
+
+	soundstart=Dlaunch;
+	soundhit=DFhit;
+
+	firestarter=100;
+	smokedelay=0.1;
+	selfprop=1;
+	smoketrail=1;
+	firetrail=1;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	togroundweapon=1;
+
+	[DAMAGE]
+		{
+		default=250;
+		}
+	}

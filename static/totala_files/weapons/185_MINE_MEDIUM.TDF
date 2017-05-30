@@ -1,0 +1,47 @@
+[MINE_MEDIUM]
+{
+	ID=185;
+	Name=Karganeth's anti-matter cannon;
+	RenderType=1;
+	lineofsight=1;
+	Turret=1;
+
+	model=Karg_gun;
+
+	groundbounce=1;
+	selfprop=1;
+	guidance=1;
+	Range=1040;
+	ReloadTime=0.72;
+	WeaponTimer=4;
+	WeaponVelocity=580;
+	AreaOfEffect=108;
+	turnrate=2300;
+	tolerance=1250;
+
+	SoundStart=Kargun;
+	SoundHit=Xplomed2;
+	SoundWater=SplsSml;
+
+	FireStarter=80;
+	BurnBlow=1;
+	smoketrail=1;
+	smokedelay=0.15;
+	energypershot=800;
+
+	ExplosionGAF=towers;
+	ExplosionArt=Bigboom;
+
+	WaterExplosionGAF=FX;
+	WaterExplosionArt=H2O;
+
+	LavaExplosionGAF=FX;
+	LavaExplosionArt=LavaSplash;
+
+	StartSmoke=1;
+
+	[DAMAGE]
+		{
+		Default=890;
+		}
+	}

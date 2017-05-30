@@ -1,0 +1,32 @@
+[ARMMAUL_EMG]
+	{
+	ID=140;
+	name=Alien EMG;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+	model=armmaul_emg;
+	range=400;
+	reloadtime=.5;
+	weapontimer=1;
+	weaponvelocity=500;
+	sprayangle=1024;
+	areaofeffect=16;
+	burst=3;
+	burstrate=.1;
+	soundstart=brawlemg;
+	tolerance=5000;
+	pitchtolerance=10000;
+	startsmoke=1;
+	explosiongaf=fx;
+	explosionart=blueshot;
+	waterexplosiongaf=fx;
+	waterexplostionart=h2oboom1;
+	lavaexplosingaf=fx;
+	lavaexplosionart=lavasplashsm;
+	
+	[DAMAGE]
+		{
+		default=65;
+		}
+	}

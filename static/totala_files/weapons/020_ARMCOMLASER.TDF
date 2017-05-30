@@ -1,0 +1,45 @@
+[ARMCOMLASER]
+{
+	ID=20;
+	name=Pocket Battleship Plasma;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=Pulse5;
+
+	range=700;
+	reloadtime=4.95;
+	weaponvelocity=825;
+	weapontimer=5;
+	areaofeffect=150;
+	soundstart=Plasma3;
+	soundhit=xplonuk1;
+
+	tolerance=500;
+	accuracy=120;
+
+	guidance=1;
+	tracks=1;
+	turnrate=3500;
+
+	energypershot=550;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+	shakemagnitude=8;
+	shakeduration=.4;
+
+	[DAMAGE]
+		{
+		default=900;
+		}
+	}

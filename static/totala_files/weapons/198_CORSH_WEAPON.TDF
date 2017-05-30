@@ -1,0 +1,47 @@
+[CORSH_WEAPON]
+{
+	ID=198;
+	name=Ketzer-Rockets;
+	rendertype=1;
+	ballistic=1;
+	turret=1;
+
+	model=Ketzer-Rakete;
+
+	range=750;
+	reloadtime=2;
+	weapontimer=5;
+	weaponvelocity=550;
+	startvelocity=400;
+	weaponacceleration=121;
+	turnrate=25000;
+	areaofeffect=48;
+	metalpershot=20;
+
+	soundstart=Ketzer-Rakete1;
+	soundhit=Ketzer-Rakete2;
+
+	firestarter=100;
+	smokedelay=.08;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=8000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=110;
+		}
+	}

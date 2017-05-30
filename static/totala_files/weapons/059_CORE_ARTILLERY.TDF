@@ -1,0 +1,34 @@
+[CORE_ARTILLERY]
+{
+	ID=59;
+	name=Dreadnaught Plasma Cannon;
+	rendertype=4;
+	lineofsight=1;
+	turret=1;
+
+	range=1165;
+	reloadtime=4.9;
+	weaponvelocity=660;
+	areaofeffect=80;
+	energypershot=1910;
+	areaofeffect=50;
+
+	soundstart=xplonuk4;
+	soundhit=xplonuk1;
+
+	explosiongaf=fx;
+	explosionart=NUKE1;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=1610;
+		}
+	}

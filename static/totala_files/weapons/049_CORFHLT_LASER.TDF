@@ -1,0 +1,159 @@
+[CORFHLT_LASER]
+{
+	ID=49;
+	name=Adv SAM Missile;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+	noautorange=1;
+
+	model=advsam;
+
+	range=2075;
+	reloadtime=9;
+	weapontimer=25;
+	weaponvelocity=1100;
+	startvelocity=300;
+	weaponacceleration=140;
+	turnrate=60768;
+	areaofeffect=180;
+	edgeeffectiveness=.65;
+	shakemagnitude=3;
+	shakeduration=.25;
+	metalpershot=15;
+
+	soundstart=GZMISSILE;
+	soundhit=samkillx;
+
+	firestarter=90;
+	smokedelay=0;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=10000;
+
+	explosiongaf=fx2;
+	explosionart=flakkexp;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+	
+	toairweapon=1;
+
+	[DAMAGE]
+	{
+		default=26;
+		ARMTHUND=690;
+		ARMBRAWL=690;
+		ARMPEEP=690;
+		ARMFIG=690;
+		ARMCA=690;
+		ARMACA=690;
+		ARMATLAS=690;
+		ARMPNIX=690;
+		ARMHAWK=690;
+		ARMLANCE=690;
+		ARMAWAC=690;
+		CORAWAC=690;
+		CORFINK=690;
+		CORVENG=690;
+		CORVAMP=690;
+		CORHURC=690;
+		CORTITAN=690;
+		CORACA=690;
+		CORSHAD=690;
+		CORAPE=690;
+		CORCA=690;
+		CORVALK=690;
+		ARMCSA=690;
+		ARMSEHAK=690;
+		ARMSEAP=690;
+		ARMSFIG=690;
+		CORCSA=690;
+		CORHUNT=690;
+		CORSFIG=690;
+		CORSEAP=690;
+		AAICA=690;
+		AAIACA=690;
+		AAICSA=690;
+		CAICA=690;
+		CAIACA=690;
+		CAICSA=690;
+		ARMSABER=690;
+		ARMSB=690;
+		CORCUT=690;
+		CORSB=690;
+		AAICP=690;
+		CAICP=690;
+		ARMCP=690;
+		CORCP=690;
+		ARMDFLY=690;
+		AAITHUND=690;
+		AAIBRAWL=690;
+		AAIFIG=690;
+		AAIPNIX=690;
+		AAIHAWK=690;
+		AAILANCE=690;
+		CAIVENG=690;
+		CAIVAMP=690;
+		CAIHURC=690;
+		CAITITAN=690;
+		CAISHAD=690;
+		CAIAPE=690;
+		AAISEAP=690;
+		AAISFIG=690;
+		CAISFIG=690;
+		CAISEAP=690;
+		AAISABER=690;
+		AAISB=690;
+		CAICUT=690;
+		CAISB=690;
+		AAIDFLY=690;
+		ARMBANI=690;
+		ARMJUGG=690;
+		ARMSPARROW=690;
+		CDRAGON=690;
+		CORMOSQ=690;
+		CORRAG=690;
+		GRYPHON=690;
+		SALTER=690;
+		AAISPARROW=690;
+		AAIBANI=690;
+		AIGRYPHON=690;
+		AIYPHON=690;
+		CAIMOSQ=690;
+		CAIDRAGON=690;
+		CAIRAG=690;
+		ARMMSA=690;
+		CORMSA=690;
+		ARMANS=690;
+		CORANS=690;
+		ARMMOUCHE=690;
+		armmauler=690;
+		gryphon=690;
+		CORRAG=690;
+		CORWING=690;
+		ARMCYBR=690;
+		CORBOMBN=690;
+		ARMSTRAT=690;
+		cdragon=690;
+		CORCRW=690;
+		CORVAMPIRO=690;
+		CORFALC=690;
+		RONDINE=690;
+		blackeagle=690;
+		blackar=690;
+		dragoth=690;
+		armcbomb=690;
+		advcb=690;
+		sqal=690;
+		blight=690;
+	}
+}
+

@@ -1,0 +1,37 @@
+[corbuild_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=corbuild_dead;
+	featuredead=corbuild_heap;
+	footprintx=4;
+	footprintz=4;
+	height=5;
+	blocking=1;
+	hitdensity=50;
+	metal=1300;
+	damage=1100;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+
+[corbuild_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4a;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=50;
+	metal=900;
+	damage=750;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}

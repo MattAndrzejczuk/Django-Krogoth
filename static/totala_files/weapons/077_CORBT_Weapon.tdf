@@ -1,0 +1,33 @@
+[CORBT_CANNON]
+	{
+	ID=77;
+	name=Metron Weapon;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=BTPulse;
+
+	range=815;
+	reloadtime=14.5;
+	weaponvelocity=500;
+	areaofeffect=148;
+	soundstart=Big_Cannon;
+	soundhit=Xplonuk5;
+
+	edgeeffectiveness=0.4;
+
+	explosiongaf=rogboom1;
+	explosionart=rogboom1;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	[DAMAGE]
+		{
+		default=3320;
+		}
+	}

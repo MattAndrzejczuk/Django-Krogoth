@@ -1,0 +1,37 @@
+[CORBHMTH_WEAPON]
+{
+	ID=252;
+	name=Behemoth Plasma Battery;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=1800;
+	reloadtime=0.5;
+	weaponvelocity=650;
+	areaofeffect=96;
+	accuracy=256;
+
+	edgeeffectiveness=0.75;
+
+	soundstart=xplonuk3;
+	soundhit=xplolrg3;
+
+	firestarter=99;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=480;
+	}
+}

@@ -1,0 +1,38 @@
+[ADVDEPTHCHARGE]
+{
+	ID=35;
+	name=Drake Guided Rockets;
+	rendertype=1;
+	lineofsight=1;
+	vlaunch=1;
+	model=temrocket;
+	range=690;
+	reloadtime=0.95;
+	weapontimer=0.3;
+	flighttime=8;
+	weaponvelocity=650;
+	startvelocity=220;
+	weaponacceleration=125;
+	turnrate=50000;
+	areaofeffect=64;
+	soundstart=MISSTAR2;
+	soundhit=xplomed4;
+	twophase=1;
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	explosiongaf=fx;
+	explosionart=explode3;
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+	startsmoke=1;
+	[DAMAGE]
+		{
+		default=85;
+		}
+}

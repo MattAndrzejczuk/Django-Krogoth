@@ -1,0 +1,37 @@
+[corbeac_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=CORE_corpses;
+	object=corbeac_dead;
+	featuredead=corbeac_heap;
+	footprintx=4;
+	footprintz=4;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=12021;
+	damage=2805;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+
+[corbeac_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4c;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=9618;
+	damage=1900;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+

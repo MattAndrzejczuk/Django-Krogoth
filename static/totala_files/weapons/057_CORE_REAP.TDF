@@ -1,0 +1,33 @@
+[CORE_REAP]
+{
+	ID=57;
+	name=Reaper Flamer;
+	rendertype=5;
+	lineofsight=1;
+	turret=1;
+
+	range=240;
+	reloadtime=0.5;
+	weapontimer=1;
+	weaponvelocity=258;
+	areaofeffect=48;
+	burst=40;
+	burstrate=.04;
+	sprayangle=2048;
+	randomdecay=.4;
+	soundstart=Flamhvy1;
+	firestarter=100;
+	groundbounce=1;
+	smokedelay=1;
+	startsmoke=0;
+	endsmoke=0;
+	tolerance=2000;
+
+	[DAMAGE]
+	{
+		default=8;
+		corpyro=2;
+		correap=2;
+	}
+}
+

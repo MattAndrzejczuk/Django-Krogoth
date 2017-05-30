@@ -1,0 +1,50 @@
+[armfhp_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=Armfhp_dead;
+	footprintx=8;
+	footprintz=7;
+	height=20;
+	blocking=0;
+	hitdensity=100;
+	metal=2007;
+	damage=2404;
+	reclaimable=1;
+        seqnamereclamate=tree1reclamate;
+}
+
+[armfhpe_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=Armfhpe_dead;
+	footprintx=7;
+	footprintz=8;
+	height=20;
+	blocking=0;
+	hitdensity=100;
+	metal=2007;
+	damage=2404;
+	reclaimable=1;
+        seqnamereclamate=tree1reclamate;
+}
+
+[armfhpw_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=Armfhpw_dead;
+	footprintx=7;
+	footprintz=8;
+	height=20;
+	blocking=0;
+	hitdensity=100;
+	metal=2007;
+	damage=2404;
+	reclaimable=1;
+        seqnamereclamate=tree1reclamate;
+}

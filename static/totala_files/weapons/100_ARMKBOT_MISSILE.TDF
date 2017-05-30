@@ -1,0 +1,156 @@
+[ARMKBOT_MISSILE]
+{
+	ID=100;
+	name=Jethro AA Missiles;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+	toairweapon=1;
+
+	model=missile;
+
+	range=704;
+	reloadtime=1.8;
+	weapontimer=5;
+	weaponvelocity=850;
+	startvelocity=650;
+	weaponacceleration=141;
+	turnrate=63000;
+	areaofeffect=48;
+	metalpershot=0;
+
+	soundstart=rocklit1;
+	soundhit=xplosml2;
+
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=9000;
+
+	explosiongaf=fx;
+	explosionart=explode4;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+	{
+		default=31;
+		ARMTHUND=135;
+		ARMBRAWL=135;
+		ARMPEEP=135;
+		ARMFIG=135;
+		ARMCA=135;
+		ARMACA=135;
+		ARMATLAS=135;
+		ARMPNIX=135;
+		ARMHAWK=135;
+		ARMLANCE=135;
+		ARMAWAC=135;
+		CORAWAC=135;
+		CORFINK=135;
+		CORVENG=135;
+		CORVAMP=135;
+		CORHURC=135;
+		CORTITAN=135;
+		CORACA=135;
+		CORSHAD=135;
+		CORAPE=135;
+		CORCA=135;
+		CORVALK=135;
+		ARMCSA=135;
+		ARMSEHAK=135;
+		ARMSEAP=135;
+		ARMSFIG=135;
+		CORCSA=135;
+		CORHUNT=135;
+		CORSFIG=135;
+		CORSEAP=135;
+		AAICA=135;
+		AAIACA=135;
+		AAICSA=135;
+		CAICA=135;
+		CAIACA=135;
+		CAICSA=135;
+		ARMSABER=135;
+		ARMSB=135;
+		CORCUT=135;
+		CORSB=135;
+		AAICP=135;
+		CAICP=135;
+		ARMCP=135;
+		CORCP=135;
+		ARMDFLY=135;
+		AAITHUND=135;
+		AAIBRAWL=135;
+		AAIFIG=135;
+		AAIPNIX=135;
+		AAIHAWK=135;
+		AAILANCE=135;
+		CAIVENG=135;
+		CAIVAMP=135;
+		CAIHURC=135;
+		CAITITAN=135;
+		CAISHAD=135;
+		CAIAPE=135;
+		AAISEAP=135;
+		AAISFIG=135;
+		CAISFIG=135;
+		CAISEAP=135;
+		AAISABER=135;
+		AAISB=135;
+		CAICUT=135;
+		CAISB=135;
+		AAIDFLY=135;
+		ARMBANI=135;
+		ARMJUGG=135;
+		ARMSPARROW=135;
+		CDRAGON=135;
+		CORMOSQ=135;
+		CORRAG=135;
+		GRYPHON=135;
+		SALTER=135;
+		AAISPARROW=135;
+		AAIBANI=135;
+		AIGRYPHON=135;
+		AIYPHON=135;
+		CAIMOSQ=135;
+		CAIDRAGON=135;
+		CAIRAG=135;
+		ARMMSA=135;
+		CORMSA=135;
+		ARMANS=135;
+		CORANS=135;
+		ARMMOUCHE=135;
+		armmauler=135;
+		gryphon=135;
+		CORRAG=135;
+		CORWING=135;
+		ARMCYBR=135;
+		CORBOMBN=135;
+		ARMSTRAT=135;
+		cdragon=135;
+		CORCRW=135;
+		CORVAMPIRO=135;
+		CORFALC=135;
+		RONDINE=135;
+		blackeagle=135;
+		blackar=135;
+		dragoth=135;
+		armcbomb=135;
+		advcb=135;
+		sqal=135;
+		blight=135;
+	}
+}
+
+
+

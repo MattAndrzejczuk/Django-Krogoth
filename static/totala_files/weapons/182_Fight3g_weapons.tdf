@@ -1,0 +1,82 @@
+[Krog_Killer]
+	{
+	ID=182;
+	name=KrogKiller Flare;
+	rendertype=1;
+	lineofsight=1;
+	vlaunch=1;
+	model=Flare3g;
+
+	range=1100;
+	reloadtime=60;
+	weapontimer=5;
+	flighttime=15;
+
+	commandfire=1;
+	weaponvelocity=700;
+	startvelocity=350;
+	weaponacceleration=50;
+	turnrate=63000;
+	areaofeffect=380;
+	edgeeffectiveness=0.90;
+
+	twophase=1;
+	cruise=1;
+	flighttime=600;
+
+	metalpershot=0;
+	energypershot=2500;
+
+	soundstart=Magfire3g;
+	soundhit=Maghit3g;
+
+	firestarter=70;
+	smokedelay=.01;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=9000;
+	propeller=1;
+
+	explosiongaf=CAExp2;
+	explosionart=pulse3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=500;
+		CORKROG=2200;
+		ARMBANTH=2200;
+		ARMWOLF=1200;
+		ARMPOD=900;
+		ARMRAZ=900;
+		ARMORCO=2200;
+		COREHELLRAISER=2200;
+		CORKARG=2200;
+		CORKETZ=842;
+		CORKTHUD=700;
+		VICTOR=900;
+		armdread=2200;
+		armMech=2200;
+		ARMTHOR=2200;
+		ARMTIGRE=2200;
+		CORBASI=717;
+		cordread=2200;
+		CORMHRV=714;
+		CORMONSTA=818;
+		CORTROLL=2200;
+		Nukcanarm=714;
+		VC109=865;
+		CORBT=545;
+		ARMDRAKE=1200;
+		CORUKBOT=2200;
+		corcoug=700;
+		}
+	}

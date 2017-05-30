@@ -1,0 +1,255 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, sonar1, sonar2, lwing, rwing, sonarholder1, sonarholder2, bombdrop;
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3, Static_Var_4;
+
+
+activatescr()
+{
+	if( TRUE )
+	{
+		move rwing to x-axis [0.] now;
+		move rwing to x-axis [5.] speed [6.];
+		move lwing to x-axis [-0.] now;
+		move lwing to x-axis [-5.] speed [6.];
+		sleep 675;
+	}
+	if( TRUE )
+	{
+		sleep 681;
+	}
+	if( TRUE )
+	{
+		move sonarholder1 to z-axis [4.] speed [6.];
+		move sonarholder2 to z-axis [4.] speed [6.];
+		sleep 679;
+	}
+	if( TRUE )
+	{
+		move sonarholder1 to z-axis [4.] speed [0.];
+		move sonarholder2 to z-axis [4.] speed [0.];
+		sleep 681;
+	}
+	sleep 679;
+	return (0);
+	// Build by COBBLER Ver4.0 Copyright @1998 DIGITAL CONCEPT SOFTWARE (MANU@inext.fr) / http://www.annihilationcenter.com/DCS/  
+}
+
+deactivatescr()
+{
+	if( TRUE )
+	{
+		move rwing to x-axis [5.] now;
+		move lwing to x-axis [-5.] now;
+		move sonarholder1 to z-axis [4.] now;
+		move sonarholder1 to z-axis [4.] speed [0.];
+		move sonarholder2 to z-axis [4.] now;
+		move sonarholder2 to z-axis [4.] speed [0.];
+		sleep 620;
+	}
+	if( TRUE )
+	{
+		move sonarholder1 to z-axis [0.] speed [6.];
+		move sonarholder2 to z-axis [0.] speed [7.];
+		sleep 627;
+	}
+	if( TRUE )
+	{
+		sleep 628;
+	}
+	if( TRUE )
+	{
+		move rwing to x-axis [0.] speed [7.];
+		move lwing to x-axis [-0.] speed [7.];
+		sleep 628;
+	}
+	sleep 631;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+InitState()
+{
+	Static_Var_3 = 1;
+	Static_Var_4 = 0;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( Static_Var_4 )
+	{
+		Static_Var_3 = requestedstate;
+		return (0);
+	}
+	Static_Var_4 = 1;
+	currentstate = Static_Var_3;
+	Static_Var_3 = requestedstate;
+	while( Static_Var_3 != currentstate )
+	{
+		if( Static_Var_3 == 0 )
+		{
+			call-script activatescr();
+			currentstate = 0;
+		}
+		if( Static_Var_3 == 1 )
+		{
+			call-script deactivatescr();
+			currentstate = 1;
+		}
+	}
+	Static_Var_4 = 0;
+}
+
+Create()
+{
+	call-script InitState();
+	start-script SmokeUnit();
+	Static_Var_2 = 1;
+}
+
+Activate()
+{
+	start-script RequestState(0);
+	spin sonar1 around y-axis speed <90.>;
+	spin sonar2 around y-axis speed <90.>;
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+	stop-spin sonar1 around y-axis;
+	stop-spin sonar2 around y-axis;
+}
+
+StartMoving()
+{
+	signal 2;
+	set-signal-mask 2;
+	while( TRUE )
+	{
+		if( Static_Var_1 == 3 )
+		{
+			emit-sfx 259 from sonarholder1;
+			emit-sfx 259 from sonarholder2;
+			emit-sfx 259 from base;
+			emit-sfx 259 from sonar1;
+			emit-sfx 259 from lwing;
+			emit-sfx 259 from sonar2;
+			emit-sfx 259 from rwing;
+		}
+		sleep 250;
+	}
+}
+
+StopMoving()
+{
+	signal 2;
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Static_Var_1 = Func_Var_1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = bombdrop;
+}
+
+AimPrimary(heading, pitch)
+{
+	while( !Static_Var_2 )
+	{
+		sleep 250;
+	}
+	return (1);
+}
+
+FirePrimary()
+{
+	Static_Var_2 = 0;
+	sleep 8500;
+	Static_Var_2 = 1;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode lwing type BITMAPONLY | BITMAP2;
+		explode rwing type BITMAPONLY | BITMAP3;
+		explode sonar1 type BITMAPONLY | BITMAP4;
+		explode sonar2 type BITMAPONLY | BITMAP5;
+		explode sonarholder1 type BITMAPONLY | BITMAP1;
+		explode sonarholder2 type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode lwing type BITMAPONLY | BITMAP2;
+		explode rwing type BITMAPONLY | BITMAP3;
+		explode sonar1 type SHATTER | BITMAP4;
+		explode sonar2 type BITMAPONLY | BITMAP5;
+		explode sonarholder1 type FALL | BITMAP1;
+		explode sonarholder2 type FALL | BITMAP2;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode lwing type BITMAPONLY | BITMAP2;
+		explode rwing type BITMAPONLY | BITMAP3;
+		explode sonar1 type SHATTER | BITMAP4;
+		explode sonar2 type BITMAPONLY | BITMAP5;
+		explode sonarholder1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode sonarholder2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode lwing type BITMAPONLY | BITMAP2;
+	explode rwing type BITMAPONLY | BITMAP3;
+	explode sonar1 type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode sonar2 type BITMAPONLY | BITMAP5;
+	explode sonarholder1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode sonarholder2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+}

@@ -1,0 +1,50 @@
+[corfhp_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=corfhp_dead;
+	footprintx=8;
+	footprintz=7;
+	height=20;
+	blocking=0;
+	hitdensity=100;
+	metal=1793;
+	damage=2685;
+	reclaimable=1;
+	seqnamereclamate=tree1reclamate;
+}
+
+[corfhpe_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=corfhpe_dead;
+	footprintx=7;
+	footprintz=8;
+	height=20;
+	blocking=0;
+	hitdensity=100;
+	metal=1793;
+	damage=2685;
+	reclaimable=1;
+	seqnamereclamate=tree1reclamate;
+}
+
+[corfhpw_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=corfhpw_dead;
+	footprintx=7;
+	footprintz=8;
+	height=20;
+	blocking=0;
+	hitdensity=100;
+	metal=1793;
+	damage=2685;
+	reclaimable=1;
+	seqnamereclamate=tree1reclamate;
+}

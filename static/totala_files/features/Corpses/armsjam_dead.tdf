@@ -1,0 +1,16 @@
+[armsjam_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=armsjam_dead;
+	footprintx=4;
+	footprintz=4;
+	height=40;
+	blocking=0;
+	hitdensity=100;
+	metal=105;
+	damage=408;
+	reclaimable=1;
+	seqnamereclamate=tree1reclamate;
+}

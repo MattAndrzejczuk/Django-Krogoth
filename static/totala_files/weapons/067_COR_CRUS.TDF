@@ -1,0 +1,47 @@
+[COR_CRUS]
+{
+	ID=67;
+	name=Executioner High Energy Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=735;
+	reloadtime=1.1;
+	energypershot=75;
+	weaponvelocity=900;
+	areaofeffect=16;
+	
+	soundstart=Lasrmas2;
+	soundhit=lasrhit1;
+
+	firestarter=90;
+	beamweapon=1;
+	color=96;	/* blue */
+	color2=98;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+
+	[DAMAGE]
+	{
+		default=154;
+		ARMREF=7;
+		armbrawl=38;
+		corape=38;
+		armsaber=38;
+		corcut=38;
+		armlance=38;
+		cortitan=38;
+		armseap=38;
+		corseap=38;
+	}
+}
+

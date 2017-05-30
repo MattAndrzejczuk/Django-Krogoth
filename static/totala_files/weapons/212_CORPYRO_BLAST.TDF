@@ -1,0 +1,32 @@
+[CORPYRO_BLAST]
+	{
+	ID=212;
+	name=Pyro Blast;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=128;
+	soundstart=largegun;
+	soundhit=xplolrg3;
+	edgeeffectiveness=0.9;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	shakemagnitude=2;
+	shakeduration=0.5;
+
+	[DAMAGE]
+	{
+		default=650;
+		corpyro=15;
+	}
+}
+

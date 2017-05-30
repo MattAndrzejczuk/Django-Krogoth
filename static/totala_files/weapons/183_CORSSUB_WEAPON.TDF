@@ -1,0 +1,50 @@
+[CORSSUB_WEAPON]
+{
+	ID=183;
+	name=Sniper Torpedo;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=snipedo;
+	propeller=1;
+
+	range=950;
+	reloadtime=45;
+	energypershot=1500;
+	weapontimer=55;
+	weaponvelocity=90;
+	startvelocity=50;
+	weaponacceleration=10;
+	turnrate=45500;
+	areaofeffect=128;
+	edgeeffectiveness=0.50;
+	commandfire=1;
+
+	soundstart=torpgun1;
+	soundhit=torpgun2;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	tolerance=37152;
+
+	explosiongaf=heviboom;
+	explosionart=heviboom;
+
+	waterexplosiongaf=heviboom;
+	waterexplosionart=heviboom;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+	{
+		default=4750;
+		armcom=720;
+		corcom=720;
+	}
+}
+

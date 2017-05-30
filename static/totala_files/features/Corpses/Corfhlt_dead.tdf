@@ -1,0 +1,16 @@
+[corfhlt_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=corfhlt_dead;
+	footprintx=3;
+	footprintz=3;
+	height=20;
+	blocking=0;
+	hitdensity=100;
+	metal=446;
+	damage=1908;
+	reclaimable=1;
+	seqnamereclamate=tree1reclamate;
+}

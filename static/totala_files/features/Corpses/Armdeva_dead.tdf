@@ -1,0 +1,38 @@
+[armdeva_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=armdeva_dead;
+	featuredead=armdeva_heap;
+	footprintx=4;
+	footprintz=4;
+	height=100;
+	blocking=1;
+	hitdensity=100;
+	metal=4360;
+	damage=2144;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+}
+
+[armdeva_heap]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4b;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=2180;
+	damage=2144;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+}
+

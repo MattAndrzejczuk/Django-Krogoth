@@ -1,0 +1,16 @@
+[armfhlt_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=armfhlt_dead;
+	footprintx=4;
+	footprintz=4;
+	height=20;
+	blocking=0;
+	hitdensity=100;
+	metal=419;
+	damage=1860;
+	reclaimable=1;
+	seqnamereclamate=tree1reclamate;
+}

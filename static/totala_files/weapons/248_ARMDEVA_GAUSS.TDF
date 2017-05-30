@@ -1,0 +1,28 @@
+[ARMDEVA_GAUSS]
+{
+	ID=248;
+	name=Very Heavy Gatling Gauss Cannon;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	range=1025;
+	reloadtime=0.5;
+	weaponvelocity=850;
+	areaofeffect=16;
+	soundstart=devgauss;
+	soundhit=xplolrg3;
+	minbarrelangle=-45;
+	noexplode=1;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	startsmoke=0;
+
+	Model=KrogShell;
+	[DAMAGE]
+	{
+		default=500;
+	}
+}

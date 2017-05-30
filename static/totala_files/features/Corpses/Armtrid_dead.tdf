@@ -1,0 +1,18 @@
+[armtrid_dead]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=armtrid_dead;
+	footprintx=4;
+	footprintz=4;
+	height=30;
+	blocking=0;
+	hitdensity=100;
+	metal=1731;
+	damage=5056;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+}
+
