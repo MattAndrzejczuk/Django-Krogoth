@@ -39,6 +39,12 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+def list_ta_units(request):
+    unitListPrettyJSON = LazarusListUnits()
+    unitListPrettyJSON.printContents()
+    return Response(
+        unitListPrettyJSON.jsonResponse, status=status.HTTP_200_OK
+    )
 
 class LazarusListUnits(GenericAPIView):
     f = []
