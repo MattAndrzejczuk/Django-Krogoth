@@ -13,7 +13,7 @@
             url      : '/ui/helper-classes',
             views    : {
                 'content@app': {
-                    templateUrl: 'app/main/ui/helper-classes/helper-classes.html',
+                    templateUrl: '/static/app/main/ui/helper-classes/helper-classes.html',
                     controller : 'HelperClassesController as vm'
                 }
             },

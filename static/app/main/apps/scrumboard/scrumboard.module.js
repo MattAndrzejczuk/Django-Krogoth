@@ -35,7 +35,7 @@
                 url  : '/boards',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/apps/scrumboard/views/boards/boards-view.html',
+                        templateUrl: '/static/app/main/apps/scrumboard/views/boards/boards-view.html',
                         controller : 'BoardsViewController as vm'
                     }
                 }
@@ -46,11 +46,11 @@
                     url    : '/:id/:uri',
                     views  : {
                         'content@app'                                  : {
-                            templateUrl: 'app/main/apps/scrumboard/scrumboard.html',
+                            templateUrl: '/static/app/main/apps/scrumboard/scrumboard.html',
                             controller : 'ScrumboardController as vm'
                         },
                         'scrumboardContent@app.scrumboard.boards.board': {
-                            templateUrl: 'app/main/apps/scrumboard/views/board/board-view.html',
+                            templateUrl: '/static/app/main/apps/scrumboard/views/board/board-view.html',
                             controller : 'BoardViewController as vm'
                         }
                     },
@@ -68,11 +68,11 @@
                     url    : '/add',
                     views  : {
                         'content@app'                                     : {
-                            templateUrl: 'app/main/apps/scrumboard/scrumboard.html',
+                            templateUrl: '/static/app/main/apps/scrumboard/scrumboard.html',
                             controller : 'ScrumboardController as vm'
                         },
                         'scrumboardContent@app.scrumboard.boards.addBoard': {
-                            templateUrl: 'app/main/apps/scrumboard/views/board/board-view.html',
+                            templateUrl: '/static/app/main/apps/scrumboard/views/board/board-view.html',
                             controller : 'BoardViewController as vm'
                         }
                     },
@@ -90,14 +90,14 @@
                 url  : '/calendar',
                 views: {
                     'scrumboardContent@app.scrumboard.boards.board': {
-                        templateUrl: 'app/main/apps/scrumboard/views/calendar/calendar-view.html',
+                        templateUrl: '/static/app/main/apps/scrumboard/views/calendar/calendar-view.html',
                         controller : 'CalendarViewController as vm'
                     }
                 }
             });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/apps/scrumboard');
+        $translatePartialLoaderProvider.addPart('/static/app/main/apps/scrumboard');
 
         // Api
         msApiProvider.register('scrumboard.boardList', ['app/data/scrumboard/board-list.json']);

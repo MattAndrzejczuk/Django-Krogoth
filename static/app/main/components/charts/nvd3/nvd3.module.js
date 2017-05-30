@@ -18,7 +18,7 @@
             url  : '/components/charts/nvd3',
             views: {
                 'content@app': {
-                    templateUrl: 'app/main/components/charts/nvd3/nvd3.html',
+                    templateUrl: '/static/app/main/components/charts/nvd3/nvd3.html',
                     controller : 'Nvd3Controller as vm'
                 }
             }

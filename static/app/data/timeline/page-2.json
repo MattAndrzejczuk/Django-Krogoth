@@ -2,7 +2,7 @@
     "data": [
         {
             "card": {
-                "template": "app/core/directives/ms-card/templates/template-3/template-3.html",
+                "template": "/static/app/core/directives/ms-card/templates/template-3/template-3.html",
                 "title": "Poison",
                 "subtitle": "Alice Cooper",
                 "cta": "LISTEN NOW",
@@ -19,7 +19,7 @@
         },
         {
             "card": {
-                "template": "app/core/directives/ms-card/templates/template-4/template-4.html",
+                "template": "/static/app/core/directives/ms-card/templates/template-4/template-4.html",
                 "title": "Nature",
                 "text": "Look deep into nature, then you will understand everything better. Look deep into nature, then you will understand everything better.",
                 "media": {
@@ -35,7 +35,7 @@
         },
         {
             "card": {
-                "template": "app/core/directives/ms-card/templates/template-5/template-5.html",
+                "template": "/static/app/core/directives/ms-card/templates/template-5/template-5.html",
                 "title": "Friends",
                 "event": "Andrew Ryan is now following you",
                 "media": {
@@ -51,7 +51,7 @@
         },
         {
             "card": {
-                "template": "app/core/directives/ms-card/templates/template-5/template-5.html",
+                "template": "/static/app/core/directives/ms-card/templates/template-5/template-5.html",
                 "title": "Friends",
                 "event": "Alice Freeman is now following you",
                 "media": {
@@ -67,7 +67,7 @@
         },
         {
             "card": {
-                "template": "app/core/directives/ms-card/templates/template-4/template-4.html",
+                "template": "/static/app/core/directives/ms-card/templates/template-4/template-4.html",
                 "title": "Nature",
                 "text": "Look deep into nature, then you will understand everything better",
                 "media": {

@@ -31,7 +31,7 @@
             url    : '/gantt-chart',
             views  : {
                 'content@app': {
-                    templateUrl: 'app/main/apps/gantt-chart/gantt-chart.html',
+                    templateUrl: '/static/app/main/apps/gantt-chart/gantt-chart.html',
                     controller : 'GanttChartController as vm'
                 }
             },
@@ -48,7 +48,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/apps/gantt-chart');
+        $translatePartialLoaderProvider.addPart('/static/app/main/apps/gantt-chart');
 
         // Navigation
         msNavigationServiceProvider.saveItem('apps.gantt-chart', {

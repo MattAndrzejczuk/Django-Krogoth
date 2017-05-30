@@ -19,11 +19,11 @@
             url      : '/pages/coming-soon',
             views    : {
                 'main@'                        : {
-                    templateUrl: 'app/core/layouts/content-only.html',
+                    templateUrl: '/static/app/core/layouts/content-only.html',
                     controller : 'MainController as vm'
                 },
                 'content@app.pages_coming-soon': {
-                    templateUrl: 'app/main/pages/coming-soon/coming-soon.html',
+                    templateUrl: '/static/app/main/pages/coming-soon/coming-soon.html',
                     controller : 'ComingSoonController as vm'
                 }
             },
@@ -31,7 +31,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/pages/coming-soon');
+        $translatePartialLoaderProvider.addPart('/static/app/main/pages/coming-soon');
 
         // Navigation
         msNavigationServiceProvider.saveItem('pages.coming-soon', {

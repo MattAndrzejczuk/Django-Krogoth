@@ -208,7 +208,7 @@
             $mdDialog.show({
                 controller         : 'EventDetailDialogController',
                 controllerAs       : 'vm',
-                templateUrl        : 'app/main/apps/calendar/dialogs/event-detail/event-detail-dialog.html',
+                templateUrl        : '/static/app/main/apps/calendar/dialogs/event-detail/event-detail-dialog.html',
                 parent             : angular.element($document.body),
                 targetEvent        : e,
                 clickOutsideToClose: true,
@@ -241,7 +241,7 @@
             $mdDialog.show({
                 controller         : 'EventFormDialogController',
                 controllerAs       : 'vm',
-                templateUrl        : 'app/main/apps/calendar/dialogs/event-form/event-form-dialog.html',
+                templateUrl        : '/static/app/main/apps/calendar/dialogs/event-form/event-form-dialog.html',
                 parent             : angular.element($document.body),
                 targetEvent        : e,
                 clickOutsideToClose: true,

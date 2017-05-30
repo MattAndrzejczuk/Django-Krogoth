@@ -20,7 +20,7 @@
             url      : '/dashboard-project',
             views    : {
                 'content@app': {
-                    templateUrl: 'app/main/apps/dashboards/project/dashboard-project.html',
+                    templateUrl: '/static/app/main/apps/dashboards/project/dashboard-project.html',
                     controller : 'DashboardProjectController as vm'
                 }
             },

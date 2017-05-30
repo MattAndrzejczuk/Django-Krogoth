@@ -13,7 +13,7 @@
             url  : '/ui/page-layouts/simple/fullwidth',
             views: {
                 'content@app': {
-                    templateUrl: 'app/main/ui/page-layouts/simple/fullwidth/fullwidth.html',
+                    templateUrl: '/static/app/main/ui/page-layouts/simple/fullwidth/fullwidth.html',
                     controller : 'SimpleFullwidthController as vm'
                 }
             }

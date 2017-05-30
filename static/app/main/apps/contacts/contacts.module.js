@@ -19,7 +19,7 @@
             url    : '/contacts',
             views  : {
                 'content@app': {
-                    templateUrl: 'app/main/apps/contacts/contacts.html',
+                    templateUrl: '/static/app/main/apps/contacts/contacts.html',
                     controller : 'ContactsController as vm'
                 }
             },
@@ -36,7 +36,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/apps/contacts');
+        $translatePartialLoaderProvider.addPart('/static/app/main/apps/contacts');
 
         // Api
         msApiProvider.register('contacts.contacts', ['app/data/contacts/contacts.json']);

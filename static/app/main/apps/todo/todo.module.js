@@ -20,7 +20,7 @@
             url      : '/to-do',
             views    : {
                 'content@app': {
-                    templateUrl: 'app/main/apps/todo/todo.html',
+                    templateUrl: '/static/app/main/apps/todo/todo.html',
                     controller : 'TodoController as vm'
                 }
             },
@@ -38,7 +38,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/apps/todo');
+        $translatePartialLoaderProvider.addPart('/static/app/main/apps/todo');
 
         // Api
         msApiProvider.register('todo.tasks', ['app/data/todo/tasks.json']);

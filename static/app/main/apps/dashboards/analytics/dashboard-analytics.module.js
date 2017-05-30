@@ -19,7 +19,7 @@
             url      : '/dashboard-analytics',
             views    : {
                 'content@app': {
-                    templateUrl: '/static/app/main/apps/dashboards/analytics/dashboard-analytics.html',
+                    templateUrl: '/static//static/app/main/apps/dashboards/analytics/dashboard-analytics.html',
                     controller : 'DashboardAnalyticsController as vm'
                 }
             },

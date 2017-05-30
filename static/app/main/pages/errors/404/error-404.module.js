@@ -14,11 +14,11 @@
             url      : '/pages/errors/error-404',
             views    : {
                 'main@'                             : {
-                    templateUrl: 'app/core/layouts/content-only.html',
+                    templateUrl: '/static/app/core/layouts/content-only.html',
                     controller : 'MainController as vm'
                 },
                 'content@app.pages_errors_error-404': {
-                    templateUrl: 'app/main/pages/errors/404/error-404.html',
+                    templateUrl: '/static/app/main/pages/errors/404/error-404.html',
                     controller : 'Error404Controller as vm'
                 }
             },
@@ -26,7 +26,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/pages/errors/404');
+        $translatePartialLoaderProvider.addPart('/static/app/main/pages/errors/404');
 
         // Navigation
         msNavigationServiceProvider.saveItem('pages.errors', {

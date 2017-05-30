@@ -19,11 +19,11 @@
                 url  : '/components/maps',
                 views: {
                     'content@app'                   : {
-                        templateUrl: 'app/main/components/maps/maps.html',
+                        templateUrl: '/static/app/main/components/maps/maps.html',
                         controller : 'MapsController as vm'
                     },
                     'tabContent@app.components_maps': {
-                        templateUrl: 'app/main/components/maps/tabs/simple.html'
+                        templateUrl: '/static/app/main/components/maps/tabs/simple.html'
                     }
                 }
             })
@@ -32,7 +32,7 @@
                 url  : '/satellite',
                 views: {
                     'tabContent': {
-                        templateUrl: 'app/main/components/maps/tabs/satellite.html'
+                        templateUrl: '/static/app/main/components/maps/tabs/satellite.html'
                     }
                 }
             })
@@ -41,7 +41,7 @@
                 url  : '/terrain',
                 views: {
                     'tabContent': {
-                        templateUrl: 'app/main/components/maps/tabs/terrain.html'
+                        templateUrl: '/static/app/main/components/maps/tabs/terrain.html'
                     }
                 }
             })
@@ -50,7 +50,7 @@
                 url  : '/simple-marker',
                 views: {
                     'tabContent': {
-                        templateUrl: 'app/main/components/maps/tabs/simple-marker.html'
+                        templateUrl: '/static/app/main/components/maps/tabs/simple-marker.html'
                     }
                 }
             })
@@ -59,7 +59,7 @@
                 url  : '/custom-marker',
                 views: {
                     'tabContent': {
-                        templateUrl: 'app/main/components/maps/tabs/custom-marker.html'
+                        templateUrl: '/static/app/main/components/maps/tabs/custom-marker.html'
                     }
                 }
             })
@@ -68,7 +68,7 @@
                 url  : '/info-window',
                 views: {
                     'tabContent': {
-                        templateUrl: 'app/main/components/maps/tabs/info-window.html'
+                        templateUrl: '/static/app/main/components/maps/tabs/info-window.html'
                     }
                 }
             });

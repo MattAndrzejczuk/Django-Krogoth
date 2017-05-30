@@ -30,7 +30,7 @@
                 url      : '/dashboard',
                 views    : {
                     'content@app': {
-                        templateUrl: 'app/main/apps/e-commerce/views/dashboard/dashboard.html',
+                        templateUrl: '/static/app/main/apps/e-commerce/views/dashboard/dashboard.html',
                         controller : 'DashboardEcommerceController as vm'
                     }
                 },
@@ -46,7 +46,7 @@
                 url      : '/products',
                 views    : {
                     'content@app': {
-                        templateUrl: 'app/main/apps/e-commerce/views/products/products.html',
+                        templateUrl: '/static/app/main/apps/e-commerce/views/products/products.html',
                         controller : 'ProductsController as vm'
                     }
                 },
@@ -62,7 +62,7 @@
                 url      : '/add',
                 views    : {
                     'content@app': {
-                        templateUrl: 'app/main/apps/e-commerce/views/product/product.html',
+                        templateUrl: '/static/app/main/apps/e-commerce/views/product/product.html',
                         controller : 'ProductController as vm'
                     }
                 },
@@ -78,7 +78,7 @@
                 url      : '/:id',
                 views    : {
                     'content@app': {
-                        templateUrl: 'app/main/apps/e-commerce/views/product/product.html',
+                        templateUrl: '/static/app/main/apps/e-commerce/views/product/product.html',
                         controller : 'ProductController as vm'
                     }
                 },
@@ -94,7 +94,7 @@
                 url      : '/orders',
                 views    : {
                     'content@app': {
-                        templateUrl: 'app/main/apps/e-commerce/views/orders/orders.html',
+                        templateUrl: '/static/app/main/apps/e-commerce/views/orders/orders.html',
                         controller : 'OrdersController as vm'
                     }
                 },
@@ -110,7 +110,7 @@
                 url      : '/:id',
                 views    : {
                     'content@app': {
-                        templateUrl: 'app/main/apps/e-commerce/views/order/order.html',
+                        templateUrl: '/static/app/main/apps/e-commerce/views/order/order.html',
                         controller : 'OrderController as vm'
                     }
                 },
@@ -128,7 +128,7 @@
             });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/apps/e-commerce');
+        $translatePartialLoaderProvider.addPart('/static/app/main/apps/e-commerce');
 
         // Api
         msApiProvider.register('e-commerce.dashboard', ['app/data/e-commerce/dashboard.json']);

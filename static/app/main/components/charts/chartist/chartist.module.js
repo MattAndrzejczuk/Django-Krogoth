@@ -18,7 +18,7 @@
             url  : '/components/charts/chartist',
             views: {
                 'content@app': {
-                    templateUrl: 'app/main/components/charts/chartist/chartist.html',
+                    templateUrl: '/static/app/main/components/charts/chartist/chartist.html',
                     controller : 'ChartistController as vm'
                 }
             }

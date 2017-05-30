@@ -15,7 +15,7 @@
                 url      : '/pages/invoice/modern',
                 views    : {
                     'content@app': {
-                        templateUrl: 'app/main/pages/invoice/views/modern/modern.html',
+                        templateUrl: '/static/app/main/pages/invoice/views/modern/modern.html',
                         controller : 'InvoiceController as vm'
                     }
                 },
@@ -31,7 +31,7 @@
                 url      : '/pages/invoice/compact',
                 views    : {
                     'content@app': {
-                        templateUrl: 'app/main/pages/invoice/views/compact/compact.html',
+                        templateUrl: '/static/app/main/pages/invoice/views/compact/compact.html',
                         controller : 'InvoiceController as vm'
                     }
                 },
@@ -45,7 +45,7 @@
             });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/pages/invoice');
+        $translatePartialLoaderProvider.addPart('/static/app/main/pages/invoice');
 
         // Api
         msApiProvider.register('invoice', ['app/data/invoice/invoice.json']);

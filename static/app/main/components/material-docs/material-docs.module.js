@@ -72,7 +72,7 @@
                 url  : '/components/angular-material/elements/' + component.url,
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/material-docs/material-doc-template.html',
+                        templateUrl: '/static/app/main/components/material-docs/material-doc-template.html',
                         controller : 'DocTemplateController as vm'
                     }
                 },
@@ -93,7 +93,7 @@
                 url  : '/components/angular-material/' + component.url,
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/material-docs/material-doc-basic-template.html',
+                        templateUrl: '/static/app/main/components/material-docs/material-doc-basic-template.html',
                         controller : 'BasicDocTemplateController as vm',
                     },
                 },
@@ -117,7 +117,7 @@
                 url  : '/components/angular-material/' + component.url,
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/material-docs/material-doc-basic-template.html',
+                        templateUrl: '/static/app/main/components/material-docs/material-doc-basic-template.html',
                         controller : 'BasicDocTemplateController as vm',
                     },
                 },

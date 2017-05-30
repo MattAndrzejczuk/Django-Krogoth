@@ -13,7 +13,7 @@
             url    : '/notes',
             views  : {
                 'content@app': {
-                    templateUrl: 'app/main/apps/notes/notes.html',
+                    templateUrl: '/static/app/main/apps/notes/notes.html',
                     controller : 'NotesController as vm'
                 }
             },
@@ -30,7 +30,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/apps/notes');
+        $translatePartialLoaderProvider.addPart('/static/app/main/apps/notes');
 
         // Api
         msApiProvider.register('notes.notes', ['app/data/notes/notes.json']);

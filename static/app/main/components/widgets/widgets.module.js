@@ -18,7 +18,7 @@
             url  : '/components/widgets',
             views: {
                 'content@app': {
-                    templateUrl: 'app/main/components/widgets/widgets.html',
+                    templateUrl: '/static/app/main/components/widgets/widgets.html',
                     controller : 'WidgetsController as vm'
                 }
             }

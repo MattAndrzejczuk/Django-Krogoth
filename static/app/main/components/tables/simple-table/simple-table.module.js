@@ -13,7 +13,7 @@
             url  : '/components/table/simple-table',
             views: {
                 'content@app': {
-                    templateUrl: 'app/main/components/tables/simple-table/simple-table.html',
+                    templateUrl: '/static/app/main/components/tables/simple-table/simple-table.html',
                     controller : 'SimpleTableController as vm'
                 }
             },

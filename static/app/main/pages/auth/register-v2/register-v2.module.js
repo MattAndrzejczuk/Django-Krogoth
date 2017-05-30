@@ -14,11 +14,11 @@
             url      : '/pages/auth/register-v2',
             views    : {
                 'main@'                          : {
-                    templateUrl: 'app/core/layouts/content-only.html',
+                    templateUrl: '/static/app/core/layouts/content-only.html',
                     controller : 'MainController as vm'
                 },
                 'content@app.pages_auth_register-v2': {
-                    templateUrl: 'app/main/pages/auth/register-v2/register-v2.html',
+                    templateUrl: '/static/app/main/pages/auth/register-v2/register-v2.html',
                     controller : 'RegisterV2Controller as vm'
                 }
             },
@@ -26,7 +26,7 @@
         });
 
         // Translate
-        $translatePartialLoaderProvider.addPart('app/main/pages/auth/register-v2');
+        $translatePartialLoaderProvider.addPart('/static/app/main/pages/auth/register-v2');
 
         // Navigation
         msNavigationServiceProvider.saveItem('pages.auth.register-v2', {

@@ -18,7 +18,7 @@
             url  : '/components/charts/c3',
             views: {
                 'content@app': {
-                    templateUrl: 'app/main/components/charts/c3/c3.html',
+                    templateUrl: '/static/app/main/components/charts/c3/c3.html',
                     controller : 'C3Controller as vm'
                 }
             }

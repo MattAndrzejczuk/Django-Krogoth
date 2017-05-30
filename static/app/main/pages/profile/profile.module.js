@@ -13,7 +13,7 @@
             url      : '/pages/profile',
             views    : {
                 'content@app': {
-                    templateUrl: 'app/main/pages/profile/profile.html',
+                    templateUrl: '/static/app/main/pages/profile/profile.html',
                     controller : 'ProfileController as vm'
                 }
             },
@@ -35,7 +35,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/pages/profile');
+        $translatePartialLoaderProvider.addPart('/static/app/main/pages/profile');
 
         // Api
         msApiProvider.register('profile.timeline', ['app/data/profile/timeline.json']);

@@ -13,7 +13,7 @@
             url      : '/ui/forms',
             views    : {
                 'content@app': {
-                    templateUrl: 'app/main/ui/forms/forms.html',
+                    templateUrl: '/static/app/main/ui/forms/forms.html',
                     controller : 'FormsController as vm'
                 }
             },

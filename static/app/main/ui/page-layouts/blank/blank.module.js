@@ -13,7 +13,7 @@
             url  : '/ui/page-layouts/blank',
             views: {
                 'content@app': {
-                    templateUrl: 'app/main/ui/page-layouts/blank/blank.html',
+                    templateUrl: '/static/app/main/ui/page-layouts/blank/blank.html',
                     controller : 'BlankController as vm'
                 }
             }

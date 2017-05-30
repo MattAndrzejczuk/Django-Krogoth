@@ -2,7 +2,7 @@
     "data": [
         {
             "card": {
-                "template": "app/core/directives/ms-card/templates/template-9/template-9.html",
+                "template": "/static/app/core/directives/ms-card/templates/template-9/template-9.html",
                 "avatar": {
                     "src": "assets/images/avatars/alice.jpg",
                     "alt": "Alice Freeman"

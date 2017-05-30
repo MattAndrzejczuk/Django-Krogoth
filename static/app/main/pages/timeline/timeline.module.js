@@ -15,7 +15,7 @@
                 url      : '/pages/timeline',
                 views    : {
                     'content@app': {
-                        templateUrl: 'app/main/pages/timeline/timeline.html',
+                        templateUrl: '/static/app/main/pages/timeline/timeline.html',
                         controller : 'TimelineController as vm'
                     }
                 },
@@ -31,7 +31,7 @@
                 url      : '/pages/timeline-left',
                 views    : {
                     'content@app': {
-                        templateUrl: 'app/main/pages/timeline/timeline-left.html',
+                        templateUrl: '/static/app/main/pages/timeline/timeline-left.html',
                         controller : 'TimelineController as vm'
                     }
                 },
@@ -47,7 +47,7 @@
                 url      : '/pages/timeline-right',
                 views    : {
                     'content@app': {
-                        templateUrl: 'app/main/pages/timeline/timeline-right.html',
+                        templateUrl: '/static/app/main/pages/timeline/timeline-right.html',
                         controller : 'TimelineController as vm'
                     }
                 },

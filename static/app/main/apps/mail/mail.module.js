@@ -34,7 +34,7 @@
                 url      : '/{type:(?:label)}/:filter',
                 views    : {
                     'content@app': {
-                        templateUrl: 'app/main/apps/mail/mail.html',
+                        templateUrl: '/static/app/main/apps/mail/mail.html',
                         controller : 'MailController as vm'
                     }
                 },
@@ -52,7 +52,7 @@
             });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/apps/mail');
+        $translatePartialLoaderProvider.addPart('/static/app/main/apps/mail');
 
         // Api
         msApiProvider.register('mail.folders', ['app/data/mail/folders.json']);

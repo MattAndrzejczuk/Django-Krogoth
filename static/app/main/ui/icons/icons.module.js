@@ -13,7 +13,7 @@
             url      : '/ui/icons',
             views    : {
                 'content@app': {
-                    templateUrl: 'app/main/ui/icons/icons.html',
+                    templateUrl: '/static/app/main/ui/icons/icons.html',
                     controller : 'IconsController as vm'
                 }
             },

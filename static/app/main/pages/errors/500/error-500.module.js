@@ -14,11 +14,11 @@
             url      : '/pages/errors/error-500',
             views    : {
                 'main@'                             : {
-                    templateUrl: 'app/core/layouts/content-only.html',
+                    templateUrl: '/static/app/core/layouts/content-only.html',
                     controller : 'MainController as vm'
                 },
                 'content@app.pages_errors_error-500': {
-                    templateUrl: 'app/main/pages/errors/500/error-500.html',
+                    templateUrl: '/static/app/main/pages/errors/500/error-500.html',
                     controller : 'Error500Controller as vm'
                 }
             },
@@ -26,7 +26,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/pages/errors/500');
+        $translatePartialLoaderProvider.addPart('/static/app/main/pages/errors/500');
 
         // Navigation
         msNavigationServiceProvider.saveItem('pages.errors.error-500', {

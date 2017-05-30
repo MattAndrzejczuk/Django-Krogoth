@@ -19,7 +19,7 @@
                 url  : '/ms-card',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-card.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-card.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -28,7 +28,7 @@
                 url  : '/ms-form-wizard',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-form-wizard.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-form-wizard.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -37,7 +37,7 @@
                 url  : '/ms-info-bar',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-info-bar.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-info-bar.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -46,7 +46,7 @@
                 url  : '/ms-masonry',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-masonry.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-masonry.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -55,7 +55,7 @@
                 url  : '/ms-material-color-picker',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-material-color-picker.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-material-color-picker.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -64,7 +64,7 @@
                 url  : '/ms-nav',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-nav.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-nav.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -73,7 +73,7 @@
                 url  : '/ms-navigation',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-navigation.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-navigation.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -82,7 +82,7 @@
                 url  : '/ms-random-class',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-random-class.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-random-class.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -91,7 +91,7 @@
                 url  : '/ms-responsive-table',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-responsive-table.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-responsive-table.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -100,7 +100,7 @@
                 url  : '/ms-scroll',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-scroll.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-scroll.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -109,7 +109,7 @@
                 url  : '/ms-search-bar',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-search-bar.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-search-bar.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -118,7 +118,7 @@
                 url  : '/ms-shortcuts',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-shortcuts.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-shortcuts.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -127,7 +127,7 @@
                 url  : '/ms-sidenav-helper',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-sidenav-helper.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-sidenav-helper.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -136,7 +136,7 @@
                 url  : '/ms-splash-screen',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-splash-screen.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-splash-screen.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -145,7 +145,7 @@
                 url  : '/ms-stepper',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-stepper.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-stepper.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -154,7 +154,7 @@
                 url  : '/ms-timeline',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-timeline.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-timeline.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }
@@ -163,7 +163,7 @@
                 url  : '/ms-widget',
                 views: {
                     'content@app': {
-                        templateUrl: 'app/main/components/custom-directives/pages/ms-widget.html',
+                        templateUrl: '/static/app/main/components/custom-directives/pages/ms-widget.html',
                         controller : 'CustomDirectivesController as vm'
                     }
                 }

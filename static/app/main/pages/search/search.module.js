@@ -14,7 +14,7 @@
             url      : '/pages/search',
             views    : {
                 'content@app': {
-                    templateUrl: 'app/main/pages/search/search.html',
+                    templateUrl: '/static/app/main/pages/search/search.html',
                     controller : 'SearchController as vm'
                 }
             },
@@ -40,7 +40,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/pages/search');
+        $translatePartialLoaderProvider.addPart('/static/app/main/pages/search');
 
         // Api
         msApiProvider.register('search.classic', ['app/data/search/classic.json']);

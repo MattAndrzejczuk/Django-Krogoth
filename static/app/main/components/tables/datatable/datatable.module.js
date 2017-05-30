@@ -18,7 +18,7 @@
             url    : '/components/table/datatable',
             views  : {
                 'content@app': {
-                    templateUrl: 'app/main/components/tables/datatable/datatable.html',
+                    templateUrl: '/static/app/main/components/tables/datatable/datatable.html',
                     controller : 'DatatableController as vm'
                 }
             },
