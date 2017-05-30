@@ -16,7 +16,7 @@ from redis import ConnectionPool, StrictRedis
 from jawn import settings as redis_settings
 from django.template import loader
 from django.http import HttpResponse
-
+import json
 import os
 from os import walk
 from PIL import Image
@@ -118,7 +118,7 @@ class LazarusListUnits():
 
     def get(self, request):
         self.printContents()
-        return Response(self.jsonResponse)
+        return Response(json.dumps(self.jsonResponse))
 
 
 class LoginView(GenericAPIView):
