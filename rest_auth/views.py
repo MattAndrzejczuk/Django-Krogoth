@@ -70,7 +70,7 @@ class LazarusListUnits(APIView):
 
 
     def printSubContents(self, pathName):
-        jsonResponse = []
+        #jsonResponse = []
 
         for (dirpath, dirnames, filenames) in walk(self.root + pathName):
             print('PATHNAME')
@@ -79,20 +79,21 @@ class LazarusListUnits(APIView):
                 for file in filenames:
                     filename, file_extension = os.path.splitext(file)
             # print(file_extension + "     :     " + filename)
-                    print(self.root + pathName + '/' + file)
-                    print( file_extension.lower())
+                    #print(self.root + pathName + '/' + file)
+                    #print( file_extension.lower())
                     pathToFile = self.root + pathName + '/' + file
                 #if file_extension.lower() == '.pcx':
                     try:
                         img = Image.open(pathToFile)
                         imgSaveTo = self.root + pathName + '/' + filename + '.png'
                         img.save(imgSaveTo, format='png')
-                        jsonResponse.append({'thumbnail': imgSaveTo, 'object_name':filename})
+                        self.jsonResponse.append({'thumbnail': imgSaveTo, 'object_name':filename})
                     except:
                         print('OHHHH SHIT!!!')
                 #break
 
-        print(jsonResponse)
+        print("RAHHHH@H@@@@")
+        print(self.jsonResponse)
         return jsonResponse
 
     def printContents(self):
