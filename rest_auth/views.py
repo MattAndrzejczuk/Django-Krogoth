@@ -65,7 +65,7 @@ class LazarusListUnits(APIView):
         self.d = []
         self.output_final = open('workfile', 'w')
         self.jsonResponse = []
-        self.root = os.path.join(BASE_DIR, 'static') + '/'
+        self.root = '/usr/src/app/static/totala_files/'
 
 
 
