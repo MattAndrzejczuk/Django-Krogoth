@@ -47,9 +47,10 @@ def index(request):
 def list_ta_units(request):
     unitListPrettyJSON = LazarusListUnits()
     unitListPrettyJSON.printContents()
-    return HttpResponse(
-        unitListPrettyJSON.jsonResponse, status=status.HTTP_200_OK
-    )
+    return Response(json.dumps(unitListPrettyJSON.jsonResponse))
+    # return HttpResponse(
+    #     unitListPrettyJSON.jsonResponse, status=status.HTTP_200_OK
+    # )
 
 class LazarusListUnits:
     f = []
