@@ -87,7 +87,13 @@ class LazarusListUnits(APIView):
                         img = Image.open(pathToFile)
                         imgSaveTo = self.root + pathName + '/' + filename + '.png'
                         img.save(imgSaveTo, format='png')
-                        self.jsonResponse.append({'thumbnail': imgSaveTo, 'object_name':filename})
+                        self.jsonResponse.append(
+                            {
+                                'thumbnail': '/static/totala_files/unitpics/' + filename + '.png',
+                                'object_name':filename,
+                                'system_location': imgSaveTo
+                            }
+                        )
                     except:
                         print('OHHHH SHIT!!!')
                 #break
