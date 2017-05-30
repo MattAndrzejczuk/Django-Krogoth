@@ -52,7 +52,7 @@ def list_ta_units(request):
     #     unitListPrettyJSON.jsonResponse, status=status.HTTP_200_OK
     # )
 
-class LazarusListUnits:
+class LazarusListUnits(APIView):
     f = []
     d = []
     output_final = open('workfile', 'w')
@@ -112,10 +112,6 @@ class LazarusListUnits:
         return Response({"success": "Successfully logged out."},
                         status=status.HTTP_200_OK)
 
-    def get_response(self):
-        return Response(
-            self.jsonResponse, status=status.HTTP_200_OK
-        )
 
     def get(self, request, format=None):
         unitListPrettyJSON = LazarusListUnits()
