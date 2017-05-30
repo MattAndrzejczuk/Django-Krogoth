@@ -17,6 +17,11 @@ from jawn import settings as redis_settings
 from django.template import loader
 from django.http import HttpResponse
 
+import os
+from os import walk
+from PIL import Image
+
+
 from .app_settings import (
     TokenSerializer, UserDetailsSerializer, LoginSerializer,
     PasswordResetSerializer, PasswordResetConfirmSerializer,
