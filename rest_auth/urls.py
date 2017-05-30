@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, url
 from rest_auth import views
 
+
 from rest_auth.views import (
     LoginView, LogoutView, UserDetailsView, PasswordChangeView,
     PasswordResetView, PasswordResetConfirmView

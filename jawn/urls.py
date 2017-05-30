@@ -19,6 +19,7 @@ from rest_framework import renderers
 from rest_framework.routers import DefaultRouter
 from chat.views import *
 from django.contrib import admin
+from rest_auth.views import LazarusListUnits
 
 import rest_auth
 
