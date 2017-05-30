@@ -8,7 +8,7 @@
                 "cta": "LISTEN NOW",
                 "media": {
                     "image": {
-                        "src": "assets/images/etc/alice-cooper-poison.jpg",
+                        "src": "/static/assets/images/etc/alice-cooper-poison.jpg",
                         "alt": "Alice Cooper - Poison"
                     }
                 }
@@ -24,7 +24,7 @@
                 "text": "Look deep into nature, then you will understand everything better. Look deep into nature, then you will understand everything better.",
                 "media": {
                     "image": {
-                        "src": "assets/images/etc/avenue.jpg",
+                        "src": "/static/assets/images/etc/avenue.jpg",
                         "alt": "Avenue"
                     }
                 }
@@ -40,7 +40,7 @@
                 "event": "Andrew Ryan is now following you",
                 "media": {
                     "image": {
-                        "src": "assets/images/avatars/vincent.jpg",
+                        "src": "/static/assets/images/avatars/vincent.jpg",
                         "alt": "Andrew Ryan"
                     }
                 }
@@ -56,7 +56,7 @@
                 "event": "Alice Freeman is now following you",
                 "media": {
                     "image": {
-                        "src": "assets/images/avatars/alice.jpg",
+                        "src": "/static/assets/images/avatars/alice.jpg",
                         "alt": "Alice Freeman"
                     }
                 }
@@ -72,7 +72,7 @@
                 "text": "Look deep into nature, then you will understand everything better",
                 "media": {
                     "image": {
-                        "src": "assets/images/etc/early-sunrise.jpg",
+                        "src": "/static/assets/images/etc/early-sunrise.jpg",
                         "alt": "Avenue"
                     }
                 }
