@@ -19,7 +19,7 @@
             url      : '/file-manager',
             views    : {
                 'content@app': {
-                    templateUrl: '/static//static/app/main/apps/file-manager/file-manager.html',
+                    templateUrl: '/static/app/main/apps/file-manager/file-manager.html',
                     controller : 'FileManagerController as vm'
                 }
             },
@@ -33,7 +33,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('/static//static/app/main/apps/file-manager');
+        $translatePartialLoaderProvider.addPart('/static/app/main/apps/file-manager');
 
         // Api
         msApiProvider.register('fileManager.documents', ['/static/app/data/file-manager/documents.json']);
