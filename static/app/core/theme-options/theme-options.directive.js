@@ -55,7 +55,7 @@
                 label : 'Content Only',
                 value : 'contentOnly',
                 figure: '/static/assets/images/theme-options/content-only.jpg'
-            },
+            }
         ];
 
         vm.layoutMode = 'wide';

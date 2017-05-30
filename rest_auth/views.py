@@ -40,6 +40,72 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
+class LazarusListUnits(GenericAPIView):
+    f = []
+    d = []
+    output_final = open('workfile', 'w')
+    jsonResponse = []
+    root = ''
+
+
+    def __init__(self):
+        self.f = []
+        self.d = []
+        self.output_final = open('workfile', 'w')
+        self.jsonResponse = []
+        self.root = 'HPI2/'
+
+
+
+    def printSubContents(self, pathName):
+        for (dirpath, dirnames, filenames) in walk(self.root + pathName):
+            print('PATHNAME')
+
+            if pathName == 'unitpics':
+                for file in filenames:
+                    filename, file_extension = os.path.splitext(file)
+            # print(file_extension + "     :     " + filename)
+                    print(self.root + pathName + '/' + file)
+                    print( file_extension.lower())
+                    pathToFile = self.root + pathName + '/' + file
+                #if file_extension.lower() == '.pcx':
+                    try:
+                        img = Image.open(pathToFile)
+                        imgSaveTo = self.root + pathName + '/' + filename + '.png'
+                        img.save(imgSaveTo, format='png')
+                        self.jsonResponse.append({'thumbnail': imgSaveTo, 'object_name':filename})
+                    except:
+                        print('OHHHH SHIT!!!')
+                break
+
+    def printContents(self):
+        for (dirpath, dirnames, filenames) in walk(self.root):
+            self.f.extend(filenames)
+            self.d.extend(dirnames)
+            for path in dirnames:
+                self.printSubContents(path)
+            break
+
+    def printUnitFBI(self):
+        return
+    # data = open('HPI/' + pathName + '/' + file, 'r')
+    # try:
+    #     output_final.write(data.read())
+    # except:
+    #     print('FAIL')
+    # print(file_extension)
+
+
+    def getUnitInfo(self, unitId):
+        return Response({"success": "Successfully logged out."},
+                        status=status.HTTP_200_OK)
+
+    def get_response(self):
+        return Response(
+            self.jsonResponse, status=status.HTTP_200_OK
+        )
+
+
 class LoginView(GenericAPIView):
 
     """

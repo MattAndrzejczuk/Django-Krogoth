@@ -44,4 +44,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^', rest_auth.views.index),
+    url(r'^lazarus/', LazarusListUnits.as_view())
 ]
