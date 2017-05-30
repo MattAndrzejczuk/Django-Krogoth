@@ -26,9 +26,9 @@
             'app.quick-panel',
 
             // Apps
-            'app.dashboards',
-            'app.calendar',
-            'app.e-commerce',
+            //'app.dashboards',
+            //'app.calendar',
+            //'app.e-commerce',
             'app.mail',
             'app.chat',
             'app.file-manager',
