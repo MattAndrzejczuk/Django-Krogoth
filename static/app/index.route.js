@@ -11,7 +11,7 @@
     {
         $locationProvider.html5Mode(true);
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/dashboard-project');
 
         /**
          * Layout Style Switcher

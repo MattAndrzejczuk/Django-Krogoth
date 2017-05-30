@@ -16,7 +16,7 @@
     {
         // State
         $stateProvider.state('app.file-manager', {
-            url      : '/',
+            url      : '/file-manager',
             views    : {
                 'content@app': {
                     templateUrl: '/static/app/main/apps/file-manager/file-manager.html',
