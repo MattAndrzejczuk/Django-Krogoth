@@ -19,7 +19,7 @@
             url      : '/file-manager',
             views    : {
                 'content@app': {
-                    templateUrl: 'app/main/apps/file-manager/file-manager.html',
+                    templateUrl: '/static/app/main/apps/file-manager/file-manager.html',
                     controller : 'FileManagerController as vm'
                 }
             },
@@ -33,10 +33,10 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/apps/file-manager');
+        $translatePartialLoaderProvider.addPart('/static/app/main/apps/file-manager');
 
         // Api
-        msApiProvider.register('fileManager.documents', ['app/data/file-manager/documents.json']);
+        msApiProvider.register('fileManager.documents', ['/static/app/data/file-manager/documents.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('apps.file-manager', {
