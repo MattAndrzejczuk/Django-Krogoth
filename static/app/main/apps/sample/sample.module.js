@@ -33,6 +33,7 @@
         // Api
         msApiProvider.register('sample', ['/static/app/data/sample/sample.json']);
 
+        /*
         // Navigation
         msNavigationServiceProvider.saveItem('fuse', {
             title : 'SAMPLE',
@@ -44,11 +45,12 @@
             title    : 'Sample',
             icon     : 'icon-tile-four',
             state    : 'app.sample',
-            /*stateParams: {
-                'param1': 'page'
-             },*/
+            //stateParams: {
+            //    'param1': 'page'
+            // },
             translate: 'SAMPLE.SAMPLE_NAV',
             weight   : 1
         });
+        */
     }
 })();

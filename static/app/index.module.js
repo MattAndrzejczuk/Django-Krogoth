@@ -37,7 +37,7 @@
             'app.todo',
             'app.contacts',
             'app.notes',
-            'app.sample',
+
 
             // Pages
             'app.pages',
@@ -46,6 +46,8 @@
             'app.ui',
 
             // Components
-            'app.components'
+            'app.components',
+
+            'app.sample'
         ]);
 })();
