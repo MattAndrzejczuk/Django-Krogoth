@@ -13,7 +13,7 @@
         $locationProvider.hashPrefix('#!');
         $locationProvider.html5Mode(true);
 
-        $urlRouterProvider.otherwise('#!/dashboard-project');
+        $urlRouterProvider.otherwise('/dashboard-project');
 
         /**
          * Layout Style Switcher
