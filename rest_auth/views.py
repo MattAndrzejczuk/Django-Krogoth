@@ -91,6 +91,8 @@ class LazarusListUnits(APIView):
                     except:
                         print('OHHHH SHIT!!!')
                 break
+
+        print(jsonResponse)
         return jsonResponse
 
     def printContents(self):
