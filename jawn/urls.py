@@ -20,6 +20,8 @@ from rest_framework.routers import DefaultRouter
 from chat.views import *
 from django.contrib import admin
 
+import rest_auth
+
 router = DefaultRouter()
 router.register(r'users', UserViewSet, 'User')
 router.register(r'jawn-users', JawnUserViewSet, 'Jawn User')
@@ -41,5 +43,5 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
-
+    url(r'^armprime/$', rest_auth.views.index),
 ]
