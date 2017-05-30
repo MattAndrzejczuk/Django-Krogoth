@@ -33,8 +33,8 @@
         $translatePartialLoaderProvider.addPart('/static/app/main/apps/notes');
 
         // Api
-        msApiProvider.register('notes.notes', ['app/data/notes/notes.json']);
-        msApiProvider.register('notes.labels', ['app/data/notes/labels.json']);
+        msApiProvider.register('notes.notes', ['/static/app/data/notes/notes.json']);
+        msApiProvider.register('notes.labels', ['/static/app/data/notes/labels.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('apps.notes', {

@@ -131,10 +131,10 @@
         $translatePartialLoaderProvider.addPart('/static/app/main/apps/e-commerce');
 
         // Api
-        msApiProvider.register('e-commerce.dashboard', ['app/data/e-commerce/dashboard.json']);
-        msApiProvider.register('e-commerce.products', ['app/data/e-commerce/products.json']);
-        msApiProvider.register('e-commerce.orders', ['app/data/e-commerce/orders.json']);
-        msApiProvider.register('e-commerce.order-statuses', ['app/data/e-commerce/order-statuses.json']);
+        msApiProvider.register('e-commerce.dashboard', ['/static/app/data/e-commerce/dashboard.json']);
+        msApiProvider.register('e-commerce.products', ['/static/app/data/e-commerce/products.json']);
+        msApiProvider.register('e-commerce.orders', ['/static/app/data/e-commerce/orders.json']);
+        msApiProvider.register('e-commerce.order-statuses', ['/static/app/data/e-commerce/order-statuses.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('apps.e-commerce', {

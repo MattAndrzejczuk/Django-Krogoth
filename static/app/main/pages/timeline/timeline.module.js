@@ -61,9 +61,9 @@
             });
 
         // API
-        msApiProvider.register('timeline.page1', ['app/data/timeline/page-1.json']);
-        msApiProvider.register('timeline.page2', ['app/data/timeline/page-2.json']);
-        msApiProvider.register('timeline.page3', ['app/data/timeline/page-3.json']);
+        msApiProvider.register('timeline.page1', ['/static/app/data/timeline/page-1.json']);
+        msApiProvider.register('timeline.page2', ['/static/app/data/timeline/page-2.json']);
+        msApiProvider.register('timeline.page3', ['/static/app/data/timeline/page-3.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('pages.timeline', {

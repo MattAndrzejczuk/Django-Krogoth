@@ -178,7 +178,7 @@
         var api = {};
 
         // Base Url
-        api.baseUrl = 'app/data/';
+        api.baseUrl = '/static/app/data/';
 
         /**
          * Here you can find all the definitions that the Demo Project requires

@@ -31,7 +31,7 @@
         });
 
         // Api
-        msApiProvider.register('tables.employees100', ['app/data/tables/employees100.json']);
+        msApiProvider.register('tables.employees100', ['/static/app/data/tables/employees100.json']);
     }
 
 })();

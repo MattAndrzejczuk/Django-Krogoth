@@ -100,8 +100,8 @@
         $translatePartialLoaderProvider.addPart('/static/app/main/apps/scrumboard');
 
         // Api
-        msApiProvider.register('scrumboard.boardList', ['app/data/scrumboard/board-list.json']);
-        msApiProvider.register('scrumboard.board', ['app/data/scrumboard/boards/:id.json']);
+        msApiProvider.register('scrumboard.boardList', ['/static/app/data/scrumboard/board-list.json']);
+        msApiProvider.register('scrumboard.board', ['/static/app/data/scrumboard/boards/:id.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('apps.scrumboard', {

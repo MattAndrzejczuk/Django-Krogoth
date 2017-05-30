@@ -34,7 +34,7 @@
         });
 
         // Api
-        msApiProvider.register('dashboard.project', ['app/data/dashboard/project/data.json']);
+        msApiProvider.register('dashboard.project', ['/static/app/data/dashboard/project/data.json']);
     }
 
 })();

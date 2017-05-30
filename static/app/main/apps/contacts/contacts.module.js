@@ -39,8 +39,8 @@
         $translatePartialLoaderProvider.addPart('/static/app/main/apps/contacts');
 
         // Api
-        msApiProvider.register('contacts.contacts', ['app/data/contacts/contacts.json']);
-        msApiProvider.register('contacts.user', ['app/data/contacts/user.json']);
+        msApiProvider.register('contacts.contacts', ['/static/app/data/contacts/contacts.json']);
+        msApiProvider.register('contacts.user', ['/static/app/data/contacts/user.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('apps.contacts', {

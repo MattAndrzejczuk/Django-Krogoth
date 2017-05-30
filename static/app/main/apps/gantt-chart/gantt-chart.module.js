@@ -59,8 +59,8 @@
         });
 
         // Api
-        msApiProvider.register('ganttChart.tasks', ['app/data/gantt-chart/tasks.json']);
-        msApiProvider.register('ganttChart.timespans', ['app/data/gantt-chart/timespans.json']);
+        msApiProvider.register('ganttChart.tasks', ['/static/app/data/gantt-chart/tasks.json']);
+        msApiProvider.register('ganttChart.timespans', ['/static/app/data/gantt-chart/timespans.json']);
 
     }
 

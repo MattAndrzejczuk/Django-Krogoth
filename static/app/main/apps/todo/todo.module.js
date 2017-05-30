@@ -41,8 +41,8 @@
         $translatePartialLoaderProvider.addPart('/static/app/main/apps/todo');
 
         // Api
-        msApiProvider.register('todo.tasks', ['app/data/todo/tasks.json']);
-        msApiProvider.register('todo.tags', ['app/data/todo/tags.json']);
+        msApiProvider.register('todo.tasks', ['/static/app/data/todo/tasks.json']);
+        msApiProvider.register('todo.tags', ['/static/app/data/todo/tags.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('apps.to-do', {

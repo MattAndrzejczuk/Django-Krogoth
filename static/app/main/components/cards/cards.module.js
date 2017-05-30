@@ -26,7 +26,7 @@
         });
 
         // Api
-        msApiProvider.register('cards', ['app/data/cards/cards.json']);
+        msApiProvider.register('cards', ['/static/app/data/cards/cards.json']);
     }
 
 })();
