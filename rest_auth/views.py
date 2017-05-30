@@ -118,9 +118,7 @@ class LazarusListUnits():
 
     def get(self, request):
         self.printContents()
-        return Response(
-            self.jsonResponse, status=status.HTTP_200_OK
-        )
+        return Response(self.jsonResponse)
 
 
 class LoginView(GenericAPIView):
