@@ -46,5 +46,5 @@ urlpatterns = [
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^$', rest_auth.views.index),
     url(r'^armprime/', rest_auth.views.index),
-    url(r'^lazarus/', LazarusListUnits.as_view())
+    url(r'^lazarus/', rest_auth.views.list_ta_units)
 ]
