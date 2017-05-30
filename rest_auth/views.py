@@ -56,7 +56,7 @@ class LazarusListUnits(APIView):
     f = []
     d = []
     output_final = open('workfile', 'w')
-    jsonResponse = []
+
     root = ''
 
 
@@ -65,11 +65,13 @@ class LazarusListUnits(APIView):
         self.d = []
         self.output_final = open('workfile', 'w')
         self.jsonResponse = []
-        self.root = 'HPI2/'
+        self.root = os.path.join(BASE_DIR, 'static') + '/'
 
 
 
     def printSubContents(self, pathName):
+        jsonResponse = []
+
         for (dirpath, dirnames, filenames) in walk(self.root + pathName):
             print('PATHNAME')
 
@@ -85,12 +87,14 @@ class LazarusListUnits(APIView):
                         img = Image.open(pathToFile)
                         imgSaveTo = self.root + pathName + '/' + filename + '.png'
                         img.save(imgSaveTo, format='png')
-                        self.jsonResponse.append({'thumbnail': imgSaveTo, 'object_name':filename})
+                        jsonResponse.append({'thumbnail': imgSaveTo, 'object_name':filename})
                     except:
                         print('OHHHH SHIT!!!')
                 break
+        return jsonResponse
 
     def printContents(self):
+        jsonFinal = []
         for (dirpath, dirnames, filenames) in walk(self.root):
             self.f.extend(filenames)
             self.d.extend(dirnames)
