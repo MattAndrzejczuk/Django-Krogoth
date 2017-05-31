@@ -3,11 +3,11 @@
     <thead>
         <tr>
             <th></th>
-            <th translate="FM.NAME">Name</th>
-            <th hide show-gt-sm translate="FM.TYPE">Type</th>
-            <th hide-xs translate="FM.OWNER">Owner</th>
-            <th hide-xs translate="FM.SIZE">Size</th>
-            <th hide show-gt-md translate="FM.LAST_MODIFIED">Last Modified</th>
+            <th >Name</th>
+            <th hide show-gt-sm >Type</th>
+            <th hide-xs >Owner</th>
+            <th hide-xs >Size</th>
+            <th hide show-gt-md >Last Modified</th>
             <th hide-gt-md></th>
         </tr>
     </thead>
@@ -15,8 +15,9 @@
     <tbody>
         <tr ng-repeat="folder in vm.folders | filter:global.search" ng-click="vm.select(folder)"
             ng-class="{'selected' : vm.selected === folder}">
-            <td class="file-icon">
-                <i class="icon-{{folder.type}}"></i>
+            <td class="image">
+                <img src="http://52.27.28.55/static/totala_files/unitpics/CORAVPW.png">
+                <!--<i class="icon-{{folder.type}}"></i>-->
             </td>
             <td class="name">{{folder.name}}</td>
             <td class="type" hide show-gt-sm>{{folder.type}}</td>
