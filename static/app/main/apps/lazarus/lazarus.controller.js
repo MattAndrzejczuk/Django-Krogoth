@@ -21,10 +21,10 @@
         vm.showDetails = true;
 
         $log.log('LazarusController');
-        $log.log(Documents.data);
-        vm.path = Documents.data['system_location'];
-        vm.folders = Documents.data['thumbnail'];
-        vm.files = Documents.data['object_name'];
+        $log.log(Documents);
+        vm.path = 'just a sample path'; //Documents['arm_data'];
+        vm.folders = []; // Documents.data['thumbnail'];
+        vm.files = Documents.data['arm_data'];
         vm.selected = vm.files[0];
 
         $log.debug('____________________________');
