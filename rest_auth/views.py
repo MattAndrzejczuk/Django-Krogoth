@@ -129,7 +129,8 @@ class LazarusListUnits(APIView):
     def get(self, request, format=None):
         unitListPrettyJSON = LazarusListUnits()
         unitListPrettyJSON.printContents()
-        return Response(unitListPrettyJSON.jsonResponse)
+        final_response = {'arm_data': unitListPrettyJSON.jsonResponse}
+        return Response(final_response)
 
 
 class LoginView(GenericAPIView):
