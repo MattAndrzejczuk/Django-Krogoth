@@ -12,7 +12,9 @@
         var vm = this;
 
         // Data
-        vm.helloText = SampleData.data.helloText;
+        vm.helloText = "data": {
+        "helloText": "Hello, I'm a sample page!"
+    };
 
         // Methods
 
