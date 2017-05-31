@@ -39,6 +39,7 @@
             'app.contacts',
             'app.notes',
             'app.sample',
+            'app.lazarus',
 
             // Pages
             'app.pages',
