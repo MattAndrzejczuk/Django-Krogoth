@@ -36,7 +36,7 @@
         $translatePartialLoaderProvider.addPart('/static/app/main/apps/lazarus');
 
         // Api
-        msApiProvider.register('lazarus.units', ['/lazarus/']);
+        msApiProvider.register('lazarus.units', ['/lazarus/', null, 'get', true]);
 
         // Navigation
         msNavigationServiceProvider.saveItem('apps.lazarus', {
