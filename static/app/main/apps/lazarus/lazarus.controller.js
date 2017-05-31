@@ -24,7 +24,7 @@
         $log.log(Documents);
         vm.path = 'just a sample path'; //Documents['arm_data'];
         vm.folders = []; // Documents.data['thumbnail'];
-        vm.files = Documents.data['arm_data'];
+        vm.files = Documents['arm_data'];
         vm.selected = vm.files[0];
 
         $log.debug('____________________________');
