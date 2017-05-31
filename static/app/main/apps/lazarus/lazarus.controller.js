@@ -7,7 +7,7 @@
         .controller('LazarusController', LazarusController);
 
     /** @ngInject */
-    function LazarusController($mdSidenav, Documents)
+    function LazarusController($mdSidenav, Documents, $log)
     {
         var vm = this;
 
@@ -20,11 +20,15 @@
         vm.currentView = 'list';
         vm.showDetails = true;
 
-        vm.path = Documents.data.path;
-        vm.folders = Documents.data.folders;
-        vm.files = Documents.data.files;
+        $log.log('LazarusController');
+        $log.log(Documents.data);
+        vm.path = Documents.data['system_location'];
+        vm.folders = Documents.data['thumbnail'];
+        vm.files = Documents.data['object_name'];
         vm.selected = vm.files[0];
 
+        $log.debug('____________________________');
+        $log.debug(Documents);
         vm.ngFlowOptions = {
             // You can configure the ngFlow from here
             /*target                   : 'api/media/image',
