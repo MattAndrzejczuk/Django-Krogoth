@@ -28,7 +28,7 @@
             });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/sample');
+        $translatePartialLoaderProvider.addPart('/static/app/main/sample');
 
         // Api
         msApiProvider.register('sample', ['/static/app/data/sample/sample.json']);
