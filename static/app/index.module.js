@@ -38,7 +38,7 @@
             'app.todo',
             'app.contacts',
             'app.notes',
-            'app.sample',
+            /// 'app.sample',
             'app.lazarus',
 
             // Pages
