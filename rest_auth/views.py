@@ -96,7 +96,7 @@ class LazarusListUnits(APIView):
                         )
                     except:
                         print('OHHHH SHIT!!!')
-                #break
+
 
         print("RAHHHH@H@@@@")
         print(self.jsonResponse)
@@ -135,6 +135,9 @@ class LazarusListUnits(APIView):
 class LoginView(GenericAPIView):
 
     """
+    Windows Server 2016 (English DVD)
+    Product Key: 2KNJJ-33Y9H-2GXGX-KMQWH-G6H67
+
     Check the credentials and return the REST Token
     if the credentials are valid and authenticated.
     Calls Django Auth login method to register User ID
