@@ -4,10 +4,10 @@
 
     angular
         .module('app.lazarus')
-        .controller('FileManagerController', FileManagerController);
+        .controller('LazarusController', LazarusController);
 
     /** @ngInject */
-    function FileManagerController($mdSidenav, Documents)
+    function LazarusController($mdSidenav, Documents)
     {
         var vm = this;
 

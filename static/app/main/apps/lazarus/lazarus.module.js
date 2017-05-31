@@ -20,7 +20,7 @@
             views    : {
                 'content@app': {
                     templateUrl: '/static/app/main/apps/lazarus/lazarus.html',
-                    controller : 'FileManagerController as vm'
+                    controller : 'LazarusController as vm'
                 }
             },
             resolve  : {
