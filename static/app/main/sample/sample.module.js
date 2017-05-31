@@ -18,12 +18,6 @@
                         templateUrl: '/static/app/main/sample/sample.html',
                         controller : 'SampleController as vm'
                     }
-                },
-                resolve: {
-                    SampleData: function (msApi)
-                    {
-                        return msApi.resolve('sample@get');
-                    }
                 }
             });
 
@@ -33,7 +27,7 @@
         // Api
         msApiProvider.register('sample', ['/static/app/data/sample/sample.json']);
 
-        /*
+
         // Navigation
         msNavigationServiceProvider.saveItem('fuse', {
             title : 'SAMPLE',
@@ -51,6 +45,7 @@
             translate: 'SAMPLE.SAMPLE_NAV',
             weight   : 1
         });
+        /*
         */
     }
 })();

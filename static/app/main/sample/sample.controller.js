@@ -7,7 +7,7 @@
         .controller('SampleController', SampleController);
 
     /** @ngInject */
-    function SampleController(SampleData)
+    function SampleController()
     {
         var vm = this;
 
