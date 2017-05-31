@@ -29,13 +29,13 @@
 
 
         // Navigation
-        msNavigationServiceProvider.saveItem('fuse', {
-            title : 'SAMPLE',
-            group : true,
-            weight: 1
-        });
+        // msNavigationServiceProvider.saveItem('fuse', {
+        //     title : 'SAMPLE',
+        //     group : true,
+        //     weight: 1
+        // });
 
-        msNavigationServiceProvider.saveItem('fuse.sample', {
+        msNavigationServiceProvider.saveItem('apps.file-manager', {
             title    : 'Sample',
             icon     : 'icon-tile-four',
             state    : 'app.sample',
