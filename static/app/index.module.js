@@ -15,6 +15,7 @@
 
             // Core
             'app.core',
+            'app.sample',
 
             // Navigation
             'app.navigation',
@@ -46,8 +47,8 @@
             'app.ui',
 
             // Components
-            'app.components',
+            'app.components'
 
-            'app.sample'
+
         ]);
 })();
