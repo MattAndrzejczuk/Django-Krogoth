@@ -26,7 +26,7 @@
             resolve  : {
                 Documents: function (msApi)
                 {
-                    return msApi.resolve('fileManager.documents@get');
+                    return msApi.resolve('lazarus.units@get');
                 }
             },
             bodyClass: 'file-manager'
