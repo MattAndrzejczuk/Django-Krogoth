@@ -2,6 +2,7 @@
 <table class="simple list-view">
     <thead>
         <tr>
+            <th >Thumbnail</th>
             <th >Name</th>
             <th hide show-gt-sm >Type</th>
             <th hide-xs >Owner</th>
@@ -9,6 +10,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="file in vm.files | filter:global.search" ng-click="vm.select(file)" ng-class="{'selected' : vm.selected === file}">
+            <td class="image"><img src="{{file['thumbnail']}}" ></td>
             <td class="name">{{file['thumbnail']}}</td>
             <td class="type" hide show-gt-sm>{{file['object_name']}}</td>
             <td class="owner" hide-xs>{{file['system_location']}}</td>
@@ -16,11 +18,9 @@
     </tbody>
 </table>
 <!-- / LIST VIEW
-
 {
             "thumbnail": "/static/totala_files/unitpics/CORSONAR.png",
             "object_name": "CORSONAR",
             "system_location": "/usr/src/app/static/totala_files/unitpics/CORSONAR.png"
-        }
-
+}
 -->
