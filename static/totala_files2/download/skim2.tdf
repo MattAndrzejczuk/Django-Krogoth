@@ -1,0 +1,23 @@
+[MENUENTRY1]
+	{
+	UNITMENU=ARMHP;
+	MENU=3;
+	BUTTON=4;
+	UNITNAME=ARMARTS;
+	}
+
+[MENUENTRY2]
+	{
+	UNITMENU=ARMHP;
+	MENU=3;
+	BUTTON=5;
+	UNITNAME=ARMPULS;
+	}
+
+[MENUENTRY3]
+	{
+	UNITMENU=ARMHP; //ARM Hovercraft Platform (Builds Hovercraft)
+	MENU=3;
+	BUTTON=0;
+	UNITNAME=ARMEMGS; //ARM Voodoo (E.M.G. Skimmer)
+	}

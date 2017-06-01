@@ -1,0 +1,816 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  pelvis, torsoup, torsodown, plaser, leftturret, luparm, rightturret, ruparm,
+       flare1, flare2, flare3, flare4, flare5, flare6, flare7, flare8,
+       lthigh, lleg, rthigh, rleg, shell, pump1, pump2, pump3,
+       pump4, torsomid, mis1, mis2, calcarm, calcflare, calcpoint, barrel1,
+       barrel2, barrel3, barrel4;
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3, Static_Var_4, Static_Var_5,
+            Static_Var_6, Static_Var_7, Static_Var_8, Static_Var_9, Static_Var_10,
+            Static_Var_11;
+
+
+walk()
+{
+	signal 16;
+	set-signal-mask 16;
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-1.] now;
+		turn pelvis to x-axis <7.> now;
+		turn lthigh to x-axis <-42.> now;
+		turn rthigh to x-axis <18.> now;
+		turn torsoup to y-axis <4.> now;
+		turn ruparm to x-axis <-12.> now;
+		turn luparm to x-axis <12.> now;
+		turn rleg to x-axis <40.> now;
+		turn lleg to x-axis <42.> now;
+		sleep 40;
+	}
+	if( Static_Var_1 )
+	{
+		turn torsoup to y-axis <4.> now;
+		turn ruparm to x-axis <-13.> now;
+		turn luparm to x-axis <12.> now;
+		sleep 40;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-1.] now;
+		turn pelvis to x-axis <5.> now;
+		turn lthigh to x-axis <-30.> now;
+		turn rthigh to x-axis <9.> now;
+		turn torsoup to y-axis <3.> now;
+		turn ruparm to x-axis <-8.> now;
+		turn luparm to x-axis <7.> now;
+		turn rleg to x-axis <52.> now;
+		turn lleg to x-axis <28.> now;
+		sleep 100;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-0.] now;
+		turn pelvis to x-axis <5.> now;
+		turn lthigh to x-axis <-16.> now;
+		turn rthigh to x-axis <0.> now;
+		turn torsoup to y-axis <1.> now;
+		turn ruparm to x-axis <-3.> now;
+		turn luparm to x-axis <0.> now;
+		turn rleg to x-axis <58.> now;
+		turn lleg to x-axis <16.> now;
+		sleep 100;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [0.] now;
+		turn pelvis to x-axis <4.> now;
+		turn lthigh to x-axis <7.> now;
+		turn rthigh to x-axis <-6.> now;
+		turn torsoup to y-axis <0.> now;
+		turn ruparm to x-axis <3.> now;
+		turn luparm to x-axis <-6.> now;
+		turn rleg to x-axis <44.> now;
+		turn lleg to x-axis <6.> now;
+		sleep 90;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-0.] now;
+		turn pelvis to x-axis <5.> now;
+		turn lthigh to x-axis <11.> now;
+		turn rthigh to x-axis <-35.> now;
+		turn torsoup to y-axis <-2.> now;
+		turn ruparm to x-axis <7.> now;
+		turn luparm to x-axis <-8.> now;
+		turn rleg to x-axis <71.> now;
+		turn lleg to x-axis <20.> now;
+		sleep 80;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-0.] now;
+		turn lthigh to x-axis <13.> now;
+		turn rthigh to x-axis <-43.> now;
+		turn torsoup to y-axis <-3.> now;
+		turn ruparm to x-axis <8.> now;
+		turn luparm to x-axis <-9.> now;
+		turn rleg to x-axis <55.> now;
+		sleep 70;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-0.] now;
+		turn pelvis to x-axis <5.> now;
+		turn lthigh to x-axis <17.> now;
+		turn rthigh to x-axis <-48.> now;
+		turn torsoup to y-axis <-3.> now;
+		turn ruparm to x-axis <10.> now;
+		turn luparm to x-axis <-10.> now;
+		turn rleg to x-axis <34.> now;
+		turn lleg to x-axis <20.> now;
+		sleep 80;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-1.] now;
+		turn pelvis to x-axis <7.> now;
+		turn lthigh to x-axis <15.> now;
+		turn rthigh to x-axis <-40.> now;
+		turn torsoup to y-axis <-4.> now;
+		turn ruparm to x-axis <11.> now;
+		turn luparm to x-axis <-11.> now;
+		turn rleg to x-axis <40.> now;
+		turn lleg to x-axis <30.> now;
+		sleep 40;
+	}
+	if( Static_Var_1 )
+	{
+		turn ruparm to x-axis <13.> now;
+		turn luparm to x-axis <-13.> now;
+		sleep 40;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-1.] now;
+		turn pelvis to x-axis <5.> now;
+		turn lthigh to x-axis <9.> now;
+		turn rthigh to x-axis <-35.> now;
+		turn torsoup to y-axis <-3.> now;
+		turn ruparm to x-axis <8.> now;
+		turn luparm to x-axis <-8.> now;
+		turn lleg to x-axis <44.> now;
+		sleep 100;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-0.] now;
+		turn pelvis to x-axis <5.> now;
+		turn lthigh to x-axis <1.> now;
+		turn rthigh to x-axis <-26.> now;
+		turn torsoup to y-axis <-2.> now;
+		turn ruparm to x-axis <3.> now;
+		turn luparm to x-axis <-3.> now;
+		turn lleg to x-axis <55.> now;
+		sleep 100;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [0.] now;
+		turn pelvis to x-axis <4.> now;
+		turn lthigh to x-axis <-17.> now;
+		turn rthigh to x-axis <4.> now;
+		turn torsoup to y-axis <0.> now;
+		turn ruparm to x-axis <-3.> now;
+		turn luparm to x-axis <4.> now;
+		turn rleg to x-axis <8.> now;
+		turn lleg to x-axis <60.> now;
+		sleep 80;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-0.] now;
+		turn pelvis to x-axis <5.> now;
+		turn lthigh to x-axis <-30.> now;
+		turn rthigh to x-axis <10.> now;
+		turn torsoup to y-axis <2.> now;
+		turn ruparm to x-axis <-7.> now;
+		turn luparm to x-axis <9.> now;
+		turn rleg to x-axis <26.> now;
+		turn lleg to x-axis <56.> now;
+		sleep 80;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-0.] now;
+		turn lthigh to x-axis <-44.> now;
+		turn rthigh to x-axis <12.> now;
+		turn torsoup to y-axis <3.> now;
+		turn ruparm to x-axis <-7.> now;
+		turn luparm to x-axis <10.> now;
+		turn lleg to x-axis <56.> now;
+		sleep 70;
+	}
+	move pelvis to y-axis [-0.] now;
+	turn pelvis to x-axis <5.> now;
+	turn lthigh to x-axis <-44.> now;
+	turn rthigh to x-axis <14.> now;
+	turn torsoup to y-axis <3.> now;
+	turn ruparm to x-axis <-9.> now;
+	turn luparm to x-axis <10.> now;
+	turn lleg to x-axis <26.> now;
+	sleep 80;
+}
+
+walklegs()
+{
+	signal 16;
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-1.] now;
+		turn pelvis to x-axis <7.> now;
+		turn lthigh to x-axis <-42.> now;
+		turn rthigh to x-axis <18.> now;
+		turn rleg to x-axis <39.> now;
+		turn lleg to x-axis <42.> now;
+		sleep 140;
+	}
+	if( Static_Var_1 )
+	{
+		sleep 140;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-1.] now;
+		turn pelvis to x-axis <5.> now;
+		turn lthigh to x-axis <-30.> now;
+		turn rthigh to x-axis <9.> now;
+		turn rleg to x-axis <52.> now;
+		turn lleg to x-axis <28.> now;
+		sleep 200;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-0.] now;
+		turn pelvis to x-axis <5.> now;
+		turn lthigh to x-axis <-16.> now;
+		turn rthigh to x-axis <0.> now;
+		turn rleg to x-axis <58.> now;
+		turn lleg to x-axis <16.> now;
+		sleep 190;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [0.] now;
+		turn pelvis to x-axis <4.> now;
+		turn lthigh to x-axis <7.> now;
+		turn rthigh to x-axis <-6.> now;
+		turn rleg to x-axis <44.> now;
+		turn lleg to x-axis <6.> now;
+		sleep 190;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-0.] now;
+		turn pelvis to x-axis <5.> now;
+		turn lthigh to x-axis <11.> now;
+		turn rthigh to x-axis <-35.> now;
+		turn rleg to x-axis <71.> now;
+		turn lleg to x-axis <20.> now;
+		sleep 180;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-0.] now;
+		turn lthigh to x-axis <13.> now;
+		turn rthigh to x-axis <-43.> now;
+		turn rleg to x-axis <55.> now;
+		sleep 170;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-0.] now;
+		turn pelvis to x-axis <5.> now;
+		turn lthigh to x-axis <17.> now;
+		turn rthigh to x-axis <-48.> now;
+		turn rleg to x-axis <35.> now;
+		turn lleg to x-axis <20.> now;
+		sleep 180;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-1.] now;
+		turn pelvis to x-axis <7.> now;
+		turn lthigh to x-axis <16.> now;
+		turn rthigh to x-axis <-41.> now;
+		turn rleg to x-axis <40.> now;
+		turn lleg to x-axis <30.> now;
+		sleep 140;
+	}
+	if( Static_Var_1 )
+	{
+		sleep 140;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-1.] now;
+		turn pelvis to x-axis <5.> now;
+		turn lthigh to x-axis <9.> now;
+		turn rthigh to x-axis <-35.> now;
+		turn lleg to x-axis <44.> now;
+		sleep 200;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-0.] now;
+		turn pelvis to x-axis <5.> now;
+		turn lthigh to x-axis <1.> now;
+		turn rthigh to x-axis <-26.> now;
+		turn lleg to x-axis <55.> now;
+		sleep 190;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [0.] now;
+		turn pelvis to x-axis <4.> now;
+		turn lthigh to x-axis <-17.> now;
+		turn rthigh to x-axis <4.> now;
+		turn rleg to x-axis <8.> now;
+		turn lleg to x-axis <60.> now;
+		sleep 180;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-0.] now;
+		turn pelvis to x-axis <5.> now;
+		turn lthigh to x-axis <-30.> now;
+		turn rthigh to x-axis <10.> now;
+		turn rleg to x-axis <26.> now;
+		turn lleg to x-axis <56.> now;
+		sleep 180;
+	}
+	if( Static_Var_1 )
+	{
+		move pelvis to y-axis [-0.] now;
+		turn lthigh to x-axis <-44.> now;
+		turn rthigh to x-axis <12.> now;
+		turn lleg to x-axis <56.> now;
+		sleep 170;
+	}
+	move pelvis to y-axis [-0.] now;
+	turn pelvis to x-axis <5.> now;
+	turn lthigh to x-axis <-44.> now;
+	turn rthigh to x-axis <15.> now;
+	turn lleg to x-axis <26.> now;
+	sleep 180;
+}
+
+MotionControl(moving, aiming, justmoved)
+{
+	justmoved = TRUE;
+	while( TRUE )
+	{
+		moving = Static_Var_1;
+		aiming = Static_Var_2;
+		if( moving )
+		{
+			if( aiming )
+			{
+				Static_Var_3 = 1;
+				call-script walklegs();
+			}
+			if( !aiming )
+			{
+				Static_Var_3 = 0;
+				call-script walk();
+			}
+			justmoved = TRUE;
+		}
+		if( !moving )
+		{
+			Static_Var_3 = 1;
+			if( justmoved )
+			{
+				move pelvis to y-axis [0.] speed [1.];
+				turn rthigh to x-axis <0.> speed <200.>;
+				turn rleg to x-axis <0.> speed <200.>;
+				turn lthigh to x-axis <0.> speed <200.>;
+				turn lleg to x-axis <0.> speed <200.>;
+				if( !aiming )
+				{
+					turn torsoup to x-axis <0.> speed <60.>;
+				}
+				justmoved = FALSE;
+			}
+			sleep 100;
+		}
+	}
+}
+
+Activate()
+{
+}
+
+Deactivate()
+{
+}
+
+Create()
+{
+	dont-cache lleg;
+	dont-cache rleg;
+	dont-cache leftturret;
+	dont-cache rightturret;
+	dont-cache torsoup;
+	dont-cache luparm;
+	dont-cache ruparm;
+	dont-cache pump1;
+	dont-cache pump2;
+	dont-cache pump3;
+	dont-cache pump4;
+	dont-cache barrel1;
+	dont-cache barrel2;
+	dont-cache barrel3;
+	dont-cache barrel4;
+	Static_Var_6 = 0;
+	Static_Var_8 = 0;
+	Static_Var_9 = 0;
+	Static_Var_10 = 0;
+	Static_Var_11 = 0;
+	hide flare1;
+	hide flare2;
+	hide flare3;
+	hide flare4;
+	hide flare5;
+	hide flare6;
+	hide flare7;
+	hide flare8;
+	Static_Var_1 = 0;
+	Static_Var_2 = 0;
+	Static_Var_3 = 1;
+	Static_Var_4 = 0;
+	start-script MotionControl();
+}
+
+StartMoving()
+{
+	Static_Var_1 = 1;
+}
+
+StopMoving()
+{
+	Static_Var_1 = 0;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = pelvis;
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = plaser;
+}
+
+restoreposition()
+{
+	sleep 1000;
+	Static_Var_4 = 0;
+	turn ruparm to x-axis <0.> speed <45.>;
+	turn luparm to x-axis <0.> speed <45.>;
+	turn rightturret to x-axis <0.> speed <45.>;
+	turn leftturret to x-axis <0.> speed <45.>;
+	wait-for-turn ruparm around x-axis;
+	wait-for-turn luparm around x-axis;
+	wait-for-turn rightturret around x-axis;
+	wait-for-turn leftturret around x-axis;
+	wait-for-turn torsoup around y-axis;
+	wait-for-turn torsodown around y-axis;
+	Static_Var_2 = 0;
+}
+
+restore2()
+{
+	sleep 2500;
+	set-signal-mask 0;
+	turn torsomid to y-axis <0.> speed <120.>;
+	turn torsodown to y-axis <0.> speed <120.>;
+}
+
+AimPrimary(heading, pitch)
+{
+	var Func_Var_3, Func_Var_4, Func_Var_5;
+	signal 2;
+	set-signal-mask 2;
+	Static_Var_2 = 1;
+	turn calcarm to x-axis <0.> - pitch now;
+	Func_Var_4 = get PIECE_Y(calcpoint);
+	Func_Var_3 = get PIECE_Y(calcflare);
+	if( Func_Var_4 >= Func_Var_3 )
+	{
+		Func_Var_5 = ( Func_Var_4 - Func_Var_3 ) / 300 + 360;
+		turn ruparm to y-axis Func_Var_5 speed <40.>;
+		turn luparm to y-axis <0.> - Func_Var_5 speed <40.>;
+	}
+	if( Func_Var_4 < Func_Var_3 )
+	{
+		turn ruparm to y-axis <0.> speed <40.>;
+		turn luparm to y-axis <0.> speed <40.>;
+	}
+	turn torsoup to y-axis heading speed <120.>;
+	wait-for-turn torsoup around y-axis;
+	turn ruparm to x-axis <0.> - pitch speed <90.>;
+	turn luparm to x-axis <0.> - pitch speed <90.>;
+	turn rightturret to x-axis <0.> - pitch speed <70.>;
+	turn leftturret to x-axis <0.> - pitch speed <70.>;
+	wait-for-turn ruparm around x-axis;
+	wait-for-turn luparm around x-axis;
+	wait-for-turn ruparm around y-axis;
+	wait-for-turn luparm around y-axis;
+	wait-for-turn rightturret around x-axis;
+	wait-for-turn leftturret around x-axis;
+	start-script restoreposition();
+	return (1);
+}
+
+AimSecondary(heading, pitch)
+{
+	signal 4;
+	set-signal-mask 4;
+	Static_Var_2 = 1;
+	turn torsomid to y-axis heading speed <180.>;
+	wait-for-turn torsomid around y-axis;
+	start-script restore2();
+	return (1);
+}
+
+AimTertiary(heading, pitch)
+{
+	signal 8;
+	set-signal-mask 8;
+	Static_Var_2 = 1;
+	turn torsodown to y-axis heading speed <90.>;
+	wait-for-turn torsodown around y-axis;
+	start-script restore2();
+	return (1);
+}
+
+FireSecondary()
+{
+	sleep 50;
+}
+
+FirePrimary()
+{
+	if( Static_Var_9 == 0 )
+	{
+		show flare5;
+		move ruparm to z-axis [-2.] now;
+		turn torsoup to x-axis <-5.> speed <50.>;
+		sleep 50;
+		hide flare5;
+		move ruparm to z-axis [0.] speed [5.];
+		turn pelvis to x-axis <0.> speed <20.>;
+	}
+	if( Static_Var_9 == 1 )
+	{
+		show flare6;
+		move luparm to z-axis [-2.] now;
+		turn torsoup to x-axis <-5.> speed <50.>;
+		sleep 50;
+		hide flare6;
+		move luparm to z-axis [0.] speed [5.];
+		turn pelvis to x-axis <0.> speed <20.>;
+	}
+	if( Static_Var_9 == 2 )
+	{
+		show flare7;
+		move ruparm to z-axis [-2.] now;
+		turn torsoup to x-axis <-5.> speed <50.>;
+		sleep 50;
+		hide flare7;
+		move ruparm to z-axis [0.] speed [5.];
+		turn pelvis to x-axis <0.> speed <20.>;
+	}
+	if( Static_Var_9 == 3 )
+	{
+		show flare8;
+		move luparm to z-axis [-2.] now;
+		turn torsoup to x-axis <-5.> speed <50.>;
+		sleep 50;
+		hide flare8;
+		move luparm to z-axis [0.] speed [5.];
+		turn pelvis to x-axis <0.> speed <20.>;
+	}
+	++Static_Var_9;
+	if( Static_Var_9 == 4 )
+	{
+		Static_Var_9 = 0;
+	}
+	if( Static_Var_8 == 0 )
+	{
+		show flare1;
+		move pump1 to z-axis [-2.] now;
+		move barrel1 to z-axis [-2.] now;
+		explode shell type FALL;
+		sleep 5;
+		hide flare1;
+		move pump1 to z-axis [0.] speed [10.];
+		move barrel1 to z-axis [0.] speed [10.];
+	}
+	if( Static_Var_8 == 1 )
+	{
+		show flare2;
+		move pump2 to z-axis [-2.] now;
+		move barrel2 to z-axis [-2.] now;
+		explode shell type FALL;
+		sleep 5;
+		hide flare2;
+		move pump2 to z-axis [0.] speed [10.];
+		move barrel2 to z-axis [0.] speed [10.];
+	}
+	if( Static_Var_8 == 2 )
+	{
+		show flare3;
+		move pump3 to z-axis [-2.] now;
+		move barrel3 to z-axis [-2.] now;
+		explode shell type FALL;
+		sleep 5;
+		hide flare3;
+		move pump3 to z-axis [0.] speed [10.];
+		move barrel3 to z-axis [0.] speed [10.];
+	}
+	if( Static_Var_8 == 3 )
+	{
+		show flare4;
+		move pump4 to z-axis [-2.] now;
+		move barrel4 to z-axis [-2.] now;
+		explode shell type FALL;
+		sleep 5;
+		hide flare4;
+		move pump4 to z-axis [0.] speed [10.];
+		move barrel4 to z-axis [0.] speed [10.];
+	}
+	++Static_Var_8;
+	if( Static_Var_8 == 4 )
+	{
+		Static_Var_8 = 0;
+	}
+}
+
+FireTertiary()
+{
+	sleep 100;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = torsoup;
+}
+
+AimFromSecondary(piecenum)
+{
+	piecenum = torsomid;
+}
+
+QuerySecondary(piecenum)
+{
+	if( Static_Var_11 == 0 )
+	{
+		piecenum = mis1;
+	}
+	if( Static_Var_11 == 1 )
+	{
+		piecenum = mis2;
+	}
+	++Static_Var_11;
+	if( Static_Var_11 == 2 )
+	{
+		Static_Var_11 = 0;
+	}
+}
+
+QueryPrimary(piecenum)
+{
+	if( Static_Var_10 == 0 )
+	{
+		if( Static_Var_9 == 0 )
+		{
+			piecenum = flare5;
+		}
+		if( Static_Var_9 == 1 )
+		{
+			piecenum = flare6;
+		}
+		if( Static_Var_9 == 2 )
+		{
+			piecenum = flare7;
+		}
+		if( Static_Var_9 == 3 )
+		{
+			piecenum = flare8;
+		}
+	}
+	if( Static_Var_10 == 1 )
+	{
+		if( Static_Var_8 == 0 )
+		{
+			piecenum = flare1;
+		}
+		if( Static_Var_8 == 1 )
+		{
+			piecenum = flare2;
+		}
+		if( Static_Var_8 == 2 )
+		{
+			piecenum = flare3;
+		}
+		if( Static_Var_8 == 3 )
+		{
+			piecenum = flare4;
+		}
+	}
+	++Static_Var_10;
+	if( Static_Var_10 == 2 )
+	{
+		Static_Var_10 = 0;
+	}
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = torsodown;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = plaser;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare1;
+	hide flare2;
+	hide flare3;
+	hide flare4;
+	hide flare5;
+	hide flare6;
+	hide flare7;
+	hide flare8;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode torsodown type BITMAPONLY | BITMAP1;
+		explode torsoup type BITMAPONLY | BITMAP2;
+		explode pelvis type BITMAPONLY | BITMAP3;
+		explode flare1 type BITMAPONLY | BITMAP4;
+		explode flare2 type BITMAPONLY | BITMAP5;
+		explode flare3 type BITMAPONLY | BITMAP1;
+		explode flare4 type BITMAPONLY | BITMAP2;
+		explode luparm type BITMAPONLY | BITMAP4;
+		explode ruparm type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode luparm type FALL | BITMAP1;
+		explode ruparm type FALL | BITMAP2;
+		explode torsoup type SHATTER | BITMAP3;
+		explode flare1 type FALL | BITMAP4;
+		explode flare2 type FALL | BITMAP5;
+		explode flare3 type FALL | BITMAP1;
+		explode flare4 type FALL | BITMAP2;
+		explode flare5 type FALL | BITMAP3;
+		explode flare6 type FALL | BITMAP4;
+		explode lleg type FALL | BITMAP5;
+		explode rleg type FALL | BITMAP1;
+		explode lthigh type FALL | BITMAP2;
+		explode rthigh type FALL | BITMAP3;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode torsoup type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode torsodown type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode pelvis type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode flare3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flare4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode flare5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode flare6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode flare7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode flare8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode lthigh type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode rthigh type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode leftturret type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rightturret type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode torsoup type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode torsodown type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode pelvis type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode flare3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode flare4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode flare5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode flare6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode flare7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode flare8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode luparm type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode ruparm type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode leftturret type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rightturret type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	return (0);
+}

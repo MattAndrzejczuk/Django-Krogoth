@@ -1,0 +1,32 @@
+[OBUSDCT]
+	{
+	ID=239;
+	name=Heavy Plasma Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=7000;
+	reloadtime=10;
+	weaponvelocity=800;
+	startvelocity=800;
+	areaofeffect=500;
+	soundstart=dragontir;
+	soundhit=xplomed2;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=1000;
+		}
+	}

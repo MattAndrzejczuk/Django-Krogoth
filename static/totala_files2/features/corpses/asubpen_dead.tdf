@@ -1,0 +1,17 @@
+[asubpen_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=asubpen_dead;
+	footprintx=7;
+	footprintz=7;
+	height=5;
+	blocking=0;
+	hitdensity=100;
+	metal=1500;
+	damage=998;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}

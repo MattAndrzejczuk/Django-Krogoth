@@ -1,0 +1,119 @@
+[Desert Tree 1]
+	{
+	world=DesertRock;
+	description=Palm Tree;
+	category=Trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=175;
+	filename=Palmtree;
+	seqname=Tree1;
+	seqnameshad=tree1shad;
+	seqnamedie=tree1die;
+	featuredead=tree1smug;
+	Damage=500;
+	animtrans=0;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[tree1smug]
+	{
+	world=DesertRock;
+	description=Damaged Terrain;
+	category=Smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=palmtree;
+	seqname=tree1smug;
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	permanent=1;
+	}
+	
+
+[Desert Tree 2]
+	{
+	world=DesertRock;
+	description=Palm Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=300;
+	filename=Palmtree;
+	seqname=tree2;
+	seqnameshad=tree2shad;
+	seqnamedie=tree2die;
+	featuredead=tree2smug;
+	damage=500;
+	animtrans=0;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[tree2smug]
+	{
+	world=DesertRock;
+	description=Damaged Terrain;
+	category=Smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=palmtree;
+	seqname=tree2smug;
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	permanent=1;
+	}
+
+[Desert Tree 3]
+	{
+	world=DesertROck;
+	description=Palm Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=175;
+	filename=Palmtree;
+	seqname=tree3;
+	seqnameshad=tree3shad;
+	seqnamedie=tree3die;
+	featuredead=tree3smug;
+	animtrans=0;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[tree3smug]
+	{
+	world=DesertRock;
+	description=Damaged Terrain;
+	category=Smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=palmtree;
+	seqname=tree3smug;
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	permanent=1;
+	}

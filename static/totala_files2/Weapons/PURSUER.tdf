@@ -1,0 +1,50 @@
+[PURSUER]
+	{
+	ID=224;
+	name=Hunter torp;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=PURSUER;
+	propeller=1;
+
+	range=1250;
+	reloadtime=20.0;
+	weapontimer=3;
+	weaponvelocity=84;
+	startvelocity=30;
+	weaponacceleration=15;
+	turnrate=41000;
+	areaofeffect=124;	
+	soundstart=torpedo2;
+	soundhit=xplodep3;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+                 
+	tolerance=37152;
+
+	explosiongaf=TAWP_FX;
+	explosionart=xpl4;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=850;
+		armatl=500;
+		coratl=560;
+		armtl=570;
+		cortl=570;
+		armsubk=490;
+		corshark=500;
+		}
+	}
+

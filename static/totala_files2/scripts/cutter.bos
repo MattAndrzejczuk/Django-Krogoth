@@ -1,0 +1,285 @@
+piece base, pelvis, torso, rarm, larm, flare, head, rthigh, rleg, lthigh, lleg;
+
+static-var restore_delay, bAiming, bMoving;
+#define	SIG_AIM1	2
+#define SIG_MOVE	4
+#include "exptype.h"
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+	{
+	var Func_Var_4;
+	while( get BUILD_PERCENT_LEFT )
+		{
+		sleep 500;
+		}
+	while( TRUE )
+		{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+			{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+				{
+				smoketype = 256 | 1;
+				}
+			Func_Var_4 = Rand( 1, 3 );
+			if( Func_Var_4 == 1 || 3 )
+				{
+				emit-sfx smoketype from torso;
+				}
+			if( Func_Var_4 == 2 )
+				{
+				emit-sfx smoketype from larm;
+				}
+			}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+			{
+			sleeptime = 200;
+			}
+		sleep sleeptime;
+		}
+	}
+	
+Looking()
+	{
+	var Func_Var_1;
+	while( get BUILD_PERCENT_LEFT )
+		{
+		sleep 1000;
+		}
+	while( TRUE )
+		{
+		while(( !bAiming ) && ( !bMoving ))
+			{
+			sleep 10;
+			Func_Var_1 = RAND( 1,100 );
+			if( Func_Var_1 < 10 )
+				{
+				sleep 10;
+				turn head to y-axis <35> speed <25>;
+				wait-for-turn head around y-axis;
+				turn head to y-axis <0> speed <30>;
+				wait-for-turn head around y-axis;
+				turn head to y-axis <-50> speed <20>;
+				wait-for-turn head around y-axis;
+				turn head to y-axis <0> speed <35>;
+				sleep 10000;
+				}
+			if( Func_Var_1 > 90 )
+				{
+				sleep 10;
+				turn head to y-axis <67> speed <25>;
+				wait-for-turn head around y-axis;
+				turn head to y-axis <12> speed <30>;
+				wait-for-turn head around y-axis;
+				turn head to y-axis <-45> speed <20>;
+				wait-for-turn head around y-axis;
+				turn head to y-axis <0> speed <35>;
+				sleep 10000;
+				}
+			sleep 1000;
+			}
+		sleep 1000;
+		}
+	}
+	
+MotionControl()
+	{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	while( TRUE )
+		{
+		if( !bAiming )
+			{
+			turn rthigh to x-axis <-60> speed <100>;
+			turn rleg to x-axis <60> speed <100>;
+			turn torso to y-axis <15> speed <45>;
+			turn rarm to x-axis <-25> speed <55>;
+			turn larm to x-axis <25> speed <55>;
+			wait-for-turn rleg around x-axis;
+			turn lthigh to x-axis <-60> speed <100>;
+			turn lleg to x-axis <60> speed <100>;
+			turn rthigh to x-axis <60> speed <100>;
+			turn rleg to x-axis <-60> speed <100>;
+			turn torso to y-axis <-15> speed <45>;
+			turn rarm to x-axis <25> speed <55>;
+			turn larm to x-axis <-25> speed <55>;
+			wait-for-turn rleg around x-axis;
+			turn rthigh to x-axis <-60> speed <100>;
+			turn rleg to x-axis <60> speed <100>;
+			turn lthigh to x-axis <60> speed <100>;
+			turn lleg to x-axis <-60> speed <100>;
+			turn torso to y-axis <15> speed <45>;
+			turn rarm to x-axis <-25> speed <55>;
+			turn larm to x-axis <25> speed <55>;
+			wait-for-turn rleg around x-axis;
+			}
+		if( bAiming )
+			{
+			turn rthigh to x-axis <-60> speed <100>;
+			turn rleg to x-axis <60> speed <100>;
+			wait-for-turn rleg around x-axis;
+			turn lthigh to x-axis <-60> speed <100>;
+			turn lleg to x-axis <60> speed <100>;
+			turn rthigh to x-axis <60> speed <100>;
+			turn rleg to x-axis <-60> speed <100>;
+			wait-for-turn rleg around x-axis;
+			turn rthigh to x-axis <-60> speed <100>;
+			turn rleg to x-axis <60> speed <100>;
+			turn lthigh to x-axis <60> speed <100>;
+			turn lleg to x-axis <-60> speed <100>;
+			wait-for-turn rleg around x-axis;
+			}
+		sleep 10;
+		}
+	}
+				
+Create()
+	{
+	bAiming = FALSE;
+	bMoving = FALSE;
+	restore_delay = 2000;
+	hide flare;
+	start-script SmokeUnit();
+	start-script Looking();
+	}
+	
+StartMoving()
+	{
+	bMoving = TRUE;
+	start-script MotionControl();
+	}
+	
+StopMoving()
+	{
+	signal SIG_MOVE;
+	bMoving = FALSE;
+	turn rthigh to x-axis <0> speed <30>;
+	turn lthigh to x-axis <0> speed <30>;
+	turn rleg to x-axis <0> speed <30>;
+	turn lleg to x-axis <0> speed <30>;
+	turn rarm to x-axis <0> speed <20>;
+	if( !bAiming )
+		{
+		turn torso to y-axis <0> speed <25>;
+		turn larm to x-axis <0> speed <35>;
+		}
+	sleep 100;
+	}
+
+SetMaxReloadTime(time)
+	{
+	restore_delay = time * 2;
+	}
+
+RestoreAfterDelay()
+	{
+	sleep restore_delay;
+	bAiming = FALSE;
+	turn larm to x-axis <0> speed <45>;
+	turn torso to y-axis <0> speed <60>;
+	return 0;
+	}
+
+SweetSpot (piecenum)
+	{
+	piecenum = base;
+	}
+
+QueryPrimary (piecenum)
+	{
+	piecenum = flare;
+	}
+
+AimFromPrimary (piecenum)
+	{
+	piecenum = larm;
+	}
+
+AimPrimary(heading, pitch)
+	{
+	signal SIG_AIM1;
+	set-signal-mask SIG_AIM1;
+	bAiming = TRUE;
+	turn torso to y-axis heading speed <60>;
+	turn larm to x-axis (0-pitch) speed <50>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn larm around x-axis;
+	start-script RestoreAfterDelay();
+	return(TRUE);
+	}
+
+FirePrimary()
+	{
+	show flare;
+	sleep 150;
+	hide flare;
+	return(0);
+	}
+
+Killed(severity, corpsetype)
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode pelvis type	BITMAPONLY | BITMAP1;
+		explode torso type	BITMAPONLY | BITMAP1;
+		explode rarm type	BITMAPONLY | BITMAP1;
+		explode larm type	BITMAPONLY | BITMAP1;
+		explode flare type	BITMAPONLY | BITMAP1;
+		explode head type	BITMAPONLY | BITMAP1;
+		explode rthigh type	BITMAPONLY | BITMAP1;
+		explode rleg type	BITMAPONLY | BITMAP1;
+		explode lthigh type	BITMAPONLY | BITMAP1;
+		explode lleg type	BITMAPONLY | BITMAP1;
+		return(0);
+		}
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	SHATTER | BITMAP4;
+		explode pelvis type	SHATTER | BITMAP4;
+		explode torso type	SHATTER | BITMAP4;
+		explode rarm type	SHATTER | BITMAP4;
+		explode larm type	SHATTER | BITMAP4;
+		explode flare type	SHATTER | BITMAP4;
+		explode head type	SHATTER | BITMAP4;
+		explode rthigh type	SHATTER | BITMAP4;
+		explode rleg type	SHATTER | BITMAP4;
+		explode lthigh type	SHATTER | BITMAP4;
+		explode lleg type	SHATTER | BITMAP4;
+		return(0);
+		}
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode pelvis type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode torso type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rarm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode larm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode flare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode head type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		return(0);
+		}
+	corpsetype = 3;
+	explode base type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode pelvis type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode torso type	SHATTER | BITMAP4;
+	explode rarm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode larm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode flare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode head type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	return(0);
+	}

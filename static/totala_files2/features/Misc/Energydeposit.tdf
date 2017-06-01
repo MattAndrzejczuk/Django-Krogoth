@@ -1,0 +1,92 @@
+[LandEDeposit_dead]
+	{
+	world=All Worlds;
+	description=Magma-Energy Well;
+	category=magma energy wells;
+	animating=1;
+	footprintx=4;
+	footprintz=4;
+	filename=lavapool;
+	seqname=lavapool1;
+
+	hitdensity=50;
+	energy=1000 ;
+	damage=32009;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+	blocking=1;
+	featuredead=LandEDeposit01_dead;
+	featurereclamate=LandEDeposit01_dead;
+	}
+
+[LandEDeposit01_dead]
+	{
+	world=All Worlds;
+	description=Magma-Energy Well;
+	category=magma energy wells;
+	animating=1;
+	footprintx=4;
+	footprintz=4;
+	filename=lavapool;
+	seqname=lavapool2;
+
+	hitdensity=5;
+	energy=500;
+	damage=32009;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+	blocking=1;
+	featuredead=LandEDeposit02_dead;
+	featurereclamate=LandEDeposit02_dead;
+	}
+
+[LandEDeposit02_dead]
+	{
+	world=All Worlds;
+	description=Magma-Energy Well;
+	category=magma energy wells;
+	animating=1;
+	footprintx=4;
+	footprintz=4;
+	filename=lavapool;
+	seqname=lavapool3;
+
+	hitdensity=5;
+	energy=750 ;
+	damage=32009;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+	blocking=1;
+	featuredead=LandEDeposit03_dead;
+	featurereclamate=LandEDeposit03_dead;
+	}
+
+[LandEDeposit03_dead]
+	{
+	world=All Worlds;
+	description=Magma-Energy Well;
+	category=magma energy wells;
+	animating=1;
+	footprintx=4;
+	footprintz=4;
+	filename=lavapool;
+	seqname=lavapool4;
+
+	hitdensity=5;
+	energy=251;
+	damage=32009;
+
+//	indestructible=1;
+	featuredead=LandEDeposit03_dead;
+	featurereclamate=LandEDeposit03_dead;
+
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+	blocking=1;
+//	featuredead=LandEDeposit_dead;
+//	featurereclamate=LandEDeposit_dead;
+	}

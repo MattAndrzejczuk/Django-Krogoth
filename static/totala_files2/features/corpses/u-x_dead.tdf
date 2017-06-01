@@ -1,0 +1,37 @@
+[u-x_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=u-x_dead;
+	featuredead=u-x_heap;
+	footprintx=2;
+	footprintz=3;
+	height=25;
+	blocking=1;
+	hitdensity=100;
+	metal=120;
+	damage=120;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+
+[u-x_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3a;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=45;
+	damage=998;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}

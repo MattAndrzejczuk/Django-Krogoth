@@ -1,0 +1,15 @@
+[MENUENTRY1]
+	{
+	MENU=4;
+	BUTTON=0;
+	UNITNAME=CORHOVER3G; //CORE Venom (Heavy Laser Hovercraft)
+	UNITMENU=CORHP; //CORE Hovercraft Platform (Builds Hovercraft)
+	}
+
+[MENUENTRY2]
+	{
+	MENU=4;
+	BUTTON=0;
+	UNITNAME=CORHOVER3G; //CORE Venom (Heavy Laser Hovercraft)
+	UNITMENU=CORHPNS; //CORE Hovercraft Platform - NS (Builds Hovercraft)
+	}

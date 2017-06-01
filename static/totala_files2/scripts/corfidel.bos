@@ -1,0 +1,429 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  lsflare, rsflare, lbflare, rbflare, base, head, lsleeve, rsleeve,
+       lext, rext, lbarrel, rbarrel, ltread, rtread, top1, top2;
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3, Static_Var_4, Static_Var_5,
+            Static_Var_6, Static_Var_7, Static_Var_8;
+
+
+RestoreAfterDelay()
+{
+	sleep 4000;
+	if( !Static_Var_3 )
+	{
+		turn head to y-axis <0.> speed <50.>;
+		turn lsleeve to x-axis <0.> speed <45.>;
+		turn rsleeve to x-axis <0.> speed <45.>;
+		Static_Var_8 = 1;
+		signal 2;
+		signal 4;
+	}
+	Static_Var_4 = 0;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+		if( Static_Var_3 AND ( !Static_Var_4 ) )
+		{
+			Static_Var_3 = 0;
+			Static_Var_4 = 1;
+			start-script RestoreAfterDelay();
+		}
+	}
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	if( !Static_Var_7 )
+	{
+		turn base to z-axis Func_Var_2 speed <105.>;
+		turn base to x-axis Func_Var_1 speed <105.>;
+		wait-for-turn base around z-axis;
+		wait-for-turn base around x-axis;
+		turn base to z-axis <0.> speed <30.>;
+		turn base to x-axis <0.> speed <30.>;
+	}
+}
+
+RockUnit(anglex, anglez)
+{
+	if( !Static_Var_7 )
+	{
+		turn base to x-axis anglex speed <50.>;
+		turn base to z-axis anglez speed <50.>;
+		wait-for-turn base around z-axis;
+		wait-for-turn base around x-axis;
+		turn base to z-axis <0.> speed <20.>;
+		turn base to x-axis <0.> speed <20.>;
+	}
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( Static_Var_5 )
+	{
+		Static_Var_6 = requestedstate;
+		return (0);
+	}
+	if( !Static_Var_8 )
+	{
+		sleep 500;
+	}
+	Static_Var_5 = 1;
+	currentstate = Static_Var_6;
+	Static_Var_6 = requestedstate;
+	while( Static_Var_6 != currentstate )
+	{
+		if( !Static_Var_6 )
+		{
+			cache head;
+			cache lsleeve;
+			cache rsleeve;
+			cache lext;
+			cache rext;
+			cache lbarrel;
+			cache rbarrel;
+			cache lsflare;
+			cache rsflare;
+			cache lbflare;
+			cache rbflare;
+			turn lsleeve to x-axis <0.> speed <45.>;
+			turn rsleeve to x-axis <0.> speed <45.>;
+			move lsleeve to x-axis [2.] speed [4.];
+			move rsleeve to x-axis [-2.] speed [4.];
+			move lsleeve to y-axis [1.] speed [1.];
+			move rsleeve to y-axis [1.] speed [1.];
+			move head to y-axis [1.] speed [1.];
+			move head to z-axis [-1.] speed [2.];
+			sleep 500;
+			set ARMORED to 1;
+			move lext to z-axis [4.] speed [2.];
+			move rext to z-axis [4.] speed [2.];
+			sleep 800;
+			move top1 to x-axis [1.] speed [2.];
+			move top2 to x-axis [-1.] speed [2.];
+			sleep 1000;
+			currentstate = 0;
+		}
+		if( Static_Var_6 )
+		{
+			move top1 to x-axis [0.] speed [1.];
+			move top2 to x-axis [0.] speed [1.];
+			turn lsleeve to x-axis <0.> speed <45.>;
+			turn rsleeve to x-axis <0.> speed <45.>;
+			sleep 800;
+			set ARMORED to 0;
+			move lext to z-axis [0.] speed [3.];
+			move rext to z-axis [0.] speed [3.];
+			move lsleeve to y-axis [0.] speed [2.];
+			move rsleeve to y-axis [0.] speed [2.];
+			move head to y-axis [0.] speed [1.];
+			sleep 800;
+			move head to z-axis [0.] speed [2.];
+			move lsleeve to x-axis [0.] speed [3.];
+			move rsleeve to x-axis [0.] speed [3.];
+			sleep 700;
+			dont-cache head;
+			dont-cache lsleeve;
+			dont-cache rsleeve;
+			dont-cache lext;
+			dont-cache rext;
+			dont-cache lbarrel;
+			dont-cache rbarrel;
+			dont-cache lsflare;
+			dont-cache rsflare;
+			dont-cache lbflare;
+			dont-cache rbflare;
+			currentstate = 1;
+		}
+		sleep 250;
+	}
+	Static_Var_5 = 0;
+}
+
+Create()
+{
+	Static_Var_1 = 0;
+	Static_Var_2 = 0;
+	Static_Var_3 = 0;
+	Static_Var_4 = 0;
+	Static_Var_5 = 0;
+	Static_Var_6 = 1;
+	Static_Var_7 = 1;
+	Static_Var_8 = 1;
+	hide lsflare;
+	hide rsflare;
+	hide lbflare;
+	hide rbflare;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 500;
+	}
+	start-script SmokeUnit();
+	dont-cache head;
+	dont-cache lsleeve;
+	dont-cache rsleeve;
+	dont-cache lext;
+	dont-cache rext;
+	dont-cache lbarrel;
+	dont-cache rbarrel;
+	dont-cache lsflare;
+	dont-cache rsflare;
+	dont-cache lbflare;
+	dont-cache rbflare;
+}
+
+Activate()
+{
+	Static_Var_7 = 1;
+	signal 4;
+	start-script RequestState(1);
+}
+
+Deactivate()
+{
+	Static_Var_7 = 0;
+	signal 2;
+	start-script RequestState(0);
+}
+
+Demo()
+{
+	Static_Var_1 = 1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+AimTertiary(heading, pitch)
+{
+	signal 4;
+	set-signal-mask 4;
+	while( Static_Var_7 OR Static_Var_5 )
+	{
+		signal 4;
+		sleep 1000;
+	}
+	start-script RequestState(0);
+	turn head to y-axis heading speed <60.>;
+	turn lsleeve to x-axis <0.> - pitch speed <50.>;
+	turn rsleeve to x-axis <0.> - pitch speed <50.>;
+	Static_Var_8 = 0;
+	wait-for-turn head around y-axis;
+	wait-for-turn lsleeve around x-axis;
+	wait-for-turn rsleeve around x-axis;
+	Static_Var_3 = 1;
+	return (1);
+}
+
+FireTertiary()
+{
+	Static_Var_8 = 1;
+	if( !Static_Var_2 )
+	{
+		Static_Var_2 = 1;
+		show lsflare;
+		move lbarrel to z-axis [-4.] speed [400.];
+		sleep 75;
+		show lbflare;
+		sleep 75;
+		hide lsflare;
+		sleep 50;
+		hide lbflare;
+		move lbarrel to z-axis [0.] speed [2.];
+		return (0);
+	}
+	if( Static_Var_2 )
+	{
+		Static_Var_2 = 0;
+		show rsflare;
+		move rbarrel to z-axis [-4.] speed [400.];
+		sleep 75;
+		show rbflare;
+		sleep 75;
+		hide rsflare;
+		sleep 50;
+		hide rbflare;
+		move rbarrel to z-axis [0.] speed [2.];
+		return (0);
+	}
+}
+
+QueryTertiary(piecenum)
+{
+	if( !Static_Var_2 )
+	{
+		piecenum = lsflare;
+	}
+	if( Static_Var_2 )
+	{
+		piecenum = rsflare;
+	}
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = head;
+}
+
+AimFromPrimary(piecenum)
+{
+	if( !Static_Var_2 )
+	{
+		piecenum = lext;
+	}
+	if( Static_Var_2 )
+	{
+		piecenum = rext;
+	}
+}
+
+QueryPrimary(piecenum)
+{
+	if( !Static_Var_2 )
+	{
+		piecenum = lsflare;
+	}
+	if( Static_Var_2 )
+	{
+		piecenum = rsflare;
+	}
+}
+
+FirePrimary()
+{
+	Static_Var_8 = 1;
+	if( !Static_Var_2 )
+	{
+		Static_Var_2 = 1;
+		show lsflare;
+		move lbarrel to z-axis [-3.] speed [400.];
+		sleep 150;
+		hide lsflare;
+		move lbarrel to z-axis [0.] speed [2.];
+		return (0);
+	}
+	if( Static_Var_2 )
+	{
+		Static_Var_2 = 0;
+		show rsflare;
+		move rbarrel to z-axis [-3.] speed [400.];
+		sleep 150;
+		hide rsflare;
+		move rbarrel to z-axis [0.] speed [2.];
+		return (0);
+	}
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	while( ( !Static_Var_7 ) OR Static_Var_5 )
+	{
+		signal 2;
+		sleep 1000;
+	}
+	start-script RequestState(1);
+	turn head to y-axis heading speed <140.>;
+	turn rsleeve to x-axis <0.> - pitch speed <90.>;
+	turn lsleeve to x-axis <0.> - pitch speed <90.>;
+	Static_Var_8 = 0;
+	wait-for-turn head around y-axis;
+	wait-for-turn rsleeve around x-axis;
+	wait-for-turn lsleeve around x-axis;
+	Static_Var_3 = 1;
+	return (1);
+}
+
+Killed(severity, corpsetype)
+{
+	hide lsflare;
+	hide rsflare;
+	hide lbflare;
+	hide rbflare;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode head type BITMAPONLY | BITMAP4;
+		explode lsleeve type BITMAPONLY | BITMAP3;
+		explode rsleeve type BITMAPONLY | BITMAP3;
+		explode lext type FALL | BITMAP2;
+		explode lbarrel type BITMAPONLY | BITMAP2;
+		explode rbarrel type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode head type BITMAPONLY | BITMAP4;
+		explode lext type FALL | BITMAP2;
+		explode lsleeve type FALL | BITMAP3;
+		explode lbarrel type FALL | BITMAP2;
+		explode lext type FALL | SMOKE | BITMAP2;
+		explode rext type FALL | SMOKE | BITMAP2;
+		explode rsleeve type FALL | BITMAP3;
+		explode rbarrel type FALL | BITMAP2;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode top1 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode top2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode head type SHATTER | BITMAP2;
+		explode lsleeve type FALL | BITMAP3;
+		explode rsleeve type FALL | BITMAP3;
+		explode lext type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode rext type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode lbarrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rbarrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode ltread type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rtread type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode top1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode top2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode head type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode lsleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rsleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode lext type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rext type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode lbarrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lbarrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lsflare type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	explode rsflare type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+}

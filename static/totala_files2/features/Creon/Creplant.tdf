@@ -1,0 +1,116 @@
+[CrePlant01]
+	{
+	world=Creon;
+	description=Plant;
+	category=plants;
+	footprintx=1;
+	footprintz=1;
+	filename=CrePlant;
+	seqname=CrePlant01;
+	seqnamereclamate=CrePlantKill01;
+	energy=50;
+
+	seqnamedie=CrePlantKill01;
+	featuredead=CrePlant01a;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=CrePlant01a;
+	hitdensity=10;
+	}
+
+[CrePlant01a]
+	{
+	world=Creon;
+	description=Dead Plant;
+	category=plants;
+	footprintx=1;
+	footprintz=1;
+	filename=CrePlant;
+	seqname=CrePlant01a;
+
+//	indestructible=1;
+	featuredead=CrePlant01a;
+
+	damage=20;
+	shadtrans=1;
+	hitdensity=10;
+	}
+
+[CrePlant02]
+	{
+	world=Creon;
+	description=Plant;
+	category=plants;
+	footprintx=1;
+	footprintz=1;
+	filename=CrePlant;
+	seqname=CrePlant02;
+	seqnamereclamate=CrePlantKill02;
+	energy=50;
+
+	seqnamedie=CrePlantKill02;
+	featuredead=CrePlant02a;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=CrePlant02a;
+	hitdensity=10;
+	}
+
+[CrePlant02a]
+	{
+	world=Creon;
+	description=Dead Plant;
+	category=plants;
+	footprintx=1;
+	footprintz=1;
+	filename=CrePlant;
+	seqname=CrePlant02a;
+
+//	indestructible=1;
+	featuredead=CrePlant02a;
+
+	damage=20;
+	shadtrans=1;
+	hitdensity=10;
+	}
+
+[CrePlant03]
+	{
+	world=Creon;
+	description=Plant;
+	category=plants;
+	footprintx=1;
+	footprintz=1;
+	filename=CrePlant;
+	seqname=CrePlant03;
+	seqnamereclamate=CrePlantKill03;
+	energy=50;
+
+	seqnamedie=CrePlantKill03;
+	featuredead=CrePlant03a;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=CrePlant03a;
+	hitdensity=10;
+	}
+
+[CrePlant03a]
+	{
+	world=Creon;
+	description=Dead Plant;
+	category=plants;
+	footprintx=1;
+	footprintz=1;
+	filename=CrePlant;
+	seqname=CrePlant03a;
+
+//	indestructible=1;
+	featuredead=CrePlant02a;
+
+	damage=20;
+	shadtrans=1;
+	hitdensity=10;
+	}

@@ -1,0 +1,32 @@
+[bubbles]
+	{
+	world=lava;
+	category=burning lava;
+	description=bubbling water;
+	filename=lavaSFX;
+	seqname=bubbles;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	blocking=1;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	geothermal=1;
+	}
+
+[bubbles01]
+	{
+	world=lava;
+	category=burning lava;
+	description=bubbling water;
+	filename=lavaSFX;
+	seqname=bubbles01;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	blocking=1;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}

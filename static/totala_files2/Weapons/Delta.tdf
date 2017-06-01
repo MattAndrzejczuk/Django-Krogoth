@@ -1,0 +1,50 @@
+[PLASMA_SPRAY]
+	{
+	ID=250;
+	name=Plasma Spray;
+	rendertype=3;
+	lineofsight=1;
+	turret=1;
+	beamweapon=1;
+
+	model=dgun;
+
+	range=650;
+	reloadtime=3.3;
+	burst=5;
+	burstrate=.2;
+	sprayangle=10000;
+
+	noautorange=1;
+	weapontimer=2;
+	flighttime=20;
+
+	weaponvelocity=800;
+	weaponacceleration=50;
+	startvelocity=600;
+	turnrate=15000;
+	areaofeffect=90;
+	metalpershot=0;
+	energypershot=5;
+	
+	soundstart=Spray_fire;
+	soundhit=Spray_hit;
+
+	firestarter=75;
+	smokedelay=.1;
+	smoketrail=1;
+
+	explosiongaf=plasma;
+	explosionart=plasma;
+	
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	[DAMAGE]
+		{
+		default=75;
+		}
+	}

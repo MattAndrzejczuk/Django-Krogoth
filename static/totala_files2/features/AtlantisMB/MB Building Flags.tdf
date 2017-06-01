@@ -1,0 +1,344 @@
+[FlagSmall01]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag0101;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}
+
+[FlagSmall02]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag0201;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}
+
+[FlagSmall03]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag0301;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}
+
+[FlagSmall04]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag0401;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}
+
+[FlagSmall05]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag0501;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}
+
+[FlagSmall06]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag0601;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}
+
+[FlagSmall07]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag0701;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}
+
+[FlagSmall08]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag0801;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}
+
+[FlagSmall09]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag0901;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}
+
+[FlagSmall10]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag1001;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}
+
+[FlagSmall11]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag1101;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}
+
+[FlagSmall12]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag1201;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}
+
+[FlagSmall13]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag1301;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}
+
+[FlagSmall14]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag1401;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}
+
+[FlagSmall15]
+	{
+	world=AtlantisMB;
+	description=MB Flag;
+	category=Building Flags;
+	filename=MBFlagsSM;
+	seqname=Flag1501;
+	seqnameshad=FlagsmallShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=20;
+		
+	animating=1;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=10;
+	reclaimable=0;
+	damage=32009; 
+	indestructible=1;	
+	blocking=1;
+	permanent=1; 	
+	}

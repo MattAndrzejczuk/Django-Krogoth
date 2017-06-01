@@ -1,0 +1,50 @@
+[ARMGCA_WEAPON]
+	{
+	ID=236;
+	name=Ground Control Artillery Weapon;
+	rendertype=1;
+	lineofsight=1;
+	vlaunch=1;
+
+	model=obus;
+
+	range=2000;
+	reloadtime=14;
+
+	noautorange=1;
+	weapontimer=2;
+	flighttime=10;
+
+	weaponvelocity=500;
+	startvelocity=400;
+	turnrate=24384;
+	areaofeffect=150;
+	metalpershot=50;
+	energypershot=500;
+
+	burst=5.5;
+	burstrate=0.4;
+
+	firestarter=100;
+	selfprop=1;
+
+	twophase=1;
+	tolerance=2800;
+
+	soundstart=5shoot;
+	soundhit=xplomed4;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	[DAMAGE]
+		{
+		default=350;
+		}
+	}

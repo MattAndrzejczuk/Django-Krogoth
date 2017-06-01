@@ -1,0 +1,37 @@
+[fighter3g_dead]
+	{
+	World=All Worlds;
+	Description=Wreckage;
+	Category=arm_corpses;
+	Object=fighter3g_dead;
+	FeatureDead=fighter3g_heap;
+	FootPrintx=3;
+	FootPrintz=3;
+	Height=31;
+	Blocking=1;
+	HitDensity=105;
+	Metal=1289;
+	Damage=1152;
+	Reclaimable=1;
+	FeatureReclamate=smudge01;
+	SeqNameReclamate=tree1reclamate;
+	}
+
+[fighter3g_heap]
+	{
+	World=All Worlds;
+	Description=Wreckage;
+	Category=heaps;
+	Object=3x3a;
+	FootPrintx=3;
+	FootPrintz=3;
+	Height=2;
+	Blocking=0;
+	HitDensity=105;
+	Metal=943;
+	Damage=954;
+	Reclaimable=1;
+	FeatureReclamate=smudge01;
+	SeqNameReclamate=tree1reclamate;
+	}
+

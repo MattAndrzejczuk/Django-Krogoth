@@ -1,0 +1,33 @@
+[VTOL_GAUSS]
+	{
+	ID=252;
+	name=Gauss Cannon;
+	rendertype=4;
+	lineofsight=1;
+	
+	range=450;
+	reloadtime=1;
+	weaponvelocity=500;
+	areaofeffect=16;
+	soundstart=cannhvy1;
+	soundhit=xplomed2;
+	tolerance=10000;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=100;
+		ARMFLAK=500;
+		CORFLAK=500;
+		}
+	}

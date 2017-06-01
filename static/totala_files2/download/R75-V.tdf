@@ -1,0 +1,15 @@
+[MENUENTRY1]
+	{
+	MENU=3;
+	BUTTON=0;
+	UNITNAME=R75-V; //ARM R75-V (Battlefield Intelligence Hover)
+	UNITMENU=ARMHP; //ARM Hovercraft Platform (Builds Hovercraft)
+	}
+
+[MENUENTRY2]
+	{
+	MENU=3;
+	BUTTON=0;
+	UNITNAME=R75-V; //ARM R75-V (Battlefield Intelligence Hover)
+	UNITMENU=ARMHPNS; //ARM Hovercraft Platform - NS (Builds Hovercraft)
+	}

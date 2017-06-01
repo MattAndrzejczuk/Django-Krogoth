@@ -1,0 +1,91 @@
+[Bridgeright]
+	{
+	world=GeistWorlds;
+	description=Bridge;
+	category=Bridges;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=4;
+	filename=bridges;
+	seqname=bridgeright;
+	seqnameshad=;
+	seqnamereclamate=;
+	energy=;
+	
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=0;
+	hitdensity=10;
+	damage=32009; 
+	indestructible=1; 	
+	}
+
+[Bridgemiddle]
+	{
+	world=GeistWorlds;
+	description=Bridge;
+	category=Bridges;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=4;
+	filename=bridges;
+	seqname=bridgemiddle;
+	seqnameshad=;
+	seqnamereclamate=;
+	energy=;
+	
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=0;
+	hitdensity=10;
+	damage=32009; 
+	indestructible=1; 	
+	}
+
+[Bridgeleft]
+	{
+	world=GeistWorlds;
+	description=Bridge;
+	category=Bridges;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=4;
+	filename=bridges;
+	seqname=bridgeleft;
+	seqnameshad=;
+	seqnamereclamate=;
+	energy=;
+	
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=0;
+	hitdensity=10;
+	damage=32009; 
+	indestructible=1; 	
+	}
+
+[Bridgemiddle1]
+	{
+	world=GeistWorlds;
+	description=Bridge;
+	category=Bridges;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=4;
+	filename=bridges;
+	seqname=bridgemiddle1;
+	seqnameshad=;
+	seqnamereclamate=;
+	energy=;
+	
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=0;
+	hitdensity=10;
+	damage=32009; 
+	indestructible=1; 	
+	}

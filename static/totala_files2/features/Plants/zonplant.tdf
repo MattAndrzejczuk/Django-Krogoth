@@ -1,0 +1,497 @@
+
+[ZonPlant01]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=Zhon;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant01;
+	seqnameshad=ZonPlantShad01;
+	
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[ZonPlant02]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=Zhon;
+	animating=0;
+	footprintx=8;
+	footprintz=6;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant02;
+	seqnameshad=ZonPlantShad02;
+		
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[ZonPlant03]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=Zhon;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant03;
+	seqnameshad=ZonPlantShad03;
+	
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[ZonPlant04]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=Zhon;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant04;
+	seqnameshad=ZonPlantShad01;
+	
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[ZonPlant05]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=Zhon;
+	animating=0;
+	footprintx=8;
+	footprintz=6;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant05;
+	seqnameshad=ZonPlantShad02;
+		
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[ZonPlant06]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=Zhon;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant06;
+	seqnameshad=ZonPlantShad03;
+	
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[ZonPlant07]
+	{
+	world=Zhon;
+	description=Plant;
+	category=Zhon;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant07;
+	seqnameshad=;
+	seqnamereclamate=shrubs1rec;
+	energy=45;
+
+	featuredead=Smudge01;
+	damage=140;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=ZonPSmudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[ZonPlant08]
+	{
+	world=Zhon;
+	description=Plant;
+	category=Zhon;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant08;
+	seqnameshad=;
+	seqnamereclamate=shrubs1rec;
+	energy=95;
+
+	featuredead=ZonPSmudge01;
+	damage=140;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=ZonPSmudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[ZonPlant09]
+	{
+	world=Zhon;
+	description=Plant;
+	category=Zhon;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant09;
+	seqnameshad=;
+	seqnamereclamate=shrubs1rec;
+	energy=125;
+
+	featuredead=ZonPSmudge01;
+	damage=140;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=ZonPSmudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[ZonPlant10]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=Zhon;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant10;
+	seqnameshad=;
+	
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[ZonPlant11]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=Zhon;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant11;
+	seqnameshad=;
+	
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[ZonPlant12]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=Zhon;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant12;
+	seqnameshad=;
+	
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[ZonPlant13]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=Zhon;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant13;
+	seqnameshad=;
+	
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[ZonPlant14]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=Zhon;
+	animating=0;
+	footprintx=6;
+	footprintz=6;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant14;
+	seqnameshad=;
+	
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[ZonPlant15]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=Zhon;
+	animating=0;
+	footprintx=6;
+	footprintz=6;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant15;
+	seqnameshad=;
+	
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[ZonPlant16]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=Zhon;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant16;
+	seqnameshad=;
+	
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[ZonPlant17]
+	{
+	world=Zhon;
+	description=Plant;
+	category=Zhon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant17;
+	seqnamereclamate=shrubs3rec;
+	seqnameshad=;
+	energy=175;
+
+	damage=14000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[ZonPlant18]
+	{
+	world=Zhon;
+	description=Plant;
+	category=Zhon;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant18;
+	seqnamereclamate=shrubs2rec;
+	seqnameshad=;
+	energy=75;
+
+	damage=14000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[ZonPlant19]
+	{
+	world=Zhon;
+	description=Plant;
+	category=Zhon;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=2;
+	filename=Zonplant;
+	seqname=ZonPlant19;
+	seqnameshad=;
+	seqnamereclamate=shrubs1rec;
+	energy=45;
+
+	damage=14000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[ZonPSmudge01]
+	{
+	world=Zhon;
+	description=Debris;
+	category=Zhon;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=ZonPlantDead;
+	seqname=ZonPSmudge01;
+
+	indestructible=1;
+	animtrans=1;      
+	flamable=0;
+	reclaimable=0;	
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+

@@ -1,0 +1,23 @@
+[MENUENTRY1]
+	{
+	UNITMENU=ARMHP; //ARM Hovercraft Platform (Builds Hovercraft)
+	MENU=4;
+	BUTTON=0;
+	UNITNAME=ARMROKS; //ARM Sirius (Rocket Skimmer)
+	}
+
+[MENUENTRY2]
+	{
+	UNITMENU=ARMHP;
+	MENU=3;
+	BUTTON=2;
+	UNITNAME=ARMPLSS;
+	}
+
+[MENUENTRY3]
+	{
+	UNITMENU=ARMHP;
+	MENU=3;
+	BUTTON=3;
+	UNITNAME=ARMMISS;
+	}

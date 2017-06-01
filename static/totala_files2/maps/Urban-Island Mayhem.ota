@@ -1,0 +1,84 @@
+[GlobalHeader]
+	{
+	missionname=Urban-Island Mayhem;
+	missiondescription=20 x 20, Upto 6 Players, Urban-Island Map. Created By Jaz. ;
+	planet=Urban;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=0;
+	mapping=0;
+	tidalstrength=15000;
+	solarstrength=20000;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=10000;
+	maxwindspeed=20000;
+	gravity=112;
+	waterdoesdamage=0;
+	waterdamage=0;
+	numplayers=6;
+	size=20 x 20;
+	memory=128 mb;
+	useonlyunits=;
+	DestroyAllUnits=1;
+	AllUnitsKilled=1;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=Urban;
+		SurfaceMetal=255;
+		MohoMetal=255;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=555;
+				ZPos=229;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=384;
+				ZPos=8072;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=8815;
+				ZPos=7269;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=9219;
+				ZPos=250;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=4541;
+				ZPos=248;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=9634;
+				ZPos=3324;
+				}
+			}
+		}
+	}

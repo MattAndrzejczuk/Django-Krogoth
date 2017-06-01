@@ -1,0 +1,178 @@
+[ORANGE]//experimental, is not what i hoped for...
+	{
+	world=Ground zero;
+	description=Orange Sun Light;
+	category=Ambient Colors;
+	animating=0;
+	footprintx=0;
+	footprintz=0;
+	height=256;
+	filename=gzlites;
+	seqname=orange;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=1;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+      }
+
+[NITE_DKBLUE]
+	{
+	world=Ground zero;
+	description=Nite Darkness;
+	category=Ambient Colors;
+	animating=0;
+	footprintx=0;
+	footprintz=0;
+	height=0;
+	filename=gzlites;
+	seqname=DKBLUE;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=1;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+      }
+[Purple]
+	{
+	world=Ground zero;
+	description=Atmospheric Light;
+	category=Ambient Colors;
+	animating=0;
+	footprintx=0;
+	footprintz=0;
+	height=0;
+	filename=gzlites;
+	seqname=Purple;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=1;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+      }
+[YELLOW]
+	{
+	world=Ground zero;
+	description=Yellow Sun Light;
+	category=Ambient Colors;
+	animating=0;
+	footprintx=0;
+	footprintz=0;
+	height=0;
+	filename=gzlites;
+	seqname=yellow;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=1;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+      }
+[NITE_BLACK]
+	{
+	world=Ground zero;
+	description=Nite Darkness;
+	category=Ambient Colors;
+	animating=0;
+	footprintx=0;
+	footprintz=0;
+	height=0;
+	filename=gzlites;
+	seqname=Black;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=1;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+      }
+[RED]
+	{
+	world=Ground zero;
+	description=Red Light;
+	category=Ambient Colors;
+	animating=0;
+	footprintx=0;
+	footprintz=0;
+	height=0;
+	filename=gzlites;
+	seqname=red;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=1;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+      }
+[FOG]
+	{
+	world=Ground zero;
+	description=FOG;
+	category=Ambient Colors;
+	animating=0;
+	footprintx=0;
+	footprintz=0;
+	height=0;
+	filename=gzlites;
+	seqname=FOG;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=1;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+      }
+
+
+
+
+
+
+
+
+

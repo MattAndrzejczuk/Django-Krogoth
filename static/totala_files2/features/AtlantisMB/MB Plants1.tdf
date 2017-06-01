@@ -1,0 +1,1115 @@
+[Plant01]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant01;
+	seqnameshad=PlantShad01;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=200;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB BoomLG01;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=1;
+	permanent=0;
+	}
+
+[Plant02]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant02;
+	seqnameshad=PlantShad02;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=70;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant03]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant03;
+	seqnameshad=PlantShad03;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=50;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant04]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant04;
+	seqnameshad=PlantShad04;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=50;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant05]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant05;
+	seqnameshad=PlantShad05;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=100;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant06]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant06;
+	seqnameshad=PlantShad06;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=90;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant07]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant07;
+	seqnameshad=PlantShad07;
+	footprintx=2;
+	footprintz=1;
+	height=6;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=200;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant08]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant08;
+	seqnameshad=PlantShad08;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=120;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant09]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant09;
+	seqnameshad=PlantShad09;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=70;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant10]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant10;
+	seqnameshad=PlantShad10;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=60;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant11]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant11;
+	seqnameshad=PlantShad11;
+	footprintx=2;
+	footprintz=1;
+	height=5;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=90;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant12]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant12;
+	seqnameshad=PlantShad12;
+	footprintx=2;
+	footprintz=1;
+	height=5;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=110;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant13]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant13;
+	seqnameshad=PlantShad13;
+	footprintx=2;
+	footprintz=1;
+	height=5;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=120;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant14]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant14;
+	seqnameshad=PlantShad14;
+	footprintx=2;
+	footprintz=1;
+	height=5;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=55;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant15]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant15;
+	seqnameshad=PlantShad15;
+	footprintx=2;
+	footprintz=1;
+	height=5;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=40;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant16]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant16;
+	seqnameshad=PlantShad15;
+	footprintx=2;
+	footprintz=1;
+	height=5;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=40;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant17]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant17;
+	seqnameshad=PlantShad15;
+	footprintx=2;
+	footprintz=1;
+	height=5;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=40;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant18]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant18;
+	seqnameshad=PlantShad15;
+	footprintx=2;
+	footprintz=1;
+	height=5;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=70;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant19]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant19;
+	seqnameshad=PlantShad19;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=30;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant20]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant20;
+	seqnameshad=PlantShad20;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=30;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant21]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant21;
+	seqnameshad=PlantShad21;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=30;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant22]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant22;
+	seqnameshad=PlantShad22;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=30;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant23]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant23;
+	seqnameshad=PlantShad23;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=30;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant24]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant24;
+	seqnameshad=PlantShad24;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=30;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant25]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant25;
+	seqnameshad=PlantShad25;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=60;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant26]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant26;
+	seqnameshad=PlantShad26;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=70;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant27]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant27;
+	seqnameshad=PlantShad27;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=70;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant28]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant28;
+	seqnameshad=PlantShad28;
+	footprintx=2;
+	footprintz=1;
+	height=5;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=60;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant29]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant29;
+	seqnameshad=PlantShad29;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=10;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant30]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant30;
+	seqnameshad=PlantShad30;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=10;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant31]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant31;
+	seqnameshad=PlantShad31;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=10;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant32]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant32;
+	seqnameshad=PlantShad32;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=10;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant33]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant33;
+	seqnameshad=PlantShad29;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=10;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant34]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant34;
+	seqnameshad=PlantShad30;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=10;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant35]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant35;
+	seqnameshad=PlantShad31;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=10;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}
+
+[Plant36]		
+ 
+	{
+	world=AtlantisMB;
+	description=MB Plant;
+	category=Plants;
+	filename=MBPlants1;
+	seqname=Plant36;
+	seqnameshad=PlantShad32;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+
+	reclaimable=1;
+	energy=10;
+	seqnamereclamate=MB Boom100;
+	featurereclamate=smudge01;
+	seqnamedie=MB Boom100;
+	featuredead=smudge01; 
+
+	Damage=1;
+	indestructible=0;
+	blocking=0;
+	permanent=0;
+	}

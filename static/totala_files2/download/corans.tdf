@@ -1,0 +1,7 @@
+[MENUENTRY1]
+	{
+                    UNITMENU=CORPLAT;
+                    MENU=3;
+                    BUTTON=0;
+                    UNITNAME=CORANS;
+	}

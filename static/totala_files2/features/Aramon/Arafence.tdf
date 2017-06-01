@@ -1,0 +1,240 @@
+[AraFence01]
+	{
+	world=Aramon;
+	description=Fence;
+	category=misc;
+	footprintx=5;
+	footprintz=1;
+	height=20;
+	filename=AraFence;
+	seqname=AraFence01;
+	seqnameshad=AraFenceShad01;
+	energy=250;
+
+	seqnameburn=AraFenceDie01;
+	featureburnt=AraFence01a;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=40;
+	burnweapon=TreeBurn;
+
+	seqnamedie=AraFenceDie01;
+	featuredead=AraFence01a;
+
+	seqnamereclamate=AraFenceDie01;
+	featurereclamate=AraFence01a;
+
+	damage=1000;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	blocking=1;
+	}
+
+[AraFence01a]
+	{
+	world=Aramon;
+	description=Ruined Fence;
+	category=misc;
+	footprintx=1;
+	footprintz=1;
+	filename=AraFence;
+	seqname=AraFence01a;
+	indestructible=1;
+	}
+
+
+[AraFence02]
+	{
+	world=Aramon;
+	description=Fence;
+	category=misc;
+	footprintx=6;
+	footprintz=1;
+	height=20;
+	filename=AraFence;
+	seqname=AraFence02;
+	seqnameshad=AraFenceShad02;
+	energy=250;
+
+	seqnameburn=AraFenceDie02;
+	featureburnt=AraFence02a;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=40;
+	burnweapon=TreeBurn;
+
+	seqnamedie=AraFenceDie02;
+	featuredead=AraFence02a;
+
+	seqnamereclamate=AraFenceDie02;
+	featurereclamate=AraFence02a;
+
+	damage=1000;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	blocking=1;
+	}
+
+[AraFence02a]
+	{
+	world=Aramon;
+	description=Ruined Fence;
+	category=misc;
+	footprintx=1;
+	footprintz=1;
+	filename=AraFence;
+	seqname=AraFence02a;
+	indestructible=1;
+	}
+
+
+[AraFence03]
+	{
+	world=Aramon;
+	description=Fence;
+	category=misc;
+	footprintx=4;
+	footprintz=1;
+	height=20;
+	filename=AraFence;
+	seqname=AraFence03;
+	seqnameshad=AraFenceShad03;
+	energy=250;
+
+	seqnameburn=AraFenceDie03;
+	featureburnt=AraFence03a;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=40;
+	burnweapon=TreeBurn;
+
+
+	seqnamedie=AraFenceDie03;
+	featuredead=AraFence03a;
+
+	seqnamereclamate=AraFenceDie03;
+	featurereclamate=AraFence03a;
+
+	damage=1000;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	blocking=1;
+	}
+
+[AraFence03a]
+	{
+	world=Aramon;
+	description=Ruined Fence;
+	category=misc;
+	footprintx=1;
+	footprintz=1;
+	filename=AraFence;
+	seqname=AraFence03a;
+	indestructible=1;
+	}
+
+
+[AraFence04]
+	{
+	world=Aramon;
+	description=Fence;
+	category=misc;
+	footprintx=1;
+	footprintz=5;
+	height=20;
+	filename=AraFence;
+	seqname=AraFence04;
+	seqnameshad=AraFenceShad04;
+	energy=250;
+
+	seqnameburn=AraFenceDie04;
+	featureburnt=AraFence04a;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=40;
+	burnweapon=TreeBurn;
+
+
+	seqnamedie=AraFenceDie04;
+	featuredead=AraFence04a;
+
+	seqnamereclamate=AraFenceDie04;
+	featurereclamate=AraFence04a;
+
+	damage=1000;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	blocking=1;
+	}
+
+[AraFence04a]
+	{
+	world=Aramon;
+	description=Ruined Fence;
+	category=misc;
+	footprintx=1;
+	footprintz=1;
+	filename=AraFence;
+	seqname=AraFence04a;
+	indestructible=1;
+	}
+
+
+[AraFence05]
+	{
+	world=Aramon;
+	description=Fence;
+	category=misc;
+	footprintx=1;
+	footprintz=4;
+	height=20;
+	filename=AraFence;
+	seqname=AraFence05;
+	seqnameshad=AraFenceShad05;
+	energy=250;
+
+	seqnameburn=AraFenceDie05;
+	featureburnt=AraFence05a;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=40;
+	burnweapon=TreeBurn;
+
+	seqnamedie=AraFenceDie05;
+	featuredead=AraFence05a;
+
+	seqnamereclamate=AraFenceDie05;
+	featurereclamate=AraFence05a;
+
+	damage=1000;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	blocking=1;
+	}
+
+[AraFence05a]
+	{
+	world=Aramon;
+	description=Ruined Fence;
+	category=misc;
+	footprintx=1;
+	footprintz=1;
+	filename=AraFence;
+	seqname=AraFence05a;
+	indestructible=1;
+	}

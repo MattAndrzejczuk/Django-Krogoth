@@ -1,0 +1,273 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, armor, turret, Rsleeve, Lsleeve, Lbarrel1, Lbarrel2, emit1,
+       Rbarrel1, Rbarrel2, emit2;
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Activate()
+{
+	move turret to y-axis [5.] speed [50.];
+	wait-for-move turret along y-axis;
+	move Rsleeve to x-axis [2.] speed [50.];
+	move Lsleeve to x-axis [-2.] speed [50.];
+	move Lbarrel1 to z-axis [3.] speed [50.];
+	move Lbarrel2 to z-axis [3.] speed [50.];
+	move Rbarrel1 to z-axis [3.] speed [50.];
+	move Rbarrel2 to z-axis [3.] speed [50.];
+	wait-for-move Rsleeve along x-axis;
+	wait-for-move Lsleeve along x-axis;
+	wait-for-move Lbarrel1 along z-axis;
+	wait-for-move Lbarrel2 along z-axis;
+	wait-for-move Rbarrel1 along z-axis;
+	wait-for-move Rbarrel2 along z-axis;
+	Static_Var_3 = 1;
+}
+
+Deactivate()
+{
+	move Lbarrel1 to z-axis [0.] speed [20.];
+	move Lbarrel2 to z-axis [0.] speed [20.];
+	move Rbarrel1 to z-axis [0.] speed [20.];
+	move Rbarrel2 to z-axis [0.] speed [20.];
+	move Rsleeve to x-axis [0.] speed [20.];
+	move Lsleeve to x-axis [0.] speed [20.];
+	wait-for-move Lsleeve along x-axis;
+	wait-for-move Rsleeve along x-axis;
+	move turret to y-axis [0.] speed [20.];
+	turn Rsleeve to x-axis <0.> speed <100.>;
+	turn Lsleeve to x-axis <0.> speed <100.>;
+	wait-for-move turret along y-axis;
+	wait-for-move Rsleeve along x-axis;
+	wait-for-move Lsleeve along x-axis;
+	wait-for-move Lbarrel1 along z-axis;
+	wait-for-move Lbarrel2 along z-axis;
+	wait-for-move Rbarrel1 along z-axis;
+	wait-for-move Rbarrel2 along z-axis;
+	Static_Var_3 = 0;
+}
+
+Popup()
+{
+	move turret to y-axis [5.] speed [50.];
+	wait-for-move turret along y-axis;
+	move Rsleeve to x-axis [2.] speed [50.];
+	move Lsleeve to x-axis [-2.] speed [50.];
+	move Lbarrel1 to z-axis [3.] speed [50.];
+	move Lbarrel2 to z-axis [3.] speed [50.];
+	move Rbarrel1 to z-axis [3.] speed [50.];
+	move Rbarrel2 to z-axis [3.] speed [50.];
+	wait-for-move Rsleeve along x-axis;
+	wait-for-move Lsleeve along x-axis;
+	wait-for-move Lbarrel1 along z-axis;
+	wait-for-move Lbarrel2 along z-axis;
+	wait-for-move Rbarrel1 along z-axis;
+	wait-for-move Rbarrel2 along z-axis;
+	Static_Var_3 = 1;
+}
+
+Create()
+{
+	dont-shade turret;
+	dont-cache turret;
+	dont-cache Rsleeve;
+	dont-cache Lsleeve;
+	dont-shade Rsleeve;
+	dont-shade Lsleeve;
+	dont-cache Lbarrel1;
+	dont-cache Lbarrel2;
+	dont-cache Rbarrel1;
+	dont-cache Rbarrel2;
+	dont-shade Lbarrel1;
+	dont-shade Lbarrel2;
+	dont-shade Rbarrel1;
+	dont-shade Rbarrel2;
+	Static_Var_1 = 1;
+	Static_Var_3 = 0;
+	Static_Var_2 = 3000;
+	start-script SmokeUnit();
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	Static_Var_2 = Func_Var_1 * 2;
+}
+
+RestoreAfterDelay()
+{
+	sleep Static_Var_2;
+	set-signal-mask 2;
+	Static_Var_3 = 0;
+	move Lbarrel1 to z-axis [0.] speed [20.];
+	move Lbarrel2 to z-axis [0.] speed [20.];
+	move Rbarrel1 to z-axis [0.] speed [20.];
+	move Rbarrel2 to z-axis [0.] speed [20.];
+	move Rsleeve to x-axis [0.] speed [20.];
+	move Lsleeve to x-axis [0.] speed [20.];
+	wait-for-move Lsleeve along x-axis;
+	wait-for-move Rsleeve along x-axis;
+	move turret to y-axis [0.] speed [20.];
+	turn Rsleeve to x-axis <0.> speed <100.>;
+	turn Lsleeve to x-axis <0.> speed <100.>;
+	wait-for-move turret along y-axis;
+	wait-for-move Rsleeve along x-axis;
+	wait-for-move Lsleeve along x-axis;
+	wait-for-move Lbarrel1 along z-axis;
+	wait-for-move Lbarrel2 along z-axis;
+	wait-for-move Rbarrel1 along z-axis;
+	wait-for-move Rbarrel2 along z-axis;
+	return (1);
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	if( Static_Var_3 == 0 )
+	{
+		call-script Popup();
+	}
+	turn turret to y-axis heading speed <700.>;
+	turn Rsleeve to x-axis <0.> - pitch speed <600.>;
+	turn Lsleeve to x-axis <0.> - pitch speed <600.>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn Rsleeve around x-axis;
+	wait-for-turn Lsleeve around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	if( Static_Var_1 == 1 )
+	{
+		move Lbarrel2 to z-axis [-3.] speed [400.];
+		sleep 100;
+		move Lbarrel2 to z-axis [3.] speed [400.];
+		Static_Var_1 = 2;
+		return (0);
+		return (0);
+	}
+	if( Static_Var_1 == 2 )
+	{
+		move Rbarrel2 to z-axis [-3.] speed [400.];
+		sleep 100;
+		move Rbarrel2 to z-axis [3.] speed [400.];
+		Static_Var_1 = 1;
+		return (0);
+		return (0);
+	}
+}
+
+QueryPrimary(piecenum)
+{
+	if( Static_Var_1 == 1 )
+	{
+		piecenum = emit1;
+		return (0);
+		return (0);
+	}
+	if( Static_Var_1 == 2 )
+	{
+		piecenum = emit2;
+		return (0);
+		return (0);
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode armor type BITMAPONLY | BITMAP2;
+		explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+		explode Rsleeve type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode Lsleeve type BITMAPONLY | BITMAP3;
+		explode Rbarrel1 type BITMAPONLY | BITMAP4;
+		explode Lbarrel1 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode Lbarrel2 type BITMAPONLY | BITMAP3;
+		explode Rbarrel2 type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode armor type BITMAPONLY | BITMAP2;
+		explode turret type SHATTER | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode Rsleeve type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode Lsleeve type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode Rbarrel1 type FALL | EXPLODE_ON_HIT | BITMAP4;
+		explode Lbarrel1 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode Lbarrel2 type SHATTER | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode Rbarrel2 type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode armor type BITMAPONLY | BITMAP2;
+		explode turret type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode Rsleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Lsleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode Rbarrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode Lbarrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode Lbarrel2 type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode Rbarrel2 type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode armor type BITMAPONLY | BITMAP2;
+	explode turret type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Rsleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Lsleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Rbarrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode Lbarrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Lbarrel2 type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Rbarrel2 type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+}

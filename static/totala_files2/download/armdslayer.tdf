@@ -1,0 +1,7 @@
+[MENUENTRY1]
+	{
+	UNITMENU=PINCHY;
+	MENU=3;
+	BUTTON=1;
+	UNITNAME=armdslayer;
+	}

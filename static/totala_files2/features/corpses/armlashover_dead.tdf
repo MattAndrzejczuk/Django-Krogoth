@@ -1,0 +1,35 @@
+[ARMLASHOVER_DEAD]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=ARMLASHOVER_dead;
+	featuredead=ARMLASHOVER_heap;
+	footprintx=3;
+	footprintz=3;
+	height=20;
+	blocking=1;
+	hitdensity=60;
+	metal=180;
+	damage=356;
+	reclaimable=1;
+	featurereclaimate=smudge01;
+	seqnamereclamate=tree1reclamate;
+}
+
+[ARMLASHOVER_HEAP]
+{
+	world=All Worlds;
+	description=Metal Shards;
+	category=heaps;
+	object=3x3a;
+	footprintx=3;
+	footprintz=3;
+	blocking=0;
+	hitdensity=5;
+	metal=97;
+	damage=145;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+}

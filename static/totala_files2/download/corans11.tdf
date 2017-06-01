@@ -1,0 +1,14 @@
+[MENUENTRY1]
+	{
+                    UNITMENU=CORANS;
+                    MENU=8;
+                    BUTTON=4;
+                    UNITNAME=CORFRT;
+	}
+[MENUENTRY2]
+	{
+                    UNITMENU=CORANS;
+                    MENU=8;
+                    BUTTON=5;
+                    UNITNAME=CORTL;
+	}

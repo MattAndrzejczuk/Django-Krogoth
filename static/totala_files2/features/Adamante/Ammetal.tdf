@@ -1,0 +1,89 @@
+[Ametal1]
+	{
+	world=Adamante;
+	category=Metal;
+	description=Metal deposit;
+	filename=Ametal;
+	seqname=ametal4;
+	footprintx=3;
+	footprintz=3;
+	permanent=1;
+	indestructible=1;
+
+	metal=164;
+	}
+
+[ametal2]
+	{
+	world=Adamante;
+	category=Metal;
+	description=Metal deposit;
+	filename=Ametal;
+	seqname=Ametal1;
+	footprintx=3;
+	footprintz=3;
+	permanent=1;
+	indestructible=1;
+
+	metal=230;
+	}
+
+[ametal3]
+	{
+	world=Adamante;
+	category=Metal;
+	description=Metal deposit;
+	filename=Ametal;
+	seqname=Ametal2;
+	footprintx=3;
+	footprintz=3;
+	permanent=1;
+	indestructible=1;
+
+	metal=90;
+	}
+
+[ametal4]
+	{
+	world=Adamante;
+	category=Metal;
+	description=Metal deposit;
+	filename=Ametal;
+	seqname=ametal3;
+	footprintx=3;
+	footprintz=3;
+	permanent=1;
+	indestructible=1;
+
+	metal=110;
+	}
+
+[ametal5]
+	{
+	world=Adamante;
+	category=Metal;
+	description=Metal deposit;
+	filename=Ametal;
+	seqname=ametal5;
+	footprintx=3;
+	footprintz=3;
+	permanent=1;
+	indestructible=1;
+
+	metal=120;
+	}
+
+[ametal6]
+	{
+	world=Adamante;
+	category=Metal;
+	description=Metal deposit;
+	filename=Ametal;
+	seqname=ametal6;
+	footprintx=3;
+	footprintz=3;
+	permanent=1;
+	indestructible=1;
+
+	metal=190;
+	}

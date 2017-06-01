@@ -1,0 +1,53 @@
+[ZhonMetal1]
+	{
+	world=Zhon;
+	description=Metal;
+	category=Metal;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	filename=zmetal;
+	seqname=zhonmet1;
+
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ZhonMetal2]
+	{
+	world=Zhon;
+	description=Metal;
+	category=Metal;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	filename=zmetal;
+	seqname=zhonmet2;
+
+	shadtrans=1;
+	hitdensity=5;
+	metal=185;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ZhonMetal3]
+	{
+	world=Zhon;
+	description=Metal;
+	category=Metal;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	filename=zmetal;
+	seqname=zhonmet3;
+
+	shadtrans=1;
+	hitdensity=5;
+	metal=120;
+	damage=32009;
+	indestructible=1;
+	}

@@ -1,0 +1,52 @@
+[ASROC]
+	{
+	ID=191;
+	name=Guided Torpedo;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=torpedo;
+	propeller=1;
+
+	range=675;
+	reloadtime=4;
+	weapontimer=3;
+	weaponvelocity=120;
+
+	turnrate=39000;
+	areaofeffect=26;
+	soundstart=bombrel;
+	soundhit=xplodep1;
+	guidance=1;
+	tracks=1;
+	waterweapon=1;
+	startsmoke=1;
+	burnblow=1;
+	selfprop=1;
+
+	tolerance=2767;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=120;
+		armsubk=250;
+		corshark=250;
+		armsub=650;
+		corsub=650;
+		corssub=550;
+		corasub=250;
+		armasub=350;
+		corcsub=550;
+		armcsub=550;
+		}
+	}

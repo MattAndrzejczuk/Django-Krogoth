@@ -1,0 +1,18 @@
+[CNCaine_corpse]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=CNCaine_corpse;
+	footprintx=4;
+	footprintz=8;
+	height=4;
+	blocking=1;
+	hitdensity=100;
+	metal=4381;
+	damage=10940;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+

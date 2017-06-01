@@ -1,0 +1,169 @@
+[TarDev01]
+	{
+	world=Taros;
+	description=Gibbet;
+	category=Misc;
+	footprintx=1;
+	footprintz=1;
+	height=208;
+	filename=TarDev;
+	seqname=TarDev01;
+	seqnameshad=TarDevshad01;
+
+	damage=1200;
+	shadtrans=1;
+	permanent=1;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarDev02]
+	{
+	world=Taros;
+	description=Gibbet;
+	category=Misc;
+	footprintx=1;
+	footprintz=1;
+	height=208;
+	filename=TarDev;
+	seqname=TarDev02;
+	seqnameshad=TarDevshad02;
+	damage=1200;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=10;
+	permanent=1;
+	}
+
+[TarDev03]
+	{
+	world=Taros;
+	description=Gibbet;
+	category=Misc;
+	footprintx=1;
+	footprintz=1;
+	height=214;
+	filename=TarDev;
+	seqname=TarDev03;
+	seqnameshad=TarDevshad03;
+	damage=1200;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=10;
+	permanent=1;
+	}
+
+[TarDev04]
+	{
+	world=Taros;
+	description=Impaler;
+	category=Misc;
+	footprintx=4;
+	footprintz=4;
+	height=214;
+	filename=TarDev;
+	seqname=TarDev04;
+	seqnameshad=TarDevshad04;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[TarDev05]
+	{
+	world=Taros;
+	description=Impaler;
+	category=Misc;
+	footprintx=4;
+	footprintz=4;
+	height=202;
+	filename=TarDev;
+	seqname=TarDev05;
+	seqnameshad=TarDevshad05;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[TarDev06]
+	{
+	world=Taros;
+	description=Impaler;
+	category=Misc;
+	footprintx=4;
+	footprintz=4;
+	height=214;
+	filename=TarDev;
+	seqname=TarDev06;
+	seqnameshad=TarDevshad06;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[TarDev07]
+	{
+	world=Taros;
+	description=Stocks;
+	category=Misc;
+	footprintx=5;
+	footprintz=7;
+	height=116;
+	filename=TarDev;
+	seqname=TarDev07;
+	seqnameshad=TarDevshad07;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[TarDev08]
+	{
+	world=Taros;
+	description=Stocks;
+	category=Misc;
+	footprintx=7;
+	footprintz=4;
+	height=84;
+	filename=TarDev;
+	seqname=TarDev08;
+	seqnameshad=TarDevshad08;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[TarDev09]
+	{
+	world=Taros;
+	description=Guillotine;
+	category=Misc;
+	footprintx=9;
+	footprintz=6;
+	height=194;
+	filename=TarDev;
+	seqname=TarDev09;
+	seqnameshad=TarDevshad09;
+
+	damage=1300;
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=100;
+	permanent=1;
+	}

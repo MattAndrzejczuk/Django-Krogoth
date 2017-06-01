@@ -1,0 +1,48 @@
+[lavaB]
+	{
+	world=lava;
+	category=burning lava;
+	description=burning lava;
+	filename=lavaB;
+	seqname=lava;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	blocking=1;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	geothermal=1;
+	}
+
+[lava1]
+	{
+	world=lava;
+	category=burning lava;
+	description=burning lava;
+	filename=lavaB;
+	seqname=lava1;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	blocking=1;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lava2]
+	{
+	world=lava;
+	category=burning lava;
+	description=burning lava;
+	filename=lavaB;
+	seqname=lava2;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	blocking=1;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}

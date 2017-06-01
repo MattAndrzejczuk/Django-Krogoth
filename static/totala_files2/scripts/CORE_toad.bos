@@ -1,0 +1,222 @@
+//amphibious lvl. 1 tank by Lord Phoenix
+
+piece base, turret, sleeve, rbarrel, rflare, lbarrel, lflare, wake1, wake2, plates;
+
+static-var restore_delay, gun_1;
+#define	SIG_AIM1	2
+#define SIG_WAKE	4
+#include "exptype.h"
+#include "SFXtype.h"
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+	{
+	var Func_Var_4;
+	while( get BUILD_PERCENT_LEFT )
+		{
+		sleep 500;
+		}
+	while( TRUE )
+		{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+			{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+				{
+				smoketype = 256 | 1;
+				}
+			Func_Var_4 = Rand( 1, 3 );
+			if( Func_Var_4 == 1 )
+				{
+				emit-sfx smoketype from base;
+				}
+			if( Func_Var_4 == 2 )
+				{
+				emit-sfx smoketype from turret;
+				}
+			if( Func_Var_4 == 3 )
+				{
+				emit-sfx smoketype from base;
+				}
+			}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+			{
+			sleeptime = 200;
+			}
+		sleep sleeptime;
+		}
+	}
+	
+HitByWeapon()
+	{
+	turn base to z-axis <2> speed <100>;
+	turn base to x-axis <2> speed <100>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <-2> speed <70>;
+	turn base to x-axis <-2> speed <70>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0> speed <30>;
+	turn base to x-axis <0> speed <30>;
+	}
+	
+StartMoving()
+	{
+	signal SIG_WAKE;
+	set-signal-mask SIG_WAKE;
+	while( TRUE )
+		{
+		emit-sfx SFXTYPE_WAKE2 from wake1;
+		emit-sfx SFXTYPE_WAKE2 from wake2;
+		sleep 250;
+		}
+	}
+
+StopMoving()
+	{
+	signal SIG_WAKE;
+	}
+
+Create()
+	{
+	gun_1 = 1;
+	restore_delay = 2000;
+	hide rflare;
+	hide lflare;
+	start-script SmokeUnit();
+	}
+
+SetMaxReloadTime(time)
+	{
+	restore_delay = time * 2;
+	}
+
+RestoreAfterDelay()
+	{
+	sleep restore_delay;
+	turn turret to y-axis <0.000000> speed <20.000000>;
+	turn sleeve to x-axis <0.000000> speed <20.000000>;
+	return 0;
+	}
+
+SweetSpot (piecenum)
+	{
+	piecenum = base;
+	}
+
+QueryPrimary (piecenum)
+	{
+	if( gun_1 == 1 )
+		{
+		piecenum = rflare;
+		}
+	if( gun_1 == 2 )
+		{
+		piecenum = lflare;
+		}
+	}
+
+
+AimFromPrimary (piecenum)
+	{
+	piecenum = turret;
+	}
+
+AimPrimary(heading, pitch)
+	{
+	signal SIG_AIM1;
+	set-signal-mask SIG_AIM1;
+	turn turret to y-axis heading speed <58.000000>;
+	turn sleeve to x-axis (0-pitch) speed <45.000000>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	start-script RestoreAfterDelay();
+	return(TRUE);
+	}
+
+FirePrimary()
+	{
+	if( gun_1 == 1 )
+		{
+		gun_1 = 2;
+		show rflare;
+		move rbarrel to z-axis [-3.000000] speed [200.000000];
+		sleep 100;
+		hide rflare;
+		wait-for-move rbarrel along z-axis;
+		move rbarrel to z-axis [0.000000] speed [10.000000];
+		return 0;
+		}
+		if( gun_1 == 2 )
+		{
+		gun_1 = 1;
+		show lflare;
+		move lbarrel to z-axis [-3.000000] speed [200.000000];
+		sleep 100;
+		hide lflare;
+		wait-for-move lbarrel along z-axis;
+		move lbarrel to z-axis [0.000000] speed [10.000000];
+		return 0;
+		}
+	return 0;
+	}
+
+Killed(severity, corpsetype)
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode turret type	BITMAPONLY | BITMAP1;
+		explode sleeve type	BITMAPONLY | BITMAP1;
+		explode rbarrel type	BITMAPONLY | BITMAP1;
+		explode rflare type	BITMAPONLY | BITMAP1;
+		explode lbarrel type	BITMAPONLY | BITMAP1;
+		explode lflare type	BITMAPONLY | BITMAP1;
+		explode wake1 type	BITMAPONLY | BITMAP1;
+		explode wake2 type	BITMAPONLY | BITMAP1;
+		return(0);
+		}
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	SHATTER | BITMAP4;
+		explode turret type	SHATTER | BITMAP4;
+		explode sleeve type	SHATTER | BITMAP4;
+		explode rbarrel type	SHATTER | BITMAP4;
+		explode rflare type	SHATTER | BITMAP4;
+		explode lbarrel type	SHATTER | BITMAP4;
+		explode lflare type	SHATTER | BITMAP4;
+		explode wake1 type	SHATTER | BITMAP4;
+		explode wake2 type	SHATTER | BITMAP4;
+		return(0);
+		}
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode sleeve type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rbarrel type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rflare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lbarrel type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lflare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode wake1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode wake2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		return(0);
+		}
+	corpsetype = 3;
+	explode base type	SHATTER | BITMAP4;
+	explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode sleeve type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rbarrel type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rflare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lbarrel type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lflare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode wake1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode wake2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	return(0);
+	}

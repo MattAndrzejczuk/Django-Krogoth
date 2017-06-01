@@ -1,0 +1,299 @@
+[specRuin01]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin01;
+	seqnameshad=ruin01shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin02]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin02;
+	seqnameshad=ruin02shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin03]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin03;
+	seqnameshad=ruin03shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin04]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin04;
+	seqnameshad=ruin04shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin05]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin05;
+	seqnameshad=ruin05shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin06]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin06;
+	seqnameshad=ruin06shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin07]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin07;
+	seqnameshad=ruin07shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin08]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin08;
+	seqnameshad=ruin08shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin09]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin09;
+	seqnameshad=ruin09shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin10]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin10;
+	seqnameshad=ruin10shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin11]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin11;
+	seqnameshad=ruin11shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin12]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin12;
+	seqnameshad=ruin12shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin13]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin13;
+	seqnameshad=ruin13shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin14]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin14;
+	seqnameshad=ruin14shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin15]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin15;
+	seqnameshad=ruin15shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin16]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin16;
+	seqnameshad=ruin16shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin17]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin17;
+	seqnameshad=ruin17shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin18]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin18;
+	seqnameshad=ruin18shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin19]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin19;
+	seqnameshad=ruin19shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}
+
+[specRuin20]
+	{
+	world=Desert;
+	description=Ruin;
+	category=spec ruins;
+	footprintx=1;
+	footprintz=1;
+	filename=SPEC RUINS;
+	seqname=ruin20;
+	seqnameshad=ruin20shad;
+
+	shadtrans=1;
+	indestructible=1;
+	}

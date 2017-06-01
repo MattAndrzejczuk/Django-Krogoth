@@ -1,0 +1,187 @@
+piece base, r_wheels, f_wheels, turret, sleeve, flare, dust1, dust2;
+
+static-var restore_delay;
+#define	SIG_AIM1	2
+#define SIG_DUST	4
+#include "exptype.h"
+#include "hitweap.h"
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+	{
+	var Func_Var_1;
+	while( get BUILD_PERCENT_LEFT )
+		{
+		sleep 1000;
+		}
+	while( TRUE )	
+		{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+			{
+			smoketype = 256 | 2;
+			if( RAND( 1, 66 ) < healthpercent )
+				{
+				smoketype = 256 | 1;
+				}
+			Func_Var_1 = RAND( 1, 4 );
+			if( Func_Var_1 == 1 || 4)
+				{
+				emit-sfx smoketype from base;
+				}
+			if( Func_Var_1 == 2 )
+				{
+				emit-sfx smoketype from turret;
+				}
+			if( Func_Var_1 == 3 )
+				{
+				emit-sfx smoketype from sleeve;
+				}
+			}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+			{
+			sleeptime = 200;
+			}
+		sleep sleeptime;
+		}
+	}
+
+MoveRate2()	
+	{
+	var dusttime;
+	signal SIG_DUST;
+	set-signal-mask SIG_DUST;
+	while( TRUE )
+		{
+		dusttime = RAND( 500, 1000 );
+		emit-sfx 257 from dust1;
+		emit-sfx 257 from dust2;
+		sleep dusttime;
+		}
+	}
+	
+MoveRate1()
+	{
+	signal SIG_DUST;
+	}
+
+Create()
+	{
+	restore_delay = 2000;
+	hide flare;
+	start-script SmokeUnit();
+	}
+	
+StartMoving()	
+	{
+	spin f_wheels around x-axis speed <-100> accelerate <20>;
+	spin r_wheels around x-axis speed <-100> accelerate <20>;
+	}
+
+StopMoving()
+	{
+	stop-spin f_wheels around x-axis decelerate <20>;
+	stop-spin r_wheels around x-axis decelerate <20>;
+	}
+	
+SetMaxReloadTime(time)
+	{
+	restore_delay = time * 2;
+	}
+
+RestoreAfterDelay()
+	{
+	sleep restore_delay;
+	turn turret to y-axis <0> speed <50>;
+	turn sleeve to x-axis <0> speed <40>;
+	return 0;
+	}
+
+SweetSpot (piecenum)
+	{
+	piecenum = base;
+	}
+
+QueryPrimary (piecenum)
+	{
+	piecenum = flare;
+	}
+
+AimFromPrimary (piecenum)
+	{
+	piecenum = turret;
+	}
+
+AimPrimary(heading, pitch)
+	{
+	signal SIG_AIM1;
+	set-signal-mask SIG_AIM1;
+	turn turret to y-axis heading speed <65>;
+	turn sleeve to x-axis (0-pitch) speed <50>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	start-script RestoreAfterDelay();
+	return 1;
+	}
+
+FirePrimary()
+	{
+	show flare;
+	sleep 150;
+	hide flare;
+	return(0);
+	}
+
+Killed(severity, corpsetype)
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode r_wheels type	BITMAPONLY | BITMAP1;
+		explode f_wheels type	BITMAPONLY | BITMAP1;
+		explode turret type	BITMAPONLY | BITMAP1;
+		explode sleeve type	BITMAPONLY | BITMAP1;
+		explode flare type	BITMAPONLY | BITMAP1;
+		explode dust1 type	BITMAPONLY | BITMAP1;
+		explode dust2 type	BITMAPONLY | BITMAP1;
+		return 0;
+		}
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	SHATTER | BITMAP4;
+		explode r_wheels type	SHATTER | BITMAP4;
+		explode f_wheels type	SHATTER | BITMAP4;
+		explode turret type	SHATTER | BITMAP4;
+		explode sleeve type	SHATTER | BITMAP4;
+		explode flare type	SHATTER | BITMAP4;
+		explode dust1 type	SHATTER | BITMAP4;
+		explode dust2 type	SHATTER | BITMAP4;
+		return 0;
+		}
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode r_wheels type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode f_wheels type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode sleeve type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode flare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode dust1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode dust2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		return 0;
+		}
+	corpsetype = 3;
+	explode base type	SHATTER | BITMAP2;
+	explode r_wheels type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode f_wheels type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode sleeve type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode flare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode dust1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode dust2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	return 0;
+	}

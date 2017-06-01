@@ -1,0 +1,269 @@
+[Building 1_fixed]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b1;
+	seqnameshad=tat_b1_shad;
+	footprintx=7;
+	footprintz=6;
+	height=100;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 2_fixed]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b2;
+	seqnameshad=tat_b2_shad;
+	footprintx=11;
+	footprintz=10;
+	height=40;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 3_fixed]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b3;
+	seqnameshad=tat_b3_shad;
+	footprintx=13;
+	footprintz=8;
+	height=250;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 4_fixed]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b4;
+	seqnameshad=tat_b4_shad;
+	footprintx=12;
+	footprintz=11;
+	height=40;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 5_fixed]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b5;
+	seqnameshad=tat_b5_shad;
+	footprintx=13;
+	footprintz=10;
+	height=40;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 6_fixed]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b6;
+	seqnameshad=tat_b6_shad;
+	footprintx=7;
+	footprintz=6;
+	height=150;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 7_fixed]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b7;
+	seqnameshad=tat_b7_shad;
+	footprintx=8;
+	footprintz=7;
+	height=160;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 8a]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b8a;
+	seqnameshad=tat_b8ashad;
+	footprintx=4;
+	footprintz=15;
+	height=40;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 8b]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b8b;
+	seqnameshad=tat_b8bshad;
+	footprintx=9;
+	footprintz=11;
+	height=40;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 9_fixed]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b9;
+	seqnameshad=tat_b9_shad;
+	footprintx=12;
+	footprintz=13;
+	height=60;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 10a]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b10a;
+	footprintx=7;
+	footprintz=3;
+	height=20;
+	blocking=1;
+	indestructible=1;
+	}
+
+[Building 10b]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b10b;
+	seqnameshad=tat_b10bshad;
+	footprintx=7;
+	footprintz=9;
+	height=20;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 11_fixed]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b11;
+	seqnameshad=tat_b11_shad;
+	footprintx=12;
+	footprintz=10;
+	height=40;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 12]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b12;
+	seqnameshad=tat_b12_shad;
+	footprintx=10;
+	footprintz=7;
+	height=30;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 13]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b13;
+	seqnameshad=tat_b13_shad;
+	footprintx=5;
+	footprintz=8;
+	height=20;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 14_fixed]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b14;
+	seqnameshad=tat_b14_shad;
+	footprintx=13;
+	footprintz=9;
+	height=200;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}
+
+[Building 15]
+	{
+	world=Tatooine;
+	category=SW Buildings;
+	description=Building;
+	filename=tat_buildings_fixed;
+	seqname=tat_b15;
+	seqnameshad=tat_b15_shad;
+	footprintx=14;
+	footprintz=11;
+	height=25;
+	blocking=1;
+	indestructible=1;
+	shadtrans=1;
+	}

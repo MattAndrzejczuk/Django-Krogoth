@@ -1,0 +1,100 @@
+[Flash1]
+	{
+	world=Hallucigenia;
+	description=;
+	category=Flash;
+	animating=1;
+   	footprintx=1;
+    	footprintz=1;
+	height=4;
+	filename=Flash;
+	seqname=Flash1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=;
+	damage=32009;
+	indestructible=1;
+	}
+[Flash2]
+	{
+	world=Hallucigenia;
+	description=;
+	category=Flash;
+	animating=1;
+   	footprintx=1;
+    	footprintz=1;
+	height=4;
+	filename=Flash;
+	seqname=Flash2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=;
+	damage=32009;
+	indestructible=1;
+	}
+[Flash3]
+	{
+	world=Hallucigenia;
+	description=;
+	category=Flash;
+	animating=1;
+   	footprintx=1;
+    	footprintz=1;
+	height=4;
+	filename=Flash;
+	seqname=Flash3;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=;
+	damage=32009;
+	indestructible=1;
+	}
+[Flash4]
+	{
+	world=Hallucigenia;
+	description=;
+	category=Flash;
+	animating=1;
+   	footprintx=1;
+    	footprintz=1;
+	height=4;
+	filename=Flash;
+	seqname=Flash4;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=;
+	damage=32009;
+	indestructible=1;
+	}
+[Flash5]
+	{
+	world=Hallucigenia;
+	description=;
+	category=Flash;
+	animating=1;
+   	footprintx=1;
+    	footprintz=1;
+	height=4;
+	filename=Flash;
+	seqname=Flash5;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=;
+	damage=32009;
+	indestructible=1;
+	}

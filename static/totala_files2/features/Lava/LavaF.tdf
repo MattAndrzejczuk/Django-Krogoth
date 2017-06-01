@@ -1,0 +1,167 @@
+[lavaF_N]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaF;
+	seqname=lavaF_N;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lavaF_Ns]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaF;
+	seqname=lavaF_Ns;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lavaF_S]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaF;
+	seqname=lavaF_S;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lavaF_Ss]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaF;
+	seqname=lavaF_Ss;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lavaF_E]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaF;
+	seqname=lavaF_E;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lavaF_Es]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaF;
+	seqname=lavaF_Es;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lavaF_W]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaF;
+	seqname=lavaF_W;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lavaF_Ws]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaF;
+	seqname=lavaF_Ws;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lavaF_NW]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaF;
+	seqname=lavaF_NW;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lavaF_NE]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaF;
+	seqname=lavaF_NE;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lavaF_SE]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaF;
+	seqname=lavaF_SE;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lavaF_SW]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaF;
+	seqname=lavaF_SW;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}

@@ -1,0 +1,28 @@
+[MENUENTRY1]
+	{
+                    UNITMENU=ARMANS;
+                    MENU=6;
+                    BUTTON=4;
+                    UNITNAME=AMGEO;
+	}
+[MENUENTRY2]
+	{
+                    UNITMENU=ARMANS;
+                    MENU=6;
+                    BUTTON=5;
+                    UNITNAME=DISTRIBFACILITY;
+	}
+[MENUENTRY3]
+	{
+                    UNITMENU=ARMANS;
+                    MENU=7;
+                    BUTTON=0;
+                    UNITNAME=ARMUWFUS;
+	}
+[MENUENTRY4]
+	{
+                    UNITMENU=ARMANS;
+                    MENU=7;
+                    BUTTON=1;
+                    UNITNAME=ARMUWMME;
+	}

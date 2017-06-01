@@ -1,0 +1,200 @@
+[ZonTree07a]
+	{
+	world=Zhon;
+	description=Tree;
+	category=do not fix;
+	footprintx=1;
+	footprintz=1;
+	height=95;
+	filename=ZonTreeABad;
+	seqname=ZonTree07a;
+	seqnameshad=ZonTreeshad07a;
+	seqnamereclamate=ZonTreeRec07a;
+	energy=250;
+
+	seqnameburn=ZonTreeBurn07a;
+	featureburnt=ZonTreeDead07a;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=ZonTreeKill07a;
+	featuredead=ZonTreeDead07a;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+//	featurereclamate=;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZonTreeDead07a]
+	{
+	world=Zhon;
+	description=Dead Tree;
+	category=do not fix;
+	footprintx=1;
+	footprintz=1;
+	height=95;
+	filename=ZonTreeABad;
+	seqname=ZonTreeDead07a;
+	seqnameshad=ZonTreeDeadSh07a;
+	seqnamereclamate=ZonTreeDie07a;
+	energy=150;
+
+	seqnamedie=ZonTreeDie07a;
+	featuredead=ZonTreeSmudge05a;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=ZonTreeSmudge05a;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZonTree08a]
+	{
+	world=Zhon;
+	description=Tree;
+	category=do not fix;
+	footprintx=1;
+	footprintz=1;
+	height=87;
+	filename=ZonTreeABad;
+	seqname=ZonTree08a;
+	seqnameshad=ZonTreeshad08a;
+	seqnamereclamate=ZonTreeRec08a;
+	energy=250;
+
+	seqnameburn=ZonTreeBurn08a;
+	featureburnt=ZonTreeDead08a;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=ZonTreeKill08a;
+	featuredead=ZonTreeDead08a;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+//	featurereclamate=;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZonTreeDead08a]
+	{
+	world=Zhon;
+	description=Dead Tree;
+	category=do not fix;
+	footprintx=1;
+	footprintz=1;
+	height=87;
+	filename=ZonTreeABad;
+	seqname=ZonTreeDead08a;
+	seqnameshad=ZonTreeDeadSh08a;
+	seqnamereclamate=ZonTreeDie08a;
+	energy=150;
+
+	seqnamedie=ZonTreeDie08a;
+	featuredead=ZonTreeSmudge05b;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=ZonTreeSmudge05b;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZonTree09a]
+	{
+	world=Zhon;
+	description=Tree;
+	category=do not fix;
+	footprintx=1;
+	footprintz=1;
+	height=92;
+	filename=ZonTreeABad;
+	seqname=ZonTree09a;
+	seqnameshad=ZonTreeshad09a;
+	seqnamereclamate=ZonTreeRec09a;
+	energy=250;
+
+	seqnameburn=ZonTreeBurn09a;
+	featureburnt=ZonTreeDead09a;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=ZonTreeKill09a;
+	featuredead=ZonTreeDead09a;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+//	featurereclamate=;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZonTreeDead09a]
+	{
+	world=Zhon;
+	description=Dead Tree;
+	category=do not fix;
+	footprintx=1;
+	footprintz=1;
+	height=92;
+	filename=ZonTreeABad;
+	seqname=ZonTreeDead09a;
+	seqnameshad=ZonTreeDeadSh09a;
+	seqnamereclamate=ZonTreeDie09a;
+	energy=150;
+
+	seqnamedie=ZonTreeDie09a;
+	featuredead=ZonTreeSmudge05c;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=ZonTreeSmudge05c;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZonTreeSmudge05a]
+	{
+	world=Zhon;
+	description=Debris;
+	category=do not fix;
+	footprintx=1;
+	footprintz=1;
+	filename=ZonTreeABad;
+	seqname=ZonTreeSmudge05a;
+	}
+
+[ZonTreeSmudge05b]
+	{
+	world=Zhon;
+	description=Debris;
+	category=do not fix;
+	footprintx=1;
+	footprintz=1;
+	filename=ZonTreeABad;
+	seqname=ZonTreeSmudge05b;
+	}
+
+[ZonTreeSmudge05c]
+	{
+	world=Zhon;
+	description=Debris;
+	category=do not fix;
+	footprintx=1;
+	footprintz=1;
+	filename=ZonTreeABad;
+	seqname=ZonTreeSmudge05c;
+	}

@@ -1,0 +1,22 @@
+[Totem Pole 1]
+	{
+	world=Evergreen;
+	description=Totem Pole;
+	category=Evergreen;
+	animating=0;
+	footprintx=4;
+	footprintz=5;
+	height=225;
+	filename=EGtotem;
+	seqname=totem1;
+	seqnameshad=totem1shad;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}

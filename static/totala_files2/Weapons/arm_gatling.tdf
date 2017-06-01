@@ -1,0 +1,50 @@
+[ARM_GATLING]
+	{
+	ID=254;
+	name=45mm depleted uranium slugs;
+	rendertype=4;		/* 2D bitmap */
+	color=2;			/* EMG bitmap */
+	lineofsight=1;
+	turret=1;
+      togroundweapon=1;
+
+//	model=plasma;
+
+	range=600;
+	reloadtime=.2;
+	weapontimer=1;
+	weaponvelocity=480;
+	//startvelocity=150;
+	//weaponacceleration=200;
+	sprayangle=1024;
+	areaofeffect=16;
+	burst=4;
+	burstrate=.1;
+	soundstart=gatling;
+	soundhit=lasrhit1;
+	soundtrigger=0;
+	tolerance=6000;
+	pitchtolerance=12000;
+
+	startsmoke=1;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+      metalpershot=3;       
+
+	[DAMAGE]
+		{
+		default=45;
+		armcom=10;
+            corcom=10;
+            gzcom=8;
+            predator=35;
+            dclaw=40;
+            }
+	}

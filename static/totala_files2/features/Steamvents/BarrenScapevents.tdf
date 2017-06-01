@@ -1,0 +1,31 @@
+[vent01]
+	{
+	world=BarrenScape;
+	description=Thermal Vent;
+	category=BarrenScape;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=Barrenscapevents;
+	seqname=vent01;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[vent02]
+	{
+	world=BarrenScape;
+	description=Thermal Vent;
+	category=BarrenScape;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=Barrenscapevents;
+	seqname=vent02;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}

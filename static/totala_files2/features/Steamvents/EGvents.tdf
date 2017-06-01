@@ -1,0 +1,63 @@
+[EGVent1]
+	{
+	world=Evergreen;
+	description=Thermal Vent;
+	category=Evergreen;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=egvents;
+	seqname=egvent1;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[EGVent2]
+	{
+	world=Evergreen;
+	description=Thermal Vent;
+	category=Evergreen;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=egvents;
+	seqname=egvent2;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[EGVent3]
+	{
+	world=Evergreen;
+	description=Thermal Vent;
+	category=Evergreen;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=egvents;
+	seqname=egvent3;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[EGVent4]
+	{
+	world=Evergreen;
+	description=Thermal Vent;
+	category=Evergreen;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=egvents;
+	seqname=egvent4;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}

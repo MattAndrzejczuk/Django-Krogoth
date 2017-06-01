@@ -1,0 +1,62 @@
+[DHD]  
+	{
+	world=General's features;
+	description=Dial Home Device;
+	category=SG;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=40;
+	filename=gatefeatures;
+	seqname=dhd;
+	seqnameshad=dhdshad;
+	blocking=1;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	damage=32009;
+	indestructible=1;
+	}
+
+[Pillar]  
+	{
+	world=General's features;
+	description=Gate Pillar;
+	category=SG;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=70;
+	filename=gatefeatures;
+	seqname=pillar;
+	seqnameshad=pillarshad;
+	blocking=1;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	damage=32009;
+	indestructible=1;
+	}
+
+[thegate]  
+	{
+	world=General's features;
+	description=The Star Gate;
+	category=SG;
+	animating=0;
+	footprintx=9;
+	footprintz=5;
+	height=200;
+	filename=gatefeatures;
+	seqname=thegate;
+	seqnameshad=thegateshad;
+	blocking=1;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	damage=32009;
+	indestructible=1;
+	}

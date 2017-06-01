@@ -1,0 +1,38 @@
+[global_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=CC_corpses;
+	object=global_dead;
+	featuredead=global_heap;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=42;
+	damage=500;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+
+[global_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=CC_corpses;
+	object=2x2c;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=78;
+	damage=500;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+

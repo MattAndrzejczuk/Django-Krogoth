@@ -1,0 +1,276 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, body, top, flare, wakes, wake1, wake2, wake3,
+       wake4, wake5, wake6, wake7, wake8, b1, b2, b3,
+       b4, b5, b6, b7, b8, c1, c2, c3,
+       c4, c5, c6, c7, c8, turret, t2, t3,
+       t4, t5, t6, t7, t8;
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+StartMoving()
+{
+	signal 4;
+	set-signal-mask 4;
+	var Func_Var_1, Func_Var_2;
+	Func_Var_1 = 3;
+	Func_Var_2 = 4;
+	while( TRUE )
+	{
+		if( Static_Var_1 == 1 )
+		{
+			emit-sfx Func_Var_1 from wake1;
+			emit-sfx Func_Var_1 from wake2;
+			emit-sfx Func_Var_1 from wake3;
+			emit-sfx Func_Var_1 from wake4;
+			emit-sfx Func_Var_1 from wake5;
+			emit-sfx Func_Var_1 from wake6;
+			emit-sfx Func_Var_1 from wake7;
+			emit-sfx Func_Var_1 from wake8;
+			emit-sfx Func_Var_2 from wake1;
+			emit-sfx Func_Var_2 from wake2;
+			emit-sfx Func_Var_2 from wake3;
+			emit-sfx Func_Var_2 from wake4;
+			emit-sfx Func_Var_2 from wake5;
+			emit-sfx Func_Var_2 from wake6;
+			emit-sfx Func_Var_2 from wake7;
+			emit-sfx Func_Var_2 from wake8;
+		}
+		if( Static_Var_1 == 2 )
+		{
+			emit-sfx Func_Var_1 from wake1;
+			emit-sfx Func_Var_1 from wake2;
+			emit-sfx Func_Var_1 from wake3;
+			emit-sfx Func_Var_1 from wake4;
+			emit-sfx Func_Var_1 from wake5;
+			emit-sfx Func_Var_1 from wake6;
+			emit-sfx Func_Var_1 from wake7;
+			emit-sfx Func_Var_1 from wake8;
+			emit-sfx Func_Var_2 from wake1;
+			emit-sfx Func_Var_2 from wake2;
+			emit-sfx Func_Var_2 from wake3;
+			emit-sfx Func_Var_2 from wake4;
+			emit-sfx Func_Var_2 from wake5;
+			emit-sfx Func_Var_2 from wake6;
+			emit-sfx Func_Var_2 from wake7;
+			emit-sfx Func_Var_2 from wake8;
+		}
+		if( Static_Var_1 == 3 )
+		{
+			emit-sfx Func_Var_1 from wake1;
+			emit-sfx Func_Var_1 from wake2;
+			emit-sfx Func_Var_1 from wake3;
+			emit-sfx Func_Var_1 from wake4;
+			emit-sfx Func_Var_1 from wake5;
+			emit-sfx Func_Var_1 from wake6;
+			emit-sfx Func_Var_1 from wake7;
+			emit-sfx Func_Var_1 from wake8;
+			emit-sfx Func_Var_2 from wake1;
+			emit-sfx Func_Var_2 from wake2;
+			emit-sfx Func_Var_2 from wake3;
+			emit-sfx Func_Var_2 from wake4;
+			emit-sfx Func_Var_2 from wake5;
+			emit-sfx Func_Var_2 from wake6;
+			emit-sfx Func_Var_2 from wake7;
+			emit-sfx Func_Var_2 from wake8;
+		}
+		sleep 300;
+	}
+}
+
+StopMoving()
+{
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Static_Var_1 = Func_Var_1;
+}
+
+RockUnit(anglex, anglez)
+{
+	turn base to x-axis anglex speed <50.>;
+	turn base to z-axis anglez speed <50.>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0.> speed <20.>;
+	turn base to x-axis <0.> speed <20.>;
+}
+
+Create()
+{
+	hide flare;
+	turn t2 to y-axis <45.> now;
+	turn t3 to y-axis <45.> now;
+	turn t4 to y-axis <45.> now;
+	turn t5 to y-axis <45.> now;
+	turn t6 to y-axis <45.> now;
+	turn t7 to y-axis <45.> now;
+	turn t8 to y-axis <45.> now;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 500;
+	}
+	dont-cache body;
+	dont-cache top;
+	spin body around y-axis speed <50.>;
+	Static_Var_3 = 0;
+	Static_Var_2 = 3000;
+	start-script SmokeUnit();
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	Static_Var_2 = Func_Var_1 * 2;
+}
+
+RestoreAfterDelay()
+{
+	sleep Static_Var_2;
+	turn turret to y-axis <0.> now;
+	move b1 to z-axis [0.] speed [3.];
+	move b2 to z-axis [0.] speed [3.];
+	move b3 to z-axis [0.] speed [3.];
+	move b4 to z-axis [0.] speed [3.];
+	move b5 to z-axis [0.] speed [3.];
+	move b6 to z-axis [0.] speed [3.];
+	move b7 to z-axis [0.] speed [3.];
+	move b8 to z-axis [0.] speed [3.];
+	sleep 100;
+	move c1 to z-axis [0.] speed [3.];
+	move c2 to z-axis [0.] speed [3.];
+	move c3 to z-axis [0.] speed [3.];
+	move c4 to z-axis [0.] speed [3.];
+	move c5 to z-axis [0.] speed [3.];
+	move c6 to z-axis [0.] speed [3.];
+	move c7 to z-axis [0.] speed [3.];
+	move c8 to z-axis [0.] speed [3.];
+	sleep 200;
+	move top to y-axis [0.] speed [3.];
+	move turret to y-axis [0.] speed [3.];
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	move top to y-axis [2.] speed [3.];
+	move turret to y-axis [2.] speed [3.];
+	wait-for-move top along y-axis;
+	move c1 to z-axis [2.] speed [3.];
+	move c2 to z-axis [2.] speed [3.];
+	move c3 to z-axis [2.] speed [3.];
+	move c4 to z-axis [2.] speed [3.];
+	move c5 to z-axis [2.] speed [3.];
+	move c6 to z-axis [2.] speed [3.];
+	move c7 to z-axis [2.] speed [3.];
+	move c8 to z-axis [2.] speed [3.];
+	sleep 100;
+	move b1 to z-axis [1.] speed [3.];
+	move b2 to z-axis [1.] speed [3.];
+	move b3 to z-axis [1.] speed [3.];
+	move b4 to z-axis [1.] speed [3.];
+	move b5 to z-axis [1.] speed [3.];
+	move b6 to z-axis [1.] speed [3.];
+	move b7 to z-axis [1.] speed [3.];
+	move b8 to z-axis [1.] speed [3.];
+	Static_Var_3 = heading;
+	sleep 200;
+	turn turret to y-axis heading now;
+	wait-for-turn turret around y-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	show flare;
+	move b1 to z-axis [0.] speed [500.];
+	turn turret to y-axis Static_Var_3 + <45.> speed <120.>;
+	sleep 150;
+	hide flare;
+	move b1 to z-axis [1.] speed [2.];
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = body;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode b1 type BITMAPONLY | BITMAP1;
+		explode body type BITMAPONLY | BITMAP2;
+		explode c1 type BITMAPONLY | BITMAP3;
+		explode turret type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode b2 type FALL | BITMAP1;
+		explode body type BITMAPONLY | BITMAP2;
+		explode c3 type FALL | BITMAP3;
+		explode turret type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode b5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode body type BITMAPONLY | BITMAP2;
+		explode c2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode turret type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	explode b6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode body type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode c4 type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode turret type BITMAPONLY | BITMAP4;
+}

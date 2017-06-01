@@ -1,0 +1,45 @@
+[MAVent1]
+	{
+	world=moonage;
+	description=Thermal Vent;
+	category=Moonage;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=MAvent;
+	seqname=ma-s1;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+[MAVent2]
+	{
+	world=moonage;
+	description=Thermal Vent;
+	category=Moonage;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=MAvent;
+	seqname=ma-s2;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+[MAVent3]
+	{
+	world=moonage;
+	description=Thermal Vent;
+	category=Moonage;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=MAvent;
+	seqname=ma-s3;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}

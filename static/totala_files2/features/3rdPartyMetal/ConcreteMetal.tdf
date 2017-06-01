@@ -1,0 +1,83 @@
+[ConcreteMetal1]
+	{
+	world=concrete;
+	description=Metal;
+	category=concretemetal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=concretemetal;
+	seqname=concretemetal01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ConcreteMetal2]
+	{
+	world=concrete;
+	description=Metal;
+	category=concretemetal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=concretemetal;
+	seqname=concretemetal02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=140;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ConcreteMetal3]
+	{
+	world=concrete;
+	description=Metal;
+	category=concretemetal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=concretemetal;
+	seqname=concretemetal03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=180;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ConcreteMetal4]
+	{
+	world=concrete;
+	description=Metal;
+	category=concretemetal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=concretemetal;
+	seqname=concretemetal04;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=245;
+	damage=32009;
+	indestructible=1;
+	}

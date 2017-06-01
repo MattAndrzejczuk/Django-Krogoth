@@ -1,0 +1,49 @@
+[cratedeath]
+	{
+	world=oxigen;
+	description=dead crate;
+	category=unplaceable;
+	animating=1;
+	footprintx=4;
+	footprintz=4;
+	height=35;
+	filename=OX707crates;
+	seqname=crate1burn;
+	seqnameburn=crate1boom;
+	featureburnt=corvamp_heap;
+	burnmin=1;
+	burnmax=1;
+	sparktime=1;
+	spreadchance=100;
+	burnweapon=Crate_Blast;
+	featuredead=corvamp_heap;
+	damage=500;
+	flamable=1;
+	blocking=1;
+	hitdensity=90;
+	}
+
+[crate2death]
+	{
+	world=oxigen;
+	description=dead crate;
+	category=unplaceable;
+	animating=1;
+	footprintx=4;
+	footprintz=4;
+	height=35;
+	filename=OX707crates;
+	seqname=crate2burn;
+	seqnameburn=crate2boom;
+	featureburnt=corak_heap;
+	burnmin=1;
+	burnmax=1;
+	sparktime=1;
+	spreadchance=100;
+	burnweapon=Crate_Blast;
+	featuredead=corak_heap;
+	damage=500;
+	flamable=1;
+	blocking=1;
+	hitdensity=90;
+	}

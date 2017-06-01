@@ -1,0 +1,49 @@
+
+[VerFountain01]
+	{
+	world=Veruna;
+	description=Fountain;
+	category=Veruna;
+	animating=0;
+	footprintx=9;
+	footprintz=8;
+	height=130;
+	filename=VerMisc;
+	seqname=verFountain01;
+	seqnameshad=verFountainshad01;
+
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[VerAlt01]
+	{
+	world=Veruna;
+	description=Kandran Altar;
+	category=Veruna;
+	animating=0;
+	footprintx=7;
+	footprintz=2;
+	height=72;
+	filename=VerMisc;
+	seqname=VerAlt01;
+	seqnameshad=VerAltSh01;
+	
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+

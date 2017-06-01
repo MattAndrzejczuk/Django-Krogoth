@@ -1,0 +1,28 @@
+[MENUENTRY1]
+	{
+                    UNITMENU=CORANS;
+                    MENU=8;
+                    BUTTON=0;
+                    UNITNAME=CSUBPEN;
+	}
+[MENUENTRY2]
+	{
+                    UNITMENU=CORANS;
+                    MENU=8;
+                    BUTTON=1;
+                    UNITNAME=CORATL;
+	}
+[MENUENTRY3]
+	{
+                    UNITMENU=CORANS;
+                    MENU=8;
+                    BUTTON=2;
+                    UNITNAME=CORFHLT;
+	}
+[MENUENTRY4]
+	{
+                    UNITMENU=CORANS;
+                    MENU=8;
+                    BUTTON=3;
+                    UNITNAME=CORKRAK;
+	}

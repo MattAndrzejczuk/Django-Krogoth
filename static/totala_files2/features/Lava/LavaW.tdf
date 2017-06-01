@@ -1,0 +1,55 @@
+[lavaW_NW]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaW;
+	seqname=lavaW_NW;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lavaW_NE]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaW;
+	seqname=lavaW_NE;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lavaW_SE]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaW;
+	seqname=lavaW_SE;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[lavaW_SW]
+	{
+	world=lava;
+	category=burning lava;
+	description=lava flow;
+	filename=lavaW;
+	seqname=lavaW_SW;
+	footprintx=1;
+	footprintz=1;
+	animating=1;
+	permanent=1;
+	indestructible=1;
+	}

@@ -1,0 +1,36 @@
+[armraz_dead]
+	{
+	World=All Worlds;
+	Description=Wreckage;
+	Category=arm_corpses;
+	Object=armraz_dead;
+	FeatureDead=armraz_heap;
+	FootPrintx=3;
+	FootPrintz=3;
+	Height=20;
+	Blocking=1;
+	HitDensity=100;
+	Metal=2823;
+	Damage=3170;
+	Reclaimable=1;
+	FeatureReclamate=smudge01;
+	SeqNameReclamate=tree1reclamate;
+	}
+
+[armraz_heap]
+	{
+	World=All Worlds;
+	Description=Wreckage;
+	Category=heaps;
+	Object=3x3b;
+	FootPrintx=3;
+	FootPrintz=3;
+	Height=4;
+	Blocking=0;
+	HitDensity=100;
+	Metal=1411;
+	Damage=3170;
+	Reclaimable=1;
+	FeatureReclamate=smudge01;
+	SeqNameReclamate=tree1reclamate;
+	}

@@ -1,0 +1,657 @@
+Limit Special 25
+
+//Buildings Level 1
+//-----------------
+
+//ARM Weights
+Weight ARMMEX 1.2
+Weight ARMMAKR 1
+Weight ARMSOLAR 1.2
+Weight ARMWIN 1
+Weight ARMGEO 1
+Weight ARMESTOR 1
+Weight ARMMSTOR 1
+Weight ARMLAB 1
+Weight ARMVP 1.2
+Weight ARMHP 1
+Weight ARMAP 1
+Weight ARMSY 1
+Weight ARMUWMEX 1
+Weight ARMTIDE 1
+Weight ARMFMKR 1
+Weight ARMUWES 1
+Weight ARMUWMS 1
+
+//ARM Limits
+Limit ARMMEX 24
+Limit ARMMAKR 0
+Limit ARMSOLAR 24
+Limit ARMWIN 12
+Limit ARMGEO 2
+Limit ARMESTOR 1
+Limit ARMMSTOR 1
+Limit ARMLAB 2
+Limit ARMVP 2
+Limit ARMHP 0
+Limit ARMAP 2
+Limit ARMSY 0
+Limit ARMUWMEX 0
+Limit ARMTIDE 0
+Limit ARMFMKR 0
+Limit ARMUWES 0
+Limit ARMUWMS 0
+
+//COR Weights
+Weight CORMEX 1.2
+Weight CORMAKR 1
+Weight CORSOLAR 1
+Weight CORWIN 1
+Weight CORGEO 1
+Weight CORESTOR 1
+Weight CORMSTOR 1
+Weight CORLAB 1.2
+Weight CORVP 1
+Weight CORHP 1
+Weight CORAP 1
+Weight CORSY 1
+Weight CORUWMEX 1
+Weight CORTIDE 1
+Weight CORFMKR 1
+Weight CORUWES 1
+Weight CORUWMEX 1
+
+//COR Limits
+Limit CORMEX 22
+Limit CORMAKR 0
+Limit CORSOLAR 20
+Limit CORWIN 12
+Limit CORGEO 2
+Limit CORESTOR 1
+Limit CORMSTOR 1
+Limit CORLAB 2
+Limit CORVP 2
+Limit CORHP 0
+Limit CORAP 2
+Limit CORSY 0
+Limit CORUWMEX 0
+Limit CORTIDE 0
+Limit CORFMKR 0
+Limit CORUWES 0
+Limit CORUWMEX 0
+
+//Buildings Level 2
+//-----------------
+
+//ARM Weights
+Weight ARMMOHO 2
+Weight ARMMMKR 2
+Weight ARMFUS 1
+Weight ARMCKFUS 2
+Weight ARMALAB 2.2
+Weight ARMAVP 2
+Weight ARMAAP 2
+Weight ARMASY 1
+Weight ARMPLAT 1
+Weight ARMUWFUS 1
+
+//ARM Limits
+Limit ARMMOHO 8
+Limit ARMMMKR 0
+Limit ARMFUS 4
+Limit ARMCKFUS 0
+Limit ARMALAB 2
+Limit ARMAVP 2
+Limit ARMAAP 3
+Limit ARMASY 0
+Limit ARMPLAT 0
+Limit ARMUWFUS 0
+
+//COR Weights
+Weight CORMOHO 2
+Weight CORMMKR 2
+Weight CORFUS 2
+Weight CORCKFUS 2
+Weight CORALAB 2.2
+Weight CORAVP 2
+Weight CORAAP 2
+Weight CORASY 2
+Weight CORGANT 1
+Weight CORPLAT 1
+Weight CORUWFUS 1
+
+//COR Limits
+Limit CORMOHO 6
+Limit CORMMKR 0
+Limit CORFUS 4
+Limit CORCKFUS 0
+Limit CORALAB 2
+Limit CORAVP 2
+Limit CORAAP 3
+Limit CORASY 2
+Limit CORGANT 1
+Limit CORPLAT 0
+Limit CORUWFUS 0
+
+//Installations Level 1
+//-----------------
+
+//ARM Weights
+Weight ARMRAD 1
+Weight ARMDRAG 1
+Weight ARMLLT 1
+Weight ARMHLT 2
+Weight ARMRL 2
+Weight ARMGUARD 2
+Weight ARMFHLT 1
+Weight ARMFRT 1
+Weight ARMTL 1
+Weight ARMSONAR 1
+
+//ARM Limits
+Limit ARMRAD 1
+Limit ARMDRAG 0
+Limit ARMLLT 2
+Limit ARMHLT 24
+Limit ARMRL 24
+Limit ARMGUARD 12
+Limit ARMFHLT 0
+Limit ARMFRT 0
+Limit ARMTL 0
+Limit ARMSONAR 0
+
+//COR Weights
+Weight CORRAD 1
+Weight CORDRAG 1
+Weight CORLLT 1.2
+Weight CORHLT 1.2
+Weight CORRL 1
+Weight CORPLAS 1
+Weight CORPUN 1
+Weight CORFHLT 1
+Weight CORFRT 1
+Weight CORTL 1
+Weight CORSONAR 1
+
+//COR Limits
+Limit CORRAD 0
+Limit CORDRAG 0
+Limit CORLLT 4
+Limit CORHLT 12
+Limit CORRL 8
+Limit CORPLAS 10
+Limit CORPUN 12
+Limit CORFHLT 12
+Limit CORFRT 0
+Limit CORTL 0
+Limit CORSONAR 0
+
+//Installations Level 2
+//-----------------
+
+//ARM Weights
+Weight ARMAMB 2
+Weight ARMFLAK 2
+Weight ARMANNI 2
+Weight ARMARAD 2
+Weight ARMTARG 2
+Weight ARMBRTHA 2
+Weight ARMVULC 2
+Weight ARMASP 2
+Weight ARMSILO 1
+Weight ARMEMP 1
+Weight ARMAMD 1
+Weight ARMATL 1
+Weight ARMASON 1
+
+//ARM Limits
+Limit ARMAMB 20
+Limit ARMFLAK 12
+Limit ARMANNI 2
+Limit ARMARAD 0
+Limit ARMTARG 1
+Limit ARMBRTHA 2
+Limit ARMVULC 0
+Limit ARMASP 6
+Limit ARMSILO 0
+Limit ARMEMP 0
+Limit ARMAMD 0
+Limit ARMATL 0
+Limit ARMASON 0
+
+//COR Weights
+Weight CORTOAST 1
+Weight CORFLAK 1.2
+Weight CORDOOM 1
+Weight CORARAD 1
+Weight CORTARG 1
+Weight CORINT 2
+Weight CORBUZZ 0
+Weight CORASP 1
+Weight CORSILO 0
+Weight CORTRON 0
+Weight CORFMD 1
+Weight CORATL 0
+Weight CORASON 0
+
+//COR Limits
+Limit CORTOAST 12
+Limit CORFLAK 12
+Limit CORDOOM 2
+Limit CORARAD 1
+Limit CORTARG 0
+Limit CORINT 1
+Limit CORBUZZ 0
+Limit CORASP 4
+Limit CORSILO 0
+Limit CORTRON 0
+Limit CORFMD 0
+Limit CORATL 0
+Limit CORASON 1
+
+//KBots Level 1
+//-----------------
+
+//ARM Weights
+Weight ARMCK 1.5
+Weight ARMPW 1.5
+Weight ARMWAR 1.5
+Weight ARMHAM 1.5
+Weight ARMFLEA 1.5
+Weight ARMROCK 1.5
+Weight ARMJETH 1
+
+//ARM Limits
+Limit ARMCK 6
+Limit ARMPW 8
+Limit ARMWAR 14
+Limit ARMHAM 14
+Limit ARMFLEA 14
+Limit ARMROCK 8
+Limit ARMJETH 6
+
+//COR Weights
+Weight CORCK 1.5
+Weight CORAK 1.5
+Weight CORSTORM 1.5
+Weight CORTHUD 1.5
+Weight CORCRASH 1
+
+//COR Limits
+Limit CORCK 6
+Limit CORAK 12
+Limit CORSTORM 8
+Limit CORTHUD 16
+Limit CORCRASH 8
+
+//KBots Level 2
+//-----------------
+
+//ARM Weights
+Weight ARMACK  2
+Weight ARMZEUS 2
+Weight ARMFIDO 2
+Weight ARMFAST 2
+Weight ARMMARK 2
+Weight ARMMAV 2
+Weight ARMAMPH 2
+Weight ARMSNIPE 2
+Weight ARMSPY 2
+Weight ARMMANNI 2
+Weight ARMVADER 2
+Weight ARMDECOM 2
+Weight ARMFARK 2
+
+//ARM Limits
+Limit ARMACK  6
+Limit ARMZEUS 12
+Limit ARMFIDO 12
+Limit ARMFAST 16
+Limit ARMMARK 0
+Limit ARMMAV 12
+Limit ARMAMPH 0
+Limit ARMSNIPE 12
+Limit ARMSPY 0
+Limit ARMMANNI 2
+Limit ARMVADER 0
+Limit ARMFARK 8
+
+//COR Weights
+Weight CORACK 2
+Weight CORPYRO 2
+Weight CORFAST 2
+Weight CORMORT 2
+Weight CORAMPH 2
+Weight CORHRK 2
+Weight CORCAN 2
+Weight CORSUMO 2
+Weight CORKROG 2
+Weight CORVOYR 2
+Weight CORSPY 2
+Weight CORROACH 2
+Weight CORDECOM 2
+
+//COR Limits
+Limit CORACK 6
+Limit CORPYRO 12
+Limit CORFAST 18
+Limit CORMORT 12
+Limit CORAMPH 0
+Limit CORHRK 12
+Limit CORCAN 12
+Limit CORSUMO 4
+Limit CORKROG 1
+Limit CORVOYR 0
+Limit CORSPY 0
+Limit CORROACH 0
+
+//Vehicles Level 1
+//-----------------
+
+//ARM Weights
+Weight ARMCV 1.5
+Weight ARMJAM 1.5
+Weight ARMFAV 1.5
+Weight ARMFLASH 1.5
+Weight ARMSTUMP 1.5
+Weight ARMSAM 1.5
+Weight ARMMLV 1.5
+
+//ARM Limits
+Limit ARMJAM 4
+Limit ARMFAV 12
+Limit ARMFLASH 12
+Limit ARMSTUMP 12
+Limit ARMSAM 10
+Limit ARMMLV 0
+
+//Cor Weights
+Weight CORCV 1.5
+Weight CORETER 1
+Weight CORFAV 1.5
+Weight CORGATOR 1.5
+Weight CORMIST 1.5
+Weight CORRAID    1.5
+Weight CORLEVLR 1.5
+Weight CORMLV 1.5
+Weight CORTRUCK 1.5
+
+//Cor Limits
+Limit CORETER 4
+Limit CORFAV 8
+Limit CORGATOR 12
+Limit CORMIST 14
+Limit CORRAID    12
+Limit CORLEVLR 12
+Limit CORMLV 0
+Limit CORTRUCK 0
+
+//Vehicles Level 2
+//-----------------
+
+//ARM Weights
+Weight ARMACV 2
+Weight ARMSEER 2
+Weight ARMYORK 2
+Weight ARMSPID 2
+Weight ARMMART 2
+Weight ARMMERL 2
+Weight ARMLATNK 2
+Weight ARMBULL 2
+Weight ARMCROC 2
+Weight ARMSCAB 2
+
+//ARM Limits
+Limit ARMACV 6
+Limit ARMSEER 0
+Limit ARMYORK 8
+Limit ARMSPID 12
+Limit ARMMART 14
+Limit ARMMERL 10
+Limit ARMLATNK 12
+Limit ARMBULL 12
+Limit ARMCROC 0
+Limit ARMSCAB 0
+
+//COR Weights
+Weight CORACV 2
+Weight CORVRAD 1
+Weight CORSENT 2
+Weight CORMART 2
+Weight CORVROC 2
+Weight CORREAP 2
+Weight CORGOL 2
+Weight CORSEAL 2
+Weight CORMABM 2
+
+//COR Limits
+Limit CORACV 6
+Limit CORVRAD 1
+Limit CORSENT 8
+Limit CORMART 14
+Limit CORVROC 10
+Limit CORREAP 12
+Limit CORGOL 12
+Limit CORSEAL 0
+Limit CORMABM 0
+
+//Aircraft Level 1
+//-----------------
+
+//ARM Weights
+Weight ARMCA 1
+Weight ARMATLAS 1
+Weight ARMPEEP 1
+Weight ARMFIG 1
+Weight ARMTHUND 1
+
+//ARM Limits
+Limit ARMCA 6
+Limit ARMATLAS 0
+Limit ARMPEEP 0
+Limit ARMFIG 12
+Limit ARMTHUND 8
+
+//COR Weights
+Weight CORCA 1
+Weight CORFINK 1
+Weight CORVENG 1
+Weight CORSHAD 1
+Weight CORVALK 1
+
+//COR Limits
+Limit CORCA 6
+Limit CORFINK 0
+Limit CORVENG 12
+Limit CORSHAD 8
+Limit CORVALK 0
+
+//Aircraft Level 2
+//-----------------
+
+//ARM Weights
+Weight ARMACA 1
+Weight ARMAWAC 1
+Weight ARMBRAWL 1
+Weight ARMHAWK 1
+Weight ARMPNIX 1
+Weight ARMCSA 1
+Weight ARMSEHAK 1
+Weight ARMSFIG 1
+Weight ARMLANCE 1
+Weight ARMSEAP 0
+
+//ARM Limits
+Limit ARMACA 6
+Limit ARMAWAC 1
+Limit ARMBRAWL 24
+Limit ARMHAWK 34
+Limit ARMPNIX 20
+Limit ARMCSA 0
+Limit ARMSEHAK 0
+Limit ARMSFIG 0
+Limit ARMLANCE 0
+Limit ARMSEAP 0
+
+//COR Weights
+Weight CORACA 1
+Weight CORVAMP 1.5
+Weight CORHURC 2
+Weight CORAPE 2
+Weight CORTITAN 1
+Weight CORSFIG 1
+Weight CORSEAP 1
+Weight CORAWAC 1
+
+//COR Limits
+Limit CORACA 6
+Limit CORVAMP 34
+Limit CORHURC 24
+Limit CORAPE 24
+Limit CORTITAN 0
+Limit CORSFIG 0
+Limit CORSEAP 0
+Limit CORAWAC 1
+
+//Hovercraft
+//-----------------
+
+//ARM Weights
+Weight ARMCH 1
+Weight ARMSH 1
+Weight ARMANAC 1
+Weight ARMMH 1
+Weight ARMAH 1
+Weight ARMTHOVR 1
+
+//ARM Limits
+Limit ARMCH 0
+Limit ARMSH 0
+Limit ARMANAC 0
+Limit ARMMH 0
+Limit ARMAH 0
+Limit ARMTHOVR 0
+
+//COR Weights
+Weight CORCH 1
+Weight CORSH 1
+Weight CORSNAP 1
+Weight CORMH 1
+Weight CORAH 1
+Weight CORTHOVR 1
+
+//COR Limits
+Limit CORCH 0
+Limit CORSH 0
+Limit CORSNAP 0
+Limit CORMH 0
+Limit CORAH 0
+Limit CORTHOVR 0
+
+//Ships Level 1
+//-----------------
+
+//ARM Weights
+Weight ARMCS 1
+Weight ARMPT 1
+Weight ARMROY 1
+Weight ARMSUB 1
+Weight ARMTSHIP 1
+Weight ARMSJAM 1
+
+//ARM Limits
+Limit ARMCS 0
+Limit ARMPT 0
+Limit ARMROY 0
+Limit ARMSUB 0
+Limit ARMTSHIP 0
+Limit ARMSJAM 0
+
+//COR Weights
+Weight CORCS 1
+Weight CORPT 1
+Weight CORROY 1
+Weight CORSUB 1
+Weight CORTSHIP 1
+Weight CORSJAM 1
+
+//COR Limits
+Limit CORCS 0
+Limit CORPT 0
+Limit CORROY 0
+Limit CORSUB 0
+Limit CORTSHIP 0
+Limit CORSJAM 0
+
+//Ships Level 2
+//-----------------
+
+//ARM Weights
+Weight ARMACSUB 1
+Weight ARMAAS 1
+Weight ARMMSHIP 1
+Weight ARMCARRY 1
+Weight ARMCRUS 1
+Weight ARMBATS 1
+Weight ARMSUBK 1
+
+//ARM Limits
+Limit ARMACSUB 0
+Limit ARMAAS 0
+Limit ARMMSHIP 0
+Limit ARMCARRY 0
+Limit ARMCRUS 0
+Limit ARMBATS 0
+Limit ARMSUBK 0
+
+//COR Weights
+Weight CORACSUB 1
+Weight CORARCH 1
+Weight CORMSHIP 1
+Weight CORCARRY 1
+Weight CORCRUS 1
+Weight CORBATS 1
+Weight CORSSUB 1
+
+//COR Limits
+Limit CORACSUB 0
+Limit CORARCH 0
+Limit CORMSHIP 0
+Limit CORCARRY 0
+Limit CORCRUS 0
+Limit CORBATS 0
+Limit CORSSUB 0
+
+//Land Mines
+//-----------------
+
+//ARM Weights
+Weight ARMMINE1 1
+Weight ARMMINE2 1
+Weight ARMMINE3 1
+Weight ARMMINE4 1
+Weight ARMMINE5 1
+Weight ARMMINE6 1
+
+//ARM Limits
+Limit ARMMINE1 0
+Limit ARMMINE2 0
+Limit ARMMINE3 0
+Limit ARMMINE4 0
+Limit ARMMINE5 0
+Limit ARMMINE6 0
+
+//COR Weights
+Weight CORMINE1 1
+Weight CORMINE2 1
+Weight CORMINE3 1
+Weight CORMINE4 1
+Weight CORMINE5 1
+Weight CORMINE6 1
+
+//COR Limits
+Limit CORMINE1 0
+Limit CORMINE2 0
+Limit CORMINE3 0
+Limit CORMINE4 0
+Limit CORMINE5 0
+Limit CORMINE6 0

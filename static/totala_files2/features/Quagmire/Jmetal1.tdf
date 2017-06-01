@@ -1,0 +1,163 @@
+
+
+
+
+[Jungle Metal 1]
+
+	{
+	world=Jungle;
+	category=metal;
+	description=Metal Patch;
+	filename=JungleMetal1;
+	seqname=m6;
+	seqnameshad=;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	Animating=0;
+	Blocking=0;
+	noshowdescription=0;
+	blocking=0;
+	permanent=1;
+	indestructible=1;
+	shadtrans=0;
+	animtrans=0;
+
+	metal=190;
+	}
+
+
+
+
+[Jungle Metal 2]
+
+	{
+	world=Jungle;
+	category=metal;
+	description=Metal Patch;
+	filename=JungleMetal1;
+	seqname=m5;
+	seqnameshad=;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	Animating=0;
+	Blocking=0;
+	noshowdescription=0;
+	blocking=0;
+	permanent=1;
+	indestructible=1;
+	shadtrans=0;
+	animtrans=0;
+
+	metal=210;
+	}
+
+
+
+
+[Jungle Metal 3]
+
+	{
+	world=Jungle;
+	category=metal;
+	description=Metal Patch;
+	filename=JungleMetal1;
+	seqname=m4;
+	seqnameshad=;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	Animating=0;
+	Blocking=0;
+	noshowdescription=0;
+	blocking=0;
+	permanent=1;
+	indestructible=1;
+	shadtrans=0;
+	animtrans=0;
+
+	metal=220;
+	}
+
+
+
+
+[Jungle Metal 4]
+
+	{
+	world=Jungle;
+	category=metal;
+	description=Metal Patch;
+	filename=JungleMetal1;
+	seqname=m3;
+	seqnameshad=;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	Animating=0;
+	Blocking=0;
+	noshowdescription=0;
+	blocking=0;
+	permanent=1;
+	indestructible=1;
+	shadtrans=0;
+	animtrans=0;
+
+	metal=255;
+	}
+
+
+
+
+[Jungle Metal 5]
+
+	{
+	world=Jungle;
+	category=metal;
+	description=Metal Patch;
+	filename=JungleMetal1;
+	seqname=m2;
+	seqnameshad=;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	Animating=0;
+	Blocking=0;
+	noshowdescription=0;
+	blocking=0;
+	permanent=1;
+	indestructible=1;
+	shadtrans=0;
+	animtrans=0;
+
+	metal=236;
+	}
+
+
+
+
+[Jungle Metal 6]
+
+	{
+	world=Jungle;
+	category=metal;
+	description=Metal Patch;
+	filename=JungleMetal1;
+	seqname=M1;
+	seqnameshad=;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	Animating=0;
+	Blocking=0;
+	noshowdescription=0;
+	blocking=0;
+	permanent=1;
+	indestructible=1;
+	shadtrans=0;
+	animtrans=0;
+
+	metal=220;
+	}
+

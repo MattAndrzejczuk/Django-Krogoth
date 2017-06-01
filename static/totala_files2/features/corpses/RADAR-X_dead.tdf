@@ -1,0 +1,56 @@
+[RADAR-X_dead]
+	{
+	World=All Worlds;
+	Description=dead Radar X;
+	Category=arm_corpses;
+	Object=RADAR-X_dead;
+	FeatureDead=RADAR-X_heap;
+	FootPrintx=3;
+	FootPrintz=3;
+	Height=21;
+	Blocking=1;
+	HitDensity=105;
+	Metal=3295;
+	Damage=3352;
+	Reclaimable=1;
+	FeatureReclamate=smudge01;
+	SeqNameReclamate=tree1reclamate;
+	}
+
+[RADAR-X_heap]
+	{
+	World=All Worlds;
+	Description=ex Radar X;
+	Category=heaps;
+	Object=3x3e;
+	FeatureDead=RADAR-X_heap2;
+	FootPrintx=3;
+	FootPrintz=3;
+	Height=2;
+	Blocking=0;
+	HitDensity=105;
+	Metal=1808;
+	Damage=1545;
+	Reclaimable=1;
+	FeatureReclamate=smudge01;
+	SeqNameReclamate=tree1reclamate;
+	}
+
+[RADAR-X_heap2]
+	{
+	World=All Worlds;
+	Description=very dead Radar X;
+	Category=heaps;
+	Object=2x2f;
+	FootPrintx=2;
+	FootPrintz=2;
+	Height=2;
+	Blocking=0;
+	HitDensity=105;
+	Metal=602;
+	Damage=523;
+	Reclaimable=1;
+	FeatureReclamate=smudge01;
+	SeqNameReclamate=tree1reclamate;
+	}
+

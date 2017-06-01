@@ -1,0 +1,217 @@
+
+[AraHut01]
+	{
+	world=Aramon;
+	description=House;
+	category=Aramon;
+	animating=0;
+	footprintx=8;
+	footprintz=4;
+	height=84;
+	filename=Arahut;
+	seqname=AraHut01;
+	seqnameshad=AraHutshad01;
+
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraHut03]
+	{
+	world=Aramon;
+	description=House;
+	category=Aramon;
+	animating=0;
+	footprintx=6;
+	footprintz=6;
+	height=134;
+	filename=Arahut;
+	seqname=AraHut03;
+	seqnameshad=AraHutshad03;
+
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraHut05]
+	{
+	world=Aramon;
+	description=House;
+	category=Aramon;
+	animating=0;
+	footprintx=6;
+	footprintz=5;
+	height=96;
+	filename=Arahut;
+	seqname=AraHut05;
+	seqnameshad=AraHutshad05;
+
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraHut07]
+	{
+	world=Aramon;
+	description=House;
+	category=Aramon;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=84;
+	filename=Arahut;
+	seqname=AraHut07;
+	seqnameshad=AraHutshad07;
+
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraHut08]
+	{
+	world=Aramon;
+	description=House;
+	category=Aramon;
+	animating=0;
+	footprintx=7;
+	footprintz=4;
+	height=110;
+	filename=Arahut;
+	seqname=AraHut08;
+	seqnameshad=AraHutshad08;
+
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraHut09]
+	{
+	world=Aramon;
+	description=Shed;
+	category=Aramon;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=80;
+	filename=Arahut;
+	seqname=AraHut09;
+	seqnameshad=AraHutshad09;
+
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraHut10]
+	{
+	world=Aramon;
+	description=Shed;
+	category=Aramon;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=92;
+	filename=Arahut;
+	seqname=AraHut10;
+	seqnameshad=AraHutshad10;
+
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraHut11]
+	{
+	world=Aramon;
+	description=Granary;
+	category=Aramon;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=180;
+	filename=Arahut;
+	seqname=AraHut11;
+	seqnameshad=AraHutshad01;
+
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraHut12]
+	{
+	world=Aramon;
+	description=Granary;
+	category=Aramon;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=200;
+	filename=Arahut;
+	seqname=AraHut12;
+	seqnameshad=AraHutshad12;
+
+	indestructible=1;
+	nodisplayinfo=0;
+//	permanent=1;
+	reclaimable=0;
+
+	damage=20000;
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	}
+

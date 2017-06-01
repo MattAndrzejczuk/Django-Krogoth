@@ -1,0 +1,1230 @@
+//Jeepster777 Abandon Hope 10/31/03
+
+Plan Easy
+Weight ARMGEO	0
+Weight ARMFUS	9
+Weight ARMSOLAR	.5
+Weight ARMMEX	20 
+Weight ARMESTOR	4.5
+Weight ARMMSTOR	4.5
+Weight ARMUWMEX 0
+Weight ARMTIDE	0
+Weight ARMUWES	0
+Weight ARMUWMS	0
+Weight ARMMMKR	0.5
+Weight ARMWIN   20
+
+Weight CORGEO	0
+Weight CORFUS	9
+Weight CORSOLAR	.5
+Weight CORMEX	20
+Weight CORESTOR	4.5
+Weight CORMSTOR	4.5
+Weight CORUWMEX	0.5
+Weight CORTIDE	0.5
+Weight CORUWES	0
+Weight CORUWMS	0
+Weight CORMMKR	0.5
+Weight CORWIN   20
+Weight ARMAMEX  0
+
+Weight ARMAAP 	50
+Weight ARMAVP 	10
+Weight ARMALAB 	4
+Weight ARMVP	10
+Weight ARMLAB 	20
+Weight ARMAP 	70
+Weight ArmHKLab .5
+Weight ARMHP    1
+Weight ARMAHP   1
+
+Weight CORAAP	50
+Weight CORAVP	20
+Weight CORALAB	4
+Weight CORVP	20
+Weight CORLAB	10
+Weight CORAP	70
+Weight CORGANT	.5
+Weight CORHP    1
+Weight CORAHP   1
+
+Weight ARMBRTHA	2.25
+Weight ARMRL	20
+Weight ARMHLT	3.5
+Weight ARMFLAK	2.25
+Weight ARMLLT	5
+Weight ARMGUARD	8
+Weight ARMANNI	1
+Weight ARMAMB	0.5
+Weight ARMVULC	0.5
+
+Weight CORINT	2.25
+Weight CORRL	20
+Weight CORHLT	3.25
+Weight CORVIPE	4
+Weight CORFLAK	2.25
+Weight CORPLAS	4
+Weight CORLLT	2.25
+Weight CORPUN	8
+Weight CORDOOM	.5
+Weight CORTOAST	2
+Weight CORBUZZ	.5
+
+Weight ARMASP	5
+
+Weight CORASP	5
+
+Weight ARMCK 	70
+Weight ARMROCK 	12
+Weight ARMHAM	3
+Weight ARMJETH 	0.5
+Weight ARMPW 	0.5
+Weight ARMWAR	0.05
+Weight ARMFLEA	20
+
+Weight CORCK	70
+Weight CORSTORM	12
+Weight CORTHUD	3
+Weight CORCRASH	3
+Weight CORAK	8
+
+Weight ARMACK 	40
+Weight ARMFARK	9
+Weight ARMASER	2
+Weight ARMAMPH	0
+Weight ARMMAV	6.25
+Weight ARMDECOM	0.75
+Weight ARMFIDO 	33
+Weight ARMSNIPE	0.2
+Weight ARMZEUS	0.5
+Weight ARMFAST	0.5
+
+Weight CORACK	40
+Weight CORSPEC	0
+Weight CORMORT	8
+Weight CORCAN	3
+Weight CORHRK	4
+Weight CORDECOM	0.75
+Weight CORSUMO	0.5
+Weight CORAMPH	0
+Weight CORPYRO	1
+Weight CORFAST	0.1
+
+Weight CORKROG	1
+
+Weight ARMCV 	33
+Weight ARMSAM	22
+Weight ARMFLASH	11
+Weight ARMSTUMP	2
+Weight ARMFAV	70
+
+Weight CORCV	33
+Weight CORMIST	12
+Weight CORGATOR	12
+Weight CORRAID	2
+Weight CORLEVLR	0.5
+Weight CORFAV	20
+
+Weight CORCH    8
+Weight CORSNAP  8
+Weight CORMH    2.25
+Weight CORSH    17.25
+Weight CORAH    .5
+Weight CORTHOVR 0
+
+Weight ARMCH    8
+Weight ARMANAC  8
+Weight ARMSH    17.25
+Weight ARMAH    2.25
+Weight ARMMH    .5
+Weight ARMTHOVR 0
+
+Weight ARMACV 	5
+Weight ARMJAM	.5
+Weight ARMLATNK	11
+Weight ARMMERL	7
+Weight ARMBULL	2
+Weight ARMYORK	2
+Weight ARMMANNI	1
+Weight ARMCROC	0
+Weight ARMMART	0
+Weight ARMSPID	2
+
+Weight CORACV	5
+Weight CORETER	1
+Weight CORGOL	8
+Weight CORVROC	2
+Weight CORSENT	1
+Weight CORREAP	20
+Weight CORSEAL	0
+Weight CORMART	0
+
+Weight ARMCA	70
+Weight ARMTHUND	2
+Weight ARMFIG	4
+
+Weight CORCA	70
+Weight CORSHAD	2
+Weight CORVENG	4
+
+Weight ARMHAWK	10
+Weight ARMPNIX	3
+Weight ARMBRAWL	0.5
+Weight ARMACA	2
+
+Weight CORAPE	10
+Weight CORHURC	3
+Weight CORVAMP	10
+Weight CORACA	2
+
+Limit ARMGEO	0
+Limit ARMFUS	2
+Limit ARMSOLAR	0
+Limit ARMMEX	11
+Limit ARMESTOR	3
+Limit ARMMSTOR	3
+Limit ARMUWMEX	0
+Limit ARMTIDE	0
+Limit ARMUWES	0
+Limit ARMUWMS	0
+Limit ARMMMKR	0
+Limit ARMMOHO	3
+Limit ARMMAKR	0
+Limit ARMWIN	10
+Limit ARMMAKR	0
+Limit ARMFMKR	0
+Limit ARMCKFUS	1
+Limit ARMAMEX   0
+
+Limit CORGEO	0
+Limit CORFUS	2
+Limit CORSOLAR	0
+Limit CORMEX	11
+Limit CORESTOR	3
+Limit CORMSTOR	3
+Limit CORUWMEX	0
+Limit CORTIDE	0
+Limit CORUWES	0
+Limit CORUWMS	0
+Limit CORMMKR	0
+Limit CORMOHO	3
+Limit CORMAKR	0
+Limit CORWIN	10
+Limit CORFMKR	0
+Limit CORCKFUS	1
+
+Limit ARMAAP 	2
+Limit ARMAVP 	2
+Limit ARMALAB 	2
+Limit ARMVP	2      
+Limit ARMLAB 	2
+Limit ARMAP 	2
+Limit ARMHP     1
+Limit ARMSY	0
+Limit ARMASY	0
+Limit ARMPLAT	0
+Limit ARMAHP    0
+Limit ArmHKLab  0
+
+Limit CORAAP	2
+Limit CORAVP	2
+Limit CORALAB	2
+Limit CORVP	2
+Limit CORLAB	2
+Limit CORAP	2
+Limit CORGANT	0
+Limit CORHP	1
+Limit CORSY	0
+Limit CORASY	0
+Limit CORPLAT	0
+Limit CORAHP    0
+
+Limit ARMBRTHA	3
+Limit ARMRL	50
+Limit ARMHLT	4
+Limit ARMFLAK	4
+Limit ARMLLT	33
+Limit ARMGUARD	16
+Limit ARMANNI	1
+Limit ARMAMB	3
+Limit ARMVULC	0
+Limit ARMTL	0
+Limit ARMEMP	0
+Limit ARMSILO	0
+Limit ARMAMD	0
+
+Limit CORINT	3
+Limit CORRL	50
+Limit CORHLT	4
+Limit CORVIPE	7
+Limit CORFLAK	4
+Limit CORPLAS	12
+Limit CORLLT	33
+Limit CORPUN	16
+Limit CORDOOM	1
+Limit CORTOAST	12
+Limit CORBUZZ	1
+Limit CORTL	0
+Limit CORTRON	0
+Limit CORSILO	0
+Limit CORFMD	0
+
+Limit ARMASP	2
+Limit ARMRAD	0
+Limit ARMSONAR	0
+Limit ARMDRAG	0
+Limit ARMARAD	0
+Limit ARMFORT	0
+Limit ARMTARG	0
+
+Limit CORASP	2
+Limit CORRAD	0
+Limit CORSONAR	0
+Limit CORDRAG	0
+Limit CORARAD	0
+Limit CORFORT	0
+Limit CORTARG	0
+
+Limit ARMCK 	3
+Limit ARMROCK 	30
+Limit ARMHAM	10
+Limit ARMJETH 	5
+Limit ARMPW 	22
+Limit ARMWAR	5
+Limit ARMFLEA	60
+
+Limit CORCK	3
+Limit CORSTORM	30
+Limit CORTHUD	10
+Limit CORCRASH	22
+Limit CORAK	22
+
+Limit ARMACK 	2
+Limit ARMFARK	17
+Limit ARMASER	12
+Limit ARMAMPH	0
+Limit ARMMAV	15
+Limit ARMDECOM	7
+Limit ARMSNIPE	4
+Limit ARMFIDO 	33
+Limit ARMZEUS	12
+Limit ARMFAST	5
+Limit ARMVADER	0
+Limit ARMMARK	0
+Limit ARMSPY	0
+
+Limit CORACK	2
+Limit CORSPEC	1
+Limit CORMORT	33
+Limit CORCAN	3
+Limit CORHRK	33
+Limit CORSUMO	15
+Limit CORDECOM	7
+Limit CORAMPH	0
+Limit CORPYRO	1
+Limit CORFAST	12
+Limit CORROACH	0
+Limit CORVOYR	0
+Limit CORSPY	0
+Limit CORNECRO	17
+
+Limit CORKROG	0
+
+Limit ARMCV 	2
+Limit ARMSAM	22
+Limit ARMFLASH	33
+Limit ARMSTUMP	6
+Limit ARMFAV	5
+Limit ARMMLV	0
+
+Limit CORCV  	2
+Limit CORMIST	35
+Limit CORGATOR	12
+Limit CORRAID	8
+Limit CORLEVLR	0
+Limit CORFAV	5
+Limit CORMLV	0
+
+Limit CORCH    1
+Limit CORSNAP  20
+Limit CORMH    6
+Limit CORSH    6
+Limit CORAH    4
+Limit CORTHOVR 0
+
+Limit ARMCH    1
+Limit ARMANAC  20
+Limit ARMSH    6
+Limit ARMAH    6
+Limit ARMMH    4
+Limit ARMTHOVR 0
+
+Limit ARMACV 	2
+Limit ARMJAM	1
+Limit ARMLATNK	16
+Limit ARMMERL	33
+Limit ARMBULL	22
+Limit ARMYORK	3
+Limit ARMMANNI	2
+Limit ARMCROC	0
+Limit ARMMART	2
+Limit ARMSPID	12
+Limit ARMSEER	0
+Limit ARMSCAB	0
+
+Limit CORACV	2
+Limit CORETER	2
+Limit CORGOL	55
+Limit CORVROC	33
+Limit CORSENT	4
+Limit CORREAP	7
+Limit CORSEAL	0
+Limit CORMART	2
+Limit CORVRAD	0
+Limit CORMABM	0
+
+Limit ARMCA	7
+Limit ARMTHUND	33
+Limit ARMFIG	11
+Limit ARMPEEP	3
+Limit ARMATLAS	0
+
+Limit CORCA	7
+Limit CORSHAD	33
+Limit CORVENG	11
+Limit CORFINK	3
+Limit CORVALK	0
+
+Limit ARMHAWK	60
+Limit ARMPNIX	20
+Limit ARMBRAWL	66
+Limit ARMACA	3
+Limit ARMLANCE	0
+Limit ARMAWAC	0
+
+Limit CORRAPE	44
+Limit CORHURC	44
+Limit CORVAMP	33
+Limit CORACA	3
+Limit CORTITAN	0
+Limit CORAWAC	0
+ 
+Plan Medium
+Weight ARMGEO	0
+Weight ARMFUS	9
+Weight ARMSOLAR	.5
+Weight ARMMEX	16 
+Weight ARMESTOR	2.5
+Weight ARMMSTOR	2.5
+Weight ARMUWMEX 0
+Weight ARMTIDE	0
+Weight ARMUWES	0
+Weight ARMUWMS	0
+Weight ARMMMKR	0.5
+Weight ARMWIN   16
+
+Weight CORGEO	0
+Weight CORFUS	9
+Weight CORSOLAR	.5
+Weight CORMEX	16
+Weight CORESTOR	2.5
+Weight CORMSTOR	2.5
+Weight CORUWMEX	0.5
+Weight CORTIDE	0.5
+Weight CORUWES	0
+Weight CORUWMS	0
+Weight CORMMKR	0.5
+Weight CORWIN   16
+Weight ARMAMEX  0
+
+Weight ARMAAP 	62
+Weight ARMAVP 	10
+Weight ARMALAB 	20
+Weight ARMVP	10
+Weight ARMLAB 	20
+Weight ARMAP 	70
+Weight ArmHKLab 12
+Weight ARMHP    17.25
+Weight ARMAHP   7.25
+
+Weight CORAAP	62
+Weight CORAVP	20
+Weight CORALAB	20
+Weight CORVP	20
+Weight CORLAB	10
+Weight CORAP	70
+Weight CORGANT	50
+Weight CORHP    17.25
+Weight CORAHP   7.25
+
+Weight ARMBRTHA	12
+Weight ARMRL	16
+Weight ARMHLT	3.5
+Weight ARMFLAK	10
+Weight ARMLLT	7.25
+Weight ARMGUARD	0.5
+Weight ARMANNI	2
+Weight ARMAMB	2
+Weight ARMVULC	0.5
+
+Weight CORINT	12
+Weight CORRL	16
+Weight CORHLT	3.25
+Weight CORVIPE	4
+Weight CORFLAK	10
+Weight CORPLAS	4
+Weight CORLLT	2
+Weight CORPUN	2
+Weight CORDOOM	.5
+Weight CORTOAST	2
+Weight CORBUZZ	1
+
+Weight ARMASP	5
+
+Weight CORASP	5
+
+Weight ARMCK 	70
+Weight ARMROCK 	12
+Weight ARMHAM	2
+Weight ARMJETH 	8
+Weight ARMPW 	0.5
+Weight ARMWAR	0.05
+Weight ARMFLEA	24
+
+Weight CORCK	70
+Weight CORSTORM	12
+Weight CORTHUD	3
+Weight CORCRASH	16
+Weight CORAK	0.05
+
+Weight ARMACK 	48.25
+Weight ARMFARK	17
+Weight ARMASER	1
+Weight ARMAMPH	0.1
+Weight ARMMAV	12
+Weight ARMDECOM	1.5
+Weight ARMFIDO 	33
+Weight ARMSNIPE	3
+Weight ARMZEUS	8
+Weight ARMFAST	2.25
+
+Weight CORACK	40
+Weight CORSPEC	1
+Weight CORMORT	8
+Weight CORCAN	3
+Weight CORHRK	1
+Weight CORDECOM	1.5
+Weight CORSUMO	3
+Weight CORAMPH	0.1
+Weight CORPYRO	0.1
+Weight CORFAST	3
+
+Weight CORKROG	1
+
+Weight ARMCV 	33
+Weight ARMSAM	22
+Weight ARMFLASH	16.25
+Weight ARMSTUMP	2.25
+Weight ARMFAV	22
+
+Weight CORCV	33
+Weight CORMIST	12
+Weight CORGATOR	4
+Weight CORRAID	22.25
+Weight CORLEVLR	0.2
+Weight CORFAV	12
+
+Weight CORCH    8
+Weight CORSNAP  6
+Weight CORMH    4.25
+Weight CORSH    8.25
+Weight CORAH    4
+Weight CORTHOVR 0
+
+Weight ARMCH    8
+Weight ARMANAC  6
+Weight ARMSH    8.25
+Weight ARMAH    4.25
+Weight ARMMH    4
+Weight ARMTHOVR 0
+
+Weight ARMACV 	5
+Weight ARMJAM	.5
+Weight ARMLATNK	12.25
+Weight ARMMERL	12.25
+Weight ARMBULL	12.25
+Weight ARMYORK	4
+Weight ARMMANNI	2
+Weight ARMCROC	0
+Weight ARMMART	0
+Weight ARMSPID	12.25
+
+Weight CORACV	5
+Weight CORETER	1
+Weight CORGOL	12.25
+Weight CORVROC	12.25
+Weight CORSENT	2
+Weight CORREAP	8.75
+Weight CORSEAL	0
+Weight CORMART	12.25
+
+Weight ARMCA	70
+Weight ARMTHUND	2
+Weight ARMFIG	6
+
+Weight CORCA	70
+Weight CORSHAD	2
+Weight CORVENG	6
+
+Weight ARMHAWK	10
+Weight ARMPNIX	4
+Weight ARMBRAWL	26.75
+Weight ARMACA	2
+
+Weight CORAPE	10.75
+Weight CORHURC	6
+Weight CORVAMP	22
+Weight CORACA	2
+
+Limit ARMGEO	0
+Limit ARMFUS	3
+Limit ARMSOLAR	0
+Limit ARMMEX	11
+Limit ARMESTOR	3
+Limit ARMMSTOR	3
+Limit ARMUWMEX	0
+Limit ARMTIDE	0
+Limit ARMUWES	0
+Limit ARMUWMS	0
+Limit ARMMMKR	0
+Limit ARMMOHO	7
+Limit ARMMAKR	0
+Limit ARMWIN	10
+Limit ARMMAKR	0
+Limit ARMFMKR	0
+Limit ARMCKFUS	2
+Limit ARMAMEX   0
+
+Limit CORGEO	0
+Limit CORFUS	3
+Limit CORSOLAR	0
+Limit CORMEX	11
+Limit CORESTOR	3
+Limit CORMSTOR	3
+Limit CORUWMEX	0
+Limit CORTIDE	0
+Limit CORUWES	0
+Limit CORUWMS	0
+Limit CORMMKR	0
+Limit CORMOHO	7
+Limit CORMAKR	0
+Limit CORWIN	10
+Limit CORFMKR	0
+Limit CORCKFUS	2
+
+Limit ARMAAP 	3
+Limit ARMAVP 	2
+Limit ARMALAB 	2
+Limit ARMVP	2
+Limit ARMLAB 	2
+Limit ARMAP 	2
+Limit ARMHP	1
+Limit ARMSY	0
+Limit ARMASY	0
+Limit ARMPLAT	0
+Limit ARMAHP    1
+Limit ArmHKLab  1
+
+Limit CORAAP	3
+Limit CORAVP	2
+Limit CORALAB	2
+Limit CORVP	2
+Limit CORLAB	2
+Limit CORAP	2
+Limit CORGANT	1
+Limit CORHP	1
+Limit CORSY	0
+Limit CORASY	0
+Limit CORPLAT	0
+Limit CORAHP    1
+
+Limit ARMBRTHA	7
+Limit ARMRL	50
+Limit ARMHLT	12
+Limit ARMFLAK	11
+Limit ARMLLT	44
+Limit ARMGUARD	16
+Limit ARMANNI	2
+Limit ARMAMB	3
+Limit ARMVULC	1
+Limit ARMTL	0
+Limit ARMEMP	0
+Limit ARMSILO	0
+Limit ARMAMD	0
+
+Limit CORINT	5
+Limit CORRL	50
+Limit CORHLT	4
+Limit CORVIPE	12
+Limit CORFLAK	11
+Limit CORPLAS	16
+Limit CORLLT	44
+Limit CORPUN	12
+Limit CORDOOM	3
+Limit CORTOAST	12
+Limit CORBUZZ	1
+Limit CORTL	0
+Limit CORTRON	0
+Limit CORSILO	0
+Limit CORFMD	0
+
+Limit ARMASP	2
+Limit ARMRAD	0
+Limit ARMSONAR	0
+Limit ARMDRAG	0
+Limit ARMARAD	0
+Limit ARMFORT	0
+Limit ARMTARG	0
+
+Limit CORASP	2
+Limit CORRAD	0
+Limit CORSONAR	0
+Limit CORDRAG	0
+Limit CORARAD	0
+Limit CORFORT	0
+Limit CORTARG	0
+
+Limit ARMCK 	3
+Limit ARMROCK 	30
+Limit ARMHAM	10
+Limit ARMJETH 	22
+Limit ARMPW 	22
+Limit ARMWAR	12
+Limit ARMFLEA	88
+
+Limit CORCK 	3
+Limit CORSTORM	44
+Limit CORTHUD	10
+Limit CORCRASH	44
+Limit CORAK	22
+
+Limit ARMACK 	2
+Limit ARMFARK	17
+Limit ARMASER	2
+Limit ARMAMPH	0
+Limit ARMMAV	15
+Limit ARMDECOM	7
+Limit ARMSNIPE	12
+Limit ARMFIDO 	44
+Limit ARMZEUS	44
+Limit ARMFAST	5
+Limit ARMVADER	0
+Limit ARMMARK	0
+Limit ARMSPY	0
+
+Limit CORACK	2
+Limit CORSPEC	2
+Limit CORMORT	33
+Limit CORCAN	12
+Limit CORHRK	33
+Limit CORSUMO	22
+Limit CORDECOM	7
+Limit CORAMPH	0
+Limit CORPYRO	1
+Limit CORFAST	12
+Limit CORROACH	0
+Limit CORVOYR	0
+Limit CORSPY	0
+Limit CORNECRO	17
+
+Limit CORKROG	4
+
+Limit ARMCV 	2
+Limit ARMSAM	22
+Limit ARMFLASH	33
+Limit ARMSTUMP	22
+Limit ARMFAV	5
+Limit ARMMLV	0
+
+Limit CORCV	2
+Limit CORMIST	35
+Limit CORGATOR	22
+Limit CORRAID	22
+Limit CORLEVLR	0
+Limit CORFAV	5
+Limit CORMLV	0
+
+Limit CORCH    2
+Limit CORSNAP  26
+Limit CORMH    12
+Limit CORSH    12
+Limit CORAH    6
+Limit CORTHOVR 0
+
+Limit ARMCH    2
+Limit ARMANAC  26
+Limit ARMSH    12
+Limit ARMAH    12
+Limit ARMMH    6
+Limit ARMTHOVR 0
+
+Limit ARMACV 	2
+Limit ARMJAM	2
+Limit ARMLATNK	30
+Limit ARMMERL	33
+Limit ARMBULL	22
+Limit ARMYORK	3
+Limit ARMMANNI	4
+Limit ARMCROC	0
+Limit ARMMART	12
+Limit ARMSPID	44
+Limit ARMSEER	0
+Limit ARMSCAB	0
+
+Limit CORACV	2
+Limit CORETER	2
+Limit CORGOL	66
+Limit CORVROC	33
+Limit CORSENT	4
+Limit CORREAP	7
+Limit CORSEAL	0
+Limit CORMART	12
+Limit CORVRAD	0
+Limit CORMABM	0
+
+Limit ARMCA	7
+Limit ARMTHUND	33
+Limit ARMFIG	11
+Limit ARMPEEP	3
+Limit ARMATLAS	0
+
+Limit CORCA	7
+Limit CORSHAD	33
+Limit CORVENG	11
+Limit CORFINK	3
+Limit CORVALK	0
+
+Limit ARMHAWK	60
+Limit ARMPNIX	20
+Limit ARMBRAWL	66
+Limit ARMACA	3
+Limit ARMLANCE	0
+Limit ARMAWAC	0
+
+Limit CORRAPE	44
+Limit CORHURC	44
+Limit CORVAMP	33
+Limit CORACA	3
+Limit CORTITAN	0
+Limit CORAWAC	0
+ 
+
+Plan Hard
+Weight ARMGEO	0
+Weight ARMFUS	6
+Weight ARMSOLAR	.5
+Weight ARMMEX	12 
+Weight ARMESTOR	4.5
+Weight ARMMSTOR	4.5
+Weight ARMUWMEX   0
+Weight ARMTIDE	0
+Weight ARMUWES	0
+Weight ARMUWMS	0
+Weight ARMMMKR	0.5
+Weight ARMWIN     12
+
+Weight CORGEO	0
+Weight CORFUS	9
+Weight CORSOLAR	.5
+Weight CORMEX	12
+Weight CORESTOR	4.5
+Weight CORMSTOR	4.5
+Weight CORUWMEX	0.5
+Weight CORTIDE	0.5
+Weight CORUWES	0
+Weight CORUWMS	0
+Weight CORMMKR	0.5
+Weight CORWIN   12 
+Weight ARMAMEX  0
+
+Weight ARMAAP 	88.25
+Weight ARMAVP 	66.75
+Weight ARMALAB 	88.25
+Weight ARMVP	37.25
+Weight ARMLAB 	40
+Weight ARMAP 	70
+Weight ArmHKLab 88.25
+Weight ARMHP    20
+Weight ARMAHP   70
+
+Weight CORAVP   88.25
+Weight CORAAP	88.25 
+Weight CORALAB	88.25
+Weight CORVP	37.25
+Weight CORLAB	40
+Weight CORAP	70
+Weight CORGANT	88.25
+Weight CORHP    20
+Weight CORAHP   70
+
+Weight ARMBRTHA	22.25
+Weight ARMRL	32
+Weight ARMHLT	2.25
+Weight ARMFLAK	6
+Weight ARMLLT	22.25
+Weight ARMGUARD	22.25
+Weight ARMANNI	2.25
+Weight ARMAMB	2.25
+Weight ARMVULC	6
+
+Weight CORINT	22.25
+Weight CORRL	32
+Weight CORHLT	3.25
+Weight CORVIPE	4
+Weight CORFLAK	6
+Weight CORPLAS	2.25
+Weight CORLLT	12.25
+Weight CORPUN	26.25
+Weight CORDOOM	2
+Weight CORTOAST	4
+Weight CORBUZZ	4
+
+Weight ARMASP	5
+
+Weight CORASP	5
+
+Weight ARMCK 	70
+Weight ARMROCK 	6
+Weight ARMHAM	2.25
+Weight ARMJETH 	18
+Weight ARMPW 	1.25
+Weight ARMWAR	12
+Weight ARMFLEA	20
+
+Weight CORCK	70
+Weight CORSTORM	18.25
+Weight CORTHUD	3
+Weight CORCRASH	22.25
+Weight CORAK	0.05
+
+Weight ARMACK 	40
+Weight ARMFARK	20
+Weight ARMASER	8.75
+Weight ARMAMPH	0
+Weight ARMMAV	12
+Weight ARMDECOM	8
+Weight ARMFIDO 	8.75
+Weight ARMSNIPE	12.75
+Weight ARMZEUS	12.75
+Weight ARMFAST	2.75
+
+Weight CORACK	40
+Weight CORSPEC	1
+Weight CORMORT	22.25
+Weight CORCAN	12
+Weight CORHRK	12.75
+Weight CORDECOM	8
+Weight CORSUMO	12.75
+Weight CORAMPH	0
+Weight CORPYRO	0
+Weight CORFAST	2.75
+
+Weight CORKROG	1
+
+Weight ARMCV 	33
+Weight ARMSAM	22
+Weight ARMFLASH	8.5
+Weight ARMSTUMP	.5
+Weight ARMFAV	20
+
+Weight CORCV	33
+Weight CORMIST	22
+Weight CORGATOR	.5
+Weight CORRAID	4
+Weight CORLEVLR	0.5
+Weight CORFAV	20
+
+Weight CORCH    2.25
+Weight CORSNAP  2.25
+Weight CORMH    14.25
+Weight CORSH    4.25
+Weight CORAH    28.75
+Weight CORTHOVR 0
+
+Weight ARMCH    2.25
+Weight ARMANAC  2.25
+Weight ARMSH    4.25
+Weight ARMAH    12.25
+Weight ARMMH    22.75
+Weight ARMTHOVR 0
+
+Weight ARMACV 	5
+Weight ARMJAM	.5
+Weight ARMLATNK	12
+Weight ARMMERL	77
+Weight ARMBULL	12
+Weight ARMYORK	4
+Weight ARMMANNI	2
+Weight ARMCROC	0
+Weight ARMMART	0
+Weight ARMSPID	18
+
+Weight CORACV	5
+Weight CORETER	1
+Weight CORGOL	32
+Weight CORVROC	77
+Weight CORSENT	2
+Weight CORREAP	.5
+Weight CORSEAL	0
+Weight CORMART	0
+
+Weight ARMCA	70
+Weight ARMTHUND	2
+Weight ARMFIG	4
+
+Weight CORCA	70
+Weight CORSHAD	2
+Weight CORVENG	4
+
+Weight ARMHAWK	6.75
+Weight ARMPNIX	1
+Weight ARMBRAWL	22.25
+Weight ARMACA	2
+
+Weight CORAPE	2.25
+Weight CORHURC	22
+Weight CORVAMP	33
+Weight CORACA	2
+
+Limit ARMGEO	0
+Limit ARMFUS	4
+Limit ARMSOLAR	0
+Limit ARMMEX	13
+Limit ARMESTOR	3
+Limit ARMMSTOR	3
+Limit ARMUWMEX	0
+Limit ARMTIDE	0
+Limit ARMUWES	0
+Limit ARMUWMS	0
+Limit ARMMMKR	0
+Limit ARMMOHO	7
+Limit ARMMAKR	0
+Limit ARMWIN	13
+Limit ARMMAKR	0
+Limit ARMFMKR	0
+Limit ARMCKFUS	2
+Limit ARMAMEX   0
+
+Limit CORGEO	0
+Limit CORFUS	3
+Limit CORSOLAR	0
+Limit CORMEX	13
+Limit CORESTOR	3
+Limit CORMSTOR	3
+Limit CORUWMEX	0
+Limit CORTIDE	0
+Limit CORUWES	0
+Limit CORUWMS	0
+Limit CORMMKR	0
+Limit CORMOHO	7
+Limit CORMAKR	0
+Limit CORWIN	13
+Limit CORFMKR	0
+Limit CORCKFUS	1
+
+Limit ARMAAP 	4
+Limit ARMAVP 	4
+Limit ARMALAB 	4
+Limit ARMVP	3
+Limit ARMLAB 	3
+Limit ARMAP 	3
+Limit ARMHP	3
+Limit ARMSY	0
+Limit ARMASY	0
+Limit ARMPLAT	0
+Limit ARMAHP    3
+Limit ArmHKLab  3
+
+Limit CORAAP	4
+Limit CORAVP	4
+Limit CORALAB	4
+Limit CORVP	3
+Limit CORLAB	3
+Limit CORAP	3
+Limit CORGANT	3
+Limit CORHP	3
+Limit CORSY	0
+Limit CORASY	0
+Limit CORPLAT	0
+Limit CORAHP    3
+
+Limit ARMBRTHA	9
+Limit ARMRL	77
+Limit ARMHLT	12
+Limit ARMFLAK	11
+Limit ARMLLT	33
+Limit ARMGUARD	22
+Limit ARMANNI	2
+Limit ARMAMB	3
+Limit ARMVULC	3
+Limit ARMTL	0
+Limit ARMEMP	0
+Limit ARMSILO	0
+Limit ARMAMD	0
+
+Limit CORINT	9
+Limit CORRL	77     
+Limit CORHLT	12
+Limit CORVIPE	14
+Limit CORFLAK	11
+Limit CORPLAS	3
+Limit CORLLT	33
+Limit CORPUN	22
+Limit CORDOOM	3
+Limit CORTOAST	12
+Limit CORBUZZ	3
+Limit CORTL	0      
+Limit CORTRON	0
+Limit CORSILO	0
+Limit CORFMD	0
+
+Limit ARMASP	4
+Limit ARMRAD	0
+Limit ARMSONAR	0
+Limit ARMDRAG	0
+Limit ARMARAD	0
+Limit ARMFORT	0
+Limit ARMTARG	0
+
+Limit CORASP	4
+Limit CORRAD	0
+Limit CORSONAR	0
+Limit CORDRAG	0
+Limit CORARAD	0
+Limit CORFORT	0
+Limit CORTARG	0
+
+Limit ARMCK 	4
+Limit ARMROCK 	80
+Limit ARMHAM	10
+Limit ARMJETH 	44
+Limit ARMPW 	22
+Limit ARMWAR	66
+Limit ARMFLEA	122
+
+Limit CORCK	4      
+Limit CORSTORM	122
+Limit CORTHUD	44
+Limit CORCRASH	22
+Limit CORAK	22      
+
+Limit ARMACK 	2
+Limit ARMFARK	17
+Limit ARMASER	2
+Limit ARMAMPH	0
+Limit ARMMAV	44
+Limit ARMDECOM	7
+Limit ARMSNIPE	44
+Limit ARMFIDO 	33
+Limit ARMZEUS	44
+Limit ARMFAST	6
+Limit ARMVADER	0
+Limit ARMMARK	0
+Limit ARMSPY	0
+
+Limit CORACK	2
+Limit CORSPEC	2
+Limit CORMORT	44
+Limit CORCAN	18
+Limit CORHRK	44
+Limit CORSUMO	15
+Limit CORDECOM	7
+Limit CORAMPH	0
+Limit CORPYRO	2
+Limit CORFAST	6
+Limit CORROACH	0
+Limit CORVOYR	0
+Limit CORSPY	0
+Limit CORNECRO	17
+
+Limit CORKROG	5
+
+Limit ARMCV 	2
+Limit ARMSAM	77
+Limit ARMFLASH	77
+Limit ARMSTUMP	12
+Limit ARMFAV	2
+Limit ARMMLV	0
+
+Limit CORCV	2
+Limit CORMIST	77
+Limit CORGATOR	33
+Limit CORRAID	12
+Limit CORLEVLR	0
+Limit CORFAV	2
+Limit CORMLV	0
+
+Limit CORCH    3
+Limit CORSNAP  12
+Limit CORMH    32
+Limit CORSH    32
+Limit CORAH    32
+Limit CORTHOVR 0
+
+Limit ARMCH    3
+Limit ARMANAC  12
+Limit ARMSH    32
+Limit ARMAH    32
+Limit ARMMH    32
+Limit ARMTHOVR 0
+
+Limit ARMACV 	2
+Limit ARMJAM	2
+Limit ARMLATNK	30
+Limit ARMMERL	77
+Limit ARMBULL	77
+Limit ARMYORK	3
+Limit ARMMANNI	2
+Limit ARMCROC	0
+Limit ARMMART	2
+Limit ARMSPID	33
+Limit ARMSEER	0
+Limit ARMSCAB	0
+
+Limit CORACV	2
+Limit CORETER	2
+Limit CORGOL	77
+Limit CORVROC	44
+Limit CORSENT	4
+Limit CORREAP	7
+Limit CORSEAL	0
+Limit CORMART	2
+Limit CORVRAD	0
+Limit CORMABM	0
+
+Limit ARMCA	11       
+Limit ARMTHUND	44
+Limit ARMFIG	22
+Limit ARMPEEP	3
+Limit ARMATLAS	0
+
+Limit CORCA	11
+Limit CORSHAD	33
+Limit CORVENG	11
+Limit CORFINK	3
+Limit CORVALK	0
+
+Limit ARMHAWK	88
+Limit ARMPNIX	88
+Limit ARMBRAWL	120
+Limit ARMACA	3
+Limit ARMLANCE	0
+Limit ARMAWAC	0
+
+Limit CORRAPE	44
+Limit CORHURC	120
+Limit CORVAMP	120
+Limit CORACA	3
+Limit CORTITAN	0
+Limit CORAWAC	0
+ 

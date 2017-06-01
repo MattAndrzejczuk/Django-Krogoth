@@ -1,0 +1,151 @@
+[AraWall01]
+	{
+	world=Aramon;
+	description=Wall;
+	category=towers & walls;
+	footprintx=3;
+	footprintz=3;
+	height=200;
+	filename=AraWall;
+	seqname=AraWall01;
+	seqnameshad=AraWallShad01;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraWall02]
+	{
+	world=Aramon;
+	description=Wall;
+	category=towers & walls;
+	footprintx=3;
+	footprintz=2;
+	height=200;
+	filename=AraWall;
+	seqname=AraWall02;
+	seqnameshad=AraWallshad02;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraWall03]
+	{
+	world=Aramon;
+	description=Wall;
+	category=towers & walls;
+	footprintx=3;
+	footprintz=2;
+	height=200;
+	filename=AraWall;
+	seqname=AraWall03;
+	seqnameshad=AraWallshad03;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraWall04]
+	{
+	world=Aramon;
+	description=Wall;
+	category=towers & walls;
+	footprintx=3;
+	footprintz=3;
+	height=200;
+	filename=AraWall;
+	seqname=AraWall04;
+	seqnameshad=AraWallshad04;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraWall05]
+	{
+	world=Aramon;
+	description=Wall;
+	category=towers & walls;
+	footprintx=5;
+	footprintz=3;
+	height=200;
+	filename=AraWall;
+	seqname=AraWall05;
+	seqnameshad=AraWallshad05;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraWall06]
+	{
+	world=Aramon;
+	description=Wall;
+	category=towers & walls;
+	footprintx=5;
+	footprintz=3;
+	height=200;
+	filename=AraWall;
+	seqname=AraWall06;
+	seqnameshad=AraWallshad06;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraWall07]
+	{
+	world=Aramon;
+	description=Wall;
+	category=towers & walls;
+	footprintx=5;
+	footprintz=3;
+	height=200;
+	filename=AraWall;
+	seqname=AraWall07;
+	seqnameshad=AraWallshad07;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[AraWall08]
+	{
+	world=Aramon;
+	description=Wall;
+	category=towers & walls;
+	footprintx=5;
+	footprintz=3;
+	height=200;
+	filename=AraWall;
+	seqname=AraWall08;
+	seqnameshad=AraWallshad08;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}

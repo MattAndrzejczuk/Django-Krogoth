@@ -1,0 +1,112 @@
+[ZonPlant10]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=plants (indestructible);
+	footprintx=1;
+	footprintz=1;
+	height=2;
+	filename=ZonPlant+D;
+	seqname=ZonPlant10;
+
+	indestructible=1;
+	damage=20000;
+	shadtrans=1;
+	}
+
+[ZonPlant11]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=plants (indestructible);
+	footprintx=1;
+	footprintz=1;
+	height=2;
+	filename=ZonPlant+D;
+	seqname=ZonPlant11;
+
+	indestructible=1;
+	damage=20000;
+	shadtrans=1;
+	}
+
+[ZonPlant12]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=plants (indestructible);
+	footprintx=1;
+	footprintz=1;
+	height=2;
+	filename=ZonPlant+D;
+	seqname=ZonPlant12;
+
+	indestructible=1;
+	damage=20000;
+	shadtrans=1;
+	}
+
+[ZonPlant13]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=plants (indestructible);
+	footprintx=1;
+	footprintz=1;
+	height=2;
+	filename=ZonPlant+D;
+	seqname=ZonPlant13;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	}
+
+[ZonPlant14]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=plants (indestructible);
+	footprintx=1;
+	footprintz=1;
+	height=2;
+	filename=ZonPlant+D;
+	seqname=ZonPlant14;
+
+	indestructible=1;
+	damage=20000;
+	shadtrans=1;
+	}
+
+[ZonPlant15]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=plants (indestructible);
+	footprintx=1;
+	footprintz=1;
+	height=2;
+	filename=ZonPlant+D;
+	seqname=ZonPlant15;
+
+	indestructible=1;
+	damage=20000;
+	shadtrans=1;
+	}
+
+[ZonPlant16]
+	{
+	world=Zhon;
+	description=Groundcover;
+	category=plants (indestructible);
+	footprintx=1;
+	footprintz=1;
+	height=2;
+	filename=ZonPlant+D;
+	seqname=ZonPlant16;
+
+	indestructible=1;
+	damage=20000;
+	shadtrans=1;
+	}

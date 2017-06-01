@@ -1,0 +1,133 @@
+[cityhouse1]
+	{
+	world=World;
+	description=City House;
+	category=SD;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=50;
+	filename=Hus;
+	seqname=cityhouse1;
+	seqnameshad=cityhouse1shad;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+[cityhouse2]
+	{
+	world=World;
+	description=City House;
+	category=SD;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=50;
+	filename=Hus;
+	seqname=cityhouse2;
+	seqnameshad=cityhouse2shad;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+[cityhouse3]
+	{
+	world=World;
+	description=City House;
+	category=SD;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=50;
+	filename=Hus;
+	seqname=cityhouse3;
+	seqnameshad=cityhouse3shad;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+[plaza]
+	{
+	world=World;
+	description=Oslo Plaza;
+	category=SD;
+	animating=0;
+	footprintx=7;
+	footprintz=7;
+	height=500;
+	filename=Hus;
+	seqname=plaza;
+	seqnameshad=plazaskyg;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+[farmhouse1]
+	{
+	world=World;
+	description=Farm House;
+	category=SD;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=50;
+	filename=Hus;
+	seqname=farmhouse1;
+	seqnameshad=farmhouse1shad;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+[farmhouse2]
+	{
+	world=World;
+	description=Farm House;
+	category=SD;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=50;
+	filename=Hus;
+	seqname=farmhouse2;
+	seqnameshad=farmhouse2shad;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+

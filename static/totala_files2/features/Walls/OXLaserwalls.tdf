@@ -1,0 +1,343 @@
+
+[LaserWall 1]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	category=LaserWall;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserwall1;
+	seqnamedie=laser_blow;
+	featuredead=corak_heap;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=0;
+	hitdensity=90;
+	damage=2000;
+	nodisplayinfo=0;
+	blocking=1;
+	}
+
+[LaserWall 2]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	category=LaserWall;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserbrdge2;
+	seqnamedie=laser_blow;
+	seqnameshad=;
+	featuredead=corak_heap;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=200;
+	damage=2000;
+	nodisplayinfo=0;
+	}
+
+[LaserWall 3]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	category=LaserWall;
+	animating=0;
+	footprintx=4;
+	footprintz=1;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserbrdge3;
+	seqnameshad=;
+	seqnamedie=laser_blow;
+	featuredead=corrad_heap;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=200;
+	damage=2000;
+	nodisplayinfo=0;
+	}
+
+	
+[LaserWall 5]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	category=LaserWall;
+	animating=0;
+	footprintx=3;
+	footprintz=1;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserbrdge5;
+	seqnamedie=laser_blow;
+	seqnameshad=;
+	featuredead=armatlas_heap;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=200;
+	damage=2000;
+	nodisplayinfo=0;
+	}
+
+[LaserWall 6]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	category=LaserWall;
+	animating=0;
+	footprintx=3;
+	footprintz=1;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserbrdge6;
+	seqnamedie=laser_blow;
+	seqnameshad=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=200;
+	damage=2000;
+	nodisplayinfo=0;
+	}
+	
+[LaserWall 7]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	category=LaserWall;
+	animating=0;
+	footprintx=4;
+	footprintz=1;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserbrdge7;
+	seqnamedie=laser_blow;
+	seqnameshad=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=200;
+	damage=2000;
+	nodisplayinfo=0;
+	nodisplayinfo=0;
+	}
+
+[LaserWall 8]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	category=LaserWall;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserbrdge8;
+	seqnamedie=laser_blow;
+	seqnameshad=;
+	featuredead=armrad_heap;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=200;
+	damage=2000;
+	nodisplayinfo=0;
+	}
+
+[LaserWall 9]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	seqnamedie=laser_blow;
+	category=LaserWall;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserbrdge9;
+	seqnameshad=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=200;
+	damage=2000;
+	nodisplayinfo=0;
+	}
+
+[LaserWall 10]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	seqnamedie=laser_blow;
+	category=LaserWall;
+	animating=0;
+	footprintx=3;
+	footprintz=1;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserbrdge10;
+	seqnameshad=;
+	featuredead=armflash_heap;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=200;
+	damage=2000;
+	nodisplayinfo=0;
+	}
+
+
+[LaserWall 11]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	category=LaserWall;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserwall2;
+	seqnamedie=laser_blow;
+	featuredead=corak_heap;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=0;
+	hitdensity=90;
+	damage=2000;
+	nodisplayinfo=0;
+	blocking=1;
+	}
+
+
+[LaserWall 12]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	category=LaserWall;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserbrdge12;
+	seqnamedie=laser_blow;
+	seqnameshad=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=200;
+	damage=2000;
+	nodisplayinfo=0;
+	}
+
+[LaserWall 13]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	seqnamedie=laser_blow;
+	category=LaserWall;
+	animating=0;
+	footprintx=3;
+	footprintz=1;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserbrdge13;
+	seqnameshad=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=200;
+	damage=2000;
+	nodisplayinfo=0;
+	}
+
+[LaserWall 14]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	seqnamedie=laser_blow;
+	category=LaserWall;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserbrdge14;
+	seqnameshad=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=200;
+	damage=2000;
+	nodisplayinfo=0;
+	}
+
+[LaserWall NS]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	category=LaserWall;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserUD;
+	seqnamedie=laser_blow;
+	seqnameshad=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=200;
+	damage=2000;
+	nodisplayinfo=0;
+	}
+
+[LaserWall EW]
+	{
+	world=Oxigen;
+	description=Laser Wall;
+	category=LaserWall;
+	animating=0;
+	footprintx=4;
+	footprintz=1;
+	height=65;
+	filename=OXLaserwalls;
+	seqname=laserLR;
+	seqnamedie=laser_blow;
+	seqnameshad=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=200;
+	damage=100;
+	nodisplayinfo=0;
+	}
+
+

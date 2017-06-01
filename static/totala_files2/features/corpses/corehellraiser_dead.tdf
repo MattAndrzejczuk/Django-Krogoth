@@ -1,0 +1,36 @@
+[corehellraiser_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=corehellraiser_dead;
+	featuredead=corehellraiser_heap;
+	footprintx=4;
+	footprintz=3;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=12597;
+	damage=8678;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+[corehellraiser_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2c;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=9148;
+	damage=5020;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+

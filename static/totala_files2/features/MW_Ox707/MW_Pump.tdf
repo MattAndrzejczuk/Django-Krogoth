@@ -1,0 +1,16 @@
+[Plasma Pump 001]
+	{
+	world=MetalWorld;
+	category=Pumps;
+	description=Plasma Pump Station;
+	filename=MWPump1;
+	seqname=Pump;
+	seqnameshad=Pump-shad;
+	footprintx=15;
+	footprintz=10;
+	height=190;
+	blocking=1;
+	permanent=1;
+	indestructible=1;
+	shadtrans=1;
+	}

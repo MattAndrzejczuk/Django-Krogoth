@@ -1,0 +1,25 @@
+
+
+
+[Quagmire Grass 1]
+
+	{
+	world=Quagmire;
+	category=Plants;
+	description=;
+	filename=J_Grass;
+	seqname=Grass1;
+	seqnameshad=;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	Animating=0;
+	Blocking=0;
+	noshowdescription=1;
+	blocking=0;
+	permanent=1;
+	indestructible=1;
+	shadtrans=0;
+	animtrans=0;
+	}
+

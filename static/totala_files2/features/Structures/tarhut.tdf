@@ -1,0 +1,249 @@
+[TarHut01]
+	{
+	world=Taros;
+	description=Wretched Hovel;
+	category=Taros;
+	animating=0;
+	footprintx=4;
+	footprintz=7;
+	height=160;
+	filename=Tarhut;
+	seqname=TarHut01;
+	seqnameshad=TarHutshad01;
+
+	indestructible=1
+	damage = 1400;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	permanent=1;
+	}
+
+[TarHut01a]
+	{
+	world=Taros;
+	description=Destroyed Hovel;
+	category=Taros;
+	animating=0;
+	footprintx=4;
+	footprintz=7;
+	height=30;
+	filename=Tarhut;
+	seqname=TarHut01a;
+	seqnameshad=TarHutshad01a;
+
+	indestructible=1;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	permanent=1;
+	}
+
+[TarHut02]
+	{
+	world=Taros;
+	description=Wretched Hovel;
+	category=Taros;
+	animating=0;
+	footprintx=8;
+	footprintz=4;
+	height=100;
+	filename=Tarhut;
+	seqname=TarHut02;
+	seqnameshad=TarHutshad02;
+	
+	damage = 1400;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	permanent=1;
+	industructible=1;
+	}
+
+[TarHut02a]
+	{
+	world=Taros;
+	description=Destroyed Hovel;
+	category=Taros;
+	animating=0;
+	footprintx=8;
+	footprintz=4;
+	height=30;
+	filename=Tarhut;
+	seqname=TarHut02a;
+	seqnameshad=TarHutshad02a;
+	indestructible=1;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	permanent=1;
+	}
+
+[TarHut03]
+	{
+	world=Taros;
+	description=Wretched Hovel;
+	category=Taros;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=90;
+	filename=Tarhut;
+	seqname=TarHut03;
+	seqnameshad=TarHutshad03;
+	
+	damage = 1400;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	permanent=1;
+	}
+
+[TarHut03a]
+	{
+	world=Taros;
+	description=Destroyed Hovel;
+	category=Taros;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=30;
+	filename=Tarhut;
+	seqname=TarHut03a;
+	seqnameshad=TarHutshad03a;
+	indestructible=1;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	permanent=1;
+	}
+
+[TarHut04]
+	{
+	world=Taros;
+	description=Wretched Hovel;
+	category=Taros;
+	animating=0;
+	footprintx=4;
+	footprintz=5;
+	height=116;
+	filename=Tarhut;
+	seqname=TarHut04;
+	seqnameshad=TarHutshad04;
+	
+	damage = 1400;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	permanent=1;
+	}
+
+[TarHut04a]
+	{
+	world=Taros;
+	description=Destroyed Hovel;
+	category=Taros;
+	animating=0;
+	footprintx=4;
+	footprintz=5;
+	height=30;
+	filename=Tarhut;
+	seqname=TarHut04a;
+	seqnameshad=TarHutshad04a;
+	
+	indestructible=1;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	permanent=1;
+	}
+
+[TarHut05]
+	{
+	world=Taros;
+	description=Wretched Hovel;
+	category=Taros;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=80;
+	filename=Tarhut;
+	seqname=TarHut05;
+	seqnameshad=TarHutshad05;
+	
+	damage = 1400;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	permanent=1;
+	}
+
+[TarHut05a]
+	{
+	world=Taros;
+	description=Destroyed Hovel;
+	category=Taros;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=30;
+	filename=Tarhut;
+	seqname=TarHut05a;
+	seqnameshad=TarHutshad05a;
+	
+	indestructible=1;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	permanent=1;
+	}

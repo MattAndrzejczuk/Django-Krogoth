@@ -1,0 +1,457 @@
+[LampPost1] 		 // Lamps
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost01;
+	seqnameshad=LPostShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost2]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost02;
+	seqnameshad=LPostShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost3]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost03;
+	seqnameshad=LPostShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost4]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost04;
+	seqnameshad=LPostShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost5]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost05;
+	seqnameshad=LPostShad01;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost6]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost06;
+	seqnameshad=LPostShad06;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost7]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost07;
+	seqnameshad=LPostShad06;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost8]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost08;
+	seqnameshad=LPostShad06;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost9]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost09;
+	seqnameshad=LPostShad06;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost10]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost10;
+	seqnameshad=LPostShad06;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+[LampPost11]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost11;
+	seqnameshad=LPostShad11;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+[LampPost12]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost12;
+	seqnameshad=LPostShad11;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost13]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost13;
+	seqnameshad=LPostShad11;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost14]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost14;
+	seqnameshad=LPostShad11;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost15]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost15;
+	seqnameshad=LPostShad11;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost16]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost16;
+	seqnameshad=LPostShad16;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost17]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost17;
+	seqnameshad=LPostShad16;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost18]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost18;
+	seqnameshad=LPostShad16;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost19]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost19;
+	seqnameshad=LPostShad16;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}
+
+[LampPost20]
+	{
+	world=AtlantisMB;
+	description=MB Lamp;
+	category=LampPost;
+	filename=MBLampPost;
+	seqname=LPost20;
+	seqnameshad=LPostShad16;	
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	
+	animating=0;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	reclaimable=0;
+	damage=32009;
+	indestructible=1;
+	blocking=1;
+	permanent=1;
+	}

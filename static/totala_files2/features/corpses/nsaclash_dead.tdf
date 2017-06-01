@@ -1,0 +1,35 @@
+[NSACLASH_DEAD]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=nsaclash_dead;
+	featuredead=nsaclash_heap;
+	footprintx=3;
+	footprintz=3;
+	height=20;
+	blocking=1;
+	hitdensity=60;
+	metal=249;
+	damage=1536;
+	reclaimable=1;
+	featurereclaimate=smudge01;
+	seqnamereclamate=tree1reclamate;
+}
+
+[NSACLASH_HEAP]
+{
+	world=All Worlds;
+	description=Metal Shards;
+	category=heaps;
+	object=3x3a;
+	footprintx=3;
+	footprintz=3;
+	blocking=0;
+	hitdensity=5;
+	metal=125;
+	damage=768;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+}

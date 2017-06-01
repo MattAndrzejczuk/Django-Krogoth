@@ -1,0 +1,241 @@
+//Delta plasma spray hover by Lord Phoenix
+
+piece base, body, turret, barrel, flare, smoke1, smoke2, wake1, wake2, wake3, wake4, wake5, wake6, sleeve;
+
+static-var restore_delay, Static_Var_1, bMoving, Static_Var_2;
+#define	SIG_AIM1	2
+#define SIG_MOVE	4
+#define SMOKEPIECE1 base
+#include "smokeunit.h"
+#include "exptype.h"
+#include "rockunit.h"
+#include "hitweap.h"
+
+
+setSFXoccupy(Func_Var_1)
+{
+	Static_Var_2 = Func_Var_1;
+}
+
+Smoke()
+	{
+	if( Static_Var_1 == 1 )
+		{
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 50;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 30;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 20;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 10;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 100;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 50;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 23;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 13;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 50;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 30;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 20;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 10;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 100;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 50;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 23;
+		emit-sfx 256 | 1 from smoke1;
+		emit-sfx 256 | 1 from smoke2;
+		sleep 13;
+		}
+	return 0;
+	}
+	
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	bMoving = TRUE;
+	while( TRUE )
+	{
+		if( Static_Var_2 <= 3 )
+		{
+			emit-sfx 5 from wake1;
+			emit-sfx 5 from wake2;
+			emit-sfx 5 from wake3;
+			emit-sfx 5 from wake4;
+			emit-sfx 5 from wake5;
+			emit-sfx 5 from wake6;
+			emit-sfx 3 from wake1;
+			emit-sfx 3 from wake2;
+			emit-sfx 3 from wake3;
+			emit-sfx 3 from wake4;
+			emit-sfx 3 from wake5;
+			emit-sfx 3 from wake6;
+		}
+		sleep 300;
+	}
+}
+
+StopMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	bMoving = FALSE;
+	while( !bMoving )
+	{
+		if( Static_Var_2 <= 3 )
+		{
+			emit-sfx 5 from wake1;
+			emit-sfx 5 from wake2;
+			emit-sfx 5 from wake3;
+			emit-sfx 5 from wake4;
+			emit-sfx 5 from wake5;
+			emit-sfx 5 from wake6;
+			emit-sfx 3 from wake1;
+			emit-sfx 3 from wake2;
+			emit-sfx 3 from wake3;
+			emit-sfx 3 from wake4;
+			emit-sfx 3 from wake5;
+			emit-sfx 3 from wake6;
+		}
+		sleep 950;
+	}
+}
+
+Create()
+	{
+	restore_delay = 2000;
+	Static_Var_1 = 0;
+	dont-cache barrel;
+	dont-cache sleeve;
+	dont-cache turret;
+	hide flare;
+	start-script SmokeUnit();
+	}
+
+SetMaxReloadTime(time)
+	{
+	restore_delay = time * 2;
+	}
+
+RestoreAfterDelay()
+	{
+	sleep restore_delay;
+	turn turret to y-axis <0.000000> speed <10.000000>;
+	turn turret to x-axis <0.000000> speed <7.500000>;
+	return 0;
+	}
+
+SweetSpot (piecenum)
+	{
+	piecenum = base;
+	}
+
+QueryPrimary (piecenum)
+	{
+	piecenum = flare;
+	}
+
+AimFromPrimary (piecenum)
+	{
+	piecenum = turret;
+	}
+
+AimPrimary(heading, pitch)
+	{
+	signal SIG_AIM1;
+	set-signal-mask SIG_AIM1;
+	turn turret to y-axis heading speed <85.000000>;
+	turn turret to x-axis (0-pitch) speed <65.000000>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn turret around x-axis;
+	start-script RestoreAfterDelay();
+	return(TRUE);
+	}
+
+FirePrimary()
+	{
+	move barrel to z-axis [-4.000000] speed [150.000000];
+	Static_Var_1 = 1;
+	show flare;
+	sleep 100;
+	hide flare;
+	wait-for-move barrel along z-axis;
+	move barrel to z-axis [0.000000] speed [7.500000];
+	start-script Smoke();
+	sleep 10;
+	Static_Var_1 = 0;	
+	return(0);
+	}
+
+Killed(severity, corpsetype)
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode body type	BITMAPONLY | BITMAP1;
+		explode turret type	BITMAPONLY | BITMAP1;
+		explode barrel type	BITMAPONLY | BITMAP1;
+		explode flare type	BITMAPONLY | BITMAP1;
+		explode smoke1 type	BITMAPONLY | BITMAP1;
+		explode smoke2 type	BITMAPONLY | BITMAP1;
+		return(0);
+		}
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	SHATTER | BITMAP4;
+		explode body type	SHATTER | BITMAP4;
+		explode turret type	SHATTER | BITMAP4;
+		explode barrel type	SHATTER | BITMAP4;
+		explode flare type	SHATTER | BITMAP4;
+		explode smoke1 type	SHATTER | BITMAP4;
+		explode smoke2 type	SHATTER | BITMAP4;
+		return(0);
+		}
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode body type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode barrel type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode flare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode smoke1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode smoke2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		return(0);
+		}
+	corpsetype = 3;
+	explode base type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode body type	SHATTER | BITMAP4;
+	explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode barrel type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode flare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode smoke1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode smoke2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	return(0);
+	}

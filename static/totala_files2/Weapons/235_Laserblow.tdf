@@ -1,0 +1,28 @@
+//  1 footprint =  16 pixels
+//  2 footprint =  32 pixels
+//  3 footprint =  48 pixels
+//  4 footprint =  64 pixels
+//  5 footprint =  80 pixels
+//  6 footprint =  96 pixels
+//  7 footprint = 112 pixels
+//  8 footprint = 128 pixels
+//  9 footprint = 144 pixels
+// 10 footprint = 160 pixels
+// 11 footprint = 176 pixels
+// 12 footprint = 192 pixels
+
+
+[LASERBLOW]		// LASER BRIDGE EXPLOSION
+	{
+	ID=235;
+	name=Laserblow;
+	areaofeffect=350;
+	edgeeffectiveness=0.5;
+
+	firestarter=100;
+
+	[DAMAGE]
+		{
+		default=99999;
+		}
+	}

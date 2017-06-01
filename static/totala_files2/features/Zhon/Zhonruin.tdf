@@ -1,0 +1,442 @@
+[ZhonRuin01]
+	{
+	world=Zhon;
+	description=Kandran Tomb;
+	category=Ruins;
+	footprintx=11;
+	footprintz=13;
+	height=168;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin01;
+	seqnameshad=ZhonRuinshad01;
+
+	seqnamedie=ZhonRuinDie01;
+	featuredead=ZhonRuin01a;
+
+	damage=3000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin01a]
+	{
+	world=Zhon;
+	description=Destroyed Tomb;
+	category=Ruins;
+	footprintx=11;
+	footprintz=13;
+	height=110;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin01a;
+	seqnameshad=ZhonRuinshad01a;
+
+	indestructible=1;
+	damage=2000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin02]
+	{
+	world=Zhon;
+	description=Kandran Tomb;
+	category=Ruins;
+	footprintx=14;
+	footprintz=10;
+	height=168;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin02;
+	seqnameshad=ZhonRuinshad02;
+
+	seqnamedie=ZhonRuinDie02;
+	featuredead=ZhonRuin02a;
+
+	damage=3000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin02a]
+	{
+	world=Zhon;
+	description=Destroyed Tomb;
+	category=Ruins;
+	footprintx=14;
+	footprintz=10;
+	height=110;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin02a;
+	seqnameshad=ZhonRuinshad02a;
+
+	indestructible=1;
+	damage=2000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin03]
+	{
+	world=Zhon;
+	description=Kandran Ruins;
+	category=Ruins;
+	footprintx=13;
+	footprintz=15;
+	height=170;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin03;
+	seqnameshad=ZhonRuinshad03;
+
+	indestructible=1;
+	damage=4000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin04]
+	{
+	world=Zhon;
+	description=Kandran Ruins;
+	category=Ruins;
+	footprintx=16;
+	footprintz=13;
+	height=170;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin04;
+	seqnameshad=ZhonRuinshad04;
+
+	indestructible=1;
+
+	damage=4000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin05]
+	{
+	world=Zhon;
+	description=Kandran Ruins;
+	category=Ruins;
+	footprintx=16;
+	footprintz=12;
+	height=170;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin05;
+	seqnameshad=ZhonRuinshad05;
+
+	indestructible=1;
+
+	damage=4000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin06]
+	{
+	world=Zhon;
+	description=Kandran Ruins;
+	category=Ruins;
+	footprintx=14;
+	footprintz=11;
+	height=170;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin06;
+	seqnameshad=ZhonRuinshad06;
+
+	indestructible=1;
+
+	damage=4000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin07]
+	{
+	world=Zhon;
+	description=Kandran Ruins;
+	category=Ruins;
+	footprintx=15;
+	footprintz=12;
+	height=170;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin07;
+	seqnameshad=ZhonRuinshad07;
+
+	indestructible=1;
+
+	damage=4000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin08]
+	{
+	world=Zhon;
+	description=Kandran Ruins;
+	category=Ruins;
+	footprintx=12;
+	footprintz=13;
+	height=170;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin08;
+	seqnameshad=ZhonRuinshad08;
+
+	indestructible=1;
+
+	damage=4000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin09]
+	{
+	world=Zhon;
+	description=Kandran Ruins;
+	category=Ruins;
+	footprintx=19;
+	footprintz=13;
+	height=170;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin09;
+	seqnameshad=ZhonRuinshad09;
+
+	indestructible=1;
+
+	damage=4000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin10]
+	{
+	world=Zhon;
+	description=Kandran Ruins;
+	category=Ruins;
+	footprintx=14;
+	footprintz=12;
+	height=170;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin10;
+	seqnameshad=ZhonRuinshad10;
+
+	indestructible=1;
+
+	damage=4000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin11]
+	{
+	world=Zhon;
+	description=Kandran Ruins;
+	category=Ruins;
+	footprintx=17;
+	footprintz=12;
+	height=170;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin11;
+	seqnameshad=ZhonRuinshad11;
+
+	indestructible=1;
+
+	damage=4000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin12]
+	{
+	world=Zhon;
+	description=Kandran Ruins;
+	category=Ruins;
+	footprintx=14;
+	footprintz=16;
+	height=170;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin12;
+	seqnameshad=ZhonRuinshad12;
+
+	indestructible=1;
+
+	damage=4000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin13]
+	{
+	world=Zhon;
+	description=Kandran Ruins;
+	category=Ruins;
+	footprintx=11;
+	footprintz=14;
+	height=170;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin13;
+	seqnameshad=ZhonRuinshad13;
+
+	indestructible=1;
+
+	damage=4000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin14]
+	{
+	world=Zhon;
+	description=Kandran Ruins;
+	category=Ruins;
+	footprintx=15;
+	footprintz=12;
+	height=170;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin14;
+	seqnameshad=ZhonRuinshad14;
+
+	indestructible=1;
+
+	damage=4000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin15]
+	{
+	world=Zhon;
+	description=Ancient Temple;
+	category=Ruins;
+	footprintx=23;
+	footprintz=18;
+	height=108;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin15;
+	seqnameshad=ZhonRuinshad15;
+
+	seqnamedie=ZhonRuinDie15;
+	featuredead=ZhonRuin15a;
+
+	damage=8000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin15a]
+	{
+	world=Zhon;
+	description=Damaged Temple;
+	category=Ruins;
+	footprintx=23;
+	footprintz=18;
+	height=102;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin15a;
+	seqnameshad=ZhonRuinshad15a;
+
+	seqnamedie=ZhonRuinDie15a;
+	featuredead=ZhonRuin15b;
+
+	damage=4000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin15b]
+	{
+	world=Zhon;
+	description=Ruined Temple;
+	category=Ruins;
+	footprintx=23;
+	footprintz=18;
+	height=99;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin15b;
+	seqnameshad=ZhonRuinshad15b;
+
+	indestructible=1;
+
+	damage=2000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin16]
+	{
+	world=Zhon;
+	description=Ancient Temple;
+	category=Ruins;
+	footprintx=23;
+	footprintz=17;
+	height=110;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin16;
+	seqnameshad=ZhonRuinshad16;
+
+	seqnamedie=ZhonRuinDie16;
+	featuredead=ZhonRuin16a;
+
+	damage=8000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin16a]
+	{
+	world=Zhon;
+	description=Damaged Temple;
+	category=Ruins;
+	footprintx=23;
+	footprintz=17;
+	height=104;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin16a;
+	seqnameshad=ZhonRuinshad16a;
+
+	seqnamedie=ZhonRuinDie16a;
+	featuredead=ZhonRuin16b;
+
+	damage=4000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[ZhonRuin16b]
+	{
+	world=Zhon;
+	description=Ruined Temple;
+	category=Ruins;
+	footprintx=23;
+	footprintz=17;
+	height=96;
+	filename=ZhonRuin+D;
+	seqname=ZhonRuin16b;
+	seqnameshad=ZhonRuinshad16b;
+
+	indestructible=1;
+
+	damage=2000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}

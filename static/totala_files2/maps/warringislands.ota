@@ -1,0 +1,60 @@
+[GlobalHeader]
+	{
+	missionname=Warring Islands;
+	missiondescription=8 x 25 Map;
+	planet=Lush;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=0;
+	mapping=0;
+	tidalstrength=25;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=;
+	minwindspeed=2500;
+	maxwindspeed=3000;
+	gravity=111;
+	waterdoesdamage=0;
+	waterdamage=0;
+	numplayers=2;
+	size=8 x 25;
+	memory=32 mb;
+	useonlyunits=;
+	DestroyAllUnits=1;
+	AllUnitsKilled=1;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=SeaBattle;
+		SurfaceMetal=3;
+		MohoMetal=30;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=454;
+				ZPos=394;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=3496;
+				ZPos=12167;
+				}
+			}
+		}
+	}

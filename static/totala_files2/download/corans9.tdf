@@ -1,0 +1,28 @@
+[MENUENTRY1]
+	{
+                    UNITMENU=CORANS;
+                    MENU=7;
+                    BUTTON=2;
+                    UNITNAME=CORUWMMMKR;
+	}
+[MENUENTRY2]
+	{
+                    UNITMENU=CORANS;
+                    MENU=7;
+                    BUTTON=3;
+                    UNITNAME=CORUWADVES;
+	}
+[MENUENTRY3]
+	{
+                    UNITMENU=CORANS;
+                    MENU=7;
+                    BUTTON=4;
+                    UNITNAME=CORASON;
+	}
+[MENUENTRY4]
+	{
+                    UNITMENU=CORANS;
+                    MENU=7;
+                    BUTTON=5;
+                    UNITNAME=CORPLAT;
+	}

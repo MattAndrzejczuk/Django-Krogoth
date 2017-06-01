@@ -1,0 +1,90 @@
+// Rules of Trigger Features - Trigger Features take 'X amount' of damage then turn into
+//    the next set feature. Triggers can be animated or transparent also.
+//
+// Rules of Burn Features -  Burn features can take 'X amount' of damage and die (not burn)
+//     or can be set to burn. Once it is effected it will burn (could take 1 little shot
+//     to make it burn). Once it burns it will die. Burning has weapon settings, thus once
+//     a feature burns, you can set it to blow up or something.
+//
+// Rules of Void Features - Basically the final sequence of the effect. Usually is just a 
+//    void or even a special image. Voids can be set with hitdensities of 0 to 100. So this
+//    could be like a spire or just a flat plane.
+//
+//  1 footprint =  16 pixels
+//  2 footprint =  32 pixels
+//  3 footprint =  48 pixels
+//  4 footprint =  64 pixels
+//  5 footprint =  80 pixels
+//  6 footprint =  96 pixels
+//  7 footprint = 112 pixels
+//  8 footprint = 128 pixels
+//  9 footprint = 144 pixels
+// 10 footprint = 160 pixels
+// 11 footprint = 176 pixels
+// 12 footprint = 192 pixels
+// 13 footprint = 208 pixels
+
+
+
+[LightGreenYellow]  // DualBulb Green & Yellow (Overlays)
+	{
+	world=oxigen707;
+	description=Laser Light;
+	category=Oxigen707;
+	animating=1;
+    	footprintx=1;
+    	footprintz=1;
+	height=40;
+	filename=Ox707laserlights;
+	seqname=dualgreenyellow;
+	seqnameshad=lightpod;
+	animtrans=1;
+	shadtrans=0;
+	hitdensity=0;
+	damage=32009;
+	blocking=1;
+	indestructible=1;
+	}
+
+[GreenLights]  // Green Flashing Lights (Overlays)
+	{
+	world=oxigen707;
+	description=;
+	category=Oxigen707;
+	animating=1;
+    	footprintx=4;
+    	footprintz=4;
+	height=40;
+	filename=OX707laserlights;
+	seqname=blank;
+	seqnameshad=nanoshadow;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=0;
+	damage=32009;
+	blocking=1;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+
+[TeleportPad1]  // Hypno Spinner (Overlays)
+	{
+	world=oxigen707;
+	description=Vortex Teleporter;
+	category=Oxigen707;
+	animating=1;
+    	footprintx=4;
+    	footprintz=4;
+	height=0;
+	filename=OX707laserlights;
+	seqname=blank;
+	seqnameshad=spinner;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=0;
+	damage=32009;
+	blocking=0;
+	indestructible=1;
+	nodisplayinfo=0;
+	}

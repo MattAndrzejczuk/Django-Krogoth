@@ -1,0 +1,340 @@
+[PMMETAL1]  
+	{
+	world=Purple Moon;
+	description=Metal Deposit;
+	category=Purple;
+	animating=0;
+	footprintx=5;
+	footprintz=3;
+	height=0;
+	filename=PMMETAL;
+	seqname=PMMETAL1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=215;
+	damage=32009;
+	indestructible=1;
+	}
+
+[PMMETAL2]  
+	{
+	world=Purple Moon;
+	description=Metal Deposit;
+	category=Purple;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=PMMETAL;
+	seqname=PMMETAL2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=177;
+	damage=32009;
+	indestructible=1;
+	}
+
+[PMMETAL3]
+	{
+	world=Purple Moon;
+	description=Metal Deposit;
+	category=Purple;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=PMMETAL;
+	seqname=PMMETAL3;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=154;
+	damage=32009;
+	indestructible=1;
+	}
+
+[PMMETAL4]  
+	{
+	world=Purple Moon;
+	description=Metal Deposit;
+	category=Purple;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=PMMETAL;
+	seqname=PMMETAL4;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=110;
+	damage=32009;
+	indestructible=1;
+      }
+
+[PMMETAL5]  
+	{
+	world=Purple Moon;
+	description=Metal Deposit;
+	category=Purple;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=PMMETAL;
+	seqname=PMMETAL5;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=110;
+	damage=32009;
+	indestructible=1;
+	}
+
+[PMrock1]
+	{
+	world=Purple Moon;
+	description=A purple Rock!;
+	category=ROCKS;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=20;
+	filename=PMROCK;
+	seqname=rock1;
+	seqnameshad=rock1shad;
+	seqnamereclamate=rocksmudge;
+	metal=150;
+
+	featurereclamate=PMrocksmudge;
+	featuredead=pmrock1dead;
+      seqnamedie=rockboom;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[PMROCK2]
+	{
+	world=Purple Moon;
+	description=A rock maybe?;
+	category=ROCKS;
+	animating=0;
+	footprintx=6;
+	footprintz=3;
+	height=22;
+	filename=PMROCK;
+	seqname=rock2;
+	seqnameshad=rock2shad;
+	seqnamereclamate=rocksmudge;
+	metal=140;
+
+	featurereclamate=PMrocksmudge;
+	featuredead=pmrock2dead;
+      seqnamedie=rockboom;
+ 
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[PMRock3]
+	{
+	world=Purple Moon;
+	description=Purplelus Rockus;
+	category=rocks;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=25;
+	filename=PMROCK;
+	seqname=rock3;
+	seqnameshad=rock3shad;
+	seqnamereclamate=rocksmudge;
+	metal=200;
+
+	featurereclamate=PMrocksmudge;
+	featuredead=pmrock3dead;
+      seqnamedie=rockboom;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2500;
+	}
+
+[PMRock4]
+	{
+	world=Purple Moon;
+	description=This is a rock!;
+	category=rocks;
+	animating=0;
+	footprintx=6;
+	footprintz=5;
+	height=25;
+	filename=PMROCK;
+	seqname=rock4;
+	seqnameshad=rock4shad;
+	seqnamereclamate=rocksmudge;
+	metal=190;
+
+	featurereclamate=PMrocksmudge;
+	featuredead=pmrock4dead;
+      seqnamedie=rockboom;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2200;
+	}
+
+[PMRock1dead]
+	{
+	world=Purple Moon;
+	description=A poor dead Rock;
+	category=rocks;
+	animating=1;
+	footprintx=5;
+	footprintz=4;
+	height=20;
+	filename=PMROCK;
+	seqname=rock1dead;
+	seqnameshad=rock1shad;
+	seqnamereclamate=PMrocksmudge;
+	metal=140;
+
+	featurereclamate=PMrocksmudge;
+	featuredead=PMrocksmudge;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[PMRock2dead]
+	{
+	world=Purple Moon;
+	description=Rock Killer!;
+	category=rocks;
+	animating=1;
+	footprintx=6;
+	footprintz=3;
+	height=12;
+	filename=PMROCK;
+	seqname=rock2dead;
+	seqnameshad=rock2shad;
+	seqnamereclamate=PMrocksmudge;
+	metal=140;
+
+	featurereclamate=PMrocksmudge;
+	featuredead=PMrocksmudge;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[PMRock3dead]
+	{
+	world=Purple Moon;
+	description=ARGH! got me!;
+	category=rocks;
+	animating=1;
+	footprintx=6;
+	footprintz=4;
+	height=5;
+	filename=PMROCK;
+	seqname=rock3dead;
+	seqnameshad=rock3shad;
+	seqnamereclamate=PMrocksmudge;
+	metal=187;
+
+	featurereclamate=PMrocksmudge;
+	featuredead=PMrocksmudge;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[PMRock4dead]
+	{
+	world=Purple Moon;
+	description=Being a rock sux;
+	category=rocks;
+	animating=1;
+	footprintx=6;
+	footprintz=5;
+	height=5;
+	filename=PMROCK;
+	seqname=rock4dead;
+	seqnameshad=rock4shad;
+	seqnamereclamate=PMrocksmudge;
+	metal=178;
+
+	featurereclamate=PMrocksmudge;
+	featuredead=PMrocksmudge;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[PMrocksmudge]
+	{
+	world=Purple Moon;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=5;
+	footprintz=3;
+	height=0;
+	filename=pmrock;
+	seqname=rocksmudge;
+
+	featuredead=PMrocksmudge;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	indestructible=1;
+      }

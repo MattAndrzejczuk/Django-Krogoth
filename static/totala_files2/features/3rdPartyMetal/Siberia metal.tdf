@@ -1,0 +1,62 @@
+[Siberiametal01]  // Medium
+	{
+	world=Siberia;
+	description=Siberia Metal Deposit;
+	category=Siberia;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Siberiametal;
+	seqname=metal01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=132;
+	damage=32009;
+	indestructible=1;
+	}
+
+[Siberiametal02]  // Small
+	{
+	world=Siberia;
+	description=Metal Deposit;
+	category=Siberia;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Siberiametal;
+	seqname=metal02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[Siberiametal03]  // Huge
+	{
+	world=Siberia;
+	description=Siberia Metal Deposit;
+	category=Siberia;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=SiberiaMetal;
+	seqname=metal03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=253;
+	damage=32009;
+	indestructible=1;
+	}

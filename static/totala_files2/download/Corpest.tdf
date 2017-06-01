@@ -1,0 +1,9 @@
+[MENUENTRY1]
+	{
+	UNITMENU=CORLAB;
+	MENU=4; // 2 for first page, 3 for second page,...
+	BUTTON=3; // 0 to 5
+	UNITNAME=CORPEST;
+	}
+// There can be only five MenuEntry in each .tdf, 0 to 4 or 1 to 5 but only five.
+

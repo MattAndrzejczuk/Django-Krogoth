@@ -1,0 +1,7 @@
+[MENUENTRY1]
+	{
+	UNITMENU=CORVP; //CORE Vehicle Plant (Produces Vehicles)
+	MENU=3;
+	BUTTON=3;
+	UNITNAME=GLOBAL; //CORE Global (Rocket Tank)
+	}

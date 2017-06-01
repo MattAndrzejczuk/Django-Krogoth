@@ -1,0 +1,38 @@
+[cor_jumbo_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=cor_jumbo_dead;
+	featuredead=cor_jumbo_heap1;
+	footprintx=3.2;
+	footprintz=4;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=3894;
+	damage=2843;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+      	seqnamereclamate=tree1reclamate;
+	}
+
+[cor_jumbo_heap1]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4c;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=362;
+	damage=1482;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}

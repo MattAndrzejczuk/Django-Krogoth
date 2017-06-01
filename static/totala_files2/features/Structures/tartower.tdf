@@ -1,0 +1,312 @@
+
+[TarWall01]
+	{
+	world=Taros;
+	description=TowerWall;
+	category=Taros;
+	animating=0;
+	footprintx=4;
+	footprintz=5;
+	height=220;
+	filename=TarTower;
+	seqname=TarWall01;
+	seqnameshad=TarWallShad01;
+
+	seqnamedie=TarWallDie01;
+	featuredead=TarWall01a;
+	
+	damage = 12000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarWall01a]
+	{
+	world=Taros;
+	description=Damaged Tower Wall;
+	category=Taros;
+	animating=0;
+	footprintx=4;
+	footprintz=5;
+	height=100;
+	filename=TarTower;
+	seqname=TarWall01a;
+	seqnameshad=TarWallShad01a;
+
+	seqnamedie=TarWallDie01a;
+	featuredead=TarWall01b;
+	
+	damage = 9000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarWall01b]
+	{
+	world=Taros;
+	description=Rubble;
+	category=Taros;
+	animating=0;
+	footprintx=4;
+	footprintz=5;
+	height=0;
+	filename=TarTower;
+	seqname=TarWall01b;
+	seqnameshad=;
+	indestructible=1;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=100;
+	}
+
+
+[TarWall02]
+	{
+	world=Taros;
+	description=Tower Wall;
+	category=Taros;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=142;
+	filename=TarTower;
+	seqname=TarWall02;
+	seqnameshad=TarWallshad02;
+
+	seqnamedie=TarWallDie02;
+	featuredead=TarWall02a;
+	
+	damage = 12000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarWall02a]
+	{
+	world=Taros;
+	description=Damaged Tower Wall;
+	category=Taros;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=88;
+	filename=TarTower;
+	seqname=TarWall02a;
+	seqnameshad=TarWallshad02a;
+
+	seqnamedie=TarWallDie02a;
+	featuredead=TarWall02b;
+	
+	damage = 9000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarWall02b]
+	{
+	world=Taros;
+	description=Rubble;
+	category=Taros;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=0;
+	filename=TarTower;
+	seqname=TarWall02b;
+	seqnameshad=;
+	
+	indestructible=1;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=100;
+	}
+
+[TarTower01]
+	{
+	world=Taros;
+	description=Tower;
+	category=Taros;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=198;
+	filename=TarTower;
+	seqname=TarTower01;
+	seqnameshad=TarTowershad01;
+
+	seqnamedie=TarTowerDie01;
+	featuredead=TarTower01a;
+	
+	damage = 12000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarTower01a]
+	{
+	world=Taros;
+	description=Damaged Tower;
+	category=Taros;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=128;
+	filename=TarTower;
+	seqname=TarTower01a;
+	seqnameshad=TarTowershad01a;
+
+	seqnamedie=TarTowerDie01a;
+	featuredead=TarTower01b;
+	
+	damage = 9000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarTower01b]
+	{
+	world=Taros;
+	description=Rubble;
+	category=Taros;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=0;
+	filename=TarTower;
+	seqname=TarTower01b;
+	seqnameshad=;
+
+	indestructible=1;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=100;
+	}
+
+[TarTower02]
+	{
+	world=Taros;
+	description=Tower;
+	category=Taros;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=198;
+	filename=TarTower;
+	seqname=TarTower02;
+	seqnameshad=TarTowershad02;
+
+	seqnamedie=TarTowerDie02;
+	featuredead=TarTower02a;
+	
+	damage = 12000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarTower02a]
+	{
+	world=Taros;
+	description=Damaged Tower;
+	category=Taros;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=128;
+	filename=TarTower;
+	seqname=TarTower02a;
+	seqnameshad=TarTowershad02a;
+	seqnamedie=TarTowerDie02a;
+	featuredead=TarTower02b;
+	
+	damage = 9000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarTower02b]
+	{
+	world=Taros;
+	description=Rubble;
+	category=Taros;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=0;
+	filename=TarTower;
+	seqname=TarTower02b;
+	seqnameshad=;
+	indestructible=1;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=100;
+	}
+
+
+

@@ -1,0 +1,22 @@
+//Generated Using TADGen V2.5 By Zxythe
+[MENUENTRY1]
+	{
+	UNITMENU=CORACK;
+	MENU=7;
+	BUTTON=0;
+	UNITNAME=dictator;
+	}
+[MENUENTRY2]
+	{
+	UNITMENU=CORACV;
+	MENU=7;
+	BUTTON=0;
+	UNITNAME=dictator;
+	}
+[MENUENTRY3]
+	{
+	UNITMENU=CORACA;
+	MENU=7;
+	BUTTON=0;
+	UNITNAME=dictator;
+	}

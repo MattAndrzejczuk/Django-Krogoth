@@ -1,0 +1,208 @@
+//Script ARM_ARTILLERIE Astuced script Sephiroth Creation Units with Sby Connection Units
+
+piece base ,groundA ,groundB ,turret ,canon ,barrelA ,barrelB ,barrelC ,barrelD ,barrelE ,flare ,shell;
+ 
+static-var running_0 ,restore_delay;
+	
+#DEFINE SMOKEPIECE1	base
+#INCLUDE "StateChg.h"
+#DEFINE SIG_NUM1	2
+
+activatescr()
+	{
+		IF ( TRUE )
+			{
+			turn turret to x-axis <-90> speed <45>;
+			wait-for-turn turret around x-axis;
+			}
+		SLEEP <200>;
+	}
+deactivatescr()
+	{
+		IF ( TRUE )
+			{			
+			turn turret to x-axis <0> speed <45>;
+			wait-for-turn turret around x-axis;
+			}
+		SLEEP <200>;
+	}
+#INCLUDE "smokeunit.h"
+#INCLUDE "exptype.h"
+#INCLUDE "Hitweap.h"
+#include "rockunit.h"
+
+Go()
+	{
+		CALL-SCRIPT activatescr();
+		running_0 = 1;
+	}
+Stop()
+	{
+		running_0 = 0;
+		CALL-SCRIPT deactivatescr();
+	}
+#DEFINE ACTIVATECMD CALL-SCRIPT Go();
+#DEFINE DEACTIVATECMD CALL-SCRIPT Stop();
+#INCLUDE "StateChg.h"
+
+
+Create()
+	{
+		hide flare;
+		spin flare around z-axis speed <50>;
+		running_0 = 0;
+		START-SCRIPT SmokeUnit();
+		CALL-SCRIPT InitState();
+	}
+
+RestoreAfterDelay()
+	{
+		SLEEP <20000>;
+		SET-SIGNAL-MASK 0;
+		turn turret to x-axis <0> speed <40>;
+		wait-for-turn turret around x-axis;
+		START-SCRIPT RequestState( INACTIVE );
+	}
+
+AimPrimary(heading,pitch)
+	{
+		START-SCRIPT RequestState( ACTIVE );
+		SIGNAL SIG_NUM1;
+		SET-SIGNAL-MASK SIG_NUM1;
+		WHILE (!running_0 )
+			{
+			wait-for-turn turret around x-axis;
+			SLEEP <200>;
+			}
+		START-SCRIPT RestoreAfterDelay();
+		RETURN ( TRUE );
+	}
+
+FirePrimary()
+	{
+		{
+			move barrelA to z-axis <-6> now;
+			show flare;
+			sleep <150>;
+			explode shell type FALL|EXPLODE_ON_HIT;
+			hide flare;
+			move barrelA to z-axis <0> speed <30>;
+			turn canon to z-axis <77> speed <200>;
+
+			SLEEP <320>;
+
+			move barrelB to z-axis <-6> now;
+			show flare;
+			sleep <150>;
+			explode shell type FALL|EXPLODE_ON_HIT;
+			hide flare;
+			move barrelB to z-axis <0> speed <30>;
+			turn canon to z-axis <145> speed <200>;
+
+			SLEEP <320>;
+
+			move barrelC to z-axis <-6> now;
+			show flare;
+			sleep <150>;
+			explode shell type FALL|EXPLODE_ON_HIT;
+			hide flare;
+			move barrelC to z-axis <0> speed <30>;
+			turn canon to z-axis <217> speed <200>;
+			
+			SLEEP <320>;
+			
+			move barrelD to z-axis <-6> now;
+			show flare;
+			sleep <150>;
+			explode shell type FALL|EXPLODE_ON_HIT;
+			hide flare;
+			move barrelD to z-axis <0> speed <30>;
+			turn canon to z-axis <289> speed <200>;
+			
+			SLEEP <320>;
+			
+			move barrelE to z-axis <-6> now;
+			show flare;
+			sleep <150>;
+			explode shell type FALL|EXPLODE_ON_HIT;
+			hide flare;
+			move barrelE to z-axis <0> speed <30>;
+			turn canon to z-axis <0> speed <200>;
+
+		}
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum = flare;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum = base;
+	}
+
+Killed(severity,corpsetype)
+	{
+		HIDE flare;
+		IF (severity <= 25 )
+			{
+			corpsetype = 1 ;
+			EXPLODE  groundA type  	BITMAPONLY | BITMAP1;
+			EXPLODE  groundB type  	BITMAPONLY | BITMAP2;
+			EXPLODE  turret type  	BITMAPONLY | BITMAP3;
+			EXPLODE  canon type  	BITMAPONLY | BITMAP4;
+			EXPLODE  barrelA type  	BITMAPONLY | BITMAP5;
+			EXPLODE  barrelB type  	BITMAPONLY | BITMAP1;
+			EXPLODE  barrelC type  	BITMAPONLY | BITMAP2;
+			EXPLODE  barrelD type  	BITMAPONLY | BITMAP3;
+			EXPLODE  barrelE type  	BITMAPONLY | BITMAP4;
+			EXPLODE  shell type  	BITMAPONLY | BITMAP5;
+			EXPLODE  flare type  	BITMAPONLY | BITMAP1;
+			RETURN ( 0 );
+			}
+		IF (severity <= 50 )
+			{
+			corpsetype = 2 ;
+			EXPLODE  groundA type  	FALL | BITMAP1;
+			EXPLODE  groundB type  	FALL | BITMAP2;
+			EXPLODE  turret type  	SHATTER | BITMAP3;
+			EXPLODE  canon type  	FALL | BITMAP4;
+			EXPLODE  barrelA type  	FALL | BITMAP5;
+			EXPLODE  barrelB type  	FALL | BITMAP1;
+			EXPLODE  barrelC type  	FALL | BITMAP2;
+			EXPLODE  barrelD type  	FALL | BITMAP3;
+			EXPLODE  barrelE type  	FALL | BITMAP4;
+			EXPLODE  shell type  	FALL | BITMAP5;
+			EXPLODE  flare type  	FALL | BITMAP1;
+			RETURN ( 0 );
+			}
+		IF (severity <= 99 )
+			{
+			corpsetype = 3 ;
+			EXPLODE  groundA type  	FALL | SHATTER | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			EXPLODE  groundB type  	FALL | SHATTER | FIRE | EXPLODE_ON_HIT | BITMAP2;
+			EXPLODE  turret type  	SHATTER | BITMAP3;
+			EXPLODE  canon type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+			EXPLODE  barrelA type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+			EXPLODE  barrelB type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			EXPLODE  barrelC type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+			EXPLODE  barrelD type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+			EXPLODE  barrelE type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+			EXPLODE  shell type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+			EXPLODE  flare type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			RETURN ( 0 );
+			}
+		corpsetype = 3 ;
+		EXPLODE  groundA type  	FALL | SMOKE | SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		EXPLODE  groundB type  	FALL | SMOKE | SHATTER | EXPLODE_ON_HIT | BITMAP2;
+		EXPLODE  turret type  	SHATTER | EXPLODE_ON_HIT | BITMAP3;
+		EXPLODE  canon type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		EXPLODE  barrelA type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		EXPLODE  barrelB type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		EXPLODE  barrelC type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		EXPLODE  barrelD type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		EXPLODE  barrelE type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		EXPLODE  shell type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		EXPLODE  flare type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	}

@@ -1,0 +1,73 @@
+[GlobalHeader]
+	{
+	missionname=Untitled Map;
+	missiondescription=8 x 8 Map;
+	planet=;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=0;
+	mapping=0;
+	tidalstrength=10;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=0;
+	maxwindspeed=3000;
+	gravity=112;
+	maxunits=200;
+	waterdoesdamage=0;
+	waterdamage=0;
+	numplayers=2;
+	size=13 x 13;
+	memory=16 mb;
+	useonlyunits=river streams.tdf;
+	DestroyAllUnits=1;
+	AllUnitsKilled=1;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=DEFAULT;
+		SurfaceMetal=3;
+		MohoMetal=30;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=32;
+				ZPos=128;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=6032;
+				ZPos=6096;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=432;
+				ZPos=5712;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=5360;
+				ZPos=608;
+				}
+			}
+		}
+	}

@@ -1,0 +1,37 @@
+[StorageFacility_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=StorageFacility_dead;
+	featuredead=StorageFacility_heap;
+	footprintx=7;
+	footprintz=7;
+	height=56;
+	blocking=1;
+	hitdensity=100;
+	metal=2145;
+	damage=3400;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+[StorageFacility_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7c;
+	footprintx=7;
+	footprintz=7;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=1572;
+	damage=3400;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+

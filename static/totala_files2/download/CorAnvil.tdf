@@ -1,0 +1,23 @@
+// Put that file in a /download/ subdirectory in the TA directory
+[MENUENTRY1]
+	{
+	UNITMENU=CorACK;
+	MENU=5; // 2 for first page, 3 for second page,...
+	BUTTON=2; // 0 to 5
+	UNITNAME=CorAnvil;
+	}
+[MENUENTRY2]
+	{
+	UNITMENU=CorACV;
+	MENU=5; // 2 for first page, 3 for second page,...
+	BUTTON=2; // 0 to 5
+	UNITNAME=CorAnvil;
+	}
+[MENUENTRY3]
+	{
+	UNITMENU=CorACA;
+	MENU=5; // 2 for first page, 3 for second page,...
+	BUTTON=2; // 0 to 5
+	UNITNAME=CorAnvil;
+	}
+// There can be only five MenuEntry in each .tdf, 0 to 4 or 1 to 5 but only five.

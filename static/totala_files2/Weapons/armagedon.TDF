@@ -1,0 +1,39 @@
+[ARM_ARMAGEDON]
+	{
+	ID=352;
+	name=Armagedon Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=9999;
+	reloadtime=11;
+	weaponvelocity=1000;
+	energypershot=4500;
+	areaofeffect=80;
+
+	soundstart=shot04;
+	soundhit=XPLONUK1;
+
+	firestarter=50;
+	accuracy=500;
+	aimrate=2500;
+	tolerance=300;
+	holdtime=1;
+
+	explosiongaf=fx;
+	explosionart=NUKE1;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=3600;
+		}
+	}

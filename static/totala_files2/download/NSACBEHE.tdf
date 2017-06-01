@@ -1,0 +1,15 @@
+[MENUENTRY1]
+	{
+	MENU=3;
+	BUTTON=2;
+	UNITNAME=NSACBEHE; //CORE Behemoth (Siege Hovercraft)
+	UNITMENU=CORHP; //CORE Hovercraft Platform (Builds Hovercraft)
+	}
+
+[MENUENTRY2]
+	{
+	MENU=3;
+	BUTTON=2;
+	UNITNAME=NSACBEHE; //CORE Behemoth (Siege Hovercraft)
+	UNITMENU=CORHPNS; //CORE Hovercraft Platform - NS (Builds Hovercraft)
+	}

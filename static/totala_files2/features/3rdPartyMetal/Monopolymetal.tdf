@@ -1,0 +1,63 @@
+[1fr] 
+	{
+	world=monopoly;
+	description=Metal;
+	category=Monopoly;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=monopolymetal;
+	seqname=1fr;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=166;
+	damage=32009;
+	indestructible=1;
+	}
+
+[5fr]  
+	{
+	world=monopoly;
+	description=Metal;
+	category=Monopoly;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=monopolymetal;
+	seqname=5fr;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=200;
+	damage=32009;
+	indestructible=1;
+	}
+
+[50fr] 
+	{
+	world=monopoly;
+	description=Metal;
+	category=Monopoly;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=monopolymetal;
+	seqname=50fr;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=233;
+	damage=32009;
+	indestructible=1;
+	}
+

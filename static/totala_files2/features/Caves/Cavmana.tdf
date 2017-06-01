@@ -1,0 +1,47 @@
+[CreMana01_01]
+	{
+	world=TAK;
+	category=metal;
+	description=Cave Mana;
+	filename=TAKMana;
+	seqname=TAKMana01;
+	footprintx=3;
+	footprintz=3;
+	Animating=1;
+	permanent=1;
+	indestructible=1;
+
+	metal=98;
+	}
+
+[CreMana02_01]
+	{
+	world=TAK;
+	category=metal;
+	description=Cave Mana;
+	filename=TAKMana;
+	seqname=TAKMana02;
+	footprintx=3;
+	footprintz=3;
+	Animating=1;
+	permanent=1;
+	indestructible=1;
+
+	metal=174;
+	}
+
+[CreMana03_01]
+	{
+	world=TAK;
+	category=metal;
+	description=Cave Mana;
+	filename=TAKMana;
+	seqname=TAKMana03;
+	footprintx=3;
+	footprintz=3;
+	Animating=1;
+	permanent=1;
+	indestructible=1;
+
+	metal=250;
+	}

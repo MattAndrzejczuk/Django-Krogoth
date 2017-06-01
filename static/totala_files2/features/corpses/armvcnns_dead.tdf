@@ -1,0 +1,37 @@
+[armvcnns_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+                    object=armvcnns_dead;
+                    featuredead=armvcnns_heap;
+                    footprintx=4;
+                    footprintz=4;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+                    metal=37890;
+                    damage=1150;
+	reclaimable=1;
+	featurereclamate=smudge01;
+      seqnamereclamate=tree1reclamate;
+	}
+
+[armvcnns_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+                    object=4x4a;
+                    footprintx=4;
+                    footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+                    metal=19951;
+                    damage=598;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}

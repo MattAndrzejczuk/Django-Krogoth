@@ -1,0 +1,7 @@
+[MENUENTRY1]
+	{
+	MENU=5;
+	BUTTON=1;
+	UNITNAME=armartic;
+	UNITMENU=ArmACK;
+	}

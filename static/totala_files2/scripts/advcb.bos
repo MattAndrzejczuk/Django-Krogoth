@@ -1,0 +1,262 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, fuselage, eng1, eng2, arm1, arm2, flare1, sfx3,
+       sfx4, fin, turret1, turret2, barrel1, barrel2, fpt1a, fpt1b,
+       fpt2a, fpt2b;
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3, Static_Var_4, Static_Var_5;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	var Func_Var_4;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			Func_Var_4 = Rand( 1, 2 );
+			if( Func_Var_4 == 1 )
+			{
+				emit-sfx smoketype from sfx3;
+			}
+			if( Func_Var_4 == 2 )
+			{
+				emit-sfx smoketype from sfx4;
+			}
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+activatescr()
+{
+	if( TRUE )
+	{
+		spin arm1 around y-axis speed <950.>;
+		spin arm2 around y-axis speed <750.>;
+		sleep 100;
+	}
+	sleep 60;
+}
+
+deactivatescr()
+{
+	if( TRUE )
+	{
+		spin arm1 around y-axis speed <900.>;
+		spin arm2 around y-axis speed <700.>;
+		sleep 100;
+	}
+	sleep 60;
+}
+
+InitState()
+{
+	Static_Var_4 = 1;
+	Static_Var_5 = 0;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( Static_Var_5 )
+	{
+		Static_Var_4 = requestedstate;
+		return (0);
+	}
+	Static_Var_5 = 1;
+	currentstate = Static_Var_4;
+	Static_Var_4 = requestedstate;
+	while( Static_Var_4 != currentstate )
+	{
+		if( Static_Var_4 == 0 )
+		{
+			call-script activatescr();
+			currentstate = 0;
+		}
+		if( Static_Var_4 == 1 )
+		{
+			call-script deactivatescr();
+			currentstate = 1;
+		}
+	}
+	Static_Var_5 = 0;
+}
+
+Create()
+{
+	call-script InitState();
+	start-script SmokeUnit();
+	Static_Var_1 = 1;
+	Static_Var_2 = 1;
+	Static_Var_3 = 3000;
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	Static_Var_3 = Func_Var_1 * 2;
+}
+
+RestoreAfterDelay()
+{
+	sleep Static_Var_3;
+	turn turret1 to y-axis <0.> speed <155.>;
+	turn barrel1 to x-axis <0.> speed <155.>;
+	turn turret2 to y-axis <0.> speed <155.>;
+	turn barrel2 to x-axis <0.> speed <155.>;
+}
+
+Activate()
+{
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare1;
+}
+
+AimSecondary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	turn turret1 to y-axis heading - <177.> speed <175.>;
+	turn barrel1 to x-axis <0.> - pitch speed <170.>;
+	wait-for-turn turret1 around y-axis;
+	wait-for-turn barrel1 around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+AimTertiary(heading, pitch)
+{
+	signal 4;
+	set-signal-mask 4;
+	turn turret2 to y-axis heading - <177.> speed <175.>;
+	turn barrel2 to x-axis <0.> - pitch speed <170.>;
+	wait-for-turn turret2 around y-axis;
+	wait-for-turn barrel2 around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FireSecondary()
+{
+	++Static_Var_1;
+	if( Static_Var_1 == 3 )
+	{
+		Static_Var_1 = 1;
+	}
+}
+
+FireTertiary()
+{
+	++Static_Var_2;
+	if( Static_Var_2 == 3 )
+	{
+		Static_Var_2 = 1;
+	}
+}
+
+QuerySecondary(piecenum)
+{
+	if( Static_Var_1 == 1 )
+	{
+		piecenum = fpt1a;
+	}
+	if( Static_Var_1 == 2 )
+	{
+		piecenum = fpt1b;
+	}
+}
+
+QueryTertiary(piecenum)
+{
+	if( Static_Var_2 == 1 )
+	{
+		piecenum = fpt2a;
+	}
+	if( Static_Var_2 == 2 )
+	{
+		piecenum = fpt2b;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP3;
+		explode fuselage type BITMAPONLY | BITMAP5;
+		explode eng1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode eng2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode turret1 type SHATTER | BITMAP2;
+		explode turret2 type SHATTER | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode fuselage type BITMAPONLY | BITMAP5;
+		explode eng1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode eng2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode turret1 type SHATTER | BITMAP2;
+		explode turret2 type SHATTER | BITMAP2;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP3;
+		explode fuselage type BITMAPONLY | BITMAP5;
+		explode eng1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode eng2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode turret1 type SHATTER | BITMAP2;
+		explode turret2 type SHATTER | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP3;
+	explode fuselage type BITMAPONLY | BITMAP5;
+	explode eng1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode eng2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode turret1 type SHATTER | BITMAP2;
+	explode turret2 type SHATTER | BITMAP2;
+}

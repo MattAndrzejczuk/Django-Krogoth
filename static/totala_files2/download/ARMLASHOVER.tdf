@@ -1,0 +1,15 @@
+[MENUENTRY1]
+	{
+	MENU=3;
+	BUTTON=4;
+	UNITNAME=ARMLASHOVER; //ARM Python (Lightning Hovercraft)
+	UNITMENU=ARMHPNS; //ARM Hovercraft Platform - NS (Builds Hovercraft)
+	}
+
+[MENUENTRY2]
+	{
+	MENU=3;
+	BUTTON=4;
+	UNITNAME=ARMLASHOVER; //ARM Python (Lightning Hovercraft)
+	UNITMENU=ARMHP; //ARM Hovercraft Platform (Builds Hovercraft)
+	}

@@ -1,0 +1,573 @@
+[lc1]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp1;
+	seqname=kelp01;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc2]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp1;
+	seqname=kelp02;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc3]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp1;
+	seqname=kelp03;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc4]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp1;
+	seqname=kelp04;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc5]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp1;
+	seqname=kelp05;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc6]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp1;
+	seqname=kelp06;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc7]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp1;
+	seqname=kelp07;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc8]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp1;
+	seqname=kelp08;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc9]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp1;
+	seqname=kelp09;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc10]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp1;
+	seqname=kelp10;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc11]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp1;
+	seqname=kelp11;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc12]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp2;
+	seqname=kelp12;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc13]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp2;
+	seqname=kelp13;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc14]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp2;
+	seqname=kelp14;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc15]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp2;
+	seqname=kelp15;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc16]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp2;
+	seqname=kelp16;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc17]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp2;
+	seqname=kelp17;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc18]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp2;
+	seqname=kelp18;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc19]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp2;
+	seqname=kelp19;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc20]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp2;
+	seqname=kelp20;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc21]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp2;
+	seqname=kelp21;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+[lc22]
+	{
+	world=cd_lost_kelp;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=kelp2;
+	seqname=kelp22;
+	seqnameshad=;
+	seqnamereclamate=;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=0;
+	nodisplayinfo=1;
+	permanent=0;
+	reclaimable=1;
+	energy=300;
+	}
+
+

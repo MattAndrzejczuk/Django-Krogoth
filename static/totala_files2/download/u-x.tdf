@@ -1,0 +1,8 @@
+[MENUENTRY1]
+	{
+	UNITMENU=CORAVP; //CORE Adv. Vehicle Plant (Produces Vehicles)
+	MENU=3;
+	BUTTON=2;
+	UNITNAME=U-X; //CORE Exterminator (Raiding Tank)
+	}
+

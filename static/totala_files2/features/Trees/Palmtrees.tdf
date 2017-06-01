@@ -1,0 +1,120 @@
+[Desert Tree 1]
+	{
+	world=Atlantis;
+	description=Palm Tree;
+	category=Palmtrees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=175;
+	filename=Palmtrees;
+	seqname=Tree1;
+	seqnameshad=tree1shad;
+	seqnamedie=tree1die;
+	featuredead=tree1smug;
+	Damage=500;
+	animtrans=0;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Desert Tree 2]
+	{
+	world=Atlantis;
+	description=Palm Tree;
+	category=Palmtrees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=300;
+	filename=Palmtrees;
+	seqname=tree2;
+	seqnameshad=tree2shad;
+	seqnamedie=tree2die;
+	featuredead=tree2smug;
+	damage=500;
+	animtrans=0;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Desert Tree 3]
+	{
+	world=Atlantis;
+	description=Palm Tree;
+	category=Palmtrees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=175;
+	filename=Palmtrees;
+	seqname=tree3;
+	seqnameshad=tree3shad;
+	seqnamedie=tree3die;
+	featuredead=tree3smug;
+	animtrans=0;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[tree1smug]
+	{
+	world=Atlantis;
+	description=Damaged Terrain;
+	category=Palmtrees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=palmtrees;
+	seqname=tree1smug;
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	permanent=1;
+	}
+	
+
+[tree2smug]
+	{
+	world=Atlantis;
+	description=Damaged Terrain;
+	category=Palmtrees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=palmtrees;
+	seqname=tree2smug;
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	permanent=1;
+	}
+
+
+[tree3smug]
+	{
+	world=Atlantis;
+	description=Damaged Terrain;
+	category=Palmtrees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=palmtrees;
+	seqname=tree3smug;
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	permanent=1;
+	}

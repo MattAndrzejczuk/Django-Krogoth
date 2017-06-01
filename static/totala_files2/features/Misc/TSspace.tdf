@@ -1,0 +1,109 @@
+[TSUbeacon01] 
+	{
+	world=Tsunami space;  
+	description=Beacon;  
+	category=TsunamiSpace; 
+	animating=1;  
+    	footprintx=3; 
+    	footprintz=3; 
+	height=32;  
+	filename=TSBeacon01;
+	seqname=beacon01; 
+	seqnameshad=; 
+
+	animtrans=1;
+	shadtrans=1;
+	hitdensity=5; 
+	metal=0; 
+	damage=32009; 
+	indestructible=1; 
+	}
+
+[TSUbeacon02] 
+	{
+	world=Tsunami space;  
+	description=Beacon;  
+	category=TsunamiSpace; 
+	animating=1;  
+    	footprintx=3; 
+    	footprintz=3; 
+	height=32;  
+	filename=TSBeacon02;
+	seqname=beacon11; 
+	seqnameshad=; 
+
+	animtrans=1;
+	shadtrans=1;
+	hitdensity=5; 
+	metal=0; 
+	damage=32009; 
+	indestructible=1; 
+	}
+
+[TSUbeacon03] 
+	{
+	world=Tsunami space;  
+	description=Beacon;  
+	category=TsunamiSpace; 
+	animating=1;  
+    	footprintx=3; 
+    	footprintz=3; 
+	height=32;  
+	filename=TSBeacon03;
+	seqname=beacon21; 
+	seqnameshad=; 
+
+	animtrans=1;
+	shadtrans=1;
+	hitdensity=5; 
+	metal=0; 
+	damage=32009; 
+	indestructible=1; 
+	}
+
+[TSUplanet01] 
+	{
+	world=Tsunami space;  
+	description=Planet;  
+	category=TsunamiSpace; 
+	animating=0;  
+    	footprintx=2; 
+    	footprintz=2; 
+	height=1;  
+	filename=TSPlanet01;
+	seqname=world01; 
+	seqnameshad=; 
+
+	animtrans=1;
+	shadtrans=1;
+	hitdensity=5; 
+	metal=0; 
+	damage=32009; 
+	indestructible=1; 
+	}
+
+[TSUpulsar01]
+	{
+	world=Tsunami space;
+	description=Raw Energy E:1000;
+	category=TsunamiSpace;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=TSPulsar01;
+	seqname=pulsar01;
+	seqnameshad=;
+	seqnamereclamate=r_pulsar01;
+	energy=1000;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	hitdensity=10;
+	damage=32009; 
+	indestructible=1; 	
+	}
+
+
+

@@ -1,0 +1,105 @@
+[MSmall01]  // Small
+	{
+	world=Earth;
+	description=Metal;
+	category=Earth;
+	animating=0;
+   	 footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=Earthmetal;
+	seqname=small;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+
+[MMedium01]  // Medium
+	{
+	world=Earth;
+	description=Metal;
+	category=Earth;
+	animating=0;
+    	footprintx=4;
+    	footprintz=3;
+	height=4;
+	filename=Earthmetal;
+	seqname=med01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=127;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MMedium02]  // Medium
+	{
+	world=Earth;
+	description=Metal;
+	category=Earth;
+	animating=0;
+    	footprintx=3;
+    	footprintz=4;
+	height=4;
+	filename=Earthmetal;
+	seqname=med02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=127;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MLarge01]  // Large
+	{
+	world=Earth;
+	description=Metal;
+	category=Earth;
+	animating=0;
+    	footprintx=4;
+    	footprintz=4;
+	height=4;
+	filename=Earthmetal;
+	seqname=large01; 
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MLarge02]  // Large
+	{
+	world=Earth;
+	description=Metal;
+	category=Earth;
+	animating=0;
+    	footprintx=4;
+    	footprintz=4;
+	height=4;
+	filename=Earthmetal;
+	seqname=large02; 
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}

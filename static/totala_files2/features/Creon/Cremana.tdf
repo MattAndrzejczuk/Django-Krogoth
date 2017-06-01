@@ -1,0 +1,459 @@
+[CREHenge01]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=4;
+	footprintz=5;
+	height=60;
+	filename=CREMana;
+	seqname=CREHenge01;
+	seqnameshad=CREHengeSHAD01;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge02]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=4;
+	footprintz=4;
+	height=60;
+	filename=CREMana;
+	seqname=CREHenge02;
+	seqnameshad=CREHengeSHAD02;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge03]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=4;
+	footprintz=7;
+	height=100;
+	filename=CREMana;
+	seqname=CREHenge03;
+	seqnameshad=CREHengeSHAD03;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge04]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=9;
+	footprintz=4;
+	height=60;
+	filename=CREMana;
+	seqname=CREHenge04;
+	seqnameshad=CREHengeSHAD04;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge05]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=8;
+	footprintz=3;
+	height=60;
+	filename=CREMana;
+	seqname=CREHenge05;
+	seqnameshad=CREHengeSHAD05;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge06]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=3;
+	footprintz=7;
+	height=60;
+	filename=CREMana;
+	seqname=CREHenge06;
+	seqnameshad=CREHengeSHAD06;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge07]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=2;
+	footprintz=2;
+	height=40;
+	filename=CREMana;
+	seqname=CREHenge07;
+	seqnameshad=CREHengeSHAD07;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge08]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=2;
+	footprintz=4;
+	height=40;
+	filename=CREMana;
+	seqname=CREHenge08;
+	seqnameshad=CREHengeSHAD08;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge09]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=3;
+	footprintz=5;
+	height=80;
+	filename=CREMana;
+	seqname=CREHenge09;
+	seqnameshad=CREHengeSHAD09;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge10]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=3;
+	footprintz=4;
+	height=40;
+	filename=CREMana;
+	seqname=CREHenge10;
+	seqnameshad=CREHengeSHAD10;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge11]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=4;
+	footprintz=8;
+	height=80;
+	filename=CREMana;
+	seqname=CREHenge11;
+	seqnameshad=CREHengeSHAD11;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge12]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=2;
+	footprintz=3;
+	height=60;
+	filename=CREMana;
+	seqname=CREHenge12;
+	seqnameshad=CREHengeSHAD12;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge13]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=5;
+	footprintz=3;
+	height=120;
+	filename=CREMana;
+	seqname=CREHenge13;
+	seqnameshad=CREHengeSHAD13;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge14]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=3;
+	footprintz=2;
+	height=110;
+	filename=CREMana;
+	seqname=CREHenge14;
+	seqnameshad=CREHengeSHAD14;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge15]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=8;
+	footprintz=4;
+	height=50;
+	filename=CREMana;
+	seqname=CREHenge15;
+	seqnameshad=CREHengeSHAD15;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge16]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=8;
+	footprintz=3;
+	height=60;
+	filename=CREMana;
+	seqname=CREHenge16;
+	seqnameshad=CREHengeSHAD16;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge17]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=6;
+	footprintz=4;
+	height=100;
+	filename=CREMana;
+	seqname=CREHenge17;
+	seqnameshad=CREHengeSHAD17;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge18]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=4;
+	footprintz=6;
+	height=50;
+	filename=CREMana;
+	seqname=CREHenge18;
+	seqnameshad=CREHengeSHAD18;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge19]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=4;
+	footprintz=6;
+	height=70;
+	filename=CREMana;
+	seqname=CREHenge19;
+	seqnameshad=CREHengeSHAD19;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge20]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=5;
+	footprintz=5;
+	height=80;
+	filename=CREMana;
+	seqname=CREHenge20;
+	seqnameshad=CREHengeSHAD20;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge21]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=3;
+	footprintz=6;
+	height=40;
+	filename=CREMana;
+	seqname=CREHenge21;
+	seqnameshad=CREHengeSHAD21;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge22]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=2;
+	footprintz=4;
+	height=100;
+	filename=CREMana;
+	seqname=CREHenge22;
+	seqnameshad=CREHengeSHAD22;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}
+
+[CREHenge23]
+	{
+	world=Creon;
+	description=Standing Stones;
+	category=Standing Stones;
+	footprintx=4;
+	footprintz=8;
+	height=90;
+	filename=CREMana;
+	seqname=CREHenge23;
+	seqnameshad=CREHengeSHAD23;
+
+	indestructible=1;
+
+	shadtrans=1;
+
+	blocking=1;
+	hitdensity=10;
+	}

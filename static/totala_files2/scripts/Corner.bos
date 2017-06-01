@@ -1,0 +1,76 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  tube2, tube1, base, body, rlw, rrw, flw, frw;
+
+static-var  Static_Var_1;
+
+
+Create()
+{
+	Static_Var_1 = 1;
+}
+
+StartMoving()
+{
+	signal 2;
+	set-signal-mask 2;
+	while( TRUE )
+	{
+		emit-sfx 259 from rlw;
+		emit-sfx 259 from rrw;
+		emit-sfx 259 from flw;
+		emit-sfx 259 from frw;
+		sleep 250;
+	}
+}
+
+StopMoving()
+{
+	signal 2;
+}
+
+FirePrimary()
+{
+	Static_Var_1 = !Static_Var_1;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = Static_Var_1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode body type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode body type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode body type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode body type BITMAPONLY | BITMAP2;
+}

@@ -1,0 +1,311 @@
+[TOVRock1]
+	{
+	world=lava;
+	description=Rock;
+	category=TOV;
+	footprintx=4;
+	footprintz=3;
+	height=20;
+	filename=TOVRocks;
+	seqname=TOVRock1;
+	seqnameshad=TOVRock1shad;
+	seqnamereclamate=TOVrec;
+	metal=100;
+
+	featurereclamate=TOVScar1;
+	featuredead=TOVScar1;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[TOVRock2]
+	{
+	world=lava;
+	description=Rock;
+	category=TOV;
+	footprintx=3;
+	footprintz=3;
+	height=20;
+	filename=TOVRocks;
+	seqname=TOVRock2;
+	seqnameshad=TOVRock2shad;
+	seqnamereclamate=TOVrec;
+	metal=100;
+
+	featurereclamate=TOVScar2;
+	featuredead=TOVScar2;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[TOVRock3]
+	{
+	world=lava;
+	description=Rock;
+	category=TOV;
+	footprintx=3;
+	footprintz=2;
+	height=20;
+	filename=TOVRocks;
+	seqname=TOVRock3;
+	seqnameshad=TOVRock3shad;
+	seqnamereclamate=TOVrec;
+	metal=75;
+
+	featurereclamate=TOVScar3;
+	featuredead=TOVScar3;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[TOVRock4]
+	{
+	world=lava;
+	description=Rock;
+	category=TOV;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=TOVRocks;
+	seqname=TOVRock4;
+	seqnameshad=TOVRock4shad;
+	seqnamereclamate=TOVrec;
+	metal=75;
+
+	featurereclamate=TOVScar4;
+	featuredead=TOVScar4;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[TOVRock5]
+	{
+	world=lava;
+	description=Rock;
+	category=TOV;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=TOVRocks;
+	seqname=TOVRock5;
+	seqnameshad=TOVRock5shad;
+	seqnamereclamate=TOVrec;
+	metal=50;
+
+	featurereclamate=TOVScar5;
+	featuredead=TOVScar5;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[TOVRock6]
+	{
+	world=lava;
+	description=Rock;
+	category=TOV;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=TOVRocks;
+	seqname=TOVRock6;
+	seqnameshad=TOVRock6shad;
+	seqnamereclamate=TOVrec;
+	metal=50;
+
+	featurereclamate=TOVScar6;
+	featuredead=TOVScar6;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[TOVRock7]
+	{
+	world=lava;
+	description=Rock;
+	category=TOV;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=TOVRocks;
+	seqname=TOVRock7;
+	seqnameshad=TOVRock7shad;
+	seqnamereclamate=TOVrec;
+	metal=50;
+
+	featurereclamate=TOVScar7;
+	featuredead=TOVScar7;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[TOVRock8]
+	{
+	world=lava;
+	description=Rock;
+	category=TOV;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=TOVRocks;
+	seqname=TOVRock8;
+	seqnameshad=TOVRock8shad;
+	seqnamereclamate=TOVrec;
+	metal=25;
+
+	featurereclamate=TOVScar8;
+	featuredead=TOVScar8;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[TOVRock9]
+	{
+	world=lava;
+	description=Rock;
+	category=TOV;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=TOVRocks;
+	seqname=TOVRock9;
+	seqnameshad=TOVRock9shad;
+	seqnamereclamate=TOVrec;
+	metal=25;
+
+	featurereclamate=TOVScar8;
+	featuredead=TOVScar8;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[TOVRock10]
+	{
+	world=lava;
+	description=Rock;
+	category=TOV;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=TOVRocks;
+	seqname=TOVRock10;
+	seqnameshad=TOVRock10shad;
+	seqnamereclamate=TOVrec;
+	metal=25;
+
+	featurereclamate=TOVScar8;
+	featuredead=TOVScar8;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[TOVRock11]
+	{
+	world=lava;
+	description=Rock;
+	category=TOV;
+	footprintx=1;
+	footprintz=1;
+	height=7;
+	filename=TOVRocks;
+	seqname=TOVRock11;
+	seqnameshad=TOVRock11shad;
+	seqnamereclamate=TOVrec;
+	metal=25;
+
+	featurereclamate=TOVScar9;
+	featuredead=TOVScar9;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[TOVRock12]
+	{
+	world=lava;
+	description=Rock;
+	category=TOV;
+	footprintx=1;
+	footprintz=1;
+	height=7;
+	filename=TOVRocks;
+	seqname=TOVRock12;
+	seqnameshad=TOVRock12shad;
+	seqnamereclamate=TOVrec;
+	metal=25;
+
+	featurereclamate=TOVScar9;
+	featuredead=TOVScar9;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[TOVRock13]
+	{
+	world=lava;
+	description=Rock;
+	category=TOV;
+	footprintx=1;
+	footprintz=1;
+	height=7;
+	filename=TOVRocks;
+	seqname=TOVRock13;
+	seqnameshad=TOVRock13shad;
+	seqnamereclamate=TOVrec;
+	metal=25;
+
+	featurereclamate=TOVScar9;
+	featuredead=TOVScar9;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}

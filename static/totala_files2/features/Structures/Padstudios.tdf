@@ -1,0 +1,20 @@
+[Padstudio1]
+	{
+	world=PadUrban;
+	description=Pad Studios California;
+	category=Studio;
+	footprintx=19;
+	footprintz=13;
+	height=255;
+	filename=padstudio;
+	seqname=pads1;
+	seqnameshad=pads2;
+
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}

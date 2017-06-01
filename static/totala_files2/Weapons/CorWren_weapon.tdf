@@ -1,0 +1,88 @@
+// Core "Wren" shielded scout aircraft with anti-signal-missiles by Xubor
+
+[WREN_ROCKET]
+	{
+	ID=255;
+	name=Anti-Jammer-Missile;
+	rendertype=1;
+	ballistic=1;
+	turret=1;
+	model=wrenrakete;
+	range=650;
+	reloadtime=12;
+	weapontimer=8;
+	weaponvelocity=1050;
+	startvelocity=20;
+	weaponacceleration=700;
+	turnrate=5000;
+	areaofeffect=750;
+	edgeeffectiveness =1;
+	soundstart=wren1;
+	soundhit=wren2;
+	soundwater=wren2;
+	smokedelay=.08;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=8000;
+	flighttime=400;
+	explosiongaf=wrenfx;
+	explosionart=wrenboom;
+	waterexplosiongaf=wrenfx;
+	waterexplosionart=wrenboom;
+	lavaexplosiongaf=wrenfx;
+	lavaexplosionart=wrenboom;
+
+	[DAMAGE]
+		{
+		// OTA Radars and Jammers
+
+		ARMARAD=2000;
+		CORARAD=2000;
+		CORRAD=2000;
+		ARMRAD=2000;
+		ARMMARK=2000;
+		ARMSEER=2000;
+		CORVOYR=2000;
+		CORVRAD=2000;
+		ARMJAM=2000;
+		ARMASER=2000;
+		CORSPEC=2000;
+		CORETER=2000;		
+		ARMAWAC=2000;
+		CORAWAC=2000;
+		CORHUNT=2000;
+		ARMSEHAK=2000;
+		ARMSONAR=2000;
+		CORSONAR=2000;
+		CORASON=2000;
+		ARMASON=2000;
+		ARMSJAM=2000;
+		CORSJAM=2000;
+		ARMSCRAM=2000;
+
+		CORCARRY=450;
+		ARMCARRY=440;
+
+
+		//3rd Party Radars and Jammers
+		ARMJAMT=5000;
+		CORJAMT=5000;
+		CFLRADAR=2000;
+		ARMEYE=1000;
+		COREYE=1000;
+		AFLRADAR=1000;
+		CFLRADAR=1000;
+		Listener=5000;
+		SPOOFER=5000;
+
+		default=0;
+
+		}
+	}
+
+
+
+
+

@@ -1,0 +1,341 @@
+[TarTree01]
+	{
+	world=Taros;
+	description=Dead Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=74;
+	filename=TarTree;
+	seqname=TarTree01;
+	seqnameshad=TarTreeshad01;
+	seqnamereclamate=TarTreeKill01;
+	energy=250;
+
+	seqnamedie=TarTreeKill01;
+	featuredead=TarTreeSmudge01;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarTreeSmudge01;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarTree02]
+	{
+	world=Taros;
+	description=Dead Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=74;
+	filename=TarTree;
+	seqname=TarTree02;
+	seqnameshad=TarTreeshad02;
+	seqnamereclamate=TarTreeKill02;
+	energy=250;
+
+	seqnamedie=TarTreeKill02;
+	featuredead=TarTreeSmudge02;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarTreeSmudge02;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarTree03]
+	{
+	world=Taros;
+	description=Dead Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=74;
+	filename=TarTree;
+	seqname=TarTree03;
+	seqnameshad=TarTreeshad03;
+	seqnamereclamate=TarTreeKill03;
+	energy=250;
+
+	seqnamedie=TarTreeKill03;
+	featuredead=TarTreeSmudge03;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarTreeSmudge03;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarTree04]
+	{
+	world=Taros;
+	description=Dead Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=84;
+	filename=TarTree;
+	seqname=TarTree04;
+	seqnameshad=TarTreeshad04;
+	seqnamereclamate=TarTreeKill04;
+	energy=250;
+
+	seqnamedie=TarTreeKill04;
+	featuredead=TarTreeSmudge04;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarTreeSmudge04;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarTree05]
+	{
+	world=Taros;
+	description=Dead Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=96;
+	filename=TarTree;
+	seqname=TarTree05;
+	seqnameshad=TarTreeshad05;
+	seqnamereclamate=TarTreeKill05;
+	energy=250;
+
+	seqnamedie=TarTreeKill05;
+	featuredead=TarTreeSmudge05;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarTreeSmudge05;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarTree06]
+	{
+	world=Taros;
+	description=Dead Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=96;
+	filename=TarTree;
+	seqname=TarTree06;
+	seqnameshad=TarTreeshad06;
+	seqnamereclamate=TarTreeKill06;
+	energy=250;
+
+	seqnamedie=TarTreeKill06;
+	featuredead=TarTreeSmudge06;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarTreeSmudge06;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarTree07]
+	{
+	world=Taros;
+	description=Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=55;
+	filename=TarTree;
+	seqname=TarTree07;
+	seqnameshad=TarTreeshad07;
+	seqnamereclamate=TarTreeKill07;
+	energy=250;
+
+	seqnamedie=TarTreeKill07;
+	featuredead=TarTreeSmudge07;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarTreeSmudge07;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarTree08]
+	{
+	world=Taros;
+	description=Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=52;
+	filename=TarTree;
+	seqname=TarTree08;
+	seqnameshad=TarTreeshad08;
+	seqnamereclamate=TarTreeKill08;
+	energy=250;
+
+	seqnamedie=TarTreeKill08;
+	featuredead=TarTreeSmudge08;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarTreeSmudge08;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarTree09]
+	{
+	world=Taros;
+	description=Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=40;
+	filename=TarTree;
+	seqname=TarTree09;
+	seqnameshad=TarTreeshad09;
+	seqnamereclamate=TarTreeKill09;
+	energy=250;
+
+	seqnamedie=TarTreeKill09;
+	featuredead=TarTreeSmudge09;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarTreeSmudge09;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarTreeSmudge01]
+	{
+	world=Taros;
+	description=Debris;
+	category=tree smudges;
+	footprintx=2;
+	footprintz=2;
+	filename=TarTree;
+	seqname=TarBadSmudge01;
+
+//	indestructible=1;
+	featuredead=TarTreeSmudge01;
+	}
+
+[TarTreeSmudge02]
+	{
+	world=Taros;
+	description=Debris;
+	category=tree smudges;
+	footprintx=2;
+	footprintz=2;
+	filename=TarTree;
+	seqname=TarBadSmudge01a;
+
+//	indestructible=1;
+	featuredead=TarTreeSmudge02;
+	}
+
+[TarTreeSmudge03]
+	{
+	world=Taros;
+	description=Debris;
+	category=tree smudges;
+	footprintx=2;
+	footprintz=2;
+	filename=TarTree;
+	seqname=TarBadSmudge01b;
+
+//	indestructible=1;
+	featuredead=TarTreeSmudge03;
+	}
+
+[TarTreeSmudge04]
+	{
+	world=Taros;
+	description=Debris;
+	category=tree smudges;
+	footprintx=2;
+	footprintz=2;
+	filename=TarTree;
+	seqname=TarBadSmudge02;
+
+//	indestructible=1;
+	featuredead=TarTreeSmudge04;
+	}
+
+[TarTreeSmudge05]
+	{
+	world=Taros;
+	description=Debris;
+	category=tree smudges;
+	footprintx=2;
+	footprintz=2;
+	filename=TarTree;
+	seqname=TarBadSmudge02a;
+
+//	indestructible=1;
+	featuredead=TarTreeSmudge05;
+	}
+
+[TarTreeSmudge06]
+	{
+	world=Taros;
+	description=Debris;
+	category=tree smudges;
+	footprintx=2;
+	footprintz=2;
+	filename=TarTree;
+	seqname=TarBadSmudge02b;
+
+//	indestructible=1;
+	featuredead=TarTreeSmudge06;
+	}
+
+[TarTreeSmudge07]
+	{
+	world=Taros;
+	description=Debris;
+	category=tree smudges;
+	footprintx=2;
+	footprintz=2;
+	filename=TarTree;
+	seqname=TarBadSmudge03;
+
+//	indestructible=1;
+	featuredead=TarTreeSmudge07;
+	}
+
+[TarTreeSmudge08]
+	{
+	world=Taros;
+	description=Debris;
+	category=tree smudges;
+	footprintx=2;
+	footprintz=2;
+	filename=TarTree;
+	seqname=TarBadSmudge03a;
+
+//	indestructible=1;
+	featuredead=TarTreeSmudge08;
+	}
+
+[TarTreeSmudge09]
+	{
+	world=Taros;
+	description=Debris;
+	category=tree smudges;
+	footprintx=2;
+	footprintz=2;
+	filename=TarTree;
+	seqname=TarBadSmudge03b;
+
+//	indestructible=1;
+	featuredead=TarTreeSmudge09;
+	}

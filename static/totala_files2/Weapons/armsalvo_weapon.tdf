@@ -1,0 +1,65 @@
+[ARMSALVO_WEAPON]
+	{
+	ID=255;
+	name=Precision Quad Missile;
+	rendertype=1;
+	lineofsight=1;
+	vlaunch=1;
+
+	model=armsalvo_missile;
+
+	range=32000;
+	reloadtime=80;
+	burst=4;
+	burstrate=1.4;
+	unitsonly=1;
+
+	noautorange=1;
+	weapontimer=5;
+	flighttime=40;
+
+	weaponvelocity=350;
+	weaponacceleration=50;
+	turnrate=24384;
+	areaofeffect=90;
+	edgeeffectiveness=0.25;
+
+	energypershot=5000;
+	metalpershot=1250;
+
+	stockpile=1;
+	targetable=1;
+	commandfire=1;
+	cruise=1;
+
+	soundstart=misicbm1;
+	soundhit=xplomed4;
+
+	firestarter=100;
+	smokedelay=.1;
+	smoketrail=1;
+	propeller=1;
+
+	twophase=1;
+	guidance=1;
+	tolerance=4000;
+	selfprop=1;
+
+	explosiongaf=fx;
+	explosionart=NUKE1;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		ARMCOM=200;
+		CORCOM=200;
+		default=750;
+		}
+	}

@@ -1,0 +1,208 @@
+// This is version 3.0(final) of Hex80 AI
+
+// This ai fights at an advanced level.  It was DESIGNED SPECIFICALLY for
+// advanced TA players, especially on larger maps, who found little challenge
+// once a decent base was setup. 
+
+// This AI is largely based upon advice from TA:MEDICS, and other ai's I've
+// examined, especially DemonAI.
+
+// This AI is EXTREMELY DIFFICULT TO BEAT, EVEN WITH A POWERFUL, ESTABLISHED
+// BASE.  I repeat, THIS AI IS EXTREMELY DIFFICULT.  It is more challenging 
+// than any other ai I have tested.  I used to let my machine run all night
+// to test ai's and see if they could crack my base while I wasn't paying
+// attention.  Any REASONABLY competent ai should be capable of doing this.
+
+// My ai is the only one yet that can.  Other designers should be ashamed
+// of themselves.  If your ai can't win while I sleep for 10 hours, then
+// it's not an opponent, it's an observer.
+// (ok, ok, I've had a lot of fun playing with other people's ai's, 
+//  so I don't mean to sound unappreciative.  But you'll understand what
+//  I mean if you leave this ai alone for a few hours.)
+ 
+// This ai was NOT designed for SEA battles, but should function well on
+// most maps given relatively clear terrain, including metal maps.
+// If there is a significant amount of water on the map, I recommend
+// using a different ai.  The ai seems very challenging on small maps
+// but was DESIGNED FOR LARGE MAPS.
+
+// This ai was designed to use TA:CC and a variety of downloadable units,
+// in particular the excellent units from TADD.  I highly recommend
+// installing most of the TADD units.  I have NOT TESTED THIS AI WITHOUT
+// the majority of TADD, several TAUCC, and some TARAD units installed.
+// It should still be quite challenging, but hasn't been tested that way,
+// so there may be an imbalance I'm not aware of; and the computer
+// would have a much, much more difficult time destroying an
+// established base.  In particular, the stealth atomic bombers
+// help level the human-computer playing field.  Get them.
+// The ai is also designed to use the AI_Nuker.ufo, which allows
+// the computer to nuke you...I strongly recommend it.    
+
+
+// Set PLAYERS
+
+Weight ARM 0.07
+Weight CORE 0.07
+
+
+// Set Parameters
+
+Weight CONSTR 1.75
+Limit CONSTR 75
+Limit PLANT 55
+Weight LEVEL2 5.00
+Weight LEVEL3 7.00
+Weight SPECIAL 3.00
+Weight JAM 3.50
+Limit JAM 15
+Limit PHIB 0
+Weight DEFENSIVE 2.75
+Weight PARAL 1.40
+Weight METAL 1.10
+Weight ENERGY 1.25
+Weight STORAGE 1.40
+Weight STRATEGIC 4.00
+
+
+// Base Defences
+
+Weight ARMRL 7.50
+Weight CORRL 7.50
+Weight ARMLLT 0.75
+Weight CORLLT 0.75
+Weight ARMGUARD 2.55
+Weight CORPUN 2.55
+Weight ARMAMB 6.50
+Weight CORTOAST 6.50
+Weight ARMHLT 4.00
+Weight CORHLT 4.00
+Weight ARMSILO 0.80
+Weight CORSILO 0.80
+Weight ARMANNI 1.75
+Weight ARMTARG 8.00
+Weight CORTARG 8.00
+Limit ARMTARG 2
+Limit CORTARG 2
+Limit ARMAMD 0
+Limit CORFMD 0
+
+
+// Plant Construction
+
+Weight ARMLAB 0.55
+Weight CORLAB 0.55
+Weight ARMVP 0.65
+Weight CORVP 0.65
+Weight ARMAP 0.75
+Weight CORAP 0.75
+Weight ARMHP 0.75
+Weight CORHP 0.75
+Weight ARMPLAT 0.75
+Weight CORPLAT 0.75
+Weight CORGANT 9.00
+Limit CORGANT 3
+Limit ARMHP 3
+Limit CORHP 3
+Limit ARMAHP 3
+Limit CORAHP 3
+Weight ARMALAB 4.50
+Weight CORALAB 3.00
+Weight ARMAVP 3.00
+Weight CORAVP 4.00
+Weight ARMAAP 5.50
+Weight CORAAP 5.50
+Weight ARMAHP 1.50
+Weight CORAHP 1.50
+
+
+// Resources
+
+Weight ARMMOHO 4.75
+Weight CORMOHO 4.75
+Weight ARMMMKR 2.00
+Weight CORMMKR 2.00
+Limit ARMMMKR 10
+Limit ARMMAKR 10
+Limit CORMAKR 10
+Limit CORMMKR 10
+Weight ARMCKFUS 5.50
+Weight CORCKFUS 5.50
+Weight ARMSOLAR 2.65
+Weight CORSOLAR 2.65
+Limit ARMMEX 30
+Limit CORMEX 30
+Limit CORSOLAR 25
+Limit ARMSOLAR 25
+Weight ARMESTOR 2.3
+Weight ARMMSTOR 2.3
+Weight CORESTOR 2.3
+Weight CORMSTOR 2.3
+Limit ARMWIN 7
+Limit CORWIN 7
+Weight ARMGEO 9
+Weight CORGEO 9
+Weight ARMAGEO 9
+Weight CORAGEO 9
+
+
+// Airstrikes
+
+Weight ARMBRAWL 3.50
+Weight ARMHAWK 7.50
+Weight CORVAMP 7.50
+Weight CORAPE 3.50
+
+
+// Hover Craft
+
+Weight ARMMH 1.50
+Weight CORMH 1.50
+Weight ARMAH 1.20
+Weight CORAH 1.20
+
+
+// Big Guns
+
+Weight CORINT 2.95
+Weight ARMBRTHA 2.95
+Limit ARMVULC 2
+Limit CORBUZZ 2
+Limit ARMBRTHA 9
+Limit CORINT 9
+
+
+// Battle units
+
+Weight CORKROG 9.00
+Weight ARMMERL 1.5
+Weight ARMBULL 2.0
+Weight ARMFIDO 4.5
+Weight ARMMAV 5.5
+Weight ARMSAM 2.5
+Weight ARMSPID 2.3
+Weight ARMSNIPE 2.5
+Weight CORVROC 1.2
+Weight CORGOL 2.5
+Weight CORMIST 2.5
+Weight CORLEVLR 4.5
+Weight CORREAP 3.0
+Weight ARMMART 1.5
+Weight CORSENT 1.5
+Weight ARMYORK 1.5
+
+
+// Non combat units
+Weight ARMDECOM 1.2
+Weight CORDECOM 1.2
+Weight ARMJAM 3.7
+Weight CORETER 3.7
+Weight CORCA 1.5
+Weight CORACA 1.5
+Weight ARMCA 1.5
+Weight ARMACA 1.5
+Limit ARMDECOM 6
+Limit CORDECOM 6
+Limit ARMMLV 0
+Limit CORMLV 0
+Limit WRAITH 1
+

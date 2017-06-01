@@ -1,0 +1,23 @@
+[MENUENTRY1]
+	{
+	UNITMENU=ARMACK;
+	MENU=6;
+	BUTTON=2;
+	UNITNAME=StorageFacility;
+	}
+
+[MENUENTRY2]
+	{
+	UNITMENU=ARMACV;
+	MENU=6;
+	BUTTON=2;
+	UNITNAME=StorageFacility;
+	}
+
+[MENUENTRY3]
+	{
+	UNITMENU=ARMACA;
+	MENU=6;
+	BUTTON=2;
+	UNITNAME=StorageFacility;
+	}

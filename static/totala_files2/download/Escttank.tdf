@@ -1,0 +1,7 @@
+[MENUENTRY1]
+	{
+	UNITMENU=ARMAVP; //ARM Adv. Vehicle Plant (Produces Vehicles)
+	MENU=3;
+	BUTTON=5;
+	UNITNAME=ESCTTANK; //ARM Chaperone (Escort Tank)
+	}

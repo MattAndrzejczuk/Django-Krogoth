@@ -1,0 +1,7 @@
+[MENUENTRY1]
+	{
+	UNITMENU=CORASY; //CORE Adv. Shipyard (Produces Ships)
+	MENU=3;
+	BUTTON=3;
+	UNITNAME=CNCAINE; //CORE Caine (Bombardment Battleship)
+	}

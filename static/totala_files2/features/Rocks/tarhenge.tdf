@@ -1,0 +1,371 @@
+[TarHenge01]
+	{
+	world=Taros;
+	description=Standing Stones;
+	category=Taros;
+	animating=0;
+	footprintx=5;
+	footprintz=3;
+	height=40;
+	filename=tarhenge;
+	seqname=TarHenge01;
+	seqnameshad=TarHShad01;
+
+	indestructible=1;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarHenge02]
+	{
+	world=Taros;
+	description=Standing Stones;
+	category=Taros;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=50;
+	filename=tarhenge;
+	seqname=TarHenge02;
+	seqnameshad=TarHShad02;
+
+	indestructible=1;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarHenge03]
+	{
+	world=Taros;
+	description=Standing Stones;
+	category=Taros;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=90;
+	filename=tarhenge;
+	seqname=TarHenge03;
+	seqnameshad=TarHShad03;
+
+	indestructible=1;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarHenge04]
+	{
+	world=Taros;
+	description=Standing Stones;
+	category=Taros;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=60;
+	filename=tarhenge;
+	seqname=TarHenge04;
+	seqnameshad=TarHShad04;
+
+	indestructible=1;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarHenge05]
+	{
+	world=Taros;
+	description=Standing Stones;
+	category=Taros;
+	animating=0;
+	footprintx=2;
+	footprintz=5;
+	height=80;
+	filename=tarhenge;
+	seqname=TarHenge05;
+	seqnameshad=TarHShad05;
+
+	indestructible=1;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarHenge06]
+	{
+	world=Taros;
+	description=Standing Stones;
+	category=Taros;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=70;
+	filename=tarhenge;
+	seqname=TarHenge06;
+	seqnameshad=TarHShad06;
+
+	indestructible=1;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarHenge07]
+	{
+	world=Taros;
+	description=Standing Stones;
+	category=Taros;
+	animating=0;
+	footprintx=7;
+	footprintz=5;
+	height=70;
+	filename=tarhenge;
+	seqname=TarHenge07;
+	seqnameshad=TarHShad07;
+
+	indestructible=1;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarHenge08]
+	{
+	world=Taros;
+	description=Standing Stones;
+	category=Taros;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=92;
+	filename=tarhenge;
+	seqname=TarHenge08;
+	seqnameshad=TarHShad08;
+
+	indestructible=1;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarHenge09]
+	{
+	world=Taros;
+	description=Standing Stones;
+	category=Taros;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=74;
+	filename=tarhenge;
+	seqname=TarHenge09;
+	seqnameshad=TarHShad09;
+
+	indestructible=1;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarHenge10]
+	{
+	world=Taros;
+	description=Standing Stones;
+	category=Taros;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=40;
+	filename=tarhenge;
+	seqname=TarHenge10;
+	seqnameshad=TarHShad10;
+
+	indestructible=1;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarHenge11]
+	{
+	world=Taros;
+	description=Standing Stones;
+	category=Taros;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=80;
+	filename=tarhenge;
+	seqname=TarHenge11;
+	seqnameshad=TarHShad11;
+
+	indestructible=1;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarHenge12]
+	{
+	world=Taros;
+	description=Standing Stones;
+	category=Taros;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=46;
+	filename=tarhenge;
+	seqname=TarHenge12;
+	seqnameshad=TarHShad12;
+
+	indestructible=1;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarHenge13]
+	{
+	world=Taros;
+	description=Standing Stones;
+	category=Taros;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=50;
+	filename=tarhenge;
+	seqname=TarHenge13;
+	seqnameshad=TarHShad13;
+
+	indestructible=1;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[TarHenge14]
+	{
+	world=Taros;
+	description=Standing Stones;
+	category=Taros;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=60;
+	filename=tarhenge;
+	seqname=TarHenge14;
+	seqnameshad=TarHShad14;
+
+	indestructible=1;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=0;
+	
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+
+
+
+
+
+
+

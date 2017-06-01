@@ -1,0 +1,108 @@
+[Barrell 1]
+	{
+	world=Oxigen707;
+	description=Plasma Waste;
+	category=Oxigen707;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=65;
+	filename=Ox707barrells;
+	seqname=barrell1;
+	seqnameshad=barrell1-shad1;
+	seqnamedie=barrel1burn;
+	featuredead=barrelldeath;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=90;
+	damage=100;
+	nodisplayinfo=0;
+	Blocking=1;
+	reproduce=0;
+	reproducearea=6;	
+	}
+
+[Barrell 2]
+	{
+	world=Oxigen;
+	description=Plasma Waste;
+	category=Oxigen707;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=65;
+	filename=Ox707barrells;
+	seqname=barrell2;
+	seqnameshad=barrell1-shad1;
+	seqnamedie=barrel2burn;
+	featuredead=barrelldeath2;
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=90;
+	damage=100;
+	nodisplayinfo=0;
+	Blocking=1;
+	reproduce=0;
+	reproducearea=6;	
+	}
+
+[BarrellDeath]
+	{
+	world=oxigen;
+	description=Destroyed Barrell;
+	category=Unplaceable;
+	animating=1;
+	footprintx=2;
+	footprintz=2;
+	height=100;
+	filename=Ox707barrells;
+	seqname=barrell1die;   			
+	seqnameburn=barrelboom1;          	
+	featureburnt=cORAK_HEAP;       
+	burnmin=1;
+	burnmax=1;
+	sparktime=1;
+	spreadchance=100;
+	burnweapon=Crate_Blast;
+	featuredead=corAK_heap;
+	damage=200;
+	animtrans=0;
+	shadtrans=0;
+	flamable=1;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=90;
+	}
+
+[BarrellDeath2]
+	{
+	world=oxigen;
+	description=Destroyed Barrell;
+	category=Unplaceable;
+	animating=1;
+	footprintx=2;
+	footprintz=2;
+	height=100;
+	filename=Ox707barrells;
+	seqname=barrell2die;   			
+	seqnameburn=barrellboom2;          	
+	featureburnt=corAK_heap;       
+	burnmin=1;
+	burnmax=1;
+	sparktime=1;
+	spreadchance=100;
+	burnweapon=Crate_Blast;
+	featuredead=corAK_heap;
+	damage=200;
+	animtrans=0;
+	shadtrans=0;
+	flamable=1;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=90;
+	}
+

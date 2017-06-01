@@ -1,0 +1,83 @@
+[GZMetal01]  
+	{
+	world=Archipelago;
+	description=Metal Deposit;
+	category=GZmetal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=gzmetal;
+	seqname=gzmetal1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=165;
+	damage=32009;
+	indestructible=1;
+	}
+
+[GZMetal02]  
+	{
+	world=Archipelago;
+	description=Metal Deposit;
+	category=GZmetal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=gzmetal;
+	seqname=gzmetal2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=146;
+	damage=32009;
+	indestructible=1;
+	}
+
+[GZMetal03]
+	{
+	world=Archipelago;
+	description=Metal Deposit;
+	category=GZmetal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=gzmetal;
+	seqname=gzmetal3;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=69;
+	damage=32009;
+	indestructible=1;
+	}
+
+[GZMetal04]  
+	{
+	world=Archipelago;
+	description=Metal Deposit;
+	category=GZmetal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=gzmetal;
+	seqname=gzmetal4;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=43;
+	damage=32009;
+	indestructible=1;
+	}

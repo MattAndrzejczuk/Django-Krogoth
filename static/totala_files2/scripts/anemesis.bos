@@ -1,0 +1,171 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, tower, neck, trommel, flare, barrelup, barrelleft, barrelright,
+       barreldown;
+
+static-var  Static_Var_1;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Create()
+{
+	dont-cache barrelup;
+	dont-cache barrelleft;
+	dont-cache barreldown;
+	dont-cache barrelright;
+	dont-cache flare;
+	dont-cache neck;
+	dont-cache tower;
+	dont-cache trommel;
+	dont-shade base;
+	hide flare;
+	Static_Var_1 = 3000;
+	start-script SmokeUnit();
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	Static_Var_1 = Func_Var_1;
+}
+
+RestoreAfterDelay()
+{
+	sleep Static_Var_1;
+	stop-spin tower around y-axis;
+	stop-spin trommel around z-axis decelerate <1.>;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = tower;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	turn tower to y-axis heading speed <160.>;
+	turn neck to x-axis <0.> - pitch speed <12.>;
+	spin trommel around z-axis speed <80.> accelerate <1.>;
+	wait-for-turn tower around y-axis;
+	wait-for-turn neck around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	wait-for-turn tower around y-axis;
+	wait-for-turn neck around x-axis;
+	move barrelup to z-axis [-2.] speed [-124.];
+	move barrelleft to z-axis [-2.] speed [-124.];
+	move barreldown to z-axis [-2.] speed [-124.];
+	move barrelright to z-axis [-2.] speed [-124.];
+	show flare;
+	sleep 300;
+	hide flare;
+	wait-for-move barrelup along z-axis;
+	wait-for-move barrelleft along z-axis;
+	wait-for-move barreldown along z-axis;
+	wait-for-move barrelright along z-axis;
+	move barrelup to z-axis [0.] speed [3.];
+	move barrelleft to z-axis [0.] speed [3.];
+	move barreldown to z-axis [0.] speed [3.];
+	move barrelright to z-axis [0.] speed [3.];
+}
+
+TargetCleared(Func_Var_1)
+{
+	stop-spin tower around y-axis;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = trommel;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode tower type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+		explode neck type SHATTER | BITMAP3;
+		explode trommel type BITMAPONLY | BITMAP4;
+		explode barrelup type BITMAPONLY | BITMAP5;
+		explode barrelleft type BITMAPONLY | BITMAP1;
+		explode barreldown type BITMAPONLY | BITMAP2;
+		explode barrelright type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode tower type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+		explode neck type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+		explode trommel type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+		explode barrelup type FALL | BITMAP5;
+		explode barrelleft type FALL | BITMAP1;
+		explode barreldown type FALL | BITMAP2;
+		explode barrelright type FALL | BITMAP3;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode tower type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode neck type FALL | SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode trommel type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode barrelup type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+		explode barrelleft type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode barreldown type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+		explode barrelright type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode tower type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode neck type FALL | SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode trommel type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode barrelup type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode barrelleft type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode barreldown type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode barrelright type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+}

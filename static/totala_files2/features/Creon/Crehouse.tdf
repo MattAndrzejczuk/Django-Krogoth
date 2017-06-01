@@ -1,0 +1,287 @@
+[CreHouse01]
+	{
+	world=Creon;
+	description=House;
+	category=buildings;
+	footprintx=5;
+	footprintz=4;
+	height=100;
+	filename=CreHouse;
+	seqname=CreHouse01;
+	seqnameshad=CreHouseshad01;
+
+	seqnamedie=CreHouseDie01;
+	featuredead=CreHouse01a;
+
+	damage=800;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=1000;
+	}
+
+[CreHouse01a]
+	{
+	world=Creon;
+	description=Ruined House;
+	category=buildings;
+	footprintx=5;
+	footprintz=4;
+	height=80;
+	filename=CreHouse;
+	seqname=CreHouse01a;
+	seqnameshad=CreHouseshad01a;
+
+	indestructible=1;
+
+	damage=500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=1000;
+	}
+
+[CreHouse02]
+	{
+	world=Creon;
+	description=House;
+	category=buildings;
+	footprintx=9;
+	footprintz=4;
+	height=100;
+	filename=CreHouse;
+	seqname=CreHouse02;
+	seqnameshad=CreHouseshad02;
+
+	seqnamedie=CreHouseDie02;
+	featuredead=CreHouse02a;
+
+	damage=800;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=1000;
+	}
+
+[CreHouse02a]
+	{
+	world=Creon;
+	description=Sacked House;
+	category=buildings;
+	footprintx=9;
+	footprintz=4;
+	height=80;
+	filename=CreHouse;
+	seqname=CreHouse02a;
+	seqnameshad=CreHouseshad02a;
+
+	indestructible=1;
+
+	damage=500;
+	shadtrans=1;
+	featurereclamate=CreHouse02a;
+	blocking=1;
+	hitdensity=1000;
+	}
+
+[CreHouse03]
+	{
+	world=Creon;
+	description=Stable;
+	category=buildings;
+	footprintx=10;
+	footprintz=5;
+	height=120;
+	filename=CreHouse;
+	seqname=CreHouse03;
+	seqnameshad=CreHouseshad03;
+
+	seqnamedie=CreHouseDie03;
+	featuredead=CreHouse03a;
+
+	damage=800;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=1000;
+	}
+
+[CreHouse03a]
+	{
+	world=Creon;
+	description=Ruined Stable;
+	category=buildings;
+	footprintx=10;
+	footprintz=5;
+	height=100;
+	filename=CreHouse;
+	seqname=CreHouse03a;
+	seqnameshad=CreHouseshad03a;
+
+	indestructible=1;
+
+	damage=500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreHouse04]
+	{
+	world=Creon;
+	description=Manor;
+	category=buildings;
+	footprintx=9;
+	footprintz=12;
+	height=160;
+	filename=CreHouse;
+	seqname=CreHouse04;
+	seqnameshad=CreHouseshad04;
+
+	seqnamedie=CreHouseDie04;
+	featuredead=CreHouse04a;
+
+	damage=800;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreHouse04a]
+	{
+	world=Creon;
+	description=Ruined Manor;
+	category=buildings;
+	footprintx=9;
+	footprintz=12;
+	height=140;
+	filename=CreHouse;
+	seqname=CreHouse04a;
+	seqnameshad=CreHouseshad04a;
+
+	indestructible=1;
+
+	damage=500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreHouse05]
+	{
+	world=Creon;
+	description=House;
+	category=buildings;
+	footprintx=4;
+	footprintz=5;
+	height=100;
+	filename=CreHouse;
+	seqname=CreHouse05;
+	seqnameshad=CreHouseshad05;
+
+	seqnamedie=CreHouseDie05;
+	featuredead=CreHouse05a;
+
+	damage=800;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreHouse05a]
+	{
+	world=Creon;
+	description=Ruined House;
+	category=buildings;
+	footprintx=4;
+	footprintz=5;
+	height=80;
+	filename=CreHouse;
+	seqname=CreHouse05a;
+	seqnameshad=CreHouseshad05a;
+
+	indestructible=1;
+
+	damage=500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreHouse06]
+	{
+	world=Creon;
+	description=Villa;
+	category=buildings;
+	footprintx=12;
+	footprintz=11;
+	height=200;
+	filename=CreHouse;
+	seqname=CreHouse06;
+	seqnameshad=CreHouseshad06;
+
+	seqnamedie=CreHouseDie06;
+	featuredead=CreHouse06a;
+
+	damage=800;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreHouse06a]
+	{
+	world=Creon;
+	description=Destroyed Villa;
+	category=buildings;
+	footprintx=12;
+	footprintz=11;
+	height=160;
+	filename=CreHouse;
+	seqname=CreHouse06a;
+	seqnameshad=CreHouseshad06a;
+
+	indestructible=1;
+
+	damage=500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreHouse07]
+	{
+	world=Creon;
+	description=House;
+	category=buildings;
+	footprintx=6;
+	footprintz=7;
+	height=120;
+	filename=CreHouse;
+	seqname=CreHouse07;
+	seqnameshad=CreHouseshad07;
+
+	seqnamedie=CreHouseDie07;
+	featuredead=CreHouse07a;
+
+	damage=800;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreHouse07a]
+	{
+	world=Creon;
+	description=Destroyed House;
+	category=buildings;
+	footprintx=6;
+	footprintz=7;
+	height=100;
+	filename=CreHouse;
+	seqname=CreHouse07a;
+	seqnameshad=CreHouseshad07a;
+
+	indestructible=1;
+
+	damage=500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}

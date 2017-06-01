@@ -1,0 +1,39 @@
+[ANTIMATTER_BOMB]
+	{
+	ID=240;
+	name=Anti-matter Bomb;
+	rendertype=1; 
+	lineofsight=1;
+	model=dgun;
+	weaponvelocity=300;
+	startvelocity=150;
+	weaponacceleration=25;
+	range=1000;
+	turnrate=20000;
+	reloadtime=6;
+	areaofeffect=8;
+	burst=2;
+	burstrate=2;
+	guidance=1;
+	selfprop=1;
+	soundstart=Blipfire;
+	soundhit=xplomas2;
+	soundtrigger=1;
+	commandfire=1;
+	weapontimer=7.5;
+	noexplode=1;
+	cruise=1;
+	tolerance=4000;
+	energypershot=100;
+	explosiongaf=fx;
+	explosionart=explode5;
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	[DAMAGE]
+		{
+		default=50;
+		}
+	}

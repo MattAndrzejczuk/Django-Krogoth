@@ -1,0 +1,151 @@
+[VerBuild01]
+	{
+	world=Veruna;
+	description=Building;
+	category=Structures;
+	footprintx=15;
+	footprintz=12;
+	height=66;
+	filename=VerBuild;
+	seqname=VerBuild01;
+	seqnameshad=VerBuildshad01;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[VerBuild02]
+	{
+	world=Veruna;
+	description=Building;
+	category=Structures;
+	footprintx=14;
+	footprintz=11;
+	height=62;
+	filename=VerBuild;
+	seqname=VerBuild02;
+	seqnameshad=VerBuildshad02;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[VerBuild03]
+	{
+	world=Veruna;
+	description=Building;
+	category=Structures;
+	footprintx=10;
+	footprintz=15;
+	height=60;
+	filename=VerBuild;
+	seqname=VerBuild03;
+	seqnameshad=VerBuildshad03;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[VerBuild04]
+	{
+	world=Veruna;
+	description=Building;
+	category=Structures;
+	footprintx=12;
+	footprintz=12;
+	height=62;
+	filename=VerBuild;
+	seqname=VerBuild04;
+	seqnameshad=VerBuildshad04;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[VerBuild05]
+	{
+	world=Veruna;
+	description=Building;
+	category=Structures;
+	footprintx=11;
+	footprintz=7;
+	height=66;
+	filename=VerBuild;
+	seqname=VerBuild05;
+	seqnameshad=VerBuildshad05;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[VerBuild06]
+	{
+	world=Veruna;
+	description=Building;
+	category=Structures;
+	footprintx=16;
+	footprintz=9;
+	height=44;
+	filename=VerBuild;
+	seqname=VerBuild06;
+	seqnameshad=VerBuildshad06;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[VerBuild07]
+	{
+	world=Veruna;
+	description=Building;
+	category=Structures;
+	footprintx=19;
+	footprintz=10;
+	height=53;
+	filename=VerBuild;
+	seqname=VerBuild07;
+	seqnameshad=VerBuildshad07;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}
+
+[VerBuild08]
+	{
+	world=Veruna;
+	description=Building;
+	category=Structures;
+	footprintx=10;
+	footprintz=11;
+	height=53;
+	filename=VerBuild;
+	seqname=VerBuild08;
+	seqnameshad=VerBuildshad08;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}

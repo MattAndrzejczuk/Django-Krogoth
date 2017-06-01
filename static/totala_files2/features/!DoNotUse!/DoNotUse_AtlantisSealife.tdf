@@ -1,0 +1,18 @@
+[aquacoral=04]
+	{
+	world=Atlantis;
+	description=aquacoral;
+	category=discontinued;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=AtlantisSealife;
+	seqname=atlaquacoral04;
+
+	shadtrans=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
