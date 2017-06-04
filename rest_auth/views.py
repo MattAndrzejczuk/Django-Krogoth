@@ -89,7 +89,7 @@ class LazarusListUnits(APIView):
                         img.save(imgSaveTo, format='png')
                         self.jsonResponse.append(
                             {
-                                'thumbnail': '/static/totala_files/unitpics/' + filename + '.png',
+                                'thumbnail': '/static/totala_files2/unitpics/' + filename + '.png',
                                 'object_name':filename,
                                 'system_location': imgSaveTo
                             }
