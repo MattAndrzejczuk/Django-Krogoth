@@ -80,7 +80,7 @@ class LazarusListUnits:
         self.outputConsole = ''
         self.outputConsole_unit = ''
 
-    def printSubContents(self, pathName):
+    def printSubContents(self, unit, pathName):
         for (dirpath, dirnames, filenames) in walk(self.root + pathName):
             self.outputConsole += bcolors.lightgreen + ' ' + '⚒ ⚒ ⚒' + '\n' + bcolors.ENDC
             self.outputConsole += (pathName)
@@ -141,9 +141,9 @@ class LazarusListUnits:
             self.outputConsole += bcolors.BOLD + 'dirnames' + str(dirnames) + bcolors.ENDC
 
             self.outputConsole += bcolors.lightgreen + ' ' + '☭ ☭ ☭' + ' ' + bcolors.ENDC
-            for path in dirnames:
+            for unit in filenames:
                 self.outputConsole += bcolors.WARNING + ' ✦ \t ' + path + ", " + bcolors.ENDC
-                self.printSubContents(path)
+                self.printSubContents(unit, self.root)
             break
 
     def printUnitFBI(self):
