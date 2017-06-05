@@ -9,9 +9,8 @@ echo Feel free to edit this bash script!
 sleep 0.2s
 echo
 
-for f in ~/.wine/drive_c/HPI_tools/UnitsToPack/*; 
+for f in /usr/src/app/static/mod1_ufos/UnitsToPack/*; 
 
-do wine ~/.wine/drive_c/HPI_tools/HPIDump.exe -o ~/.wine/drive_c/HPI_tools/UnitsToPack/unpacked $f; 
+do wine /usr/src/app/static/HPI_Tools/HPIDump.exe -o /usr/src/app/static/mod1_ufos/archive $f; 
 done
-
 
