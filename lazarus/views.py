@@ -125,7 +125,8 @@ class LazarusListUnits:
     def printContents(self):
 
         self.outputConsole += bcolors.lightgreen + ' ' + '✩ ✩ ✩ ✩ ✩' + ' ' + bcolors.ENDC
-
+        print('FUUUCK!!')
+        print(walk(self.root))
         for (dirpath, dirnames, filenames) in walk(self.root):
             print('dir1')
             print(dirpath)
