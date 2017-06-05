@@ -1,0 +1,11 @@
+//ARM "Valiant" Mine Laying Ship
+
+[MENUENTRY1]
+	{
+	UNITMENU=ARMSY;
+	MENU=2;
+	BUTTON=5;
+	UNITNAME=ARMMLS;
+	}
+
+

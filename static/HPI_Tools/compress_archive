@@ -1,0 +1,5 @@
+#!/bin/bash
+
+
+echo starting...
+wine ~/.wine/drive_c/HPI_tools/HPIPack.exe -d ~/.wine/drive_c/HPI_tools/archive -f ~/.wine/drive_c/HPI_tools/MyMod.hpi auto

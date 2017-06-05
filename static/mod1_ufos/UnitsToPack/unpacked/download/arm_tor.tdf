@@ -1,0 +1,7 @@
+[MENUENTRY1]
+	{
+	UNITMENU=ARMAVP;
+	MENU=5;
+	BUTTON=5;
+	UNITNAME=arm_tor;
+	}

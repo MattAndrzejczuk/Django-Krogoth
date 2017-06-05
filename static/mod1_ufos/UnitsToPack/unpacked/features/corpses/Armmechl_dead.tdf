@@ -1,0 +1,39 @@
+//ARM "Mechlab" Builds L3 Technology
+
+[armmechl_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=corgant_dead;
+	featuredead=corgant_heap;
+	footprintx=8;
+	footprintz=8;
+	height=23;
+	blocking=1;
+	hitdensity=100;
+	metal=3240;
+	damage=1243;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+
+[armmechl_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7b;
+	footprintx=8;
+	footprintz=8;
+	height=6;
+	blocking=0;
+	hitdensity=100;
+	metal=1725;
+	damage=923;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+

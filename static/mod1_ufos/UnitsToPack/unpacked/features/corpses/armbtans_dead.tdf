@@ -1,0 +1,36 @@
+[armbtans_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+                    object=armbtans_dead;
+                    featuredead=armbtans_heap;
+                    footprintx=4;
+                    footprintz=4;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+                    metal=2379;
+                    damage=1157;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+
+[armbtans_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+                    object=4x4c;
+                    footprintx=4;
+                    footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+                    metal=1095;
+                    damage=498;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}

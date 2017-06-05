@@ -1,0 +1,107 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  bombay, base, body, Lwing, Rwing, missle1, missle2;
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3, Static_Var_4;
+
+#define SMOKEPIECE1 base
+#define SMOKEPIECE2 body
+#define SMOKEPIECE3 missle1
+
+#include "SmokeUnit.h"
+
+StartMoving()
+{
+	move Lwing to x-axis [-3.000000] speed [6.006659];
+	move Rwing to x-axis [3.000000] speed [6.006659];
+	move Lwing to y-axis [-0.400000] speed [6.006659];
+	move Rwing to y-axis [-0.400000] speed [6.006659];
+	move Lwing to z-axis [-2.000000] speed [6.006659];
+	move Rwing to z-axis [-2.000000] speed [6.006659];
+	sleep 998;
+	return (0);
+}
+
+StopMoving()
+{
+	move Lwing to x-axis [0.000000] speed [6.006659];
+	move Rwing to x-axis [0.000000] speed [6.006659];
+	move Lwing to y-axis [0.000000] speed [6.006659];
+	move Rwing to y-axis [0.000000] speed [6.006659];
+	move Lwing to z-axis [0.000000] speed [6.006659];
+	move Rwing to z-axis [0.000000] speed [6.006659];
+	sleep 998;
+	return (0);
+}
+
+Create()
+{
+	Static_Var_1 = 0;
+	Static_Var_2 = 0;
+	start-script SmokeUnit();
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = bombay;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+eSecondary(Func_Var_1)
+{
+	Static_Var_2 = !Static_Var_2;
+	return (0);
+}
+
+QuerySecondary(piecenum)
+{
+	piecenum = Static_Var_2;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode bombay type BITMAPONLY | BITMAP2;
+		explode Lwing type SHATTER | BITMAP1;
+		explode Rwing type FIRE | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type FIRE | BITMAP1;
+		explode bombay type BITMAPONLY | BITMAP2;
+		explode Lwing type SHATTER | BITMAP1;
+		explode Rwing type EXPLODE_ON_HIT | BITMAP2;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type SHATTER | BITMAP1;
+		explode bombay type BITMAPONLY | BITMAP2;
+		explode Lwing type FIRE | BITMAP1;
+		explode Rwing type EXPLODE_ON_HIT | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type SHATTER | BITMAP1;
+	explode bombay type BITMAPONLY | BITMAP2;
+	explode Lwing type FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode Rwing type EXPLODE_ON_HIT | BITMAP2;
+	return (0);
+}

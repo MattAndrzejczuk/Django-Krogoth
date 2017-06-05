@@ -1,0 +1,63 @@
+//ARM "Precision Mine-NavalSeries" High Damage, Small Range Floating Mine
+
+[UNITINFO]
+	{
+	UnitName=ARMFMINE5;
+	Version=1.0;
+	Side=ARM;
+	Objectname=ARMFMINE5;
+	Designation=ARM-HDSR;
+	Name=Precision Mine-NS;
+	Description=High Damage, Small Range Flt. Mine;
+	FootprintX=1;
+	FootprintZ=1;
+	BuildCostEnergy=4027;
+	BuildCostMetal=118;
+	MaxDamage=500;
+	MaxWaterDepth=10;
+	MaxSlope=15;
+	EnergyUse=0;
+	BuildTime=5029;
+	WorkerTime=0;
+	BMcode=0;
+	Builder=0;
+	ThreeD=1;
+	ZBuffer=1;
+	NoAutoFire=0;
+	SightDistance=60;
+	RadarDistance=0;
+	SoundCategory=MINE3;
+	EnergyStorage=0;
+	MetalStorage=0;
+	ExplodeAs=ARMMINE5;
+	SelfDestructAs=ARMMINE6;
+	Category=ARM MINE WEAPON LEVEL2 NOTAIR NOTSUB KAMIKAZE CTRL_M;
+	TEDClass=SPECIAL;
+	Copyright=Copyright 1997 Humongous Entertainment. All rights reserved.;
+	YardMap=w;
+	GermanName=Schwimmende Prezisionsmine;
+	GermanDescription=Seemine, hoher Schaden und kurze Reichweite;
+	FrenchName=Mine de précision flottante;
+	Frenchdescription=Grands dégats, petite portée;
+	SpanishName=Precision Mine-NS;
+	SpanishDescription=High Damage, Small Range Flt. Mine;
+	ItalianName=Precision Mine-NS;
+	ItalianDescription=High Damage, Small Range Flt. Mine;
+	UnitNumber=654;
+	firestandorders=1;
+	StandingFireOrder=2;
+	canmove=0;
+	canpatrol=0;
+	canstop=0;
+	canguard=0;
+	DefaultMissionType=Standby_Mine;
+	canattack=0;
+	downloadable=1;
+	kamikaze=1;
+	selfdestructcountdown=1;
+	CloakCost=32;
+	init_cloaked=1;
+	mincloakdistance=8;
+	MinWaterDepth=0;
+	WaterLine=1;
+	}

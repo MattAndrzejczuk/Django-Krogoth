@@ -1,0 +1,36 @@
+[ARMPOD_WEAPON]
+	{
+	ID=170; // Original ID was 255 - Edited on 09/06/01 20:06:34 using TA Conflict Crusher - http://www.r1ch.net/tacc/
+	name=Gauss Cannon;
+	rendertype=4;
+	lineofsight=1;
+	turret=1;
+	minbarrelangle=-15;
+
+	range=1000;
+	reloadtime=1.5;
+	weaponvelocity=600;
+	areaofeffect=10;
+	soundstart=canonpod;
+	soundhit=xplomed2;
+
+	tolerance=300;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=450;
+		}
+	}
+
+
