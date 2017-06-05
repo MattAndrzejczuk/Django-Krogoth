@@ -336,7 +336,7 @@ class listWorkingDirectory(APIView):
                         "target_path":(path + '/' + file),
                         "file_name":file,
                         "api_uri_unit":(path + '/' + file).replace('/usr/src/app/static/',''),
-                        "thumbnail":(path + '/' + file).replace('/usr/src/app/static/','').replace('.FBI','.png').replace('units','unitpics'),
+                        "thumbnail":('http://52.27.28.55/static/' + path + '/' + file).replace('/usr/src/app/static/','').replace('.FBI','.png').replace('.fbi','.fbi').replace('units','unitpics'),
                         "nothing":"123123",
                         "nothing2":"123123"})
                     dir_list.append(path + '/' + file)
