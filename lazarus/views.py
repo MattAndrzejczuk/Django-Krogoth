@@ -27,7 +27,7 @@ import json
 import re
 
 
-"""
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -51,7 +51,96 @@ class bcolors:
     darkgrey = '\033[90m'
     lightred = '\033[91m'
     lightgreen = '\033[92m'
-"""
+
+
+
+class LazarusListUnits:
+    f = []
+    d = []
+    output_final = open('workfile', 'w')
+    jsonResponse = []
+    root = ''
+
+    outputConsole = ''
+    outputConsole_unit = ''
+    outputConsole_errors = ''
+
+    def __init__(self, unitName):
+        self.f = []
+        self.d = []
+        self.output_final = open('workfile', 'w')
+        self.jsonResponse = []
+        self.root = unitName
+
+        self.outputConsole_errors = ''
+        self.outputConsole = ''
+        self.outputConsole_unit = ''
+
+    def printSubContents(self, pathName):
+        for (dirpath, dirnames, filenames) in walk(self.root + pathName):
+            self.outputConsole += bcolors.lightgreen + ' ' + '⚒ ⚒ ⚒' + '\n' + bcolors.ENDC
+            self.outputConsole += (pathName)
+
+            print(bcolors.pink + self.root + pathName + ' ⚔ ' + dirpath + bcolors.ENDC)
+            if pathName == 'unitpics':
+                for file in filenames:
+                    self.outputConsole += bcolors.lightgreen + ' ' + '♧' + ' ' + bcolors.ENDC
+                    filename, file_extension = os.path.splitext(file)
+                    self.outputConsole += bcolors.OKBLUE + str(self.root + pathName + '/' + file) + bcolors.ENDC
+                    self.outputConsole += bcolors.OKGREEN + str( file_extension.lower()) + bcolors.ENDC
+                    pathToFile = self.root + pathName + '/' + file
+                    try:
+                        img = Image.open(pathToFile)
+                        imgSaveTo = self.root + pathName + '/' + filename + '.png'
+                        img.save(imgSaveTo, format='png')
+                        self.jsonResponse.append({'thumbnail': imgSaveTo, 'object_name':filename})
+                    except:
+                        print('OHHHH SHIT!!!')
+                break
+            elif pathName == 'units':
+                for unitFile in filenames:
+                    #file_object = open('test', 'r')
+                    #print(file_object.read())
+                    print(bcolors.pink + ' ⚙ ' + unitFile + ' ⚙ ' + bcolors.ENDC)
+                    filename, file_extension = os.path.splitext(unitFile)
+                    if file_extension == '.fbi':
+                        try:
+                            self.outputConsole += bcolors.lightcyan + ' ☾' + str(self.root + pathName + '/' + unitFile) + '☽ ' + bcolors.ENDC
+                            file_object = open(self.root + pathName + '/' + unitFile, 'r')
+
+                            # self.outputConsole_unit += bcolors.pink + '⚛ ' + filename + '' + bcolors.ENDC
+                            # self.outputConsole_unit += bcolors.blue + '' + file_extension + ' ▼' + bcolors.ENDC
+                            self.outputConsole_unit += '\n' + file_object.read() + '\n'
+                        except:
+                            self.outputConsole_errors += bcolors.red + '\n' + 'failed to load file: ' + filename + bcolors.ENDC
+                    else:
+                        self.outputConsole += bcolors.darkgrey + ' ☾' + str(self.root + pathName + '/' + unitFile) + '☽ ' + bcolors.ENDC
+
+
+
+    def printContents(self):
+
+        self.outputConsole += bcolors.lightgreen + ' ' + '✩ ✩ ✩ ✩ ✩' + ' ' + bcolors.ENDC
+
+        for (dirpath, dirnames, filenames) in walk(self.root):
+            self.outputConsole += '\n'
+            self.f.extend(filenames)
+            self.d.extend(dirnames)
+            self.outputConsole += bcolors.HEADER + 'dirpath' + str(dirpath) + bcolors.ENDC
+            self.outputConsole += bcolors.BOLD + 'dirnames' + str(dirnames) + bcolors.ENDC
+
+            self.outputConsole += bcolors.lightgreen + ' ' + '☭ ☭ ☭' + ' ' + bcolors.ENDC
+            for path in dirnames:
+                self.outputConsole += bcolors.WARNING + ' ✦ \t ' + path + ", " + bcolors.ENDC
+                self.printSubContents(path)
+            break
+
+    def printUnitFBI(self):
+        return
+
+    def getUnitInfo(self, unitId):
+        return
+
 
 class LazarusUnit:
 
@@ -400,6 +489,28 @@ class index(APIView):
         context['available'] = int(memAvailable)
 
         return Response(context)
+
+
+
+class convertPcxToPng(APIView):
+    def get(self, request, format=None):
+        path = '/usr/src/app/static/' + str(request.GET['path'])
+        unitListPrettyJSON = LazarusListUnits(path)
+        unitListPrettyJSON.printContents()
+
+        print('')
+        print(json.dumps(unitListPrettyJSON.jsonResponse))
+        print(unitListPrettyJSON.outputConsole)
+        print(unitListPrettyJSON.outputConsole_unit)
+        print(unitListPrettyJSON.outputConsole_errors)
+
+        v1 = str(json.dumps(unitListPrettyJSON.jsonResponse))
+        v2 = str(unitListPrettyJSON.outputConsole)
+        v3 = str(unitListPrettyJSON.outputConsole_unit)
+        v4 = str(unitListPrettyJSON.outputConsole_errors)
+        context = {"v1": v1, "v2": v2, "v3": v3, "v4":v4}
+        return Response(context)
+
 
 
 class getRam(APIView):

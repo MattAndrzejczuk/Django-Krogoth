@@ -9,6 +9,7 @@ urlpatterns = [
 
     url(r'^listWorkingDirectory/$', views.listWorkingDirectory.as_view(), name='listWorkingDirectory'),
     url(r'^main/$', views.index.as_view(), name='index'),
+    url(r'^convert_to_png', views.convertPcxToPng.as_view(), name='convertPcxToPng'),
     url(r'^ram/$', views.getRam.as_view(), name='ram'),
     url(r'^processes/$', views.getProcesses.as_view(), name='processes'),
     url(r'^processesDummy/$', views.getProcessesDummy.as_view(), name='processesDummy'),
