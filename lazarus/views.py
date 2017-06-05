@@ -127,6 +127,12 @@ class LazarusListUnits:
         self.outputConsole += bcolors.lightgreen + ' ' + '✩ ✩ ✩ ✩ ✩' + ' ' + bcolors.ENDC
 
         for (dirpath, dirnames, filenames) in walk(self.root):
+            print('dir1')
+            print(dirpath)
+            print('dir2')
+            print(dirnames)
+            print('dir3')
+            print(filenames)
             self.outputConsole += '\n'
             self.f.extend(filenames)
             self.d.extend(dirnames)
