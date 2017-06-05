@@ -70,6 +70,7 @@ class LazarusListUnits:
         self.d = []
         self.output_final = open('workfile', 'w')
         self.jsonResponse = []
+        unitName = '/usr/src/app/static/totala_files/unitpics/'
         print('')
         print('LOOK RIGHT HERE: ')
         print(unitName)
