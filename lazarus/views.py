@@ -142,7 +142,7 @@ class LazarusListUnits:
 
             self.outputConsole += bcolors.lightgreen + ' ' + '☭ ☭ ☭' + ' ' + bcolors.ENDC
             for unit in filenames:
-                self.outputConsole += bcolors.WARNING + ' ✦ \t ' + path + ", " + bcolors.ENDC
+                self.outputConsole += bcolors.WARNING + ' ✦ \t ' + unit + ", " + bcolors.ENDC
                 self.printSubContents(unit, self.root)
             break
 
