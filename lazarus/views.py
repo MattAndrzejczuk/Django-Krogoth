@@ -332,7 +332,13 @@ class listWorkingDirectory(APIView):
                 if any(file in s for s in file_list):
                     print('nah...')
                 else:
-                    user_gui_data.append({"target_path":(path + '/' + file),"file_name":file,"api_uri_unit":(path + '/' + file).replace('/usr/src/app/static/',''),"":"","":"","":""})
+                    user_gui_data.append({
+                        "target_path":(path + '/' + file),
+                        "file_name":file,
+                        "api_uri_unit":(path + '/' + file).replace('/usr/src/app/static/',''),
+                        "thumbnail":(path + '/' + file).replace('/usr/src/app/static/','').replace('.FBI','.png').replace('units','unitpics'),
+                        "nothing":"123123",
+                        "nothing2":"123123"})
                     dir_list.append(path + '/' + file)
                     file_list.append(file)
             if len(dirnames) > 0:
