@@ -7,7 +7,7 @@ from lazarus import views
 
 urlpatterns = [
 
-
+    url(r'^listWorkingDirectory/$', views.listWorkingDirectory.as_view(), name='listWorkingDirectory'),
     url(r'^main/$', views.index.as_view(), name='index'),
     url(r'^ram/$', views.getRam.as_view(), name='ram'),
     url(r'^processes/$', views.getProcesses.as_view(), name='processes'),
