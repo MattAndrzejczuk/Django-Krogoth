@@ -124,7 +124,9 @@ class LazarusUnit:
         self.canattack = 1
         self.NoChaseCategory = ''
 
-
+def list_ta_units_advanced(request):
+    allUnitInstances = []
+    file_object = open('test', 'r')
 
 def list_ta_units(request):
     unitListPrettyJSON = LazarusListUnits()

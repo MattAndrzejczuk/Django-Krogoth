@@ -47,4 +47,5 @@ urlpatterns = [
     url(r'^$', rest_auth.views.index),
     url(r'^armprime/', rest_auth.views.index),
     url(r'^lazarus/', LazarusListUnits.as_view())
+    url(r'^api.lazarus/', include('lazarus.urls')),
 ]
