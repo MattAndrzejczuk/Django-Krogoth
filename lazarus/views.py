@@ -70,6 +70,9 @@ class LazarusListUnits:
         self.d = []
         self.output_final = open('workfile', 'w')
         self.jsonResponse = []
+        print('')
+        print('LOOK RIGHT HERE: ')
+        print(unitName)
         self.root = unitName
 
         self.outputConsole_errors = ''
