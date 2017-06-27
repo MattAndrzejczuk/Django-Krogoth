@@ -71,9 +71,9 @@ class LazarusListUnits:
         self.output_final = open('workfile', 'w')
         self.jsonResponse = []
         # unitName = '/usr/src/app/static/totala_files/unitpics/'
-        print('')
-        print('LOOK RIGHT HERE: ')
-        print(unitName)
+        #print('')
+        #print('LOOK RIGHT HERE: ')
+        #print(unitName)
         self.root = unitName
 
         self.outputConsole_errors = ''
@@ -85,7 +85,7 @@ class LazarusListUnits:
             self.outputConsole += bcolors.lightgreen + ' ' + '⚒ ⚒ ⚒' + '\n' + bcolors.ENDC
             self.outputConsole += (pathName)
 
-            print(bcolors.pink + self.root + pathName + ' ⚔ ' + dirpath + bcolors.ENDC)
+            #print(bcolors.pink + self.root + pathName + ' ⚔ ' + dirpath + bcolors.ENDC)
             if pathName == 'unitpics':
                 for file in filenames:
                     self.outputConsole += bcolors.lightgreen + ' ' + '♧' + ' ' + bcolors.ENDC
@@ -105,7 +105,7 @@ class LazarusListUnits:
                 for unitFile in filenames:
                     #file_object = open('test', 'r')
                     #print(file_object.read())
-                    print(bcolors.pink + ' ⚙ ' + unitFile + ' ⚙ ' + bcolors.ENDC)
+                    #print(bcolors.pink + ' ⚙ ' + unitFile + ' ⚙ ' + bcolors.ENDC)
                     filename, file_extension = os.path.splitext(unitFile)
                     if file_extension == '.fbi':
                         try:
@@ -123,17 +123,16 @@ class LazarusListUnits:
 
 
     def printContents(self):
-
         self.outputConsole += bcolors.lightgreen + ' ' + '✩ ✩ ✩ ✩ ✩' + ' ' + bcolors.ENDC
-        print('FUUUCK!!')
-        print(walk(self.root))
+        #print('FUUUCK!!')
+        #print(walk(self.root))
         for (dirpath, dirnames, filenames) in walk(self.root):
-            print('dir1')
-            print(dirpath)
-            print('dir2')
-            print(dirnames)
-            print('dir3')
-            print(filenames)
+            #print('dir1')
+            #print(dirpath)
+            #print('dir2')
+            #print(dirnames)
+            #print('dir3')
+            #print(filenames)
             self.outputConsole += '\n'
             self.f.extend(filenames)
             self.d.extend(dirnames)
@@ -154,7 +153,6 @@ class LazarusListUnits:
 
 
 class LazarusUnit:
-
     def __str__(self):
         return 'Name: ' + self.Name + ', Info: ' + self.Description + ', HP: ' + self.MaxDamage + '.'
 
@@ -257,20 +255,20 @@ def get_unit_instances(the_selection):
     #the_selection = 'totala_files2/units/'
     the_mod = the_path + the_selection
     #the_file = 'CORCRASH.FBI'
-    print('Yo what the fuck???')
-    print(the_mod )
+    #print('Yo what the fuck???')
+    #print(the_mod )
     file_object = open(the_mod, 'r', encoding='utf-8', errors='ignore')
     unit_object_rawstr = file_object.read()
-    print(unit_object_rawstr)
+    #print(unit_object_rawstr)
     unitObj_parsed = unit_object_rawstr.split('[UNITINFO]')
     total_units_in_file = 1 #len(unitObj_parsed) - 1
-    print('why is this shit fucked up?')
+    #print('why is this shit fucked up?')
     f2 = open(the_mod, 'r', encoding='utf-8', errors='ignore')
     f3 = open(the_mod, 'r', encoding='utf-8', errors='ignore')
-    print('heres f2')
-    print(f2)
-    print('SDFGSGSDFGDFGHDFGHDFGH')
-    print(f3)
+    #print('heres f2')
+    #print(f2)
+    #print('SDFGSGSDFGDFGHDFGHDFGH')
+    #print(f3)
     i = sum(1 for line in f2)
     u = LazarusUnit()
 
@@ -423,11 +421,12 @@ class listWorkingDirectory(APIView):
         #path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         path = '/usr/src/app/static/' + str(request.GET['path'])
         # context = {"files":file_list, "directories":dir_list}
-        print(path)
+        print('class listWorkingDirectory(APIView)')
+        #print(path)
         for (dirpath, dirnames, filenames) in walk(path):
-            print(dirpath)
-            print(dirnames)
-            print(filenames)
+            #print(dirpath)
+            #print(dirnames)
+            #print(filenames)
             for file in filenames:
                 if any(file in s for s in file_list):
                     print('nah...')
@@ -478,8 +477,8 @@ class index(APIView):
         def all_others(str):
             return removeWhiteSpace(removeKB(str))
 
-        print(request)
-        print(request.GET.__str__())
+        #print(request)
+        #print(request.GET.__str__())
 
         p = Popen(['cat', '/proc/meminfo'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
         output, err = p.communicate(b"input data that is passed to subprocess' stdin")
@@ -509,11 +508,11 @@ class convertPcxToPng(APIView):
         unitListPrettyJSON = LazarusListUnits(path)
         unitListPrettyJSON.printContents()
 
-        print('')
-        print(json.dumps(unitListPrettyJSON.jsonResponse))
-        print(unitListPrettyJSON.outputConsole)
-        print(unitListPrettyJSON.outputConsole_unit)
-        print(unitListPrettyJSON.outputConsole_errors)
+        #print('')
+        #print(json.dumps(unitListPrettyJSON.jsonResponse))
+        #print(unitListPrettyJSON.outputConsole)
+        #print(unitListPrettyJSON.outputConsole_unit)
+        #print(unitListPrettyJSON.outputConsole_errors)
 
         v1 = str(json.dumps(unitListPrettyJSON.jsonResponse))
         v2 = str(unitListPrettyJSON.outputConsole)
@@ -764,7 +763,7 @@ class getProcesses(APIView):  # ps aux
             finalWrapper['CPU_Usage'] = sumOfCPU
             finalWrapper['RAM_Usage'] = sumOfRAM
         return Response(finalWrapper)
-        # print(item)
+        #print(item)
 
 
 

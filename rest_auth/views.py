@@ -32,7 +32,29 @@ redis_connection_pool = ConnectionPool(**redis_settings.WS4REDIS_CONNECTION)
 
 
 
-
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    TEAL = '\033[96m'
+    BLACK = '\033[97m'
+    GRAY = '\033[90m'
+    black = '\033[30m'
+    red = '\033[31m'
+    green = '\033[32m'
+    orange = '\033[33m'
+    blue = '\033[34m'
+    purple = '\033[35m'
+    cyan = '\033[36m'
+    lightgrey = '\033[37m'
+    darkgrey = '\033[90m'
+    lightred = '\033[91m'
+    lightgreen = '\033[92m'
 
 
 
@@ -131,6 +153,7 @@ def list_ta_units_advanced(request):
 def list_ta_units(request):
     unitListPrettyJSON = LazarusListUnits()
     unitListPrettyJSON.printContents()
+    print(bcolors.cyan + request.GET.__str__() + bcolors.ENDC)
     return Response(json.dumps(unitListPrettyJSON.jsonResponse))
     # return HttpResponse(
     #     unitListPrettyJSON.jsonResponse, status=status.HTTP_200_OK
@@ -140,11 +163,11 @@ class LazarusListUnits(APIView):
     f = []
     d = []
     output_final = open('workfile', 'w')
-
     root = ''
 
 
     def __init__(self):
+        print(bcolors.cyan + 'Initializing LazarusListUnits' + bcolors.ENDC)
         self.f = []
         self.d = []
         self.output_final = open('workfile', 'w')
@@ -153,11 +176,11 @@ class LazarusListUnits(APIView):
 
 
 
-    def printSubContents(self, pathName):
+    def printSubContents(self, pathName, mod_name):
         #jsonResponse = []
 
         for (dirpath, dirnames, filenames) in walk(self.root + pathName):
-            print('PATHNAME')
+            #print('PATHNAME')
 
             if pathName == 'unitpics':
                 for file in filenames:
@@ -173,36 +196,29 @@ class LazarusListUnits(APIView):
                         img.save(imgSaveTo, format='png')
                         self.jsonResponse.append(
                             {
-                                'thumbnail': '/static/totala_files2/unitpics/' + filename + '.png',
-                                'object_name':filename,
-                                'system_location': imgSaveTo
+                                'thumbnail': '/static/' + mod_name + '/unitpics/' + filename + '.png',
+                                'object_name': filename,
+                                'system_location': imgSaveTo,
+                                'fbi_file': '/static/' + mod_name + '/units/' + filename + '.fbi',
+                                'RESTful_unit_data': '/static/' + mod_name + '/units/' + filename + '.fbi'
                             }
                         )
                     except:
-                        print('OHHHH SHIT!!!')
+                        print('[CRITICAL ERROR]: failed to open ' + str(filename) + ' [' + str(file_extension) + ']')
 
 
-        print("RAHHHH@H@@@@")
-        print(self.jsonResponse)
+        print(bcolors.purple + 'Path: ' + bcolors.ENDC + bcolors.FAIL + dirpath + bcolors.ENDC)
+        #print(self.jsonResponse)
         return self.jsonResponse
 
-    def printContents(self):
+    def printContents(self, mod_name):
         jsonFinal = []
-        for (dirpath, dirnames, filenames) in walk(self.root):
+        for (dirpath, dirnames, filenames) in walk(mod_name):
             self.f.extend(filenames)
             self.d.extend(dirnames)
             for path in dirnames:
-                self.printSubContents(path)
+                self.printSubContents(path, mod_name)
             break
-
-    def printUnitFBI(self):
-        return
-    # data = open('HPI/' + pathName + '/' + file, 'r')
-    # try:
-    #     output_final.write(data.read())
-    # except:
-    #     print('FAIL')
-    # print(file_extension)
 
 
     def getUnitInfo(self, unitId):
@@ -211,14 +227,47 @@ class LazarusListUnits(APIView):
 
 
     def get(self, request, format=None):
-        unitListPrettyJSON = LazarusListUnits()
-        unitListPrettyJSON.printContents()
-        final_response = {'arm_data': unitListPrettyJSON.jsonResponse}
-        return Response(final_response)
+        print(bcolors.lightred + 'GET request: ' + bcolors.ENDC)
+        print(bcolors.purple + str(request.GET) + bcolors.ENDC)
+
+        # read GET param 'test' if it exists:
+        # try:
+        #     print(bcolors.blue + 'test = ' + bcolors.ENDC + bcolors.lightgreen + str(request.GET['test']) + bcolors.ENDC)
+        # except:
+        #     print('......')
+
+        try:
+            print(bcolors.blue + 'Mod Name: ' + bcolors.ENDC + bcolors.lightgreen + str(request.GET['mod_name']) + bcolors.ENDC)
+            unitListPrettyJSON = LazarusListUnits()
+            unitListPrettyJSON.printContents('/usr/src/app/static/' + str(request.GET['mod_name']) + '/')
+            final_response = {'arm_data': unitListPrettyJSON.jsonResponse}
+            return Response(final_response)
+        except:
+            print(bcolors.FAIL + 'Mod Name Doesnt Exist, Opening: ' + bcolors.ENDC + bcolors.blue + 'totala_files2' + bcolors.ENDC)
+            unitListPrettyJSON = LazarusListUnits()
+            unitListPrettyJSON.printContents('/usr/src/app/static/totala_files2/')
+            final_response = {'arm_data': unitListPrettyJSON.jsonResponse}
+            return Response(final_response)
+
+
+def getUnitFbiUsingId(request):
+    mod_name = str(request.GET['mod_name'])
+    unit_id = str(request.GET['unit_id'])
+    unit_path = '/usr/src/app/static/' + mod_name + '/units/' + unit_id + '.fbi'
+    print('unit path: ')
+    print(unit_path)
+    data = open(unit_path, 'r')
+    json_response = {
+        "raw_fbi_file": data.read()
+    }
+    # try:
+    #     output_final.write(data.read())
+    # except:
+    #     print('FAIL')
+    return Response(json.dumps(json_response))
 
 
 class LoginView(GenericAPIView):
-
     """
     Windows Server 2016 (English DVD)
     Product Key: 2KNJJ-33Y9H-2GXGX-KMQWH-G6H67
