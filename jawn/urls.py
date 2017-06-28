@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import url, include
-from rest_framework.urlpatterns import format_suffix_patterns
+# from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework import renderers
 from rest_framework.routers import DefaultRouter
 from chat.views import *
@@ -48,4 +48,5 @@ urlpatterns = [
     url(r'^armprime/', rest_auth.views.index),
     url(r'^lazarus/', LazarusListUnits.as_view()),
     url(r'^api.lazarus/', include('lazarus.urls')),
+    url(r'^LazarusII/', include('LazarusII.urls')),
 ]

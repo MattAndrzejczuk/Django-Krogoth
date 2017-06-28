@@ -51,6 +51,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+
 INSTALLED_APPS = (
     'suit',
     'django.contrib.sites',
@@ -73,8 +74,9 @@ INSTALLED_APPS = (
     'rest_auth',
     'chat',
     'lazarus',
-
+    'LazarusII',
 )
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

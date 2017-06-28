@@ -68,7 +68,6 @@ def index(request):
 
 
 class LazarusUnit:
-
     def __str__(self):
         return 'Name: ' + self.Name + ', Info: ' + self.Description + ', HP: ' + self.MaxDamage + '.'
 
@@ -80,7 +79,6 @@ class LazarusUnit:
                     'BuildCostMetal':self.BuildCostMetal,
                     'picture': '/static/totala_files2/unitpics/' + self.Objectname + '.png'}
         return json.dumps(the_json)
-
 
     def __init__(self):
         self.UnitName = ''
@@ -173,7 +171,6 @@ class LazarusListUnits(APIView):
         self.output_final = open('workfile', 'w')
         self.jsonResponse = []
         self.root = '/usr/src/app/static/totala_files2/'
-
 
 
     def printSubContents(self, pathName, mod_name):
