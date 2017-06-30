@@ -1,21 +1,30 @@
 import json
 import re
+from LazarusII.PyColors import printError, printWarning, printInfo, printLog, printDebug
 
 
 class LazarusUnit:
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+            sort_keys=True, indent=4)
+
     def __str__(self):
         return 'Name: ' + self.Name + ', Info: ' + self.Description + ', HP: ' + self.MaxDamage + '.'
 
     def getJsonRepresentation(self):
-        the_json = {'Name':self.Name,
-                    'Description':self.Description,
-                    'Class':self.TEDClass, 'HP':self.MaxDamage,
-                    'BuildCostEnergy':self.BuildCostEnergy,
-                    'BuildCostMetal':self.BuildCostMetal,
+        printDebug('going to grab JSON representaion...', 'getJsonRepresentation FbiData.py')
+        the_json = {'Name': self.Name,
+                    'Description': self.Description,
+                    'Class': self.TEDClass,
+                    'HP': self.MaxDamage,
+                    'BuildCostEnergy': self.BuildCostEnergy,
+                    'BuildCostMetal': self.BuildCostMetal,
+                    'JsonDump': json.loads(self.toJSON()),
                     'picture': '/static/totala_files2/unitpics/' + self.Objectname + '.png'}
-        return json.dumps(the_json)
+        return the_json
 
     def __init__(self):
+        printInfo('LazarusUnit has been initialized!')
         self.UnitName = ''
         self.Version = ''
         self.Side = ''

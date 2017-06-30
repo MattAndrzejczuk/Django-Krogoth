@@ -5,20 +5,18 @@ from os.path import isfile, join
 from PIL import Image
 import json
 
-from LazarusII.PyColors import bcolors
+from LazarusII.PyColors import bcolors, printError, printWarning, printInfo, printLog, printDebug
 from LazarusII.FbiData import LazarusUnit, remove_comments
 
 
 def readFile(file_path):
     allUnitInstances = []
-    file_object = open(file_path, 'r')
-    unit_object_rawstr = file_object.read()
+    # file_object = open(file_path, 'r', errors='replace')
+    # unit_object_rawstr = file_object.read()
 
-    # unitObj_parsed = unit_object_rawstr.split('[UNITINFO]')
-    # total_units_in_file = len(unitObj_parsed) - 1
-
-    f2 = open(file_path, 'r')
-    f3 = open(file_path, 'r')
+    printDebug('reading file: ' + file_path, 'readFile DataReaderTA.py')
+    f2 = open(file_path, 'r', errors='replace')
+    f3 = open(file_path, 'r', errors='replace')
 
     i = sum(1 for line in f2)
     u = LazarusUnit()
@@ -27,7 +25,7 @@ def readFile(file_path):
         if '{' in thisLine:
             u = LazarusUnit()
         elif '}' in thisLine:
-            allUnitInstances.append(u)
+            allUnitInstances.append(u.getJsonRepresentation())
         elif '=' in thisLine:
             keyVal = thisLine.split('=')
             keyVal[1] = keyVal[1].replace(';', '')
@@ -155,9 +153,8 @@ def readFile(file_path):
                 u.NoChaseCategory = keyVal[1].replace('\n', '')
         i -= 1
 
-    #for unit in allUnitInstances:
-    #    print(unit.getJsonRepresentation())
-
+    printLog('file reading has been completed:')
+    printInfo(file_path)
     return allUnitInstances
 
 

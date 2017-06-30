@@ -41,43 +41,319 @@
             </md-list-item>
         </md-list>
 
-        <div class="title" translate="FM.INFO">Info</div>
+        <div class="title">Info</div>
 
         <table>
             <tr class="type">
-                <th translate="FM.TYPE">Type</th>
-                <td>{{vm.selected.type}}</td>
+                <th>Name</th>
+                <td>{{vm.selected['Name']}}</td>
+            </tr>
+
+            <tr class="type">
+                <th>Class</th>
+                <td>{{vm.selected['Class']}}</td>
             </tr>
 
             <tr class="size">
-                <th translate="FM.SIZE">Size</th>
-                <td>{{vm.selected.size === '' ? '-': vm.selected.size}}</td>
+                <th>HP</th>
+                <td>{{vm.selected['JsonDump']['MaxDamage'] === '' ? '-': vm.selected['JsonDump']['MaxDamage']}}</td>
+            </tr>
+
+            <tr class="size">
+                <th>Size X</th>
+                <td>{{vm.selected['JsonDump']['FootprintX'] === '' ? '-': vm.selected['JsonDump']['FootprintX']}}</td>
+            </tr>
+
+            <tr class="size">
+                <th>Size Z</th>
+                <td>{{vm.selected['JsonDump']['FootprintZ'] === '' ? '-': vm.selected['JsonDump']['FootprintZ']}}</td>
             </tr>
 
             <tr class="location">
-                <th translate="FM.LOCATION">Location</th>
-                <td>{{vm.selected.location}}</td>
+                <th>Designation</th>
+                <td>{{vm.selected['JsonDump']['Designation']}}</td>
             </tr>
 
             <tr class="owner">
-                <th translate="FM.OWNER">Owner</th>
-                <td>{{vm.selected.owner}}</td>
+                <th>Owner</th>
+                <td>{{vm.selected['JsonDump']['Side']}}</td>
             </tr>
 
             <tr class="modified">
-                <th translate="FM.MODIFIED">Modified</th>
-                <td>{{vm.selected.modified}}</td>
+                <th>TurnRate</th>
+                <td>{{vm.selected['JsonDump']['TurnRate']}}</td>
             </tr>
 
             <tr class="opened">
-                <th translate="FM.OPENED">Opened</th>
-                <td>{{vm.selected.opened}}</td>
+                <th>BuildCostMetal</th>
+                <td>{{vm.selected['JsonDump']['BuildCostMetal']}}</td>
             </tr>
 
             <tr class="created">
-                <th translate="FM.CREATED">Created</th>
-                <td>{{vm.selected.created}}</td>
+                <th>BuildCostEnergy</th>
+                <td>{{vm.selected['JsonDump']['BuildCostEnergy']}}</td>
             </tr>
+
+
+            <tr class="created">
+                <th>BuildCostMetal</th>
+                <td>{{vm.selected['JsonDump']['BuildCostMetal']}}</td>
+            </tr>
+            <tr class="created">
+                <th>BuildCostEnergy</th>
+                <td>{{vm.selected['JsonDump']['BuildCostEnergy']}}</td>
+            </tr>
+            <tr class="created">
+                <th>TurnRate</th>
+                <td>{{vm.selected['JsonDump']['TurnRate']}}</td>
+            </tr>
+            <tr class="created">
+                <th>Category</th>
+                <td>{{vm.selected['JsonDump']['Category']}}</td>
+            </tr>
+            <tr class="created">
+                <th>Description</th>
+                <td>{{vm.selected['JsonDump']['Description']}}</td>
+            </tr>
+            <tr class="created">
+                <th>Side</th>
+                <td>{{vm.selected['JsonDump']['Side']}}</td>
+            </tr>
+            <tr class="created">
+                <th>BadTargetCategory</th>
+                <td>{{vm.selected['JsonDump']['BadTargetCategory']}}</td>
+            </tr>
+            <tr class="created">
+                <th>wpri_badTargetCategory</th>
+                <td>{{vm.selected['JsonDump']['wpri_badTargetCategory']}}</td>
+            </tr>
+            <tr class="created">
+                <th>BuildCostEnergy</th>
+                <td>{{vm.selected['JsonDump']['BuildCostEnergy']}}</td>
+            </tr>
+            <tr class="created">
+                <th>SelfDestructAs</th>
+                <td>{{vm.selected['JsonDump']['SelfDestructAs']}}</td>
+            </tr>
+            <tr class="created">
+                <th>EnergyStorage</th>
+                <td>{{vm.selected['JsonDump']['EnergyStorage']}}</td>
+            </tr>
+            <tr class="created">
+                <th>MaxSlope</th>
+                <td>{{vm.selected['JsonDump']['MaxSlope']}}</td>
+            </tr>
+            <tr class="created">
+                <th>MaxDamage</th>
+                <td>{{vm.selected['JsonDump']['MaxDamage']}}</td>
+            </tr>
+            <tr class="created">
+                <th>ThreeD</th>
+                <td>{{vm.selected['JsonDump']['ThreeD']}}</td>
+            </tr>
+            <tr class="created">
+                <th>GermanDescription</th>
+                <td>{{vm.selected['JsonDump']['GermanDescription']}}</td>
+            </tr>
+            <tr class="created">
+                <th>Acceleration</th>
+                <td>{{vm.selected['JsonDump']['Acceleration']}}</td>
+            </tr>
+            <tr class="created">
+                <th>NoChaseCategory</th>
+                <td>{{vm.selected['JsonDump']['NoChaseCategory']}}</td>
+            </tr>
+            <tr class="created">
+                <th>FootprintZ</th>
+                <td>{{vm.selected['JsonDump']['FootprintZ']}}</td>
+            </tr>
+            <tr class="created">
+                <th>BMcode</th>
+                <td>{{vm.selected['JsonDump']['BMcode']}}</td>
+            </tr>
+            <tr class="created">
+                <th>firestandorders</th>
+                <td>{{vm.selected['JsonDump']['firestandorders']}}</td>
+            </tr>
+            <tr class="created">
+                <th>NoAutoFire</th>
+                <td>{{vm.selected['JsonDump']['NoAutoFire']}}</td>
+            </tr>
+            <tr class="created">
+                <th>TEDClass</th>
+                <td>{{vm.selected['JsonDump']['TEDClass']}}</td>
+            </tr>
+            <tr class="created">
+                <th>Designation</th>
+                <td>{{vm.selected['JsonDump']['Designation']}}</td>
+            </tr>
+            <tr class="created">
+                <th>maneuverleashlength</th>
+                <td>{{vm.selected['JsonDump']['maneuverleashlength']}}</td>
+            </tr>
+            <tr class="created">
+                <th>UnitNumber</th>
+                <td>{{vm.selected['JsonDump']['UnitNumber']}}</td>
+            </tr>
+            <tr class="created">
+                <th>SoundCategory</th>
+                <td>{{vm.selected['JsonDump']['SoundCategory']}}</td>
+            </tr>
+            <tr class="created">
+                <th>EnergyMake</th>
+                <td>{{vm.selected['JsonDump']['EnergyMake']}}</td>
+            </tr>
+            <tr class="created">
+                <th>canmove</th>
+                <td>{{vm.selected['JsonDump']['canmove']}}</td>
+            </tr>
+            <tr class="created">
+                <th>DefaultMissionType</th>
+                <td>{{vm.selected['JsonDump']['DefaultMissionType']}}</td>
+            </tr>
+            <tr class="created">
+                <th>Weapon1</th>
+                <td>{{vm.selected['JsonDump']['Weapon1']}}</td>
+            </tr>
+            <tr class="created" ng-if="vm.selected['JsonDump']['Weapon2']">
+                <th>Weapon2</th>
+                <td>{{vm.selected['JsonDump']['Weapon2']}}</td>
+            </tr>
+            <tr class="created" ng-if="vm.selected['JsonDump']['Weapon3']">
+                <th>Weapon3</th>
+                <td>{{vm.selected['JsonDump']['Weapon3']}}</td>
+            </tr>
+            <tr class="created">
+                <th>MetalStorage</th>
+                <td>{{vm.selected['JsonDump']['MetalStorage']}}</td>
+            </tr>
+            <tr class="created">
+                <th>ZBuffer</th>
+                <td>{{vm.selected['JsonDump']['ZBuffer']}}</td>
+            </tr>
+            <tr class="created">
+                <th>ShootMe</th>
+                <td>{{vm.selected['JsonDump']['ShootMe']}}</td>
+            </tr>
+            <tr class="created">
+                <th>Version</th>
+                <td>{{vm.selected['JsonDump']['Version']}}</td>
+            </tr>
+            <tr class="created">
+                <th>ExplodeAs</th>
+                <td>{{vm.selected['JsonDump']['ExplodeAs']}}</td>
+            </tr>
+            <tr class="created">
+                <th>EnergyUse</th>
+                <td>{{vm.selected['JsonDump']['EnergyUse']}}</td>
+            </tr>
+            <tr class="created">
+                <th>StandingFireOrder</th>
+                <td>{{vm.selected['JsonDump']['StandingFireOrder']}}</td>
+            </tr>
+            <tr class="created">
+                <th>canattack</th>
+                <td>{{vm.selected['JsonDump']['canattack']}}</td>
+            </tr>
+
+            <tr class="created">
+                <th>Upright</th>
+                <td>{{vm.selected['JsonDump']['Upright']}}</td>
+            </tr>
+            <tr class="created">
+                <th>canguard</th>
+                <td>{{vm.selected['JsonDump']['canguard']}}</td>
+            </tr>
+            <tr class="created">
+                <th>FootprintX</th>
+                <td>{{vm.selected['JsonDump']['FootprintX']}}</td>
+            </tr>
+            <tr class="created">
+                <th>MovementClass</th>
+                <td>{{vm.selected['JsonDump']['MovementClass']}}</td>
+            </tr>
+            <tr class="created">
+                <th>Builder</th>
+                <td>{{vm.selected['JsonDump']['Builder']}}</td>
+            </tr>
+            <tr class="created">
+                <th>FrenchDescription</th>
+                <td>{{vm.selected['JsonDump']['FrenchDescription']}}</td>
+            </tr>
+            <tr class="created">
+                <th>BuildTime</th>
+                <td>{{vm.selected['JsonDump']['BuildTime']}}</td>
+            </tr>
+            <tr class="created">
+                <th>Name</th>
+                <td>{{vm.selected['JsonDump']['Name']}}</td>
+            </tr>
+            <tr class="created">
+                <th>BrakeRate</th>
+                <td>{{vm.selected['JsonDump']['BrakeRate']}}</td>
+            </tr>
+            <tr class="created">
+                <th>MaxVelocity</th>
+                <td>{{vm.selected['JsonDump']['MaxVelocity']}}</td>
+            </tr>
+            <tr class="created">
+                <th>Copyright</th>
+                <td>{{vm.selected['JsonDump']['Copyright']}}</td>
+            </tr>
+            <tr class="created">
+                <th>MaxWaterDepth</th>
+                <td>{{vm.selected['JsonDump']['MaxWaterDepth']}}</td>
+            </tr>
+            <tr class="created">
+                <th>RadarDistance</th>
+                <td>{{vm.selected['JsonDump']['RadarDistance']}}</td>
+            </tr>
+            <tr class="created">
+                <th>Corpse</th>
+                <td>{{vm.selected['JsonDump']['Corpse']}}</td>
+            </tr>
+            <tr class="created">
+                <th>canpatrol</th>
+                <td>{{vm.selected['JsonDump']['canpatrol']}}</td>
+            </tr>
+            <tr class="created">
+                <th>StandingMoveOrder</th>
+                <td>{{vm.selected['JsonDump']['StandingMoveOrder']}}</td>
+            </tr>
+            <tr class="created">
+                <th>mobilestandorders</th>
+                <td>{{vm.selected['JsonDump']['mobilestandorders']}}</td>
+            </tr>
+            <tr class="created">
+                <th>WorkerTime</th>
+                <td>{{vm.selected['JsonDump']['WorkerTime']}}</td>
+            </tr>
+            <tr class="created">
+                <th>UnitName</th>
+                <td>{{vm.selected['JsonDump']['UnitName']}}</td>
+            </tr>
+            <tr class="created">
+                <th>SightDistance</th>
+                <td>{{vm.selected['JsonDump']['SightDistance']}}</td>
+            </tr>
+            <tr class="created">
+                <th>SteeringMode</th>
+                <td>{{vm.selected['JsonDump']['SteeringMode']}}</td>
+            </tr>
+            <tr class="created">
+                <th>canstop</th>
+                <td>{{vm.selected['JsonDump']['canstop']}}</td>
+            </tr>
+            <tr class="created">
+                <th>Objectname</th>
+                <td>{{vm.selected['JsonDump']['Objectname']}}</td>
+            </tr>
+            <tr class="created">
+                <th>BuildCostEnergy</th>
+                <td>{{vm.selected['JsonDump']['BuildCostEnergy']}}</td>
+            </tr>
+
+
         </table>
     </div>
 

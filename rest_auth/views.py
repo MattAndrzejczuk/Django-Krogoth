@@ -193,7 +193,8 @@ class LazarusListUnits(APIView):
                         img.save(imgSaveTo, format='png')
                         self.jsonResponse.append(
                             {
-                                'thumbnail': '/static/' + mod_name + '/unitpics/' + filename + '.png',
+                                'thumbnail': '/static' + mod_name + 'unitpics/' + filename + '.png',
+                                'thumbnail2': '/static' + mod_name + 'unitpics/' + filename + '.png',
                                 'object_name': filename,
                                 'system_location': imgSaveTo,
                                 'fbi_file': '/static/' + mod_name + '/units/' + filename + '.fbi',

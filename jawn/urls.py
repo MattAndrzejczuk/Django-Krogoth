@@ -12,6 +12,9 @@ Class-based views
 Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
+
+
+
 """
 from django.conf.urls import url, include
 # from rest_framework.urlpatterns import format_suffix_patterns
@@ -34,7 +37,9 @@ router.register(r'private-message-relationships', PrivateMessageRelationshipSet,
 router.register(r'regions', RegionViewSet, 'Region')
 router.register(r'link-messages', LinkMessageViewSet)
 router.register(r'youtube-messages', YouTubeMessageViewSet)
-router.register(r'youtube', YouTubeMessageViewSet) # LEGACY SUPPORT OF iOS 8 VERSION, THE iOS 8 CLIENT MUST BE UPDATED SO WE CAN REMOVE THIS LINE LATER
+router.register(r'youtube', YouTubeMessageViewSet)
+
+# LEGACY SUPPORT OF iOS 8 VERSION, THE iOS 8 CLIENT MUST BE UPDATED SO WE CAN REMOVE THIS LINE LATER
 
 urlpatterns = [
     url(r'^api/', include(router.urls)),

@@ -28,4 +28,37 @@ class bcolors:
 
 
 def printKeyValuePair(key, value):
-    print(bcolors.blue + str(key) + bcolors.ENDC + bcolors.orange + ' : ' + bcolors.ENDC + bcolors.cyan + str(value) + bcolors.ENDC)
+    try:
+        print(bcolors.blue + str(key) + bcolors.ENDC + bcolors.orange + ' : ' + bcolors.ENDC + bcolors.cyan + str(value) + bcolors.ENDC)
+    except:
+        print('FAIL! printKeyValuePair')
+def printError(msg):
+    try:
+       print('\033[96m[' + '\033[31mError\033[0m' + '\033[96m]\033[0m: \033[31m' + str(msg) + '\033[0m')
+    except:
+        print('FAIL! printError')
+
+def printWarning(msg):
+    try:
+        print('\033[96m[' + '\033[91mWarning\033[0m' + '\033[96m]\033[0m: \033[33m' + str(msg) + '\033[0m')
+    except:
+        print('FAIL! printWarning')
+
+def printInfo(msg):
+    try:
+        print('\033[96m[' + '\033[94mInfo\033[0m' + '\033[96m]\033[0m: ' + str(msg) + '\033[0m')
+    except:
+        print('FAIL! printInfo')
+
+def printLog(msg):
+    try:
+        print('\033[96m[' + '\033[33mLog\033[0m' + '\033[96m]\033[0m: \033[92m' + str(msg) + '\033[0m')
+    except:
+        print('FAIL! printLog')
+
+def printDebug(msg, origin):
+    try:
+        print('\033[96m[\033[36m' + origin + '\033[0m\033[96m]\033[0m: \033[34m' + str(msg) + '\033[0m')
+    except:
+        print('FAIL! printDebug')
+

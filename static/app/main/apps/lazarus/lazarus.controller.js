@@ -1,5 +1,4 @@
-(function ()
-{
+(function () {
     'use strict';
 
     angular
@@ -7,13 +6,12 @@
         .controller('LazarusController', LazarusController);
 
     /** @ngInject */
-    function LazarusController($mdSidenav, Documents, $log)
-    {
+    function LazarusController($mdSidenav, Documents, $log, $http) {
         var vm = this;
 
         // Data
         vm.accounts = {
-            'creapond'    : 'johndoe@creapond.com',
+            'creapond': 'johndoe@creapond.com',
             'withinpixels': 'johndoe@withinpixels.com'
         };
         vm.selectedAccount = 'creapond';
@@ -43,22 +41,21 @@
          *
          * @param file
          */
-        function fileAdded(file)
-        {
+        function fileAdded(file) {
             // Prepare the temp file data for file list
             var uploadingFile = {
-                id       : file.uniqueIdentifier,
-                file     : file,
-                type     : '',
-                owner    : 'Emily Bennett',
-                size     : '',
-                modified : moment().format('MMMM D, YYYY'),
-                opened   : '',
-                created  : moment().format('MMMM D, YYYY'),
+                id: file.uniqueIdentifier,
+                file: file,
+                type: '',
+                owner: 'Emily Bennett',
+                size: '',
+                modified: moment().format('MMMM D, YYYY'),
+                opened: '',
+                created: moment().format('MMMM D, YYYY'),
                 extention: '',
-                location : 'My Files > Documents',
-                offline  : false,
-                preview  : '/static/assets/images/etc/sample-file-preview.jpg'
+                location: 'My Files > Documents',
+                offline: false,
+                preview: '/static/assets/images/etc/sample-file-preview.jpg'
             };
 
             // Append it to the file list
@@ -66,15 +63,27 @@
         }
 
 
-
         /**
          * Select an item
          *
          * @param item
          */
-        function select(item)
-        {
-            vm.selected = item;
+        function select(item) {
+            console.log(item);
+            // Simple GET request example:
+            $http({
+                method: 'GET',
+                url: item['RESTful_unit_data']
+            }).then(function successCallback(response) {
+
+                vm.selected = response.data[0];
+                console.log(response.data[0]);
+                // this callback will be called asynchronously
+                // when the response is available
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
         }
 
         /**
@@ -82,8 +91,7 @@
          *
          * @param item
          */
-        function toggleDetails(item)
-        {
+        function toggleDetails(item) {
             vm.selected = item;
             toggleSidenav('details-sidenav');
         }
@@ -93,16 +101,14 @@
          *
          * @param sidenavId
          */
-        function toggleSidenav(sidenavId)
-        {
+        function toggleSidenav(sidenavId) {
             $mdSidenav(sidenavId).toggle();
         }
 
         /**
          * Toggle view
          */
-        function toggleView()
-        {
+        function toggleView() {
             vm.currentView = vm.currentView === 'list' ? 'grid' : 'list';
         }
     }
