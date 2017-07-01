@@ -40,6 +40,7 @@
             'app.notes',
             /// 'app.sample',
             'app.lazarus',
+            'app.toastCtrl',
 
             // Pages
             'app.pages',

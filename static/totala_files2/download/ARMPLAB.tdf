@@ -1,7 +1,0 @@
-[MENUENTRY1]
-	{
-	MENU=8;
-	BUTTON=5;
-	UNITNAME=ARMPLAB; //CORE Praetorian Lab (Builds Praetorian kbots)
-	UNITMENU=ARMACK; //ARM Adv. Construction Kbot (Tech Level 2)
-	}

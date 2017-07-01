@@ -19,7 +19,7 @@
     </div>
 
     <div>
-        <div class="title">{{vm.selected.name}}</div>
+        <div class="title">{{vm.selected['Name']}}</div>
         <div class="subtitle secondary-text"><span translate="FM.EDITED">Edited</span>: {{vm.selected.modified}}</div>
     </div>
 </div>
@@ -30,9 +30,10 @@
 
     <div class="file-details">
         <div class="preview file-icon" layout="row" layout-align="center center">
-            <i class="icon-{{vm.selected.type}} s48"></i>
+            <i class="icon-{{vm.selected['Class']}} s48"></i>
         </div>
 
+        <!--
         <md-list class="offline-switch">
             <md-list-item>
                 <p translate="FM.AVAILABLE_OFFLINE">Available Offline</p>
@@ -40,6 +41,7 @@
                            translate-attr-aria-label="FM.TOOGLE_OFFLINE"></md-switch>
             </md-list-item>
         </md-list>
+        -->
 
         <div class="title">Info</div>
 
@@ -91,9 +93,8 @@
 
             <tr class="created">
                 <th>BuildCostEnergy</th>
-                <td>{{vm.selected['JsonDump']['BuildCostEnergy']}}</td>
+                <td><div class="md-accent-bg unread-message-count ng-binding ng-scope">{{vm.selected['JsonDump']['BuildCostEnergy']}}</div></td>
             </tr>
-
 
             <tr class="created">
                 <th>BuildCostMetal</th>
@@ -329,7 +330,9 @@
                 <td>{{vm.selected['JsonDump']['WorkerTime']}}</td>
             </tr>
             <tr class="created">
-                <th>UnitName</th>
+                <th>
+                    <div class="label ng-binding ng-scope md-blue-grey-500-bg">UnitName</div>
+                </th>
                 <td>{{vm.selected['JsonDump']['UnitName']}}</td>
             </tr>
             <tr class="created">

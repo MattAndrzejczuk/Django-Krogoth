@@ -1,4 +1,5 @@
 <!-- LIST VIEW -->
+<md-button ng-click="vm.showCustomToast('yes')">toast example</md-button>
 <table class="simple list-view">
     <thead>
         <tr>
@@ -9,8 +10,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="file in vm.files | filter:global.search" ng-click="vm.select(file)" ng-class="{'selected' : vm.selected === file}">
-            <td class="image"><img src="{{file['thumbnail']}}" ></td>
+        <tr ng-repeat="file in vm.files | filter:global.search" ng-click="vm.select(file)" ng-class="{'selected' : vm.selected['JsonDump']['UnitName'].toLowerCase() === file['object_name'].toLowerCase()}">
+            <td class="image"><img md-whiteframe="1" src="{{file['thumbnail']}}" ></td>
             <td class="name">{{file['thumbnail']}}</td>
             <td class="type" hide show-gt-sm>{{file['object_name']}}</td>
             <td class="owner" hide-xs>{{file['system_location']}}</td>
@@ -24,3 +25,6 @@
             "system_location": "/usr/src/app/static/totala_files/unitpics/CORSONAR.png"
 }
 -->
+
+
+

@@ -29,9 +29,28 @@ class bcolors:
 
 def printKeyValuePair(key, value):
     try:
+        print(bcolors.lightcyan + str(key) + bcolors.ENDC + bcolors.orange + ' : ' + bcolors.ENDC + bcolors.lightblue + str(value) + bcolors.ENDC)
+    except:
+        print('FAIL! printKeyValuePair')
+
+def printKeyValuePair1(key, value):
+    try:
+        print(bcolors.purple + str(key) + bcolors.ENDC + bcolors.pink + ' : ' + bcolors.ENDC + bcolor + str(value) + bcolors.ENDC)
+    except:
+        print('FAIL! printKeyValuePair')
+
+def printKeyValuePair2(key, value):
+    try:
+        print(bcolors.OKBLUE + str(key) + bcolors.ENDC + bcolors.TEAL + ' : ' + bcolors.ENDC + bcolors.OKBLUE + str(value) + bcolors.ENDC)
+    except:
+        print('FAIL! printKeyValuePair')
+
+def printKeyValuePair3(key, value):
+    try:
         print(bcolors.blue + str(key) + bcolors.ENDC + bcolors.orange + ' : ' + bcolors.ENDC + bcolors.cyan + str(value) + bcolors.ENDC)
     except:
         print('FAIL! printKeyValuePair')
+
 def printError(msg):
     try:
        print('\033[96m[' + '\033[31mError\033[0m' + '\033[96m]\033[0m: \033[31m' + str(msg) + '\033[0m')
@@ -43,6 +62,7 @@ def printWarning(msg):
         print('\033[96m[' + '\033[91mWarning\033[0m' + '\033[96m]\033[0m: \033[33m' + str(msg) + '\033[0m')
     except:
         print('FAIL! printWarning')
+
 
 def printInfo(msg):
     try:

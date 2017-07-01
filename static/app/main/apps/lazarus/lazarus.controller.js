@@ -6,7 +6,7 @@
         .controller('LazarusController', LazarusController);
 
     /** @ngInject */
-    function LazarusController($mdSidenav, Documents, $log, $http) {
+    function LazarusController($mdSidenav, Documents, $log, $http, $mdToast, $mdDialog) {
         var vm = this;
 
         // Data
@@ -26,14 +26,82 @@
         vm.selected = vm.files[0];
 
 
-        // Methods
+        // Fuse Methods
         vm.fileAdded = fileAdded;
         vm.select = select;
         vm.toggleDetails = toggleDetails;
         vm.toggleSidenav = toggleSidenav;
         vm.toggleView = toggleView;
 
+        // ArmPrime Variables - Toast
+        vm.isDlgOpen = false;
+
+        // ArmPrime Methods - Toast
+        vm.closeToast = closeToast;
+        vm.openMoreInfo = openMoreInfo;
+        vm.showCustomToast = showCustomToast;
+
+
+        // ArmPrime Sound Effects
+        vm.playSoundError = playSoundError;
+        vm.playSoundClickUnit = playSoundClickUnit;
+
         //////////
+
+        function playSoundError() {
+            var audio = new Audio("/static/gui_sfx/alert_warn1.wav");
+            audio.play();
+        }
+
+        function playSoundClickUnit() {
+            var audio = new Audio("/static/gui_sfx/click_select_units.wav");
+            audio.play();
+        }
+
+
+        function showCustomToast(msg) {
+            if (msg) {
+                var final_msg = msg.replace(" ", "%20");
+                $mdToast.show({
+                    hideDelay: 4000,
+                    position: 'bottom left',
+                    controller: 'ToastCtrl',
+                    templateUrl: '/LazarusII/CustomToast/?msg=' + final_msg
+                });
+            }
+        }
+
+
+        function closeToast() {
+            if (vm.isDlgOpen) return;
+
+            $mdToast
+                .hide()
+                .then(function () {
+                    vm.isDlgOpen = false;
+                    $log.info('TODO: add close sound effect here.');
+                });
+        }
+
+
+        function openMoreInfo(e) {
+            if (vm.isDlgOpen) return;
+
+            vm.isDlgOpen = true;
+            $mdDialog
+                .show($mdDialog
+                    .alert()
+                    .title('More info goes here.')
+                    .textContent('Something witty.')
+                    .ariaLabel('More info')
+                    .ok('Got it')
+                    .targetEvent(e)
+                )
+                .then(function () {
+                    vm.isDlgOpen = false;
+                })
+        }
+
 
         /**
          * File added callback
@@ -75,12 +143,15 @@
                 method: 'GET',
                 url: item['RESTful_unit_data']
             }).then(function successCallback(response) {
-
+                vm.playSoundClickUnit();
                 vm.selected = response.data[0];
                 console.log(response.data[0]);
                 // this callback will be called asynchronously
                 // when the response is available
             }, function errorCallback(response) {
+                console.log(response.data);
+                showCustomToast('Failed to load unit, we will resolve this issue soon!');
+                vm.playSoundError();
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
@@ -111,5 +182,34 @@
         function toggleView() {
             vm.currentView = vm.currentView === 'list' ? 'grid' : 'list';
         }
+    }
+})();
+
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.toastCtrl',
+            [
+                // 3rd Party Dependencies
+                'flow'
+            ]
+        );
+
+})();
+
+(function () {
+    'use strict';
+    angular
+        .module('app.toastCtrl')
+        .controller('ToastCtrl', ToastCtrl);
+    /** @ngInject */
+    function ToastCtrl($scope, $mdToast) {
+        var vm = this;
+
+        $scope.closeToast = function () {
+            $mdToast.hide();
+        };
     }
 })();

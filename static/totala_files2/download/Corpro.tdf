@@ -1,8 +1,0 @@
-[MENUENTRY1]
-	{
-	UNITMENU=CORAAP; //CORE Adv. Aircraft Plant (Produces Aircraft)
-	MENU=4;
-	BUTTON=1;
-	UNITNAME=CORPRO; //CORE Prometheus (Fighter-napalm bomber L2)
-	}
-
