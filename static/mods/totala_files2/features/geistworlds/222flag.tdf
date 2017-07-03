@@ -1,0 +1,47 @@
+[Flag]
+	{
+	world=GeistWorlds;
+	description=222Flag;
+	category=Flags;
+	animating=1;
+	footprintx=2;
+	footprintz=1;
+	height=20;
+	filename=222Flag;
+	seqname=Flag1;
+	seqnameshad=;
+	seqnamereclamate=;
+	energy=;
+	
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=0;
+	hitdensity=10;
+	damage=32009; 
+	blocking=1;
+	indestructible=1; 	
+	}
+
+[Flag2]
+	{
+	world=GeistWorlds;
+	description=222 Flag;
+	category=Flags;
+	animating=1;
+	footprintx=2;
+	footprintz=1;
+	height=20;
+	filename=222Flag2;
+	seqname=Flag2;
+	seqnameshad=Flag2shad;
+	seqnamereclamate=;
+	energy=;
+	
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=0;
+	hitdensity=10;
+	damage=32009; 
+	blocking=1;
+	indestructible=0; 	
+	}

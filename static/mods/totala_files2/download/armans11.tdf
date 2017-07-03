@@ -1,0 +1,14 @@
+[MENUENTRY1]
+	{
+                    UNITMENU=ARMANS;
+                    MENU=8;
+                    BUTTON=4;
+                    UNITNAME=ARMFRT;
+	}
+[MENUENTRY2]
+	{
+                    UNITMENU=ARMANS;
+                    MENU=8;
+                    BUTTON=5;
+                    UNITNAME=ARMTL;
+	}

@@ -1,0 +1,177 @@
+[VerLamp1]
+	{
+	world=Veruna;
+	description=Lamp;
+	category=Misc;
+	animating=1;
+	footprintx=2;
+	footprintz=3;
+	height=55;
+	filename=VerLamp;
+	seqname=verLamp01;
+	seqnameshad=verlampShad01;
+	seqnamereclamate=verLampDie01;
+	energy=5;
+
+	seqnamedie=verLampDie01;
+	featuredead=verLamp1a;
+
+	damage=50;
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=VerLamp1a;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VerLampBurning1]
+	{
+	world=Veruna;
+	description=Lamp Burning;
+	category=Misc;
+	animating=1;
+	footprintx=2;
+	footprintz=3;
+	height=55;
+	filename=VerLamp;
+	seqname=verLampBurning01;
+	seqnameshad=verlampFlame01;
+	seqnamereclamate=verLampDie01;
+	energy=525;
+
+	seqnamedie=verLampDie01;
+	featuredead=verLamp1a;
+
+	damage=50;
+	reclaimable=1;
+	featurereclamate=VerLamp1a;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VerLamp1a]
+	{
+	world=Veruna;
+	description=Destroyed Lamp;
+	category=Misc;
+	footprintx=2;
+	footprintz=3;
+	height=30;
+	filename=VerLamp;
+	seqname=VerLamp01a;
+	seqnameshad=verlampshad01a;
+
+	metal=140;
+	reclaimable=1;
+	permanent=1;
+	damage=450;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VerLamp2]
+	{
+	world=Veruna;
+	description=Lamp;
+	category=Misc;
+	animating=1;
+	footprintx=1;
+	footprintz=2;
+	height=45;
+	filename=VerLamp;
+	seqname=verLamp02;
+	seqnameshad=verlampShad02;
+	seqnamereclamate=verLampDie02;
+	energy=5;
+
+	seqnamedie=VerLampDie02;
+	featuredead=verlamp2a;
+
+	damage=50;
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=VerLamp2a;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VerLampBurning2]
+	{
+	world=Veruna;
+	description=Lamp Burning;
+	category=Misc;
+	animating=1;
+	footprintx=1;
+	footprintz=2;
+	height=45;
+	filename=VerLamp;
+	seqname=verLampBurning02;
+	seqnameshad=verlampFlame02;
+	seqnamereclamate=verLampDie02;
+	energy=525;
+
+	seqnamedie=VerLampDie02;
+	featuredead=verLamp2a;
+
+	damage=50;
+	reclaimable=1;
+	featurereclamate=VerLamp2a;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VerLamp2a]
+	{
+	world=Veruna;
+	description=Destroyed Lamp;
+	category=Misc;
+	footprintx=1;
+	footprintz=2;
+	height=30;
+	filename=VerLamp;
+	seqname=verLamp02a;
+	seqnameshad=verlampshad02a;
+
+	metal=140;
+	reclaimable=1;
+	permanent=1;
+	damage=450;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VerLamp03]
+	{
+	world=Veruna;
+	description=Lamp;
+	category=misc;
+	footprintx=4;
+	footprintz=4;
+	height=96;
+	filename=TAKmisc;
+	seqname=verLamp03;
+	seqnameshad=verlampshad03;
+
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}
+
+[VerLamp04]
+	{
+	world=Veruna;
+	description=Lamp;
+	category=misc;
+	footprintx=2;
+	footprintz=2;
+	height=77;
+	filename=TAKmisc;
+	seqname=verLamp04;
+	seqnameshad=verlampshad04;
+
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}

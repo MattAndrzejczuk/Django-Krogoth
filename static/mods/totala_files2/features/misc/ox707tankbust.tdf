@@ -1,0 +1,85 @@
+// Rules of Trigger Features - Trigger Features take 'X amount' of damage then turn into
+//    the next set feature. Triggers can be animated or transparent also.
+//
+// Rules of Burn Features -  Burn features can take 'X amount' of damage and die (not burn)
+//     or can be set to burn. Once it is effected it will burn (could take 1 little shot
+//     to make it burn). Once it burns it will die. Burning has weapon settings, thus once
+//     a feature burns, you can set it to blow up or something.
+//
+// Rules of Void Features - Basically the final sequence of the effect. Usually is just a 
+//    void or even a special image. Voids can be set with hitdensities of 0 to 100. So this
+//    could be like a spire or just a flat plane.
+//
+//
+// Rules of Features: Any feature that dies cannot be over a total of 20 betweeen the total of
+//    footprintx and footprintz
+//
+//
+//
+//  1 footprint =  16 pixels
+//  2 footprint =  32 pixels
+//  3 footprint =  48 pixels
+//  4 footprint =  64 pixels
+//  5 footprint =  80 pixels
+//  6 footprint =  96 pixels
+//  7 footprint = 112 pixels
+//  8 footprint = 128 pixels
+//  9 footprint = 144 pixels
+// 10 footprint = 160 pixels
+// 11 footprint = 176 pixels
+// 12 footprint = 192 pixels
+
+
+[PTankBlank1]  // Fuel Tank Trigger (YOU ONLY PLACE THIS FEATURE ON MAPS)
+	{
+	world=oxigen707;
+	description=PlasmaTank;
+	category=Oxigen707;
+	animating=1;
+   	footprintx=7;
+    	footprintz=7;
+	height=100;
+	filename=OX707tankbust;
+	seqname=tankbust01;  
+	featuredead=PTankDeath1;
+	seqnamedie=tankb-boom01; 
+	shadtrans=0;	
+	animtrans=0;
+	hitdensity=90;
+	damage=250;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	}
+
+
+[PTankDeath1]  // Laser Bridge Burn Trigger
+	{
+	world=oxigen707;
+	description=PlasmaTank;
+	category=Unplaceable;
+	animating=1;
+	footprintx=7;
+	footprintz=7;
+	height=100;
+	filename=Ox707tankbust;
+	seqname=tankbust02;   			//no anim, comp, 20 frames
+	seqnameshad=tankbustshad01;        			//no anim, comp, 20 frames
+	seqnameburn=tankbustburn01;          	//no anim, comp, 48 frames and 113 sub
+	burnmin=3;
+	burnmax=7;
+	sparktime=1;
+	spreadchance=100;
+	burnweapon=LASERBLOW;
+	seqnamedie=tankb-boom02;     		//no anim, comp, 19 frames and 41 sub
+	damage=250;
+	animtrans=0;
+	shadtrans=0;
+	flamable=1;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=90;
+	}
+

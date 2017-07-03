@@ -1,0 +1,61 @@
+[COREBFORTNS]
+	{
+	world=allworld;
+	description=N/S Bertha Shelter;
+	category=Allworld;
+	object=COREBFORTNS;
+	footprintx=2;
+	footprintz=8;
+	height=125;
+	blocking=1;
+	hitdensity=97;
+	metal=400;
+	damage=10000;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=COREBFORTNS_DEAD;
+	featuredead=COREBFORTNS_DEAD;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREBFORTNS_DEAD]
+	{
+	world=allworld;
+	description=Rubble;
+	category=Allworld;
+	object=COREBFORTNS_DEAD;
+	featuredead=COREBFORTNS_HEAP;
+	footprintx=2;
+	footprintz=8;
+	height=55;
+	blocking=1;
+	hitdensity=97;
+	metal=200;
+	damage=5000;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=COREBFORTNS_HEAP;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREBFORTNS_HEAP]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=Allworld;
+	object=2x8NS_HEAP;
+	footprintx=2;
+	footprintz=8;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=100;
+	damage=1250;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}

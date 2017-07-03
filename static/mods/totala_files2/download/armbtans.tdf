@@ -1,0 +1,15 @@
+[MENUENTRY1]
+	{
+                    UNITMENU=ARMACSUB;
+                    MENU=4;
+                    BUTTON=2;
+                    UNITNAME=ARMBTANS;
+	}
+
+[MENUENTRY2]
+                    {
+                    UNITMENU=ARMACA;
+                    MENU=7;
+                    BUTTON=2;
+                    UNITNAME=ARMBTANS;
+                    }

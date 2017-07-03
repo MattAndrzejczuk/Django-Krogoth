@@ -1,0 +1,9 @@
+//ARM "Mechlab" Builds L3 Technology
+
+[MENUENTRY1]
+	{
+	UNITMENU=ARMACK;
+	MENU=4;
+	BUTTON=4;
+	UNITNAME=ARMMECHL;
+	}

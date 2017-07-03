@@ -1,0 +1,39 @@
+[MENUENTRY1]
+	{
+	UNITMENU=ARMCA; //ARM Construction Aircraft (Tech Level 1)
+	MENU=5;
+	BUTTON=1;
+	UNITNAME=ARMHPNS; //ARM Hovercraft Platform - NS (Builds Hovercraft)
+	}
+
+[MENUENTRY2]
+        {
+        UNITMENU=ARMCSA;
+        MENU=6;
+        BUTTON=5;
+        UNITNAME=ARMHPNS;
+        }
+
+[MENUENTRY3]
+                    {
+	UNITMENU=ARMCS; //ARM Construction Ship (Tech Level 1)
+	MENU=4;
+	BUTTON=1;
+	UNITNAME=ARMHPNS; //ARM Hovercraft Platform - NS (Builds Hovercraft)
+                    }
+
+[MENUENTRY4]
+	{
+	MENU=6;
+	BUTTON=5;
+	UNITNAME=ARMHPNS; //ARM Hovercraft Platform - NS (Builds Hovercraft)
+	UNITMENU=ARMCH; //ARM Construction Hovercraft (Tech Level 1)
+	}
+
+[MENUENTRY5]
+	{
+	MENU=5;
+	BUTTON=4;
+	UNITNAME=ARMHPNS; //ARM Hovercraft Platform - NS (Builds Hovercraft)
+	UNITMENU=AACH; //ARM Adv. Construction Hover (Tech Level 2)
+	}

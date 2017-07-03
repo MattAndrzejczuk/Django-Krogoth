@@ -1,0 +1,125 @@
+[HrothMetal1]  // Small
+	{
+	world=Future;
+	description=Metal;
+	category=Future;
+	animating=1;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	filename=hrothmetal;
+	seqname=hrothmetal01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[HrothMetal2]  // Medium
+	{
+	world=Future;
+	description=Metal;
+	category=Future;
+	animating=1;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	filename=hrothmetal;
+	seqname=hrothmetal02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=140;
+	damage=32009;
+	indestructible=1;
+	}
+
+[HrothMetal3]  // Huge
+	{
+	world=Future;
+	description=Metal;
+	category=Future;
+	animating=1;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	filename=hrothmetal;
+	seqname=hrothmetal03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=235;
+	damage=32009;
+	indestructible=1;
+	}
+
+[HrothMetal4]  // V
+	{
+	world=Future;
+	description=Metal;
+	category=Future;
+	animating=1;
+    	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=hrothmetal;
+	seqname=hrothmetal04;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=175;
+	damage=32009;
+	indestructible=1;
+	}
+
+[HrothMetal5]  // A
+	{
+	world=Future;
+	description=Metal;
+	category=Future;
+	animating=1;
+    	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=hrothmetal;
+	seqname=hrothmetal05; 
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=175;
+	damage=32009;
+	indestructible=1;
+	}
+
+[HrothMetal6]  // T
+	{
+	world=Future;
+	description=Metal;
+	category=Future;
+	animating=1;
+    	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=hrothmetal;
+	seqname=hrothmetal06; 
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=175;
+	damage=32009;
+	indestructible=1;
+	}

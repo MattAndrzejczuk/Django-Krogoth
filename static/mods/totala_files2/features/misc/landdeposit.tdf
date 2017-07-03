@@ -1,0 +1,218 @@
+[LandDeposit_dead]
+	{
+	blocking=1;
+	world=All Worlds;
+	description=Nano-Metal;
+	category=reclaimable metal;
+	footprintx=1;
+	footprintz=1;
+	filename=Liquid;
+	seqname=Liquid1;
+
+	hitdensity=5;
+	metal=110;
+	damage=32009;
+	reclaimable=1;
+	autoreclaimable=1;
+
+	featuredead=LandDeposit02_dead;
+	featurereclamate=LandDeposit02_dead;
+	}
+
+[LandDeposit02_dead]
+	{
+	blocking=1;
+	world=All Worlds;
+	description=Nano-Metal;
+	category=reclaimable metal;
+	footprintx=1;
+	footprintz=1;
+	filename=liquid;
+	seqname=liquid2;
+
+	hitdensity=5;
+	metal=120;
+	damage=32009;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+
+	featuredead=LandDeposit03_dead;
+	featurereclamate=LandDeposit03_dead;
+	}
+
+[LandDeposit03_dead]
+	{
+	blocking=1;
+	world=All Worlds;
+	description=Nano-Metal;
+	category=reclaimable metal;
+	footprintx=1;
+	footprintz=1;
+	filename=Liquid;
+	seqname=Liquid3;
+
+	hitdensity=5;
+	metal=130;
+	damage=32009;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+
+	featuredead=LandDeposit04_dead;
+	featurereclamate=LandDeposit04_dead;
+	}
+
+[LandDeposit04_dead]
+	{
+	blocking=1;
+	world=All Worlds;
+	description=Nano-Metal;
+	category=reclaimable metal;
+	footprintx=1;
+	footprintz=1;
+	filename=Liquid;
+	seqname=Liquid4;
+
+	hitdensity=5;
+	metal=140;
+	damage=32009;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+
+	featuredead=LandDeposit05_dead;
+	featurereclamate=LandDeposit05_dead;
+	}
+
+[LandDeposit05_dead]
+	{
+	blocking=1;
+	world=All Worlds;
+	description=Nano-Metal;
+	category=reclaimable metal;
+	footprintx=1;
+	footprintz=1;
+	filename=Liquid;
+	seqname=Liquid5;
+
+	hitdensity=5;
+	metal=150;
+	damage=32009;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+
+	featuredead=LandDeposit06_dead;
+	featurereclamate=LandDeposit06_dead;
+	}
+
+[LandDeposit06_dead]
+	{
+	blocking=1;
+	world=All Worlds;
+	description=Nano-Metal;
+	category=reclaimable metal;
+	footprintx=1;
+	footprintz=1;
+	filename=Liquid;
+	seqname=Liquid6;
+
+	hitdensity=5;
+	metal=160;
+	damage=32009;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+
+	featuredead=LandDeposit07_dead;
+	featurereclamate=LandDeposit07_dead;
+	}
+
+[LandDeposit07_dead]
+	{
+	blocking=1;
+	world=All Worlds;
+	description=Nano-Metal;
+	category=reclaimable metal;
+	footprintx=1;
+	footprintz=1;
+	filename=Liquid;
+	seqname=Liquid7;
+
+	hitdensity=5;
+	metal=170;
+	damage=32009;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+
+	featuredead=LandDeposit08_dead;
+	featurereclamate=LandDeposit08_dead;
+	}
+
+[LandDeposit08_dead]
+	{
+	blocking=1;
+	world=All Worlds;
+	description=Nano-Metal;
+	category=reclaimable metal;
+	footprintx=1;
+	footprintz=1;
+	filename=Liquid;
+	seqname=Liquid8;
+
+	hitdensity=5;
+	metal=180;
+	damage=32009;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+
+	featuredead=LandDeposit09_dead;
+	featurereclamate=LandDeposit09_dead;
+	}
+
+[LandDeposit09_dead]
+	{
+	blocking=1;
+	world=All Worlds;
+	description=Nano-Metal;
+	category=reclaimable metal;
+	footprintx=1;
+	footprintz=1;
+	filename=Liquid;
+	seqname=Liquid9;
+
+	hitdensity=5;
+	metal=190;
+	damage=32009;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+
+	featuredead=LandDeposit10_dead;
+	featurereclamate=LandDeposit10_dead;
+	}
+
+[LandDeposit10_dead]
+	{
+	blocking=1;
+	world=All Worlds;
+	description=Nano-Metal;
+	category=reclaimable metal;
+	footprintx=1;
+	footprintz=1;
+	filename=Liquid;
+	seqname=Liquid10;
+
+	hitdensity=5;
+	metal=200;
+	damage=32009;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+
+	featuredead=LandDeposit11_dead;
+	featurereclamate=LandDeposit11_dead;
+	}

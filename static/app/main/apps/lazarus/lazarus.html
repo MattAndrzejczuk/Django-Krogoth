@@ -2,7 +2,8 @@
 
     <!-- MAIN SIDENAV (EXTRA SIDENAV) -->
     <md-sidenav class="main-sidenav" md-component-id="main-sidenav"
-                ng-include="'/static/app/main/apps/lazarus/sidenavs/main/main-sidenav.html'" ms-scroll ms-sidenav-helper>
+                ng-include="'/static/app/main/apps/lazarus/sidenavs/main/main-sidenav.html'" ms-scroll
+                ms-sidenav-helper>
     </md-sidenav>
     <!-- / MAIN SIDENAV (EXTRA SIDENAV) -->
 
@@ -17,6 +18,33 @@
                 <p>Some Shit Will Just go here.</p>
             </div>
 
+            <!-- ADD FILE BUTTON -->
+            <div id="file-uploader"
+                 flow-init="vm.ngFlowOptions"
+                 flow-name="vm.ngFlow.flow"
+                 flow-files-submitted="vm.upload()"
+                 flow-file-added="vm.fileAdded($file)"
+                 flow-file-success="vm.fileSuccess($file, $message)"
+                 flow-complete="vm.uploadComplete()">
+
+
+                <md-button flow-btn class="add-file-button md-fab md-warn"
+                           aria-label="Add ufo, hpi, or ccx file">
+                    <md-icon md-font-icon="icon-plus"></md-icon>
+                    <md-tooltip>
+                        Upload ufo, hpi, gp3 or ccx file to customize your own Total Annihilation mod.
+                    </md-tooltip>
+                </md-button>
+
+                <md-button flow-btn class="add-file-button md-fab md-warn"
+                           aria-label="Add ufo, hpi, or ccx file">
+                    <md-icon md-font-icon="icon-cloud-upload"></md-icon>
+                    <md-tooltip>
+                        Upload ufo, hpi, gp3 or ccx file to customize your own Total Annihilation mod.
+                    </md-tooltip>
+                </md-button>
+            </div>
+            <!-- / ADD FILE BUTTON -->
         </div>
         <!-- / HEADER -->
 

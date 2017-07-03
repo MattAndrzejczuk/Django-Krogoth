@@ -1,0 +1,218 @@
+[ZhonTree201]
+	{
+	world=Zhon;
+	description=Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=206;
+	filename=ZhonTree2;
+	seqname=ZhonTree201;
+	seqnameshad=ZhonTree2Shad01;
+	seqnamereclamate=ZhonTreeRec201;
+	energy=250;
+
+	seqnameburn=ZhonTreeBurn201;
+	featureburnt=ZhonTreeDead201;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=ZhonTreeKill201;
+	featuredead=ZhonTreeSmudge03;
+
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=ZhonTreeSmudge03;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZhonTreeDead201]
+	{
+	world=Zhon;
+	description=Dead Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=158;
+	filename=ZhonTree2;
+	seqname=ZhonTreeDead201;
+	seqnameshad=ZhonTreeDeadSh201;
+	seqnamereclamate=ZhonTreeKill201a;
+	energy=100;
+
+	seqnamedie=ZhonTreeKill201a;
+	featuredead=ZhonTreeSmudge03;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=ZhonTreeSmudge03;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZhonTree202]
+	{
+	world=Zhon;
+	description=Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=196;
+	filename=ZhonTree2;
+	seqname=ZhonTree202;
+	seqnameshad=ZhonTree2Shad02;
+	seqnamereclamate=ZhonTreeRec202;
+	energy=250;
+
+	seqnameburn=ZhonTreeBurn202;
+	featureburnt=ZhonTreeDead202;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=ZhonTreeKill202;
+	featuredead=ZhonTreeSmudge03a;
+
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=ZhonTreeSmudge03a;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZhonTreeDead202]
+	{
+	world=Zhon;
+	description=Dead Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=166;
+	filename=ZhonTree2;
+	seqname=ZhonTreeDead202;
+	seqnameshad=ZhonTreeDeadSh202;
+	seqnamereclamate=ZhonTreeKill202a;
+	energy=100;
+
+	seqnamedie=ZhonTreeKill202a;
+	featuredead=ZhonTreeSmudge03a;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=ZhonTreeSmudge03a;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZhonTree203]
+	{
+	world=Zhon;
+	description=Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=204;
+	filename=ZhonTree2;
+	seqname=ZhonTree203;
+	seqnameshad=ZhonTree2Shad03;
+	seqnamereclamate=ZhonTreeRec203;
+	energy=250;
+
+	seqnameburn=ZhonTreeBurn203;
+	featureburnt=ZhonTreeDead203;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=ZhonTreeKill203;
+	featuredead=ZhonTreeSmudge03b;
+
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=ZhonTreeSmudge03b;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZhonTreeDead203]
+	{
+	world=Zhon;
+	description=Dead Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=166;
+	filename=ZhonTree2;
+	seqname=ZhonTreeDead203;
+	seqnameshad=ZhonTreeDeadSh203;
+	seqnamereclamate=ZhonTreeKill203a;
+	energy=100;
+
+	seqnamedie=ZhonTreeKill203a;
+	featuredead=ZhonTreeSmudge03b;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=ZhonTreeSmudge03b;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZhonTreeSmudge03]
+	{
+	world=Zhon;
+	description=Debris;
+	category=tree smudges;
+	footprintx=2;
+	footprintz=2;
+	filename=ZhonTree2;
+	seqname=ZhonTreeSmudge03;
+
+//	indestructible=1;
+	featuredead=ZhonTreeSmudge03;
+
+	damage=200;
+	}
+
+[ZhonTreeSmudge03a]
+	{
+	world=Zhon;
+	description=Debris;
+	category=tree smudges;
+	footprintx=2;
+	footprintz=2;
+	filename=ZhonTree2;
+	seqname=ZhonTreeSmudge03a;
+
+//	indestructible=1;
+	featuredead=ZhonTreeSmudge03a;
+
+	damage=200;
+	}
+
+[ZhonTreeSmudge03b]
+	{
+	world=Zhon;
+	description=Debris;
+	category=tree smudges;
+	footprintx=2;
+	footprintz=2;
+	filename=ZhonTree2;
+	seqname=ZhonTreeSmudge03b;
+
+//	indestructible=1;
+	featuredead=ZhonTreeSmudge03b;
+
+	damage=200;
+	}

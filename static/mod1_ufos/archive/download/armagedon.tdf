@@ -1,0 +1,14 @@
+[MENUENTRY1]
+	{
+	UNITMENU=ARMACK;
+	MENU=7;
+	BUTTON=2;
+	UNITNAME=armagedon;
+	}
+[MENUENTRY2]
+	{
+	UNITMENU=CORACK;
+	MENU=7;
+	BUTTON=2;
+	UNITNAME=carmagedon;
+	}

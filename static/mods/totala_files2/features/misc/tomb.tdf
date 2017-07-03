@@ -1,0 +1,175 @@
+[Tombstone 1a]
+	{
+	world=cemetary;
+	description=Tombstone;
+	nodisplayinfo=1;
+	category=Cemetery;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=tomb;
+	seqname=h1;
+	seqnameshad=hs1-shad;
+
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}
+
+[Tombstone 1b]
+	{
+	world=cemetary;
+	description=Tombstone;
+	nodisplayinfo=1;
+	category=Cemetery;
+	footprintx=2;
+	footprintz=1;
+	height=40;
+	filename=tomb;
+	seqname=hs2;
+	seqnameshad=hs2-shad;
+
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}
+
+[Tombstone 1c]
+	{
+	world=cemetary;
+	description=Tombstone;
+	nodisplayinfo=1;
+	category=Cemetery;
+	footprintx=2;
+	footprintz=1;
+	height=40;
+	filename=tomb;
+	seqname=hs3;
+	seqnameshad=hs3-shad;
+
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}
+
+[Tombstone 2a]
+	{
+	world=cemetary;
+	description=Tombstone;
+	nodisplayinfo=1;
+	category=Cemetery;
+	footprintx=3;
+	footprintz=2;
+	height=40;
+	filename=tomb;
+	seqname=rip1;
+	seqnameshad=rip1-shad;
+
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}
+
+[Tombstone 2b]
+	{
+	world=cemetary;
+	description=Tombstone;
+	nodisplayinfo=1;
+	category=Cemetery;
+	footprintx=3;
+	footprintz=2;
+	height=40;
+	filename=tomb;
+	seqname=rip2;
+	seqnameshad=rip2-shad;
+
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}
+
+[Tombstone 2c]
+	{
+	world=cemetary;
+	description=Tombstone;
+	nodisplayinfo=1;
+	category=Cemetery;
+	footprintx=2;
+	footprintz=2;
+	height=40;
+	filename=tomb;
+	seqname=rip3;
+	seqnameshad=rip3-shad;
+
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}
+
+[Tombstone 3a]
+	{
+	world=cemetary;
+	description=Tombstone;
+	nodisplayinfo=1;
+	category=Cemetery;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=tomb;
+	seqname=flat3;
+
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}
+
+[Tombstone 3b]
+	{
+	world=cemetary;
+	description=Tombstone;
+	nodisplayinfo=1;
+	category=Cemetery;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=tomb;
+	seqname=flat4;
+
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}
+
+[Tombstone 3c]
+	{
+	world=cemetary;
+	description=Tombstone;
+	nodisplayinfo=1;
+	category=Cemetery;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=tomb;
+	seqname=flat5;
+
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}
+
+[Tombstone 3d]
+	{
+	world=cemetary;
+	description=Tombstone;
+	nodisplayinfo=1;
+	category=Cemetery;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=tomb;
+	seqname=flat6;
+
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}

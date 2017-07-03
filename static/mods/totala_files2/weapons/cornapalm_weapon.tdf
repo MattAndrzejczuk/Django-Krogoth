@@ -1,0 +1,33 @@
+[CORNAPALM_BOMB]
+	{
+	ID=238;
+	name=napalm bomb;
+	rendertype=6;
+	dropped=1;
+
+	model=nbomb;
+
+	range=1800;
+	reloadtime=0.1;
+	areaofeffect=400;
+	soundstart=pchh;
+	tolerance=200;
+	commandfire=1;
+
+	explosiongaf=napalm;
+	explosionart=napalm;
+	
+	waterexplosiongaf=napalm;
+	waterexplosionart=napalm;
+
+	lavaexplosiongaf=napalm;
+	lavaexplosionart=napalm;
+
+
+	energy=40;
+
+	[DAMAGE]
+		{
+		default=37;
+		}
+	}

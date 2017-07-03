@@ -1,0 +1,333 @@
+
+[VerPlant01]
+	{
+	world=Veruna;
+	description=Desert Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+	filename=VerGrass;
+	seqname=verPlant01;
+	seqnameshad=verPlantshad01;
+	seqnamereclamate=shrubs3rec;
+	energy=75;
+
+	featuredead=VerPlantScar01;
+	damage=14000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=VerPlantScar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[VerPlant02]
+	{
+	world=Veruna;
+	description=Desert Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+	filename=VerGrass;
+	seqname=verPlant02;
+	seqnameshad=verPlantshad02;
+	seqnamereclamate=shrubs3rec;
+	energy=75;
+
+	featuredead=VerPlantScar01;
+	damage=14000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=VerPlantScar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[VerPlant03]
+	{
+	world=Veruna;
+	description=Desert Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+	filename=VerGrass;
+	seqname=verPlant03;
+	seqnameshad=verPlantshad03;
+	seqnamereclamate=shrubs3rec;
+	energy=75;
+
+	featuredead=VerPlantScar01;
+	damage=14000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=VerPlantScar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[VerPlant04]
+	{
+	world=Veruna;
+	description=Desert Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+	filename=VerGrass;
+	seqname=verPlant04;
+	seqnameshad=verPlantshad01;
+	seqnamereclamate=shrubs3rec;
+	energy=75;
+
+	featuredead=VerPlantScar01;
+	damage=14000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=VerPlantScar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[VerPlant05]
+	{
+	world=Veruna;
+	description=Desert Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+	filename=VerGrass;
+	seqname=verPlant05;
+	seqnameshad=verPlantshad02;
+	seqnamereclamate=shrubs3rec;
+	energy=75;
+
+	featuredead=VerPlantScar01;
+	damage=14000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=VerPlantScar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[VerPlant06]
+	{
+	world=Veruna;
+	description=Desert Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+	filename=VerGrass;
+	seqname=verPlant06;
+	seqnameshad=verPlantshad03;
+	seqnamereclamate=shrubs3rec;
+	energy=75;
+
+	featuredead=VerPlantScar01;
+	damage=14000;
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=VerPlantScar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[VerPlantScar01]
+	{
+	world=allworld;
+	description=Damaged Terrain;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=VerGrass;
+	seqname=VerPlantscar01;
+
+	indestructible=1;
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[VerGrass01]
+	{
+	world=Veruna;
+	description=Grass;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=VerGrass;
+	seqname=vergrass01;
+	seqnameshad=vergrasshad01;
+
+	indestructible=1;
+	nodisplayinfo=1;
+  	permanent=1;
+	reclaimable=0;
+	damage = 200;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	}
+
+[VerGrass02]
+	{
+	world=Veruna;
+	description=Grass;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=VerGrass;
+	seqname=vergrass02;
+	
+	indestructible=1;
+	nodisplayinfo=1;
+  	permanent=1;
+	reclaimable=0;
+	damage = 200;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	}
+
+[VerGrass03]
+	{
+	world=Veruna;
+	description=Grass;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=VerGrass;
+	seqname=vergrass03;
+	seqnameshad=vergrasshad03;
+	
+	indestructible=1;
+	nodisplayinfo=1;
+  	permanent=1;
+	reclaimable=0;
+	damage = 200;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	}
+
+[VerGrass04]
+	{
+	world=Veruna;
+	description=Grass;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=VerGrass;
+	seqname=vergrass04;
+	seqnameshad=vergrasshad04;
+	
+	indestructible=1;
+	nodisplayinfo=1;
+  	permanent=1;
+	reclaimable=0;
+	damage = 200;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	}
+
+[VerGrass05]
+	{
+	world=Veruna;
+	description=Grass;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=VerGrass;
+	seqname=vergrass05;
+	seqnameshad=vergrasshad05;
+	
+	indestructible=1;
+	nodisplayinfo=1;
+  	permanent=1;
+	reclaimable=0;
+	damage = 200;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	}
+
+[VerGrass06]
+	{
+	world=Veruna;
+	description=Grass;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=VerGrass;
+	seqname=vergrass06;
+	seqnameshad=vergrasshad06;
+	
+	indestructible=1;
+	nodisplayinfo=1;
+  	permanent=1;
+	reclaimable=0;
+	damage = 200;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	}

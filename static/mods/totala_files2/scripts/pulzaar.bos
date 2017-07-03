@@ -1,0 +1,132 @@
+//Arm Rapid Light Laser Tank By Lord Lihp
+piece flare, barrel, sleeve, turret, base;
+
+static-var restore_delay;
+
+#define SIG_AIM 2
+#define SMOKEPIECE1 base
+#include "exptype.h"
+#include "hitweap.h"
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+	{
+	var Func_Var_4;
+	while( get BUILD_PERCENT_LEFT )
+		{
+		sleep 500;
+		}
+	while( TRUE )
+		{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+			{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+				{
+				smoketype = 256 | 1;
+				}
+			Func_Var_4 = Rand( 1, 3 );
+			if( Func_Var_4 == 1 )
+				{
+				emit-sfx smoketype from base;
+				}
+			if( Func_Var_4 == 2 )
+				{
+				emit-sfx smoketype from turret;
+				}
+			if( Func_Var_4 == 3 )
+				{
+				emit-sfx smoketype from base;
+				}
+			}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+			{
+			sleeptime = 200;
+			}
+		sleep sleeptime;
+		}
+	}
+Create()
+{
+	hide flare;
+	start-script SmokeUnit();
+	}
+	
+SetMaxReloadTime(time)
+{
+	restore_delay = time * 2;
+}
+
+RestoreAfterDelay()
+	{
+	sleep restore_delay;
+	turn turret to y-axis 0 speed <90>;
+	turn sleeve to x-axis 0 speed <50>;
+	}
+	
+AimPrimary(heading,pitch)
+	{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn turret to y-axis heading speed <90>;
+	turn sleeve to x-axis (0-pitch) speed <50>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	start-script RestoreAfterDelay();
+	return(TRUE);
+	}
+	
+FirePrimary()
+	{
+	show flare;
+	move barrel to z-axis [-1.4] speed [300];
+	sleep 150;
+	hide flare;
+	wait-for-move barrel along z-axis;
+	move barrel to z-axis [0] speed [3.0];
+	Return 0;
+	}
+	
+AimFromPrimary(piecenum)
+	{
+	piecenum=sleeve;
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=flare;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	hide flare;
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		
+		explode barrel type	BITMAPONLY | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode	flare type	BITMAPONLY | BITMAP3;
+		explode sleeve type	BITMAPONLY | BITMAP4;
+		explode turret type	BITMAPONLY | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+
+		explode barrel type	FALL | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode	flare type	FALL | BITMAP3;
+		explode sleeve type	SHATTER | BITMAP4;
+		explode turret type	FALL | BITMAP3;
+		return( 0 );
+		}
+

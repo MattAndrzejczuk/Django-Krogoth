@@ -1,0 +1,84 @@
+[ZhonGrass01]
+	{
+	world=Zhon;
+	description=Grass;
+	category=grasses;
+	footprintx=2;
+	footprintz=2;
+	filename=ZhonGrass;
+	seqname=ZhonGrass01;
+
+	indestructible=1;
+	nodisplayinfo=1;
+
+	damage=400;
+	shadtrans=1;
+	}
+
+[ZhonGrass02]
+	{
+	world=Zhon;
+	description=Grass;
+	category=grasses;
+	footprintx=2;
+	footprintz=2;
+	filename=ZhonGrass;
+	seqname=ZhonGrass02;
+
+	indestructible=1;
+	nodisplayinfo=1;
+
+	damage=400;
+	shadtrans=1;
+	}
+
+[ZhonGrass03]
+	{
+	world=Zhon;
+	description=Grass;
+	category=grasses;
+	footprintx=2;
+	footprintz=2;
+	filename=ZhonGrass;
+	seqname=ZhonGrass03;
+
+	indestructible=1;
+	nodisplayinfo=1;
+
+	damage=400;
+	shadtrans=1;
+	}
+
+[ZhonGrass04]
+	{
+	world=Zhon;
+	description=Grass;
+	category=grasses;
+	footprintx=2;
+	footprintz=2;
+	filename=ZhonGrass;
+	seqname=ZhonGrass04;
+
+	indestructible=1;
+	nodisplayinfo=1;
+
+	damage=400;
+	shadtrans=1;
+	}
+
+[ZhonGrass05]
+	{
+	world=Zhon;
+	description=Grass;
+	category=grasses;
+	footprintx=2;
+	footprintz=2;
+	filename=ZhonGrass;
+	seqname=ZhonGrass05;
+
+	indestructible=1;
+	nodisplayinfo=1;
+
+	damage=400;
+	shadtrans=1;
+	}

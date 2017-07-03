@@ -1,0 +1,101 @@
+[CORMONSTA_GUN]
+	{
+	ID=143;
+	name=AutoCannon;
+	rendertype=4;
+	lineofsight=1;
+	turret=1;
+	minbarrelangle=-15;
+	range=800;
+	reloadtime=0.2;
+	weaponvelocity=400;
+	areaofeffect=70;
+	soundstart=ac_gun;
+	soundhit=ac_gunhit;
+	accuracy=70;
+	tolerance=500;
+	explosiongaf=fx;
+	explosionart=explode5;
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+	startsmoke=1;
+	[DAMAGE]
+		{
+		default=100;
+		}
+	}
+
+[CORMONSTA_MISSILE]
+	{
+	ID=140;
+	name=Rapid Missiles;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+	model=fastmissile;
+	range=900;
+	reloadtime=1;
+//	weapontimer=5;
+	weaponvelocity=1200;
+	startvelocity=450;
+	weaponacceleration=400;
+	turnrate=33000;
+	areaofeffect=68;
+	metalpershot=0;
+
+	soundstart=ac_missile;
+	soundhit=ac_missilehit;
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=9000;
+	explosiongaf=fx;
+	explosionart=explode3;
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=78;
+		}
+	}
+
+
+[CORMONS_FLAMETHROWER]
+	{
+	ID=220;
+	name=FlameThrower;
+	rendertype=5;
+	lineofsight=1;
+	turret=1;
+
+	range=380;
+	reloadtime=2;
+	weapontimer=1;
+	weaponvelocity=350;
+	areaofeffect=32;
+	burst=20;
+	burstrate=.04;
+	sprayangle=1024;
+	randomdecay=.3;
+	soundstart=flamhvy1;
+	soundhit=burn02;
+	firestarter=100;
+	groundbounce=1;
+	smokedelay=1;
+	startsmoke=0;
+	endsmoke=1;
+	tolerance=250;
+	[DAMAGE]
+		{
+		default=50;
+		}
+	}

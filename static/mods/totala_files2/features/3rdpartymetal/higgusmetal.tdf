@@ -1,0 +1,188 @@
+[HiggusMetal1]	// Tiny
+	{
+	world=Higgus;
+	description=Metal Deposit;
+	category=Higgus;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Higgus;
+	seqname=Metal00;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=80;
+	damage=32009;
+	indestructible=1;
+	}
+
+[HiggusMetal2]	// small
+	{
+	world=Higgus;
+	description=Metal Deposit;
+	category=Higgus;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Higgus;
+	seqname=Metal01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=115;
+	damage=32009;
+	indestructible=1;
+	}
+
+[HiggusMetal3]	// medium
+	{
+	world=Higgus;
+	description=Metal Deposit;
+	category=Higgus;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Higgus;
+	seqname=Metal02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=150;
+	damage=32009;
+	indestructible=1;
+	}
+
+[HiggusMetal4]	//	large
+	{
+	world=Higgus;
+	description=Metal Deposit;
+	category=Higgus;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Higgus;
+	seqname=Metal03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=185;
+	damage=32009;
+	indestructible=1;
+	}
+
+[HiggusMetal5]	//	Huge
+	{
+	world=Higgus;
+	description=Rich Metal Deposit;
+	category=Higgus;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Higgus;
+	seqname=Metal04;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=220;
+	damage=32009;
+	indestructible=1;
+	}
+
+[HiggusMetal6]	//	Gigantic
+	{
+	world=Higgus;
+	description=Rich Metal Deposit;
+	category=Higgus;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Higgus;
+	seqname=Metal05;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=255;
+	damage=32009;
+	indestructible=1;
+	}
+[HiggusWMetal1]	// small
+	{
+	world=Higgus;
+	description=Metal Deposit;
+	category=Higgus;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Higgus;
+	seqname=WMetal02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=110;
+	damage=32009;
+	indestructible=1;
+	}
+
+[HiggusWMetal2]	// medium
+	{
+	world=Higgus;
+	description=Metal Deposit;
+	category=Higgus;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Higgus;
+	seqname=WMetal01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=140;
+	damage=32009;
+	indestructible=1;
+	}
+
+[HiggusWMetal3]	//	large
+	{
+	world=Higgus;
+	description=Metal Deposit;
+	category=Higgus;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Higgus;
+	seqname=WMetal00;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=170;
+	damage=32009;
+	indestructible=1;
+	}
+

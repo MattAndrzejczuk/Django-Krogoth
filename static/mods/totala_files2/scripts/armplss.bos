@@ -1,0 +1,332 @@
+piece base, turret, sleeve, rbarrel1, rflare1, rbarrel2, rflare2, rbarrel3, rflare3, lbarrel1, lflare1, lbarrel2, lflare2, lbarrel3, lflare3, rshell, lshell, wake1, wake2, wake3, wake4;
+
+static-var gun_1, bMoving;
+#define	SIG_AIM1	2
+#define SIG_MOVE	4
+#include "exptype.h"
+#include "rockunit.h"
+#include "hitweap.h"
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+	{
+	var Func_Var_4;
+	while( get BUILD_PERCENT_LEFT )
+		{
+		sleep 500;
+		}
+	while( TRUE )
+		{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+			{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+				{
+				smoketype = 256 | 1;
+				}
+			Func_Var_4 = Rand( 1, 3 );
+			if( Func_Var_4 == 1 || 3 )
+				{
+				emit-sfx smoketype from base;
+				}
+			if( Func_Var_4 == 2 )
+				{
+				emit-sfx smoketype from turret;
+				}
+			}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+			{
+			sleeptime = 200;
+			}
+		sleep sleeptime;
+		}
+	}
+
+Create()
+	{
+	bMoving = FALSE;
+	gun_1 = 1;
+	hide rflare1;
+	hide rflare2;
+	hide rflare3;
+	hide lflare1;
+	hide lflare2;
+	hide lflare3;
+	start-script SmokeUnit();
+	}
+	
+StartMoving()
+	{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	move base to y-axis [5] speed [2];
+	bMoving = TRUE;
+	while( bMoving )
+		{
+		emit-sfx 5 from wake1;
+		emit-sfx 5 from wake2;
+		emit-sfx 5 from wake3;
+		emit-sfx 5 from wake4;
+		emit-sfx 3 from wake1;
+		emit-sfx 3 from wake2;
+		emit-sfx 3 from wake3;
+		emit-sfx 3 from wake4;
+		sleep 300;
+		}
+	}
+
+StopMoving()
+	{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	move base to y-axis [0] speed [3];
+	bMoving = FALSE;
+	while( !bMoving )
+		{
+		emit-sfx 5 from wake1;
+		emit-sfx 5 from wake2;
+		emit-sfx 5 from wake3;
+		emit-sfx 5 from wake4;
+		emit-sfx 3 from wake1;
+		emit-sfx 3 from wake2;
+		emit-sfx 3 from wake3;
+		emit-sfx 3 from wake4;
+		sleep 650;
+		}
+	}
+
+RestorePosition()
+	{
+	sleep 2500;
+	turn turret to y-axis <0> speed <50>;
+	turn sleeve to x-axis <0> speed <40>;
+	return 0;
+	}
+
+SweetSpot (piecenum)
+	{
+	piecenum = base;
+	}
+
+QueryPrimary (piecenum)
+	{
+	if( gun_1 == 1 )
+		{
+		piecenum = rflare1;
+		}
+	if( gun_1 == 2 )
+		{
+		piecenum = rflare2;
+		}
+	if( gun_1 == 3 )
+		{
+		piecenum = rflare3;
+		}
+	if( gun_1 == 4 )
+		{
+		piecenum = lflare1;
+		}
+	if( gun_1 == 5 )
+		{
+		piecenum = lflare2;
+		}
+	if( gun_1 == 6 )
+		{
+		piecenum = lflare3;
+		}
+	}
+		
+AimFromPrimary (piecenum)
+	{
+	piecenum = turret;
+	}
+
+AimPrimary(heading, pitch)
+	{
+	signal SIG_AIM1;
+	set-signal-mask SIG_AIM1;
+	turn turret to y-axis heading speed <50>;
+	turn sleeve to x-axis (0-pitch) speed <40>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	start-script RestorePosition();
+	return 1;
+	}
+
+FirePrimary()
+	{
+	if( gun_1 == 1 )
+		{
+		gun_1 = 2;
+		move rbarrel1 to z-axis [-5] speed [200];
+		explode rshell type FALL;
+		show rflare1;
+		sleep 150;
+		hide rflare1;
+		move rbarrel1 to z-axis [0] speed [2];
+		return 0;
+		}
+	if( gun_1 == 2 )
+		{
+		gun_1 = 3;
+		move rbarrel2 to z-axis [-5] speed [200];
+		explode rshell type FALL;
+		show rflare2;
+		sleep 150;
+		hide rflare2;
+		move rbarrel2 to z-axis [0] speed [2];
+		return 0;
+		}
+	if( gun_1 == 3 )
+		{
+		gun_1 = 4;
+		move rbarrel3 to z-axis [-5] speed [200];
+		explode rshell type FALL;
+		show rflare3;
+		sleep 150;
+		hide rflare3;
+		move rbarrel3 to z-axis [0] speed [2];
+		return 0;
+		}
+	if( gun_1 == 4 )
+		{
+		gun_1 = 5;
+		move lbarrel1 to z-axis [-5] speed [200];
+		explode lshell type FALL;
+		show lflare1;
+		sleep 150;
+		hide lflare1;
+		move lbarrel1 to z-axis [0] speed [2];
+		return 0;
+		}
+	if( gun_1 == 5 )
+		{
+		gun_1 = 6;
+		move lbarrel2 to z-axis [-5] speed [200];
+		explode lshell type FALL;
+		show lflare2;
+		sleep 150;
+		hide lflare2;
+		move lbarrel2 to z-axis [0] speed [2];
+		return 0;
+		}
+	if( gun_1 == 6 )
+		{
+		gun_1 = 1;
+		move lbarrel3 to z-axis [-5] speed [200];
+		explode lshell type FALL;
+		show lflare3;
+		sleep 150;
+		hide lflare3;
+		move lbarrel3 to z-axis [0] speed [2];
+		return 0;
+		}
+	return 0;
+	}
+
+Killed(severity, corpsetype)
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode turret type	BITMAPONLY | BITMAP1;
+		explode sleeve type	BITMAPONLY | BITMAP1;
+		explode rbarrel1 type	BITMAPONLY | BITMAP1;
+		explode rflare1 type	BITMAPONLY | BITMAP1;
+		explode rbarrel2 type	BITMAPONLY | BITMAP1;
+		explode rflare2 type	BITMAPONLY | BITMAP1;
+		explode rbarrel3 type	BITMAPONLY | BITMAP1;
+		explode rflare3 type	BITMAPONLY | BITMAP1;
+		explode lbarrel1 type	BITMAPONLY | BITMAP1;
+		explode lflare1 type	BITMAPONLY | BITMAP1;
+		explode lbarrel2 type	BITMAPONLY | BITMAP1;
+		explode lflare2 type	BITMAPONLY | BITMAP1;
+		explode lbarrel3 type	BITMAPONLY | BITMAP1;
+		explode lflare3 type	BITMAPONLY | BITMAP1;
+		explode rshell type	BITMAPONLY | BITMAP1;
+		explode lshell type	BITMAPONLY | BITMAP1;
+		explode wake1 type	BITMAPONLY | BITMAP1;
+		explode wake2 type	BITMAPONLY | BITMAP1;
+		explode wake3 type	BITMAPONLY | BITMAP1;
+		explode wake4 type	BITMAPONLY | BITMAP1;
+		return(0);
+		}
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	SHATTER | BITMAP4;
+		explode turret type	SHATTER | BITMAP4;
+		explode sleeve type	SHATTER | BITMAP4;
+		explode rbarrel1 type	SHATTER | BITMAP4;
+		explode rflare1 type	SHATTER | BITMAP4;
+		explode rbarrel2 type	SHATTER | BITMAP4;
+		explode rflare2 type	SHATTER | BITMAP4;
+		explode rbarrel3 type	SHATTER | BITMAP4;
+		explode rflare3 type	SHATTER | BITMAP4;
+		explode lbarrel1 type	SHATTER | BITMAP4;
+		explode lflare1 type	SHATTER | BITMAP4;
+		explode lbarrel2 type	SHATTER | BITMAP4;
+		explode lflare2 type	SHATTER | BITMAP4;
+		explode lbarrel3 type	SHATTER | BITMAP4;
+		explode lflare3 type	SHATTER | BITMAP4;
+		explode rshell type	SHATTER | BITMAP4;
+		explode lshell type	SHATTER | BITMAP4;
+		explode wake1 type	SHATTER | BITMAP4;
+		explode wake2 type	SHATTER | BITMAP4;
+		explode wake3 type	SHATTER | BITMAP4;
+		explode wake4 type	SHATTER | BITMAP4;
+		return(0);
+		}
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode sleeve type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rbarrel1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rflare1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rbarrel2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rflare2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rbarrel3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rflare3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lbarrel1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lflare1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lbarrel2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lflare2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lbarrel3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lflare3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rshell type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lshell type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode wake1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode wake2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode wake3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode wake4 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		return(0);
+		}
+	corpsetype = 3;
+	explode base type	SHATTER | BITMAP4;
+	explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode sleeve type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rbarrel1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rflare1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rbarrel2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rflare2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rbarrel3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rflare3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lbarrel1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lflare1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lbarrel2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lflare2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lbarrel3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lflare3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rshell type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lshell type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode wake1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode wake2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode wake3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode wake4 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	return(0);
+	}

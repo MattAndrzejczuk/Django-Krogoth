@@ -1,0 +1,38 @@
+[AHVC_DEAD]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=AHVC_DEAD;
+	featuredead=AHVC_HEAP;
+	footprintx=4;
+	footprintz=4;
+	height=8;
+	blocking=1;
+	hitdensity=1210;
+	metal=2113;
+	damage=203;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+
+[AHVC_HEAP]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4b;
+	footprintx=2;
+	footprintz=2;
+	height=2;
+	blocking=0;
+	hitdensity=100;
+	metal=389;
+	damage=100;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+

@@ -1,0 +1,35 @@
+[Armorco_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=Armorco_dead;
+	featuredead=Armorco_heap;
+	footprintx=4;
+	footprintz=4;
+	height=60;
+	blocking=1;
+	hitdensity=150;
+	metal=35765;
+	damage=26855;
+	reclaimable=1;
+	featurereclamate=smudge01;
+      }
+[Armorco_heap]
+	{
+	World=All Worlds;
+	Description=Wreckage;
+	Category=heaps;
+	Object=5x5a;
+	FootPrintx=3;
+	FootPrintz=3;
+	Height=2;
+	Blocking=0;
+	HitDensity=105;
+	Metal=25642;
+	Damage=23345;
+	Reclaimable=1;
+	FeatureReclamate=smudge01;
+	SeqNameReclamate=tree1reclamate;
+	}
+

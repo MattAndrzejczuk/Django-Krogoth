@@ -1,0 +1,262 @@
+[COREBFORTEW]
+	{
+	world=allworld;
+	description=E/W Bertha Shelter;
+	category=walls;
+	object=COREBFORTEW;
+	footprintx=8;
+	footprintz=2;
+	height=125;
+	blocking=1;
+	hitdensity=97;
+	metal=400;
+	damage=10000;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=COREBFORTEW_DEAD;
+	featuredead=COREBFORTEW_DEAD;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREBFORTEW_DEAD]
+	{
+	world=allworld;
+	description=Rubble;
+	category=walls;
+	object=COREBFORTEW_DEAD;
+	featuredead=COREBFORTEW_HEAP;
+	footprintx=8;
+	footprintz=2;
+	height=55;
+	blocking=1;
+	hitdensity=97;
+	metal=200;
+	damage=5000;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=COREBFORTEW_HEAP;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREBFORTEW_HEAP]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=walls;
+	object=2x8EW_HEAP;
+	footprintx=8;
+	footprintz=2;
+	height=4;
+	hitdensity=100;
+	metal=100;
+	damage=1250;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREBFORTNS]
+	{
+	world=allworld;
+	description=N/S Bertha Shelter;
+	category=walls;
+	object=COREBFORTNS;
+	footprintx=2;
+	footprintz=8;
+	height=125;
+	blocking=1;
+	hitdensity=97;
+	metal=400;
+	damage=10000;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=COREBFORTNS_DEAD;
+	featuredead=COREBFORTNS_DEAD;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREBFORTNS_DEAD]
+	{
+	world=allworld;
+	description=Rubble;
+	category=walls;
+	object=COREBFORTNS_DEAD;
+	featuredead=COREBFORTNS_HEAP;
+	footprintx=2;
+	footprintz=8;
+	height=55;
+	blocking=1;
+	hitdensity=97;
+	metal=200;
+	damage=5000;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=COREBFORTNS_HEAP;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREBFORTNS_HEAP]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=walls;
+	object=2x8NS_HEAP;
+	footprintx=2;
+	footprintz=8;
+	height=4;
+	hitdensity=100;
+	metal=100;
+	damage=1250;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREFORTEW]
+	{
+	world=allworld;
+	description=East West Wall;
+	category=walls;
+	object=COREFORTEW;
+	footprintx=8;
+	footprintz=2;
+	height=30;
+	blocking=1;
+	hitdensity=97;
+	metal=40;
+	damage=3875;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=COREFORTEW_DEAD;
+	featuredead=COREFORTEW_DEAD;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREFORTEW_DEAD]
+	{
+	world=allworld;
+	description=Rubble;
+	category=walls;
+	object=COREFORTEW_DEAD;
+	featuredead=COREFORTEW_HEAP;
+	footprintx=8;
+	footprintz=2;
+	height=10;
+	blocking=1;
+	hitdensity=97;
+	metal=20;
+	damage=1500;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=COREFORTEW_HEAP;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREFORTEW_HEAP]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=walls;
+	object=2x8EW_HEAP;
+	footprintx=8;
+	footprintz=2;
+	height=4;
+	hitdensity=100;
+	metal=10;
+	damage=680;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREFORTNS]
+	{
+	world=allworld;
+	description=North South Wall;
+	category=walls;
+	object=COREFORTNS;
+	footprintx=2;
+	footprintz=8;
+	height=30;
+	blocking=1;
+	hitdensity=97;
+	metal=40;
+	damage=3875;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=COREFORTNS_DEAD;
+	featuredead=COREFORTNS_DEAD;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREFORTNS_DEAD]
+	{
+	world=allworld;
+	description=Rubble;
+	category=walls;
+	object=COREFORTNS_DEAD;
+	featuredead=COREFORTNS_HEAP;
+	footprintx=2;
+	footprintz=8;
+	height=10;
+	blocking=1;
+	hitdensity=97;
+	metal=20;
+	damage=1500;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=COREFORTNS_HEAP;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREFORTNS_HEAP]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=walls;
+	object=2x8NS_HEAP;
+	footprintx=2;
+	footprintz=8;
+	height=4;
+	hitdensity=100;
+	metal=10;
+	damage=680;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[Heavywall_Core]
+	{
+	world=allworld;
+	description=Heavy Fortification Wall;
+	category=walls;
+	object=corhwall;
+	footprintx=2;
+	footprintz=2;
+	height=60;
+	blocking=1;
+	hitdensity=95;
+	metal=101;
+	damage=7350;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	featuredead=RockTeeth;
+	seqnamereclamate=tree1reclamate;
+	}

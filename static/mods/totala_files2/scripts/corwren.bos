@@ -1,0 +1,532 @@
+// Core "Wren" shielded scout aircraft with anti-signal-missiles by Xubor
+
+#define TA
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  Rumpf, Kopf, r1Fluegel, r2Fluegel, l1Fluegel, l2Fluegel, lRakete, rRakete,
+	   Blitz, Grundplatte, Radar, lReflektor, rReflektor, Schildrumpf, Schildkopf,
+	   l1Schild, l2Schild, r1Schild, r2Schild, Tuer, Platte, FeuerG, FeuerK;
+
+static-var  Requestedv, laufnr, alle, rollt, schild, x, y, lande;
+
+// Signal definitions
+#define SIG_MOVE			2
+
+#define SIG_AIM 4
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( Rand( 1, 25 ) == 2 )
+		{
+			show Schildkopf;
+			hide Kopf;
+			sleep 200;
+			hide Schildkopf;
+			show Kopf;
+		}
+		if( Rand( 1, 20 ) == 2 )
+		{
+			show Schildrumpf;
+			hide Rumpf;
+			sleep 200;
+			hide Schildrumpf;
+			show Rumpf;
+		}
+		if( Rand( 1, 25 ) == 2 )
+		{
+			show l1Schild;
+			hide l1Fluegel;
+			sleep 100;
+			hide l1Schild;
+			show l1Fluegel;
+		}
+				
+		if( Rand( 1, 25 ) == 2 )
+		{
+			show l2Schild;
+			hide l2Fluegel;
+			sleep 100;
+			hide l2Schild;
+			show l2Fluegel;
+		}		
+
+		if( Rand( 1, 25 ) == 2 )
+		{
+			show r1Schild;
+			hide r1Fluegel;
+			sleep 100;
+			hide r1Schild;
+			show r1Fluegel;
+		}		
+
+		if( Rand( 1, 25 ) == 2 )
+		{
+			show r2Schild;
+			hide r2Fluegel;
+			sleep 100;
+			hide r2Schild;
+			show r2Fluegel;
+		}
+		
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from Rumpf;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+RequestState(requestedstate, currentstate)   //(1/0, 1/0)
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	currentstate = Requestedv;
+	Requestedv = requestedstate;
+	while( Requestedv != currentstate )  // solange der aktuelle Status nicht dem gewünschten Status entspricht:
+	{
+		if( !Requestedv )   //Wenn nachgefragter Status 0 (Starten)  ist, dann....
+		{
+			sleep 250;
+			lande=FALSE;
+			turn r2Fluegel to z-axis <0.000000> speed <90>;
+			turn l2Fluegel to z-axis <0.000000> speed <90>;
+			turn Tuer to x-axis <-90> speed <200>;
+			sleep 100;
+			
+			show lReflektor;
+			show rReflektor;
+			
+
+			move Tuer to y-axis [-3] speed [4];
+			move Platte to y-axis [2] speed [5];
+			sleep 400;
+			hide Tuer;
+			turn Radar to x-axis <0> speed <300>;
+			sleep 400;
+			turn lReflektor to y-axis <0> speed <300>;
+			turn rReflektor to y-axis <0> speed <300>;
+			
+			sleep 400;
+			spin Radar around y-axis speed <250>;
+			set ACTIVATION to TRUE;
+			currentstate = 0;
+		}
+		if( Requestedv )  //Wenn nachgefragter Status 1 (Landen)  ist, dann...
+		{
+			sleep 350;
+			lande=TRUE;
+			set ACTIVATION to FALSE;
+			turn r2Fluegel to z-axis <140> speed <90>;
+			turn l2Fluegel to z-axis <-140> speed <90>;
+			stop-spin Radar around y-axis;
+			
+			turn Radar to y-axis <0> speed <250>;
+			
+			wait-for-turn  Radar around y-axis;
+			turn lReflektor to y-axis <-85> speed <300>;
+			turn rReflektor to y-axis <85> speed <300>;
+			sleep 400;
+			turn Radar to x-axis <-90> speed <200>;
+			sleep 400;
+			move Platte to y-axis [0] speed [5];
+			sleep 400;
+			show Tuer;
+			move Tuer to y-axis [0] speed [5];
+			sleep 300;
+			turn Tuer to x-axis <0> speed <300>;
+			hide lReflektor;
+			hide rReflektor;
+			currentstate = 1;
+		}
+	}
+}
+
+TempoKontrolle()
+{	
+	var a, b;
+	while(TRUE)
+	{
+		x =  get PIECE_XZ(Rumpf);
+		sleep 300;
+		y = get PIECE_XZ(Rumpf);
+		a = (x - y);///1000;
+		if (a < 0){a=0-a;}
+		
+		hide FeuerG;hide FeuerK;
+		if (!lande && x != y)
+		{
+			if (a > (b))
+			{
+				show FeuerG;
+			}
+			else
+			{
+				show FeuerK;
+			}
+
+		}
+		b=a;
+	}
+}
+
+SchildEffekt1()
+{
+	hide r2Fluegel;
+	show r2Schild;
+	sleep 150;
+	show r2Fluegel;
+	hide r2Schild;
+	hide r1Fluegel;
+	show r1Schild;
+	sleep 150;
+	show r1Fluegel;
+	hide r1Schild;
+	hide Rumpf;
+	hide Kopf;
+	show SchildRumpf;
+	show Schildkopf;
+	sleep 150;
+	show Rumpf;
+	show Kopf;
+	hide SchildRumpf;
+	hide Schildkopf;
+	hide l1Fluegel;
+	show l1Schild;
+	sleep 150;
+	show l1Fluegel;
+	hide l1Schild;
+	hide l2Fluegel;
+	show l2Schild;
+	sleep 100;
+	show l2Fluegel;
+	hide l2Schild;
+	sleep 50;
+		show Schildrumpf;
+		show Schildkopf;
+		show l1Schild;
+		show l2Schild;
+		show r1Schild;
+		show r2Schild;
+		hide Rumpf;
+		hide Kopf;
+		hide l1Fluegel;
+		hide l2Fluegel;
+		hide r1Fluegel;
+		hide r2Fluegel;
+		sleep 150;
+		hide Schildrumpf;
+		hide Schildkopf;
+		hide l1Schild;
+		hide l2Schild;
+		hide r1Schild;
+		hide r2Schild;
+		show Rumpf;
+		show Kopf;
+		show l1Fluegel;
+		show l2Fluegel;
+		show r1Fluegel;
+		show r2Fluegel;
+}
+
+SchildEffekt2()
+{
+	hide r2Fluegel;
+	show r2Schild;
+	hide l2Fluegel;
+	show l2Schild;
+	sleep 200;
+	show r2Fluegel;
+	hide r2Schild;
+	show l2Fluegel;
+	hide l2Schild;
+	
+	hide r1Fluegel;
+	show r1Schild;
+	hide l1Fluegel;
+	show l1Schild;
+	sleep 200;
+	show r1Fluegel;
+	hide r1Schild;
+	show l1Fluegel;
+	hide l1Schild;
+	
+	hide Rumpf;
+	hide Kopf;
+	show SchildRumpf;
+	show Schildkopf;
+	sleep 200;
+	show Rumpf;
+	show Kopf;
+	hide SchildRumpf;
+	hide Schildkopf;
+	
+	hide r1Fluegel;
+	show r1Schild;
+	hide l1Fluegel;
+	show l1Schild;
+	sleep 200;
+	show r1Fluegel;
+	hide r1Schild;
+	show l1Fluegel;
+	hide l1Schild;
+	
+	hide r2Fluegel;
+	show r2Schild;
+	hide l2Fluegel;
+	show l2Schild;
+	sleep 200;	
+	show r2Fluegel;
+	hide r2Schild;
+	show l2Fluegel;
+	hide l2Schild;
+
+}
+
+Create()
+{
+	Requestedv = 1;
+	alle=FALSE;
+	laufnr=TRUE;
+	rollt=FALSE;
+	schild=TRUE;
+	
+	hide Blitz;
+	hide Schildrumpf;
+	hide Schildkopf;
+	hide l1Schild;
+	hide l2Schild;
+	hide r1Schild;
+	hide r2Schild;
+	hide FeuerG;
+	hide FeuerK;
+	
+	turn r2Fluegel to z-axis <120> NOW;
+	turn l2Fluegel to z-axis <-120> NOW;
+	turn Radar to x-axis <-90> NOW;
+	turn lReflektor to y-axis <-85> NOW;
+	turn rReflektor to y-axis <85> NOW;
+	
+	dont-cache FeuerK;
+	dont-cache FeuerG;
+	dont-shade FeuerK;
+	dont-shade FeuerG;
+	
+		while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}	
+	start-script SmokeUnit();
+	start-script TempoKontrolle();
+	sleep 800;
+	call-script SchildEffekt1();
+}
+
+HitByWeapon()
+{
+	if (schild)
+	{
+
+		schild=FALSE;
+		
+		dont-cache Rumpf;
+
+		show Schildrumpf;
+		show Schildkopf;
+		show l1Schild;
+		show l2Schild;
+		show r1Schild;
+		show r2Schild;
+		sleep 50;
+		hide Rumpf;
+		hide Kopf;
+		hide l1Fluegel;
+		hide l2Fluegel;
+		hide r1Fluegel;
+		hide r2Fluegel;
+		sleep 300;
+		set ARMORED to FALSE;
+		hide Schildrumpf;
+		hide Schildkopf;
+		hide l1Schild;
+		hide l2Schild;
+		hide r1Schild;
+		hide r2Schild;
+		show Rumpf;
+		show Kopf;
+		show l1Fluegel;
+		show l2Fluegel;
+		show r1Fluegel;
+		show r2Fluegel;
+		sleep 4000;
+		
+		cache Rumpf;
+		schild=TRUE;
+		set ARMORED to TRUE;
+	}
+}
+
+Activate()
+{
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+}
+
+StartMoving()
+{
+}
+
+StopMoving()
+{
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = Rumpf;
+}
+
+
+AimFromPrimary(piecenum)
+{
+	piecenum=lRakete;
+	if (!laufnr) {piecenum = rRakete;}
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum=lRakete;
+	if (!laufnr) {piecenum = rRakete;}
+	
+}
+
+FirePrimary()
+{	
+	if (!laufnr){hide rRakete;alle=1;}
+	else {hide lRakete;}
+	laufnr = !laufnr;
+	}
+
+AimPrimary(heading, pitch)
+{
+	var sfo;
+	sfo = Get STANDINGFIREORDERS;
+	if ( sfo == 0)
+	{
+		if (alle){return(0);}
+		return(1);
+	}
+	return(0);
+}
+
+
+
+AimFromTertiary(piecenum)
+{
+	piecenum=Blitz;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum=Blitz;
+	
+}
+
+FireTertiary()
+{
+	show Blitz;
+	sleep 150;
+	hide Blitz;
+}
+
+AimTertiary(heading, pitch)
+{	
+	return(1);
+}
+
+
+AimFromSecondary(piecenum)
+{
+	piecenum=Blitz;
+}
+
+QuerySecondary(piecenum)
+{
+	piecenum=Blitz;
+	
+}
+
+FireSecondary()
+{
+	show Blitz;
+	sleep 150;
+	hide Blitz;
+}
+
+AimSecondary(heading, pitch)
+{	
+	return(1);
+}
+
+MoveRate2()
+{
+	if(rand(1,7)==3 && !rollt)
+		{
+		rollt = TRUE;
+		turn Rumpf to z-axis <240> speed <170>;
+		wait-for-turn Rumpf around z-axis;
+		turn Rumpf to z-axis <120> speed <220>;
+		wait-for-turn Rumpf around z-axis;
+		turn Rumpf to z-axis <0> speed <120>;
+		rollt = FALSE;
+		}
+	else
+	{
+			if(rand(1,9)==3 && !rollt)
+		{
+		spin Rumpf around z-axis speed <1000> accelerate <8>;
+		rollt = TRUE;
+		sleep 1500;
+		stop-spin Rumpf around z-axis decelerate <20>;
+		sleep 500;
+		turn Rumpf to z-axis <00> speed <320>;
+		wait-for-turn Rumpf around z-axis;
+		rollt = FALSE;
+		}
+	}
+			if((rand(1,8)) == 3 && schild)
+			{
+				call-script SchildEffekt2();
+				call-script SchildEffekt2();
+			}
+}
+
+Killed()
+	{
+		explode Rumpf type		FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode Kopf type		FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode Radar type		FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode l1Fluegel type		FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode l2Fluegel type		FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode r1Fluegel type		FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode r2Fluegel type 	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		return( 0 );
+	}

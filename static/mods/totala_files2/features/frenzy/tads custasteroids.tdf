@@ -1,0 +1,233 @@
+[tileAsteroid01]
+	{
+	world=TADSspace;
+	description=Asteroid;
+	category=TADS tilerocks;
+	footprintx=3;
+	footprintz=3;
+	filename=TADSasteroids;
+	seqname=Asteroid1;
+
+	shadtrans=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[tileAsteroid02]
+	{
+	world=TADSspace;
+	description=Asteroid;
+	category=TADS tilerocks;
+	footprintx=3;
+	footprintz=3;
+	filename=TADSasteroids;
+	seqname=Asteroid2;
+
+	shadtrans=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[tileAsteroid03]
+	{
+	world=TADSspace;
+	description=Asteroid;
+	category=TADS tilerocks;
+	footprintx=3;
+	footprintz=3;
+	filename=TADSasteroids;
+	seqname=Asteroid3;
+
+	shadtrans=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[tileAsteroid04]
+	{
+	world=TADSspace;
+	description=Asteroid;
+	category=TADS tilerocks;
+	footprintx=3;
+	footprintz=3;
+	filename=TADSasteroids;
+	seqname=Asteroid4;
+
+	shadtrans=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[tileAsteroid05]
+	{
+	world=TADSspace;
+	description=Asteroid;
+	category=TADS tilerocks;
+	footprintx=3;
+	footprintz=3;
+	filename=TADSasteroids;
+	seqname=Asteroid5;
+
+	shadtrans=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[tileAsteroid06]
+	{
+	world=TADSspace;
+	description=Asteroid;
+	category=TADS tilerocks;
+	footprintx=3;
+	footprintz=3;
+	filename=TADSasteroids;
+	seqname=Asteroid6;
+
+	shadtrans=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[tileAsteroid07]
+	{
+	world=TADSspace;
+	description=Asteroid;
+	category=TADS tilerocks;
+	footprintx=3;
+	footprintz=3;
+	filename=TADSasteroids;
+	seqname=Asteroid7;
+
+	shadtrans=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[tileAsteroid08]
+	{
+	world=TADSspace;
+	description=Asteroid;
+	category=TADS tilerocks;
+	footprintx=3;
+	footprintz=3;
+	filename=TADSasteroids;
+	seqname=Asteroid8;
+
+	shadtrans=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[tileAsteroid09]
+	{
+	world=TADSspace;
+	description=Asteroid;
+	category=TADS tilerocks;
+	footprintx=3;
+	footprintz=3;
+	filename=TADSasteroids;
+	seqname=Asteroid9;
+
+	shadtrans=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[tileAsteroid10]
+	{
+	world=TADSspace;
+	description=Asteroid;
+	category=TADS tilerocks;
+	footprintx=3;
+	footprintz=3;
+	filename=TADSasteroids;
+	seqname=Asteroid10;
+
+	shadtrans=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[tileAsteroid11]
+	{
+	world=TADSspace;
+	description=Asteroid;
+	category=TADS tilerocks;
+	footprintx=3;
+	footprintz=3;
+	filename=TADSasteroids;
+	seqname=Asteroid11;
+
+	shadtrans=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[tileAsteroid12]
+	{
+	world=TADSspace;
+	description=Asteroid;
+	category=TADS tilerocks;
+	footprintx=3;
+	footprintz=3;
+	filename=TADSasteroids;
+	seqname=Asteroid12;
+
+	shadtrans=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}
+
+[tileAsteroid13]
+	{
+	world=TADSspace;
+	description=Asteroid;
+	category=TADS tilerocks;
+	footprintx=3;
+	footprintz=3;
+	filename=TADSasteroids;
+	seqname=Asteroid13;
+
+	shadtrans=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	}

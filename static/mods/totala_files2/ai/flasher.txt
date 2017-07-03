@@ -1,0 +1,58 @@
+// Flasher AI - Default by poosticks
+
+Weight ARM 0.1
+
+Weight ARMSOLAR	 2.2
+Weight ARMWIN	 2.2
+Weight ARMMEX	 1.8
+Weight ARMVP 	 5
+Weight ARMRL 	 30
+Weight ARMESTOR	 0.2
+
+Weight ARMFLASH	 10
+Weight ARMCV	 2
+
+Limit ARMSOLAR	 30
+Limit ARMWIN	 0
+Limit ARMMEX	 30
+Limit ARMESTOR	 1
+Limit ARMMSTOR	 0
+Limit ARMUWMEX	 0
+Limit ARMTIDE	 0
+Limit ARMUWES	 0
+Limit ARMUWMS	 0
+Limit ARMMAKR	 0
+Limit ARMFMKR	 0
+Limit ARMGEO	 0
+Limit ARMGMM	 0
+
+Limit ARMVP 	 10
+Limit ARMLAB 	 0
+Limit ARMAP 	 0
+Limit ARMHP	 0
+Limit ARMSY	 0
+Limit ARMAVP	 0
+
+Limit ARMRL	 200
+Limit ARMLLT	 0
+Limit ARMTL	 0
+Limit ARMHLT	 0
+Limit ARMCENT	 0
+Limit ARMCLAW	 0
+Limit ARMDL	 0
+Limit ARMPB	 0
+Limit ARMGUARD	 0
+Limit ARMAMB	 0
+
+Limit ARMASP	 0
+Limit ARMRAD	 0
+Limit ARMSONAR	 0
+Limit ARMDRAG	 0
+Limit ARMEYES	 0
+
+Limit ARMFLASH	 4999
+Limit ARMCV 	 10
+Limit ARMFAV 	 0
+Limit ARMSTUMP	 0
+Limit ARMSAM	 0
+Limit ARMMLV 	 0

@@ -1,0 +1,28 @@
+[MENUENTRY1]
+	{
+                    UNITMENU=ARMANS;
+                    MENU=2;
+                    BUTTON=4;
+                    UNITNAME=ARMARAD;
+	}
+[MENUENTRY2]
+	{
+                    UNITMENU=ARMANS;
+                    MENU=2;
+                    BUTTON=5;
+                    UNITNAME=ARMVEIL;
+	}
+[MENUENTRY3]
+	{
+                    UNITMENU=ARMANS;
+                    MENU=3;
+                    BUTTON=0;
+                    UNITNAME=ARMGMM;
+	}
+[MENUENTRY4]
+	{
+                    UNITMENU=ARMANS;
+                    MENU=3;
+                    BUTTON=1;
+                    UNITNAME=ARMDEVA;
+	}

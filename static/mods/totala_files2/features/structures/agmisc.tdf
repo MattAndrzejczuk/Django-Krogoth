@@ -1,0 +1,20 @@
+[Lady Liberty 1]
+	{
+	world=Armageddon;
+	description=Lady Liberty;
+	category=Armageddon;
+	animating=0;
+	footprintx=10;
+	footprintz=11;
+	height=200;
+	filename=AGmisc;
+	seqname=lib1;
+	seqnameshad=lib1shad;
+	animtrans=0;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	noshowdescription=0;
+	}

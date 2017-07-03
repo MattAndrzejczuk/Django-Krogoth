@@ -1,0 +1,60 @@
+// Rules of Trigger Features - Trigger Features take 'X amount' of damage then turn into
+//    the next set feature. Triggers can be animated or transparent also.
+//
+// Rules of Burn Features -  Burn features can take 'X amount' of damage and die (not burn)
+//     or can be set to burn. Once it is effected it will burn (could take 1 little shot
+//     to make it burn). Once it burns it will die. Burning has weapon settings, thus once
+//     a feature burns, you can set it to blow up or something.
+//
+// Rules of Void Features - Basically the final sequence of the effect. Usually is just a
+//    void or even a special image. Voids can be set with hitdensities of 0 to 100. So this
+//    could be like a spire or just a flat plane.
+//
+//  1 footprint =  16 pixels
+//  2 footprint =  32 pixels
+//  3 footprint =  48 pixels
+//  4 footprint =  64 pixels
+//  5 footprint =  80 pixels
+//  6 footprint =  96 pixels
+//  7 footprint = 112 pixels
+//  8 footprint = 128 pixels
+//  9 footprint = 144 pixels
+// 10 footprint = 160 pixels
+// 11 footprint = 176 pixels
+// 12 footprint = 192 pixels
+
+[BridgeBlank1]
+	{
+//	RustBridge Trigger (Inviso) (YOU ONLY PLACE THIS FEATURE ON MAPS)
+	world=oxigen707;
+	description=bridge breaker;
+	nodisplayinfo=1;
+	category=Barrels-Crates;
+	footprintx=4;
+	footprintz=4;
+	height=1;
+	filename=Ox707bridgebust1;
+	seqname=rbridgeblank1;
+	featuredead=BridgeBusted1;
+	seqnamedie=rbridgeboom1;
+	hitdensity=5;
+	damage=10000;
+	}
+
+[BridgeBusted1]
+	{
+//	RustBridge Void (Crater)
+	world=oxigen707;
+	description=crater;
+	category=Barrels-Crates;
+	footprintx=4;
+	footprintz=4;
+	height=5;
+	filename=Ox707bridgebust1;
+	seqname=rbridgeout1;
+	hitdensity=5;
+	damage=32009;
+	blocking=1;
+	hitdensity=6;
+	indestructible=1;
+	}

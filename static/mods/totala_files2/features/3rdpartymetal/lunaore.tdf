@@ -1,0 +1,125 @@
+[Luna Metal 1] 
+	{
+	world=Luna;
+	description=Lunar Ore Deposit;
+	category=Luna;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=lunaore;
+	seqname=metal1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=158;
+	damage=32009;
+	indestructible=1;
+	}
+
+[Luna Metal 2] 
+	{
+	world=Luna;
+	description=Lunar Ore Deposit;
+	category=Luna;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=lunaore;
+	seqname=metal2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=140;
+	damage=32009;
+	indestructible=1;
+	}
+
+[Luna Metal 3] 
+	{
+	world=Luna;
+	description=Lunar Ore Deposit;
+	category=Luna;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=lunaore;
+	seqname=metal3;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=190;
+	damage=32009;
+	indestructible=1;
+	}
+
+[Luna Metal 4] 
+	{
+	world=Luna;
+	description=Lunar Ore Deposit;
+	category=Luna;
+	animating=0;
+	footprintx=5;
+	footprintz=3;
+	height=0;
+	filename=lunaore;
+	seqname=metal4;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=220;
+	damage=32009;
+	indestructible=1;
+	}
+
+[Luna Metal 5] 
+	{
+	world=Luna;
+	description=Lunar Ore Deposit;
+	category=Luna;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=lunaore;
+	seqname=metal5;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=180;
+	damage=32009;
+	indestructible=1;
+	}
+
+[Luna Metal 6] 
+	{
+	world=Luna;
+	description=Lunar Ore Deposit;
+	category=Luna;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=lunaore;
+	seqname=metal6;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=210;
+	damage=32009;
+	indestructible=1;
+	}

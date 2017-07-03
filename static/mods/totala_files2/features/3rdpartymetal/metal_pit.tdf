@@ -1,0 +1,130 @@
+
+//		Comments about the features		- 		Comentarios sobre las animaciones
+
+// Don't superpose the features because the TA engine	- ¡¡No superpongas las animaciones porque el motor de TA
+// will remove them in the game!!.			- las retirará cuando comience el juego!!
+
+// Made by ChinaHook (TA-Power)				- Hecho por ChinaHook (TA-Power)
+// for the TA Comunity. Dec 2002.			- para la Comunidad TA. Diciembre de 2002.
+
+// Version: 1.3. (overwrite older versions!!)		- Versión: 1.3. (¡¡sobreescribe versiones anteriores!!)
+
+[metal_pit01]
+	{
+	world=All Worlds;
+	description=Metal Pit;	// Big metal pit
+	category=Metal Pits;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=MetalPit;
+	seqname=Metal_pit01;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=255;
+	damage=32009;
+	indestructible=1;
+	}
+
+[metal_pit02]
+	{
+	world=All Worlds;
+	description=Metal Pit;	// Medium metal pit
+	category=Metal Pits;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=MetalPit;
+	seqname=Metal_pit02;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=128;
+	damage=32009;
+	indestructible=1;
+	}
+
+[metal_pit03]
+	{
+	world=All Worlds;
+	description=Metal Pit;	// Small metal pit
+	category=Metal Pits;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=MetalPit;
+	seqname=Metal_pit03;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=64;
+	damage=32009;
+	indestructible=1;
+	}
+
+[metal_pit_GM01]
+	{
+	world=All Worlds;
+	description=Metal Pit;	// Huge metal pit over covered metal base
+	category=Metal Pits;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=MetalPit;
+	seqname=Metal_pit_GM01;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=255;
+	damage=32009;
+	indestructible=1;
+	}
+
+[metal_pit_GM02]
+	{
+	world=All Worlds;
+	description=Metal Pit;	// Medium metal pit over covered metal base
+	category=Metal Pits;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=MetalPit;
+	seqname=Metal_pit_GM02;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=128;
+	damage=32009;
+	indestructible=1;
+	}
+
+[metal_pit_GM03]
+	{
+	world=All Worlds;
+	description=Metal Pit;	// Small metal pit over covered metal base
+	category=Metal Pits;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=MetalPit;
+	seqname=Metal_pit_GM03;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=64;
+	damage=32009;
+	indestructible=1;
+	}

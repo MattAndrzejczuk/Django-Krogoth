@@ -1,0 +1,1197 @@
+// ---Created By AI Profiler 2.5--- \\
+//Date: 3/5/01 - 13:39:57
+//Author Name: Mufdvr
+//Author Email: mufdvr@optusnet.com.au
+//Description: For metal maps
+
+
+// **Weights for all units** \\
+
+
+
+// ARM
+
+
+// PLANT
+weight ARMAAP 9
+weight ARMALAB 9
+weight ARMAP 9.5
+weight ARMASY 2
+weight ARMAVP 9
+weight ARMHP 0
+weight ARMLAB 8.5
+weight ARMPLAT 1
+weight ARMSY 2
+weight ARMVP 9.5
+
+// SHIP
+weight ARMAAS 3
+weight ARMACSUB 3
+weight ARMBATS 3
+weight ARMCARRY 2
+weight ARMCRUS 2
+weight ARMCS 2
+weight ARMMSHIP 3
+weight ARMPT 3
+weight ARMROY 2.5
+weight ARMSJAM 3
+weight ARMTSHIP 0
+
+// CNSTR
+weight ARMACA 9.5
+weight ARMACK 9.5
+weight ARMACV 9.5
+weight ARMCH 0
+weight ARMCV 10
+weight ARMMLV 0
+
+// TANK
+weight ARMAH 0
+weight ARMANAC 0
+weight ARMBULL 8.5
+weight ARMCROC 4.7
+weight ARMFAV 6
+weight ARMFLASH 7.9
+weight ARMJAM 3
+weight ARMLATNK 7.4
+weight ARMMANNI 7.8
+weight ARMMART 8.5
+weight ARMMERL 8
+weight ARMMH 0
+weight ARMSAM 8.5
+weight ARMSCAB 0
+weight ARMSEER 1.5
+weight ARMSH 0
+weight ARMSPID 3
+weight ARMSTUMP 7.9
+weight ARMTHOVR 0
+weight ARMYORK 5.4
+
+// FORT
+weight ARMAMB 6.6
+weight ARMAMD 7.4
+weight ARMANNI 8.6
+weight ARMBRTHA 7.8
+weight ARMDRAG 0
+weight ARMFDRAG 0
+weight ARMFLAK 7.5
+weight ARMFORT 0
+weight ARMGUARD 8.4
+weight ARMHLT 8.7
+weight ARMLLT 1.4
+weight ARMRL 9.5
+weight ARMVULC 7
+
+// KBOT
+weight ARMAMPH 3
+weight ARMASER 2.5
+weight ARMCK 9.6
+weight ARMFARK 0
+weight ARMFAST 8.6
+weight ARMFIDO 3.5
+weight ARMFLEA 2.3
+weight ARMHAM 8.4
+weight ARMJETH 9.5
+weight ARMMARK 1.5
+weight ARMMAV 3.5
+weight ARMPW 2.5
+weight ARMROCK 8.1
+weight ARMSNIPE 8.7
+weight ARMSPY 1
+weight ARMVADER 2.5
+weight ARMWAR 8.3
+weight ARMZEUS 8.2
+
+// SPECIAL
+weight ARMARAD 3
+weight ARMASP 3.5
+weight ARMBEAC 0
+weight ARMDEV1 0
+weight ARMEMP 2.5
+weight ARMGATE 0
+weight ARMMINE1 0
+weight ARMMINE2 0
+weight ARMMINE3 0
+weight ARMMINE4 0
+weight ARMMINE5 0
+weight ARMMINE6 0
+weight ARMRAD 3.5
+weight ARMSCORP 0
+weight ARMSILO 3
+weight ARMSS 1.5
+weight ARMTARG 3
+
+// WATER
+weight ARMASON 2.5
+weight ARMATL 2.5
+weight ARMFHLT 2.5
+weight ARMFRT 3.5
+weight ARMSCRAM 0
+weight ARMSONAR 2.5
+weight ARMSUB 2.5
+weight ARMSUBK 3
+weight ARMTIDE 3
+weight ARMTL 2
+
+// VTOL
+weight ARMATLAS 0
+weight ARMAWAC 1.5
+weight ARMBRAWL 8.8
+weight ARMCA 9.5
+weight ARMCSA 2
+weight ARMFIG 8.8
+weight ARMHAWK 8.8
+weight ARMLANCE 8.8
+weight ARMPEEP 3
+weight ARMPNIX 8.8
+weight ARMSEAP 0
+weight ARMSEHAK 0
+weight ARMSFIG 0
+weight ARMTHUND 8.3
+
+// ENERGY
+weight ARMCKFUS 0
+weight ARMESTOR 3
+weight ARMFUS 7.8
+weight ARMGEO 10
+weight ARMSOLAR 1
+weight ARMUWES 2.5
+weight ARMUWFUS 4
+weight ARMWIN 10
+
+// COMMANDER
+weight ARMCOM 10
+weight ARMDECOM 2
+
+// METAL
+weight ARMFMKR 0
+weight ARMMAKR 0
+weight ARMMEX 10
+weight ARMMMKR 0
+weight ARMMOHO 9.7
+weight ARMMSTOR 6
+weight ARMUWMEX 1.6
+weight ARMUWMS 2.5
+
+
+// CORE
+
+
+// PLANT
+weight CORAAP 9
+weight CORALAB 9
+weight CORAP 9.5
+weight CORASY 2
+weight CORAVP 9
+weight CORGANT 8.5
+weight CORHP 8
+weight CORLAB 9.5
+weight CORPLAT 1.5
+weight CORSY 2
+weight CORVP 9.5
+
+// SHIP
+weight CORACSUB 3
+weight CORARCH 3
+weight CORBATS 3
+weight CORCARRY 3.5
+weight CORCRUS 3
+weight CORMSHIP 3
+weight CORPT 2.5
+weight CORROY 2.5
+weight CORSHARK 3.5
+weight CORSJAM 2.5
+weight CORSSUB 2
+weight CORSUB 2.5
+weight CORTSHIP 0
+
+// CNSTR
+weight CORACA 9.5
+weight CORACK 9.5
+weight CORACV 9.5
+weight CORCA 10
+weight CORCH 0
+weight CORCK 10
+weight CORCS 2
+weight CORMLV 1.9
+
+// TANK
+weight CORAH 7
+weight CORCV 7
+weight CORETER 3
+weight CORFAV 1.5
+weight CORGATOR 7
+weight CORGOL 7
+weight CORLEVLR 7
+weight CORMABM 0
+weight CORMART 7
+weight CORMH 7
+weight CORMIST 7
+weight CORRAID 7
+weight CORREAP 7
+weight CORSEAL 3.5
+weight CORSENT 7
+weight CORSH 3.5
+weight CORSNAP 0
+weight CORTHOVR 0
+weight CORVRAD 2.5
+weight CORVROC 7
+
+// FORT
+weight CORBUZZ 8
+weight CORDOOM 8
+weight CORDRAG 0
+weight CORFDRAG 0
+weight CORFLAK 9
+weight CORFORT 0
+weight CORHLT 9
+weight CORINT 9
+weight CORLLT 8
+weight CORPLAS 9
+weight CORPUN 9
+weight CORRL 9
+weight CORTOAST 3
+weight CORVIPE 3.5
+
+// KBOT
+weight CORAK 4.1
+weight CORAMPH 4.1
+weight CORCAN 7
+weight CORCRASH 7
+weight CORFAST 7
+weight CORHRK 7
+weight CORKROG 7
+weight CORMORT 7
+weight CORNECRO 0
+weight CORPYRO 7
+weight CORROACH 2.5
+weight CORSPEC 2
+weight CORSPY 3
+weight CORSTORM 7
+weight CORSUMO 7
+weight CORTHUD 7
+weight CORVOYR 2.5
+
+// SPECIAL
+weight CORARAD 6.6
+weight CORASP 6.8
+weight CORBEAC 0
+weight CORDEV1 1.5
+weight CORFMD 9
+weight CORGATE 0
+weight CORMINE1 0
+weight CORMINE2 0
+weight CORMINE3 0
+weight CORMINE4 0
+weight CORMINE5 0
+weight CORMINE6 0
+weight CORRAD 3.5
+weight CORSCORP 0
+weight CORSILO 9
+weight CORTARG 9
+weight CORTRON 9
+
+// WATER
+weight CORASON 3.5
+weight CORATL 2
+weight CORFHLT 9
+weight CORFRT 9
+weight CORSONAR 3.5
+weight CORTIDE 3
+weight CORTL 3
+
+// VTOL
+weight CORAPE 8.8
+weight CORAWAC 8.8
+weight CORCSA 3.5
+weight CORFINK 2
+weight CORHUNT 3.5
+weight CORHURC 8.5
+weight CORSEAP 2.5
+weight CORSFIG 2.5
+weight CORSHAD 8
+weight CORTITAN 6
+weight CORVALK 0
+weight CORVAMP 8.8
+weight CORVENG 8.8
+
+// ENERGY
+weight CORCKFUS 0
+weight CORESTOR 0
+weight CORFUS 9.5
+weight CORGEO 10
+weight CORSOLAR 1
+weight CORUWES 1.4
+weight CORUWFUS 7.5
+weight CORWIN 10
+
+// COMMANDER
+weight CORCOM 10
+weight CORDECOM 0
+
+// METAL
+weight CORFMKR 0
+weight CORMAKR 0
+weight CORMEX 10
+weight CORMMKR 0
+weight CORMOHO 9.7
+weight CORMSTOR 6
+weight CORUWMEX 5
+weight CORUWMS 5
+
+// **Limits for all units** \\
+
+
+
+// ARM
+
+
+// PLANT
+limit ARMAAP 8
+limit ARMALAB 8
+limit ARMAP 8
+limit ARMASY 2
+limit ARMAVP 8
+limit ARMHP 0
+limit ARMLAB 6
+limit ARMPLAT 1
+limit ARMSY 2
+limit ARMVP 2
+
+// SHIP
+limit ARMAAS 5
+limit ARMACSUB 3
+limit ARMBATS 3
+limit ARMCARRY 4
+limit ARMCRUS 4
+limit ARMCS 6
+limit ARMMSHIP 10
+limit ARMPT 15
+limit ARMROY 10
+limit ARMSJAM 3
+limit ARMTSHIP 0
+
+// CNSTR
+limit ARMACA 20
+limit ARMACK 20
+limit ARMACV 20
+limit ARMCH 0
+limit ARMCV 10
+limit ARMMLV 0
+
+// TANK
+limit ARMAH 0
+limit ARMANAC 0
+limit ARMBULL 30
+limit ARMCROC 10
+limit ARMFAV 5
+limit ARMFLASH 10
+limit ARMJAM 4
+limit ARMLATNK 15
+limit ARMMANNI 4
+limit ARMMART 25
+limit ARMMERL 25
+limit ARMMH 0
+limit ARMSAM 20
+limit ARMSCAB 0
+limit ARMSEER 2
+limit ARMSH 0
+limit ARMSPID 10
+limit ARMSTUMP 25
+limit ARMTHOVR 0
+limit ARMYORK 20
+
+// FORT
+limit ARMAMB 15
+limit ARMAMD 2
+limit ARMANNI 4
+limit ARMBRTHA 4
+limit ARMDRAG 0
+limit ARMFDRAG 0
+limit ARMFLAK 20
+limit ARMFORT 0
+limit ARMGUARD 15
+limit ARMHLT 20
+limit ARMLLT 6
+limit ARMRL 20
+limit ARMVULC 2
+
+// KBOT
+limit ARMAMPH 10
+limit ARMASER 6
+limit ARMCK 10
+limit ARMFARK 0
+limit ARMFAST 10
+limit ARMFIDO 20
+limit ARMFLEA 10
+limit ARMHAM 20
+limit ARMJETH 20
+limit ARMMARK 2
+limit ARMMAV 20
+limit ARMPW 10
+limit ARMROCK 15
+limit ARMSNIPE 15
+limit ARMSPY 2
+limit ARMVADER 5
+limit ARMWAR 20
+limit ARMZEUS 10
+
+// SPECIAL
+limit ARMARAD 4
+limit ARMASP 6
+limit ARMBEAC 0
+limit ARMDEV1 0
+limit ARMEMP 2
+limit ARMGATE 0
+limit ARMMINE1 0
+limit ARMMINE2 0
+limit ARMMINE3 0
+limit ARMMINE4 0
+limit ARMMINE5 0
+limit ARMMINE6 0
+limit ARMRAD 4
+limit ARMSCORP 0
+limit ARMSILO 4
+limit ARMSS 5
+limit ARMTARG 1
+
+// WATER
+limit ARMASON 2
+limit ARMATL 4
+limit ARMFHLT 4
+limit ARMFRT 10
+limit ARMSCRAM 0
+limit ARMSONAR 2
+limit ARMSUB 6
+limit ARMSUBK 8
+limit ARMTIDE 20
+limit ARMTL 2
+
+// VTOL
+limit ARMATLAS 0
+limit ARMAWAC 2
+limit ARMBRAWL 20
+limit ARMCA 15
+limit ARMCSA 2
+limit ARMFIG 10
+limit ARMHAWK 25
+limit ARMLANCE 4
+limit ARMPEEP 2
+limit ARMPNIX 10
+limit ARMSEAP 0
+limit ARMSEHAK 0
+limit ARMSFIG 0
+limit ARMTHUND 10
+
+// ENERGY
+limit ARMCKFUS 0
+limit ARMESTOR 10
+limit ARMFUS 20
+limit ARMGEO 15
+limit ARMSOLAR 5
+limit ARMUWES 4
+limit ARMUWFUS 10
+limit ARMWIN 34
+
+// COMMANDER
+limit ARMCOM 1
+limit ARMDECOM 4
+
+// METAL
+limit ARMFMKR 0
+limit ARMMAKR 0
+limit ARMMEX 20
+limit ARMMMKR 0
+limit ARMMOHO 25
+limit ARMMSTOR 4
+limit ARMUWMEX 4
+limit ARMUWMS 4
+
+
+// CORE
+
+
+// PLANT
+limit CORAAP 8
+limit CORALAB 8
+limit CORAP 2
+limit CORASY 2
+limit CORAVP 8
+limit CORGANT 1
+limit CORHP 2
+limit CORLAB 4
+limit CORPLAT 1
+limit CORSY 2
+limit CORVP 2
+
+// SHIP
+limit CORACSUB 3
+limit CORARCH 8
+limit CORBATS 4
+limit CORCARRY 4
+limit CORCRUS 6
+limit CORMSHIP 13
+limit CORPT 10
+limit CORROY 5
+limit CORSHARK 8
+limit CORSJAM 3
+limit CORSSUB 2
+limit CORSUB 6
+limit CORTSHIP 0
+
+// CNSTR
+limit CORACA 20
+limit CORACK 20
+limit CORACV 20
+limit CORCA 10
+limit CORCH 0
+limit CORCK 10
+limit CORCS 6
+limit CORMLV 3
+
+// TANK
+limit CORAH 15
+limit CORCV 15
+limit CORETER 4
+limit CORFAV 2
+limit CORGATOR 20
+limit CORGOL 15
+limit CORLEVLR 20
+limit CORMABM 0
+limit CORMART 25
+limit CORMH 15
+limit CORMIST 20
+limit CORRAID 15
+limit CORREAP 20
+limit CORSEAL 10
+limit CORSENT 25
+limit CORSH 15
+limit CORSNAP 0
+limit CORTHOVR 0
+limit CORVRAD 5
+limit CORVROC 15
+
+// FORT
+limit CORBUZZ 2
+limit CORDOOM 8
+limit CORDRAG 0
+limit CORFDRAG 0
+limit CORFLAK 15
+limit CORFORT 0
+limit CORHLT 15
+limit CORINT 6
+limit CORLLT 10
+limit CORPLAS 10
+limit CORPUN 15
+limit CORRL 20
+limit CORTOAST 10
+limit CORVIPE 15
+
+// KBOT
+limit CORAK 20
+limit CORAMPH 30
+limit CORCAN 10
+limit CORCRASH 25
+limit CORFAST 20
+limit CORHRK 20
+limit CORKROG 4
+limit CORMORT 30
+limit CORNECRO 0
+limit CORPYRO 30
+limit CORROACH 5
+limit CORSPEC 2
+limit CORSPY 4
+limit CORSTORM 25
+limit CORSUMO 16
+limit CORTHUD 30
+limit CORVOYR 2
+
+// SPECIAL
+limit CORARAD 4
+limit CORASP 6
+limit CORBEAC 0
+limit CORDEV1 1
+limit CORFMD 2
+limit CORGATE 0
+limit CORMINE1 0
+limit CORMINE2 0
+limit CORMINE3 0
+limit CORMINE4 0
+limit CORMINE5 0
+limit CORMINE6 0
+limit CORRAD 8
+limit CORSCORP 0
+limit CORSILO 4
+limit CORTARG 1
+limit CORTRON 2
+
+// WATER
+limit CORASON 2
+limit CORATL 4
+limit CORFHLT 10
+limit CORFRT 10
+limit CORSONAR 4
+limit CORTIDE 20
+limit CORTL 10
+
+// VTOL
+limit CORAPE 20
+limit CORAWAC 15
+limit CORCSA 2
+limit CORFINK 2
+limit CORHUNT 6
+limit CORHURC 15
+limit CORSEAP 5
+limit CORSFIG 5
+limit CORSHAD 20
+limit CORTITAN 5
+limit CORVALK 0
+limit CORVAMP 15
+limit CORVENG 20
+
+// ENERGY
+limit CORCKFUS 0
+limit CORESTOR 0
+limit CORFUS 15
+limit CORGEO 15
+limit CORSOLAR 5
+limit CORUWES 2
+limit CORUWFUS 15
+limit CORWIN 34
+
+// COMMANDER
+limit CORCOM 1
+limit CORDECOM 0
+
+// METAL
+limit CORFMKR 0
+limit CORMAKR 0
+limit CORMEX 30
+limit CORMMKR 0
+limit CORMOHO 25
+limit CORMSTOR 4
+limit CORUWMEX 15
+limit CORUWMS 4
+
+// **Global Weights** \\
+weight ARM 
+weight CORE 
+weight ENERGY 10
+weight METAL 10
+weight CONSTR 9.5
+weight FORT 8.5
+weight PLANT 10
+plan easy
+
+
+
+// ARM
+
+
+// PLANT
+limit ARMAAP 4
+
+// SHIP
+limit ARMAAS 2
+
+// CNSTR
+limit ARMACA 10
+
+// TANK
+limit ARMAH 0
+limit ARMANAC 0
+limit ARMBULL 15
+
+// FORT
+limit ARMAMB 8
+
+// KBOT
+limit ARMAMPH 5
+
+// SPECIAL
+limit ARMARAD 2
+
+// WATER
+limit ARMASON 1
+
+// VTOL
+limit ARMATLAS 0
+limit ARMAWAC 1
+
+// ENERGY
+limit ARMCKFUS 0
+limit ARMESTOR 5
+
+// COMMANDER
+limit ARMCOM 0
+
+// METAL
+limit ARMFMKR 0
+limit ARMMAKR 0
+limit ARMMEX 10
+
+
+// CORE
+
+
+// PLANT
+limit CORAAP 4
+
+// SHIP
+limit CORACSUB 2
+
+// CNSTR
+limit CORACA 10
+
+// TANK
+limit CORAH 8
+
+// FORT
+limit CORBUZZ 1
+
+// KBOT
+limit CORAK 10
+
+// SPECIAL
+limit CORARAD 2
+
+// WATER
+limit CORASON 1
+
+// VTOL
+limit CORAPE 10
+
+// ENERGY
+limit CORCKFUS 0
+limit CORESTOR 0
+limit CORFUS 8
+
+// COMMANDER
+limit CORCOM 0
+
+// METAL
+limit CORFMKR 0
+limit CORMAKR 0
+limit CORMEX 15
+
+plan medium
+
+
+
+// ARM
+
+
+// PLANT
+limit ARMAAP 6
+
+// SHIP
+limit ARMAAS 4
+
+// CNSTR
+limit ARMACA 15
+
+// TANK
+limit ARMAH 0
+limit ARMANAC 0
+limit ARMBULL 22
+
+// FORT
+limit ARMAMB 11
+
+// KBOT
+limit ARMAMPH 8
+
+// SPECIAL
+limit ARMARAD 3
+
+// WATER
+limit ARMASON 2
+limit ARMATL 3
+
+// VTOL
+limit ARMATLAS 0
+limit ARMAWAC 2
+limit ARMBRAWL 15
+
+// ENERGY
+limit ARMCKFUS 0
+limit ARMESTOR 8
+
+// COMMANDER
+limit ARMCOM 1
+limit ARMDECOM 3
+
+// METAL
+limit ARMFMKR 0
+limit ARMMAKR 0
+limit ARMMEX 15
+
+
+// CORE
+
+
+// PLANT
+limit CORAAP 6
+
+// SHIP
+limit CORACSUB 2
+
+// CNSTR
+limit CORACA 15
+
+// TANK
+limit CORAH 11
+
+// FORT
+limit CORBUZZ 2
+limit CORDOOM 6
+
+// KBOT
+limit CORAK 15
+
+// SPECIAL
+limit CORARAD 3
+
+// WATER
+limit CORASON 2
+limit CORATL 3
+
+// VTOL
+limit CORAPE 15
+
+// ENERGY
+limit CORCKFUS 0
+limit CORESTOR 0
+limit CORFUS 11
+
+// COMMANDER
+limit CORCOM 1
+limit CORDECOM 0
+
+// METAL
+limit CORFMKR 0
+limit CORMAKR 0
+limit CORMEX 22
+
+plan hard
+
+
+
+// ARM
+
+
+// PLANT
+limit ARMAAP 8
+limit ARMALAB 8
+limit ARMAP 8
+limit ARMASY 2
+limit ARMAVP 8
+limit ARMHP 0
+
+// SHIP
+limit ARMAAS 5
+limit ARMACSUB 3
+limit ARMBATS 3
+limit ARMCARRY 4
+limit ARMCRUS 4
+limit ARMCS 6
+limit ARMMSHIP 10
+limit ARMPT 15
+limit ARMROY 10
+limit ARMSJAM 3
+limit ARMTSHIP 0
+
+// CNSTR
+limit ARMACA 20
+limit ARMACK 20
+limit ARMACV 20
+limit ARMCH 0
+
+// TANK
+limit ARMAH 0
+limit ARMANAC 0
+limit ARMBULL 30
+limit ARMCROC 10
+limit ARMFAV 5
+limit ARMFLASH 10
+limit ARMJAM 4
+limit ARMLATNK 15
+limit ARMMANNI 4
+limit ARMMART 25
+limit ARMMERL 25
+limit ARMMH 0
+limit ARMSAM 20
+limit ARMSCAB 0
+limit ARMSEER 2
+limit ARMSH 0
+limit ARMSPID 10
+limit ARMSTUMP 25
+limit ARMTHOVR 0
+limit ARMYORK 20
+
+// FORT
+limit ARMAMB 15
+limit ARMAMD 2
+limit ARMANNI 4
+limit ARMBRTHA 4
+limit ARMDRAG 0
+limit ARMFDRAG 0
+limit ARMFLAK 20
+limit ARMFORT 0
+limit ARMGUARD 15
+limit ARMHLT 20
+limit ARMLLT 6
+limit ARMRL 20
+limit ARMVULC 2
+
+// KBOT
+limit ARMAMPH 10
+limit ARMASER 6
+limit ARMCK 10
+limit ARMFARK 0
+limit ARMFAST 10
+limit ARMFIDO 20
+limit ARMFLEA 10
+limit ARMHAM 20
+limit ARMJETH 20
+limit ARMMARK 2
+limit ARMMAV 20
+limit ARMPW 10
+limit ARMROCK 15
+limit ARMSNIPE 15
+limit ARMSPY 2
+limit ARMVADER 5
+limit ARMWAR 20
+limit ARMZEUS 10
+
+// SPECIAL
+limit ARMARAD 4
+limit ARMASP 6
+limit ARMBEAC 0
+limit ARMDEV1 0
+limit ARMEMP 2
+limit ARMGATE 0
+limit ARMMINE1 0
+limit ARMMINE2 0
+limit ARMMINE3 0
+limit ARMMINE4 0
+limit ARMMINE5 0
+limit ARMMINE6 0
+limit ARMRAD 4
+limit ARMSCORP 0
+limit ARMSILO 4
+limit ARMSS 5
+limit ARMTARG 1
+
+// WATER
+limit ARMASON 2
+limit ARMATL 4
+limit ARMFHLT 4
+limit ARMFRT 10
+limit ARMSCRAM 0
+limit ARMSONAR 2
+limit ARMSUB 6
+limit ARMSUBK 8
+limit ARMTIDE 20
+limit ARMTL 2
+
+// VTOL
+limit ARMATLAS 0
+limit ARMAWAC 2
+limit ARMBRAWL 20
+limit ARMCA 15
+limit ARMCSA 2
+limit ARMFIG 10
+limit ARMHAWK 25
+limit ARMLANCE 4
+limit ARMPEEP 2
+limit ARMPNIX 10
+limit ARMSEAP 0
+
+// ENERGY
+limit ARMCKFUS 0
+limit ARMESTOR 10
+limit ARMFUS 20
+limit ARMGEO 15
+limit ARMSOLAR 5
+limit ARMUWES 4
+limit ARMUWFUS 10
+limit ARMWIN 34
+
+// COMMANDER
+limit ARMCOM 1
+limit ARMDECOM 4
+
+// METAL
+limit ARMFMKR 0
+limit ARMMAKR 0
+limit ARMMEX 20
+limit ARMMMKR 0
+limit ARMMOHO 25
+limit ARMMSTOR 4
+limit ARMUWMEX 4
+limit ARMUWMS 4
+
+
+// CORE
+
+
+// PLANT
+limit CORAAP 8
+limit CORALAB 8
+limit CORAP 2
+limit CORASY 2
+limit CORAVP 8
+limit CORGANT 1
+limit CORHP 2
+limit CORLAB 4
+limit CORPLAT 1
+limit CORSY 2
+limit CORVP 2
+
+// SHIP
+limit CORACSUB 3
+limit CORARCH 8
+limit CORBATS 4
+limit CORCARRY 4
+limit CORCRUS 6
+limit CORMSHIP 13
+limit CORPT 10
+limit CORROY 5
+limit CORSHARK 8
+limit CORSJAM 3
+limit CORSSUB 2
+limit CORSUB 6
+limit CORTSHIP 0
+
+// CNSTR
+limit CORACA 20
+limit CORACK 20
+limit CORACV 20
+limit CORCA 10
+limit CORCH 0
+
+// TANK
+limit CORAH 15
+limit CORCV 15
+limit CORETER 4
+limit CORFAV 2
+limit CORGATOR 20
+limit CORGOL 15
+limit CORLEVLR 20
+limit CORMABM 0
+limit CORMART 25
+limit CORMH 15
+limit CORMIST 20
+limit CORRAID 15
+limit CORREAP 20
+limit CORSEAL 10
+limit CORSENT 25
+limit CORSH 15
+limit CORSNAP 0
+limit CORTHOVR 0
+limit CORVRAD 5
+limit CORVROC 15
+
+// FORT
+limit CORBUZZ 2
+limit CORDOOM 8
+limit CORDRAG 0
+limit CORFDRAG 0
+limit CORFLAK 15
+limit CORFORT 0
+limit CORHLT 15
+limit CORINT 6
+limit CORLLT 10
+limit CORPLAS 10
+limit CORPUN 15
+limit CORRL 20
+limit CORTOAST 10
+limit CORVIPE 15
+
+// KBOT
+limit CORAK 20
+limit CORAMPH 30
+limit CORCAN 10
+limit CORCRASH 25
+limit CORFAST 20
+limit CORHRK 20
+limit CORKROG 4
+limit CORMORT 30
+limit CORNECRO 0
+limit CORPYRO 30
+limit CORROACH 5
+limit CORSPEC 2
+limit CORSPY 4
+limit CORSTORM 25
+limit CORSUMO 16
+limit CORTHUD 30
+limit CORVOYR 2
+
+// SPECIAL
+limit CORARAD 4
+limit CORASP 6
+limit CORBEAC 0
+limit CORDEV1 1
+limit CORFMD 2
+limit CORGATE 0
+limit CORMINE1 0
+limit CORMINE2 0
+limit CORMINE3 0
+limit CORMINE4 0
+limit CORMINE5 0
+limit CORMINE6 0
+limit CORRAD 8
+limit CORSCORP 0
+limit CORSILO 4
+limit CORTARG 1
+limit CORTRON 2
+
+// WATER
+limit CORASON 2
+limit CORATL 4
+limit CORFHLT 10
+limit CORFRT 10
+limit CORSONAR 4
+limit CORTIDE 20
+limit CORTL 10
+
+// VTOL
+limit CORAPE 20
+limit CORAWAC 15
+limit CORCSA 2
+limit CORFINK 2
+limit CORHUNT 6
+limit CORHURC 15
+limit CORSEAP 5
+limit CORSFIG 5
+limit CORSHAD 20
+limit CORTITAN 5
+limit CORVALK 0
+limit CORVAMP 15
+limit CORVENG 20
+
+// ENERGY
+limit CORCKFUS 0
+limit CORESTOR 0
+limit CORFUS 15
+limit CORGEO 15
+limit CORSOLAR 5
+limit CORUWES 2
+limit CORUWFUS 15
+limit CORWIN 34
+
+// COMMANDER
+limit CORCOM 1
+limit CORDECOM 0
+
+// METAL
+limit CORFMKR 0
+limit CORMAKR 0
+limit CORMEX 30
+limit CORMMKR 0
+limit CORMOHO 25
+limit CORMSTOR 4
+limit CORUWMEX 15
+limit CORUWMS 4
+

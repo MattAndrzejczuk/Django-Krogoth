@@ -1,0 +1,264 @@
+[SnowTree01]
+	{
+	world=Evergreen;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=snowtree1;
+	seqname=tree1_01;
+	seqnameshad=treeshad_01;
+	seqnamereclamate=tree1_01rec;
+	seqnamedie=snowtreeboom;
+	featuredead=smudge02_01;
+	energy = 250;
+	damage=200;
+
+	featurereclamate=smudge02_01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[SnowTree02]
+	{
+	world=Evergreen;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=snowtree1;
+	seqname=tree2_01;
+	seqnameshad=treeshad2_01;
+	seqnamereclamate=tree1_01rec;
+	seqnamedie=snowtreeboom;
+	featuredead=smudge02_01;
+	energy = 250;
+	damage=200;
+
+
+	featurereclamate=smudge03_01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[SnowTree03]
+	{
+	world=Evergreen;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=snowtree1;
+	seqname=tree3_01;
+	seqnameshad=treeshad3_01;
+	seqnamereclamate=tree1_01rec;
+	seqnamedie=snowtreeboom;
+	featuredead=smudge02_01;
+	damage=200;
+	energy = 250;
+
+	featurereclamate=smudge04_01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[SnowTree04]
+	{
+	world=Evergreen;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=snowtree1;
+	seqname=crispy2_01;
+	seqnameshad=crispy2shad_01;
+	featuredead=smudge02_01;
+	featurereclamate=smudge04_01;
+	seqnamereclamate=a1;
+	energy=175;
+	damage=150;
+	
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[SnowTree05]
+	{
+	world=Evergreen;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=snowtree1;
+	seqname=crispy3_01;
+	seqnameshad=crispy3shad_01;
+	featuredead=smudge04_01;
+	featurereclamate=smudge02_01;
+	seqnamereclamate=a1;
+	energy=175;
+	damage=150;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[SnowTree06]
+	{
+	world=Evergreen;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=snowtree1;
+	seqname=crispy4_01;
+	seqnameshad=crispy4shad_01;
+	featuredead=smudge03_01;
+	featurereclamate=smudge04_01;
+	seqnamereclamate=b1;
+	energy=175;
+	damage=150;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[SnowTree07]
+	{
+	world=Evergreen;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=snowtree1;
+	seqname=crispy5_01;
+	seqnameshad=crispy5shad_01;
+	featuredead=smudge03_01;
+	featurereclamate=smudge04_01;
+	seqnamereclamate=b1;
+	energy=175;
+	damage=150;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+
+
+[smudge03_01]
+	{
+	world=Evergreen;
+	description=Charred Land;
+	category=smudge;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=snowtree1;
+	seqname=smudge03_01;
+
+	animtrans=1;
+	shadtrans=;
+	flamable=0;
+	reclaimable=;
+	reproduce=0;
+	reproducearea=6;
+	blocking=;
+	hitdensity=10;
+	}
+[smudge02_01]
+	{
+	world=Evergreen;
+	description=Charred Land;
+	category=smudge;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=snowtree1;
+	seqname=smudge02_01;
+
+	animtrans=1;
+	shadtrans=;
+	flamable=0;
+	reclaimable=;
+	reproduce=0;
+	reproducearea=6;
+	blocking=;
+	hitdensity=10;
+	}
+[smudge04_01]
+	{
+	world=Evergreen;
+	description=Charred Land;
+	category=smudge;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=snowtree1;
+	seqname=smudge04_01;
+
+	animtrans=1;
+	shadtrans=;
+	flamable=0;
+	reclaimable=;
+	reproduce=0;
+	reproducearea=6;
+	blocking=;
+	hitdensity=10;
+	}

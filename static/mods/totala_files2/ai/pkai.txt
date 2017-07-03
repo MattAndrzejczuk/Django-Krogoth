@@ -1,0 +1,587 @@
+// Punkkids AI for Pad
+// Weights for base buildings, construction units, aircraft, and ground forces.
+
+Weight ARMGEO 10
+Weight ARMFUS 10
+Weight ARMSOLAR 10
+Weight ARMCA 10
+Weight ARMCH 10
+Weight ARMVP 5
+Weight ARMRL 5
+Weight ARMMEX 5
+Weight ARMLAB 2.1
+Weight ARMACA 2
+Weight ARMACK 2
+Weight ARMACV 2
+Weight ARMCV 1.9
+Weight ARMAVP 1.6
+Weight ARMBRTHA 1.6
+Weight ARMCK 1.6
+Weight ARMHLT 1.5
+Weight ARMFLAK 1.4
+Weight ARMAP 1.3
+Weight ARMMAKR 1.3
+Weight ARMESTOR 1.2
+Weight ARMAAP 1.2
+Weight ARMALAB 1.1
+Weight ARMASP 1.1
+Weight ARMHP 1.05
+Weight ARMMMKR 1.05
+Weight ARMGUARD 1.05
+Weight ARMAMB 1.05
+
+Weight CORGEO 10
+Weight CORFUS 10
+Weight CORSOLAR 10
+Weight CORCA 10
+Weight CORCH 10
+Weight CORLAB 5
+Weight CORMEX 5
+Weight CORRL 4
+Weight CORACA 2
+Weight CORACK 2
+Weight CORACV 2
+Weight CORINT 1.9
+Weight CORGANT 1.9
+Weight CORVP 1.9
+Weight CORCV 1.9
+Weight CORALAB 1.7
+Weight CORCK 1.5
+Weight CORAP 1.3
+Weight CORMAKR 1.3
+Weight CORFLAK 1.2
+Weight CORESTOR 1.2
+Weight CORAAP 1.2
+Weight CORAVP 1.2
+Weight CORASP 1.15
+Weight CORDOOM 1.1
+Weight CORMMKR 1.05
+Weight CORHP 1.05
+Weight CORPUN 1.05
+Weight CORBUZZ 1.05
+
+Weight ARMHAWK 7
+Weight ARMBRAWL 2.5
+Weight ARMFIG 2.05
+
+Weight CORVAMP 4
+Weight CORAPE 3
+Weight CORVENG 1.05
+
+Weight ARMFLASH 7
+Weight ARMROCK 3.5
+Weight ARMMH 3
+Weight ARMMAV 2.5
+Weight ARMSAM 2.1
+Weight ARMLATNK 2.1
+Weight ARMAH 1.9
+Weight ARMHAM 1.8
+Weight ARMAMPH 1.6
+Weight ARMFIDO 1.5
+Weight ARMPW 1.4
+Weight ARMBULL 1.4
+Weight ARMMERL 1.25
+Weight ARMMART 1.2
+Weight ARMFAST 1.1
+Weight ARMANAC 1.1
+Weight ARMSTUMP 1.05
+Weight ARMJETH 1.05
+Weight ARMWAR 1.05
+Weight ARMSNIPE 1.05
+Weight ARMZEUS 1.05
+Weight ARMMANNI 1.05
+Weight ARMYORK 1.05
+Weight ARMSPID 1.05
+Weight ARMDECOM 1.05
+
+Weight CORKROG 10
+Weight CORSCORP 10
+Weight CORMORT 4
+Weight CORGOL 3
+Weight CORMIST 2.5
+Weight CORCAN 2.2
+Weight CORSTORM 2.1
+Weight CORGATOR 1.9
+Weight CORHRK  1.9
+Weight CORTHUD 1.8
+Weight CORSUMO 1.3
+Weight CORCRASH 1.2
+Weight CORFAST 1.1
+Weight CORLEVLR 1.05
+Weight CORRAID 1.05
+Weight CORMART 1.05
+Weight CORSENT 1.05
+Weight CORVROC 1.05
+Weight CORAMPH 1.05
+Weight CORPYRO 1.05
+Weight CORDECOM 1.05
+
+// 3rd party
+
+weight TURNER 10
+weight ARMDREAD 1.3
+weight ARMCYBR 1.3
+weight WRAITH 1.3
+weight ARMKAM 1.05
+weight NUKEA 1.5
+limit AATIDE 1
+limit AEXXEC 7
+limit AFUZY 3
+limit ARMAAJ 1
+limit ARMARCH 2
+limit ARMCYBR 5
+limit ARMDOGL 9
+limit ARMDREAD 9
+limit ARMEMG 0
+limit ARMGUSS 0
+limit ARMKAM 0
+limit ARMMIN 0
+limit ARMMOSQU 0
+limit ARMREP 0
+limit ARMSPAR 0
+limit ASNIPER 7
+limit ATNK 0
+limit EMPATH 0
+limit NUKEA 2
+limit SPOOFER 0
+limit TURNER 11
+limit WRAITH 2
+
+weight CSLICER 10
+weight ROLLER 10
+weight CSPEED 4
+weight CPOWER 1.9
+weight NUKEC 1.5
+weight CORWING 1.3
+weight CKMMKR 1.1
+weight CJAMFUSR 1.1
+limit CJAMFUSR 2
+limit CKMMKR 2
+limit CMBOX 5
+limit CORARTV 7
+limit CORDEV 2
+limit CORDOGL 9
+limit CORFRL 0
+limit CORLOCUS 0
+limit CORSUMOT 3
+limit CORTHUG 7
+limit CORTRUCK 0
+limit CORWING 5
+limit CORZAP 0
+limit CPOWER 2
+limit CRNNS 0
+limit CSLICER 9
+limit CSPEED 5
+limit DCONDORE 0
+limit NUKEC 2
+limit PRIEST 0
+limit ROLLER 11
+
+weight armumex 1.9
+limit armumex 4
+weight corumex 1.9
+limit corumex 4
+
+// These two lines may decrease the chance that 3rd party units will mess it up.
+
+Weight ARM 0.2
+Weight CORE 0.2
+
+// ARM
+// Limits: Aircraft, Hovercraft, K-bots, Ships, Seaplanes, Vehicles, Buildings, Naval Buildings
+
+Limit ARMATLAS 0
+Limit ARMAWAC 3
+Limit ARMBRAWL 30
+Limit ARMFIG 13
+Limit ARMHAWK 37
+Limit ARMLANCE 0
+Limit ARMPEEP 3
+Limit ARMPNIX 14
+Limit ARMTHUND 14
+
+Limit ARMANAC 4
+Limit ARMAH 8
+Limit ARMMH 6
+Limit ARMSH 0
+Limit ARMTHOVR 0
+
+Limit ARMAMPH 5
+Limit ARMASER 0
+limit ARMCOM 0
+Limit ARMDECOM 2
+Limit ARMFAST 3
+Limit ARMFIDO 6
+Limit ARMFLEA 0
+Limit ARMHAM 5
+Limit ARMJETH 4
+Limit ARMMARK 0
+Limit ARMMAV 9
+Limit ARMPW 4
+Limit ARMRECTR 2
+Limit ARMROCK 9
+Limit ARMSCAB 7
+Limit ARMSCORP 8
+Limit ARMSEER 1
+Limit ARMSNIPE 2
+Limit ARMSPY 2
+Limit ARMVADER 3
+Limit ARMWAR 3
+Limit ARMZEUS 3
+
+Limit ARMAAS 0
+Limit ARMBATS 9
+Limit ARMCARRY 0
+Limit ARMCRUS 0
+Limit ARMMSHIP 0
+Limit ARMPT 0
+Limit ARMROY 0
+Limit ARMSCRAM 0
+Limit ARMSJAM 0
+Limit ARMSS 0
+Limit ARMSUB 0
+Limit ARMSUBK 0
+Limit ARMTSHIP 0
+
+Limit ARMSEAP 0
+Limit ARMSEHAK 0
+Limit ARMSFIG 0
+
+Limit ARMBULL 11
+Limit ARMCROC 11
+Limit ARMFAV 12
+Limit ARMFLASH 31
+Limit ARMJAM 0
+Limit ARMLATNK 11
+Limit ARMMANNI 2
+Limit ARMMART 6
+Limit ARMMERL 10
+Limit ARMMLV 0
+Limit ARMSAM 14
+Limit ARMSPID 8
+Limit ARMSTUMP 9
+Limit ARMYORK 9
+
+Limit ARMAMB 3
+Limit ARMAMD 2
+Limit ARMANNI 3
+Limit ARMARAD 1
+Limit ARMASP 2
+Limit ARMBEAC 2
+Limit ARMBRTHA 4
+Limit ARMCKFUS 7
+Limit ARMDEV1 2
+Limit ARMDRAG 66
+Limit ARMEMP 4
+Limit ARMESTOR 2
+Limit ARMFLAK 13
+Limit ARMFORT 0
+Limit ARMFUS 3
+Limit ARMGATE 0
+Limit ARMGEO 7
+Limit ARMGUARD 7
+Limit ARMHLT 5
+Limit ARMLLT 0
+Limit ARMMAKR 7
+Limit ARMMEX 27
+Limit ARMMMKR 2
+Limit ARMMOHO 0
+Limit ARMMSTOR 0
+Limit ARMRAD 0
+Limit ARMSILO 0
+Limit ARMRL 31
+Limit ARMSOLAR 33
+Limit ARMTARG 0
+Limit ARMVULC 1
+Limit ARMWIN 1
+
+Limit ARMASON 1
+Limit ARMATL 1
+Limit ARMFDRAG 1
+Limit ARMFHLT 5
+Limit ARMFMKR 1
+Limit ARMFRT 1
+Limit ARMSONAR 1
+Limit ARMTIDE 1
+Limit ARMTL 11
+Limit ARMUWES 1
+Limit ARMUWFUS 1
+Limit ARMUWMEX 1
+Limit ARMUWMS 1
+
+//CORE
+// Limits: Aircraft, Hovercraft, K-bots, Ships, Seaplanes, Vehicles, Buildings, Naval Buildings
+
+Limit CORAPE 31
+Limit CORAWAC 1
+Limit CORBVALK 43
+Limit CORFINK 2
+Limit CORHURC 3
+Limit CORSHAD 3
+Limit CORTITAN 0
+Limit CORVALK 34
+Limit CORVAMP 39
+Limit CORVENG 13
+
+Limit CORAMPH 3
+Limit CORAK 8
+Limit CORCAN 16
+limit CORCOM 3
+Limit CORCRASH 9
+Limit CORDECOM 9
+Limit CORFAST 9
+Limit CORKROG 34
+Limit CORHRK  3
+Limit CORMORT 21
+Limit CORNECRO 7
+Limit CORPYRO 9
+Limit CORROACH 9
+Limit CORSCORP 9
+Limit CORSPEC 2
+Limit CORSPY 1
+Limit CORSTORM 17
+Limit CORSUMO 17
+Limit CORTHUD 45
+Limit CORVOYR 0
+
+Limit CORAH 7
+Limit CORMH 8
+Limit CORSH 6
+Limit CORSNAP 9
+Limit CORTHOVR 4
+
+Limit CORARCH 0
+Limit CORBATS 0
+Limit CORCARRY 0
+Limit CORCRUS 0
+Limit CORMSHIP 0
+Limit CORPT 0
+Limit CORROY 0
+Limit CORSHARK 0
+Limit CORSJAM 0
+Limit CORSS 0
+Limit CORSSUB 0
+Limit CORSUB 0
+Limit CORSUBK 0
+Limit CORTSHIP 0
+
+Limit CORHUNT 0
+Limit CORSEAP 0
+Limit CORSFIG 0
+
+Limit CORETER 0
+Limit CORFAV 3
+Limit CORFING 3
+Limit CORGATOR 16
+Limit CORGOL 45
+Limit CORLEVLR 3
+Limit CORMART 3
+Limit CORMIST 11
+Limit CORMLV 0
+Limit CORRAID 9
+Limit CORREAP 2
+Limit CORSEAL 0
+Limit CORSENT 2
+Limit CORTRUCK 0
+Limit CORVRAD 0
+Limit CORVROC 2
+
+Limit CORARAD 0
+Limit CORASP 1
+Limit CORBEAC 0
+Limit CORBUZZ 1
+Limit CORCKFUS 3
+Limit CORDEV1 1
+Limit CORDOOM 2
+Limit CORDRAG 55
+Limit CORESTOR 1
+Limit CORFDRAG 55
+Limit CORFMD 0
+Limit CORFLAK 10
+Limit CORFORT 0
+Limit CORFUS 3
+Limit CORGEO 5
+Limit CORHLT 9
+Limit CORINT 9
+Limit CORLLT 9
+Limit CORMAKR 6
+Limit CORMEX 24
+Limit CORMINE1 9
+Limit CORMINE2 9
+Limit CORMINE3 9
+Limit CORMINE4 9
+Limit CORMINE5 9
+Limit CORMINE6 9
+Limit CORMMKR 1
+Limit CORMOHO 17
+Limit CORMSTOR 19
+Limit CORPUN 4
+Limit CORRAD 6
+Limit CORRL 26
+Limit CORSILO 6
+Limit CORSNIPE 0
+Limit CORSOLAR 36
+Limit CORTARG 0
+Limit CORTOAST 9
+Limit CORTRON 6
+Limit CORVIPE 9
+Limit CORWIN 2
+
+Limit CORASON 0
+Limit CORATL 0
+Limit CORFHLT 9
+Limit CORFMKR 0
+Limit CORFRT 0
+Limit CORSONAR 0
+Limit CORTIDE 0
+Limit CORTL 0
+Limit CORUWES 0
+Limit CORUWFUS 0
+Limit CORUWMEX 0
+Limit CORUWMS 0
+
+plan easy
+
+// Limits factories and c-units for Easy diff.
+Limit ARMAAP 1
+Limit ARMALAB 1
+Limit ARMASY 1
+Limit ARMAVP 1
+Limit ARMAP 1
+Limit ARMHP 1
+Limit ARMLAB 1
+Limit ARMPLAT 1
+Limit ARMSY 1
+Limit ARMVP 1
+
+Limit ARMACA 1
+Limit ARMACK 1
+Limit ARMACSUB 1
+Limit ARMACV 1
+Limit ARMCA 1
+Limit ARMCK 1
+Limit ARMCH 1
+Limit ARMCS 1
+Limit ARMCSA 1
+Limit ARMCV 1
+
+Limit CORAAP 1
+Limit CORALAB 1
+Limit CORASY 1
+Limit CORAVP 1
+Limit CORAP 1
+Limit CORGANT 1
+Limit CORHP 1
+Limit CORLAB 1
+Limit CORPLAT 1
+Limit CORSY 1
+Limit CORVP 1
+
+Limit CORACA 0
+Limit CORACK 0
+Limit CORACSUB 0
+Limit CORACV 1
+Limit CORCA 0
+Limit CORCK 1
+Limit CORCH 0
+Limit CORCS 0
+Limit CORCSA 0
+Limit CORCV 1
+Limit level2 20
+Limit level3 4
+
+plan medium
+
+// Limits factories and c-units for Medium diff.
+Limit ARMAAP 2
+Limit ARMALAB 1
+Limit ARMASY 1
+Limit ARMAVP 2
+Limit ARMAP 1
+Limit ARMHP 1
+Limit ARMLAB 2
+Limit ARMPLAT 1
+Limit ARMSY 1
+Limit ARMVP 2
+
+Limit ARMACA 1
+Limit ARMACK 0
+Limit ARMACSUB 0
+Limit ARMACV 2
+Limit ARMCA 3
+Limit ARMCK 2
+Limit ARMCH 1
+Limit ARMCS 0
+Limit ARMCSA 0
+Limit ARMCV 2
+
+Limit CORAAP 2
+Limit CORALAB 2
+Limit CORASY 0
+Limit CORAVP 1
+Limit CORAP 1
+Limit CORGANT 1
+Limit CORHP 1
+Limit CORLAB 2
+Limit CORPLAT 0
+Limit CORSY 0
+Limit CORVP 2
+
+Limit CORACA 1
+Limit CORACK 2
+Limit CORACSUB 0
+Limit CORACV 2
+Limit CORCA 2
+Limit CORCK 2
+Limit CORCH 1
+Limit CORCS 0
+Limit CORCSA 0
+Limit CORCV 2
+
+plan hard
+
+// Limits factories and c-units for Hard diff.
+Limit ARMAAP 11
+Limit ARMALAB 9
+Limit ARMASY 0
+Limit ARMAVP 4
+Limit ARMAP 7
+Limit ARMHP 8
+Limit ARMLAB 8
+Limit ARMPLAT 0
+Limit ARMSY 0
+Limit ARMVP 3
+
+Limit ARMACA 4
+Limit ARMACK 2
+Limit ARMACSUB 0
+Limit ARMACV 3
+Limit ARMCA 9
+Limit ARMCK 4
+Limit ARMCH 2
+Limit ARMCS 0
+Limit ARMCSA 0
+Limit ARMCV 3
+
+Limit CORAAP 11
+Limit CORALAB 9
+Limit CORASY 0
+Limit CORAVP 4
+Limit CORAP 4
+Limit CORGANT 8
+Limit CORHP 2
+Limit CORLAB 4
+Limit CORPLAT 0
+Limit CORSY 0
+Limit CORVP 2
+
+Limit CORACA 4
+Limit CORACK 2
+Limit CORACSUB 0
+Limit CORACV 3
+Limit CORCA 7
+Limit CORCK 3
+Limit CORCH 2
+Limit CORCS 0
+Limit CORCSA 0
+Limit CORCV 2

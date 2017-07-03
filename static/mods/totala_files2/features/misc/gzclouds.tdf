@@ -1,0 +1,51 @@
+[cloud]
+	{
+	world=Ground zero;
+	description=Shadow;
+	category=GZClouds;
+	animating=1;
+	footprintx=10;
+	footprintz=10;
+	height=8;
+	filename=GZclouds;
+	seqname=cloud1a;
+	seqnameshad=clouds1;
+	seqnamereclamate=;
+	
+	animtrans=1;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+      }
+
+[clouds1]
+	{
+	world=Ground zero;
+	description=Shadow;
+	category=GZClouds;
+	animating=1;
+	footprintx=15;
+	footprintz=15;
+	height=128;
+	filename=GZclouds;
+	seqname=cloud1a;
+	seqnameshad=clouds1;
+	seqnamereclamate=;
+	
+	animtrans=1;
+	shadtrans=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+      }
+
+

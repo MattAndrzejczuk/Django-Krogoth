@@ -1,0 +1,470 @@
+//  Weights
+
+
+//Arm  Resources_Defense_Factories
+
+
+Weight ARMGEO 1.5
+Weight ARMFUS .5
+Weight ARMSOLAR 2.5
+Weight ARMMEX 2.5
+Weight ARMMAKR 1
+Weight ARMMMKR .5
+Weight ARMWIN 2.5
+
+Weight ARMFLAK 1
+Weight ARMBRTHA 1
+Weight ARMRL 1.5
+Weight ARMGUARD 2
+Weight ARMAMB 1.5
+Weight ARMEMP 1.5
+Weight ARMHLT 2
+Weight ARMLLT .5
+
+Weight ARMAP 3
+Weight ARMAAP 3
+Weight ARMLAB 1
+Weight ARMALAB 1
+Weight ARMHP 2
+Weight ARMVP 1
+Weight ARMAVP 1
+
+//Core  Resources_Defense_Factories
+
+Weight CORGEO 1.5
+Weight CORFUS .5
+Weight CORSOLAR 2.5
+Weight CORMEX 2.5
+Weight CORMAKR 1
+Weight CORMMKR .5
+Weight CORWIN 2.5
+
+Weight CORRL 1.5
+Weight CORFLAK 1
+Weight CORINT 1
+Weight CORPUN 2
+Weight CORDOOM 1.5
+Weight CORHLT 2
+Weight CORLLT .5
+Weight CORTOAST 1.5
+Weight CORVIPE .5
+
+Weight CORLAB 2
+Weight CORALAB 2 
+Weight CORAP .5
+Weight CORAAP .5
+Weight CORVP 2.5
+Weight CORAVP 2.5
+Weight CORHP 1.5
+
+
+
+
+
+
+//Arm Kbot Lab_Advanced Kbot Lab
+
+
+Weight ARMPW 1
+Weight ARMHAM 2
+Weight ARMJETH 1
+Weight ARMROCK 2
+Weight ARMCK 1
+
+Weight ARMWAR 1
+Weight ARMDECOM 0
+Weight ARMFAST 1.5
+Weight ARMFIDO 2
+Weight MARK 0
+Weight ARMMAV 2
+Weight ARMSNIPE 1
+Weight ARMSPY 0
+Weight ARMZEUS 1.5
+Weight ARMAMPH 0
+Weight ARMASER 0
+Weight ARMVADER .5
+Weight ARMACK 1
+
+
+//Core  Kbot Lab_Advanced Kbot Lab
+
+
+Weight CORCK 1
+Weight CORAK 1.5
+Weight CORTHUD 1
+Weight CORCRASH 2
+Weight CORSTORM 1.5
+
+Weight CORACK 1
+Weight CORVOYRDECOM 0
+Weight CORROACH .5
+Weight CORCAN 0
+Weight CORPYRO 1.5
+Weight CORSPEC 0
+Weight CORFAST 2
+Weight CORMORT 1
+Weight CORSUMO 0
+Weight CORSPY 0 
+Weight CORAMPH 0
+Weight CORHRK .5
+
+
+
+
+
+
+//  Arm Vehicle Plant_Advanced Vehicle Plant
+
+Weight ARMCV 1
+Weight ARMFAV 1
+Weight ARMSTUMP 1.5 
+Weight ARMSAM 1.5
+Weight ARMMLV 0
+Weight ARMFLASH 2
+
+Weight ARMACV 1
+Weight ARMCROC 0
+Weight ARMBULL 1.5
+Weight ARMJAM 0
+Weight ARMMART 1
+Weight ARMSPID 1.5
+Weight ARMSEER 0
+Weight ARMMERL 2
+Weight ARMMANNI 0 
+Weight ARMYORK 0
+Weight ARMLATNK 1.5
+
+
+//  Core Vehicle Plant_Advanced Vehicle Plant
+
+
+Weight CORCV 1
+Weight CORFAV 0
+Weight CORGATOR 1.5
+Weight CORLEVLR 1
+Weight CORMLV 0
+Weight CORRAID 2
+Weight CORMIST .5
+
+Weight CORACV 1
+Weight CORETER 0
+Weight CORGOL 1.5
+Weight CORSEAL 0
+Weight CORVRAD 0
+Weight CORVROC 1
+Weight CORREAP 2
+Weight CORMART 1
+
+
+
+
+//  Arm Aircraft Plant_Advanced Aircraft Plant
+
+
+Weight ARMCA 1
+Weight ARMFIG 3
+Weight ARMATLAS 0
+Weight ARMPEEP 0
+Weight ARMTHUND 2
+
+Weight ARMACA 1
+Weight ARMBRAWL 1
+Weight ARMAWAC 0
+Weight ARMHAWK 3
+Weight ARMLANCE 0
+Weight ARMPNIX 2
+
+//  Core Aircraft Plant_Advanced Aircraft Plant
+
+Weight CORCA 1 
+Weight CORFINK 0
+Weight CORVENG 3
+Weight CORSHAD 2
+Weight CORVALK 0
+
+Weight CORACA 1
+Weight CORAPE 0
+Weight CORHURC 2
+Weight CORTITAN 0
+Weight CORVAMP 3
+
+//  Arm Hovercraft
+
+Weight ARMCH 1 
+Weight ARMSH 0
+Weight ARMANAC 2
+Weight ARMAH 0
+Weight ARMMH 2
+Weight ARMTHOVR .5
+
+//  Core Hovercraft
+
+Weight CORCH 1 
+Weight CORSNAP 3
+Weight CORSH 0
+Weight CORMH 2
+Weight CORTHOVR 0
+Weight CORAH 0
+
+
+
+
+
+//  Arm Miscellaneous
+
+Weight ARMDRAG 0
+Weight ARMESTOR .1
+Weight ARMMSTOR .1
+Weight ARMSY 0
+Weight ARMRAD 0
+Weight ARMARAD 0
+
+
+
+
+//  Core Miscellaneous
+
+Weight CORDRAG 0
+Weight CORESTOR .1
+Weight CORMSTOR .1 
+Weight CORSY 0
+Weight CORRAD 0
+Weight CORARAD 0
+
+
+
+
+//  Limits
+
+
+//Arm  Resources_Defense_Factories
+
+
+Limit ARMGEO 5
+Limit ARMFUS 2
+Limit ARMSOLAR 25
+Limit ARMMEX 25
+Limit ARMMAKR 5
+Limit ARMMMKR 3
+Limit ARMWIN 25
+
+Limit ARMFLAK 5
+Limit ARMBRTHA 2
+Limit ARMRL 25
+Limit ARMGUARD 15
+Limit ARMAMB 3
+Limit ARMEMP 2
+Limit ARMHLT 15
+Limit ARMLLT 5
+
+Limit ARMAP 5
+Limit ARMAAP 5
+Limit ARMLAB 2
+Limit ARMALAB 1
+Limit ARMHP 2
+Limit ARMVP 2
+Limit ARMAVP 1
+
+//Core  Resources_Defense_Factories
+
+Limit CORGEO 5
+Limit CORFUS 2
+Limit CORSOLAR 25
+Limit CORMEX 25
+Limit CORMAKR 5
+Limit CORMMKR 3
+Limit CORWIN 25
+
+Limit CORRL 10
+Limit CORFLAK 5
+Limit CORINT 2
+Limit CORPUN 5
+Limit CORDOOM 2
+Limit CORHLT 15
+Limit CORLLT 5
+Limit CORTOAST 5
+Limit CORVIPE 2
+
+Limit CORLAB 4
+Limit CORALAB 2 
+Limit CORAP 1
+Limit CORAAP 0
+Limit CORVP 4
+Limit CORAVP 3
+Limit CORHP 1
+
+
+
+
+
+
+//Arm Kbot Lab_Advanced Kbot Lab
+
+
+Limit ARMPW 15
+Limit ARMHAM 10
+Limit ARMJETH 5
+Limit ARMROCK 10
+Limit ARMCK 5
+
+Limit ARMWAR 3
+Limit ARMDECOM 0
+Limit ARMFAST 15
+Limit ARMFIDO 10
+Limit MARK 0
+Limit ARMMAV 5
+Limit ARMSNIPE 3
+Limit ARMSPY 0
+Limit ARMZEUS 3
+Limit ARMAMPH 0
+Limit ARMASER 0
+Limit ARMVADER 1
+Limit ARMACK 3
+
+
+//Core  Kbot Lab_Advanced Kbot Lab
+
+
+Limit CORCK 5
+Limit CORAK 15
+Limit CORTHUD 5
+Limit CORCRASH 15
+Limit CORSTORM 10
+
+Limit CORACK 5
+Limit CORVOYRDECOM 0
+Limit CORROACH 2
+Limit CORCAN 0
+Limit CORPYRO 10
+Limit CORSPEC 0
+Limit CORFAST 15
+Limit CORMORT 3
+Limit CORSUMO 0
+Limit CORSPY 0 
+Limit CORAMPH 0
+Limit CORHRK 3
+
+
+
+
+
+
+//  Arm Vehicle Plant_Advanced Vehicle Plant
+
+Limit ARMCV 2
+Limit ARMFAV 5
+Limit ARMSTUMP 10 
+Limit ARMSAM 10
+Limit ARMMLV 0
+Limit ARMFLASH 15
+
+Limit ARMACV 1
+Limit ARMCROC 0
+Limit ARMBULL 10
+Limit ARMJAM 0
+Limit ARMMART 3
+Limit ARMSPID 10
+Limit ARMSEER 0
+Limit ARMMERL 15
+Limit ARMMANNI 0 
+Limit ARMYORK 0
+Limit ARMLATNK 10
+
+
+//  Core Vehicle Plant_Advanced Vehicle Plant
+
+
+Limit CORCV 3
+Limit CORFAV 0
+Limit CORGATOR 15
+Limit CORLEVLR 3
+Limit CORMLV 0
+Limit CORRAID 15
+Limit CORMIST 3
+
+Limit CORACV 2
+Limit CORETER 0
+Limit CORGOL 15
+Limit CORSEAL 0
+Limit CORVRAD 0
+Limit CORVROC 5
+Limit CORREAP 10
+Limit CORMART 3
+
+
+
+
+//  Arm Aircraft Plant_Advanced Aircraft Plant
+
+
+Limit ARMCA 5
+Limit ARMFIG 99
+Limit ARMATLAS 0
+Limit ARMPEEP 0
+Limit ARMTHUND 99
+
+Limit ARMACA 5
+Limit ARMBRAWL 15
+Limit ARMAWAC 0
+Limit ARMHAWK 99
+Limit ARMLANCE 0
+Limit ARMPNIX 99
+
+//  Core Aircraft Plant_Advanced Aircraft Plant
+
+Limit CORCA 2 
+Limit CORFINK 0
+Limit CORVENG 15
+Limit CORSHAD 10
+Limit CORVALK 0
+
+Limit CORACA 2
+Limit CORAPE 0
+Limit CORHURC 10
+Limit CORTITAN 0
+Limit CORVAMP 15
+
+//  Arm Hovercraft
+
+Limit ARMCH 2 
+Limit ARMSH 0
+Limit ARMANAC 10
+Limit ARMAH 0
+Limit ARMMH 10
+Limit ARMTHOVR 0
+
+//  Core Hovercraft
+
+Limit CORCH 2 
+Limit CORSNAP 15
+Limit CORSH 0
+Limit CORMH 10
+Limit CORTHOVR 0
+Limit CORAH 0
+
+
+
+
+
+//  Arm Miscellaneous
+
+Limit ARMDRAG 0
+Limit ARMESTOR 3
+Limit ARMMSTOR 3
+Limit ARMSY 0
+Limit ARMRAD 0
+Limit ARMARAD 0
+
+
+
+
+//  Core Miscellaneous
+
+Limit CORDRAG 0
+Limit CORESTOR 3
+Limit CORMSTOR 3 
+Limit CORSY 0
+Limit CORRAD 0
+Limit CORARAD 0
+
+

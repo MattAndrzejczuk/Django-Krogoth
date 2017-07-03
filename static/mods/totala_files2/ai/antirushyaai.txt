@@ -1,0 +1,502 @@
+// Queller CC - AntiRushyaHills, by Quitch(y)
+// Last updated 27/07/00
+// Revised 08/21/00 by Kewlgrandpa for Anti Rushya Hills v2 and renamed AntiRushyaAi
+
+Weight ARMMMKR	0
+Weight CORMMKR	0
+Limit ARMMMKR	0
+Limit CORMMKR	0
+
+Weight ARM 	0.1
+Weight CORE	0.1
+
+Weight ARMGEO	15
+Weight ARMFUS	10
+Weight AAICKFUS	0.25
+Weight ARMSOLAR 8
+Weight ARMWIN       5
+Weight ARMMEX	5
+Weight ARMESTOR 4.5
+Weight ARMMSTOR 2.25
+Weight ARMMOHO	8
+
+Weight CORGEO	15
+Weight CORFUS	10
+Weight CAICKFUS	0.25
+Weight CORSOLAR 8
+Weight CORWIN       5
+Weight CORMEX	5
+Weight CORESTOR	4.5
+Weight CORMSTOR	2.25
+Weight CORMOHO	8
+
+Weight ARMAAP 5
+Weight ARMALAB 	1.6
+Weight ARMAVP      4
+Weight AAIVP	6
+Weight ARMLAB 	0.8
+Weight ARMAP 	0.75
+
+Weight CORAAP	5
+Weight CAIAVP	4
+Weight CORALAB	1.85
+Weight CAIVP	6
+Weight CORLAB	1.5
+Weight CORAP	0.75
+Weight CORGANT	5
+
+Weight NUKEA	15
+Weight ARMBRTHA	3
+Weight ARMRL	15
+Weight ARMLLT        0.5
+Weight ARMHLT	2
+Weight ARMGUARD 0.75
+Weight ARMFLAK	5.5
+Weight ARMANNI	2
+Weight AAIEMP	0.25
+Weight ARMAMB	0.5
+Weight ARMVULC	0.25
+
+Weight NUKEC	15
+Weight CORINT	2
+Weight CORRL	15
+Weight CORLLT       0.5
+Weight CORHLT	2
+Weight CORVIPE	0.15
+Weight CORPUN	0.75
+Weight CORPLAS	0.4
+Weight CORFLAK	5.5
+Weight CAITRON	1.2
+Weight CORDOOM	1.5
+Weight CORTOAST	1
+Weight CORBUZZ	0.25
+
+Weight ARMASP	5
+
+Weight CORASP	5
+
+Weight ARMCK 	3
+Weight ARMROCK 	12
+Weight ARMHAM	3
+Weight ARMJETH 	1
+Weight ARMPW 	0.1
+Weight ARMWAR	0.5
+Weight ARMFLEA	0.05
+
+Weight CORCK	3
+Weight CORSTORM	12
+Weight CORTHUD	3
+Weight CORCRASH	1
+Weight CORAK	0.05
+
+Weight ARMACK 	2
+Weight ARMFARK	3
+Weight AAIASER	1
+Weight ARMASER	1
+Weight ARMAMPH	15
+Weight ARMMAV	2
+Weight ARMDECOM	0.8
+Weight ARMFIDO 	0.5
+Weight ARMSNIPE	0.1
+Weight ARMZEUS	0.05
+Weight ARMFAST	0.05
+
+Weight CORACK	2.5
+Weight CORNECRO 2.5
+Weight CAISPEC	2
+Weight CORSPEC	1
+Weight CORMORT	9
+Weight CORCAN	2
+Weight CORHRK	1
+Weight CORDECOM	0.8
+Weight CORSUMO	0.4
+Weight CORAMPH	0.1
+Weight CORPYRO	0.1
+Weight CORFAST	0.1
+
+Weight CORKROG	1
+
+Weight ARMCV 	1.5
+Weight ARMSAM	10
+Weight ARMFLASH	5
+Weight ARMSTUMP 1
+Weight ARMFAV	0.05
+
+Weight CORCV	1.5
+Weight CORMIST	10
+Weight CORGATOR 	3
+Weight CORRAID	1.5
+Weight CORLEVLR	0.1
+Weight CORFAV	0.05
+
+Weight ARMACV 	4
+Weight AAIJAM	1
+Weight ARMJAM	1
+Weight ARMLATNK	8
+Weight ARMMERL	8
+Weight ARMBULL	3
+Weight ARMYORK	0.75
+Weight ARMMANNI	0.1
+Weight ARMCROC	0.1
+Weight ARMMART	0.05
+Weight ARMSPID	0.05
+
+Weight CORACV	4
+Weight CAIETER	1
+Weight CORETER	1
+Weight CORGOL	9
+Weight CORVROC	4
+Weight CORSENT	0.85
+Weight CORREAP	0.1
+Weight CORSEAL	0.1
+Weight CORMART	0.05
+
+Weight ARMCA	10
+Weight AAITHUND	2
+Weight AAIFIG	0.1
+
+Weight CORCA	10
+Weight CAISHAD	2
+Weight CAIVENG	0.1
+
+Weight AAIHAWK	8
+Weight AAIPNIX	2
+Weight AAIBRAWL	3
+Weight ARMACA	0.2
+
+Weight CAIVAMP	8
+Weight CAIHURC	2
+Weight CAIAPE	3
+Weight CORACA	0.2
+
+Limit ARMGEO	4
+Limit ARMFUS	8
+Limit AAICKFUS	2
+Limit ARMSOLAR	30
+Limit ARMMEX	40
+Limit ARMESTOR	6
+Limit ARMMSTOR	8
+Limit ARMMOHO	8
+Limit ARMWIN	20
+Limit ARMMAKR	0
+Limit ARMFMKR	0
+Limit ARMCKFUS	0
+
+Limit CORGEO	4
+Limit CORFUS	8
+Limit CAICKFUS	2
+Limit CORSOLAR	30
+Limit CORMEX	40
+Limit CORESTOR	6
+Limit CORMSTOR	8
+Limit CORMOHO	8
+Limit CORWIN	20
+Limit CORMAKR	0
+Limit CORFMKR	0
+Limit CORCKFUS	0
+
+Limit ARMHP	0
+Limit ARMVP 	0
+
+Limit CORHP	0
+Limit CORVP	0
+Limit CORAVP	0
+
+Limit ARMRL	40
+Limit ARMHLT	10
+Limit ARMGUARD	8
+Limit ARMFLAK	8
+Limit ARMANNI	4
+Limit ARMAMB	5
+Limit ARMVULC	1
+Limit ARMLLT	8
+Limit ARMEMP	0
+Limit ARMSILO	0
+Limit ARMAMD	0
+
+Limit CORRL	40
+Limit CORHLT	10
+Limit CORVIPE	2
+Limit CORPUN	8
+Limit CORPLAS	3
+Limit CORFLAK	8
+Limit CORDOOM	4
+Limit CORTOAST	5
+Limit CORBUZZ	1
+Limit CORLLT	8
+Limit CORTRON	0
+Limit CORSILO	0
+Limit CORFMD	0
+
+Limit ARMASP	14
+Limit ARMRAD	0
+Limit ARMDRAG	0
+Limit ARMARAD	0
+Limit ARMFORT	0
+Limit ARMTARG	0
+
+Limit CORASP	14
+Limit CORRAD	0
+Limit CORDRAG	0
+Limit CORARAD	0
+Limit CORFORT	0
+Limit CORTARG	0
+
+Limit ARMROCK 	30
+Limit ARMHAM	10
+Limit ARMJETH 	5
+Limit ARMPW 	5
+Limit ARMWAR	5
+Limit ARMFLEA	5
+
+Limit CORSTORM	30
+Limit CORTHUD	10
+Limit CORCRASH	5
+Limit CORAK	5
+
+Limit ARMFARK	5
+Limit ARMAMPH	20
+Limit ARMMAV	25
+Limit ARMDECOM	5
+Limit ARMFIDO 	5
+Limit ARMSNIPE	4
+Limit ARMZEUS	5
+Limit ARMFAST	5
+Limit ARMVADER	0
+Limit ARMMARK	0
+Limit ARMSPY	0
+
+Limit CORNECRO	5
+Limit CORMORT	25
+Limit CORCAN	12
+Limit CORHRK	6
+Limit CORDECOM	5
+Limit CORSUMO	6
+Limit CORAMPH	5
+Limit CORPYRO	5
+Limit CORFAST	5
+Limit CORROACH	0
+Limit CORVOYR	0
+Limit CORSPY	0
+
+Limit CORKROG	2
+
+Limit ARMSAM	40
+Limit ARMFLASH	10
+Limit ARMSTUMP	3
+Limit ARMFAV	2
+Limit ARMMLV	0
+
+Limit CORMIST	40
+Limit CORGATOR	4
+Limit CORRAID	7
+Limit CORLEVLR	4
+Limit CORFAV	2
+Limit CORMLV	0
+
+Limit ARMLATNK	25
+Limit ARMMERL	15
+Limit ARMBULL	10
+Limit ARMYORK	3
+Limit ARMMANNI	2
+Limit ARMCROC	5
+Limit ARMMART	5
+Limit ARMSPID	5
+Limit ARMSEER	0
+Limit ARMSCAB	0
+
+Limit CORGOL	30
+Limit CORVROC	15
+Limit CORSENT	4
+Limit CORREAP	5
+Limit CORSEAL	5
+Limit CORMART	5
+Limit CORVRAD	0
+Limit CORMABM	0
+
+Limit AAITHUND	20
+Limit AAIFIG	5
+Limit ARMPEEP	0
+Limit ARMFIG	0
+Limit ARMTHUND	0
+Limit ARMATLAS	0
+
+Limit CAISHAD	20
+Limit CAIVENG	5
+Limit CORFINK	0
+Limit CORVENG	0
+Limit CORSHAD	0
+Limit CORVALK	0
+
+Limit AAIHAWK	30
+Limit AAIPNIX	20
+Limit AAIBRAWL	20
+Limit AAILANCE	0
+Limit ARMBRAWL	0
+Limit ARMPNIX	0
+Limit ARMLANCE	0
+Limit ARMHAWK	0
+Limit ARMAWAC	0
+
+Limit CAIVAMP	30
+Limit CAIHURC	20
+Limit CAIAPE	20
+Limit CAITITAN	0
+Limit CORAPE	0
+Limit CORHURC	0
+Limit CORTITAN	0
+Limit CORVAMP	0
+Limit CORAWAC	0
+
+Plan EASY
+
+Limit ARMAAP 	5
+Limit ARMALAB 	1
+Limit ARMAVP 	1
+Limit AAIVP	1
+Limit ARMLAB 	1
+Limit ARMAP 	1
+
+Limit ARMCK	1
+Limit ARMCV	1
+Limit ARMCA	1
+
+Limit ARMACK	1
+Limit ARMACV	1
+Limit ARMACA	1
+
+Limit ARMASER	0
+Limit AAIASER	0
+Limit ARMJAM	0
+Limit AAIJAM	0
+
+Limit ARMBRTHA	0
+Limit AAIEMP	0
+Limit NUKEA	0
+
+Limit CORAAP	4
+Limit CAIAVP	1
+Limit CORALAB	1
+Limit CAIVP	1
+Limit CORLAB	1
+Limit CORAP	1
+Limit CORGANT	0
+
+Limit CORCK	1
+Limit CORCV	1
+Limit CORCA	1
+
+Limit CORACK	1
+Limit CORACV	1
+Limit CORACA	1
+
+Limit CORSPEC	0
+Limit CAISPEC	0
+Limit CORETER	0
+Limit CAIETER	0
+
+Limit CORINT	0
+Limit CAITRON	0
+Limit NUKEC	0
+
+Plan MEDIUM
+
+Limit ARMAAP 	6
+Limit ARMALAB 	3
+Limit ARMAVP 	1
+Limit AAIVP	2
+Limit ARMLAB 	1
+Limit ARMAP 	1
+
+Limit ARMCK	2
+Limit ARMCV	2
+Limit ARMCA	3
+
+Limit ARMACK	1
+Limit ARMACV	2
+Limit ARMACA	3
+
+Limit ARMASER	1
+Limit AAIASER	0
+Limit ARMJAM	1
+Limit AAIJAM	0
+
+Limit ARMBRTHA	2
+Limit AAIEMP	1
+Limit NUKEA	4
+
+Limit CORAAP	6
+Limit CAIAVP	3
+Limit CORALAB	1
+Limit CAIVP	2
+Limit CORLAB	1
+Limit CORAP	1
+Limit CORGANT	0
+
+Limit CORCK	2
+Limit CORCV	2
+Limit CORCA	3
+
+Limit CORACK	1
+Limit CORACV	2
+Limit CORACA	3
+
+Limit CORSPEC	1
+Limit CAISPEC	0
+Limit CORETER	2
+Limit CAIETER	0
+
+Limit CORINT	2
+Limit CAITRON	1
+Limit NUKEC	4
+
+Plan HARD
+
+Limit ARMAAP 	6
+Limit ARMALAB 	2
+Limit ARMAVP 	4
+Limit AAIVP	4
+Limit ARMLAB 	2
+Limit ARMAP 	2
+
+Limit ARMCK	3
+Limit ARMCV	3
+Limit ARMCA	12
+
+Limit ARMACK	2
+Limit ARMACV	3
+Limit ARMACA	6
+
+Limit ARMASER	2
+Limit AAIASER	1
+Limit ARMJAM	1
+Limit AAIJAM	1
+
+Limit ARMBRTHA	4
+Limit AAIEMP	2
+Limit NUKEA	8
+
+Limit CORAAP	6
+Limit CAIAVP	4
+Limit CORALAB	2
+Limit CAIVP	4
+Limit CORLAB	2
+Limit CORAP	2
+Limit CORGANT	1
+
+Limit CORCK	3
+Limit CORCV	3
+Limit CORCA	12
+
+Limit CORACK	2
+Limit CORACV	3
+Limit CORACA	6
+
+Limit CORSPEC	1
+Limit CAISPEC	1
+Limit CORETER	2
+Limit CAIETER	1
+
+Limit CORINT	4
+Limit CAITRON	2
+Limit NUKEC	8

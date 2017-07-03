@@ -1,0 +1,27 @@
+[4x4_+2.0]
+	{
+	world=AllWorlds;
+	description=reportwhereuseethis!;
+	nodisplayinfo=1;
+	category=discontinued;
+	footprintx=1;
+	footprintz=1;
+
+//	some data to keep Annihilator & TAE(B) happy
+	filename=Custom_Zones;
+	seqname=traspa_1x1;
+	}
+
+[4x4_+1.5]
+	{
+	world=AllWorlds;
+	description=reportwhereuseethis!;
+	nodisplayinfo=1;
+	category=discontinued;
+	footprintx=1;
+	footprintz=1;
+
+//	some data to keep Annihilator & TAE(B) happy
+	filename=Custom_Zones;
+	seqname=traspa_1x1;
+	}

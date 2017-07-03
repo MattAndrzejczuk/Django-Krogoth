@@ -1,0 +1,39 @@
+[PARA_GAS]
+	{
+	ID=118;
+	name=Paralysis Gas Grenade;
+	rendertype=1;
+	ballistic=1;
+	turret=1;
+
+	model=can;
+
+	range=500;
+	reloadtime=1.5;
+	weaponvelocity=150;
+	areaofeffect=20;
+	paralyzer=1;
+
+	soundstart=glauncher;
+	soundhit=xplode_gas;
+	smokedelay=.01;
+	selfprop=1;
+	smoketrail=1;
+
+	explosiongaf=fx;
+	explosionart=parablast;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=550;
+		}
+	}
+

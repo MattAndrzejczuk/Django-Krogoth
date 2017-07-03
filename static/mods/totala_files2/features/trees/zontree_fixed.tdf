@@ -1,0 +1,272 @@
+// Modified by ChinaHook (TA-Power)
+// for TA comunity. January 2002.
+
+
+[ZonTFix01]
+	{
+	world=Zhon;
+	description=Giant Palmetto;
+	category=Zhon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=90;
+	filename=ZonTree_Fixed;
+	seqname=ZonTree01;
+	seqnameshad=ZonTreeshad01;
+	seqnamereclamate=ZonTree01rec;
+	energy=250;
+
+	seqnameburn=ZonTree01burn;
+	seqnameburnshad=;
+	featureburnt=ZonTFixDead01;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=ZonPalmTreeBoomA;
+	featuredead=ZonTFixSmudge01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=ZonTFixSmudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[ZonTFixDead01]
+	{
+	world=Zhon;
+	description=Dead Giant Palmetto;
+	category=Zhon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=90;
+	filename=ZonTree_Fixed;
+	seqname=ZonTreeDead01;
+	seqnameshad=ZonTreeDeadSh01;
+	seqnamereclamate=ZonTreeCrisp01rec;
+	energy=150;
+
+	seqnamedie=ZonPalmTreeBoom;
+	featuredead=ZonTFixSmudge01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=ZonTFixSmudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZonTFix02]
+	{
+	world=Zhon;
+	description=Giant Palmetto;
+	category=Zhon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=95;
+	filename=ZonTree_Fixed;
+	seqname=ZonTree02;
+	seqnameshad=ZonTreeshad02;
+	seqnamereclamate=ZonTree02rec;
+	energy=250;
+
+	seqnameburn=ZonTree02burn;
+	seqnameburnshad=;
+	featureburnt=ZonTFixDead02;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=ZonPalmTreeBoomA;
+	featuredead=ZonTFixSmudge02;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=ZonTFixSmudge02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[ZonTFixDead02]
+	{
+	world=Zhon;
+	description=Dead Giant Palmetto;
+	category=Zhon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=90;
+	filename=ZonTree_Fixed;
+	seqname=ZonTreeDead02;
+	seqnameshad=ZonTreeDeadSh02;
+	seqnamereclamate=ZonTreeCrisp02rec;
+	energy=150;
+
+	seqnamedie=ZonPalmTreeBoom;
+	featuredead=ZonTFixSmudge02;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=ZonTFixSmudge02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZonTFix03]
+	{
+	world=Zhon;
+	description=Giant Palmetto;
+	category=Zhon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=90;
+	filename=ZonTree_Fixed;
+	seqname=ZonTree03;
+	seqnameshad=ZonTreeshad03;
+	seqnamereclamate=ZonTree03rec;
+	energy=250;
+
+	seqnameburn=ZonTree03burn;
+	seqnameburnshad=;
+	featureburnt=ZonTFixDead03;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=ZonPalmTreeBoomA;
+	featuredead=ZonTFixSmudge03;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=ZonTFixSmudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZonTFixDead03]
+	{
+	world=Zhon;
+	description=Dead Giant Palmetto;
+	category=Zhon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=90;
+	filename=ZonTree_Fixed;
+	seqname=ZonTreeDead03;
+	seqnameshad=ZonTreeDeadSh03;
+	seqnamereclamate=ZonTreeCrisp03rec;
+	energy=150;
+
+	seqnamedie=ZonPalmTreeBoom;
+	featuredead=ZonTFixSmudge03;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=ZonTFixSmudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ZonTFixSmudge01]
+	{
+	world=Zhon;
+	description=Debris;
+	category=Zhon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ZonTree_Fixed;
+	seqname=ZonTreeSmudge01;
+
+	indestructible=1;
+
+	animtrans=1;      
+	flamable=0;
+	reclaimable=0;	
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[ZonTFixSmudge02]
+	{
+	world=Zhon;
+	description=Debris;
+	category=Zhon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ZonTree_Fixed;
+	seqname=ZonTreeSmudge02;
+
+	indestructible=1;
+
+	animtrans=1;      
+	flamable=0;
+	reclaimable=0;	
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+
+[ZonTFixSmudge03]
+	{
+	world=Zhon;
+	description=Debris;
+	category=Zhon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ZonTree_Fixed;
+	seqname=ZonTreeSmudge03;
+
+	indestructible=1;
+
+	animtrans=1;      
+	flamable=0;
+	reclaimable=0;	
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}

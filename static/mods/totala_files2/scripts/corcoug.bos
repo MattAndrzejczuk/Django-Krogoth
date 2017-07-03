@@ -1,0 +1,568 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  pelvis, leftupperleg, leftlowerleg, leftfoot, lefttoea, lefttoeb, lefttoec, rightupperleg,
+       rightlowerleg, rightfoot, righttoea, righttoeb, righttoec, maintorso, leftcannon, rightcannon,
+       secfirea, secfireb, terfirea, terfireb, leftflare, rightflare, terfirea2, terfirea3,
+       terfirea4, terfirea5, terfirea6, terfirea7, terfirea8, terfireb2, terfireb3, terfireb4,
+       terfireb5, terfireb6, terfireb7, terfireb8;
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3, Static_Var_4, Static_Var_5;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from pelvis;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+walk()
+{
+	if( TRUE )
+	{
+		turn leftupperleg to x-axis <40.> speed <35.>;
+		turn rightupperleg to x-axis <-40.> speed <35.>;
+		turn leftfoot to x-axis <-30.> speed <55.>;
+		turn rightfoot to x-axis <10.> speed <35.>;
+		turn rightlowerleg to x-axis <-20.> speed <55.>;
+		turn maintorso to x-axis <6.> speed <5.>;
+		sleep 505;
+		turn leftfoot to x-axis <40.> speed <85.>;
+		turn rightfoot to x-axis <20.> speed <35.>;
+		turn rightlowerleg to x-axis <40.> speed <85.>;
+		turn lefttoea to x-axis <45.> speed <85.>;
+		turn lefttoeb to x-axis <45.> speed <85.>;
+		turn lefttoec to x-axis <-45.> speed <85.>;
+		turn righttoea to x-axis <0.> speed <85.>;
+		turn righttoeb to x-axis <0.> speed <85.>;
+		sleep 600;
+		turn righttoec to x-axis <0.> speed <85.>;
+		move pelvis to y-axis [2.] speed [2.];
+		turn pelvis to z-axis <7.> speed <3.>;
+	}
+	if( TRUE )
+	{
+		turn leftupperleg to x-axis <-40.> speed <35.>;
+		turn rightupperleg to x-axis <40.> speed <35.>;
+		turn rightfoot to x-axis <-40.> speed <110.>;
+		turn leftlowerleg to x-axis <-40.> speed <85.>;
+		sleep 1050;
+		turn rightfoot to x-axis <40.> speed <85.>;
+		turn leftlowerleg to x-axis <40.> speed <85.>;
+		move pelvis to y-axis [0.] speed [2.];
+		turn lefttoea to x-axis <0.> speed <85.>;
+		turn lefttoeb to x-axis <0.> speed <85.>;
+		turn righttoea to x-axis <45.> speed <85.>;
+		turn righttoeb to x-axis <45.> speed <85.>;
+		turn righttoec to x-axis <-45.> speed <85.>;
+		sleep 600;
+		turn lefttoec to x-axis <0.> speed <85.>;
+		move pelvis to y-axis [2.] speed [2.];
+		turn pelvis to z-axis <-7.> speed <8.>;
+	}
+	while( TRUE )
+	{
+		if( TRUE )
+		{
+			turn maintorso to y-axis <-10.> speed <12.>;
+			turn maintorso to x-axis <-5.> speed <6.>;
+			turn leftupperleg to x-axis <40.> speed <35.>;
+			turn rightupperleg to x-axis <-40.> speed <35.>;
+			turn leftfoot to x-axis <-40.> speed <100.>;
+			turn rightlowerleg to x-axis <-40.> speed <85.>;
+			sleep 1050;
+			turn leftfoot to x-axis <40.> speed <85.>;
+			turn rightfoot to x-axis <40.> speed <55.>;
+			turn rightlowerleg to x-axis <40.> speed <85.>;
+			move pelvis to y-axis [0.] speed [2.];
+			turn lefttoea to x-axis <45.> speed <85.>;
+			turn lefttoeb to x-axis <45.> speed <85.>;
+			turn lefttoec to x-axis <-45.> speed <85.>;
+			turn righttoea to x-axis <0.> speed <85.>;
+			turn righttoeb to x-axis <0.> speed <85.>;
+			sleep 600;
+			turn righttoec to x-axis <0.> speed <85.>;
+			move pelvis to y-axis [2.] speed [2.];
+			turn pelvis to z-axis <7.> speed <8.>;
+		}
+		if( TRUE )
+		{
+			turn maintorso to y-axis <10.> speed <12.>;
+			turn maintorso to x-axis <6.> speed <6.>;
+			turn leftupperleg to x-axis <-40.> speed <35.>;
+			turn rightupperleg to x-axis <40.> speed <35.>;
+			turn rightfoot to x-axis <-40.> speed <100.>;
+			turn leftlowerleg to x-axis <-40.> speed <85.>;
+			sleep 1050;
+			turn rightfoot to x-axis <40.> speed <85.>;
+			turn leftlowerleg to x-axis <40.> speed <85.>;
+			move pelvis to y-axis [0.] speed [2.];
+			turn lefttoea to x-axis <0.> speed <85.>;
+			turn lefttoeb to x-axis <0.> speed <85.>;
+			turn righttoea to x-axis <45.> speed <85.>;
+			turn righttoeb to x-axis <45.> speed <85.>;
+			turn righttoec to x-axis <-45.> speed <85.>;
+			sleep 600;
+			turn lefttoec to x-axis <0.> speed <85.>;
+			move pelvis to y-axis [2.] speed [2.];
+			turn pelvis to z-axis <-7.> speed <8.>;
+		}
+	}
+}
+
+stop()
+{
+	turn leftupperleg to x-axis <0.> speed <35.>;
+	turn rightupperleg to x-axis <0.> speed <35.>;
+	turn leftlowerleg to x-axis <0.> speed <85.>;
+	turn rightlowerleg to x-axis <0.> speed <85.>;
+	turn maintorso to y-axis <0.> speed <85.>;
+	turn maintorso to x-axis <0.> speed <20.>;
+	move pelvis to y-axis [0.] speed [20.];
+	turn pelvis to z-axis <0.> speed <20.>;
+	turn righttoea to x-axis <0.> speed <85.>;
+	turn righttoeb to x-axis <0.> speed <85.>;
+	turn righttoec to x-axis <0.> speed <85.>;
+	turn lefttoea to x-axis <0.> speed <85.>;
+	turn lefttoeb to x-axis <0.> speed <85.>;
+	turn lefttoec to x-axis <0.> speed <85.>;
+	turn rightfoot to x-axis <0.> speed <85.>;
+	turn leftfoot to x-axis <0.> speed <85.>;
+	wait-for-turn maintorso around x-axis;
+	Static_Var_4 = 1;
+	sleep 20;
+}
+
+Create()
+{
+	cache leftcannon;
+	cache leftlowerleg;
+	cache leftfoot;
+	cache lefttoea;
+	cache lefttoeb;
+	cache lefttoec;
+	cache rightcannon;
+	cache rightlowerleg;
+	cache rightfoot;
+	cache righttoea;
+	cache righttoeb;
+	cache righttoec;
+	cache maintorso;
+	dont-shade leftflare;
+	dont-shade rightflare;
+	hide leftflare;
+	hide rightflare;
+	Static_Var_2 = 0;
+	Static_Var_3 = 0;
+	Static_Var_5 = 0;
+	Static_Var_4 = 1;
+	Static_Var_1 = 4000;
+	start-script SmokeUnit();
+}
+
+Reload()
+{
+	sleep 3000;
+	Static_Var_5 = 0;
+}
+
+StartMoving()
+{
+	Static_Var_4 = 1;
+	signal 2;
+	set-signal-mask 2;
+	start-script walk();
+}
+
+StopMoving()
+{
+	Static_Var_4 = 1;
+	signal 2;
+	start-script stop();
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = pelvis;
+}
+
+RestoreAfterDelay()
+{
+	sleep Static_Var_1;
+	turn maintorso to y-axis <0.> speed <100.>;
+	turn leftcannon to x-axis <0.> speed <20.>;
+	turn rightcannon to x-axis <0.> speed <20.>;
+	Static_Var_5 = 0;
+	Static_Var_3 = 0;
+	wait-for-turn maintorso around y-axis;
+	wait-for-turn leftcannon around x-axis;
+	wait-for-turn rightcannon around x-axis;
+	Static_Var_4 = 1;
+}
+
+AimSecondary(heading, pitch)
+{
+	Static_Var_4 = 0;
+	signal 8;
+	set-signal-mask 8;
+	turn maintorso to y-axis heading speed <150.>;
+	turn leftcannon to x-axis <0.> - pitch speed <40.>;
+	turn rightcannon to x-axis <0.> - pitch speed <40.>;
+	wait-for-turn maintorso around y-axis;
+	wait-for-turn leftcannon around x-axis;
+	wait-for-turn rightcannon around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FireSecondary()
+{
+	if( Static_Var_2 == 0 )
+	{
+		show leftflare;
+		sleep 150;
+		hide leftflare;
+	}
+	if( Static_Var_2 == 1 )
+	{
+		show rightflare;
+		sleep 150;
+		hide rightflare;
+	}
+	Static_Var_2 = !Static_Var_2;
+	Static_Var_4 = 1;
+}
+
+QuerySecondary(piecenum)
+{
+	if( Static_Var_2 == 0 )
+	{
+		piecenum = secfirea;
+	}
+	if( Static_Var_2 == 1 )
+	{
+		piecenum = secfireb;
+	}
+}
+
+AimFromSecondary(piecenum)
+{
+	piecenum = maintorso;
+}
+
+AimTertiary(heading, pitch)
+{
+	signal 32;
+	set-signal-mask 32;
+	Static_Var_4 = 1;
+	while( !Static_Var_4 )
+	{
+		sleep 300;
+	}
+	while( Static_Var_5 == 1 )
+	{
+		sleep 500;
+	}
+	turn maintorso to y-axis heading speed <150.>;
+	wait-for-turn maintorso around y-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FireTertiary()
+{
+	if( Static_Var_3 == 0 )
+	{
+		Static_Var_3 = 1;
+		return (0);
+	}
+	if( Static_Var_3 == 1 )
+	{
+		Static_Var_3 = 2;
+		return (0);
+	}
+	if( Static_Var_3 == 2 )
+	{
+		Static_Var_3 = 3;
+		return (0);
+	}
+	if( Static_Var_3 == 3 )
+	{
+		Static_Var_3 = 4;
+		Static_Var_5 = 1;
+		start-script Reload();
+		return (0);
+	}
+	if( Static_Var_3 == 4 )
+	{
+		Static_Var_3 = 5;
+		return (0);
+	}
+	if( Static_Var_3 == 5 )
+	{
+		Static_Var_3 = 6;
+		return (0);
+	}
+	if( Static_Var_3 == 6 )
+	{
+		Static_Var_3 = 7;
+		return (0);
+	}
+	if( Static_Var_3 == 7 )
+	{
+		Static_Var_3 = 8;
+		Static_Var_5 = 1;
+		start-script Reload();
+		return (0);
+	}
+	if( Static_Var_3 == 8 )
+	{
+		Static_Var_3 = 9;
+		return (0);
+	}
+	if( Static_Var_3 == 9 )
+	{
+		Static_Var_3 = 10;
+		return (0);
+	}
+	if( Static_Var_3 == 10 )
+	{
+		Static_Var_3 = 11;
+		return (0);
+	}
+	if( Static_Var_3 == 11 )
+	{
+		Static_Var_3 = 12;
+		Static_Var_5 = 1;
+		start-script Reload();
+		return (0);
+	}
+	if( Static_Var_3 == 12 )
+	{
+		Static_Var_3 = 13;
+		return (0);
+	}
+	if( Static_Var_3 == 13 )
+	{
+		Static_Var_3 = 14;
+		return (0);
+	}
+	if( Static_Var_3 == 14 )
+	{
+		Static_Var_3 = 15;
+		return (0);
+	}
+	if( Static_Var_3 == 15 )
+	{
+		Static_Var_3 = 0;
+		Static_Var_5 = 1;
+		start-script Reload();
+		return (0);
+	}
+}
+
+QueryTertiary(piecenum)
+{
+	if( Static_Var_3 == 0 )
+	{
+		piecenum = terfirea;
+		return (0);
+	}
+	if( Static_Var_3 == 1 )
+	{
+		piecenum = terfirea2;
+		return (0);
+	}
+	if( Static_Var_3 == 2 )
+	{
+		piecenum = terfirea3;
+		return (0);
+	}
+	if( Static_Var_3 == 3 )
+	{
+		piecenum = terfirea4;
+		return (0);
+	}
+	if( Static_Var_3 == 4 )
+	{
+		piecenum = terfireb;
+		return (0);
+	}
+	if( Static_Var_3 == 5 )
+	{
+		piecenum = terfireb2;
+		return (0);
+	}
+	if( Static_Var_3 == 6 )
+	{
+		piecenum = terfireb3;
+		return (0);
+	}
+	if( Static_Var_3 == 7 )
+	{
+		piecenum = terfireb4;
+		return (0);
+	}
+	if( Static_Var_3 == 8 )
+	{
+		piecenum = terfirea5;
+		return (0);
+	}
+	if( Static_Var_3 == 9 )
+	{
+		piecenum = terfirea6;
+		return (0);
+	}
+	if( Static_Var_3 == 10 )
+	{
+		piecenum = terfirea7;
+		return (0);
+	}
+	if( Static_Var_3 == 11 )
+	{
+		piecenum = terfirea8;
+		return (0);
+	}
+	if( Static_Var_3 == 12 )
+	{
+		piecenum = terfireb5;
+		return (0);
+	}
+	if( Static_Var_3 == 13 )
+	{
+		piecenum = terfireb6;
+		return (0);
+	}
+	if( Static_Var_3 == 14 )
+	{
+		piecenum = terfireb7;
+		return (0);
+	}
+	if( Static_Var_3 == 15 )
+	{
+		piecenum = terfireb8;
+		return (0);
+	}
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = maintorso;
+}
+
+Killed(severity, corpsetype)
+{
+	hide leftflare;
+	hide rightflare;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode pelvis type BITMAPONLY | BITMAP1;
+		explode leftupperleg type BITMAPONLY | BITMAP2;
+		explode leftlowerleg type BITMAPONLY | BITMAP3;
+		explode leftfoot type BITMAPONLY | BITMAP4;
+		explode lefttoea type BITMAPONLY | BITMAP5;
+		explode lefttoeb type BITMAPONLY | BITMAP1;
+		explode lefttoec type BITMAPONLY | BITMAP2;
+		explode rightupperleg type BITMAPONLY | BITMAP3;
+		explode rightlowerleg type BITMAPONLY | BITMAP4;
+		explode rightfoot type BITMAPONLY | BITMAP5;
+		explode righttoea type BITMAPONLY | BITMAP1;
+		explode righttoeb type BITMAPONLY | BITMAP2;
+		explode righttoec type BITMAPONLY | BITMAP3;
+		explode maintorso type BITMAPONLY | BITMAP4;
+		explode leftcannon type BITMAPONLY | BITMAP5;
+		explode leftflare type BITMAPONLY | BITMAP1;
+		explode rightcannon type BITMAPONLY | BITMAP2;
+		explode rightflare type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode pelvis type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode leftupperleg type FALL | BITMAP2;
+		explode leftlowerleg type FALL | BITMAP3;
+		explode leftfoot type FALL | BITMAP4;
+		explode lefttoea type FALL | BITMAP5;
+		explode lefttoeb type FALL | BITMAP1;
+		explode lefttoec type FALL | BITMAP2;
+		explode rightupperleg type FALL | BITMAP3;
+		explode rightlowerleg type FALL | BITMAP4;
+		explode rightfoot type FALL | BITMAP5;
+		explode righttoea type FALL | BITMAP1;
+		explode righttoeb type FALL | BITMAP2;
+		explode righttoec type FALL | BITMAP3;
+		explode maintorso type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode leftcannon type FALL | BITMAP5;
+		explode leftflare type FALL | BITMAP1;
+		explode rightcannon type FALL | BITMAP2;
+		explode rightflare type FALL | BITMAP3;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode pelvis type SHATTER | BITMAP1;
+		explode leftupperleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode leftlowerleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode leftfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode lefttoea type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode lefttoeb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lefttoec type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rightupperleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode rightlowerleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode rightfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode righttoea type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode righttoeb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode righttoec type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode maintorso type SHATTER | BITMAP4;
+		explode leftcannon type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode leftflare type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rightcannon type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rightflare type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	explode pelvis type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode leftupperleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode leftlowerleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode leftfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode lefttoea type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lefttoeb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lefttoec type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rightupperleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rightlowerleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode rightfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode righttoea type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode righttoeb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode righttoec type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode maintorso type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode leftcannon type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode leftflare type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rightcannon type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rightflare type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+}

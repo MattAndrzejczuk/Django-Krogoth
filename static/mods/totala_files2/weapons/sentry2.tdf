@@ -1,0 +1,47 @@
+[SENTRY2]
+	{
+	ID=237;
+	name=Heavy Rocket;
+	rendertype=1;
+	lineofsight=1;
+	ballistic=0;
+	turret=0;
+
+	model=SENTRY_ROCKET;
+
+	range=450;
+	reloadtime=5;
+	weapontimer=4;
+	weaponvelocity=350;
+	turnrate=25000;
+	areaofeffect=180;
+	metalpershot=0;
+	energypershot=0;
+	
+	soundstart=SENTRYfire;
+	soundhit=SENTRYhit;
+
+	firestarter=100;
+	smokedelay=0;
+	guidance=0;
+	tracks=0;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=10000;
+
+	explosiongaf=smallboom;
+	explosionart=smallboom;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=200;
+			}
+	}

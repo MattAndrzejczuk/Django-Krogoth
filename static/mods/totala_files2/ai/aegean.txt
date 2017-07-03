@@ -1,0 +1,320 @@
+
+//Buildings Level 1
+//-----------------
+
+//Weights
+Weight ARMMEX 6
+Weight ARMMAKR 6
+Weight ARMSOLAR 6
+Weight ARMWIN 6
+Weight ARMGEO 6
+Weight ARMESTOR 6
+Weight ARMMSTOR 6
+Weight ARMLAB 6
+Weight ARMVP 6
+Weight ARMHP 6
+Weight ARMAP 7
+Weight ARMSY 7.2
+Weight ARMUWMEX 6
+Weight ARMTIDE 6
+Weight ARMFMKR 6
+Weight ARMUWES 5
+Weight ARMUWMS 5
+
+//Limits
+Limit ARMMAKR 0
+Limit ARMGEO 1
+Limit ARMESTOR 1
+Limit ARMMSTOR 1
+Limit ARMLAB 2
+Limit ARMVP 2
+Limit ARMHP 2
+Limit ARMAP 2
+Limit ARMSY 2
+Limit ARMFMKR 0
+Limit ARMUWES 1
+Limit ARMUWMS 1
+
+//Buildings Level 2
+//-----------------
+
+//Weights
+
+Weight ARMMOHO 6
+Weight ARMMMKR 6
+Weight ARMFUS 6
+Weight ARMCKFUS 6
+Weight ARMALAB 6
+Weight ARMAVP 6
+Weight ARMAAP 7
+Weight ARMASY 7.2
+Weight ARMPLAT 7.2
+Weight ARMUWFUS 6
+
+//Limits
+
+Limit ARMMMKR 0
+Limit ARMFUS 2
+Limit ARMCKFUS 0
+Limit ARMALAB 2
+Limit ARMAVP 2
+Limit ARMAAP 2
+Limit ARMASY 2
+Limit ARMPLAT 2
+Limit ARMUWFUS 2
+
+//Installations Level 1
+//-----------------
+
+//Weights
+Weight ARMRAD 6
+Weight ARMDRAG 6
+Weight ARMLLT 7
+Weight ARMHLT 7
+Weight ARMRL 7
+Weight ARMGUARD 7
+Weight ARMFHLT 7
+Weight ARMFRT 7
+Weight ARMTL 7
+Weight ARMSONAR 6
+
+//Limits
+Limit ARMRAD 0
+Limit ARMDRAG 0
+Limit ARMLLT 2
+Limit ARMHLT 12
+Limit ARMRL 12
+Limit ARMGUARD 12
+Limit ARMSONAR 0
+
+//Installations Level 2
+//-----------------
+
+//Weights
+Weight ARMAMB 7
+Weight ARMFLAK 7
+Weight ARMANNI 7
+Weight ARMARAD 6
+Weight ARMTARG 6
+Weight ARMBRTHA 6
+Weight ARMVULC 6
+Weight ARMASP 6
+Weight ARMSILO 6
+Weight ARMEMP 6
+Weight ARMAMD 6
+Weight ARMATL 6
+Weight ARMASON 6
+
+//Limits
+Limit ARMANNI 1
+Limit ARMARAD 1
+Limit ARMTARG 0
+Limit ARMBRTHA 0
+Limit ARMVULC 0
+Limit ARMASP 0
+Limit ARMSILO 0
+Limit ARMEMP 0
+Limit ARMAMD 0
+Limit ARMASON 0
+
+//KBots Level 1
+//-----------------
+
+//Weights
+Weight ARMCK 6
+Weight ARMPW 6
+Weight ARMWAR 6
+Weight ARMHAM 6
+Weight ARMROCK 6
+Weight ARMJETH 6
+
+//Limits
+Limit ARMPW 12
+Limit ARMWAR 12
+Limit ARMHAM 12
+Limit ARMROCK 12
+Limit ARMJETH 12
+
+//KBots Level 2
+//-----------------
+
+//Weights
+Weight ARMACK  6
+Weight ARMZEUS 6
+Weight ARMFIDO 6
+Weight ARMFAST 6
+Weight ARMMARK 6
+Weight ARMMAV 6
+Weight ARMAMPH 6
+Weight ARMSNIPE 6
+Weight ARMSPY 6
+Weight ARMMANNI 6
+Weight ARMVADER 6
+Weight ARMDECOM 6
+
+//Limits
+Limit ARMZEUS 12
+Limit ARMFIDO 12
+Limit ARMFAST 12
+Limit ARMMARK 0
+Limit ARMMAV 12
+Limit ARMAMPH 12
+Limit ARMSNIPE 12
+Limit ARMSPY 0
+Limit ARMMANNI 2
+Limit ARMVADER 0
+
+//Vehicles Level 1
+//-----------------
+
+//Weights
+Weight ARMCV 6
+Weight ARMJAM 6
+Weight ARMFAV 6
+Weight ARMFLASH 6
+Weight ARMSTUMP 6
+Weight ARMSAM 6
+
+//Limits
+Limit ARMFAV 10
+Limit ARMFLASH 10
+Limit ARMSTUMP 10
+Limit ARMSAM 10
+
+//Vehicles Level 2
+//-----------------
+
+//Weights
+Weight ARMACV 6
+Weight ARMSEER 6
+Weight ARMYORK 6
+Weight ARMSPID 6
+Weight ARMMART 6
+Weight ARMMERL 6
+Weight ARMMLV 6
+Weight ARMLATNK 6
+Weight ARMBULL 6
+Weight ARMCROC 7
+
+//Limits
+Limit ARMSEER 0
+Limit ARMYORK 4
+Limit ARMSPID 12
+Limit ARMMART 12
+Limit ARMMERL 12
+Limit ARMMLV 0
+Limit ARMLATNK 12
+Limit ARMBULL 12
+Limit ARMCROC 12
+
+//Aircraft Level 1
+//-----------------
+
+//Weights
+Weight ARMCA 6
+Weight ARMATLAS 6
+Weight ARMPEEP 6
+Weight ARMFIG 6
+Weight ARMTHUND 6
+
+//Limits
+Limit ARMATLAS 0
+Limit ARMPEEP 0
+Limit ARMFIG 12
+Limit ARMTHUND 4
+
+//Aircraft Level 2
+//-----------------
+
+//Weights
+Weight ARMACA 6
+Weight ARMAWAC 6
+Weight ARMBRAWL 7
+Weight ARMHAWK 7
+Weight ARMPNIX 7
+Weight ARMCSA 6
+Weight ARMSEHAK 7
+Weight ARMSFIG 7
+Weight ARMLANCE 7
+
+//Limits
+Limit ARMAWAC 1
+Limit ARMBRAWL 8
+Limit ARMHAWK 8
+Limit ARMPNIX 4
+Limit ARMCSA 0
+Limit ARMSEHAK 1
+Limit ARMSFIG 8
+Limit ARMLANCE 8
+
+//Hovercraft
+//-----------------
+
+//Weights
+Weight ARMCH 6
+Weight ARMSH 6
+Weight ARMANAC 6
+Weight ARMMH 6
+Weight ARMAH 6
+Weight ARMTHOVR 6
+
+//Limits
+Limit ARMSH 4
+Limit ARMANAC 10
+Limit ARMMH 10
+Limit ARMAH 10
+
+//Ships Level 1
+//-----------------
+
+//Weights
+Weight ARMCS 7
+Weight ARMPT 7
+Weight ARMROY 7
+Weight ARMSUB 7
+Weight ARMTSHIP 7
+
+//Limits
+Limit ARMPT 8
+Limit ARMROY 8
+Limit ARMSUB 4
+Limit ARMTSHIP 0
+
+//Ships Level 2
+//-----------------
+
+//Weights
+Weight ARMACSUB 7
+Weight ARMAAS 7
+Weight ARMMSHIP 7
+Weight ARMCARRY 7
+Weight ARMCRUS 7
+Weight ARMBATS 7
+Weight ARMSUBK 7
+
+//Limits
+Limit ARMAAS 4
+Limit ARMMSHIP 4
+Limit ARMCARRY 2
+Limit ARMCRUS 4
+Limit ARMBATS 4
+Limit ARMSUBK 4
+
+//Land Mines
+//-----------------
+
+//Weights
+Weight ARMMINE1 0
+Weight ARMMINE2 0
+Weight ARMMINE3 0
+Weight ARMMINE4 0
+Weight ARMMINE5 0
+Weight ARMMINE6 0
+
+//Limits
+Limit ARMMINE1 0
+Limit ARMMINE2 0
+Limit ARMMINE3 0
+Limit ARMMINE4 0
+Limit ARMMINE5 0
+Limit ARMMINE6 0

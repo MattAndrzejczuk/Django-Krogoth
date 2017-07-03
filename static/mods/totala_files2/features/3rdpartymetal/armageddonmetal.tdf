@@ -1,0 +1,120 @@
+[Low-Armametal 1] 
+	{
+	world=Armageddon;
+	description=Metal Patch;
+	category=Armageddon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Armageddonmetal;
+	seqname=armametal1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=233;
+	damage=32009;
+	indestructible=1;
+	}
+[Low-Armametal 2] 
+	{
+	world=Armageddon;
+	description=Metal Patch;
+	category=Armageddon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Armageddonmetal;
+	seqname=armametal2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=233;
+	damage=32009;
+	indestructible=1;
+	}
+[Low-Armametal 3] 
+	{
+	world=Armageddon;
+	description=Metal Patch;
+	category=Armageddon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Armageddonmetal;
+	seqname=armametal3;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=233;
+	damage=32009;
+	indestructible=1;
+	}
+[Low-Armametal 4] 
+	{
+	world=Armageddon;
+	description=Metal Patch;
+	category=Armageddon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Armageddonmetal;
+	seqname=armametal4;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=233;
+	damage=32009;
+	indestructible=1;
+	}
+[Low-Armametal 5] 
+	{
+	world=Armageddon;
+	description=Metal Patch;
+	category=Armageddon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Armageddonmetal;
+	seqname=armametal5;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=233;
+	damage=32009;
+	indestructible=1;
+	}
+[Low-Armametal 6] 
+	{
+	world=Armageddon;
+	description=Metal Patch;
+	category=Armageddon;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Armageddonmetal;
+	seqname=armametal6;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=233;
+	damage=32009;
+	indestructible=1;
+	}

@@ -1,0 +1,102 @@
+// Acid Rain
+// by: Draconious
+// Version 1.1	 October 07, 1998
+
+// Recomended Map Settings:
+// MeteorWeapon=AcidRain;
+// MeteorRadius=2500;	
+// MeteorDensity=1000;	This is actualy set too high dont go higher
+// MeteorDuration=24;
+// MeteorInterval=8;
+
+[AcidRain]
+	{
+	ID=233;
+	name=AcidRain;
+	rendertype=1;
+	meteor=1;
+
+	model=AcidRain;
+
+//	endsmoke=1;
+	randomdecay=5;
+
+	weaponvelocity=950;
+	areaofeffect=170;
+	edgeeffectiveness=0.5;
+
+	soundhit=hiss;
+
+	firestarter=30;
+
+	explosiongaf=fx;
+	explosionart=steam;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=steam;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=100;
+		ARMCOM=80;
+		CORCOM=80;
+		ARMDECOM=180;
+		CORDECOM=180;
+
+		ARMVULC=430;
+		CORBUZZ=430;
+		
+		ARMMINE1=40;
+		ARMMINE2=40;
+		ARMMINE3=40;
+		ARMMINE4=40;
+		ARMMINE5=300;
+		ARMMINE6=40;
+		CORMINE1=40;
+		CORMINE2=40;
+		CORMINE3=40;
+		CORMINE4=40;
+		CORMINE5=40;
+		CORMINE6=40;
+
+		ARMWIN=70;
+		CORWIN=70;
+		ARMMEX=90;
+		CORMEX=90;
+		ARMESTOR=440;
+		ARMMSTOR=440;
+		CORESTOR=440;
+		CORMSTOR=440;
+		ARMMOHO=300;
+		CORMOHO=300;
+
+		ARMSILO=750;
+		CORSILO=750;
+
+		ARMTHUND=150;
+		ARMBRAWL=400;
+		ARMPEEP=20;
+		ARMFIG=75;
+		ARMCA=80;
+		ARMACA=150;
+		ARMATLAS=10;
+		ARMPNIX=180;
+		ARMHAWK=230;
+		ARMLANCE=160;
+		CORFINK=30;
+		CORVENG=80;
+		CORVAMP=210;
+		CORHURC=180;
+		CORTITAN=145;
+		CORACA=150;
+		CORSHAD=150;
+		CORAPE=460;
+		CORCA=80;
+		CORVALK=80;
+
+		}
+	}
+

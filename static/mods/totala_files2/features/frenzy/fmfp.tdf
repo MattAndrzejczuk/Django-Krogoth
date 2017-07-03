@@ -1,0 +1,642 @@
+[Plant1_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Plant;
+	filename=Fmfp;
+	seqname=Frenzy Plant1;
+	footprintx=1;
+	footprintz=1;
+	Blocking=1;
+	seqnameshad=Frenzy Plant1 shad;
+	seqnamedie=Frenzy Plant1 boom;
+	seqnamereclamate=Frenzy Plant1 rec;
+	featuredead=Plant1 smudge_fixed;
+	height=4;
+	shadtrans=1;
+	reclaimable=1;
+	energy=12;
+	hitdensity=10;
+	damage=2;
+	}
+
+[Plant1 smudge_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Dead Plant;
+	filename=Fmfp;
+	seqname=Frenzy Plant1 smudge;
+	footprintx=1;
+	footprintz=1;
+	reclaimable=1;
+	energy=4;
+	hitdensity=10;
+	damage=2;
+	}
+
+[Plant2_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Plant;
+	filename=Fmfp;
+	seqname=Frenzy Plant2;
+	footprintx=2;
+	footprintz=2;
+	Animating=1;
+	Blocking=1;
+	height=35;
+	reclaimable=1;
+	energy=34;
+	hitdensity=10;
+	damage=2;
+	}
+
+[Mushroom1_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Giant Mushroom;
+	filename=Fmfp;
+	seqname=Frenzy Mushroom1;
+	footprintx=3;
+	footprintz=3;
+	Blocking=1;
+	seqnameshad=Frenzy Mushroom1 Shad;
+	height=25;
+	reclaimable=1;
+	energy=132;
+	hitdensity=10;
+	damage=2;
+	}
+
+[Steam crater]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=crater;
+	filename=Fmfp;
+	seqname=Frenzy Steam1;
+	footprintx=1;
+	footprintz=1;
+	nodisplayinfo=1;
+	featuredead=Steam crater open;
+	hitdensity=10;
+	damage=2;
+	}
+
+[Steam crater open]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=scorched ground;
+	filename=Fmfp;
+	seqname=Frenzy Steam1 smudge;
+	footprintx=1;
+	footprintz=1;
+	geothermal=1;
+	indestructible=1;
+	permanent=1;
+	}
+
+[Flame1_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Flames;
+	filename=Fmfp;
+	seqname=Frenzy Flame1;
+	footprintx=1;
+	footprintz=1;
+	Animating=1;
+	height=10;
+	indestructible=1;
+	permanent=1;
+	}
+
+[Flame2_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Flames;
+	filename=Fmfp;
+	seqname=Frenzy Flame2;
+	footprintx=1;
+	footprintz=1;
+	Animating=1;
+	height=10;
+	indestructible=1;
+	permanent=1;
+	}
+
+[Totem1_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Totem;
+	filename=Fmfp;
+	seqname=Frenzy Totem1;
+	footprintx=3;
+	footprintz=3;
+	Blocking=1;
+	height=20;
+	indestructible=1;
+	permanent=1;
+	}
+
+[CreMana01_01fxd]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Cave Mana;
+	filename=Fmfp;
+	seqname=CreMana01_01fxd;
+	footprintx=3;
+	footprintz=3;
+	Animating=1;
+	permanent=1;
+	indestructible=1;
+	metal=75;
+	}
+
+[CreMana02_01fxd]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Cave Mana;
+	filename=Fmfp;
+	seqname=CreMana02_01fxd;
+	footprintx=3;
+	footprintz=3;
+	Animating=1;
+	permanent=1;
+	indestructible=1;
+	metal=150;
+	}
+
+[CreMana03_01fxd]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Cave Mana;
+	filename=Fmfp;
+	seqname=CreMana03_01fxd;
+	footprintx=3;
+	footprintz=3;
+	Animating=1;
+	permanent=1;
+	indestructible=1;
+	metal=250;
+	}
+
+[Foam1]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Wave;
+	filename=Fmfp;
+	seqname=Frenzy Foam1;
+	footprintx=1;
+	footprintz=1;
+	Animating=1;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	animtrans=1;
+	}
+
+[Foam2]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Wave;
+	filename=Fmfp;
+	seqname=Frenzy Foam2;
+	footprintx=1;
+	footprintz=1;
+	Animating=1;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	animtrans=1;
+	}
+
+[Foam3]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Wave;
+	filename=Fmfp;
+	seqname=Frenzy Foam3;
+	footprintx=1;
+	footprintz=1;
+	Animating=1;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	animtrans=1;
+	}
+
+[Foam4]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Wave;
+	filename=Fmfp;
+	seqname=Frenzy Foam4;
+	footprintx=1;
+	footprintz=1;
+	Animating=1;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	animtrans=1;
+	}
+
+[Foam5]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Wave;
+	filename=Fmfp;
+	seqname=Frenzy Foam5;
+	footprintx=1;
+	footprintz=1;
+	Animating=1;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	animtrans=1;
+	}
+
+[Foam6]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Wave;
+	filename=Fmfp;
+	seqname=Frenzy Foam6;
+	footprintx=1;
+	footprintz=1;
+	Animating=1;
+	nodisplayinfo=1;
+	permanent=1;
+	indestructible=1;
+	animtrans=1;
+	}
+
+[OpTree1_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree1;
+	footprintx=3;
+	footprintz=3;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree1 shad;
+	featuredead=OpTree1 dead_fixed;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=300;
+	hitdensity=100;
+	damage=58;
+	}
+
+[OpTree1 dead_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Dead tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree1 dead;
+	footprintx=3;
+	footprintz=3;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree1 dead shad;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=150;
+	hitdensity=100;
+	damage=32;
+	}
+
+[OpTree2_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree2;
+	footprintx=3;
+	footprintz=3;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree2 shad;
+	featuredead=OpTree2 dead_fixed;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=301;
+	hitdensity=100;
+	damage=59;
+	}
+
+[OpTree2 dead_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Dead tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree2 dead;
+	footprintx=3;
+	footprintz=3;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree2 dead shad;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=152;
+	hitdensity=100;
+	damage=33;
+	}
+
+[OpTree3_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree3;
+	footprintx=2;
+	footprintz=2;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree3 shad;
+	featuredead=OpTree3 dead_fixed;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=272;
+	hitdensity=100;
+	damage=46;
+	}
+
+[OpTree3 dead_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Dead tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree3 dead;
+	footprintx=2;
+	footprintz=2;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree3 dead shad;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=114;
+	hitdensity=100;
+	damage=21;
+	}
+
+[OpTree4_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree4;
+	footprintx=2;
+	footprintz=2;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree4 shad;
+	featuredead=OpTree4 dead_fixed;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=273;
+	hitdensity=100;
+	damage=47;
+	}
+
+[OpTree4 dead_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Dead tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree4 dead;
+	footprintx=2;
+	footprintz=2;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree4 dead shad;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=115;
+	hitdensity=100;
+	damage=22;
+	}
+
+[OpTree5_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree5;
+	footprintx=2;
+	footprintz=2;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree5 shad;
+	featuredead=OpTree5 dead_fixed;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=270;
+	hitdensity=100;
+	damage=44;
+	}
+
+[OpTree5 dead_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Dead tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree5 dead;
+	footprintx=2;
+	footprintz=2;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree5 dead shad;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=112;
+	hitdensity=100;
+	damage=19;
+	}
+
+[OpTree6_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree6;
+	footprintx=2;
+	footprintz=2;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree6 shad;
+	featuredead=OpTree6 dead_fixed;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=260;
+	hitdensity=100;
+	damage=36;
+	}
+
+[OpTree6 dead_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Dead tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree6 dead;
+	footprintx=2;
+	footprintz=2;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree6 dead shad;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=102;
+	hitdensity=100;
+	damage=14;
+	}
+
+[OpTree7_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree7;
+	footprintx=2;
+	footprintz=2;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree7 shad;
+	featuredead=OpTree7 dead_fixed;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=247;
+	hitdensity=100;
+	damage=27;
+	}
+
+[OpTree7 dead_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Dead tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree7 dead;
+	footprintx=2;
+	footprintz=2;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree7 dead shad;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=88;
+	hitdensity=100;
+	damage=8;
+	}
+
+[OpTree8_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree8;
+	footprintx=2;
+	footprintz=2;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree8 shad;
+	featuredead=OpTree8 dead_fixed;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=261;
+	hitdensity=100;
+	damage=37;
+	}
+
+[OpTree8 dead_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Dead tree;
+	filename=Fmfp;
+	seqname=Frenzy OpTree8 dead;
+	footprintx=2;
+	footprintz=2;
+	Blocking=1;
+	seqnameshad=Frenzy OpTree8 dead shad;
+	height=20;
+	shadtrans=1;
+	reclaimable=1;
+	energy=103;
+	hitdensity=100;
+	damage=15;
+	}
+
+[Plant3]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Plant;
+	filename=Fmfp;
+	seqname=Frenzy Plant3;
+	footprintx=1;
+	footprintz=1;
+	seqnameshad=Frenzy Plant3 shad;
+	height=3;
+	shadtrans=1;
+	reclaimable=1;
+	energy=7;
+	hitdensity=10;
+	damage=2;
+	}
+
+[Crater_fixed]
+	{
+	world=aramon;
+	category=Frenzy map features;
+	description=Suspicious Crater;
+	filename=Fmfp;
+	seqname=Frenzy Crater;
+	footprintx=3;
+	footprintz=3;
+	seqnamedie=Frenzy Crater Boom innocently;
+	featuredead=Crater_fixed;
+	Blocking=1;
+	height=3;
+	hitdensity=10;
+	damage=2;
+	flamable=1;
+	seqnameburn=Frenzy Crater Boom;
+	featureburnt=Crater_fixed;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=75;
+	burnweapon=Gasbag;
+	}

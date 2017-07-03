@@ -1,0 +1,15 @@
+[MENUENTRY1]
+	{
+	MENU=4;
+	BUTTON=0;
+	UNITNAME=DEVASTATOR; //ARM Devastator (Annihilator Hovercraft)
+	UNITMENU=ARMHP; //ARM Hovercraft Platform (Builds Hovercraft)
+	}
+
+[MENUENTRY2]
+	{
+	MENU=4;
+	BUTTON=0;
+	UNITNAME=DEVASTATOR; //ARM Devastator (Annihilator Hovercraft)
+	UNITMENU=ARMHPNS; //ARM Hovercraft Platform - NS (Builds Hovercraft)
+	}

@@ -1,0 +1,84 @@
+// This is version 1.0 of Demon
+// You may use and distribute as you like as long
+// as my credits go with it.
+// Created By Datanut March 1999
+
+// Set PLAYERS
+Weight ARM 0.08
+Weight CORE 0.08
+
+// Set Construction
+Weight Constr 1.50
+
+// Build Base Defences
+Weight ARMRL 0.50
+Weight CORRL 0.50
+Weight ARMLLT 0.95
+Weight CORLLT 0.95
+Weight ARMGUARD 5.55
+Weight CORPUN 5.55
+Weight ARMHLT 6.55
+Weight CORHLT 6.55
+
+// Set Energy Build
+Weight ARMSOLAR 2.65
+Weight CORSOLAR 2.65
+Weight ARMFUS 1.00
+Weight CORFUS 1.00
+Weight ARMMMKR 0.50
+Weight CORMMKR 0.50
+
+// Limit Plant Construction
+Weight ARMLAB 0.65
+Weight CORLAB 0.65
+Weight ARMVP 0.65
+Weight CORVP 0.65
+Weight ARMAP 0.65
+Weight CORAP 0.65
+Weight ARMHP 0.75
+Weight CORHP 0.75
+Weight ARMPLAT 0.75
+Weight CORPLAT 0.75
+Weight CORGANT 0.75
+Weight ARMSY 2.95
+Weight CORSY 2.95
+
+// Build Sea Units
+Weight ARMROY 1.75
+Weight CORROY 1.75
+Weight ARMPT 1.25
+Weight CORPT 1.25
+Weight ARMCROC 1.75
+Weight CORSEAL 1.75
+
+// Limit Moho Metal Makers
+Weight ARMMOHO 0.01
+Weight CORMOHO 0.01
+Limit ARMMOHO 3
+Limit CORMOHO 3
+
+// Increase Airstrikes
+Weight ARMBRAWL 1.50
+Weight CORAPE 1.50
+
+// Increase Hover Craft
+Weight ARMANAC 1.25
+Weight CORSNAP 1.25
+Weight ARMMH 1.25
+Weight CORMH 1.25
+Weight ARMAH 1.00
+Weight CORAH 1.00
+
+// Limit Big Guns
+Weight ARMVULC 0.05
+Weight CORBUZZ 0.05
+Limit ARMVULC 1
+Limit CORBUZZ 1
+Limit ARMBRTHA 5
+Limit CORINT 5
+
+plan hard
+
+Weight ARMDREAD 1.15
+Weight CORKROG 1.15
+

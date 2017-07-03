@@ -1,0 +1,202 @@
+[SKIM_ART]
+	{
+	ID=221;
+	name=Plasma Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+	range=750;
+	reloadtime=3.5;
+	weaponvelocity=800;
+	areaofeffect=50;
+	soundstart=skim_art_fire;
+	soundhit=xplolrg4;
+	firestarter=50;
+	accuracy=500;
+	aimrate=2500;
+	tolerance=300;
+	holdtime=1;
+	explosiongaf=fx;
+	explosionart=Explode2;
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+	startsmoke=1;
+	[DAMAGE]
+		{
+		default=190;
+		}
+	}
+
+[SKIM_PLA]
+	{
+	ID=222;
+	name=Rapid Fire Plasma Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+	range=450;
+	reloadtime=.33;
+	weaponvelocity=590;
+	areaofeffect=45;
+	soundstart=cannon1;
+	soundhit=xplosml3;
+	edgeeffectiveness=50;
+	holdtime=1;
+	firestarter=50;
+	explosiongaf=fx;
+	explosionart=explode3;
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+	startsmoke=1;
+	[DAMAGE]
+		{
+		default=45;
+		}
+	}
+
+[SKIM_MIS]
+	{
+	ID=223;
+	name=Missiles;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+	vlaunch=1;
+	model=missile;
+	range=1000;
+	reloadtime=.33;
+	weaponvelocity=450;
+	startvelocity=400;
+	weaponacceleration=100;
+	turnrate=50000;
+	areaofeffect=48;
+	burnblow=0;
+	weapontimer=6;
+	soundstart=rocklit1;
+	soundhit=xplosml2;
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=10000;
+	explosiongaf=fx;
+	explosionart=explode3;
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+	startsmoke=1;
+	[DAMAGE]
+		{
+		default=50;
+		}
+	}
+
+[SKIM_ROK]
+	{
+	ID=224;
+	name=Rocket;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+	model=missile;
+	range=435;
+	reloadtime=1.75;
+	weaponvelocity=250;
+	startvelocity=250;
+	weaponacceleration=120;
+	areaofeffect=48;
+	soundstart=rocklit1;
+	soundhit=xplosml2;
+	firestarter=70;
+	smokedelay=.1;
+	selfprop=1;
+	smoketrail=1;
+	explosiongaf=fx;
+	explosionart=explode3;
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+	startsmoke=1;
+	[DAMAGE]
+		{
+		default=95;
+		}
+	}
+
+[SKIM_PUL]
+	{
+	ID=129; // Original ID was 17 - Edited on 8/18/03 7:59:41 PM using TA Conflict Crusher - http://www.r1ch.net/tacc/
+	name=Experimental Cannon;
+	rendertype=1;
+	turret=1;
+	model=PUL;
+	range=370;
+	reloadtime=.5;
+	weaponvelocity=800;
+	areaofeffect=40;
+	soundtrigger=1;
+	soundstart=skim_pul_fire;
+	soundhit=skim_pul_hit;
+	firestarter=30;
+	beamweapon=1;
+	tolerance=2000;
+	explosiongaf=fx;
+	explosionart=parablast;
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+	[DAMAGE]
+		{
+		default=60;
+		}
+	}
+
+[SKIM_EMG]
+	{
+	ID=131; // Original ID was 31 - Edited on 8/18/03 7:59:44 PM using TA Conflict Crusher - http://www.r1ch.net/tacc/
+	name=E.M.G.;
+	rendertype=4;	/* 2D bitmap */
+	color=2;		/* EMG bitmap shell, its a hack */
+	lineofsight=1;
+	turret=1;
+
+//	model=plasma;
+
+	range=400;
+	reloadtime=.4;
+	weapontimer=1;
+	weaponvelocity=300;
+	sprayangle=1024;
+	areaofeffect=16;
+	burst=3;
+	burstrate=.1;
+	soundstart=armsml2;
+	soundhit=lasrhit1;
+	soundtrigger=1;
+	tolerance=6000;
+
+	startsmoke=1;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=12;
+		}
+	}

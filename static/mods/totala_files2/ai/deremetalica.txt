@@ -1,0 +1,447 @@
+// -----------------------------------
+
+// 	DE RE METALICA (v. 2.0)
+
+// -----------------------------------
+
+// AI based on WetMoonAI v.2.0 profile
+// and HAGA AI by TA-Power
+// Modified by ChinaHook - TAP.
+
+
+// TAP == TA-POWER (Total Annihilation - POWER) 
+// http://www.planetannihilation.com/tapower
+// Thankx to:
+// Gabriel B. aka VanTheMan (tap_vantheman@hotmail.com)
+// Nicolás B. aka El Bardi (mullinga@adinet.com.uy)
+
+
+// Construction Units (Plant & movil units)
+
+Weight CORACA 2.25	// adv. cons. aircraft
+Weight CORACK 3.25	// adv. cons. kbot
+Weight CORACV 3.25	// adv. cons. vehic.
+Weight CORCA 2.55	// cons. aircraft
+Weight CORCK 3.55	// cons. kbot
+Weight CORCV 3.55	// cons. vehic.
+Weight ARMACA 2.25
+Weight ARMACK 3.25
+Weight ARMACV 3.25
+Weight ARMCA 2.55 
+Weight ARMCK 3.55
+Weight ARMCV 3.55
+Weight ARMACSUB 0	// adv. cons. sub.
+Weight CORACSUB 0
+Weight ARMCS 0		// cons. ship
+Weight CORCS 0
+Limit CORCH 0		// cons. hover.
+Limit ARMCH 0
+Limit CORACA 3
+Limit CORACK 3
+Limit CORACV 3
+Limit CORCA 4
+Limit CORCK 4
+Limit CORCV 4
+Limit ARMACA 3
+Limit ARMACK 3
+Limit ARMACV 3
+Limit ARMCA 4
+Limit ARMCK 4
+Limit ARMCV 4
+Limit ARMACSUB 0
+Limit CORACSUB 0
+Limit CORCS 0
+Limit ARMCS 0
+
+Weight ARMAAP 0.30	// Adv. air plant
+Weight CORAAP 0.30
+Weight CORALAB 0.90	// adv. kbot plant
+Weight ARMALAB 0.90
+Weight CORAVP 0.85	// adv. vehic. plant
+Weight ARMAVP 0.85
+Weight ARMLAB 0.80	// kbot plant
+Weight CORLAB 0.80
+Weight ARMVP 0.90	// Vehic. plant
+Weight CORVP 0.90
+Weight ARMAP 0.15	// Air Plant
+Weight CORAP 0.15
+Weight CORHP 0		// Hover Plant
+Weight ARMHP 0	
+Weight CORGANT 0.75	// Krogoth Gantry
+Weight CORSY 0		// Shipyard
+Weight ARMSY 0	
+Weight CORASY 0		// Adv. shipyard
+Weight ARMASY 0	
+
+Limit ARMAAP 1	
+Limit CORAAP 1	
+Limit CORALAB 4
+Limit ARMALAB 4
+Limit CORAVP 4	
+Limit ARMAVP 4	
+Limit ARMLAB 2
+Limit CORLAB 2
+Limit ARMVP 3	
+Limit CORVP 3	
+Limit ARMAP 1
+Limit CORAP 1
+Limit ARMHP 0
+Limit CORHP 0
+Limit CORGANT 2
+Limit ARMSY 0	
+Limit CORSY 0	
+Limit CORASY 0	
+Limit ARMASY 0	
+
+// Resources (Energy & Metal)
+
+Weight ARMGEO 15	// Geothermal plant
+Weight CORGEO 15
+Weight ARMSOLAR 5.65	// SOLAR PANEL
+Weight CORSOLAR 5.65
+Weight ARMFUS 15	// Fusion plant
+Weight CORFUS 15
+Weight ARMMMKR 0	// Moho metal maker
+Weight CORMMKR 0
+Weight ARMMAKR 0	// Metal Maker
+Weight CORMAKR 0
+Weight ARMWIN 5.5	// Wind gen.
+Weight CORWIN 5.5
+Weight ARMASP 0.01	// Centro de reparación
+Weight CORASP 0.01	// de aviones
+Limit ARMFUS 10
+Limit CORFUS 10
+Limit CORCKFUS 0
+Limit ARMCKFUS 0 
+Limit ARMMMKR 0
+Limit CORMMKR 0
+Limit ARMMAKR 0
+Limit CORMAKR 0
+Limit CORSOLAR 15
+Limit ARMSOLAR 15
+Limit ARMWIN 12	
+Limit CORWIN 12	
+Limit ARMESTOR 2
+Limit ARMMSTOR 2
+Limit CORESTOR 2
+Limit CORMSTOR 2
+Limit ARMMEX 25	
+Limit CORMEX 25
+Limit ARMMOHO 12
+Limit CORMOHO 12
+Limit ARMASP 4
+Limit CORASP 4
+
+// Base Defences
+
+Weight ARMRL 6.55	// Defender
+Weight CORRL 6.55	// Pulverizer
+Weight ARMLLT 0		// L.L.T. = Light
+Weight CORLLT 0		// Laser Tower
+Weight ARMGUARD 4.50	// Guardian
+Weight CORPUN 4.50	// Punisher
+Weight ARMHLT 4.15	// Torre de laser
+Weight CORHLT 4.15	// pesado
+Weight CORDOOM 0.55	// Doom's day machine
+Weight CORDRAG 0
+Weight CORFLAK 0.95	// cobra
+Weight CORTOAST 0.55	// toaster
+Weight CORVIPE 2.25	// viper
+Weight ARMAMB 2.55	// ambusher
+Weight ARMANNI 0.75	// annihilator
+Weight ARMDRAG 0
+Weight ARMFLAK 0.95	// flakker
+Weight ARMFORT 0
+Weight CORFORT 0
+Weight ARMSILO 0
+Weight CORSILO 0
+Weight CORMABM 0	// immolator
+Weight ARMSCAB 0	// scarab (anti-nuke móvil)
+Weight ARMEMP 0		
+Weight CORTRON 0
+Weight ARMDEVA 1.50	// devastator (UH)
+
+Limit ARMRL 20
+Limit CORRL 20
+Limit ARMGUARD 8
+Limit CORPUN 8
+Limit ARMLLT 0
+Limit CORLLT 0
+Limit CORHLT 6
+Limit ARMHLT 6
+Limit ARMDEVA 3
+Limit CORDOOM 2
+Limit CORDRAG 0
+Limit CORFLAK 8
+Limit CORTOAST 4
+Limit CORVIPE 5
+Limit ARMAMB 4
+Limit ARMANNI 2
+Limit ARMDRAG 0
+Limit ARMFLAK 8
+Limit CORFORT 0
+Limit ARMFORT 0
+LImit ARMSILO 0
+Limit CORSILO 0
+Limit CORMABM 0
+Limit ARMSCAB 0
+Limit ARMEMP 0
+Limit CORTRON 0
+
+// Ground Units 
+
+Weight ARMMERL 4.15	// merl
+Weight ARMSAM 0.15	// samson
+Weight ARMAMPH 0.55	// pelican
+Weight ARMMART 1.15	// pillager (artillería móvil)
+Weight ARMDECOM 0.10	// decoy comm.
+Weight ARMCROC 5.55	// triton
+Weight ARMSPY 0.1	// infiltrator (Spy kbot)
+Weight ARMBULL 9.55	// bulldog
+Weight ARMMAV 7.75	// maverick
+Weight ARMZEUS 5.25	// Zeus
+
+Weight CORHRK  4.15	// dominator
+Weight CORMIST 0.15	// slasher
+Weight CORVROC 4.15	// diplomat
+Weight CORDECOM 0.10	// decoy comm.
+Weight CORMART 0.15	// luger (atillería movil)
+Weight CORSEAL 5.55	// crock
+Weight CORAMPH 0.55	// gimp
+Weight CORSPY 0.1	// parasite (Spy kbot)
+Weight CORGOL 9.5	// Goliath
+Weight CORCAN 5.55	// The can
+Weight CORMORT 7.25	// Morty
+
+Limit ARMAMPH 5	
+Limit ARMASER 1		// eraser (radar jammer)
+Limit ARMJAM 1		// jammer (radar jammer)
+limit ARMCOM 0
+Limit ARMDECOM 2
+Limit ARMFAST 8		// zipper
+Limit ARMFIDO 6
+Limit ARMFLEA 0
+Limit ARMHAM 8
+Limit ARMJETH 3
+Limit ARMMARK 1		// marky (radar móvil)
+Limit ARMMART 5
+Limit ARMMAV 8
+Limit ARMPW 4
+Limit ARMROCK 0
+Limit ARMSCORP 0
+Limit ARMSEER 1		// seer (radar movil)
+Limit ARMSNIPE 2
+Limit ARMSPY 1
+Limit ARMVADER 0
+Limit ARMWAR 0
+Limit ARMZEUS 6
+Limit ARMBULL 20
+Limit ARMAMPH 4
+Limit ARMCROC 25
+Limit ARMFAV 0
+Limit ARMMERL 8
+Limit ARMFLASH 8
+Limit ARMMLV 0
+Limit ARMSAM 4
+Limit ARMSCAB 0
+Limit ARMSPID 4
+Limit ARMSTUMP 12
+
+Limit CORAMPH 20
+Limit CORAK 4
+Limit CORCAN 6
+Limit CORCRASH 6
+Limit CORCOM 0
+Limit CORDECOM 1
+Limit CORFAST 0
+Limit CORHRK  3
+Limit CORMORT 8
+Limit CORNECRO 0
+Limit CORPYRO 4
+Limit CORROACH 0
+Limit CORSPY 1
+Limit CORSTORM 7
+Limit CORSUMO 4
+Limit CORTHUD 8
+Limit CORVOYR 1		// voyeur (radar movil)
+Limit CORETER 1
+Limit CORFAV 0
+Limit CORGATOR 6
+Limit CORGOL 10
+Limit CORLEVLR 8
+Limit CORMART 5
+Limit CORMIST 4
+Limit CORMLV 0
+Limit CORRAID 0
+Limit CORREAP 6
+Limit CORSEAL 25
+Limit CORTRUCK 0
+Limit CORVRAD 1		// informer (radar movil)
+Limit CORVROC 0
+Limit CORSPEC 1		// spectre (radar jammer)
+Limit CORSENT 8
+Limit ARMYORK 8
+Limit ARMJAM 1
+
+// Location Units
+
+Limit CORTARG 0		// Targeting facility
+Limit ARMTARG 0
+Limit ARMARAD 3		// Adv. Radar
+Limit CORARAD 3
+Limit ARMRAD 1		// Radar
+Limit CORRAD 1
+
+// Air Units
+
+Weight ARMBRAWL 4.65	// brawler
+Weight CORAPE 4.65	// rapier
+Weight CORVAMP 2.95	// vamp
+Weight ARMHAWK 2.95	// hawk
+Weight ARMATLAS 0	// atlas (cargo unit)
+Weight ARMAWAC 0
+Weight ARMLANCE 0	// lancet
+Weight ARMPEEP 0.3	// peeper
+Weight ARMFIG 0.20	// freedom fighter
+Weight ARMPNIX 0	// phoenix
+Weight ARMTHUND 0	// thunder
+Weight CORAWAC 0
+Weight CORFINK 0.3	// fink
+Weight CORHUNT 0	// hunter (air radar)
+Weight CORHURC 0	// hurricane
+Weight CORSHAD 0	// shadow
+Weight CORTITAN 0	// titan
+Weight CORVALK 0	// valkyre (cargo unit)
+Weight CORVENG 0.25	// avenger
+
+Limit CORAPE 20 
+Limit ARMBRAWL 20
+Limit CORVAMP 15
+Limit ARMHAWK 15
+Limit ARMATLAS 0
+Limit ARMAWAC 0
+Limit ARMLANCE 0
+Limit ARMPEEP 4
+Limit ARMFIG 6
+Limit ARMPNIX 0
+Limit ARMTHUND 0
+Limit CORAWAC 0
+Limit CORFINK 3
+Limit CORHUNT 0
+Limit CORHURC 0
+Limit CORSHAD 0
+Limit CORTITAN 0
+Limit CORVALK 0
+Limit CORVENG 7
+
+// TA - POWER Units support
+
+Weight KROGTAAR .5	// The pretorians...
+Limit KROGTAAR 6
+Weight SPIDERLAB .26	// The Spider Lab
+Limit SPIDERLAB 1
+Weight ARMLASPD .38
+Limit ARMLASPD 5	// Hobo
+Weight ARMPASPD .47
+Limit ARMPASPD 3	// Wolf
+Weight ARMCSPID 3.55
+Limit ARMCSPID 2	// All terrain Cons. Kbot (Spider cons.)
+
+// Special Units
+
+Weight CORKROG .5	// ... and the Caesar!!
+Limit CORKROG 3
+
+// Boneyards Units by Cavedog
+
+Limit ARMFARK 0
+Limit CORPLAS 0
+
+//Nukes  (UH Compatible)
+
+weight CAISILO 2.95	// Enhances nuke silos 
+weight AAISILO 2.95	// by Switeck
+weight AAIEMP 2.95	// Enhanced EMP and Neutron
+weight CAITRON 0	// silos taken from BAI2K1.ufo file
+weight ARMAMD 0		// Antinuke fortitude
+weight CORFMD 0		// Antinuke fortitude
+Limit CAISILO 3	
+Limit AAISILO 3	
+Limit AAIEMP 2	
+Limit CAITRON 0	
+Limit ARMAMD 0	
+Limit CORFMD 0	
+
+// Big Guns
+
+Weight ARMBRTHA 0.65	// bertha
+Weight CORINT 0.65	// intimidator (timmy)
+Weight ARMVULC 0	// vulcan
+Weight CORBUZZ 0	// buzzsaw
+
+Limit ARMVULC 0
+Limit CORBUZZ 0
+Limit ARMBRTHA 6
+Limit CORINT 6	
+
+// Attack Hover Units
+
+Weight ARMANAC 0	// anaconda
+Weight CORSNAP 0	// snapper
+Weight ARMMH 0		// wombat
+Weight CORMH 0		// nixer
+Weight ARMAH 0		// swatter
+Weight CORAH 0		// slinger
+
+// Naval Units Section. Added by Bardi
+// This stuff is not needed this time.
+// I have removed it!!
+
+Weight ARMTIDE 0
+Weight CORTIDE 0
+Weight ARMSONAR 0
+Weight CORSONAR 0
+Weight ARMFHLT 0
+Weight CORFHLT 0
+Weight ARMFRT 0
+Weight CORFRT 0
+Weight ARMTL 0
+Weight CORTL 0
+Weight ARMATL 0
+Weight CORATL 0
+Weight ARMFMKR 0
+Weight CORFMKR 0
+Weight ARMUWMEX 0
+Weight CORUWMEX 0
+Limit ARMTIDE 0
+Limit CORTIDE 0
+Limit ARMSONAR 0
+Limit CORSONAR 0
+Limit ARMFHLT 0
+Limit CORFHLT 0
+Limit ARMFRT 0
+Limit CORFRT 0
+Limit ARMTL 0
+Limit CORTL 0
+Limit ARMATL 0
+Limit CORATL 0
+Limit ARMFMKR 0
+Limit CORFMKR 0
+Limit ARMUWMEX 0
+Limit CORUWMEX 0
+Limit ARMSJAM 0		// scort (jammer ship)
+Limit CORSJAM 0		// phamtom (jammer ship)
+Limit ARMSCRAM 0	// fibber (jammer sub.)
+
+// I have added these ones because it seems
+// that TA engine build some in the game.
+
+Weight ARMAIB 0		// AI Boost found in some maps
+Weight CORAIB 0		// as 'Pot Holes', by Estrella.
+Limit ARMAIB 0		// Removed because this unit is
+Limit CORAIB 0		// a cheat unit.
+
+Weight ARMMINE4 0	// Sabotage Mine in UH pack
+Limit ARMMINE4 0	// Builded by Arm and Core
+Weight CORMINE4 0	// Spy kbots.
+Limit CORMINE4 0	// (Infiltrator & Parasite).

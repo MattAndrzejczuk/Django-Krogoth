@@ -85,7 +85,7 @@ class UnitFbiData(APIView):  # cat cpuinfo
             printDebug('Unit FBI Data Extracted Successfully! ', 'it always crashed here...')
             return Response(unitsArray)
 
-
+# AutoCollectStatic
 class ApiNavigationUrls(APIView):
     def get(self, request, format=None):
         json_response = {
@@ -93,7 +93,9 @@ class ApiNavigationUrls(APIView):
             "list_units_for_mod2": "http://52.27.28.55/LazarusII/LazarusListUnits/?mod_name=totala_files2",
             "get 'arach' from mod named: totala_files2": "http://52.27.28.55/LazarusII/UnitFbiData/?mod_name=totala_files2&unit_id=arach",
             "custom toast": "http://52.27.28.55/LazarusII/CustomToast/?msg=hello_world",
-            "Execute Bash": "http://52.27.28.55/LazarusII/ExecuteBash/?cmd=ls",
+            "Execute Bash ls": "http://52.27.28.55/LazarusII/ExecuteBash/?cmd=ls&mod_name=totala_files2&dir=units",
+            "Execute Bash rename mods to lowercase": "http://52.27.28.55/LazarusII/ExecuteBash/?cmd=rename_dir&mod_name=totala_files2",
+            "AutoCollectStatic": "http://52.27.28.55/LazarusII/AutoCollectStatic/",
         }
         return Response(json_response)
 
@@ -113,21 +115,35 @@ class ExecuteBash(APIView):
         result = 'nan'
         final_obj = {}
         if cmd == 'ls':
-            result0 = str(subprocess.check_output(['pwd', '.']))
-            result1 = str(subprocess.check_output(['ls', 'static/totala_files2']))
+            mod_name = request.GET['mod_name']
+            dir = request.GET['dir']
+            result0 = str(subprocess.check_output(['pwd', '.'])).replace("b'","").replace("\\n'","/")
+            result1 = str(subprocess.check_output(['ls', 'static/mods']))
             final_obj[str(result0)] = str(result1).split('\\n')
-            result2 = str(subprocess.check_output(['ls', 'static/totala_files2/units']))
-            final_obj[result0+'static'] = str(result2).split('\\n')
+            result2 = str(subprocess.check_output(['ls', 'static/mods/' + mod_name + '/' + dir ]))
+            final_obj[result0+'static/mods/'+mod_name+'/'+dir] = str(result2).split('\\n')
         elif cmd == 'rename_dir':
             # find . -depth -exec rename 's/(.*)\/([^\/]*)/$1\/\L$2/' {} \;
-            mod_name = request.GET['cmd']
-            rename_files = "find " + mod_name + " -depth -exec rename 's/(.*)\/([^\/]*)/$1\/\L$2/' {} \;"
-            os.system(rename_files)
+            result0 = str(subprocess.check_output(['ls', '.'])).replace("b'", "").replace("\\n'", "/")
+
+            mod_name = request.GET['mod_name']
+            rename_files_bash = "bash bashRenameStuffToLowerInDirectory.sh " + mod_name
+            os.system(rename_files_bash)
+            final_obj['info'] = 'bash script executed from ' + result0
             final_obj['result'] = mod_name + ' should have been set to lower case.'
 
         context = {'result': final_obj}
         return Response(context)
 
+
+class AutoCollectStatic(APIView):
+    def get(self, request, format=None):
+        command = 'python3 manage.py collectstatic --no-input'
+        os.system(command)
+        html = '<div> <h1>Collect Static</h1> <p>should be completed.</p> </div>'
+        return HttpResponse(html)
+
+"""
 class LazarusListUnitsOld(APIView):
     f = []
     d = []
@@ -242,7 +258,7 @@ class LazarusListUnitsOld(APIView):
             # self.printContents(mod_path, mod_name)
             # final_response = {'arm_data': self.jsonResponse}
             return Response('oh shit')
-
+"""
 
 class many_colors:
     _97 = '\033[97m'
@@ -336,6 +352,29 @@ CCD = {
 }
 
 
+class ReadUnitFbi:  # cat cpuinfo
+    def get(self, mod_name, unit_id):
+        printKeyValuePair('views.py','38')
+        try:
+            printInfo('got "unit_id" GET property')
+            unit_path = '/usr/src/app/static/mods/' + mod_name + '/units/' + unit_id + '.fbi'
+            printLog('unit path: ')
+            printInfo(unit_path)
+            unitsArray = readFile(unit_path)
+            for unit in unitsArray:
+                printWarning('OKAY! looping through units array:')
+                printKeyValuePair('name', unit)
+                printDebug(unit, 'UnitFbiData')
+
+            printLog('finished looping through units array.')
+            printInfo('GOING TO JSON DUMPS UNITS ARRAY: ')
+            printLog(str(unitsArray))
+            printDebug('Unit FBI Data Extracted Successfully! ', 'it always crashed here...')
+            return unitsArray
+        except:
+            return []
+
+
 class LazarusListUnits(APIView):
     f = []
     d = []
@@ -354,7 +393,7 @@ class LazarusListUnits(APIView):
     def getUnitFbiUsingId(self, unit_id, mod_name):
         printColored('getting unit fbi', 3)
         try:
-            unit_path = '/usr/src/app/static/' + mod_name + '/units/' + unit_id + '.fbi'
+            unit_path = '/usr/src/app/static/mods/' + mod_name + '/units/' + unit_id + '.fbi'
             printColored('unit path: ', 6)
             printColored(unit_path, 5)
             unitsArray = readFile(unit_path)
@@ -382,30 +421,53 @@ class LazarusListUnits(APIView):
 
     def printSubContents(self, pathName, mod_name):
         for (dirpath, dirnames, filenames) in walk(self.root + pathName):
-            if pathName.lower() == 'unitpics':
+            # if pathName.lower() == 'unitpics':
+            #     for file in filenames:
+            #         filename, file_extension = os.path.splitext(file)
+            #         self.printColoredFile(filename.lower(), file_extension.lower(), 17, 6)
+            #         pathToFile = self.root + pathName + '/' + file
+            #         try:
+            #             img = Image.open(pathToFile)
+            #             imgSaveTo = self.root + pathName + '/' + filename + '.png'
+            #             img.save(imgSaveTo, format='png')
+            #             self.jsonResponse.append(
+            #                 {
+            #                     'thumbnail': '/static/' + mod_name + '/unitpics/' + filename + '.png',
+            #                     'object_name': filename,
+            #                     'system_location': imgSaveTo,
+            #                     'fbi_file': '/static/' + mod_name + '/units/' + filename + '.fbi',
+            #                     'RESTful_unit_data': 'http://52.27.28.55/LazarusII/UnitFbiData/?mod_name=' + mod_name + '&unit_id=' + filename
+            #                 }
+            #             )
+            #         except:
+            #             printError('failed to open ' + str(filename) + ' [' + str(file_extension) + ']')
+            if pathName.lower() == 'units':
                 for file in filenames:
                     filename, file_extension = os.path.splitext(file)
-                    self.printColoredFile(filename.lower(), file_extension.lower(), 17, 6)
-                    pathToFile = self.root + pathName + '/' + file
+                    self.printColoredFile(filename.lower(), file_extension.lower(), 18, 6)
+                    pathToFile = '/usr/src/app/static/mods/' + mod_name + '/unitpics' + '/' + filename + '.pcx'
+
+                    self.printColored('GOING TO GET CONTENTS OF: ', 11)
+                    self.printColoredFile(mod_name, filename, 15, 3)
+                    unit_fbi = ReadUnitFbi().get(mod_name, filename)
+
                     try:
                         img = Image.open(pathToFile)
-                        imgSaveTo = self.root + pathName + '/' + filename + '.png'
+                        imgSaveTo = '/usr/src/app/static/mods/' + mod_name + '/unitpics' + '/' + filename + '.png'
                         img.save(imgSaveTo, format='png')
+
                         self.jsonResponse.append(
                             {
-                                'thumbnail': '/static/' + mod_name + '/unitpics/' + filename + '.png',
+                                'thumbnail': '/static/mods/' + mod_name + '/unitpics/' + filename + '.png',
                                 'object_name': filename,
                                 'system_location': imgSaveTo,
-                                'fbi_file': '/static/' + mod_name + '/units/' + filename + '.fbi',
+                                'fbi_file': '/static/mods/' + mod_name + '/units/' + filename + '.fbi',
+                                'unit_data': unit_fbi,
                                 'RESTful_unit_data': 'http://52.27.28.55/LazarusII/UnitFbiData/?mod_name=' + mod_name + '&unit_id=' + filename
                             }
                         )
                     except:
                         printError('failed to open ' + str(filename) + ' [' + str(file_extension) + ']')
-            elif pathName.lower() == 'units':
-                for file in filenames:
-                    filename, file_extension = os.path.splitext(file)
-                    self.printColoredFile(filename.lower(), file_extension.lower(), 18, 6)
             elif pathName.lower() == 'weapons':
                 for file in filenames:
                     filename, file_extension = os.path.splitext(file)
@@ -440,10 +502,10 @@ class LazarusListUnits(APIView):
 
     def get(self, request, format=None):
         try:
-            mod_path = '/usr/src/app/static/' + str(request.GET['mod_name']) + '/'
+            mod_path = '/usr/src/app/static/mods/' + str(request.GET['mod_name']) + '/'
             mod_name = str(request.GET['mod_name'])
             self.printColored('Will now print the contents of ' + mod_path, 1)
-            time.sleep(2)
+            # time.sleep(2)
             self.printContents(mod_path, mod_name)
             final_response = {'arm_data': self.jsonResponse}
             return Response(final_response)

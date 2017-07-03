@@ -1,0 +1,45 @@
+[Crefount01]
+	{
+	world=Creon;
+	description=Fountain;
+	category=misc;
+	animating=1;
+	footprintx=7;
+	footprintz=7;
+	height=50;
+	filename=CreNew;
+	seqname=Crefount01;
+	seqnameshad=Crefountshad01;
+
+	seqnamedie=Crefountdie01;
+	featuredead=Crefount01a;
+
+	damage=1600;
+	shadtrans=1;
+	featurereclamate=Crefount01;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[Crefount01a]
+	{
+	world=Creon;
+	description=Ruined Fountain;
+	category=misc;
+	animating=1;
+	footprintx=7;
+	footprintz=7;
+	height=35;
+	filename=CreNew;
+	seqname=Crefount01a;
+	seqnameshad=Crefountshad01a;
+	energy=525;
+
+	indestructible=1;
+
+	damage=650;
+	shadtrans=1;
+	featurereclamate=Crefount01a;
+	blocking=1;
+	hitdensity=100;
+	}

@@ -1,0 +1,384 @@
+[TarPRWall01]
+	{
+	world=Taros;
+	description=Wall;
+	category=walls;
+	footprintx=2;
+	footprintz=6;
+	height=160;
+	filename=TarPRWall;
+	seqname=TarPRWall01;
+	seqnameshad=TarPRWallShad01;
+	energy=250;
+
+	seqnamedie=TarPRWall01a;
+	featuredead=TarPRWall01a;
+
+	damage=2400;
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarPRWall01a;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarPRWall01a]
+	{
+	world=Taros;
+	description=Damaged Wall;
+	category=walls;
+	footprintx=2;
+	footprintz=6;
+	height=80;
+	filename=TarPRWall;
+	seqname=TarPRWall01a;
+	seqnameshad=TarPRWallShad01a;
+	energy=200;
+
+	seqnamedie=TarPRWall01b;
+	featuredead=TarPRWall01b;
+
+	damage=1400;
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarPRWall01b;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarPRWall01b]
+	{
+	world=Taros;
+	description=Rubble;
+	category=walls;
+	footprintx=1;
+	footprintz=1;
+	filename=TarPRWall;
+	seqname=TarPRWall01b;
+
+	indestructible=1;
+	shadtrans=1;
+	featuredead=TarPRWall01b;
+	hitdensity=100;
+	}
+
+[TarPRWall02]
+	{
+	world=Taros;
+	description=Wall;
+	category=walls;
+	footprintx=2;
+	footprintz=6;
+	height=160;
+	filename=TarPRWall;
+	seqname=TarPRWall02;
+	seqnameshad=TarPRWallshad02;
+	energy=250;
+
+	seqnamedie=TarPRWall02a;
+	featuredead=TarPRWall02a;
+
+	damage=2400;
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarPRWall02a;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarPRWall02a]
+	{
+	world=Taros;
+	description=Damaged Wall;
+	category=walls;
+	footprintx=2;
+	footprintz=6;
+	height=80;
+	filename=TarPRWall;
+	seqname=TarPRWall02a;
+	seqnameshad=TarPRWallshad02a;
+	energy=200;
+
+	seqnamedie=TarPRWall02b;
+	featuredead=TarPRWall02b;
+
+	damage=1400;
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarPRWall02b;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarPRWall02b]
+	{
+	world=Taros;
+	description=Rubble;
+	category=walls;
+	footprintx=1;
+	footprintz=1;
+	filename=TarPRWall;
+	seqname=TarPRWall02b;
+
+	indestructible=1;
+	shadtrans=1;
+	featuredead=TarPRWall02b;
+	hitdensity=100;
+	}
+
+[TarPRWall03]
+	{
+	world=Taros;
+	description=Wall;
+	category=walls;
+	footprintx=2;
+	footprintz=12;
+	height=160;
+	filename=TarPRWall;
+	seqname=TarPRWall03;
+	seqnameshad=TarPRWallShad03;
+	energy=250;
+
+	seqnamedie=TarPRWall03a;
+	featuredead=TarPRWall03a;
+
+	damage=2400;
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarPRWall03a;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarPRWall03a]
+	{
+	world=Taros;
+	description=Damaged Wall;
+	category=walls;
+	footprintx=2;
+	footprintz=12;
+	height=80;
+	filename=TarPRWall;
+	seqname=TarPRWall03a;
+	seqnameshad=TarPRWallShad03a;
+	energy=200;
+
+	seqnamedie=TarPRWall03b;
+	featuredead=TarPRWall03b;
+
+	damage=1200;
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarPRWall03b;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarPRWall03b]
+	{
+	world=Taros;
+	description=Rubble;
+	category=walls;
+	footprintx=1;
+	footprintz=1;
+	filename=TarPRWall;
+	seqname=TarPRWall03b;
+
+	indestructible=1;
+	shadtrans=1;
+	featuredead=TarPRWall03b;
+	hitdensity=100;
+	}
+
+[TarPRWall04]
+	{
+	world=Taros;
+	description=Wall;
+	category=walls;
+	footprintx=6;
+	footprintz=2;
+	height=160;
+	filename=TarPRWall;
+	seqname=TarPRWall04;
+	seqnameshad=TarPRWallShad04;
+	energy=250;
+
+	seqnamedie=TarPRWall04a;
+	featuredead=TarPRWall04a;
+
+	damage=2400;
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarPRWall04a;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarPRWall04a]
+	{
+	world=Taros;
+	description=Damaged Wall;
+	category=walls;
+	footprintx=6;
+	footprintz=2;
+	height=80;
+	filename=TarPRWall;
+	seqname=TarPRWall04a;
+	seqnameshad=TarPRWallShad04a;
+	energy=200;
+
+	seqnamedie=TarPRWall04b;
+	featuredead=TarPRWall04b;
+
+	damage=1400;
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarPRWall04b;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarPRWall04b]
+	{
+	world=Taros;
+	description=Rubble;
+	category=walls;
+	footprintx=1;
+	footprintz=1;
+	filename=TarPRWall;
+	seqname=TarPRWall04b;
+
+	indestructible=1;
+	shadtrans=1;
+	featuredead=TarPRWall04b;
+	hitdensity=100;
+	}
+
+[TarPRWall05]
+	{
+	world=Taros;
+	description=Wall;
+	category=walls;
+	footprintx=6;
+	footprintz=2;
+	height=160;
+	filename=TarPRWall;
+	seqname=TarPRWall05;
+	seqnameshad=TarPRWallShad05;
+	energy=250;
+
+	seqnamedie=TarPRWall05a;
+	featuredead=TarPRWall05a;
+
+	damage=2400;
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarPRWall05a;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarPRWall05a]
+	{
+	world=Taros;
+	description=Damaged Wall;
+	category=walls;
+	footprintx=6;
+	footprintz=2;
+	height=80;
+	filename=TarPRWall;
+	seqname=TarPRWall05a;
+	seqnameshad=TarPRWallShad05a;
+	seqnamereclamate=BurnRecDie;
+	energy=200;
+
+	seqnamedie=TarPRWall05b;
+	featuredead=TarPRWall05b;
+
+	damage=1200;
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarPRWall05b;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarPRWall05b]
+	{
+	world=Taros;
+	description=Rubble;
+	category=walls;
+	footprintx=1;
+	footprintz=1;
+	filename=TarPRWall;
+	seqname=TarPRWall05b;
+
+	indestructible=1;
+	shadtrans=1;
+	featuredead=TarPRWall05b;
+	hitdensity=100;
+	}
+
+[TarPRWall06]
+	{
+	world=Taros;
+	description=Wall;
+	category=walls;
+	footprintx=12;
+	footprintz=2;
+	height=160;
+	filename=TarPRWall;
+	seqname=TarPRWall06;
+	seqnameshad=TarPRWallShad06;
+	energy=250;
+
+	seqnamedie=TarPRWall06a;
+	featuredead=TarPRWall06a;
+
+	damage=2400;
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarPRWall06a;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarPRWall06a]
+	{
+	world=Taros;
+	description=Damaged Wall;
+	category=walls;
+	footprintx=12;
+	footprintz=2;
+	height=80;
+	filename=TarPRWall;
+	seqname=TarPRWall06a;
+	seqnameshad=TarPRWallShad06a;
+	energy=200;
+
+	seqnamedie=TarPRWall06b;
+	featuredead=TarPRWall06b;
+
+	damage=1400;
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=TarPRWall06b;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[TarPRWall06b]
+	{
+	world=Taros;
+	description=Rubble;
+	category=walls;
+	footprintx=1;
+	footprintz=1;
+	filename=TarPRWall;
+	seqname=TarPRWall06b;
+
+	indestructible=1;
+	shadtrans=1;
+	featuredead=TarPRWall06b;
+	hitdensity=100;
+	}

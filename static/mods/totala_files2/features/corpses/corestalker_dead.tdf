@@ -1,0 +1,36 @@
+[corstalk_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=corstalk_dead;
+	featuredead=corstalk_heap;
+	footprintx=2;
+	footprintz=3;
+	height=10;
+	blocking=1;
+	hitdensity=600;
+	metal=871;
+	damage=612;
+	reclaimable=1;
+	featurereclamate=smudge01;
+        seqnamereclamate=tree1reclamate;
+	}
+
+[corstalk_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3a;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=697;
+	damage=412;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}

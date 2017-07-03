@@ -1,0 +1,32 @@
+[PGVent01]
+	{
+	world=greenworld;
+	description=Thermal Vent;
+	category=Greenworld;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=gvents;
+	seqname=grnventest_00;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[PGVent02]
+	{
+	world=greenworld;
+	description=Thermal Vent;
+	category=Greenworld;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=gvents;
+	seqname=vent;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+

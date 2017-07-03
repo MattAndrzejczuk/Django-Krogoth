@@ -1,0 +1,15 @@
+[MENUENTRY1]
+	{
+	MENU=3;
+	BUTTON=1;
+	UNITNAME=BLOTTER; //CORE Blotter (Radar-Jamming Hovercraft)
+	UNITMENU=CORHPNS; //CORE Hovercraft Platform - NS (Builds Hovercraft)
+	}
+
+[MENUENTRY2]
+	{
+	MENU=3;
+	BUTTON=1;
+	UNITNAME=BLOTTER; //CORE Blotter (Radar-Jamming Hovercraft)
+	UNITMENU=CORHP; //CORE Hovercraft Platform (Builds Hovercraft)
+	}

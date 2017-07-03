@@ -1,0 +1,575 @@
+// Modified by ChinaHook (TA-Power)
+// for TA Comunity. January, 2002.
+
+[VerPlFix01]
+	{
+	world=Veruna;
+	description=Desert Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=20;
+	filename=VerGrass_Fixed;
+	seqname=verPlant01;
+	seqnameshad=verPlantshad01;
+	seqnamereclamate=VerPlant01rec;
+	energy=115;
+	seqnameburn=VerPlant01Burn;
+	seqnameburnshad=;
+	featureburnt=VerPlant01Crisp;
+	burnmin=5;
+	burnmax=6;
+	sparktime=5;
+	spreadchance=100;
+	burnweapon=TreeBurn;
+	seqnamedie=VerPlantBoom;
+	featuredead=VerPlantSmudge;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=VerPlantSmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VerPlFix02]
+	{
+	world=Veruna;
+	description=Desert Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=20;
+	filename=VerGrass_Fixed;
+	seqname=verPlant02;
+	seqnameshad=verPlantshad02;
+	seqnamereclamate=VerPlant02rec;
+	energy=115;
+	seqnameburn=VerPlant02Burn;
+	seqnameburnshad=;
+	featureburnt=VerPlant02Crisp;
+	burnmin=5;
+	burnmax=6;
+	sparktime=5;
+	spreadchance=100;
+	burnweapon=TreeBurn;
+	seqnamedie=VerPlantBoom;
+	featuredead=VerPlantSmudge;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=VerPlantSmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VerPlFix03]
+	{
+	world=Veruna;
+	description=Desert Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=25;
+	filename=VerGrass_Fixed;
+	seqname=verPlant03;
+	seqnameshad=verPlantshad03;
+	seqnamereclamate=VerPlant03rec;
+	energy=125;
+	seqnameburn=VerPlant03Burn;
+	seqnameburnshad=;
+	featureburnt=VerPlant03Crisp;
+	burnmin=5;
+	burnmax=6;
+	sparktime=5;
+	spreadchance=100;
+	burnweapon=TreeBurn;
+	seqnamedie=VerPlantBoom;
+	featuredead=VerPlantSmudge;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=VerPlantSmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VerPlFix04]
+	{
+	world=Veruna;
+	description=Desert Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=20;
+	filename=VerGrass_Fixed;
+	seqname=verPlant04;
+	seqnameshad=verPlantshad01;
+	seqnamereclamate=VerPlant04rec;
+	energy=115;
+	seqnameburn=VerPlant04Burn;
+	seqnameburnshad=;
+	featureburnt=VerPlant01Crisp;
+	burnmin=5;
+	burnmax=6;
+	sparktime=5;
+	spreadchance=100;
+	burnweapon=TreeBurn;
+	seqnamedie=VerPlantBoom;
+	featuredead=VerPlantSmudge;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=VerPlantSmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VerPlFix05]
+	{
+	world=Veruna;
+	description=Desert Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=20;
+	filename=VerGrass_Fixed;
+	seqname=verPlant05;
+	seqnameshad=verPlantshad02;
+	seqnamereclamate=VerPlant05rec;
+	energy=115;
+	seqnameburn=VerPlant05Burn;
+	seqnameburnshad=;
+	featureburnt=VerPlant02Crisp;
+	burnmin=5;
+	burnmax=6;
+	sparktime=5;
+	spreadchance=100;
+	burnweapon=TreeBurn;
+	seqnamedie=VerPlantBoom;
+	featuredead=VerPlantSmudge;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=VerPlantSmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[VerPlFix06]
+	{
+	world=Veruna;
+	description=Desert Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=20;
+	filename=VerGrass_Fixed;
+	seqname=verPlant06;
+	seqnameshad=verPlantshad03;
+	seqnamereclamate=VerPlant06rec;
+	energy=115;
+	seqnameburn=VerPlant06Burn;
+	seqnameburnshad=;
+	featureburnt=VerPlant03Crisp;
+	burnmin=5;
+	burnmax=6;
+	sparktime=5;
+	spreadchance=100;
+	burnweapon=TreeBurn;
+	seqnamedie=VerPlantBoom;
+	featuredead=VerPlantSmudge;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=VerPlantSmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VerGrFix01]
+	{
+	world=Veruna;
+	description=Grass;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+	filename=VerGrass_Fixed;
+	seqname=vergrass01;
+	seqnameshad=vergrasshad01;
+	seqnamereclamate=vergrass01rec;
+	energy=20;
+
+	seqnameburn=vergrassburn;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=30;
+	burnweapon=ShrubBurn;
+
+	featureburnt=VerGrassSmudgeA;
+	seqnamedie=VerGrassSmudgeA;
+	featuredead=VerGrassSmudgeA;  
+	featurereclamate=VerGrassSmudgeA;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	hitdensity=5;
+	}
+
+[VerGrFix02]
+	{
+	world=Veruna;
+	description=Grass;
+	category=Veruna;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=3;
+	filename=VerGrass_Fixed;
+	seqname=vergrass02;
+	seqnamereclamate=vergrass02rec;
+	energy=20;
+	seqnameburn=vergrassburn;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=30;
+	burnweapon=ShrubBurn;
+
+	featureburnt=VerGrassSmudgeB;
+	seqnamedie=VerGrassSmudgeB;
+	featuredead=VerGrassSmudgeB;  
+	featurereclamate=VerGrassSmudgeB;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	hitdensity=5;
+	}
+
+[VerGrFix03]
+	{
+	world=Veruna;
+	description=Grass;
+	category=Veruna;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=3;
+	filename=VerGrass_Fixed;
+	seqname=vergrass03;
+	seqnameshad=vergrasshad03;
+	seqnamereclamate=vergrass02rec;
+	energy=20;
+	seqnameburn=vergrassburn;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=30;
+	burnweapon=ShrubBurn;
+
+	featureburnt=VerGrassSmudgeB;
+	seqnamedie=VerGrassSmudgeB;
+	featuredead=VerGrassSmudgeB;  
+	featurereclamate=VerGrassSmudgeB;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	hitdensity=5;
+	}
+
+[VerGrFix04]
+	{
+	world=Veruna;
+	description=Grass;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=VerGrass_Fixed;
+	seqname=vergrass04;
+	seqnameshad=vergrasshad04;
+	seqnamereclamate=vergrass01rec;
+	energy=20;
+	seqnameburn=vergrassburn;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=30;
+	burnweapon=ShrubBurn;
+
+	featureburnt=VerGrassSmudgeA;
+	seqnamedie=VerGrassSmudgeA;
+	featuredead=VerGrassSmudgeA;  
+	featurereclamate=VerGrassSmudgeA;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	hitdensity=5;
+	}
+
+[VerGrFix05]
+	{
+	world=Veruna;
+	description=Grass;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=VerGrass_Fixed;
+	seqname=vergrass05;
+	seqnameshad=vergrasshad05;
+	seqnamereclamate=vergrass01rec;
+	energy=20;
+
+	seqnameburn=vergrassburn;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=30;
+	burnweapon=ShrubBurn;
+
+	featureburnt=VerGrassSmudgeA;
+	seqnamedie=VerGrassSmudgeA;
+	featuredead=VerGrassSmudgeA;  
+	featurereclamate=VerGrassSmudgeA;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	hitdensity=5;
+	}
+
+[VerGrFix06]
+	{
+	world=Veruna;
+	description=Grass;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+	filename=VerGrass_Fixed;
+	seqname=vergrass06;
+	seqnameshad=vergrasshad06;
+	seqnamereclamate=vergrass01rec;
+	energy=20;
+
+	seqnameburn=vergrassburn;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=30;
+	burnweapon=ShrubBurn;
+
+	featureburnt=VerGrassSmudgeA;
+	seqnamedie=VerGrassSmudgeA;
+	featuredead=VerGrassSmudgeA;  
+	featurereclamate=VerGrassSmudgeA;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	hitdensity=5;
+	}
+[VerPlant01Crisp]
+	{
+	world=Veruna;
+	description=Burnt Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=20;
+	filename=VerGrass_Fixed;
+	seqname=VerPlant01a;
+	seqnameshad=VerPlantShad01a;
+	seqnamereclamate=VerCrisp01rec;
+    	energy=75;
+	featuredead=VerPlantSmudge;
+	seqnamedie=VerPlantBoom;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=VerPlantSmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[VerPlant02Crisp]
+	{
+	world=Veruna;
+	description=Burnt Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=20;
+	filename=VerGrass_Fixed;
+	seqname=VerPlant02a;
+	seqnameshad=VerPlantShad02a;
+	seqnamereclamate=VerCrisp02rec;
+    	energy=75;
+	featuredead=VerPlantSmudge;
+	seqnamedie=VerPlantBoom;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=VerPlantSmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[VerPlant03Crisp]
+	{
+	world=Veruna;
+	description=Burnt Fern;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=20;
+	filename=VerGrass_Fixed;
+	seqname=VerPlant03a;
+	seqnameshad=VerPlantShad03a;
+	seqnamereclamate=VerCrisp03rec;
+    	energy=75;
+	featuredead=VerPlantSmudge;
+	seqnamedie=VerPlantBoom;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=VerPlantSmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[VerPlantSmudge]
+	{
+	world=Veruna;
+	description=Damaged Terrain;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=VerGrass_Fixed;
+	seqname=VerPlantSmudge;
+	featuredead=VerPlantSmudge;
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+[VerGrassSmudgeA]
+	{
+	world=Veruna;
+	description=Damaged Terrain;
+	category=Veruna;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=VerGrass_Fixed;
+	seqname=VerGrassSmudgeA;
+
+	featuredead=VerGrassSmudgeA;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+[VerGrassSmudgeB]
+	{
+	world=Veruna;
+	description=Damaged Terrain;
+	category=Veruna;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=0;
+	filename=VerGrass_Fixed;
+	seqname=VerGrassSmudgeB;
+
+	featuredead=VerGrassSmudgeB;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+

@@ -1,0 +1,66 @@
+[archi1]
+	{
+	world=Evergreen;
+	description=Deadly Arch;
+	category=Evergreen;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=300;
+	filename=EGarch;
+	seqname=archi1;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	permanent=1;
+	}
+
+[archi2]
+	{
+	world=Evergreen;
+	description=Deadly Arch;
+	category=Evergreen;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=200;
+	filename=EGarch;
+	seqname=archi2;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	permanent=1;
+	}
+
+[archi3]
+	{
+	world=Evergreen;
+	description=Deadly Arch;
+	category=Evergreen;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=255;
+	filename=EGarch;
+	seqname=archi3;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	permanent=1;
+	}
+
+

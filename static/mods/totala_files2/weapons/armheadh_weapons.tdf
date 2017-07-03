@@ -1,0 +1,39 @@
+//ARM "Head Hunter" Heavy Recon Kbot
+
+[ARM_BURSTCANON]
+	{
+	ID=7;
+	name=Head Hunter-AutoCanon;
+	rendertype=3;
+	lineofsight=1;
+	turret=1;
+
+	model=armheadhburst;
+	tolerance=1000;
+	range=410;
+	reloadtime=0.25;
+	weapontimer=0.7;
+	energypershot=102;
+	metalpershot=0;
+	weaponvelocity=600;
+	areaofeffect=50;
+	soundtrigger=0;
+	burst=2;
+	burstrate=0;
+	sprayangle=2300;
+	soundstart=HeadHunterAutoCanon;
+	soundhit=HeadHunterAutoCanon2;
+	firestarter=0;
+	beamweapon=1;
+	noexplode=1;
+	explosiongaf=HeadHunter_PulseBoom;
+	explosionart=pulseboom;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=17;
+		}
+	}
+

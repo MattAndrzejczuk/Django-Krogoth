@@ -1,0 +1,233 @@
+[EverGnMetal1] 
+	{
+	world=Evergreen;
+	description=Metal;
+	category=Evergreen;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=EGmetal;
+	seqname=egl1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=233;
+	damage=32009;
+	indestructible=1;
+	}
+
+[EverGnMetal2]  
+	{
+	world=Evergreen;
+	description=Metal;
+	category=Evergreen;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=EGmetal;
+	seqname=egl2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=185;
+	damage=32009;
+	indestructible=1;
+	}
+
+[EverGnMetal3] 
+	{
+	world=Evergreen;
+	description=Metal;
+	category=Evergreen;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=EGmetal;
+	seqname=egm1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=166;
+	damage=32009;
+	indestructible=1;
+	}
+
+[EverGnMetal4]  
+	{
+	world=Evergreen;
+	description=Metal;
+	category=Evergreen;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=EGmetal;
+	seqname=egm2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=156;
+	damage=32009;
+	indestructible=1;
+	}
+
+[EverGnMetal5]  
+	{
+	world=Evergreen;
+	description=Metal;
+	category=Evergreen;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=EGmetal;
+	seqname=egs1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[EverGnMetal6]  
+	{
+	world=Evergreen;
+	description=Metal;
+	category=Evergreen;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=EGmetal;
+	seqname=egs2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=126;
+	damage=32009;
+	indestructible=1;
+	}
+
+//Aqua Ore
+
+
+[EGAquaore1]  
+	{
+	world=Evergreen;
+	description=Metal;
+	category=Evergreen;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=EGmetal;
+	seqname=egaquaore1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=186;
+	damage=32009;
+	indestructible=1;
+	}
+
+[EGAquaore2]  
+	{
+	world=Evergreen;
+	description=Metal;
+	category=Evergreen;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=EGmetal;
+	seqname=egaquaore2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=206;
+	damage=32009;
+	indestructible=1;
+	}
+
+[EGAquaore3]  
+	{
+	world=Evergreen;
+	description=Metal;
+	category=Evergreen;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=EGmetal;
+	seqname=egaquaore3;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=116;
+	damage=32009;
+	indestructible=1;
+	}
+
+[EGAquaore4]  
+	{
+	world=Evergreen;
+	description=Metal;
+	category=Evergreen;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=EGmetal;
+	seqname=egaquaore4;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=146;
+	damage=32009;
+	indestructible=1;
+	}
+
+[EGAquaore5]  
+	{
+	world=Evergreen;
+	description=Metal;
+	category=Evergreen;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=EGmetal;
+	seqname=egaquaore5;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=156;
+	damage=32009;
+	indestructible=1;
+	}

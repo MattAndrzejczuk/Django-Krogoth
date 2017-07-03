@@ -1,0 +1,84 @@
+[GZRockMetal01]  
+	{
+	world=Ground Zero;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=gzmetal02;
+	seqname=DuneridgeMetal01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=255;
+	damage=32009;
+	indestructible=1;
+	}
+
+[GZRockMetal02]  
+	{
+	world=Ground Zero;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=gzmetal02;
+	seqname=DuneridgeMetal02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=128;
+	damage=32009;
+	indestructible=1;
+	}
+
+[GZRockMetal03]
+	{
+	world=Ground Zero;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=gzmetal02;
+	seqname=DuneridgeMetal03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=176;
+	damage=32009;
+	indestructible=1;
+	}
+
+[GZRockMetal04]  
+	{
+	world=Ground Zero;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=gzmetal02;
+	seqname=DuneridgeMetal04;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=64;
+	damage=32009;
+	indestructible=1;
+	}
+

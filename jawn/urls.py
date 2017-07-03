@@ -22,7 +22,7 @@ from rest_framework import renderers
 from rest_framework.routers import DefaultRouter
 from chat.views import *
 from django.contrib import admin
-from rest_auth.views import LazarusListUnits
+# from rest_auth.views import LazarusListUnits
 
 import rest_auth
 
@@ -51,7 +51,7 @@ urlpatterns = [
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^$', rest_auth.views.index),
     url(r'^armprime/', rest_auth.views.index),
-    url(r'^lazarus/', LazarusListUnits.as_view()),
+    # url(r'^lazarus/', LazarusListUnits.as_view()),
     url(r'^api.lazarus/', include('lazarus.urls')),
     url(r'^LazarusII/', include('LazarusII.urls')),
 ]

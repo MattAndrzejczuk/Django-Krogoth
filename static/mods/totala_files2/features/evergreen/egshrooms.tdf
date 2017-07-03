@@ -1,0 +1,171 @@
+[EGShroom1]
+	{
+	world=Evergreen;
+	description=Mushrooms;
+	category=Plants;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=egshrooms;
+	seqname=shroom1;
+	seqnameshad=shroom1shad;
+	seqnamereclamate=shroom1rec;
+	energy=75;
+
+	seqnamedie=shroom1boom;
+	featurereclamate=EGShroom1smudge;
+	featuredead=EGShroom1smudge;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=75;
+	damage=75;
+	}
+
+[EGshroom2]
+	{
+	world=Evergreen;
+	description=Mushrooms;
+	category=Plants;
+	footprintx=3;
+	footprintz=2;
+	height=25;
+	filename=egshrooms;
+	seqname=shroom2;
+	seqnameshad=shroom2shad;
+	seqnamereclamate=shroom2rec;
+	energy=250;
+
+	seqnamedie=shroom2boom;
+	featurereclamate=EGShroom2smudge;
+	featuredead=EGShroom2smudge;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=75;
+	damage=55;
+	}
+
+[EGShroom3]
+	{
+	world=Evergreen;
+	description=Mushroom;
+	category=Plants;
+	footprintx=2;
+	footprintz=2;
+	height=25;
+	filename=egshrooms;
+	seqname=shroom3;
+	seqnameshad=shroom3shad;
+	seqnamereclamate=shroom3rec;
+	energy=100;
+
+	seqnamedie=shroom3boom;
+	featurereclamate=EGShroom3smudge;
+	featuredead=EGShroom3smudge;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=75;
+	damage=75;
+	}
+
+[EGSPatch1]
+	{
+	world=Evergreen;
+	description=Mushrooms;
+	category=Plants;
+	footprintx=6;
+	footprintz=4;
+	height=25;
+	filename=egshrooms;
+	seqname=spatch1;
+	seqnameshad=spatch1shad;
+	seqnamereclamate=spatch1rec;
+	energy=350;
+
+	seqnamedie=spatch1boom;
+	featurereclamate=EGSpatch1smudge;
+	featuredead=EGSpatch1smudge;
+
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=75;
+	damage=75;
+	}
+
+[EGShroom1smudge]
+	{
+	world=Deathvalley;
+	description=Damaged Terrain;
+	category=Plants;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=egshrooms;
+	seqname=shroom1smug;
+	shadtrans=1;
+
+//	indestructible=1;
+	featuredead=EGShroom1smudge;
+
+	permanent=1;
+	}
+
+[EGShroom2smudge]
+	{
+	world=Deathvalley;
+	description=Damaged Terrain;
+	category=Plants;
+	footprintx=3;
+	footprintz=2;
+	height=1;
+	filename=egshrooms;
+	seqname=shroom2smug;
+	shadtrans=1;
+
+//	indestructible=1;
+	featuredead=EGShroom2smudge;
+
+	permanent=1;
+	}
+
+[EGShroom3smudge]
+	{
+	world=Deathvalley;
+	description=Damaged Terrain;
+	category=Plants;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=egshrooms;
+	seqname=shroom3smug;
+	shadtrans=1;
+
+//	indestructible=1;
+	featuredead=EGShroom3smudge;
+
+	permanent=1;
+	}
+
+[EGSpatch1smudge]
+	{
+	world=Deathvalley;
+	description=Damaged Terrain;
+	category=Plants;
+	footprintx=6;
+	footprintz=4;
+	height=1;
+	filename=egshrooms;
+	seqname=spatch1smug;
+	shadtrans=1;
+
+//	indestructible=1;
+	featuredead=EGSpatch1smudge;
+
+	permanent=1;
+	}

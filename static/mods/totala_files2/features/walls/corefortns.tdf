@@ -1,0 +1,61 @@
+[COREFORTNS]
+	{
+	world=allworld;
+	description=North South Wall;
+	category=Allworld;
+	object=COREFORTNS;
+	footprintx=2;
+	footprintz=8;
+	height=30;
+	blocking=1;
+	hitdensity=97;
+	metal=40;
+	damage=3875;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=COREFORTNS_DEAD;
+	featuredead=COREFORTNS_DEAD;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREFORTNS_DEAD]
+	{
+	world=allworld;
+	description=Rubble;
+	category=Allworld;
+	object=COREFORTNS_DEAD;
+	featuredead=COREFORTNS_HEAP;
+	footprintx=2;
+	footprintz=8;
+	height=10;
+	blocking=1;
+	hitdensity=97;
+	metal=20;
+	damage=1500;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=COREFORTNS_HEAP;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}
+
+[COREFORTNS_HEAP]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=Allworld;
+	object=2x8NS_HEAP;
+	footprintx=2;
+	footprintz=8;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=10;
+	damage=680;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+	}

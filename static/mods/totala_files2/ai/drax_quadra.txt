@@ -1,0 +1,661 @@
+//	AI script for map: Quadra
+//	by: Draconious
+//	Version 1.0	 December 14, 1998
+
+// Weight ARM 0.5
+// Weight CORE 0.5
+
+//		Units the AI is too stupid to use
+Limit ARMMINE1 0
+Limit ARMMINE2 0
+Limit ARMMINE3 0
+Limit ARMMINE4 0
+Limit ARMMINE5 0
+Limit ARMMINE6 0
+Limit CORMINE1 0
+Limit CORMINE2 0
+Limit CORMINE3 0
+Limit CORMINE4 0
+Limit CORMINE5 0
+Limit CORMINE6 0
+Limit ARMATLAS 0
+Limit ARMTHOVR 0
+Limit ARMTSHIP 0
+Limit CORVALK 0
+Limit CORTHOVR 0
+Limit CORTSHIP 0
+Limit ARMBEAC 0
+Limit ARMDEV1 0
+Limit ARMSCORP 0
+Limit ARMSS 0
+Limit CORBEAC 0
+Limit CORDEV1 0
+Limit CORSCORP 0
+Limit CORSS 0
+Limit ARMDRAG 0
+Limit ARMFDRAG 0
+Limit ARMFORT 0
+Limit ARMBFORTNS 0
+Limit ARMBFORTEW 0
+Limit ARMFORTNS 0
+Limit ARMFORTEW 0
+Limit CORDRAG 0
+Limit CORFDRAG 0
+Limit CORFORT 0
+Limit COREBFORTNS 0
+Limit COREBFORTEW 0
+Limit COREFORTNS 0
+Limit COREFORTEW 0
+Limit ARMVADER 0
+Limit CORROACH 0
+Limit ARMRECTR 0
+Limit CORFING 0
+Limit CORNECRO 0
+Limit CORSNIPE 0
+Limit CORBVALK 0
+
+// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+//		Plant Weights
+Weight ARMLAB 6.2
+Weight ARMALAB 6.5
+Weight ARMVP 6.2
+Weight ARMAVP 6.8
+Weight ARMAP 4.8
+Weight ARMAAP 5.2
+Weight ARMASP 3
+Weight ARMSY .01
+Weight ARMASY .01
+Weight ARMHP 3.8
+Weight ARMPLAT 1.5
+Weight ARMUWFCT 3.5		// 3rd Party: DRAX, Underwater Unit Factory
+
+Weight CORLAB 6.2
+Weight CORALAB 6.5
+Weight CORVP 6.2
+Weight CORAVP 6.8
+Weight CORAP 4.8
+Weight CORAAP 5.2
+Weight CORASP 3
+Weight CORSY .01
+Weight CORASY .01
+Weight CORHP 6
+Weight CORPLAT 1.5
+Weight CORUWFCT 3.5		// 3rd Party: DRAX, Underwater Unit Factory
+Weight CORGANT 3.75
+
+Weight PLANT 4
+
+//		Construction Unit Weights
+Weight ARMCOM .8
+Weight ARMDECOM 1.5
+Weight ARMOS 1.5		// 3rd Party: DRAX, Overseer
+Weight ARMCM 1.5		// 3rd Party: DRAX, Construction Master
+Weight ARMCK 6.9
+Weight ARMACK 6.9
+Weight ARMCA 7
+Weight ARMACA 7.2
+Weight ARMCSA 6
+Weight ARMCV 6.9
+Weight ARMACV 6.9
+Weight ARMCS .01
+Weight ARMACSUB .01
+Weight ARMCH 6
+Weight ARMAMPCV 3		// 3rd Party: TADD DRAX, Amphibious Construction Vehicle
+Weight ARMMLV .01
+
+Weight CORCOM .8
+Weight CORDECOM 1.5
+Weight COROS 1.5		// 3rd Party: DRAX, Overseer
+Weight CORCM 1.5		// 3rd Party: DRAX, Construction Master
+Weight CORCK 6.9
+Weight CORACK 6.9
+Weight CORCA 7.2
+Weight CORACA 7
+Weight CORCSA 6
+Weight CORCV 6.9
+Weight CORACV 6.9
+Weight CORCS .01
+Weight CORACSUB .01
+Weight CORCH 6
+Weight CORAMPCV 3		// 3rd Party: DRAX, TADD, Amphibious Construction Vehicle
+Weight CORMLV 0.1
+
+Weight CONSTR 6
+
+//		Energy and Metal Device Weights
+Weight AIEGIVER	4.25		// 3rd Party: DRAX, AI Energy Booster
+Weight AIMGIVER	4.25		// 3rd Party: DRAX, AI Metal Booster
+
+Weight ARMMSTOR 4.5
+Weight ARMESTOR 4.5
+Weight ARMUWMS 2.25
+Weight ARMUWES 2.25
+Weight ARMSOLAR 5.75
+Weight ARMWIN 8.75
+Weight ARMTIDE .01
+Weight ARMGEO 7.6
+Weight ARMFUS 6
+Weight ARMCKFUS 6.25
+Weight ARMUWFUS 2
+Weight ARMMAKR .5
+Weight ARMFMKR .01
+Weight ARMMEX 9.5
+Weight ARMUWMEX .01
+Weight ARMMOHO 4.5
+Weight ARMMMKR 3.5
+
+Weight CORMSTOR 4.5
+Weight CORESTOR 4.5
+Weight CORUWMS 2.25
+Weight CORUWES 2.25
+Weight CORSOLAR 5.75
+Weight CORWIN 8.75
+Weight CORTIDE .01
+Weight CORGEO 7.6
+Weight CORFUS 6
+Weight CORCKFUS 6.25
+Weight CORUWFUS 2
+Weight CORMAKR .5
+Weight CORFMKR .01
+Weight CORMEX 9.5
+Weight CORUWMEX .01
+Weight CORMOHO 4.5
+Weight CORMMKR 3.5
+
+//		Weapon Weights
+Weight ARMRL 8
+Weight ARMFRT 5
+Weight ARMLLT 8
+Weight ARMHLT 8
+Weight ARMFHLT 5
+Weight ARMFLAK 7.75
+Weight ARMGUARD 7
+Weight ARMAMB 7
+Weight ARMANNI 5.5
+Weight ARMBRTHA 3.5
+Weight ARMTL .01
+Weight ARMATL .01
+Weight ARMVULC 2
+Weight ARMAMD .01
+Weight ARMEMP .01
+Weight ARMSILO .01
+Weight NUKEA 3			// 3rd Party: AI Nuke Unit
+
+Weight CORRL 8
+Weight CORFRT 5
+Weight CORLLT 8
+Weight CORHLT 8
+Weight CORFHLT 5
+Weight CORFLAK 7.75
+Weight CORVIPE 5.5 
+Weight CORPUN 6.75
+Weight CORTOAST 7
+Weight CORDOOM 5.5
+Weight CORINT 3.5
+Weight CORTL .01
+Weight CORATL .01
+Weight CORBUZZ 2
+Weight CORFMD .01
+Weight CORTRON .01
+Weight CORSILO .01
+Weight NUKEC 3			// 3rd Party: AI Nuke Unit
+
+Weight WEAPON 6.5
+
+//		Kbot Weights
+Weight ARMPW 8
+Weight ARMFAST 5.5
+Weight ARMFIDO 7.5
+Weight ARMHAM 5.8
+Weight ARMROCK 6.5
+Weight ARMZEUS 5.75
+Weight ARMWAR 6.5
+Weight ARMJETH 7.5
+Weight ARMMAV 8
+Weight ARMAMPH 7
+Weight ARMSNIPE 3.5
+Weight ARMHH 5.5	// 3rd Party: DRAX, Heavy Assault Kbot
+Weight ARMFLEA 5
+
+Weight CORFAST 5.5
+Weight CORAK 8
+Weight CORCRASH 7.5
+Weight CORCAN 6.75
+Weight CORPYRO 6.75
+Weight CORAMPH 5.75
+Weight CORSTORM 7.5
+Weight CORHRK  6.75
+Weight CORMORT 8
+Weight CORSUMO 7.5
+Weight CORCRAB 6	// 3rd Party: DRAX, Amphibious Assault Kbot
+Weight CORKROG 5.25
+Weight CORTHUD 6.75
+
+Weight KBOT 6
+
+//		Vehicle Weights
+Weight ARMFAV 5
+Weight ARMFLASH 8.75
+Weight ARMBULL 7.5
+Weight ARMMERL 6.75
+Weight ARMSAM 6
+Weight ARMSPID 2.75
+Weight ARMSTUMP 6
+Weight ARMMART 6
+Weight ARMCROC 5
+Weight ARMLATNK 7.75
+Weight ARMYORK 3.5
+Weight ARMAFLSH 6	// 3rd Party: DRAX, Amphibious Light Attack Vehicle
+Weight ARMSIRENE 2	// 3rd Party: DRAX, Unit Stealer
+
+Weight CORFAV 4
+Weight CORGATOR 7.5
+Weight CORGOL 7.75
+Weight CORMART 6
+Weight CORMIST 6.75
+Weight CORSEAL 5.5
+Weight CORRAID 6
+Weight CORREAP 6.75
+Weight CORVROC 7.5
+Weight CORLEVLR 7.75
+Weight CORSENT 3.5
+
+Weight TANK 6
+
+//		Aircraft Weights
+Weight ARMBRAWL 7.75
+Weight ARMFIG 6.75
+Weight ARMHAWK 6.1
+Weight ARMPNIX 7.5
+Weight ARMTHUND 5
+Weight ARMLANCE .01
+Weight ARMSEAP 6.75
+Weight ARMSFIG 7.5
+
+Weight CORAPE 7.75
+Weight CORHURC 7.5
+Weight CORSHAD 5
+Weight CORTITAN .01
+Weight CORVAMP 5
+Weight CORVENG 6.1
+Weight CORSEAP 6.75
+Weight CORSFIG 7.5
+
+Weight VTOL 6
+
+//		Ship Weights
+Weight ARMBATS .01
+Weight ARMCARRY .01
+Weight ARMROY .01
+Weight ARMCRUS .01
+Weight ARMMSHIP .01
+Weight ARMPT .01
+Weight ARMSUB .01
+Weight ARMSUBK .01
+Weight ARMAAS .01
+
+Weight CORBATS .01
+Weight CORCARRY .01
+Weight CORROY .01
+Weight CORCRUS .01
+Weight CORMSHIP .01
+Weight CORPT .01
+Weight CORSHARK .01
+Weight CORSUB .01
+Weight CORSSUB .01
+Weight CORARCH .01
+
+Weight SHIP .01
+
+//		Hover Weights
+Weight ARMSH 6.75
+Weight ARMAH 7.75
+Weight ARMANAC 7.75
+Weight ARMMH 7.75
+
+Weight CORSH 6.75
+Weight CORAH 7.75
+Weight CORMH 7.75
+Weight CORSNAP 7.75
+
+Weight HOVER 6.75
+
+//		Sensor Weights
+Weight ARMRAD .5
+Weight ARMARAD 2
+Weight ARMSONAR .01
+Weight ARMASON .01
+Weight ARMMARK .5
+Weight ARMSPY .5
+Weight ARMSEER .5
+Weight ARMSEHAK .5
+Weight ARMPEEP .5
+Weight ARMAWAC .5
+Weight ARMASER .5
+Weight ARMJAM .5
+Weight ARMSJAM .5
+Weight ARMSCRAM .01
+Weight ARMTARG .8
+
+Weight CORRAD .5
+Weight CORARAD 2
+Weight CORSONAR .01
+Weight CORASON .01
+Weight CORVOYR .5
+Weight CORETER .5
+Weight CORFINK .5
+Weight CORHUNT .5
+Weight CORAWAC .5
+Weight CORJAM .5
+Weight CORSJAM .5
+Weight CORVRAD .5
+Weight CORSPY .5
+Weight CORTARG .8
+
+Weight SONAR .01
+Weight RADAR .5
+
+//		Save for Last Weights
+Weight SPECIAL 4
+
+// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+//		Unit Factory Limits
+Limit ARMLAB 3
+Limit ARMALAB 3
+Limit ARMVP 3
+Limit ARMAVP 3
+Limit ARMAP 3
+Limit ARMAAP 4
+Limit ARMASP 5
+Limit ARMSY 0
+Limit ARMASY 0
+Limit ARMHP 4
+Limit ARMPLAT 1
+Limit ARMUWFCT 1		// 3rd Party: DRAX, Underwater Unit Factory
+
+Limit CORLAB 3
+Limit CORALAB 3
+Limit CORVP 3
+Limit CORAVP 3
+Limit CORAP 3
+Limit CORAAP 4
+Limit CORASP 5
+Limit CORSY 0
+Limit CORASY 0
+Limit CORHP 4
+Limit CORPLAT 1
+Limit CORUWFCT 1		// 3rd Party: DRAX, Underwater Unit Factory
+Limit CORGANT 1
+
+Limit PLANT 25
+
+//		Construction Unit Limits
+Limit ARMCOM 2
+Limit ARMDECOM 2
+Limit ARMOS 1			// 3rd Party: DRAX, Overseer
+Limit ARMCM 2			// 3rd Party: DRAX, Construction Master
+Limit ARMCK 3
+Limit ARMACK 4
+Limit ARMCV 3
+Limit ARMACV 4
+Limit ARMCA 6
+Limit ARMACA 6
+Limit ARMCSA 3
+Limit ARMCS 0
+Limit ARMACSUB 0
+Limit ARMCH 6
+Limit ARMAMPCV 3		// 3rd Party: TADD DRAX, Amphibious Construction Vehicle
+Limit ARMMLV 0
+
+Limit CORCOM 2
+Limit CORDECOM 2
+Limit COROS 1			// 3rd Party: DRAX, Overseer
+Limit CORCM 3			// 3rd Party: DRAX, Construction Master
+Limit CORCK 3
+Limit CORACK 4
+Limit CORCV 3
+Limit CORACV 4
+Limit CORCA 6
+Limit CORACA 6
+Limit CORCSA 3
+Limit CORCS 0
+Limit CORACSUB 0
+Limit CORCH 6
+Limit CORAMPCV 3		// 3rd Party: TADD DRAX, Amphibious Construction Vehicle
+Limit CORMLV 0
+
+Limit CONST 35
+
+//		Energy and Metal Device Limits
+Limit AIEGIVER	1		// 3rd Party: DRAX, AI Resource Booster
+Limit AIMGIVER	1		// 3rd Party: DRAX, AI Resource Booster
+
+Limit ARMMSTOR 4
+Limit ARMESTOR 4
+Limit ARMUWMS 2
+Limit ARMUWES 2
+Limit ARMSOLAR 20
+Limit ARMWIN 45
+Limit ARMTIDE 2
+Limit ARMGEO 2
+Limit ARMFUS 3
+Limit ARMCKFUS 3
+Limit ARMUWFUS 1
+Limit ARMMAKR 2
+Limit ARMFMKR 0
+Limit ARMMEX 30
+Limit ARMUWMEX 3
+Limit ARMMOHO 5
+Limit ARMMMKR 5
+
+Limit CORMSTOR 4
+Limit CORESTOR 4
+Limit CORUWMS 2
+Limit CORUWES 2
+Limit CORSOLAR 20
+Limit CORWIN 45
+Limit CORTIDE 2
+Limit CORGEO 2
+Limit CORFUS 3
+Limit CORCKFUS 3
+Limit CORUWFUS 1
+Limit CORMAKR 2
+Limit CORFMKR 0
+Limit CORMEX 30
+Limit CORUWMEX 3
+Limit CORMOHO 5
+Limit CORMMKR 5
+
+//		Weapon Limits
+Limit ARMRL 20
+Limit ARMFRT 8
+Limit ARMLLT 10
+Limit ARMHLT 20
+Limit ARMFHLT 8
+Limit ARMFLAK 20
+Limit ARMGUARD 18
+Limit ARMAMB 15
+Limit ARMANNI 6
+Limit ARMBRTHA 2
+Limit ARMTL 0
+Limit ARMATL 0
+Limit ARMVULC 1
+Limit ARMAMD 0
+Limit ARMEMP 0
+Limit ARMSILO 0
+Limit NUKEA 1		// 3rd Party: AI Nuke Unit
+
+Limit CORRL 20
+Limit CORFRT 8
+Limit CORLLT 10
+Limit CORHLT 20
+Limit CORFHLT 8
+Limit CORVIPE 12
+Limit CORFLAK 20
+Limit CORPUN 16
+Limit CORTOAST 15
+Limit CORDOOM 6
+Limit CORINT 2
+Limit CORTL 0
+Limit CORATL 0
+Limit CORBUZZ 1
+Limit CORFMD 0
+Limit CORTRON 0
+Limit CORSILO 0
+Limit NUKEC 1		// 3rd Party: AI Nuke Unit
+
+Limit WEAPON 150
+
+//		Kbot Limits
+Limit ARMPW 35
+Limit ARMFAST 15
+Limit ARMFIDO 35
+Limit ARMHAM 40
+Limit ARMROCK 35
+Limit ARMZEUS 35
+Limit ARMWAR 15
+Limit ARMMAV 25
+Limit ARMAMPH 40
+Limit ARMSNIPE 3
+Limit ARMHH 15			// 3rd Party: DRAX, Heavy Assault Kbot
+Limit ARMFLEA 15
+
+Limit CORFAST 15
+Limit CORAK 35
+Limit CORCRASH 35
+Limit CORCAN 15
+Limit CORPYRO 35
+Limit CORAMPH 15
+Limit CORSTORM 35
+Limit CORHRK  35
+Limit CORMORT 35
+Limit CORSUMO 25
+Limit CORCRAB 18		// 3rd Party: DRAX, Amphibious Assault Kbot
+Limit CORKROG 2
+
+Limit KBOT 170
+
+//		Vehicle Limits
+Limit ARMFAV 15
+Limit ARMFLASH 40
+Limit ARMBULL 35
+Limit ARMJETH 30
+Limit ARMMERL 35
+Limit ARMSAM 15
+Limit ARMSPID 10
+Limit ARMSTUMP 15
+Limit ARMMART 30
+Limit ARMCROC 25
+Limit ARMLATNK 30
+Limit ARMYORK 18
+Limit ARMAFLSH 25	// 3rd Party: DRAX, Amphibious Light Attack Vehicle
+Limit ARMSIRENE 2	// 3rd Party: DRAX, Sirene
+
+Limit CORFAV 15
+Limit CORGATOR 35
+Limit CORGOL 35
+Limit CORMART 35
+Limit CORMIST 20
+Limit CORSEAL 25
+Limit CORRAID 35
+Limit CORREAP 35
+Limit CORTHUD 35
+Limit CORVROC 30
+Limit CORLEVLR 30
+Limit CORSENT 18
+
+Limit TANK 150
+
+//		Aircraft Limits
+Limit ARMBRAWL 35
+Limit ARMFIG 30
+Limit ARMHAWK 20
+Limit ARMPNIX 20
+Limit ARMTHUND 20
+Limit ARMLANCE 5
+Limit ARMSEAP 10
+Limit ARMSFIG 30
+
+Limit CORAPE 35
+Limit CORHURC 25
+Limit CORSHAD 20
+Limit CORTITAN 5
+Limit CORVAMP 35
+Limit CORVENG 25
+Limit CORSEAP 10
+Limit CORSFIG 30
+
+Limit VTOL 150
+
+//		Ship Limits
+Limit ARMBATS 0
+Limit ARMCARRY 0
+Limit ARMROY 0
+Limit ARMCRUS 0
+Limit ARMMSHIP 0
+Limit ARMPT 0
+Limit ARMSUB 0
+Limit ARMSUBK 0
+Limit ARMAAS 0
+
+Limit CORBATS 0
+Limit CORCARRY 0
+Limit CORROY 0
+Limit CORCRUS 0
+Limit CORMSHIP 0
+Limit CORPT 0
+Limit CORSHARK 0
+Limit CORSUB 0
+Limit CORSSUB 0
+Limit CORARCH 0
+
+Limit SHIP 0
+
+//		Hover Limits
+Limit ARMSH 10
+Limit ARMAH 35
+Limit ARMANAC 35
+Limit ARMMH 35
+
+Limit CORSH 10
+Limit CORAH 35
+Limit CORMH 35
+Limit CORSNAP 35
+
+Limit HOVER 120
+
+//		Sensor Limits
+Limit ARMRAD 1
+Limit ARMARAD 1
+Limit ARMSONAR 0
+Limit ARMASON 0
+Limit ARMMARK 1
+Limit ARMSPY 1
+Limit ARMSEER 1
+Limit ARMSEHAK 1
+Limit ARMPEEP 1
+Limit ARMAWAC 1
+Limit ARMASER 1
+Limit ARMJAM 1
+Limit ARMSJAM 0
+Limit ARMSCRAM 0
+Limit ARMTARG 1
+
+Limit CORRAD 1
+Limit CORARAD 1
+Limit CORSONAR 0
+Limit CORASON 0
+Limit CORVOYR 1
+Limit CORETER 1
+Limit CORFINK 1
+Limit CORHUNT 1
+Limit CORAWAC 1
+Limit CORJAM 1
+Limit CORSJAM 0
+Limit CORVRAD 1
+Limit CORSPY 1
+Limit CORTARG 1
+
+//		Save for Last Limits
+Limit SPECIAL 10

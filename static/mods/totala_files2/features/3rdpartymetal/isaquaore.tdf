@@ -1,0 +1,41 @@
+[UWore1]  
+	{
+	world=IS;
+	description=Metal;
+	category=IS;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ISaquaore;
+	seqname=ISaquaore1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[UWore2]  
+	{
+	world=IS;
+	description=Metal;
+	category=IS;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ISaquaore;
+	seqname=ISaquaore2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}

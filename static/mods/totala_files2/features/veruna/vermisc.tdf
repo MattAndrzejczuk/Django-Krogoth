@@ -1,0 +1,18 @@
+[VerAlt01]
+	{
+	world=Veruna;
+	description=Kandran Altar;
+	category=Misc;
+	footprintx=7;
+	footprintz=2;
+	height=72;
+	filename=VerMisc;
+	seqname=VerAlt01;
+	seqnameshad=VerAltSh01;
+
+	indestructible=1;
+
+	damage=20000;
+	shadtrans=1;
+	blocking=1;
+	}

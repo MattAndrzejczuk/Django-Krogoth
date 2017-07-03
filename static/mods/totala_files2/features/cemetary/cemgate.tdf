@@ -1,0 +1,620 @@
+
+[Entrance a]
+   {
+  world=Cemetary;
+  description=Cemetary Entrance;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=4;
+  footprintz=3;
+  height=120;
+  filename=tomb;
+  seqname=Cemgate-Arch1;
+  seqnameshad=Cemgate-Arch1-shad;
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Entrance b]
+   {
+  world=Cemetary;
+  description=Cemetary Entrance;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=4;
+  footprintz=3;
+  height=120;
+  filename=tomb;
+  seqname=Cemgate-Arch2;
+  seqnameshad=Cemgate-Arch2-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate EW]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=6;
+  footprintz=1;
+  height=20;
+  filename=tomb;
+  seqname=Cemgate-ew1a;
+  animtrans=0;
+  shadtrans=0;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate NS]
+
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=2;
+  footprintz=5;
+  height=140;
+  filename=tomb;
+  seqname=Cemgate-ns1;
+  seqnameshad=Cemgate-ns1-shad;
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate EWa]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=6;
+  footprintz=3;
+  height=80;
+  filename=tomb;
+  seqname=Cemgate-ew1;
+  seqnameshad=Cemgate-ew1-shad;
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate EWb]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=5;
+  footprintz=3;
+  height=80;
+  filename=tomb;
+  seqname=Cemgate-ew2;
+  seqnameshad=Cemgate-ew2-shad;
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+[Gate EWc]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=4;
+  footprintz=3;
+  height=80;
+  filename=tomb;
+  seqname=Cemgate-ew3;
+  seqnameshad=Cemgate-ew2-shad;
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+[Gate EWd]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=6;
+  footprintz=3;
+  height=80;
+  filename=tomb;
+  seqname=Cemgate-ew4;
+  seqnameshad=Cemgate-ew1-shad;
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate EWe]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=5;
+  footprintz=3;
+  height=80;
+  filename=tomb;
+  seqname=Cemgate-ew5;
+  seqnameshad=Cemgate-ew5-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate EWf]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=4;
+  footprintz=3;
+  height=80;
+  filename=tomb;
+  seqname=Cemgate-ew6;
+  seqnameshad=Cemgate-ew6-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate EWg]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=4;
+  footprintz=3;
+  height=80;
+  filename=tomb;
+  seqname=Cemgate-ew7;
+  seqnameshad=Cemgate-ew7-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate EWh]
+
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=4;
+  footprintz=3;
+  height=80;
+  filename=tomb;
+  seqname=Cemgate-ew8;
+  seqnameshad=Cemgate-ew7-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+
+[Gate C1]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=5;
+  footprintz=3;
+  height=140;
+  filename=tomb;
+  seqname=cemgate-c1;
+  seqnameshad=cemgate-c1-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate C1a]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=5;
+  footprintz=3;
+  height=140;
+  filename=tomb;
+  seqname=cemgate-c1a;
+  seqnameshad=cemgate-c1-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+
+[Gate C2]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=3;
+  footprintz=3;
+  height=140;
+  filename=tomb;
+  seqname=Cemgate-C2;
+  seqnameshad=cemgate-c2-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate C3]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=5;
+  footprintz=3;
+  height=140;
+  filename=tomb;
+  seqname=Cemgate-C3;
+  seqnameshad=cemgate-c3-shad;
+
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+
+[Gate C3a]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=5;
+  footprintz=3;
+  height=140;
+  filename=tomb;
+  seqname=Cemgate-C3a;
+  seqnameshad=cemgate-c3-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate C4]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=5;
+  footprintz=3;
+  height=140;
+  filename=tomb;
+  seqname=Cemgate-C4;
+  seqnameshad=cemgate-c3-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate C4a]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=5;
+  footprintz=3;
+  height=140;
+  filename=tomb;
+  seqname=Cemgate-C4a;
+  seqnameshad=cemgate-c3-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate C5]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=4;
+  footprintz=3;
+  height=140;
+  filename=tomb;
+  seqname=Cemgate-C5;
+  seqnameshad=cemgate-c2-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate C6]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=5;
+  footprintz=3;
+  height=140;
+  filename=tomb;
+  seqname=Cemgate-C6;
+  seqnameshad=cemgate-c1-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indstructible=1;
+  }
+
+[Gate C6a]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=5;
+  footprintz=3;
+  height=140;
+  filename=tomb;
+  seqname=Cemgate-C6a;
+  seqnameshad=cemgate-c1-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate C7]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=6;
+  footprintz=3;
+  height=140;
+  filename=tomb;
+  seqname=Cemgate-C7;
+  seqnameshad=Cemgate-C7-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate C7A]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=6;
+  footprintz=3;
+  height=140;
+  filename=tomb;
+  seqname=Cemgate-C7A;
+  seqnameshad=Cemgate-C7-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+
+[Gate C8]
+   {
+  world=Cemetary;
+  description=Cemetary Gate;
+  noshowdescription=1;
+  category=Cemetery;
+  animating=0;
+  footprintx=6;
+  footprintz=3;
+  height=140;
+  filename=tomb;
+  seqname=Cemgate-C8;
+  seqnameshad=Cemgate-C7-shad;
+
+  animtrans=0;
+  shadtrans=1;
+  flamable=0;
+  blocking=1;
+  reclaimable=0;
+  hitdensity=;
+  metal=;
+  damage=;
+  indestructible=1;
+  }
+

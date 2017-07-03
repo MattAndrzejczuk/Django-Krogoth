@@ -1,0 +1,15 @@
+[MENUENTRY1]
+	{
+	MENU=3;
+	BUTTON=0;
+	UNITNAME=WATCHER; //CORE Watcher (Radar Hovercraft)
+	UNITMENU=CORHP; //CORE Hovercraft Platform (Builds Hovercraft)
+	}
+
+[MENUENTRY2]
+	{
+	MENU=3;
+	BUTTON=0;
+	UNITNAME=WATCHER; //CORE Watcher (Radar Hovercraft)
+	UNITMENU=CORHPNS; //CORE Hovercraft Platform - NS (Builds Hovercraft)
+	}

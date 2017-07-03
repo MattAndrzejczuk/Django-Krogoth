@@ -1,0 +1,221 @@
+
+[UWDeposit11_dead]  // Huge
+	{
+	world=All Worlds;
+	description=Nano-Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Liquid;
+	seqname=;
+	seqnameshad=Liquid9;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=190;
+	damage=32009;
+	indestructible=0;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+	
+        featuredead=UWDeposit12_dead;
+        featurereclamate=UWDeposit12_dead;
+	}
+
+[UWDeposit12_dead]  // Huge
+	{
+	world=All Worlds;
+	description=Nano-Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Liquid;
+	seqname=;
+	seqnameshad=Liquid8;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=180;
+	damage=32009;
+	indestructible=0;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+	
+        featuredead=UWDeposit13_dead;
+        featurereclamate=UWDeposit13_dead;
+	}
+
+[UWDeposit13_dead]  // Huge
+	{
+	world=All Worlds;
+	description=Nano-Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Liquid;
+	seqname=;
+	seqnameshad=Liquid7;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=170;
+	damage=32009;
+	indestructible=0;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+	
+        featuredead=UWDeposit14_dead;
+        featurereclamate=UWDeposit14_dead;
+	}
+
+[UWDeposit14_dead]  // Huge
+	{
+	world=All Worlds;
+	description=Nano-Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Liquid;
+	seqname=;
+	seqnameshad=Liquid6;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=160;
+	damage=32009;
+	indestructible=0;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+	
+        featuredead=UWDeposit15_dead;
+        featurereclamate=UWDeposit15_dead;
+	}
+
+[UWDeposit15_dead]  // Huge
+	{
+	world=All Worlds;
+	description=Nano-Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Liquid;
+	seqname=;
+	seqnameshad=Liquid5;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=150;
+	damage=32009;
+	indestructible=0;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+	
+        featuredead=UWDeposit16_dead;
+        featurereclamate=UWDeposit16_dead;
+	}
+
+
+[UWDeposit16_dead]  // Huge
+	{
+	world=All Worlds;
+	description=Nano-Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Liquid;
+	seqname=;
+	seqnameshad=Liquid4;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=140;
+	damage=32009;
+	indestructible=0;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+	
+        featuredead=UWDeposit17_dead;
+        featurereclamate=UWDeposit17_dead;
+	}
+
+
+
+[UWDeposit17_dead]  // Huge
+	{
+	world=All Worlds;
+	description=Nano-Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Liquid;
+	seqname=;
+	seqnameshad=Liquid3;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=130;
+	damage=32009;
+	indestructible=0;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=1;
+	
+        featuredead=UWDeposit18_dead;
+        featurereclamate=UWDeposit18_dead;
+	}
+
+
+[UWDeposit18_dead]  // Huge
+	{
+	world=All Worlds;
+	description=Nano-Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=Liquid;
+	seqname=;
+	seqnameshad=Liquid2;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=120;
+	damage=32009;
+	indestructible=0;
+	reclaimable=1;
+	autoreclaimable=1;
+	permanent=0;
+	
+        featuredead=UWDeposit_dead;
+        featurereclamate=UWDeposit_dead;
+	}
+

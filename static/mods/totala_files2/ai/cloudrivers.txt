@@ -1,0 +1,941 @@
+/ -----------------------------------------------------
+Date: 06-13-2001
+Auth: LodeRunner
+Name: CloudRivers AI
+Used: Small AI Designer Build 1.1.0
+ -----------------------------------------------------/
+
+/ Build Priorities  /
+/ Workers /
+
+Weight Armack 7.06
+Weight Armacv 2.9
+Weight Coraca 6.76
+Weight Armaca 4.1
+Weight Armcv 7.85
+Weight Corca 6.29
+Weight Corack 3.65
+Weight Coracv 0.5
+Weight Corck 8.4
+Weight Armch 6.59
+Weight Corch 5.58
+Weight Armmlv 3.49
+Weight Cormlv 2.12
+
+/ Commanders /
+
+Weight Armcom 3.23
+Weight Corcom 9.89
+Weight Cordecom 7.72
+Weight Armdecom 4.4
+
+/ Aircraft /
+
+Weight Armbrawl 2.01
+Weight Armca 3.82
+Weight Armfig 6.94
+Weight Armatlas 9.39
+Weight Armhawk 4.54
+Weight Armlance 4.23
+Weight Armpeep 0.66
+Weight Armpnix 3.8
+Weight Corvalk 0.15
+Weight Armthund 3.96
+Weight Corshad 7.56
+Weight Corfink 3
+Weight Corvamp 8.61
+Weight Corveng 5.17
+Weight Corape 2.38
+Weight Corhurc 2.89
+Weight Armawac 3.25
+Weight Armseap 9.73
+Weight Armsehak 4.85
+Weight Armsfig 3.51
+Weight Corawac 7.01
+Weight Corseap 0
+Weight Corsfig 0
+Weight Corhunt 2.08
+
+/ Tanks /
+
+Weight Armcroc 3.26
+Weight Armfav 9.19
+Weight Armflash 0.88
+Weight Armjam 0.9
+Weight Armmart 7.51
+Weight Armmerl 3.41
+Weight Cormart 1.49
+Weight Cormist 3.45
+Weight Cortruck 1.15
+Weight Correap 7.52
+Weight Corvrad 8.03
+Weight Corvroc 7.34
+Weight Armstump 1.85
+Weight Corcv 1.57
+Weight Corseal 4.41
+Weight Corraid 7.57
+Weight Corgator 1.23
+Weight Corgol 1.68
+Weight Coreter 3.24
+Weight Armsam 6.52
+Weight Armseer 9.5
+Weight Corfav 2.89
+Weight Corspec 8.22
+Weight Armspid 2.91
+Weight Armbull 3.11
+Weight Armmh 6.46
+Weight Armlatnk 0.51
+Weight Armah 2.68
+Weight Armthovr 6.99
+Weight Corah 9.45
+Weight Corsent 5.32
+Weight Armmanni 1.9
+Weight Corsh 4.06
+Weight Armanac 3.3
+Weight Armsh 7.94
+Weight Armyork 9.65
+Weight Corthovr 5.64
+Weight Corlevlr 3.22
+Weight Corsnap 5.73
+Weight Cormh 7.73
+
+/ Kbots /
+
+Weight Armaser 7.67
+Weight Armfast 5.34
+Weight Armfido 4.28
+Weight Armvader 4.05
+Weight Corak 4.6
+Weight Armham 0.82
+Weight Armjeth 4.62
+Weight Armck 2.12
+Weight Corthud 9.97
+Weight Corstorm 2.28
+Weight Corroach 7.13
+Weight Corcan 8.41
+Weight Corpyro 7.99
+Weight Armrock 2.7
+Weight Armzeus 4.71
+Weight Corcrash 4.13
+Weight Armpw 10
+Weight Armwar 5.83
+Weight Armmark 7.61
+Weight Cormort 2.38
+Weight Corvoyr 7.59
+Weight Armsnipe 6.53
+Weight Corsumo 8.08
+Weight Corhrk 6.7
+Weight Armmav 6.34
+Weight Corspy 6
+Weight Armspy 0.96
+Weight Corkrog 6.02
+Weight Corfast 5.23
+Weight Coramph 1.57
+Weight Armamph 2.68
+
+/ Ships, Sub, And Water-units /
+
+
+/ Defense /
+
+Weight Armamd 7.09
+Weight Armanni 8.63
+Weight Armdrag 9.86
+Weight Armbrtha 2.84
+Weight Armguard 6.57
+Weight Armhlt 7.04
+Weight Armllt 2.35
+Weight Corrl 7.46
+Weight Cordoom 4.06
+Weight Cordrag 6.43
+Weight Corpun 3.39
+Weight Armrl 3.79
+Weight Corllt 4.13
+Weight Corhlt 2.33
+Weight Corint 5.82
+Weight Armfort 4.15
+Weight Armamb 6.03
+Weight Cortoast 5.1
+Weight Corflak 7.97
+Weight Corfort 0.7
+Weight Armflak 2.23
+Weight Armvulc 5.7
+Weight Corbuzz 3.91
+Weight Corvipe 9.91
+
+/ Resources /
+
+Weight Armestor 6.95
+Weight Armfus 5.16
+Weight Armgeo 5.76
+Weight Armmakr 4.44
+Weight Armmex 4.04
+Weight Armmoho 7.55
+Weight Corsolar 0.75
+Weight Cormex 8.85
+Weight Cormoho 5.38
+Weight Armmstor 8.08
+Weight Corwin 8.28
+Weight Corfus 9.73
+Weight Corgeo 6.96
+Weight Corestor 3.71
+Weight Cormstor 4.05
+Weight Cormakr 0.99
+Weight Armwin 9.43
+Weight Armsolar 5.43
+Weight Armfmkr 0
+Weight Armmmkr 1.84
+Weight Armckfus 3.56
+Weight Corckfus 6.93
+Weight Cormmkr 3.94
+
+/ Plants /
+
+Weight Armalab 4.22
+Weight Armap 9.62
+Weight Armaap 3.99
+Weight Armvp 5.89
+Weight Armavp 4.53
+Weight Coralab 8.33
+Weight Armlab 3.5
+Weight Corvp 5.58
+Weight Coravp 5.89
+Weight Corap 9.56
+Weight Corlab 3.83
+Weight Coraap 6.54
+Weight Armhp 8.9
+Weight Corhp 5.74
+Weight Corgant 7.17
+
+/ Specialized Units /
+
+Weight Armarad 9.5
+Weight Armasp 4.69
+Weight Corsilo 3.84
+Weight Corrad 7.84
+Weight Corfmd 6.1
+Weight Corarad 5.99
+Weight Corasp 2.45
+Weight Armsilo 8.01
+Weight Armrad 4.51
+Weight Cortron 4.3
+Weight Armemp 7.88
+Weight Armtarg 4.95
+Weight Cormine1 0
+Weight Armmine3 6.18
+Weight Armmine4 3.19
+Weight Armmine5 3
+Weight Armscorp 4.26
+Weight Corscorp 0
+Weight Armmine1 1.9
+Weight Cortarg 5.83
+Weight Armmine2 2.1
+Weight Armmine6 2.82
+Weight Cormine3 0
+Weight Cormine6 1.33
+Weight Cormine4 0.73
+Weight Cormine5 0
+Weight Cormine2 0
+Weight Corss 0
+
+Plan Easy
+
+/ Workers /
+
+Limit Armack 3
+Limit Armacv 3
+Limit Coraca 3
+Limit Armaca 3
+Limit Armcv 2
+Limit Corca 6
+Limit Corack 3
+Limit Coracv 3
+Limit Corck 3
+Limit Armch 3
+Limit Corch 2
+Limit Armmlv 0
+Limit Cormlv 0
+
+/ Commanders /
+
+Limit Armcom 2
+Limit Corcom 0
+Limit Cordecom 2
+Limit Armdecom 2
+
+/ Aircraft /
+
+Limit Armbrawl 4
+Limit Armca 6
+Limit Armfig 5
+Limit Armatlas 0
+Limit Armhawk 4
+Limit Armlance 6
+Limit Armpeep 2
+Limit Armpnix 1
+Limit Corvalk 0
+Limit Armthund 3
+Limit Corshad 6
+Limit Corfink 2
+Limit Corvamp 6
+Limit Corveng 2
+Limit Corape 6
+Limit Corhurc 5
+Limit Armawac 0
+Limit Armseap 0
+Limit Armsehak 0
+Limit Armsfig 0
+Limit Corawac 0
+Limit Corseap 0
+Limit Corsfig 0
+Limit Corhunt 3
+
+/ Tanks /
+
+Limit Armcroc 1
+Limit Armfav 3
+Limit Armflash 3
+Limit Armjam 0
+Limit Armmart 4
+Limit Armmerl 3
+Limit Cormart 5
+Limit Cormist 6
+Limit Cortruck 0
+Limit Correap 6
+Limit Corvrad 1
+Limit Corvroc 3
+Limit Armstump 3
+Limit Corcv 3
+Limit Corseal 2
+Limit Corraid 2
+Limit Corgator 3
+Limit Corgol 3
+Limit Coreter 0
+Limit Armsam 6
+Limit Armseer 3
+Limit Corfav 3
+Limit Corspec 0
+Limit Armspid 2
+Limit Armbull 4
+Limit Armmh 3
+Limit Armlatnk 3
+Limit Armah 5
+Limit Armthovr 0
+Limit Corah 6
+Limit Corsent 2
+Limit Armmanni 2
+Limit Corsh 0
+Limit Armanac 3
+Limit Armsh 1
+Limit Armyork 2
+Limit Corthovr 0
+Limit Corlevlr 4
+Limit Corsnap 4
+Limit Cormh 6
+
+/ Kbots /
+
+Limit Armaser 1
+Limit Armfast 3
+Limit Armfido 3
+Limit Armvader 0
+Limit Corak 3
+Limit Armham 3
+Limit Armjeth 6
+Limit Armck 3
+Limit Corthud 3
+Limit Corstorm 2
+Limit Corroach 1
+Limit Corcan 3
+Limit Corpyro 1
+Limit Armrock 2
+Limit Armzeus 3
+Limit Corcrash 6
+Limit Armpw 37
+Limit Armwar 5
+Limit Armmark 2
+Limit Cormort 4
+Limit Corvoyr 3
+Limit Armsnipe 1
+Limit Corsumo 3
+Limit Corhrk 6
+Limit Armmav 5
+Limit Corspy 3
+Limit Armspy 3
+Limit Corkrog 4
+Limit Corfast 6
+Limit Coramph 6
+Limit Armamph 2
+
+/ Ships, Sub, And Water-units /
+
+
+/ Defense /
+
+Limit Armamd 1
+Limit Armanni 3
+Limit Armdrag 0
+Limit Armbrtha 3
+Limit Armguard 6
+Limit Armhlt 3
+Limit Armllt 1
+Limit Corrl 6
+Limit Cordoom 0
+Limit Cordrag 0
+Limit Corpun 9
+Limit Armrl 2
+Limit Corllt 1
+Limit Corhlt 7
+Limit Corint 2
+Limit Armfort 1
+Limit Armamb 2
+Limit Cortoast 3
+Limit Corflak 3
+Limit Corfort 2
+Limit Armflak 6
+Limit Armvulc 2
+Limit Corbuzz 1
+Limit Corvipe 2
+
+/ Resources /
+
+Limit Armestor 2
+Limit Armfus 4
+Limit Armgeo 1
+Limit Armmakr 0
+Limit Armmex 3
+Limit Armmoho 3
+Limit Corsolar 2
+Limit Cormex 6
+Limit Cormoho 3
+Limit Armmstor 2
+Limit Corwin 5
+Limit Corfus 6
+Limit Corgeo 3
+Limit Corestor 3
+Limit Cormstor 3
+Limit Cormakr 0
+Limit Armwin 6
+Limit Armsolar 1
+Limit Armfmkr 0
+Limit Armmmkr 0
+Limit Armckfus 0
+Limit Corckfus 1
+Limit Cormmkr 0
+
+/ Plants /
+
+Limit Armalab 2
+Limit Armap 2
+Limit Armaap 3
+Limit Armvp 2
+Limit Armavp 2
+Limit Coralab 3
+Limit Armlab 1
+Limit Corvp 3
+Limit Coravp 3
+Limit Corap 3
+Limit Corlab 0
+Limit Coraap 4
+Limit Armhp 1
+Limit Corhp 2
+Limit Corgant 1
+
+/ Specialized Units /
+
+Limit Armarad 1
+Limit Armasp 0
+Limit Corsilo 3
+Limit Corrad 1
+Limit Corfmd 2
+Limit Corarad 1
+Limit Corasp 0
+Limit Armsilo 3
+Limit Armrad 2
+Limit Cortron 0
+Limit Armemp 1
+Limit Armtarg 0
+Limit Cormine1 0
+Limit Armmine3 0
+Limit Armmine4 0
+Limit Armmine5 0
+Limit Armscorp 0
+Limit Corscorp 0
+Limit Armmine1 0
+Limit Cortarg 0
+Limit Armmine2 0
+Limit Armmine6 0
+Limit Cormine3 0
+Limit Cormine6 0
+Limit Cormine4 0
+Limit Cormine5 0
+Limit Cormine2 0
+Limit Corss 0
+
+Plan Medium
+
+/ Workers /
+
+Limit Armack 4
+Limit Armacv 4
+Limit Coraca 4
+Limit Armaca 4
+Limit Armcv 3
+Limit Corca 8
+Limit Corack 4
+Limit Coracv 4
+Limit Corck 4
+Limit Armch 4
+Limit Corch 3
+Limit Armmlv 1
+Limit Cormlv 1
+
+/ Commanders /
+
+Limit Armcom 3
+Limit Corcom 1
+Limit Cordecom 3
+Limit Armdecom 3
+
+/ Aircraft /
+
+Limit Armbrawl 6
+Limit Armca 8
+Limit Armfig 7
+Limit Armatlas 0
+Limit Armhawk 6
+Limit Armlance 8
+Limit Armpeep 3
+Limit Armpnix 2
+Limit Corvalk 1
+Limit Armthund 4
+Limit Corshad 8
+Limit Corfink 3
+Limit Corvamp 9
+Limit Corveng 3
+Limit Corape 8
+Limit Corhurc 7
+Limit Armawac 1
+Limit Armseap 0
+Limit Armsehak 0
+Limit Armsfig 0
+Limit Corawac 1
+Limit Corseap 0
+Limit Corsfig 0
+Limit Corhunt 4
+
+/ Tanks /
+
+Limit Armcroc 2
+Limit Armfav 4
+Limit Armflash 4
+Limit Armjam 1
+Limit Armmart 6
+Limit Armmerl 4
+Limit Cormart 7
+Limit Cormist 8
+Limit Cortruck 0
+Limit Correap 9
+Limit Corvrad 2
+Limit Corvroc 4
+Limit Armstump 5
+Limit Corcv 4
+Limit Corseal 3
+Limit Corraid 3
+Limit Corgator 5
+Limit Corgol 5
+Limit Coreter 0
+Limit Armsam 8
+Limit Armseer 4
+Limit Corfav 5
+Limit Corspec 1
+Limit Armspid 3
+Limit Armbull 6
+Limit Armmh 5
+Limit Armlatnk 4
+Limit Armah 7
+Limit Armthovr 0
+Limit Corah 8
+Limit Corsent 3
+Limit Armmanni 3
+Limit Corsh 1
+Limit Armanac 5
+Limit Armsh 2
+Limit Armyork 3
+Limit Corthovr 0
+Limit Corlevlr 6
+Limit Corsnap 6
+Limit Cormh 9
+
+/ Kbots /
+
+Limit Armaser 2
+Limit Armfast 5
+Limit Armfido 4
+Limit Armvader 1
+Limit Corak 4
+Limit Armham 5
+Limit Armjeth 8
+Limit Armck 5
+Limit Corthud 4
+Limit Corstorm 3
+Limit Corroach 2
+Limit Corcan 4
+Limit Corpyro 2
+Limit Armrock 3
+Limit Armzeus 5
+Limit Corcrash 8
+Limit Armpw 50
+Limit Armwar 7
+Limit Armmark 3
+Limit Cormort 6
+Limit Corvoyr 4
+Limit Armsnipe 2
+Limit Corsumo 4
+Limit Corhrk 9
+Limit Armmav 7
+Limit Corspy 4
+Limit Armspy 4
+Limit Corkrog 6
+Limit Corfast 8
+Limit Coramph 8
+Limit Armamph 3
+
+/ Ships, Sub, And Water-units /
+
+
+/ Defense /
+
+Limit Armamd 2
+Limit Armanni 4
+Limit Armdrag 0
+Limit Armbrtha 4
+Limit Armguard 8
+Limit Armhlt 4
+Limit Armllt 2
+Limit Corrl 9
+Limit Cordoom 1
+Limit Cordrag 0
+Limit Corpun 13
+Limit Armrl 3
+Limit Corllt 2
+Limit Corhlt 10
+Limit Corint 3
+Limit Armfort 2
+Limit Armamb 3
+Limit Cortoast 4
+Limit Corflak 5
+Limit Corfort 3
+Limit Armflak 8
+Limit Armvulc 3
+Limit Corbuzz 2
+Limit Corvipe 3
+
+/ Resources /
+
+Limit Armestor 3
+Limit Armfus 6
+Limit Armgeo 2
+Limit Armmakr 1
+Limit Armmex 4
+Limit Armmoho 5
+Limit Corsolar 3
+Limit Cormex 8
+Limit Cormoho 4
+Limit Armmstor 3
+Limit Corwin 7
+Limit Corfus 8
+Limit Corgeo 5
+Limit Corestor 4
+Limit Cormstor 5
+Limit Cormakr 1
+Limit Armwin 8
+Limit Armsolar 2
+Limit Armfmkr 0
+Limit Armmmkr 0
+Limit Armckfus 1
+Limit Corckfus 2
+Limit Cormmkr 0
+
+/ Plants /
+
+Limit Armalab 3
+Limit Armap 3
+Limit Armaap 4
+Limit Armvp 3
+Limit Armavp 3
+Limit Coralab 4
+Limit Armlab 2
+Limit Corvp 4
+Limit Coravp 4
+Limit Corap 4
+Limit Corlab 1
+Limit Coraap 6
+Limit Armhp 2
+Limit Corhp 3
+Limit Corgant 2
+
+/ Specialized Units /
+
+Limit Armarad 2
+Limit Armasp 1
+Limit Corsilo 4
+Limit Corrad 2
+Limit Corfmd 3
+Limit Corarad 2
+Limit Corasp 1
+Limit Armsilo 4
+Limit Armrad 3
+Limit Cortron 1
+Limit Armemp 2
+Limit Armtarg 1
+Limit Cormine1 0
+Limit Armmine3 0
+Limit Armmine4 1
+Limit Armmine5 0
+Limit Armscorp 1
+Limit Corscorp 0
+Limit Armmine1 0
+Limit Cortarg 1
+Limit Armmine2 0
+Limit Armmine6 1
+Limit Cormine3 0
+Limit Cormine6 1
+Limit Cormine4 1
+Limit Cormine5 1
+Limit Cormine2 0
+Limit Corss 0
+
+Plan Hard
+
+/ Workers /
+
+Limit Armack 6
+Limit Armacv 6
+Limit Coraca 6
+Limit Armaca 6
+Limit Armcv 4.5
+Limit Corca 12
+Limit Corack 6
+Limit Coracv 6
+Limit Corck 6
+Limit Armch 6
+Limit Corch 4.5
+Limit Armmlv 1.5
+Limit Cormlv 1.5
+
+/ Commanders /
+
+Limit Armcom 4.5
+Limit Corcom 1.5
+Limit Cordecom 4.5
+Limit Armdecom 4.5
+
+/ Aircraft /
+
+Limit Armbrawl 9
+Limit Armca 12
+Limit Armfig 10.5
+Limit Armatlas 0
+Limit Armhawk 9
+Limit Armlance 12
+Limit Armpeep 4.5
+Limit Armpnix 3
+Limit Corvalk 1.5
+Limit Armthund 6
+Limit Corshad 12
+Limit Corfink 4.5
+Limit Corvamp 13.5
+Limit Corveng 4.5
+Limit Corape 12
+Limit Corhurc 10.5
+Limit Armawac 1.5
+Limit Armseap 0
+Limit Armsehak 0
+Limit Armsfig 0
+Limit Corawac 1.5
+Limit Corseap 0
+Limit Corsfig 0
+Limit Corhunt 6
+
+/ Tanks /
+
+Limit Armcroc 3
+Limit Armfav 6
+Limit Armflash 6
+Limit Armjam 1.5
+Limit Armmart 9
+Limit Armmerl 6
+Limit Cormart 10.5
+Limit Cormist 12
+Limit Cortruck 0
+Limit Correap 13.5
+Limit Corvrad 3
+Limit Corvroc 6
+Limit Armstump 7.5
+Limit Corcv 6
+Limit Corseal 4.5
+Limit Corraid 4.5
+Limit Corgator 7.5
+Limit Corgol 7.5
+Limit Coreter 0
+Limit Armsam 12
+Limit Armseer 6
+Limit Corfav 7.5
+Limit Corspec 1.5
+Limit Armspid 4.5
+Limit Armbull 9
+Limit Armmh 7.5
+Limit Armlatnk 6
+Limit Armah 10.5
+Limit Armthovr 0
+Limit Corah 12
+Limit Corsent 4.5
+Limit Armmanni 4.5
+Limit Corsh 1.5
+Limit Armanac 7.5
+Limit Armsh 3
+Limit Armyork 4.5
+Limit Corthovr 0
+Limit Corlevlr 9
+Limit Corsnap 9
+Limit Cormh 13.5
+
+/ Kbots /
+
+Limit Armaser 3
+Limit Armfast 7.5
+Limit Armfido 6
+Limit Armvader 1.5
+Limit Corak 6
+Limit Armham 7.5
+Limit Armjeth 12
+Limit Armck 7.5
+Limit Corthud 6
+Limit Corstorm 4.5
+Limit Corroach 3
+Limit Corcan 6
+Limit Corpyro 3
+Limit Armrock 4.5
+Limit Armzeus 7.5
+Limit Corcrash 12
+Limit Armpw 75
+Limit Armwar 10.5
+Limit Armmark 4.5
+Limit Cormort 9
+Limit Corvoyr 6
+Limit Armsnipe 3
+Limit Corsumo 6
+Limit Corhrk 13.5
+Limit Armmav 10.5
+Limit Corspy 6
+Limit Armspy 6
+Limit Corkrog 9
+Limit Corfast 12
+Limit Coramph 12
+Limit Armamph 4.5
+
+/ Ships, Sub, And Water-units /
+
+
+/ Defense /
+
+Limit Armamd 3
+Limit Armanni 6
+Limit Armdrag 0
+Limit Armbrtha 6
+Limit Armguard 12
+Limit Armhlt 6
+Limit Armllt 3
+Limit Corrl 13.5
+Limit Cordoom 1.5
+Limit Cordrag 0
+Limit Corpun 19.5
+Limit Armrl 4.5
+Limit Corllt 3
+Limit Corhlt 15
+Limit Corint 4.5
+Limit Armfort 3
+Limit Armamb 4.5
+Limit Cortoast 6
+Limit Corflak 7.5
+Limit Corfort 4.5
+Limit Armflak 12
+Limit Armvulc 4.5
+Limit Corbuzz 3
+Limit Corvipe 4.5
+
+/ Resources /
+
+Limit Armestor 4.5
+Limit Armfus 9
+Limit Armgeo 3
+Limit Armmakr 1.5
+Limit Armmex 6
+Limit Armmoho 7.5
+Limit Corsolar 4.5
+Limit Cormex 12
+Limit Cormoho 6
+Limit Armmstor 4.5
+Limit Corwin 10.5
+Limit Corfus 12
+Limit Corgeo 7.5
+Limit Corestor 6
+Limit Cormstor 7.5
+Limit Cormakr 1.5
+Limit Armwin 12
+Limit Armsolar 3
+Limit Armfmkr 0
+Limit Armmmkr 0
+Limit Armckfus 1.5
+Limit Corckfus 3
+Limit Cormmkr 0
+
+/ Plants /
+
+Limit Armalab 4.5
+Limit Armap 4.5
+Limit Armaap 6
+Limit Armvp 4.5
+Limit Armavp 4.5
+Limit Coralab 6
+Limit Armlab 3
+Limit Corvp 6
+Limit Coravp 6
+Limit Corap 6
+Limit Corlab 1.5
+Limit Coraap 9
+Limit Armhp 3
+Limit Corhp 4.5
+Limit Corgant 3
+
+/ Specialized Units /
+
+Limit Armarad 3
+Limit Armasp 1.5
+Limit Corsilo 6
+Limit Corrad 3
+Limit Corfmd 4.5
+Limit Corarad 3
+Limit Corasp 1.5
+Limit Armsilo 6
+Limit Armrad 4.5
+Limit Cortron 1.5
+Limit Armemp 3
+Limit Armtarg 1.5
+Limit Cormine1 0
+Limit Armmine3 0
+Limit Armmine4 1.5
+Limit Armmine5 0
+Limit Armscorp 1.5
+Limit Corscorp 0
+Limit Armmine1 0
+Limit Cortarg 1.5
+Limit Armmine2 0
+Limit Armmine6 1.5
+Limit Cormine3 0
+Limit Cormine6 1.5
+Limit Cormine4 1.5
+Limit Cormine5 1.5
+Limit Cormine2 0
+Limit Corss 0

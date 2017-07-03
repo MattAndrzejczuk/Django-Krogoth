@@ -1,0 +1,86 @@
+[ARM_BCCANNON]
+	{
+	ID=3237;
+	name=Bertha Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=2500;
+	reloadtime=2.80;
+	weaponvelocity=690;
+	energypershot=1500;
+	areaofeffect=80;
+
+	soundstart=BERTHA6;
+	soundhit=XPLOLRG2;
+
+	firestarter=50;
+	accuracy=500;
+	aimrate=2500;
+	tolerance=300;
+	holdtime=1;
+
+	explosiongaf=fx;
+	explosionart=NUKE1;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=490;
+		}
+	}
+[ARMBC_MISSILE]
+	{
+	ID=3253;
+	name=Missiles;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=missile;
+
+	range=1000;
+	reloadtime=0.19;
+	weapontimer=1;
+	weaponvelocity=660;
+	startvelocity=470;
+	weaponacceleration=154;
+	turnrate=50000;
+	areaofeffect=48;
+	metalpershot=0;
+
+	soundstart=rockhvy2;
+	soundhit=xplomed2;
+
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=10000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=130;
+		}
+	}

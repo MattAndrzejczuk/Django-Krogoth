@@ -1,0 +1,28 @@
+[MENUENTRY1]
+	{
+        	UNITMENU=ARMANS;
+		MENU=4;
+		BUTTON=4;
+        	UNITNAME=STORAGEFACILITY;
+	}
+[MENUENTRY2]
+	{
+                UNITMENU=ARMANS;
+                MENU=4;
+                BUTTON=5;
+                UNITNAME=ARMPB;
+	}
+[MENUENTRY3]
+	{
+        	UNITMENU=ARMANS;
+                MENU=5;
+                BUTTON=0;
+                UNITNAME=ARMREP;
+	}
+[MENUENTRY4]
+	{
+         	UNITMENU=ARMANS;
+                MENU=5;
+                BUTTON=1;
+                UNITNAME=ARMARCH;
+	}

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# the argument passed here will be the artist/mod_name
+
 echo Total Annihilation Game Data Consolidator
 sleep 0.2s
 echo Developed By CiniCraft Copyright 2017 All Rights Reserved

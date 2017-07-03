@@ -1,0 +1,292 @@
+[Giantmetal3fixed]  // Huge
+	{
+	world=GeistWorlds;
+	description=Giant Metal;
+	category=desertbig;
+	animating=0;
+    	footprintx=15;
+    	footprintz=15;
+	height=4;
+	filename=Uniqueores;
+	seqname=BM;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=255;
+	damage=32009;
+	indestructible=1;
+	}
+
+[DogSteelOre01]  // Small
+	{
+	world=GeistWorlds;
+	description=Metal;
+	category=CastleVale;
+	animating=0;
+   	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=uniqueores;
+	seqname=dogsteelore01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[DogSteelOre02]  // Medium
+	{
+	world=GeistWorlds;
+	description=Metal;
+	category=CastleVale;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=uniqueores;
+	seqname=dogsteelore02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=127;
+	damage=32009;
+	indestructible=1;
+	}
+
+[DogSteelOre03]  // Huge
+	{
+	world=GeistWorlds;
+	description=Metal;
+	category=CastleVale;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=uniqueores;
+	seqname=dogsteelore03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}
+
+[222ore]
+	{
+	world=GeistWorlds;
+	description=Metal;
+	category=CastleVale;
+	animating=0;
+    	footprintx=9;
+    	footprintz=9;
+	height=4;
+	filename=uniqueores;
+	seqname=222ore;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=446;
+	damage=32009;
+	indestructible=1;
+	}
+
+[CastleValeAquaOre01]  // Small
+	{
+	world=GeistWorlds;
+	description=Metal;
+	category=CastleVale;
+	animating=0;
+   	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=uniqueores;
+	seqname=CastleValeAquaOre01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[CastleValeAquaOre02]  // Medium
+	{
+	world=GeistWorlds;
+	description=Metal;
+	category=CastleVale;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=uniqueores;
+	seqname=CastleValeAquaOre02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=127;
+	damage=32009;
+	indestructible=1;
+	}
+
+[CastleValeAquaOre03]  // Huge
+	{
+	world=GeistWorlds;
+	description=Metal;
+	category=CastleVale;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=uniqueores;
+	seqname=CastleValeAquaOre03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ZapCastleValeGroundOre01]  // Small
+	{
+	world=GeistWorlds;
+	description=Metal;
+	category=CastleVale;
+	animating=0;
+   	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=uniqueores;
+	seqname=zapmetal1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=111;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ZapCastleValeGroundOre02]  // Medium
+	{
+	world=GeistWorlds;
+	description=Metal;
+	category=CastleVale;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=uniqueores;
+	seqname=zapmetal2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=222;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ZapCastleValeGroundOre03]  // Small
+	{
+	world=GeistWorlds;
+	description=Metal;
+	category=CastleVale;
+	animating=0;
+   	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=uniqueores;
+	seqname=zapmetal1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=1111;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ZapCastleValeGroundOre04]  // Medium
+	{
+	world=GeistWorlds;
+	description=Metal;
+	category=CastleVale;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=uniqueores;
+	seqname=zapmetal2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=2222;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ZapCastleValeGroundOre05]  // Small dummy
+	{
+	world=GeistWorlds;
+	description=Metal;
+	category=CastleVale;
+	animating=0;
+   	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=uniqueores;
+	seqname=zapmetal1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=;
+	damage=32009;
+	}
+
+[ZapCastleValeGroundOre06]  // Medium dummy
+	{
+	world=GeistWorlds;
+	description=Metal;
+	category=CastleVale;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=uniqueores;
+	seqname=zapmetal2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=;
+	damage=32009;
+	}
+

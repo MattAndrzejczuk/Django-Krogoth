@@ -1,0 +1,150 @@
+
+
+
+[Paint Stripe 1]
+
+	{
+	world=MetalWorld;
+	category=Markings;
+	description=Paint Marking;
+	filename=MW_Markings;
+	seqname=a;
+	seqnameshad=;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	Animating=0;
+	Blocking=0;
+	noshowdescription=0;
+	blocking=0;
+	permanent=1;
+	indestructible=1;
+	shadtrans=0;
+	animtrans=1;
+	}
+
+
+
+
+[Paint Strip 2]
+
+	{
+	world=MetalWorld;
+	category=Markings;
+	description=Paint Marking;
+	filename=MW_Markings;
+	seqname=b;
+	seqnameshad=;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	Animating=0;
+	Blocking=0;
+	noshowdescription=0;
+	blocking=0;
+	permanent=1;
+	indestructible=1;
+	shadtrans=0;
+	animtrans=1;
+	}
+
+
+
+
+[Paint Strip 3]
+
+	{
+	world=MetalWorld;
+	category=Markings;
+	description=Paint Marking;
+	filename=MW_Markings;
+	seqname=c;
+	seqnameshad=;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	Animating=0;
+	Blocking=0;
+	noshowdescription=0;
+	blocking=0;
+	permanent=1;
+	indestructible=1;
+	shadtrans=0;
+	animtrans=1;
+	}
+
+
+
+
+[Paint Strip 4]
+
+	{
+	world=MetalWorld;
+	category=Markings;
+	description=Paint Marking;
+	filename=MW_Markings;
+	seqname=d;
+	seqnameshad=;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	Animating=0;
+	Blocking=0;
+	noshowdescription=0;
+	blocking=0;
+	permanent=1;
+	indestructible=1;
+	shadtrans=0;
+	animtrans=1;
+	}
+
+
+
+
+[Paint Strip 5]
+
+	{
+	world=MetalWorld;
+	category=Markings;
+	description=Paint Marking;
+	filename=MW_Markings;
+	seqname=e7;
+	seqnameshad=;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	Animating=0;
+	Blocking=0;
+	noshowdescription=0;
+	blocking=0;
+	permanent=1;
+	indestructible=1;
+	shadtrans=0;
+	animtrans=1;
+	}
+
+
+
+
+[Paint Stripe 6]
+
+	{
+	world=MetalWorld;
+	category=Markings;
+	description=Paint Marking;
+	filename=MW_Markings;
+	seqname=g;
+	seqnameshad=;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	Animating=0;
+	Blocking=0;
+	noshowdescription=0;
+	blocking=0;
+	permanent=1;
+	indestructible=1;
+	shadtrans=0;
+	animtrans=1;
+	}
+

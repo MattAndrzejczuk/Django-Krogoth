@@ -1,0 +1,82 @@
+[PRAETORIAN_SPLIT]
+	{
+	ID=243;
+	name=Plasma pulverizer;
+	rendertype=4;
+	lineofsight=1;
+	turret=1;
+
+	model=plasma;
+
+	range=700;
+	reloadtime=1;
+	weapontimer=2.2;
+	weaponvelocity=400;
+	areaofeffect=10;
+	burst=22;
+	burstrate=.01;
+	sprayangle=6000;
+	randomdecay=0.005;
+	groundbounce=1;
+	
+	
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	soundstart=bombrel;
+	soundhit=xplomed2;
+	startsmoke=0;
+
+	tolerance=500;
+
+	energypershot=500;
+
+	[DAMAGE]
+		{
+		default=60;
+		}
+	}
+
+
+[PRAETORIAN_ARMS]
+	{
+	ID=250;
+	name=Spliting Plasma Shell;
+	rendertype=4;
+	color=3;
+	lineofsight=1;
+	turret=1;
+
+	model=plasma;
+
+	range=350;
+	reloadtime=1;
+	weapontimer=1.5;
+	weaponvelocity=600;
+	areaofeffect=10;
+	burst=5;
+	burstrate=0;
+	sprayangle=6000;
+	randomdecay=0.005;
+	groundbounce=1;
+	
+	
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	soundstart=bombrel;
+	soundhit=xplomed2;
+	startsmoke=0;
+
+	tolerance=500;
+
+	[DAMAGE]
+		{
+		default=300;
+		}
+	}
+
+
+
+
+

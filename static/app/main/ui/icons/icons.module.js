@@ -27,7 +27,7 @@
         });
 
         // Api
-        msApiProvider.register('icons', ['assets/icons/selection.json']);
+        msApiProvider.register('icons', ['/static/assets/icons/selection.json']);
     }
 
 })();

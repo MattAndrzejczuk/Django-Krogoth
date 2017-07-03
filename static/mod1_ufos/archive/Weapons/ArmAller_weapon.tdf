@@ -1,0 +1,80 @@
+[SPREAD]
+	{
+	ID=247; 
+	name=Spread missiles;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=missile;
+
+	range=500;
+	reloadtime=5;
+	burst=4;
+	burstrate=.05;
+	sprayangle=2000;
+	
+
+	weaponvelocity=300;
+	areaofeffect=20;
+
+	soundstart=Rockhvy1;
+	soundhit=xplomed4;
+
+	firestarter=100;
+	smokedelay=.1;
+	smoketrail=1;
+	tolerance=1000;
+	accuracy=3000;
+	noautorange=0;	
+	randomdecay=1;
+	
+	explosiongaf=fx;
+	explosionart=explode4;
+	
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=45;
+		}
+	}
+
+[ARM_GAUSS]
+	{
+	ID=134;
+	name=Heavy Gauss Cannon;
+	rendertype=4;
+	lineofsight=1;
+	turret=1;
+
+	range=425;
+	reloadtime=2.5;
+	weaponvelocity=460;
+	areaofeffect=10;
+	soundstart=cannhvy2;
+	soundhit=xplomed1;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=135;
+		}
+	}
+

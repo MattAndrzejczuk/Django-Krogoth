@@ -1,0 +1,37 @@
+[CORSCREAM_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=CORSCREAM_dead;
+	featuredead=CORSCREAM_heap;
+	footprintx=5;
+	footprintz=4;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=1981;
+	damage=2682;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+[CORSCREAM_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3f;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	blocking=0;
+	hitdensity=100;
+	metal=800;
+	damage=316;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+
+

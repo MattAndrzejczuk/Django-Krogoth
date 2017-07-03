@@ -1,0 +1,89 @@
+[Jungle Metal 1]
+	{
+	world=Jungle;
+	category=Quagmire;
+	description=Metal Patch;
+	filename=JungleMetal1;
+	seqname=m6;
+	footprintx=2;
+	footprintz=2;
+	permanent=1;
+	indestructible=1;
+
+	metal=190;
+	}
+
+[Jungle Metal 2]
+	{
+	world=Jungle;
+	category=Quagmire;
+	description=Metal Patch;
+	filename=JungleMetal1;
+	seqname=m5;
+	footprintx=3;
+	footprintz=3;
+	permanent=1;
+	indestructible=1;
+
+	metal=210;
+	}
+
+[Jungle Metal 3]
+	{
+	world=Jungle;
+	category=Quagmire;
+	description=Metal Patch;
+	filename=JungleMetal1;
+	seqname=m4;
+	footprintx=2;
+	footprintz=2;
+	permanent=1;
+	indestructible=1;
+
+	metal=220;
+	}
+
+[Jungle Metal 4]
+	{
+	world=Jungle;
+	category=Quagmire;
+	description=Metal Patch;
+	filename=JungleMetal1;
+	seqname=m3;
+	footprintx=3;
+	footprintz=2;
+	permanent=1;
+	indestructible=1;
+
+	metal=255;
+	}
+
+[Jungle Metal 5]
+	{
+	world=Jungle;
+	category=Quagmire;
+	description=Metal Patch;
+	filename=JungleMetal1;
+	seqname=m2;
+	footprintx=3;
+	footprintz=2;
+	permanent=1;
+	indestructible=1;
+
+	metal=236;
+	}
+
+[Jungle Metal 6]
+	{
+	world=Jungle;
+	category=Quagmire;
+	description=Metal Patch;
+	filename=JungleMetal1;
+	seqname=M1;
+	footprintx=2;
+	footprintz=2;
+	permanent=1;
+	indestructible=1;
+
+	metal=220;
+	}

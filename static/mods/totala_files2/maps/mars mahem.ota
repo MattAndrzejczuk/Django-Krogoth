@@ -1,0 +1,48 @@
+[GlobalHeader]
+	{
+	missionname=mars mayhem;
+	missiondescription=25 x 25 Map;
+	planet=Red Planet;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=0;
+	mapping=0;
+	tidalstrength=16;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=90;
+	maxwindspeed=3000;
+	gravity=112;
+	waterdoesdamage=0;
+	waterdamage=0;
+	numplayers=10;
+	size=25 x 25;
+	memory=16 mb;
+	useonlyunits=;
+	DestroyAllUnits=1;
+	AllUnitsKilled=1;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=DEFAULT;
+		SurfaceMetal=3;
+		MohoMetal=30;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=METEOR;
+		MeteorRadius=3;
+		MeteorDensity=8;
+		MeteorDuration=8;
+		MeteorInterval=5;
+		[specials]
+			{
+			}
+		}
+	}

@@ -1,0 +1,15 @@
+[MENUENTRY1]
+	{
+	MENU=3;
+	BUTTON=3;
+	UNITNAME=ARMVISIT; //ARM Visitor (Assault Hovercraft)
+	UNITMENU=ARMHPNS; //ARM Hovercraft Platform - NS (Builds Hovercraft)
+	}
+
+[MENUENTRY2]
+	{
+	MENU=3;
+	BUTTON=3;
+	UNITNAME=ARMVISIT; //ARM Visitor (Assault Hovercraft)
+	UNITMENU=ARMHP; //ARM Hovercraft Platform (Builds Hovercraft)
+	}

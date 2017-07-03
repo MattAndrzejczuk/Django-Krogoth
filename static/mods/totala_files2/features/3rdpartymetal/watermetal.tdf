@@ -1,0 +1,62 @@
+[EGrockaquaore3]  // Small
+	{
+	world=evergreen;
+	description=Metal;
+	category=EGrocks;
+	animating=0;
+   	 footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=eg_rockore_;
+	seqname=EGAquaore3_01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=126;
+	damage=32009;
+	indestructible=1;
+	}
+
+[EgRockAquaOre1]  // Medium
+	{
+	world=evergreen;
+	description=Metal;
+	category=EGrocks;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=eg_rockore_;
+	seqname=EGAquaore1_01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=197;
+	damage=32009;
+	indestructible=1;
+	}
+
+[EgRockAquaore2]  // Huge
+	{
+	world=evergreen;
+	description=Metal;
+	category=EGrocks;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=eg_rockore_;
+	seqname=EGAquaore2_01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=220;
+	damage=32009;
+	indestructible=1;
+	}

@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from LazarusII import views
-from LazarusII.views import UnitFbiData, ApiNavigationUrls, LazarusListUnits, CustomToastGenerator, ExecuteBash
+from LazarusII.views import UnitFbiData, ApiNavigationUrls, LazarusListUnits, CustomToastGenerator, ExecuteBash, AutoCollectStatic
 # Pure Python Stuff:
 from LazarusII.DataReaderTA import readFile
 from LazarusII.FbiData import LazarusUnit
@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^UnitFbiData/$', UnitFbiData.as_view(), name='UnitFbiData'),
     url(r'^LazarusListUnits/', LazarusListUnits.as_view(), name='LazarusListUnits'),
     url(r'^ExecuteBash/', ExecuteBash.as_view(), name='ExecuteBash'),
+    url(r'^AutoCollectStatic/', AutoCollectStatic.as_view(), name='AutoCollectStatic'),
     url(r'^CustomToast/', CustomToastGenerator.as_view(), name='CustomToast'),
 ]
 

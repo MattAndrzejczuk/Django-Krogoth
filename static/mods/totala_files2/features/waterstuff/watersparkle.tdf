@@ -1,0 +1,20 @@
+[Watersparkle]  // 3
+	{
+	world=water;
+	description=;
+	category=WaterSparkle;
+	animating=1;
+   	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=WaterSparkle;
+	seqname=1wws;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=;
+	damage=32009;
+	indestructible=1;
+	}

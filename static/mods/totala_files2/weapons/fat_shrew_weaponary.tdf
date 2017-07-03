@@ -1,0 +1,147 @@
+[HYPER_LASER]
+	{
+	ID=216;
+	name=Energy focus;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=600;
+	reloadtime=4;
+	energypershot=2000;
+	weaponvelocity=1000;
+	areaofeffect=8;
+
+	soundstart=annigun1;
+	soundhit=xplolrg1;
+
+	firestarter=90;
+	beamweapon=1;
+	color=96;	/* blue */
+	color2=98;
+
+	tolerance=500;
+
+	explosiongaf=fx;
+	explosionart=nuke1;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=2500;
+		}
+	}
+
+[Fat_Shrew_Gatling]
+	{
+	ID=242;
+	name=Fat_Shrew_Gatling;
+	rendertype=4;
+	lineofsight=1;
+	turret=1;
+	//minbarrelangle=-30;
+	accuracy=100;//Hmm, won't work on a lineofsight weapon, sadly. I wanted the shots to spread a bit.
+
+	range=390;
+	reloadtime=.15;
+	weaponvelocity=700;
+	areaofeffect=60;
+	edgeeffectiveness=0.3;
+	soundstart=Mavgun2;
+	soundhit=xplomed2;
+
+	tolerance=27314;// 15°
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	startsmoke=1;
+
+	impulsefactor=50;
+	
+	firestarter=60;
+	
+	[DAMAGE]
+		{
+		default=120;
+		}
+	}
+
+[Fat_Shrew_Stomp]
+	{
+	ID=243;
+	name=Crushing of the Fat Shrew feet;
+	rendertype=2;//Mind Gun
+	//rendertype=1;
+	//model=Monkeylord_Stomp;
+	//model=rocket;
+	lineofsight=1;
+	vlaunch=1;
+	NoSelfDamage=1;
+	
+	range=4000;
+	reloadtime=36002;// five hours and two seconds
+	
+	noautorange=1;// keep travelling till the ground is hit
+	weapontimer=0.1;// Time before disappearance// I don't know why a 0 gets replaced by 1, or crash the game
+	//flighttime=0;// Time before entering phase 2// Phase 2 cancelled
+
+	burnblow=1;// Detonate when end of range
+	
+	weaponvelocity=10;
+	weaponacceleration=1;
+	turnrate=0;
+	
+	areaofeffect=50;
+	edgeeffectiveness=1;
+	
+	// One shot per second, 36000 shots, means keeps firing for ten hours
+	burst=36000;
+	burstrate=1;
+	
+	firestarter=0;
+	selfprop=1;
+	
+	twophase=0;//Single phase, eh!
+	guidance=1;
+	tolerance=4000;
+	
+	soundtrigger=1;// each shot gets its sound
+	//soundstart=xplonuk3;
+	//soundhit=xplonuk1;
+	
+	//explosiongaf=fx;
+	//explosionart=parablast;
+	/waterexplosiongaf=fx;
+	//waterexplosionart=parablast;
+	//lavaexplosiongaf=fx;
+	//lavaexplosionart=parablast;
+	
+	startsmoke=0;
+	
+	[DAMAGE]
+		{
+		default=10000;
+		ML_Rampage_Wotan=0;
+		Monkeylord_Zippo=0;
+		Monkeylord=0;
+		Cybran_Monkeylord=0;
+		CORMKL=0;
+		Fat_Shrew=0;
+		xta_Fat_Shrew=0;
+		}
+	}
+
+
+

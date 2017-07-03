@@ -1,0 +1,226 @@
+from django.db import models
+
+# Create your models here.
+
+# = models.CharField(max_length=100)
+# = models.FloatField(null=True, blank=True)
+# = models.IntegerField()
+# = models.BooleanField(default=False)
+
+
+class UnitFbiData(models.Model):
+    _raw_json_dump = models.CharField()
+    Acceleration = models.FloatField(null=True, blank=True) # Acceleration=0.5;
+    ActiveWhenBuild = models.IntegerField() # ActivateWhenBuilt=1;
+    ai_limit = models.CharField(max_length=100) # ai_limit=limit CORVOYR 2;
+    ai_weight = models.CharField(max_length=100) # ai_weight=weight CORFLAK 6;
+    altfromsealevel = models.IntegerField() # altfromsealevel=1;
+    amphibious = models.BooleanField(default=False) # amphibious=1;
+    antiweapons = models.BooleanField(default=False) # antiweapons=1;
+    attackrunlength = models.IntegerField() # attackrunlength=290;
+    BMcode = models.BooleanField(default=False) # BMcode=1;
+    BadTargetCategory = models.CharField(max_length=100) # BadTargetCategory=VTOL;
+    BankScale = models.IntegerField() # BankScale=1;
+    BrakeRate = models.IntegerField() # BrakeRate=9;
+    BuildAngle = models.IntegerField() # BuildAngle=32768;
+    BuildCostEnergy = models.IntegerField() # BuildCostEnergy=985;
+    BuildCostMetal = models.IntegerField() # BuildCostMetal=0;
+    BuildTime = models.IntegerField() # BuildTime=9894;
+    Builddistance = models.IntegerField() # Builddistance=80;
+    Builder = models.BooleanField(default=False) # Builder=1;
+    canattack = models.BooleanField(default=False) # canattack=1;
+    CanCapture = models.BooleanField(default=False) # CanCapture=1;
+    CanDgun = models.BooleanField(default=False) # candgun=1;
+    Canfly = models.BooleanField(default=False) # Canfly=1;
+    canguard = models.BooleanField(default=False) # canguard=1;
+    canhover = models.BooleanField(default=False) # canhover=1;
+    canload = models.BooleanField(default=False) # canload=1;
+    canmove = models.BooleanField(default=False) # canmove=1;
+    canpatrol = models.BooleanField(default=False) # canpatrol=1;
+    CanReclamate = models.BooleanField(default=False) # CanReclamate=1;
+    canstop = models.BooleanField(default=False) # canstop=1;
+    cantbetransported = models.BooleanField(default=False) # cantbetransported=1;
+    Category = models.CharField(max_length=100) # Category=ARM TANK LEVEL2 CONSTR NOWEAPON NOTAIR NOTSUB CTRL_B;
+    CloakCost = models.IntegerField() # CloakCost=7;
+    CloakCostMoving = models.IntegerField() # CloakCostMoving=800;
+    Commander = models.BooleanField(default=False) # Commander=1;
+    Copyright = models.CharField(max_length=100) # Copyright=Copyright 1997 Humongous Entertainment. All rights reserved.;
+    #TODO: PK below
+    Corpse = models.CharField(max_length=100) # Corpse=fortification_core;
+    cruisealt = models.IntegerField() # cruisealt=90;
+    DamageModifier = models.FloatField(null=True, blank=True)#          DamageModifier=0.7;
+    DefaultMissionType = models.CharField(max_length=100) #             DefaultMissionType=VTOL_standby;
+    Description = models.CharField(max_length=255) #            Description=Very Heavy Assault Tank;
+    Designation = models.CharField(max_length=50) #             Designation=WB-S;
+    digger = models.BooleanField(default=False) #           digger=1;
+    Downloadable = models.BooleanField(default=False) #             Downloadable=1;
+    EnergyMake = models.IntegerField() #            EnergyMake=9;
+    EnergyStorage = models.IntegerField() #             EnergyStorage=80;
+    EnergyUse = models.IntegerField() #             EnergyUse=9;
+    # TODO: Mant-To-One
+    ExplodeAs = models.CharField(max_length=100) #             ExplodeAs=LARGE_BUILDINGEX;
+    ExtractsMetal = models.FloatField(null=True, blank=True) #             ExtractsMetal=0.003;
+    firestandorders = models.IntegerField() #           firestandorders=1;
+    Floater = models.BooleanField(default=False) #           Floater=1;
+    FootprintX = models.IntegerField() #            FootprintX=9;
+    FootprintZ = models.IntegerField() #            FootprintZ=9;
+    FrenchDescription = models.CharField(max_length=100) #             FrenchDescription=Serpent des mers;
+    FrenchName = models.CharField(max_length=100) #
+    GermanDescription = models.CharField(max_length=100) #
+    GermanName = models.CharField(max_length=100) #
+    HealTime = models.IntegerField()            # HealTime=27;
+    HideDamage = models.BooleanField(default=False)           # HideDamage=1;
+    HoverAttack = models.BooleanField(default=False)          # HoverAttack=1;
+    ImmuneToParalyzer = models.BooleanField(default=False)            # ImmuneToParalyzer=1;
+    init_cloaked = models.BooleanField(default=False)            # init_cloaked=1;
+    IsAirBase = models.BooleanField(default=False)           # IsAirBase=1;
+    IsFeature = models.BooleanField(default=False)           #    IsFeature=1;
+    istargetingupgrade = models.BooleanField(default=False)           # istargetingupgrade=1;
+    ItalianDescription = models.CharField() #
+    ItalianName = models.CharField() #
+    JapanesDescription = models.CharField() #
+    JapaneseName = models.CharField() #
+    kamikaze = models.BooleanField(default=False)            # kamikaze=1;
+    kamikazedistance = models.IntegerField()            # kamikazedistance=80;
+    MakesMetal = models.BooleanField(default=False)          # MakesMetal=1;
+    maneuverleashlength = models.IntegerField()             # maneuverleashlength=640;
+    MaxDamage = models.IntegerField()           # MaxDamage=992;
+    MaxSlope = models.IntegerField()            # MaxSlope=8;
+    MaxVelocity = models.IntegerField()             # MaxVelocity=9;
+    MaxWaterDepth = models.IntegerField()           # MaxWaterDepth=35;
+    MetalMake = models.IntegerField() # MetalMake=1;
+    MetalStorage = models.IntegerField() #
+    mincloakdistance = models.IntegerField() #
+    MinWaterDepth = models.IntegerField() #
+    MobileStandOrders = models.BooleanField(default=False) #
+    MoveRate1 = models.IntegerField()           # MoveRate1=1;
+    # TODO: PK below:
+    MovementClass = models.CharField(max_length=100) # MovementClass=TANKSH3;
+    Name = models.CharField(max_length=100) # Name=Zipper;
+    NoAutoFire = models.BooleanField(default=False) #    NoAutoFire=1;
+    # MovementClass #
+    # Name #
+    NoChaseCategory = models.CharField(max_length=100) # NoChaseCategory=VTOL;
+    norestrict = models.BooleanField(default=False) # norestrict=1;
+    NoShadow = models.BooleanField(default=False) # NoShadow=1;
+    # TODO: PK below
+    Objectname = models.CharField(max_length=100) # Objectname=CORWIN;
+    onoffable = models.BooleanField(default=False) # onoffable=1;
+    Ovradjust = models.BooleanField(default=False) # Ovradjust=1;
+    PigLatinDescription = models.CharField(max_length=100) #
+    PigLatinName = models.CharField(max_length=100) #
+    PitchScale = models.IntegerField(max_length=100) # PitchScale=1;
+    RadarDistance = models.IntegerField() # RadarDistance=700;
+    RadarDistanceJam = models.IntegerField() # RadarDistanceJam=730;
+    Scale = models.IntegerField() # Scale=1;
+    # TODO: PK below
+    SelfDestructAs = models.CharField(max_length=100) # SelfDestructAs=SMALL_UNIT;
+    selfdestructcountdown = models.IntegerField() # selfdestructcountdown=2;
+    ShootMe = models.BooleanField(default=False) # ShootMe=1;
+    ShowPlayerName = models.BooleanField(default=False) # ShowPlayerName=1;
+    # TODO: PK below:
+    Side = models.CharField(max_length=100) # Side=CORE;
+    SightDistance = models.IntegerField() # SightDistance=90;
+    SonarDistance = models.IntegerField() # SonarDistance=650;
+    SonarDistanceJam = models.IntegerField() # SonarDistanceJam=650;
+    sortbias = models.IntegerField() # sortbias=0;
+    # TODO: PK below
+    SoundCategory = models.CharField(max_length=100) # SoundCategory=VIPE;
+    SpanishDescription = models.CharField(max_length=100) #
+    SpanishName = models.CharField(max_length=100) #
+    StandingFireOrder = models.IntegerField() # StandingFireOrder=0;
+    StandingMoveOrder = models.IntegerField() # StandingMoveOrder=1;
+    Stealth = models.BooleanField(default=False) # Stealth=1;
+    SteeringMode = models.IntegerField() # SteeringMode=2;
+    # TODO: PK below
+    TEDClass = models.CharField(max_length=100) # TEDClass=WATER;
+    teleporter = models.BooleanField(default=False) # teleporter=1;
+    ThreeD = models.BooleanField(default=False) # ThreeD=1;
+    TidalGenerator = models.BooleanField(default=False) # TidalGenerator=1;
+    TransMaxUnits = models.IntegerField() # TransMaxUnits=1;
+    transportcapacity = models.IntegerField() # transportcapacity=5;
+    transportsize = models.IntegerField() # transportsize=3;
+    TurnRate = models.IntegerField() # TurnRate=999;
+    # TODO: unique? ID?
+    UnitName = models.CharField(max_length=100) # UnitName=CORWIN;
+    # TODO: must be unique, PK?
+    UnitNumber = models.IntegerField() # UnitNumber=9;
+    Upright = models.BooleanField(default=False) # Upright=1;
+    Version = models.IntegerField() # Version=1;
+    WaterLine = models.IntegerField() # WaterLine=43;
+    # TODO: PK below
+    Weapon1 = models.CharField(max_length=100) # Weapon1=crblmssl;
+    # TODO: PK below
+    Weapon2 = models.CharField(max_length=100) # Weapon2=coramph_weapon2;
+    # TODO: PK below
+    Weapon3 = models.CharField(max_length=100) # Weapon3=CORSEAP_WEAPON3;
+    WindGenerator = models.IntegerField() # WindGenerator=30;
+    WorkerTime = models.IntegerField() # WorkerTime=80;
+    # TODO: PK below
+    wpri_badTargetCategory = models.CharField(max_length=100) # wpri_badTargetCategory=VTOL;
+    # TODO: PK below
+    wsec_badTargetCategory = models.CharField(max_length=100) # wsec_badTargetCategory=VTOL;
+    YardMap = models.CharField(max_length=100) # YardMap=ooooooo ooooooo occccco occccco occccco occccco;
+
+
+# ONE-TO-ONE SAMPLE:
+"""
+class Place(models.Model):
+    name = models.CharField(max_length=50)
+    address = models.CharField(max_length=80)
+
+    def __str__(self):              # __unicode__ on Python 2
+        return "%s the place" % self.name
+
+class Restaurant(models.Model):
+    place = models.OneToOneField(
+        Place,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+
+"""
+
+# MANY-TO-MANY SAMPLE:
+"""
+class Publication(models.Model):
+    title = models.CharField(max_length=30)
+
+    def __str__(self):              # __unicode__ on Python 2
+        return self.title
+
+    class Meta:
+        ordering = ('title',)
+
+class Article(models.Model):
+    headline = models.CharField(max_length=100)
+    publications = models.ManyToManyField(Publication)
+
+    def __str__(self):              # __unicode__ on Python 2
+        return self.headline
+
+    class Meta:
+        ordering = ('headline',)
+"""
+
+# MANY-TO-ONE SAMPLE:
+"""
+class Reporter(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    email = models.EmailField()
+
+    def __str__(self):              # __unicode__ on Python 2
+        return "%s %s" % (self.first_name, self.last_name)
+
+class Article(models.Model):
+    headline = models.CharField(max_length=100)
+    pub_date = models.DateField()
+    reporter = models.ForeignKey(Reporter, on_delete=models.CASCADE)
+
+    def __str__(self):              # __unicode__ on Python 2
+        return self.headline
+
+    class Meta:
+        ordering = ('headline',)
+"""

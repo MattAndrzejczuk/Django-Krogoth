@@ -1,0 +1,300 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, body, fusee, fum1, fum2, fum3, flare1, flare2,
+       antenne, arm, flare, lights, p1, p2, p3;
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3, Static_Var_4, Static_Var_5,
+            Static_Var_6;
+
+
+activatescr()
+{
+	if( TRUE )
+	{
+		dont-cache lights;
+		sleep 1000;
+	}
+	sleep 300;
+}
+
+deactivatescr()
+{
+	if( TRUE )
+	{
+		sleep 1000;
+		cache lights;
+	}
+	sleep 110;
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2, Func_Var_3)
+{
+	Func_Var_3 = get HEALTH;
+	if( Func_Var_3 <= 60 )
+	{
+		if( Static_Var_6 == 0 )
+		{
+			Static_Var_6 = 1;
+			hide arm;
+			explode arm type FALL | SHATTER | SMOKE | BITMAP2;
+		}
+	}
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	Static_Var_6 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent >= 75 )
+		{
+			if( Static_Var_6 == 1 )
+			{
+				Static_Var_6 = 0;
+				show arm;
+			}
+		}
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Go()
+{
+	dont-cache lights;
+	call-script activatescr();
+	Static_Var_1 = 1;
+}
+
+Stop()
+{
+	Static_Var_1 = 0;
+	sleep 10000;
+	call-script deactivatescr();
+	cache lights;
+}
+
+fum()
+{
+	while( Static_Var_3 == 1 )
+	{
+		emit-sfx 256 | 1 from fum1;
+		emit-sfx 256 | 1 from fum2;
+		emit-sfx 256 | 1 from fum3;
+		sleep 250;
+	}
+}
+
+Launchsequence()
+{
+	sleep 7500;
+	start-script fum();
+	move p1 to y-axis [100.] speed [5.];
+	show flare1;
+	sleep 50;
+	hide flare1;
+	spin flare1 around y-axis speed <300.>;
+	sleep 50;
+	show flare1;
+	sleep 50;
+	hide flare1;
+	sleep 50;
+	show flare1;
+	sleep 50;
+	hide flare1;
+	sleep 50;
+	turn arm to y-axis <90.> speed <60.>;
+	spin flare2 around y-axis speed <500.>;
+	show flare2;
+	show flare1;
+	sleep 50;
+	hide flare1;
+	sleep 50;
+	show flare1;
+	sleep 50;
+	hide flare1;
+	sleep 1000;
+	move p2 to y-axis [100.] speed [20.];
+	sleep 1000;
+	move p3 to y-axis [100.] speed [80.];
+	sleep 1000;
+	move fusee to y-axis [100.] speed [100.];
+	sleep 1000;
+	Static_Var_3 = 0;
+	hide flare2;
+	hide fusee;
+	spin antenne around y-axis speed <50.>;
+}
+
+InitState()
+{
+	Static_Var_4 = 1;
+	Static_Var_5 = 0;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( Static_Var_5 )
+	{
+		Static_Var_4 = requestedstate;
+		return (0);
+	}
+	Static_Var_5 = 1;
+	currentstate = Static_Var_4;
+	Static_Var_4 = requestedstate;
+	while( Static_Var_4 != currentstate )
+	{
+		if( Static_Var_4 == 0 )
+		{
+			call-script Go();
+			currentstate = 0;
+		}
+		if( Static_Var_4 == 1 )
+		{
+			call-script Stop();
+			currentstate = 1;
+		}
+	}
+	Static_Var_5 = 0;
+}
+
+Create()
+{
+	dont-shade arm;
+	dont-shade fusee;
+	dont-shade body;
+	dont-shade antenne;
+	dont-cache flare;
+	dont-cache flare1;
+	dont-cache flare2;
+	dont-cache fusee;
+	hide flare;
+	hide flare1;
+	hide flare2;
+	Static_Var_1 = 0;
+	Static_Var_3 = 1;
+	turn body to y-axis <20.> now;
+	Static_Var_2 = 3000;
+	call-script InitState();
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 500;
+	}
+	call-script Launchsequence();
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	Static_Var_2 = Func_Var_1 * 2;
+}
+
+RestoreAfterDelay()
+{
+	sleep Static_Var_2;
+	set-signal-mask 0;
+	start-script RequestState(1);
+}
+
+AimPrimary(heading, pitch)
+{
+	start-script RequestState(0);
+	signal 2;
+	set-signal-mask 2;
+	while( !Static_Var_1 )
+	{
+		sleep 1000;
+		start-script RequestState(0);
+	}
+	dont-cache antenne;
+	turn antenne to y-axis <-45.> speed <50.>;
+	wait-for-turn antenne around y-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	Static_Var_1 = 0;
+	sleep 5000;
+	start-script RequestState(1);
+	spin antenne around y-axis speed <50.>;
+	cache antenne;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode antenne type BITMAPONLY | BITMAP1;
+		explode body type BITMAPONLY | BITMAP2;
+		explode arm type BITMAPONLY | BITMAP4;
+		explode flare1 type BITMAPONLY | BITMAP5;
+		explode flare2 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode body type SHATTER | BITMAP1;
+		explode arm type FALL | BITMAP4;
+		explode flare type FALL | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode body type SHATTER | BITMAP1;
+		explode antenne type BITMAPONLY | BITMAP2;
+		explode arm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode flare type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode body type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode flare type BITMAPONLY | BITMAP2;
+	explode antenne type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode arm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+}

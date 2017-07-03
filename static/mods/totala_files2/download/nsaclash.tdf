@@ -1,0 +1,15 @@
+[MENUENTRY1]
+	{
+	MENU=3;
+	BUTTON=3;
+	UNITNAME=NSACLASH; //CORE Halberd (Attack HoverCraft)
+	UNITMENU=CORHPNS; //CORE Hovercraft Platform - NS (Builds Hovercraft)
+	}
+
+[MENUENTRY2]
+	{
+	MENU=3;
+	BUTTON=3;
+	UNITNAME=NSACLASH; //CORE Halberd (Attack HoverCraft)
+	UNITMENU=CORHP; //CORE Hovercraft Platform (Builds Hovercraft)
+	}

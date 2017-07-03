@@ -1,0 +1,44 @@
+[SNIPER]
+	{
+	ID=17;
+	name=Sniper torp;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=sniper;
+	propeller=1;
+
+	range=1300;
+	reloadtime=15.0;
+	weapontimer=3;
+	weaponvelocity=84;
+	startvelocity=30;
+	weaponacceleration=15;
+	turnrate=41000;
+	areaofeffect=124;	
+	soundstart=torpedo2;
+	soundhit=xplodep3;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+                 
+	tolerance=37152;
+
+	explosiongaf=UWFX;
+	explosionart=xpl4;
+
+	waterexplosiongaf=UWFX;
+	waterexplosionart=xpl4;
+
+	lavaexplosiongaf=UWFX;
+	lavaexplosionart=xpl4;
+
+	[DAMAGE]
+		{
+		default=635;
+		}
+	}
+

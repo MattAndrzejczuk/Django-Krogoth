@@ -1,0 +1,491 @@
+Bardi´s Tá Locazo Moon Ai v1.31
+
+// This Ai was Originally Moon Ai v 1.3, Created Originally by VANTHEMAN (gabriel@ctv.es), Thanks to him for making that Ai.
+// Modified by me for the map "ATAQUE A LA COLONIA V2"
+//If you want to modify this, do it, but please give me some credits.
+ 
+// Set Construction
+Weight SOULREAVER 0.90
+Weight Wraith 0.90
+Weight ARMHELPR 0
+Weight ARMMEDIC 0.10
+Weight CORHelpr 0
+Weight CORNTOW 0
+Weight CORACA 2.5
+Weight CORACK 2.5
+Weight CORACV 2.5
+Weight CORCA 3.5
+Weight CORCK 5.5
+Weight CORCV 3
+Weight CORMLV 0
+Weight ARMACA 2.5
+Weight ARMACK 2.5
+Weight ARMACV 2.5
+Weight ARMCA 3.5 
+Weight ARMCK 5.5
+Weight ARMCV 3
+Weight ARMMLV 0
+Limit SOULREAVER 1
+Limit Wraith 1
+Limit CORNTOW 0
+Limit CORHELPR 1
+Limit ARMHELPR 1
+Limit ARMMEDIC 5
+Limit CORACA 4
+Limit CORACK 4
+Limit CORACV 4
+Limit CORCA 6
+Limit CORCK 6
+Limit CORCV 6
+Limit CORMLV 0
+Limit ARMACA 4
+Limit ARMACK 4
+Limit ARMACV 4
+Limit ARMCA 6 
+Limit ARMCK 6
+Limit ARMCV 6
+Limit ARMMLV 0
+
+// Build Base Defences
+Weight ARMRL 17.55
+Weight CORRL 17.55
+Weight ARMLLT 2.95
+Weight CORLLT 2.95
+Weight ARMGUARD 5.55
+Weight CORPUN 5.55
+Weight ARMHLT 6.55
+Weight CORHLT 6.55
+Weight CORDOOM 0.55
+Weight CORDRAG 0
+Weight CORFLAK 0.95
+Weight CORTOAST 0.55
+Weight CORVIPE 0.55
+Weight ARMAMB 0.55
+Weight ARMANNI 0.55
+Weight ARMDRAG 0
+Weight ARMFLAK 0.95
+Weight ARMFORT 0
+Weight CORFORT 0
+Weight ARMSILO 0.1
+Weight CORSILO 0.1
+Weight SPLINTER 3.55 
+Weight MEDUSA 0.55
+Weight SCREAMER 0.25
+Weight CORVIPE 1.55
+Weight CORCIRC 0.95
+Weight TAWF111 0
+Weight TAWF112 0.15
+Weight CORVHLT 1.55
+Weight AGORGON 0.15
+Weight ARMARCH 0.95
+Weight MERCURY 0.25
+Weight CHAOSMACHINE 0.55
+Weight ARMPB 0.95
+Weight ARMMORTAR 0.95
+Weight SKYSWEEPER 0.65
+Weight TAWF005 0.25
+Weight TAWF010 0.55
+Weight CORTOAST 0
+Weight ARMAMB 0
+Weight ARMDEVA 0.50
+Limit ARMDEVA 2
+Limit CORFLA 1
+Limit SKYSWEEPER 2
+Limit TAWF005 3
+Limit TAWF010 2
+Limit ARMPB 5
+Limit ARMMORTAR 5
+Limit CHAOSMACHINE 3
+Limit MERCURY 2
+Limit AGORGON 2
+Limit ARMARCH 5
+Limit TAWF111 0 
+Limit TAWF112 2
+Limit CORCIRC 5
+Limit SCREAMER 2
+Limit MEDUSA 3
+Limit CORDOOM 3
+Limit CORDRAG 0
+Limit CORFLAK 8
+Limit CORTOAST 2
+Limit CORVIPE 2
+Limit ARMAMB 2
+Limit ARMANNI 3
+Limit ARMDRAG 0
+Limit ARMFLAK 8
+Limit CORFORT 0
+Limit ARMFORT 0
+LImit ARMSILO 3
+Limit CORSILO 3
+Limit ARMRL 18
+Limit CORRL 18
+
+// Weights and Limits for ground units from the McnTerra AI by Sage_Z v0.01 Updated first by VantheMan and then by me
+Weight ARMFLASH 9
+Weight ARMROCK 9
+Weight ARMLATNK 2
+Weight ARMFIDO 4
+Weight ARMFAST 1
+Weight ARMMERL 9
+Weight ARMMAV 9
+Weight ARMSAM 2.15
+Weight ARMAMPH 0
+Weight ARMHAM 5
+Weight ARMSPID 5
+Weight ARMBULL 7
+Weight ARMMART 1.6
+Weight ARMPW 0.5
+Weight ARMYORK 0.2
+Weight ARMDECOM 2
+Weight ARMWAR 2
+Weight ARMSTUMP 0.2
+
+Weight CORSTORM 9
+Weight CORCAN 3
+Weight CORGOL 3
+Weight CORGATOR 6
+Weight CORMORT 1.5
+Weight CORHRK  0.9
+Weight CORMIST 0.9
+Weight CORSUMO 0.6
+Weight CORTHUD 3
+Weight CORRAID 3
+Weight CORCRASH 2
+Weight CORSENT 0.2
+Weight CORVROC 0.1
+Weight CORDECOM 0.05
+Weight CORMART 1.05
+Weight CORREAP 1.75
+Weight CORPYRO 3.1
+
+Limit ARMAMPH 0
+Limit ARMASER 0
+limit ARMCOM 0
+Limit ARMDECOM 2
+Limit ARMFAST 5
+Limit ARMFIDO 8
+Limit ARMFLEA 12
+Limit ARMHAM 3
+Limit ARMJETH 10
+Limit ARMMARK 1
+Limit ARMMAV 12
+Limit ARMPW 4
+Limit ARMRECTR 0
+Limit ARMROCK 10
+Limit ARMSCORP 1
+Limit ARMSEER 2
+Limit ARMSNIPE 2
+Limit ARMSPY 2
+Limit ARMVADER 6
+Limit ARMWAR 5
+Limit ARMZEUS 2
+Limit ARMBULL 10
+Limit ARMCROC 0
+Limit ARMFAV 0
+Limit ARMFLASH 15
+Limit ARMJAM 3
+Limit ARMLATNK 15
+Limit ARMMANNI 1
+Limit ARMMART 4
+Limit ARMMERL 16
+Limit ARMMLV 0
+Limit ARMSAM 20
+Limit ARMSCAB 1
+Limit ARMSPID 6
+Limit ARMSTUMP 1
+Limit ARMYORK 3
+
+Limit CORAMPH 0
+Limit CORAK 5
+Limit CORCAN 5
+Limit CORCRASH 25
+Limit CORCOM 0
+Limit CORDECOM 2
+Limit CORFAST 5
+Limit CORHRK  10
+Limit CORMORT 15
+Limit CORNECRO 1
+Limit CORPYRO 2
+Limit CORROACH 6
+Limit CORSPY 1
+Limit CORSTORM 20
+Limit CORSUMO 8
+Limit CORTHUD 10
+Limit CORVOYR 1
+Limit CORETER 1
+Limit CORFAV 0
+Limit CORFING 0
+Limit CORGATOR 10
+Limit CORGOL 20
+Limit CORLEVLR 5
+Limit CORMART 5
+Limit CORMIST 20
+Limit CORMLV 0
+Limit CORRAID 8
+Limit CORREAP 10
+Limit CORSEAL 0
+Limit CORSENT 5
+Limit CORTRUCK 0
+Limit CORVRAD 0
+Limit CORVROC 8
+
+// Set Energy Build
+Weight ARMGEO 6
+Weight CORGEO 6
+Weight ARMSOLAR 2.65
+Weight CORSOLAR 2.65
+Weight ARMADVSOL 0.65
+Weight CORADVSOL 0.65
+Weight ARMFUS 1.10
+Weight CORFUS 1.10
+Weight ARMMMKR 0.05
+Weight CORMMKR 0.05
+Weight ARMMAKR 0.05
+Weight CORMAKR 0.05
+Weight CORCKFUS 0.3
+Weight ARMCKFUS 0.3 
+Weight ARMWIN 0.5
+Weight CORWIN 0.5
+
+// Optional Units ( only for games with fog of war, delete if you want )
+Weight ARMARAD 0.90
+Weight CORARAD 0.90
+Weight ARMRAD 0.90
+Weight CORRAD 0.90
+Limit CORTARG 1
+Limit ARMTARG 1
+Limit ARMARAD 2
+Limit CORARAD 2
+Limit ARMRAD 4
+Limit CORRAD 4
+
+// Limit Plant Construction
+Weight CAHP 0.01
+Weight CORGANT 0.75
+Weight ARMLAB 2.65
+Weight CORLAB 2.65
+Weight ARMVP 3.65
+Weight CORVP 3.65
+Weight ARMAP 3.60
+Weight CORAP 3.60
+Weight ARMHP 0.01
+Weight CORHP 0.01
+Weight CORBLAB 0.15
+Weight CORMTLAB 0.10
+Weight ARMBLAB 0.15 
+Weight AAHP 0.01
+Limit CAHP 1
+Limit AAHP 1
+Limit ARMBLAB 1
+Limit CORBLAB 1
+Limit CORMTLAB 3
+Limit ARMLAB 3
+Limit CORLAB 3
+Limit ARMVP 3
+Limit CORVP 3
+Limit ARMAP 3
+Limit CORAP 3
+Limit ARMHP 1
+Limit CORHP 1
+Limit CORGANT 1
+
+
+// Increase Airstrikes
+Weight ARMBRAWL 3.50
+Weight CORAPE 3.50
+Weight CORVAMP 1.95
+Weight ARMHAWK 1.95
+Weight ARMATLAS 0
+Weight ARMAWAC 0
+Weight ARMLANCE 0
+Weight ARMPEEP 3
+Weight ARMFIG 0.10
+Weight ARMPNIX 0.65
+Weight ARMTHUND 0
+Weight CORAWAC 0
+Weight CORFINK 3
+Weight CORHUNT 0
+Weight CORHURC 0.65
+Weight CORSHAD 0
+Weight CORTITAN 
+Weight CORVALK 0
+Weight CORVENG 0.10
+Weight CDRAGON 0.06
+Weight CHARPY 0.50
+Weight HKCORE 0.15
+Weight ORCA 0
+Weight TAWF107 0.10
+Weight TAWF108 0.07
+Weight ARMPERS 1.15
+Weight CHOPPER 0.05
+Weight GRYPHON 0.50
+Weight TAWF007 0
+Weight TAWF008 0.06
+Weight ARMCYBR 0.05
+Weight ARMCYBR 0.05
+Weight CORCRW 0.12
+Limit ARMCYBR 1
+Limit TAWF007 0
+Limit TAWF008 1
+Limit PREDATOR 0
+Limit GRYPHON 7
+Limit ARMWASP 0
+Limit CHOPPER 1
+Limit SHIRKE 5
+Limit ARMPERS 10
+Limit CDRAGON 1
+Limit CHARPY 7
+Limit HKCORE 2
+Limit ORCA 0
+Limit TAWF107 2
+Limit TAWF108 1
+Limit CORAPE 15 
+Limit ARMBRAWL 15
+Limit CORVAMP 7
+Limit ARMHAWK 7
+Limit ARMATLAS 0
+Limit ARMAWAC 0
+Limit ARMLANCE 0
+Limit ARMPEEP 0
+Limit ARMFIG 2
+Limit ARMPNIX 4
+Limit ARMTHUND 0
+Limit CORAWAC 0
+Limit CORFINK 0
+Limit CORHUNT 0
+Limit CORHURC 4
+Limit CORSHAD 0
+Limit CORTITAN 0
+Limit CORVALK 0
+Limit CORVENG 2
+
+// Silencer Units (Air)
+Weight BLACKDAWN 1.15
+Limit BLACKDAWN 10
+
+// Silencer Units (Land)
+Weight OPPRESSOR 0.95
+Weight DEMOLISH 0.07
+Limit OPPRESSOR 10
+Limit DEMOLISH 1
+
+// Silencer Units ( Structures )
+Weight PACKO 1.55
+Limit PACKO 10
+
+// Limit Big Guns
+Weight NAGA 0.35
+Weight ARMBRTHA 1.5
+Weight CORINT 1.5
+Weight ARMVULC 0.55
+Weight CORBUZZ 0.55
+Limit NAGA 1
+Limit ARMVULC 2
+Limit CORBUZZ 2
+Limit ARMBRTHA 3
+Limit CORINT 3
+
+// Increase Hover Craft
+Weight ARMANAC 0
+Weight CORSNAP 0
+Weight ARMMH 0
+Weight CORMH 0
+Weight ARMAH 0
+Weight CORAH 0
+
+// HACKS and 3rd Party Units by Sage_Z McnTerra AI v0.01 Updated by VantheMan for play with TAUIP 2.1.
+
+weight TURNER 9
+weight ARMDREAD 0.3
+weight ARMCYBR 0.3
+weight WRAITH 0.3
+weight ARMKAM 0.05
+weight NUKEA 0.5
+weight AAISILO 0.5
+weight AAIEMP 0.05
+limit AATIDE 0
+limit AEXXEC 6
+limit AFUZY 2
+limit ARMAAJ 0
+limit ARMARCH 3
+limit ARMCYBR 4
+limit ARMDOGL 8
+limit ARMDREAD 4
+limit ARMEMG 0
+limit ARMGUSS 2
+limit ARMKAM 0
+limit ARMMIN 0
+limit ARMMOSQU 0
+limit ARMREP 0
+limit ARMSPAR 0
+limit ASNIPER 6
+limit ATNK 0
+limit EMPATH 0
+limit NUKEA 2
+limit SPOOFER 0
+limit TURNER 10
+limit WRAITH 1
+limit AAISILO 2 
+limit AAIEMP 2
+limit TAWF014 3
+limit TAWF003 2
+
+weight CSLICER 9
+weight ROLLER 9
+weight CSPEED 3
+weight CPOWER 0.9
+weight NUKEC 0.2
+weight CORWING 5
+weight CKMMKR 0.1
+weight CJAMFUSR 0.1
+weight CAISILO 0.2
+weight CAIEMP 0.05
+limit TAWF114 4
+limit CJAMFUSR 1
+limit CKMMKR 1
+limit CMBOX 4
+limit CORARTV 6
+limit CORDEV 1
+limit CORDOGL 8
+limit CORFRL 0
+limit CORLOCUS 0
+limit CORSUMOT 2
+limit CORTHUG 6
+limit CORTRUCK 0
+limit CORWING 4
+limit CORZAP 0
+limit CPOWER 1
+limit CRNNS 0
+limit CSLICER 8
+limit CSPEED 4
+limit DCONDORE 0
+limit NUKEC 2
+limit PRIEST 0
+limit ROLLER 10
+limit CAISILO 2
+limit CAIEMP 1
+limit XENON 5
+
+plan easy
+
+Weight ARMSPID 0.10
+Weight CORKROG 0
+Limit ARMSPID 2
+Limit CORKROG 0
+
+plan medium
+
+Weight ARMSPID 0.35
+Weight CORKROG 1
+Limit ARMSPID 7 
+Limit CORKROG 1
+
+plan hard
+
+Weight ARMSPID 0.50
+Weight CORKROG 1.15
+Limit ARMSPID 10 
+Limit CORKROG 2
+
+//Nicolás B (Bardi), Nicokzz@usa.net
+

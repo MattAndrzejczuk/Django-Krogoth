@@ -1,0 +1,28 @@
+[MENUENTRY1]
+	{
+                    UNITMENU=ARMANS;
+                    MENU=7;
+                    BUTTON=2;
+                    UNITNAME=ARMUWMMMKR;
+	}
+[MENUENTRY2]
+	{
+                    UNITMENU=ARMANS;
+                    MENU=7;
+                    BUTTON=3;
+                    UNITNAME=ARMUWADVES;
+	}
+[MENUENTRY3]
+	{
+                    UNITMENU=ARMANS;
+                    MENU=7;
+                    BUTTON=4;
+                    UNITNAME=ARMASON;
+	}
+[MENUENTRY4]
+	{
+                    UNITMENU=ARMANS;
+                    MENU=7;
+                    BUTTON=5;
+                    UNITNAME=ARMPLAT;
+	}

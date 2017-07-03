@@ -1,0 +1,52 @@
+[Gate C3a]
+	{
+	world=Cemetary;
+	description=Cemetary Gate;
+	nodisplayinfo=1;
+	category=do not fix;
+	footprintx=5;
+	footprintz=3;
+	height=140;
+	filename=tomb;
+	seqname=Cemgate-C3a;
+	seqnameshad=cemgate-c3-shad_fix;
+
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}
+
+[Gate EWc]
+	{
+	world=Cemetary;
+	description=Cemetary Gate;
+	nodisplayinfo=1;
+	category=do not fix;
+	footprintx=4;
+	footprintz=3;
+	height=80;
+	filename=tomb;
+	seqname=Cemgate-ew3;
+	seqnameshad=Cemgate-ew2-shad_fix;
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}
+
+[Gate EWf]
+	{
+	world=Cemetary;
+	description=Cemetary Gate;
+	nodisplayinfo=1;
+	category=do not fix;
+	footprintx=4;
+	footprintz=3;
+	height=80;
+	filename=tomb;
+	seqname=Cemgate-ew6;
+	seqnameshad=Cemgate-ew6-shad;
+
+	shadtrans=1;
+	blocking=1;
+	indestructible=1;
+	}

@@ -1,0 +1,7 @@
+[MENUENTRY1]
+	{
+	MENU=7;
+	BUTTON=1;
+	UNITNAME=CAHPNS; //CORE Adv. Hovercraft Platform - NS (Builds Hovercraft)
+	UNITMENU=CORCH; //CORE Construction Hovercraft (Tech Level 1)
+	}

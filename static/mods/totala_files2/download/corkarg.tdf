@@ -1,0 +1,7 @@
+[MENUENTRY1]
+	{
+	UNITMENU=Corgant;
+	MENU=2;
+	BUTTON=5;
+	UNITNAME=Corkarg;
+	}

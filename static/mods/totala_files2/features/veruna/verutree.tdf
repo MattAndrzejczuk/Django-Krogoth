@@ -1,0 +1,389 @@
+[VeruTree04]
+	{
+	world=Veruna;
+	description=Tree;
+	category=trees;
+	footprintx=1;
+	footprintz=1;
+	height=55;
+	filename=VeruTree+D;
+	seqname=VeruTree04;
+	seqnameshad=VeruTreeShad04;
+	seqnamereclamate=VeruTreeRec04;
+	energy=250;
+
+	seqnameburn=VeruTreeBurn04;
+	featureburnt=VeruTreeDead04;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=VeruTreeKill04;
+	featuredead=VeruTreeSmudge02;
+
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=VeruTreeSmudge02;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VeruTreeDead04]
+	{
+	world=Veruna;
+	description=Dead Tree;
+	category=trees;
+	footprintx=1;
+	footprintz=1;
+	height=50;
+	filename=VeruTree+D;
+	seqname=VeruTreeDead04;
+	seqnameshad=VeruTreeDeadShad04;
+	seqnamereclamate=VeruTreeKill04a;
+	energy=100;
+
+	seqnamedie=VeruTreeKill04a;
+	featuredead=VeruTreeSmudge02;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=VeruTreeSmudge02;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VeruTree05]
+	{
+	world=Veruna;
+	description=Tree;
+	category=trees;
+	footprintx=1;
+	footprintz=1;
+	height=65;
+	filename=VeruTree+D;
+	seqname=VeruTree05;
+	seqnameshad=VeruTreeShad05;
+	seqnamereclamate=VeruTreeRec05;
+	energy=250;
+
+	seqnameburn=VeruTreeBurn05;
+	featureburnt=VeruTreeDead05;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=VeruTreeKill05;
+	featuredead=VeruTreeSmudge02;
+
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=VeruTreeSmudge02;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VeruTreeDead05]
+	{
+	world=Veruna;
+	description=Dead Tree;
+	category=trees;
+	footprintx=1;
+	footprintz=1;
+	height=60;
+	filename=VeruTree+D;
+	seqname=VeruTreeDead05;
+	seqnameshad=VeruTreeDeadShad05;
+	seqnamereclamate=VeruTreeKill05a;
+	energy=100;
+
+	seqnamedie=VeruTreeKill05a;
+	featuredead=VeruTreeSmudge02;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=VeruTreeSmudge02;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VeruTree06]
+	{
+	world=Veruna;
+	description=Tree;
+	category=trees;
+	footprintx=1;
+	footprintz=1;
+	height=65;
+	filename=VeruTree+D;
+	seqname=VeruTree06;
+	seqnameshad=VeruTreeShad06;
+	seqnamereclamate=VeruTreeRec06;
+	energy=250;
+
+	seqnameburn=VeruTreeBurn06;
+	featureburnt=VeruTreeDead06;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=VeruTreeKill06;
+	featuredead=VeruTreeSmudge02;
+
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=VeruTreeSmudge02;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VeruTreeDead06]
+	{
+	world=Veruna;
+	description=Dead Tree;
+	category=trees;
+	footprintx=1;
+	footprintz=1;
+	height=60;
+	filename=VeruTree+D;
+	seqname=VeruTreeDead06;
+	seqnameshad=VeruTreeDeadShad06;
+	seqnamereclamate=VeruTreeKill06a;
+	energy=100;
+
+	seqnamedie=VeruTreeKill06a;
+	featuredead=VeruTreeSmudge02;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=VeruTreeSmudge02;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VeruTree07]
+	{
+	world=Veruna;
+	description=Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=45;
+	filename=VeruTree+D;
+	seqname=VeruTree07;
+	seqnameshad=VeruTreeShad07;
+	seqnamereclamate=VeruTreeRec07;
+	energy=250;
+
+	seqnameburn=VeruTreeBurn07;
+	featureburnt=VeruTreeDead07;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=VeruTreeKill07;
+	featuredead=VeruTreeSmudge03;
+
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=VeruTreeSmudge03;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VeruTreeDead07]
+	{
+	world=Veruna;
+	description=Dead Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=35;
+	filename=VeruTree+D;
+	seqname=VeruTreeDead07;
+	seqnameshad=VeruTreeDeadShad07;
+	seqnamereclamate=VeruTreeKill07a;
+	energy=100;
+
+	seqnamedie=VeruTreeKill07a;
+	featuredead=VeruTreeSmudge03;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=VeruTreeSmudge03;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VeruTree08]
+	{
+	world=Veruna;
+	description=Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=45;
+	filename=VeruTree+D;
+	seqname=VeruTree08;
+	seqnameshad=VeruTreeShad08;
+	seqnamereclamate=VeruTreeRec08;
+	energy=250;
+
+	seqnameburn=VeruTreeBurn08;
+	featureburnt=VeruTreeDead08;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=VeruTreeKill08;
+	featuredead=VeruTreeSmudge03;
+
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=VeruTreeSmudge03;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VeruTreeDead08]
+	{
+	world=Veruna;
+	description=Dead Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=35;
+	filename=VeruTree+D;
+	seqname=VeruTreeDead08;
+	seqnameshad=VeruTreeDeadShad08;
+	seqnamereclamate=VeruTreeKill08a;
+	energy=100;
+
+	seqnamedie=VeruTreeKill08a;
+	featuredead=VeruTreeSmudge03;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=VeruTreeSmudge03;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VeruTree09]
+	{
+	world=Veruna;
+	description=Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=45;
+	filename=VeruTree+D;
+	seqname=VeruTree09;
+	seqnameshad=VeruTreeShad09;
+	seqnamereclamate=VeruTreeRec09;
+	energy=250;
+
+	seqnameburn=VeruTreeBurn09;
+	featureburnt=VeruTreeDead09;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=VeruTreeKill09;
+	featuredead=VeruTreeSmudge03;
+
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=VeruTreeSmudge03;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VeruTreeDead09]
+	{
+	world=Veruna;
+	description=Dead Tree;
+	category=trees;
+	footprintx=2;
+	footprintz=2;
+	height=35;
+	filename=VeruTree+D;
+	seqname=VeruTreeDead09;
+	seqnameshad=VeruTreeDeadShad09;
+	seqnamereclamate=VeruTreeKill09a;
+	energy=100;
+
+	seqnamedie=VeruTreeKill09a;
+	featuredead=VeruTreeSmudge03;
+
+	shadtrans=1;
+	reclaimable=1;
+	featurereclamate=VeruTreeSmudge03;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[VeruTreeSmudge01]
+	{
+	world=Veruna;
+	description=Debris;
+	category=tree smudges;
+	footprintx=1;
+	footprintz=1;
+	filename=VeruTree+D;
+	seqname=VeruTreeSmudge01;
+
+//	indestructible=1;
+	featuredead=VeruTreeSmudge01;
+
+	damage=100;
+	}
+
+[VeruTreeSmudge02]
+	{
+	world=Veruna;
+	description=Debris;
+	category=tree smudges;
+	footprintx=1;
+	footprintz=1;
+	filename=VeruTree+D;
+	seqname=VeruTreeSmudge02;
+
+//	indestructible=1;
+	featuredead=VeruTreeSmudge02;
+
+	damage=100;
+	}
+
+[VeruTreeSmudge03]
+	{
+	world=Veruna;
+	description=Debris;
+	category=tree smudges;
+	footprintx=2;
+	footprintz=2;
+	filename=VeruTree+D;
+	seqname=VeruTreeSmudge03;
+
+//	indestructible=1;
+	featuredead=VeruTreeSmudge03;
+
+	damage=100;
+	}

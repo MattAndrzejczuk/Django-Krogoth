@@ -1,0 +1,557 @@
+[CreBuild01]
+	{
+	world=Creon;
+	description=Palace;
+	category=buildings;
+	footprintx=19;
+	footprintz=13;
+	height=244;
+	filename=CreBuild+2;
+	seqname=CreBuild01;
+	seqnameshad=CreBuildshad01;
+
+	seqnamedie=CreBuildDie01;
+	featuredead=CreBuild01a;
+
+	damage=5000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild01a]
+	{
+	world=Creon;
+	description=Damaged Palace;
+	category=buildings;
+	footprintx=19;
+	footprintz=13;
+	height=176;
+	filename=CreBuild+2;
+	seqname=CreBuild01a;
+	seqnameshad=CreBuildshad01a;
+
+	seqnamedie=CreBuildDie01a;
+	featuredead=CreBuild01b;
+
+	damage=3500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild01b]
+	{
+	world=Creon;
+	description=Destroyed Palace;
+	category=buildings;
+	footprintx=19;
+	footprintz=13;
+	height=120;
+	filename=CreBuild+2;
+	seqname=CreBuild01b;
+	seqnameshad=CreBuildshad01b;
+
+	indestructible=1;
+
+	damage=1750;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild02]
+	{
+	world=Creon;
+	description=Great Hall;
+	category=buildings;
+	footprintx=20;
+	footprintz=8;
+	height=249;
+	filename=CreBuild+2;
+	seqname=CreBuild02;
+	seqnameshad=CreBuildshad02;
+
+	seqnamedie=CreBuildDie02;
+	featuredead=CreBuild02a;
+
+	damage=5000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild02a]
+	{
+	world=Creon;
+	description=Damaged Great Hall;
+	category=buildings;
+	footprintx=20;
+	footprintz=8;
+	height=195;
+	filename=CreBuild+2;
+	seqname=CreBuild02a;
+	seqnameshad=CreBuildshad02a;
+
+	seqnamedie=CreBuildDie02a;
+	featuredead=CreBuild02b;
+
+	damage=3500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild02b]
+	{
+	world=Creon;
+	description=Destroyed Great Hall;
+	category=buildings;
+	footprintx=20;
+	footprintz=8;
+	height=152;
+	filename=CreBuild+2;
+	seqname=CreBuild02b;
+	seqnameshad=CreBuildshad02b;
+
+	indestructible=1;
+
+	damage=1750;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild03]
+	{
+	world=Creon;
+	description=Senate;
+	category=buildings;
+	footprintx=11;
+	footprintz=12;
+	height=228;
+	filename=CreBuild+2;
+	seqname=CreBuild03;
+	seqnameshad=CreBuildshad03;
+
+	seqnamedie=CreBuildDie03;
+	featuredead=CreBuild03a;
+
+	damage=5000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild03a]
+	{
+	world=Creon;
+	description=Damaged Senate;
+	category=buildings;
+	footprintx=11;
+	footprintz=12;
+	height=198;
+	filename=CreBuild+2;
+	seqname=CreBuild03a;
+	seqnameshad=CreBuildshad03a;
+
+	seqnamedie=CreBuildDie03a;
+	featuredead=CreBuild03b;
+
+	damage=3500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild03b]
+	{
+	world=Creon;
+	description=Destroyed Senate;
+	category=buildings;
+	footprintx=11;
+	footprintz=12;
+	height=162;
+	filename=CreBuild+2;
+	seqname=CreBuild03b;
+	seqnameshad=CreBuildshad03b;
+
+	indestructible=1;
+
+	damage=1750;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild04]
+	{
+	world=Creon;
+	description=Institute;
+	category=buildings;
+	footprintx=19;
+	footprintz=12;
+	height=102;
+	filename=CreBuild+2;
+	seqname=CreBuild04;
+	seqnameshad=CreBuildshad04;
+
+	seqnamedie=CreBuildDie04;
+	featuredead=CreBuild04a;
+
+	damage=5000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild04a]
+	{
+	world=Creon;
+	description=Damaged Institute;
+	category=buildings;
+	footprintx=19;
+	footprintz=12;
+	height=102;
+	filename=CreBuild+2;
+	seqname=CreBuild04a;
+	seqnameshad=CreBuildshad04a;
+
+	seqnamedie=CreBuildDie04a;
+	featuredead=CreBuild04b;
+
+	damage=3500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild04b]
+	{
+	world=Creon;
+	description=Destroyed Institute;
+	category=buildings;
+	footprintx=19;
+	footprintz=12;
+	height=87;
+	filename=CreBuild+2;
+	seqname=CreBuild04b;
+	seqnameshad=CreBuildshad04b;
+
+	indestructible=1;
+
+	damage=1750;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild05]
+	{
+	world=Creon;
+	description=Coliseum;
+	category=buildings;
+	footprintx=15;
+	footprintz=14;
+	height=153;
+	filename=CreBuild+2;
+	seqname=CreBuild05;
+	seqnameshad=CreBuildshad05;
+
+	seqnamedie=CreBuildDie05;
+	featuredead=CreBuild05a;
+
+	damage=5000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild05a]
+	{
+	world=Creon;
+	description=Damaged Coliseum;
+	category=buildings;
+	footprintx=15;
+	footprintz=14;
+	height=147;
+	filename=CreBuild+2;
+	seqname=CreBuild05a;
+	seqnameshad=CreBuildshad05a;
+
+	seqnamedie=CreBuildDie05a;
+	featuredead=CreBuild05b;
+
+	damage=3500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild05b]
+	{
+	world=Creon;
+	description=Destroyed Coliseum;
+	category=buildings;
+	footprintx=15;
+	footprintz=14;
+	height=141;
+	filename=CreBuild+2;
+	seqname=CreBuild05b;
+	seqnameshad=CreBuildshad05b;
+
+	indestructible=1;
+
+	damage=1750;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild06]
+	{
+	world=Creon;
+	description=Observatory;
+	category=buildings;
+	footprintx=12;
+	footprintz=9;
+	height=216;
+	filename=CreBuild+2;
+	seqname=CreBuild06;
+	seqnameshad=CreBuildshad06;
+
+	seqnamedie=CreBuildDie06;
+	featuredead=CreBuild06a;
+
+	damage=5000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild06a]
+	{
+	world=Creon;
+	description=Damaged Observatory;
+	category=buildings;
+	footprintx=12;
+	footprintz=9;
+	height=198;
+	filename=CreBuild+2;
+	seqname=CreBuild06a;
+	seqnameshad=CreBuildshad06a;
+
+	seqnamedie=CreBuildDie06a;
+	featuredead=CreBuild06b;
+
+	damage=3500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild06b]
+	{
+	world=Creon;
+	description=Ruined Observatory;
+	category=buildings;
+	footprintx=12;
+	footprintz=9;
+	height=162;
+	filename=CreBuild+2;
+	seqname=CreBuild06b;
+	seqnameshad=CreBuildshad06b;
+
+	indestructible=1;
+
+	damage=1750;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild07]
+	{
+	world=Creon;
+	description=Embassy;
+	category=buildings;
+	footprintx=12;
+	footprintz=9;
+	height=168;
+	filename=CreBuild+2;
+	seqname=CreBuild07;
+	seqnameshad=CreBuildshad07;
+
+	seqnamedie=CreBuildDie07;
+	featuredead=CreBuild07a;
+
+	damage=5000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild07a]
+	{
+	world=Creon;
+	description=Damaged Embassy;
+	category=buildings;
+	footprintx=12;
+	footprintz=9;
+	height=165;
+	filename=CreBuild+2;
+	seqname=CreBuild07a;
+	seqnameshad=CreBuildshad07a;
+
+	seqnamedie=CreBuildDie07a;
+	featuredead=CreBuild07b;
+
+	damage=3500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild07b]
+	{
+	world=Creon;
+	description=Destroyed Embassy;
+	category=buildings;
+	footprintx=12;
+	footprintz=9;
+	height=156;
+	filename=CreBuild+2;
+	seqname=CreBuild07b;
+	seqnameshad=CreBuildshad07b;
+
+	indestructible=1;
+
+	damage=1750;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild08]
+	{
+	world=Creon;
+	description=Building;
+	category=buildings;
+	footprintx=13;
+	footprintz=8;
+	height=129;
+	filename=CreBuild+2;
+	seqname=CreBuild08;
+	seqnameshad=CreBuildshad08;
+
+	seqnamedie=CreBuildDie08;
+	featuredead=CreBuild08a;
+
+	damage=5000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild08a]
+	{
+	world=Creon;
+	description=Damaged Building;
+	category=buildings;
+	footprintx=13;
+	footprintz=8;
+	height=129;
+	filename=CreBuild+2;
+	seqname=CreBuild08a;
+	seqnameshad=CreBuildshad08a;
+
+	seqnamedie=CreBuildDie08a;
+	featuredead=CreBuild08b;
+
+	damage=3500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild08b]
+	{
+	world=Creon;
+	description=Destroyed Building;
+	category=buildings;
+	footprintx=13;
+	footprintz=8;
+	height=113;
+	filename=CreBuild+2;
+	seqname=CreBuild08b;
+	seqnameshad=CreBuildshad08b;
+
+	indestructible=1;
+
+	damage=1750;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild09]
+	{
+	world=Creon;
+	description=Building;
+	category=buildings;
+	footprintx=9;
+	footprintz=11;
+	height=126;
+	filename=CreBuild+2;
+	seqname=CreBuild09;
+	seqnameshad=CreBuildshad09;
+
+	seqnamedie=CreBuildDie09;
+	featuredead=CreBuild09a;
+
+	damage=5000;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild09a]
+	{
+	world=Creon;
+	description=Damaged Building;
+	category=buildings;
+	footprintx=9;
+	footprintz=11;
+	height=126;
+	filename=CreBuild+2;
+	seqname=CreBuild09a;
+	seqnameshad=CreBuildshad09a;
+
+	seqnamedie=CreBuildDie09a;
+	featuredead=CreBuild09b;
+
+	damage=1750;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}
+
+[CreBuild09b]
+	{
+	world=Creon;
+	description=Destroyed Building;
+	category=buildings;
+	footprintx=9;
+	footprintz=13;
+	height=120;
+	filename=CreBuild+2;
+	seqname=CreBuild09b;
+	seqnameshad=CreBuildshad09b;
+
+	indestructible=1;
+
+	damage=1500;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	}

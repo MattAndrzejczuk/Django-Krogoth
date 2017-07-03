@@ -1,0 +1,168 @@
+//ARM "Agamemnon" Adv. Battle Mech
+
+[ARMMECH_AUTOBURST]
+	{
+	ID=219;
+	name=Mech-Auto Canon;
+	rendertype=3;
+	lineofsight=1;
+	turret=1;
+
+	model=AgamAutoBurst;
+
+	range=405;
+	reloadtime=0.2;
+	weapontimer=2;
+	energypershot=15;
+	weaponvelocity=380;
+	areaofeffect=35;
+	soundtrigger=1;
+	
+	soundstart=MechAutoCanon;
+	soundhit=MechAutoCanon2;
+	
+	beamweapon=1;
+	firestarter=10;
+	noexplode=1;
+	
+	explosiongaf=armagam_pulseboom;
+	explosionart=pulseboom;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=8;
+		ARMBULL=11;
+		ARMAGAM=14;
+		CORGOL=11;
+		CORMYRM=14;
+		}
+	}
+
+[ARMMECH_PLASMA]
+	{
+	ID=220;
+	name=Mech-Plasma;
+	rendertype=3;
+	lineofsight=1;
+	turret=1;
+
+	model=AgamPlasma;
+
+	range=240;
+	reloadtime=5.1;
+	weapontimer=1;
+	energypershot=50;
+	weaponvelocity=400;
+	areaofeffect=79;
+	randomdecay=0.3;
+	
+	burst=4;
+	burstrate=0;
+	sprayangle=3000;
+	
+	soundstart=MechPlasma;
+	soundhit=MechPlasma2;
+	
+	beamweapon=1;
+	firestarter=0;
+	noexplode=1;
+	
+	explosiongaf=armagam_pulseboom;
+	explosionart=pulseboom;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=65;
+		CORMYRM=100;
+		CORKROG=150;
+		}
+	}
+
+[ARMMECH_ROCKET]
+	{
+	ID=221;
+	Name=Mech-Guided Rocket Laurncher;
+	RenderType=1;
+	LineOfSight=1;
+	Turret=1;
+	
+	Model=AgamRocket;
+	
+	Range=724;
+	ReloadTime=1.4;
+	WeaponTimer=3;
+	FlightTime=20;
+	
+	WeaponVelocity=773;
+	StartVelocity=314;
+	WeaponAcceleration=205;
+	TurnRate=200000;
+	
+	AreaOfEffect=40;
+	MetalPerShot=15;
+	EnergyPerShot=80;
+	
+	SoundStart=MechRocket;
+	SoundHit=MechRocket2;
+	
+	FireStarter=0;
+	SmokeDelay=.1;
+	Guidance=1;
+	Tracks=1;
+	SelfProp=1;
+	SmokeTrail=1;
+	
+	Tolerance=6000;
+	
+	Explosiongaf=fx;
+	Explosionart=explode3;
+	
+	WaterExplosiongaf=fx;
+	WaterExplosionart=h2o;
+	
+	LavaExplosiongaf=fx;
+	LavaExplosionart=lavasplash;
+	
+	StartSmoke=1;
+	
+	[DAMAGE]
+		{
+		Default=69;
+		ARMTHUND=136;
+		ARMBRAWL=136;
+		ARMPEEP=136;
+		ARMFIG=136;
+		ARMCA=136;
+		ARMACA=136;
+		ARMATLAS=136;
+		ARMPNIX=136;
+		ARMHAWK=136;
+		ARMLANCE=136;
+		CORFINK=136;
+		CORVENG=136;
+		CORVAMP=136;
+		CORHURC=136;
+		CORTITAN=136;
+		CORACA=136;
+		CORSHAD=136;
+		CORAPE=136;
+		CORCA=136;
+		CORVALK=136;
+		}
+	}

@@ -1,0 +1,96 @@
+[AA_TANKMISSILE]
+	{
+	ID=240;
+	name=AA Missile;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+	toairweapon=1;
+	vlaunch=1;
+
+	model=missile;
+
+	range=600;
+	reloadtime=3;
+	weaponvelocity=450;
+	startvelocity=400;
+	weaponacceleration=100;
+	turnrate=20000;
+	areaofeffect=48;
+	metalpershot=0;
+	burst=4;
+	burstrate=.5;
+	
+	soundstart=rocklit1;
+	soundhit=xplosml2;
+
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=10000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=87;
+		}
+	}
+
+
+[AD_GAUSS]
+	{
+	ID=241;
+	name=Anti-Defense Gauss Cannon;
+	rendertype=4;
+	lineofsight=1;
+	turret=1;
+	minbarrelangle=-15;
+
+	range=480;
+	reloadtime=3;
+	weaponvelocity=450;
+	areaofeffect=8;
+	soundstart=cannhvy5;
+	soundhit=xplomed2;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=100;
+		ARMLLT=305;
+		ARMHLT=300;
+		ARMANNI=235;
+		CORLLT=350;
+		CORHLT=300;
+		CORDOOM=620;
+		ARMBRTHA=350;
+		ARMRL=90;
+		CORINT=375;
+		CORPUN=630;
+		ARMGUARD=490;
+		CORRL=115;
+		}
+	}

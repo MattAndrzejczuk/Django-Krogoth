@@ -1,0 +1,33 @@
+[blue_ice_vent1]
+	{
+	world=Evergreen;
+	description=Thermal Vent;
+	category=blue_ice_vents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=blue_ice_vents;
+	seqname=blue_ice_vent1;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[blue_ice_vent2]
+	{
+	world=Evergreen;
+	description=Thermal Vent;
+	category=blue_ice_vents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=blue_ice_vents;
+	seqname=blue_ice_vent2;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+
