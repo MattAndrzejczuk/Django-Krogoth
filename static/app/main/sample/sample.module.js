@@ -1,51 +1,48 @@
-(function ()
-{
+(function () {
     'use strict';
 
     angular
-        .module('app.sample', [])
+        .module('app.sample',
+            [
+                // 3rd Party Dependencies
+                'flow'
+            ]
+        )
         .config(config);
 
     /** @ngInject */
-    function config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider)
-    {
+    function config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider) {
         // State
-        $stateProvider
-            .state('app.sample', {
-                url    : '/sample',
-                views  : {
-                    'content@app': {
-                        templateUrl: '/static/app/main/sample/sample.html',
-                        controller : 'SampleController as vm'
-                    }
+        $stateProvider.state('app.sample', {
+            url: '/sample',
+            views: {
+                'content@app': {
+                    templateUrl: '/static/app/main/sample/sample.html',
+                    controller: 'SampleController as vm'
                 }
-            });
+            },
+            resolve: {
+                Documents: function (msApi) {
+                    return msApi.resolve('sample.data@get');
+                }
+            },
+            bodyClass: 'file-manager'
+        });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('/static/app/main/sample');
+        // $translatePartialLoaderProvider.addPart('/static/app/main/apps/lazarus');
+
 
         // Api
-        msApiProvider.register('sample', ['/static/app/data/sample/sample.json']);
+        msApiProvider.register('sample.data', ['/static/app/main/sample/sample_data.json', {param1: 'sample'}, 'get', true]);
 
 
         // Navigation
-        // msNavigationServiceProvider.saveItem('fuse', {
-        //     title : 'SAMPLE',
-        //     group : true,
-        //     weight: 1
-        // });
-
-        msNavigationServiceProvider.saveItem('apps.file-manager', {
-            title    : 'Sample',
-            icon     : 'icon-tile-four',
-            state    : 'app.sample',
-            //stateParams: {
-            //    'param1': 'page'
-            // },
-            translate: 'SAMPLE.SAMPLE_NAV',
-            weight   : 1
+        msNavigationServiceProvider.saveItem('apps.sample', {
+            title: 'Sample',
+            icon: 'icon-star',
+            state: 'app.sample',
+            weight: 5
         });
-        /*
-        */
     }
 })();

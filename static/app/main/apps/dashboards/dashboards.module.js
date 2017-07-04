@@ -38,10 +38,10 @@
             state: 'app.dashboards_server'
         });
 
-        msNavigationServiceProvider.saveItem('apps.dashboards.analytics', {
-            title: 'Analytics',
-            state: 'app.dashboards_analytics'
-        });
+        // msNavigationServiceProvider.saveItem('apps.dashboards.analytics', {
+        //     title: 'Analytics',
+        //     state: 'app.dashboards_analytics'
+        // });
     }
 
 })();

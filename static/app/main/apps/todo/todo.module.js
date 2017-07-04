@@ -45,16 +45,20 @@
         msApiProvider.register('todo.tags', ['/static/app/data/todo/tags.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('apps.to-do', {
-            title : 'To-Do',
-            icon  : 'icon-checkbox-marked',
-            state : 'app.to-do',
-            badge : {
-                content: 3,
-                color  : '#FF6F00'
-            },
-            weight: 9
-        });
+        // msNavigationServiceProvider.saveItem('apps.to-do', {
+        //     title : 'To-Do',
+        //     icon  : 'icon-checkbox-marked',
+        //     state : 'app.to-do',
+        //     badge : {
+        //         content: 3,
+        //         color  : '#FF6F00'
+        //     },
+        //     weight: 9
+        // });
+        
+        
+        
+        
     }
 
 })();

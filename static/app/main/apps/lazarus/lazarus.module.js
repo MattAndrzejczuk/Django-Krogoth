@@ -30,7 +30,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('/static/app/main/apps/lazarus');
+        // $translatePartialLoaderProvider.addPart('/static/app/main/apps/lazarus');
 
         var full_url = window.location.href;
         var url_arrayed_single = full_url.split("=");

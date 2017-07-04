@@ -137,25 +137,25 @@
         msApiProvider.register('e-commerce.order-statuses', ['/static/app/data/e-commerce/order-statuses.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('apps.e-commerce', {
-            title : 'E-Commerce',
-            icon  : 'icon-cart',
-            weight: 3
-        });
+        // msNavigationServiceProvider.saveItem('apps.e-commerce', {
+        //     title : 'E-Commerce',
+        //     icon  : 'icon-cart',
+        //     weight: 3
+        // });
 
-        msNavigationServiceProvider.saveItem('apps.e-commerce.dashboard', {
-            title: 'Dashboard',
-            state: 'app.e-commerce.dashboard'
-        });
+        // msNavigationServiceProvider.saveItem('apps.e-commerce.dashboard', {
+        //     title: 'Dashboard',
+        //     state: 'app.e-commerce.dashboard'
+        // });
 
-        msNavigationServiceProvider.saveItem('apps.e-commerce.products', {
-            title: 'Products',
-            state: 'app.e-commerce.products'
-        });
+        // msNavigationServiceProvider.saveItem('apps.e-commerce.products', {
+        //     title: 'Products',
+        //     state: 'app.e-commerce.products'
+        // });
 
-        msNavigationServiceProvider.saveItem('apps.e-commerce.orders', {
-            title: 'Orders',
-            state: 'app.e-commerce.orders'
-        });
+        // msNavigationServiceProvider.saveItem('apps.e-commerce.orders', {
+        //     title: 'Orders',
+        //     state: 'app.e-commerce.orders'
+        // });
     }
 })();

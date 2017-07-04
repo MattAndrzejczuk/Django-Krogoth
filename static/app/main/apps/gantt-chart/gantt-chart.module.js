@@ -51,12 +51,12 @@
         $translatePartialLoaderProvider.addPart('/static/app/main/apps/gantt-chart');
 
         // Navigation
-        msNavigationServiceProvider.saveItem('apps.gantt-chart', {
-            title : 'Gantt Chart',
-            icon  : 'icon-calendar-text',
-            state : 'app.gantt-chart',
-            weight: 7
-        });
+        // msNavigationServiceProvider.saveItem('apps.gantt-chart', {
+        //     title : 'Gantt Chart',
+        //     icon  : 'icon-calendar-text',
+        //     state : 'app.gantt-chart',
+        //     weight: 7
+        // });
 
         // Api
         msApiProvider.register('ganttChart.tasks', ['/static/app/data/gantt-chart/tasks.json']);

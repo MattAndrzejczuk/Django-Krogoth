@@ -72,18 +72,22 @@
         msApiProvider.register('mail.folder.important', ['/static/app/data/mail/folders/important.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('apps.mail', {
-            title      : 'Mail',
-            icon       : 'icon-email',
-            state      : 'app.mail.threads',
-            stateParams: {
-                filter: 'inbox'
-            },
-            badge      : {
-                content: 25,
-                color  : '#F44336'
-            },
-            weight     : 4
-        });
+        // msNavigationServiceProvider.saveItem('apps.mail', {
+        //     title      : 'Mail',
+        //     icon       : 'icon-email',
+        //     state      : 'app.mail.threads',
+        //     stateParams: {
+        //         filter: 'inbox'
+        //     },
+        //     badge      : {
+        //         content: 25,
+        //         color  : '#F44336'
+        //     },
+        //     weight     : 4
+        // });
+
+
+
+
     }
 })();

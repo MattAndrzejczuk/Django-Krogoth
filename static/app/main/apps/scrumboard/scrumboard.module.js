@@ -104,12 +104,15 @@
         msApiProvider.register('scrumboard.board', ['/static/app/data/scrumboard/boards/:id.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('apps.scrumboard', {
-            title : 'Scrumboard',
-            icon  : 'icon-trello',
-            state : 'app.scrumboard.boards',
-            weight: 8
-        });
+        // msNavigationServiceProvider.saveItem('apps.scrumboard', {
+        //     title : 'Scrumboard',
+        //     icon  : 'icon-trello',
+        //     state : 'app.scrumboard.boards',
+        //     weight: 8
+        // });
+        
+        
+        
     }
 
 })();

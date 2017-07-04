@@ -15,7 +15,7 @@
 
             // Core
             'app.core',
-            /// 'app.sample',
+            'app.sample',
 
             // Navigation
             'app.navigation',
@@ -50,6 +50,7 @@
 
             // Components
             'app.components'
+
 
 
         ]);

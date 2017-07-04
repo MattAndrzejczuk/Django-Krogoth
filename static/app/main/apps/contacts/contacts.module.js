@@ -43,12 +43,12 @@
         msApiProvider.register('contacts.user', ['/static/app/data/contacts/user.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('apps.contacts', {
-            title : 'Contacts',
-            icon  : 'icon-account-box',
-            state : 'app.contacts',
-            weight: 10
-        });
+        // msNavigationServiceProvider.saveItem('apps.contacts', {
+        //     title : 'Contacts',
+        //     icon  : 'icon-account-box',
+        //     state : 'app.contacts',
+        //     weight: 10
+        // });
 
     }
 

@@ -41,16 +41,16 @@
         msApiProvider.register('chat.user', ['/static/app/data/chat/user.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('apps.chat', {
-            title : 'Chat',
-            icon  : 'icon-hangouts',
-            state : 'app.chat',
-            badge : {
-                content: 13,
-                color  : '#09d261'
-            },
-            weight: 5
-        });
+        // msNavigationServiceProvider.saveItem('apps.chat', {
+        //     title : 'Chat',
+        //     icon  : 'icon-hangouts',
+        //     state : 'app.chat',
+        //     badge : {
+        //         content: 13,
+        //         color  : '#09d261'
+        //     },
+        //     weight: 5
+        // });
     }
 
 })();

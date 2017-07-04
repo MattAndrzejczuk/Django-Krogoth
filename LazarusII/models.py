@@ -8,8 +8,82 @@ from django.db import models
 # = models.BooleanField(default=False)
 
 
+
+# Documentation:
+# http://units.tauniverse.com/tutorials/tadesign/tadesign/tdfdown.htm
+class DownloadTDF(models.Model):
+    parent_unit = models.ForeignKey(UnitFbiData, on_delete=models.CASCADE,)
+    MENUENTRY = models.CharField(max_length=20, default='MENUENTRY1') # [MENUENTRY1] [MENUENTRY2] [MENUENTRY3] etc...
+    BUTTON = models.PositiveSmallIntegerField(default=0) # See 'TA Button' below
+    MENU = models.PositiveSmallIntegerField(default=2) # first menu in TA is actually '2' for some reason
+    UNITMENU = models.CharField(max_length=35) # short name for the construction unit that builds this unit
+    UNITNAME = models.CharField(max_length=35) # short name of the unit this button builds
+# TA Button:
+#######
+# 0 1 #
+# 2 3 #
+# 4 5 #
+#######
+
+
+# SEX = (
+#     ('male', 'Male'),
+#     ('female', 'Female'),
+# )
+# sex = models.CharField(choices=SEX, null=True, blank=True, max_length=10)
+
+
+class FeatureTDF(models.Model):
+    animating = models.BooleanField(default=False)
+    animtrans = models.BooleanField(default=False, blank=True)
+    autoreclaimable = models.BooleanField(default=True)
+    burnmax = models.IntegerField(default=18, blank=True)
+    burnmin = models.IntegerField(default=15, blank=True)
+    burnweapon = models.CharField(blank=True)
+    CATEGORIES = (
+        ('arm_corpses', 'arm_corpses'),
+        ('cor_corpses', 'cor_corpses'),
+        ('heaps', 'heaps'),
+        ('steamvents', 'steamvents'),
+        ('rocks', 'rocks'),
+    )
+    category = models.CharField(blank=True, choices=CATEGORIES, max_length=40)
+    description = models.CharField(max_length=135)
+    blocking = models.BooleanField(default=False)
+    damage = models.IntegerField(default=1800)
+    energy = models.IntegerField(default=250)
+    featuredead = models.CharField(max_length=135)
+    featurereclamate = models.CharField(max_length=135)
+    filename = models.CharField(max_length=135)
+    flamable = models.BooleanField(default=False)
+    footprintx = models.IntegerField(default=2)
+    footprintz = models.IntegerField(default=2)
+    geothermal = models.BooleanField(default=False)
+    height = models.IntegerField(default=25)
+    hitdensity = models.IntegerField(default=25)
+    indestructible = models.BooleanField(default=False)
+    metal = models.IntegerField(default=250)
+    nodisplayinfo = models.BooleanField(default=False)
+    _object = models.CharField(max_length=135)
+    permanent = models.BooleanField(default=False)
+    reclaimable = models.BooleanField(default=True)
+    reproduce = models.BooleanField(default=False)
+    reproducearea = models.BooleanField(default=False)
+    seqname = models.CharField(max_length=135)
+    seqnameburn = models.CharField(max_length=135)
+    seqnamedie = models.CharField(max_length=135)
+    seqnamereclamate = models.CharField(max_length=135)
+    seqnameshad = models.CharField(max_length=135)
+    shadtrans = models.BooleanField(default=True)
+    sparktime = models.IntegerField(default=5)
+    spreadchance = models.IntegerField(default=30)
+    world = models.CharField(max_length=135)
+
+
+# Documentation:
+# http://units.tauniverse.com/tutorials/tadesign/tadesign/fbidesc.htm
 class UnitFbiData(models.Model):
-    _raw_json_dump = models.CharField()
+    _raw_json_dump = models.CharField(max_length=100)
     Acceleration = models.FloatField(null=True, blank=True)
     ActiveWhenBuild = models.IntegerField()
     ai_limit = models.CharField(max_length=100)
@@ -57,7 +131,7 @@ class UnitFbiData(models.Model):
     EnergyMake = models.IntegerField()
     EnergyStorage = models.IntegerField()
     EnergyUse = models.IntegerField()
-    # TODO: Mant-To-One
+    # TODO: Many-To-One
     ExplodeAs = models.CharField(max_length=100)
     ExtractsMetal = models.FloatField(null=True, blank=True)
     firestandorders = models.IntegerField()
@@ -76,10 +150,10 @@ class UnitFbiData(models.Model):
     IsAirBase = models.BooleanField(default=False)
     IsFeature = models.BooleanField(default=False)
     istargetingupgrade = models.BooleanField(default=False)
-    ItalianDescription = models.CharField()
-    ItalianName = models.CharField()
-    JapanesDescription = models.CharField()
-    JapaneseName = models.CharField()
+    ItalianDescription = models.CharField(max_length=100)
+    ItalianName = models.CharField(max_length=100)
+    JapanesDescription = models.CharField(max_length=100)
+    JapaneseName = models.CharField(max_length=100)
     kamikaze = models.BooleanField(default=False)
     kamikazedistance = models.IntegerField()
     MakesMetal = models.BooleanField(default=False)
@@ -111,18 +185,18 @@ class UnitFbiData(models.Model):
     RadarDistance = models.IntegerField()
     RadarDistanceJam = models.IntegerField()
     Scale = models.IntegerField()
-    # TODO: PK below
+    # TODO: List of string choices will go below
     SelfDestructAs = models.CharField(max_length=100)
     selfdestructcountdown = models.IntegerField()
     ShootMe = models.BooleanField(default=False)
     ShowPlayerName = models.BooleanField(default=False)
-    # TODO: PK below:
+    # TODO: List of string choices will go below
     Side = models.CharField(max_length=100)
     SightDistance = models.IntegerField()
     SonarDistance = models.IntegerField()
     SonarDistanceJam = models.IntegerField()
     sortbias = models.IntegerField()
-    # TODO: PK below
+    # TODO: List of string choices will go below
     SoundCategory = models.CharField(max_length=100)
     SpanishDescription = models.CharField(max_length=100)
     SpanishName = models.CharField(max_length=100)
@@ -130,7 +204,7 @@ class UnitFbiData(models.Model):
     StandingMoveOrder = models.IntegerField()
     Stealth = models.BooleanField(default=False)
     SteeringMode = models.IntegerField()
-    # TODO: PK below
+    # TODO: List of string choices will go below
     TEDClass = models.CharField(max_length=100)
     teleporter = models.BooleanField(default=False)
     ThreeD = models.BooleanField(default=False)
@@ -159,6 +233,9 @@ class UnitFbiData(models.Model):
     # TODO: ManyToMany below
     wsec_badTargetCategory = models.CharField(max_length=100)
     YardMap = models.CharField(max_length=100)
+    def __str__(self):  # __unicode__ on Python 2
+        return self.Objectname
+
 
 
 # ONE-TO-ONE SAMPLE:

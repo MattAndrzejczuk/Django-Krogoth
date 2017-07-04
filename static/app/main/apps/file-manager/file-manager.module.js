@@ -39,12 +39,12 @@
         msApiProvider.register('fileManager.documents', ['/static/app/data/file-manager/documents.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('apps.file-manager', {
-            title : 'File Manager',
-            icon  : 'icon-folder',
-            state : 'app.file-manager',
-            weight: 6
-        });
+        // msNavigationServiceProvider.saveItem('apps.file-manager', {
+        //     title : 'File Manager',
+        //     icon  : 'icon-folder',
+        //     state : 'app.file-manager',
+        //     weight: 6
+        // });
     }
 
 })();

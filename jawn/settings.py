@@ -75,6 +75,7 @@ INSTALLED_APPS = (
     'chat',
     'lazarus',
     'LazarusII',
+    'dynamic_lazarus_page',
 )
 
 
