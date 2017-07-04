@@ -8,29 +8,107 @@ from django.db import models
 # = models.BooleanField(default=False)
 
 
-
-# Documentation:
-# http://units.tauniverse.com/tutorials/tadesign/tadesign/tdfdown.htm
-class DownloadTDF(models.Model):
-    parent_unit = models.ForeignKey(UnitFbiData, on_delete=models.CASCADE,)
-    MENUENTRY = models.CharField(max_length=20, default='MENUENTRY1') # [MENUENTRY1] [MENUENTRY2] [MENUENTRY3] etc...
-    BUTTON = models.PositiveSmallIntegerField(default=0) # See 'TA Button' below
-    MENU = models.PositiveSmallIntegerField(default=2) # first menu in TA is actually '2' for some reason
-    UNITMENU = models.CharField(max_length=35) # short name for the construction unit that builds this unit
-    UNITNAME = models.CharField(max_length=35) # short name of the unit this button builds
-# TA Button:
-#######
-# 0 1 #
-# 2 3 #
-# 4 5 #
-#######
-
-
 # SEX = (
 #     ('male', 'Male'),
 #     ('female', 'Female'),
 # )
 # sex = models.CharField(choices=SEX, null=True, blank=True, max_length=10)
+
+
+
+# Documentation:
+# http://units.tauniverse.com/tutorials/tadesign/tadesign/tdfweapon.htm
+class WeaponTDF(models.Model):
+    accuracy = models.IntegerField()
+    aimrate = models.IntegerField()
+    areaofeffect = models.IntegerField()
+    ballistic = models.BooleanField(default=False)
+    beamweapon = models.BooleanField(default=False)
+    burnblow = models.BooleanField(default=False)
+    burst = models.IntegerField(default=3)
+    burstrate = models.FloatField(null=True, blank=True)
+    color = models.IntegerField(default=144)
+    color2 = models.IntegerField(default=217)
+    commandfire = models.BooleanField(default=False)
+    cruise = models.BooleanField(default=False)
+    dropped = models.BooleanField(default=False)
+    duration = models.FloatField(null=True, blank=True)
+    edgeeffectiveness = models.FloatField(null=True, blank=True)
+    endsmoke = models.BooleanField(default=False)
+    energy = models.IntegerField(default=3)
+    energypershot = models.IntegerField(default=3)
+    explosionart = models.CharField(max_length=100, default='explode5')
+    explosiongaf = models.CharField(max_length=100, default='fx')
+    firestarter = models.IntegerField(default=3)
+    flighttime = models.IntegerField(default=3)
+    groundbounce = models.BooleanField(default=False)
+    guidance = models.BooleanField(default=False)
+    ID_weapon = models.IntegerField(default=3)
+    lavaexplosionart = models.CharField(max_length=100, default='lavasplashsm')
+    lavaexplosiongaf = models.CharField(max_length=100, default='fx')
+    lineofsight = models.BooleanField(default=False)
+    metal = models.IntegerField(default=3, null=True, blank=True)
+    metalpershot = models.IntegerField(default=3)
+    meteor = models.BooleanField(default=False)
+    minbarrelangle = models.IntegerField(default=-15)
+    model = models.CharField(max_length=100, default='missile')
+    name = models.CharField(max_length=100, default='Annihilator Weapon Sample')
+    noautorange = models.BooleanField(default=False)
+    noexplode = models.BooleanField(default=False)
+    noradar = models.BooleanField(default=False)
+    paralyzer = models.BooleanField(default=False)
+    pitchtolerance = models.IntegerField(default=12000)
+    propeller = models.BooleanField(default=False)
+    randomdecay = models.FloatField(null=True, blank=True)
+    _range = models.IntegerField(default=600)
+    reloadtime = models.FloatField(default=0.5)
+    RENDER_TYPES = (
+        ('laser', 0),
+        ('modelled', 1),
+        ('not rendered', 2),
+        ('dgun', 3),
+        ('plasma shell', 4),
+        ('flame', 5),
+        ('bomb', 6),
+        ('lightning', 7),
+    )
+    rendertype = models.IntegerField(choices=RENDER_TYPES, default=0)
+    selfprop = models.BooleanField(default=False)
+    shakeduration = models.IntegerField(default=2)
+    shakemagnitude = models.IntegerField(default=2)
+    smokedelay = models.IntegerField(default=600)
+    smoketrail = models.BooleanField(default=False)
+    soundhit = models.CharField(max_length=100, default='xplolrg1')
+    soundstart = models.CharField(max_length=100, default='annigun1')
+    soundtrigger = models.BooleanField(default=False)
+    soundwater = models.CharField(max_length=100, default='xplolrg1')
+    sprayangle = models.IntegerField(default=1024)
+    startsmoke = models.BooleanField(default=False)
+    startvelocity = models.IntegerField(default=250)
+    stockpile = models.BooleanField(default=False)
+    targetable = models.BooleanField(default=False)
+    tolerance = models.IntegerField(default=8000)
+    tracks = models.BooleanField(default=False)
+    turnrate = models.IntegerField(default=32768)
+    turret = models.BooleanField(default=False)
+    twophase = models.BooleanField(default=False)
+    unitsonly = models.BooleanField(default=False)
+    vlaunch = models.BooleanField(default=False)
+    waterexplosionart = models.CharField(max_length=100, default='h2oboom1')
+    waterexplosiongaf = models.CharField(max_length=100, default='fx')
+    waterweapon = models.BooleanField(default=False)
+    weaponacceleration = models.IntegerField(default=131)
+    weapontimer = models.FloatField(null=True, blank=True)
+    weapontype2 = models.CharField(max_length=100, default='fx', blank=True)
+    weaponvelocity = models.IntegerField(default=131)
+
+
+
+class Damage(models.Model):
+    name = models.CharField(max_length=100, default='default')
+    damage_amount = models.IntegerField(default=1230)
+    parent_weapon_id = models.ForeignKey(WeaponTDF, on_delete=models.CASCADE,)
+
 
 
 class FeatureTDF(models.Model):
@@ -39,13 +117,13 @@ class FeatureTDF(models.Model):
     autoreclaimable = models.BooleanField(default=True)
     burnmax = models.IntegerField(default=18, blank=True)
     burnmin = models.IntegerField(default=15, blank=True)
-    burnweapon = models.CharField(blank=True)
+    burnweapon = models.CharField(blank=True, max_length=95)
     CATEGORIES = (
-        ('arm_corpses', 'arm_corpses'),
-        ('cor_corpses', 'cor_corpses'),
-        ('heaps', 'heaps'),
-        ('steamvents', 'steamvents'),
-        ('rocks', 'rocks'),
+        ('Arm Corpses', 'arm_corpses'),
+        ('Core Corpses', 'cor_corpses'),
+        ('Heaps', 'heaps'),
+        ('Steamvents', 'steamvents'),
+        ('Rocks', 'rocks'),
     )
     category = models.CharField(blank=True, choices=CATEGORIES, max_length=40)
     description = models.CharField(max_length=135)
@@ -236,6 +314,22 @@ class UnitFbiData(models.Model):
     def __str__(self):  # __unicode__ on Python 2
         return self.Objectname
 
+# Documentation:
+# http://units.tauniverse.com/tutorials/tadesign/tadesign/tdfdown.htm
+class DownloadTDF(models.Model):
+    parent_unit = models.ForeignKey(UnitFbiData, on_delete=models.CASCADE, )
+    MENUENTRY = models.CharField(max_length=20,
+                                     default='MENUENTRY1')  # [MENUENTRY1] [MENUENTRY2] [MENUENTRY3] etc...
+    BUTTON = models.PositiveSmallIntegerField(default=0)  # See 'TA Button' below
+    MENU = models.PositiveSmallIntegerField(default=2)  # first menu in TA is actually '2' for some reason
+    UNITMENU = models.CharField(max_length=35)  # short name for the construction unit that builds this unit
+    UNITNAME = models.CharField(max_length=35)  # short name of the unit this button builds
+        # TA Button:
+        #######
+        # 0 1 #
+        # 2 3 #
+        # 4 5 #
+        #######
 
 
 # ONE-TO-ONE SAMPLE:

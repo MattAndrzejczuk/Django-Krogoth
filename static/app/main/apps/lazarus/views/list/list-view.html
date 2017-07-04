@@ -1,10 +1,14 @@
 <!-- LIST VIEW -->
 <md-button ng-click="vm.showCustomToast('yes')">toast example</md-button>
 
+
+
 <md-input-container>
   <label>Search</label>
-  <input type="text" ng-model="color" ng-model="test" md-maxlength="25">
+  <input type="text" ng-model="color" ng-model="searchText" md-maxlength="25">
 </md-input-container>
+
+
 
 <table class="simple list-view">
     <thead>
@@ -28,17 +32,15 @@
     <!--</tr>-->
     <!--</tbody>-->
     <tbody>
-    <tr ng-repeat="file in vm.files | filter:test['JsonDump']['UnitName']" ng-click="vm.select(file)"
+    <tr ng-repeat="file in vm.files | filter:searchText" ng-click="vm.select(file)"
         ng-class="{'selected' : vm.selected['JsonDump']['UnitName'].toLowerCase() === file['object_name'].toLowerCase()}">
         <td class="image"><img md-whiteframe="1" src="{{file['thumbnail']}}"></td>
         <td class="name">{{file['unit_data'][0]['JsonDump']['Name']}}</td>
         <td class="type" hide show-gt-sm>{{file['unit_data'][0]['JsonDump']['TEDClass']}}</td>
         <td class="owner" hide-xs>{{file['unit_data'][0]['JsonDump']['Side']}}</td>
-
         <td class="owner" hide-xs>{{file['unit_data'][0]['JsonDump']['Description']}}</td>
         <td class="owner" hide-xs>{{file['unit_data'][0]['JsonDump']['Category']}}</td>
         <td class="owner" hide-xs>{{file['unit_data'][0]['JsonDump']['MaxDamage']}}</td>
-
     </tr>
     </tbody>
 </table>

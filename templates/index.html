@@ -423,7 +423,13 @@
 <script src="/static/app/main/sample/sample.module.js"></script>
 <script src="/static/app/main/sample/sample.controller.js"></script>
 
-{{ dynamic_applications }}
+
+
+{% for fuse_app in Djangular %}
+    <script src="/dynamic_lazarus_page/DynamicJavaScriptInjector/?name={{fuse_app}}"></script>
+{% endfor %}
+
+
 
 {% verbatim %}
 <script src="/static/app/core/core.module.js"></script>

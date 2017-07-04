@@ -23,6 +23,8 @@ from PIL import Image
 
 
 from django.contrib.auth.models import User
+from dynamic_lazarus_page.models import AngularFuseApplication
+
 
 
 from .app_settings import (
@@ -37,11 +39,19 @@ redis_connection_pool = ConnectionPool(**redis_settings.WS4REDIS_CONNECTION)
 
 def index(request):
     template = loader.get_template('index.html')
+
+    Djangular = []
+
+    all_applications = AngularFuseApplication.objects.all()
+
+    for application in all_applications:
+        Djangular.append(application.name)
+
     context = {
         "message": "Welcome to CiniCrafts official website!",
+        "Djangular": Djangular,
     }
     return HttpResponse(template.render(context, request))
-
 
 
 
