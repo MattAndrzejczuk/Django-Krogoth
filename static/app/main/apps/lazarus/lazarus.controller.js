@@ -123,10 +123,7 @@
 
 
         vm.openMenuDropDown = openMenuDropDown;
-
-
         function openMenuDropDown($mdMenu, ev) {
-
             var audio = new Audio("/static/gui_sfx/click_unit_order.wav");
             audio.addEventListener('ended', function () {
             }, false);
@@ -136,6 +133,7 @@
             $mdMenu.open(ev);
         }
 
+        
 
         function dialogShowRawFbi(ev) {
             // alert(vm.selected['JsonDump']['UnitName']);
@@ -239,23 +237,68 @@
          */
         function fileAdded(file) {
             // Prepare the temp file data for file list
-            var uploadingFile = {
-                id: file.uniqueIdentifier,
-                file: file,
-                type: '',
-                owner: 'Emily Bennett',
-                size: '',
-                modified: moment().format('MMMM D, YYYY'),
-                opened: '',
-                created: moment().format('MMMM D, YYYY'),
-                extention: '',
-                location: 'My Files > Documents',
-                offline: false,
-                preview: '/static/assets/images/etc/sample-file-preview.jpg'
-            };
+            // var uploadingFile = {
+            //     id: file.uniqueIdentifier,
+            //     file: file,
+            //     type: '',
+            //     owner: 'Emily Bennett',
+            //     size: '',
+            //     modified: moment().format('MMMM D, YYYY'),
+            //     opened: '',
+            //     created: moment().format('MMMM D, YYYY'),
+            //     extention: '',
+            //     location: 'My Files > Documents',
+            //     offline: false,
+            //     preview: '/static/assets/images/etc/sample-file-preview.jpg'
+            // };
+
+            var data = new FormData();
+            data.append("file", file);
+
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === 4) {
+                    console.log(this.responseText);
+                }
+            });
+
+            xhr.open("POST", "/SandboxDB/UploadDataTA/");
+            xhr.setRequestHeader("cache-control", "no-cache");
+            xhr.setRequestHeader("postman-token", "51b775d3-214e-83a0-2e18-35a46f3cfeb4");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.send(data);
+
+            // $http({
+            //     method: 'POST',
+            //     url: '/SandboxDB/UploadDataTA/',
+            //     headers: {
+            //         'Content-Type': undefined,
+            //         'cache-control': 'no-cache'
+            //     },
+            //     data: {
+            //         file: file
+            //     },
+            //     transformRequest: function (data, headersGetter) {
+            //         var formData = new FormData();
+            //         angular.forEach(data, function (value, key) {
+            //             formData.append(key, value);
+            //         });
+            //         return formData;
+            //     }
+            // })
+            //     .success(function () {
+            //         showCustomToast('Upload Complete !');
+            //     })
+            //     .error(function () {
+            //         showCustomToast('Failed to upload unit, we will resolve this issue soon!');
+            //         vm.playSoundError();
+            //     });
 
             // Append it to the file list
-            vm.files.push(uploadingFile);
+            // vm.files.push(uploadingFile);
         }
 
 
@@ -311,6 +354,48 @@
                 // or server returns response with an error status.
             });
         }
+
+
+        /// /LazarusII/LazarusListUnits/?should_get_user_content=true&mod_name=
+        vm.selectUploadedModNamed = selectUploadedModNamed;
+        function selectUploadedModNamed(mod_name) {
+            vm.playSoundClickSkirmish();
+            vm.selectedMod = mod_name;
+            vm.isLoadingMod = true;
+            $http({
+                method: 'GET',
+                url: '/LazarusII/LazarusListUnits/?should_get_user_content=true&mod_name=' + vm.selectedMod
+            }).then(function successCallback(response) {
+
+                vm.files = response.data;
+                vm.isLoadingMod = false;
+
+                vm.playSoundModFinishedLoading();
+                // this callback will be called asynchronously
+                // when the response is available
+            }, function errorCallback(response) {
+                console.log(response.data);
+                showCustomToast('Failed to load mod, we will resolve this issue soon!');
+                vm.playSoundError();
+                vm.isLoadingMod = false;
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+        }
+
+        vm.customMods = [];
+
+        $http({
+            method: 'GET',
+            url: '/SandboxDB/UploadDataTA/'
+        }).then(function successCallback(response) {
+            $log.log(response.data);
+            vm.customMods = response.data;
+        }, function errorCallback(response) {
+            // failed to load custom mods
+            $log.log('FAIL ! ! !');
+            $log.log(response.data);
+        });
 
         /**
          * Toggle details

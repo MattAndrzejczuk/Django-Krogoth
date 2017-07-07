@@ -58,17 +58,31 @@ class UploadDataTA(APIView):
 
     def get(self, request, format=None):
         allmodels = TotalAnnihilationUploadedFile.objects.all()
-        print(allmodels)
-        return Response(json.dumps(allmodels))
+        response_list = []
+        for item in allmodels:
+            response_list.append(item.file_name[:-4])
+        return Response(response_list)
 
 
     def post(self, request, *args, **kwargs):
+
+        print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        print(request.FILES)
+        print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+
         file_obj = request.FILES['file']
-        path = default_storage.save('ta_data/' + str(file_obj), ContentFile(file_obj.read()))
+
+        parseName1 = str(file_obj).replace(' ', '_')
+        parseName2 = parseName1.replace('-', '').lower()
+        parseName3 = parseName2.replace('+', '__')
+        # parseName4 = parseName3.replace('.', '')
+
+        path = default_storage.save('ta_data/' + parseName3, ContentFile(file_obj.read()))
+        print('path: %s' % path)
 
         tmp_file = os.path.join(settings.MEDIA_ROOT, path)
 
-        file_name_regular = str(path).replace('ta_data/', '')
+        file_name_regular = str(path).replace('ta_data/', '').strip()
 
         response = {'result': 'everything is finished ! ! ! ' + str(tmp_file)}
 

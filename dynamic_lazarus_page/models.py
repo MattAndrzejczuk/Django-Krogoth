@@ -2,8 +2,25 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import User
 
-
-
+DEFAULT_MODULE = '(function(){"use strict";function a(a,t,e,_){a.state("app.FUSE_APP_NAME",{url:"/FUSE_APP_NAME",views:{"content@app":{templateUrl:"/dynamic_lazarus_page/DynamicHTMLInjector/?name=FUSE_APP_NAME",controller:"FUSE_APP_NAMEController as vm"}},bodyClass:"file-manager"}),_.saveItem("apps.FUSE_APP_NAME",{title:"FUSE_APP_TITLE",icon:"icon-star",state:"app.FUSE_APP_NAME",weight:5})}angular.module("app.FUSE_APP_NAME",["flow"]).config(a)}();'
+ICONS = (
+    ('icon-cloud', 'icon-cloud'),
+    ('icon-cube', 'icon-cube'),
+    ('icon-cube-outline', 'icon-cube-outline'),
+    ('icon-cog', 'icon-cog'),
+    ('icon-hexagon-outline', 'icon-hexagon-outline'),
+    ('icon-hexagon', 'icon-hexagon'),
+    ('icon-home', 'icon-home'),
+    ('icon-harddisk', 'icon-harddisk'),
+    ('icon-view-list', 'icon-view-list'),
+    ('icon-terrain', 'icon-terrain'),
+    ('icon-dice', 'icon-dice'),
+    ('icon-help', 'icon-help'),
+    ('icon-ubuntu', 'icon-ubuntu'),
+    ('icon-linux', 'icon-linux'),
+    ('icon-apple', 'icon-apple'),
+    ('icon-windows', 'icon-windows'),
+)
 
 class SuperBasicModel(models.Model):
     basic_string = models.CharField(max_length=100)
@@ -21,6 +38,9 @@ class AngularFuseApplication(models.Model):
     # def __str__(self):
     #     return self.name
     name = models.CharField(max_length=255)
+    js_module = models.TextField(default=DEFAULT_MODULE)
+    icon = models.CharField(choices=ICONS, max_length=50, default='icon-hexagon-outline')
+
     def __str__(self):
         return self.name
 

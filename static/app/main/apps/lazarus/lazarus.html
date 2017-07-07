@@ -26,7 +26,7 @@
             <div class="header-content" layout="row" layout-align="start center">
 
                 <md-menu>
-                    <md-button aria-label="Open phone interactions menu"
+                    <md-button aria-label="Open phone interactions menu" class="md-raised md-primary md-button md-default-theme"
                                ng-click="vm.openMenuDropDown($mdMenu, $event)">
                         Select a mod
                     </md-button>
@@ -64,6 +64,13 @@
                     </md-menu-content>
                 </md-menu>
 
+
+
+                <form action="/SandboxDB/UploadDataTA/" method="post" enctype="multipart/form-data"
+                      onsubmit="return false">
+                    <input type="file" name="file">
+                    <input type="submit" value="Submit">
+                </form>
             </div>
 
 

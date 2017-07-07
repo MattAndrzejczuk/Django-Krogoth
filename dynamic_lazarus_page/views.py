@@ -92,7 +92,10 @@ class DynamicJavaScriptInjector(APIView):
         raw_js_response = ''
         for comp in components:
             if comp.type == 'js':
-                raw_js_response += comp.contents.replace('FUSE_APP_NAME', application.name)
+                parsed1 = comp.contents.replace('FUSE_APP_NAME', application.name)
+                parsed2 = parsed1.replace('FUSE_APP_TITLE', application.name.replace('_', ' '))
+                parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon)
+                raw_js_response += parsed3
         return HttpResponse(raw_js_response)
 
 
@@ -104,7 +107,9 @@ class DynamicHTMLInjector(APIView):
         raw_html_response = ''
         for comp in components:
             if comp.type == 'html':
-                raw_html_response += comp.contents.replace('FUSE_APP_NAME', application.name)
+                parsed1 = comp.contents.replace('FUSE_APP_NAME', application.name)
+                parsed2 = parsed1.replace('FUSE_APP_TITLE', application.name.replace('_', ' '))
+                raw_html_response += parsed2
         return HttpResponse(raw_html_response)
 
 

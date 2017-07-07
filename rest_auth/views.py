@@ -34,6 +34,8 @@ from .app_settings import (
     PasswordChangeSerializer
 )
 
+import subprocess
+
 redis_connection_pool = ConnectionPool(**redis_settings.WS4REDIS_CONNECTION)
 
 
@@ -53,9 +55,20 @@ def index(request):
     newRecord = VisitorLogSB(remote_addr=_1, http_usr=_2, http_accept=_3, other_misc_notes='index.html requested.')
     newRecord.save()
 
+    # GET LAZARUS BUILD VERSION:
+    bash_cmd = ['git', 'rev-list', '--count', 'master']
+    get_build_cmd = str(subprocess.check_output(bash_cmd))
+    current_build_1 = ''
+    current_build_2 = ''
+    try:
+        current_build_1 = ('0.' + str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", "")) + '.'
+        current_build_2 = (str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", ""))[1:]
+    except:
+        print('failed to check version!!!')
+
     context = {
-        "message": "Total Annihilation: Lazarus",
-        "Djangular": Djangular,
+        "message": "TA Lazarus " + current_build_1[:3] + "." + current_build_2,
+        "Djangular": Djangular
     }
     return HttpResponse(template.render(context, request))
 
