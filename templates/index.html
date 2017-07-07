@@ -418,18 +418,14 @@
 <script src="/static/app/main/apps/chat/chat.controller.js"></script>
 <script src="/static/app/main/apps/calendar/calendar.controller.js"></script>
 
-{% endverbatim %}
-
 <script src="/static/app/main/sample/sample.module.js"></script>
 <script src="/static/app/main/sample/sample.controller.js"></script>
 
-
+{% endverbatim %}
 
 {% for fuse_app in Djangular %}
     <script src="/dynamic_lazarus_page/DynamicJavaScriptInjector/?name={{fuse_app}}"></script>
 {% endfor %}
-
-
 
 {% verbatim %}
 <script src="/static/app/core/core.module.js"></script>

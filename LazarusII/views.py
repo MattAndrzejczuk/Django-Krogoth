@@ -8,7 +8,7 @@ from LazarusII.FbiData import LazarusUnit
 from LazarusII.PyColors import bcolors, printKeyValuePair, printKeyValuePair1, printKeyValuePair2, printError, printWarning, printInfo, printLog, printDebug
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
-
+import emoji
 
 # For listing units:
 from os import walk
@@ -16,6 +16,11 @@ import os
 from PIL import Image
 
 import time
+from LazarusII.FbiData import remove_comments
+import re
+import datetime
+import subprocess
+
 
 
 # Create your views here.
@@ -45,48 +50,64 @@ def getUnitFbiUsingId(request):
 
 class UnitFbiData(APIView):  # cat cpuinfo
     def get(self, request, format=None):
-        printKeyValuePair('views.py','38')
+        # printKeyValuePair('views.py','38')
         try:
-            printDebug('GET - UnitFbiData', 'entry of try')
+            # printDebug('GET - UnitFbiData', 'entry of try')
             mod_name = str(request.GET['mod_name'])
-            printInfo('got "mod_name" GET property')
-            unit_id = str(request.GET['unit_id'])
-            printInfo('got "unit_id" GET property')
+            # printInfo('got "mod_name" GET property')
+            unit_id = str(request.GET['unit_id']).lower()
+            # printInfo('got "unit_id" GET property')
             unit_path = '/usr/src/app/static/mods/' + mod_name + '/units/' + unit_id + '.fbi'
 
-            printLog('unit path: ')
-            printInfo(unit_path)
+            try:
+                will_show_raw_fbi = str(request.GET['will_show_raw_fbi'])
+                fbi_file = open(unit_path, 'r', errors='replace')
 
-            unitsArray = readFile(unit_path)
-            for unit in unitsArray:
-                printWarning('OKAY! looping through units array:')
-                printKeyValuePair('name', unit)
-                printDebug(unit, 'UnitFbiData')
+                dialog_actions = '<br><br><br><md-button class="md-warn" ng-click="answer(\'close\')">Not Useful</md-button>'
 
-            printLog('finished looping through units array.')
-            printInfo('GOING TO JSON DUMPS UNITS ARRAY: ')
-            printLog(str(unitsArray))
-            printDebug('Unit FBI Data Extracted Successfully! ', 'it always crashed here...')
-            return Response(unitsArray)
+                read_file_str = remove_comments(fbi_file.read())
+                if will_show_raw_fbi == 'pretty':
+                    read_file_str = read_file_str.replace(';', '; <br>&emsp;')
+                    read_file_str = read_file_str.replace('{', '{<br>&emsp;')
+                    read_file_str += dialog_actions
+                    return HttpResponse(read_file_str)
+                else:
+                    return HttpResponse(read_file_str)
+                # json_response = {'raw_data': fbi_file.read()}
+
+
+            except:
+                unitsArray = readFile(unit_path)
+                return Response(unitsArray)
+            # for unit in unitsArray:
+            #     printWarning('OKAY! looping through units array:')
+            #     printKeyValuePair('name', unit)
+            #     printDebug(unit, 'UnitFbiData')
+
+            # printLog('finished looping through units array.')
+            # printInfo('GOING TO JSON DUMPS UNITS ARRAY: ')
+            # printLog(str(unitsArray))
+            # printDebug('Unit FBI Data Extracted Successfully! ', 'it always crashed here...')
+
         except:
-            printDebug('GET - UnitFbiData', 'entry of try')
-            mod_name = str(request.GET['mod_name'])
-            printInfo('got "mod_name" GET property')
-            unit_id = str(request.GET['unit_id'])
-            printInfo('got "unit_id" GET property')
-            unit_path = '/usr/src/app/static/mods/' + mod_name + '/units/' + unit_id + '.FBI'
-            printLog('unit path: ')
-            printInfo(unit_path)
-            unitsArray = readFile(unit_path)
-            for unit in unitsArray:
-                printWarning('OKAY! looping through units array:')
-                printKeyValuePair('name', unit)
-                printDebug(unit, 'UnitFbiData')
-            printLog('finished looping through units array.')
-            printInfo('GOING TO JSON DUMPS UNITS ARRAY: ')
-            printLog(str(unitsArray))
-            printDebug('Unit FBI Data Extracted Successfully! ', 'it always crashed here...')
-            return Response(unitsArray)
+            # printDebug('GET - UnitFbiData', 'entry of try')
+            # mod_name = str(request.GET['mod_name'])
+            # printInfo('got "mod_name" GET property')
+            # unit_id = str(request.GET['unit_id'])
+            # printInfo('got "unit_id" GET property')
+            # unit_path = '/usr/src/app/static/mods/' + mod_name + '/units/' + unit_id + '.FBI'
+            # printLog('unit path: ')
+            # printInfo(unit_path)
+            # unitsArray = readFile(unit_path)
+            # for unit in unitsArray:
+            #     printWarning('OKAY! looping through units array:')
+            #     printKeyValuePair('name', unit)
+            #     printDebug(unit, 'UnitFbiData')
+            # printLog('finished looping through units array.')
+            # printInfo('GOING TO JSON DUMPS UNITS ARRAY: ')
+            # printLog(str(unitsArray))
+            # printDebug('Unit FBI Data Extracted Successfully! ', 'it always crashed here...')
+            return Response('oh shit')
 
 # AutoCollectStatic
 class ApiNavigationUrls(APIView):
@@ -100,7 +121,48 @@ class ApiNavigationUrls(APIView):
             "Execute Bash rename mods to lowercase": "http://52.27.28.55/LazarusII/ExecuteBash/?cmd=rename_dir&mod_name=totala_files2",
             "AutoCollectStatic": "http://52.27.28.55/LazarusII/AutoCollectStatic/",
         }
-        return Response(json_response)
+        final_json = {}
+        final_json['old_stuff'] = json_response
+
+        tdf_data = {
+            "coradon_weapon": "http://52.27.28.55/LazarusII/OpenTotalAnnihilationTDFFile/?mod_name=mod_hoverattack&file_name=coradon_weapon&directory_name=weapons",
+            "corhunt_weapon": "http://52.27.28.55/LazarusII/OpenTotalAnnihilationTDFFile/?mod_name=totala_files&file_name=corhunt_weapon&directory_name=weapons",
+            "corkrog_weapon": "http://52.27.28.55/LazarusII/OpenTotalAnnihilationTDFFile/?mod_name=totala_files&file_name=corkrog_weapon&directory_name=weapons",
+            "cormort_weapon": "http://52.27.28.55/LazarusII/OpenTotalAnnihilationTDFFile/?mod_name=totala_files&file_name=cormort_weapon&directory_name=weapons",
+            "corsh_weapon": "http://52.27.28.55/LazarusII/OpenTotalAnnihilationTDFFile/?mod_name=totala_files&file_name=corsh_weapon&directory_name=weapons",
+            "armmine1_weapon": "http://52.27.28.55/LazarusII/OpenTotalAnnihilationTDFFile/?mod_name=totala_files&file_name=armmine1_weapon&directory_name=weapons",
+            "armmine3_weapon": "http://52.27.28.55/LazarusII/OpenTotalAnnihilationTDFFile/?mod_name=totala_files&file_name=armmine3_weapon&directory_name=weapons"
+        }
+
+        final_json['TDF_Examples'] = tdf_data
+
+        return Response(final_json)
+
+
+
+class UserAgentTracker(APIView):
+    def get(self, request, format=None):
+        REMOTE_ADDR = str(request.META['REMOTE_ADDR'])
+        HTTP_USER_AGENT = str(request.META['HTTP_USER_AGENT'])
+        HTTP_ACCEPT_LANGUAGE = str(request.META['HTTP_ACCEPT_LANGUAGE'])
+        _date = datetime.date
+        _time = datetime.time
+
+
+        html = '<div>' + \
+               '<h1> User Visitor Tracking </h1>' + \
+               '<h3> REMOTE_ADDR </h3>' + \
+               '<p>' + str(REMOTE_ADDR) + '</p>' + \
+               '<h3> HTTP_USER_AGENT </h3>' + \
+               '<p>' + str(HTTP_USER_AGENT) + '</p>' + \
+               '<h3> HTTP_ACCEPT_LANGUAGE </h3>' + \
+               '<p>' + str(HTTP_ACCEPT_LANGUAGE) + '</p>' + \
+               '<h4> date </h4>' + \
+               '<p>' + str(_date.today()) + '</p>' + \
+               '<h5> username </h5>' + \
+               '<p>' + str(request.user) + '</p>' + \
+               '</div>'
+        return HttpResponse(html)
 
 
 class CustomToastGenerator(APIView):
@@ -109,13 +171,14 @@ class CustomToastGenerator(APIView):
         html = '<md-toast><span class="md-toast-text" flex>' + msg + '</span><md-button class="md-highlight" ng-click="openMoreInfo($event)">More info</md-button><md-button ng-click="closeToast()">Close</md-button></md-toast>'
         return HttpResponse(html)
 
-import subprocess
+
 
 class ExecuteBash(APIView):
 
     def get(self, request, format=None):
         cmd = request.GET['cmd']
         result = 'nan'
+        key_name = 'nan'
         final_obj = {}
         if cmd == 'ls':
             mod_name = request.GET['mod_name']
@@ -124,7 +187,9 @@ class ExecuteBash(APIView):
             result1 = str(subprocess.check_output(['ls', 'static/mods']))
             final_obj[str(result0)] = str(result1).split('\\n')
             result2 = str(subprocess.check_output(['ls', 'static/mods/' + mod_name + '/' + dir ]))
-            final_obj[result0+'static/mods/'+mod_name+'/'+dir] = str(result2).split('\\n')
+            key_name = result0+'static/mods/'+mod_name+'/'+dir
+            final_obj[key_name] = str(result2).split('\\n')
+            final_obj[key_name][0] = final_obj[key_name][0].replace("b'", "")
         elif cmd == 'rename_dir':
             # find . -depth -exec rename 's/(.*)\/([^\/]*)/$1\/\L$2/' {} \;
             result0 = str(subprocess.check_output(['ls', '.'])).replace("b'", "").replace("\\n'", "/")
@@ -245,32 +310,278 @@ CCD = {
 
 class ReadUnitFbi:  # cat cpuinfo
     def get(self, mod_name, unit_id):
-        printKeyValuePair('views.py','38')
-        print('')
-        print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
-        print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
-        print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
-        print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
-        print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
-        print('')
+        # printKeyValuePair('views.py','38')
+        # print('')
+        # print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        # print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        # print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        # print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        # print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        # print('')
         try:
-            printInfo('got "unit_id" GET property')
+            # printInfo('got "unit_id" GET property')
             unit_path = '/usr/src/app/static/mods/' + mod_name + '/units/' + unit_id + '.fbi'
-            printLog('unit path: ')
-            printInfo(unit_path)
+            # printLog('unit path: ')
+            # printInfo(unit_path)
             unitsArray = readFile(unit_path)
-            for unit in unitsArray:
-                printWarning('OKAY! looping through units array:')
-                printKeyValuePair('name', unit)
-                printDebug(unit, 'UnitFbiData')
+            # for unit in unitsArray:
+            #     printWarning('OKAY! looping through units array:')
+            #     printKeyValuePair('name', unit)
+            #     printDebug(unit, 'UnitFbiData')
 
-            printLog('finished looping through units array.')
-            printInfo('GOING TO JSON DUMPS UNITS ARRAY: ')
-            printLog(str(unitsArray))
-            printDebug('Unit FBI Data Extracted Successfully! ', 'it always crashed here...')
+            # printLog('finished looping through units array.')
+            # printInfo('GOING TO JSON DUMPS UNITS ARRAY: ')
+            # printLog(str(unitsArray))
+            # printDebug('Unit FBI Data Extracted Successfully! ', 'it always crashed here...')
             return unitsArray
         except:
             return []
+
+
+
+class OpenTotalAnnihilationFBIFile(APIView):
+    def get(self, request, format=None):
+        mod_name = str(request.GET['mod_name'])
+        print('1 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        file_name = str(request.GET['file_name'])
+        print('2 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        directory_name = 'units'
+        print('3 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        file_path = '/usr/src/app/static/mods/' + mod_name + '/' + directory_name + '/' + file_name + '.fbi'
+        print('4 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        f3 = open(file_path, 'r', errors='replace')
+
+        print('5 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        OBJECT_NAME = 'UNITINFO'
+
+        tdf_without_comments = remove_comments(f3.read().strip().replace('\n', '').replace('\t', ''))
+
+        parsed_0 = tdf_without_comments.replace('[' + OBJECT_NAME + ']', '')
+        parsed_1 = parsed_0.replace('', '')
+        parsed_2 = parsed_1.replace('[', '"')
+        parsed_3 = parsed_2.replace(']', '" :')
+        parsed_4 = parsed_3.replace('=', '" : "')
+        parsed_5 = parsed_4.replace(';', '", "')
+        parsed_6 = parsed_5.replace('{', '{ "')
+        parsed_7 = parsed_6.replace(', "}', '}')
+        parsed_8 = parsed_7.replace(', ""', ', "')
+        total_weapons = [m.start() for m in re.finditer('[' + OBJECT_NAME + ']', tdf_without_comments)]
+        parsed_9 = parsed_8.replace('}{', '}, {', len(total_weapons) - 1)
+        parsed_10 = '[' + parsed_9 + ']'
+
+        tab_str = '	'
+        parsed_11 = parsed_10.replace('\t', '')
+        parsed_12 = parsed_11.replace('", "}', '"}')
+        print(parsed_12)
+
+        dictionary = json.loads(parsed_12)
+
+        for weapon in dictionary:
+            weapon['OBJ_NAME'] = OBJECT_NAME
+
+        return Response(dictionary)
+
+
+
+class OpenTotalAnnihilationTDFFile(APIView):
+
+    def get(self, request, format=None):
+        mod_name = str(request.GET['mod_name'])
+        file_name = str(request.GET['file_name'])
+        directory_name = str(request.GET['directory_name'])
+        file_path = '/usr/src/app/static/mods/' + mod_name + '/' + directory_name + '/' + file_name + '.tdf'
+        f3 = open(file_path, 'r', errors='replace')
+
+        print('5 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        # OBJECT_NAME = 'UNITINFO'
+
+        tdf_without_comments = remove_comments(f3.read().strip().replace('\n', '').replace('\t', ''))
+
+        def parseNested(_tdf, nOBJECT_NAME):
+            # nOBJECT_NAME = 'DAMAGE'
+            nparsed_0 = _tdf.replace('[' + nOBJECT_NAME + ']', '')
+            nparsed_1 = nparsed_0.replace('', '')
+            nparsed_2 = nparsed_1.replace('[', '"')
+            nparsed_3 = nparsed_2.replace(']', '" :')
+            nparsed_4 = nparsed_3.replace('=', '" : "')
+            nparsed_5 = nparsed_4.replace(';', '", "')
+            nparsed_6 = nparsed_5.replace('{', '{ "')
+            nparsed_7 = nparsed_6.replace(', "}', '}')
+            nparsed_8 = nparsed_7.replace(', ""', ', "')
+            total_weapons = [m.start() for m in re.finditer('[' + nOBJECT_NAME + ']', _tdf)]
+            nparsed_9 = nparsed_8.replace('}{', '}, {', len(total_weapons) - 1)
+            nparsed_10 = '[' + nparsed_9 + ']'
+            tab_str = '	'
+            nparsed_11 = nparsed_10.replace('\t', '')
+            nparsed_12 = nparsed_11.replace('", "}', '"}')
+
+            _BrkStart = [m.start() for m in re.finditer('\[', _tdf)]
+            _BrkEnd = [m.start() for m in re.finditer('\}', _tdf)]
+            if len(_BrkStart) == len(_BrkEnd):
+                i = 0
+                for obj in _BrkStart:
+                    obj_name = _tdf[_BrkStart[i]:_BrkEnd[i]]
+                    is_nested = (_tdf[_BrkStart[i] - 1:_BrkStart[i] + 1])
+                    if is_nested:
+                        # print(obj_name)
+                        return obj_name
+                    i += 1
+
+        def parseBase(_tdf, bOBJECT_NAME):
+            # bOBJECT_NAME = 'Hellfire_LASER'
+            tdf_without_comments = remove_comments(_tdf)
+            parsed_0 = tdf_without_comments.replace('[' + bOBJECT_NAME + ']', '')
+            parsed_1 = parsed_0.replace('', '')
+            parsed_2 = parsed_1.replace('[', '"')
+            parsed_3 = parsed_2.replace(']', '" :')
+            parsed_4 = parsed_3.replace('=', '" : "')
+            parsed_5 = parsed_4.replace(';', '", "')
+            parsed_6 = parsed_5.replace('{', '{ "')
+            parsed_7 = parsed_6.replace(', "}', '}')
+            parsed_8 = parsed_7.replace(', ""', ', "')
+            total_weapons = [m.start() for m in re.finditer('[' + bOBJECT_NAME + ']', _tdf)]
+            parsed_9 = parsed_8.replace('}{', '}, {', len(total_weapons) - 1)
+            parsed_10 = parsed_9  # '[' + parsed_9 + ']'
+            tab_str = '	'
+            parsed_11 = parsed_10.replace('\t', '')
+            parsed_12 = parsed_11.replace('", "}', '"}')
+            return parsed_12
+
+        def getNestedType(_tdf):
+            _BrkStart = [m.start() for m in re.finditer('\[', _tdf)]
+            _BrkEnd = [m.start() for m in re.finditer('\]', _tdf)]
+            if len(_BrkStart) == len(_BrkEnd):
+                i = 0
+                for obj in _BrkStart:
+                    obj_name = _tdf[_BrkStart[i]:_BrkEnd[i]]
+                    is_nested = (_tdf[_BrkStart[i] - 1:_BrkStart[i] + 1])
+                    if is_nested:
+                        # print('...')
+                        # print(obj_name.replace('[', ''))
+                        return obj_name.replace('[', '')
+                    i += 1
+
+        def getBaseType(_tdf):
+            _BrkStart = [m.start() for m in re.finditer('\[', _tdf)]
+            _BrkEnd = [m.start() for m in re.finditer('\]', _tdf)]
+            if len(_BrkStart) == len(_BrkEnd):
+                i = 0
+                for obj in _BrkStart:
+                    obj_name = _tdf[_BrkStart[i]:_BrkEnd[i]]
+                    is_nested = (_tdf[_BrkStart[i] - 1:_BrkStart[i] + 1])
+                    if is_nested:
+                        print('...')
+                        print(obj_name.replace('[', ''))
+                    return obj_name.replace('[', '')
+                    i += 1
+
+        # _ERR = emoji.emojize(' :collision: ', use_aliases=True)
+        # _checkForParseErrors = [m.start() for m in re.finditer("\;\}\}\[", tdf_without_comments)]
+
+
+        # if len(_checkForParseErrors) <= 0:
+        #     print(_ERR + _ERR + _ERR + _ERR + _ERR + _ERR + _ERR + _ERR)
+        #     print('CRITICAL PARSE ERROR, FAILED TO SPLIT THE PAYLOAD.')
+        #     print(_ERR + _ERR + _ERR + _ERR + _ERR + _ERR + _ERR + _ERR)
+        #     print(tdf_without_comments)
+        #     print(_ERR + _ERR + _ERR + _ERR + _ERR + _ERR + _ERR + _ERR)
+
+
+        dict_list = []
+        _tdf_prep = tdf_without_comments.replace(';}}[', ';}}|[')
+        split_tdf = _tdf_prep.split('|')
+
+        print('❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆')
+        print(tdf_without_comments)
+        print('❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆ ❆')
+
+
+        for item in split_tdf:
+            print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
+            print(item)
+            print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
+            tdf_without_comments1 = remove_comments(item)
+            nested_obj = parseNested(tdf_without_comments1.replace('\t', ''), getNestedType(tdf_without_comments1))
+            base_obj = parseBase(tdf_without_comments1.replace(nested_obj, ''), getBaseType(tdf_without_comments1))
+            dictionary = json.loads(base_obj)
+            dictionary[getNestedType(tdf_without_comments1)] = json.loads(
+                parseBase(nested_obj, getNestedType(tdf_without_comments1)))
+            getBaseType(item)
+            dict_list.append(dictionary)
+
+        print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
+        print(json.dumps(dict_list))
+        print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
+
+        return Response(dict_list)
+
+
+"""
+    def get(self, request, format=None):
+        mod_name = str(request.GET['mod_name'])
+        file_name = str(request.GET['file_name'])
+        directory_name = str(request.GET['directory_name'])
+        file_path = '/usr/src/app/static/mods/' + mod_name + '/' + directory_name + '/' + file_name + '.tdf'
+        f3 = open(file_path, 'r', errors='replace')
+
+        arrayOfDetectedObjects = []
+
+        tdf_without_comments = remove_comments(f3.read())
+        # sampleObj1 = '[SMALL_BUILDING]s sddf..d..fsdfdsfdfds [DAMAGE] [HUGE_BUILDING] ....... [SMALL_BUILDING],,, [DAMAGE] '
+        _BrkStart = [m.start() for m in re.finditer('\[', tdf_without_comments)]
+        _BrkEnd = [m.start() for m in re.finditer('\]', tdf_without_comments)]
+        if len(_BrkStart) == len(_BrkEnd):
+            i = 0
+            for obj in _BrkStart:
+                obj_name = tdf_without_comments[_BrkStart[i]:_BrkEnd[i]]
+                if 'DAMAGE' != obj_name:
+                    arrayOfDetectedObjects.append(obj_name)
+                    print(obj_name)
+                i += 1
+
+
+
+        # TODO: must parse multiple OBJECT_NAME from file before we begin doing anything.
+        OBJECT_NAME = 'UNITINFO'
+        weapon_parse_helper = 'DAMAGE'
+
+        parsed_0 = tdf_without_comments
+
+        # for detectedObject in arrayOfDetectedObjects:
+        #     print('⦿ ⦿ ⦿ ⦿ ⦿ ⦿ ⦿ ⦿')
+        #     print(detectedObject)
+        #     print('⦿ ⦿ ⦿ ⦿ ⦿ ⦿ ⦿ ⦿')
+        #     parsed_0 = parsed_0.replace(detectedObject + ']', '')
+
+        # parsed_0 = tdf_without_comments.replace('[' + OBJECT_NAME + ']', '')
+        parsed_1 = parsed_0#.replace('","}}{', '}}{')
+        parsed_2 = parsed_1#.replace('   ', '"')
+        parsed_3 = parsed_2#.replace(']', '" :')
+        parsed_4 = parsed_3#.replace('=', '" : "')
+        parsed_5 = parsed_4#.replace(';', '", "')
+        parsed_6 = parsed_5#.replace('{', '{ "')
+        parsed_7 = parsed_6#.replace(', "}', '}')
+        parsed_8 = parsed_7#.replace('","}}{', '}}{')
+        total_weapons = [m.start() for m in re.finditer('[' + weapon_parse_helper + ']', tdf_without_comments)]
+        parsed_9 = parsed_8#.replace('}{', '}, {', len(total_weapons) - 1)
+        parsed_10 = '' #  '[' + parsed_9 + ']'
+        print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        tab_str = '	'
+        parsed_11 = parsed_10.replace(tab_str, '')
+        parsed_12 = parsed_11.replace('\n', '')
+        parsed_13 = parsed_12#.replace('", "}}]', '}}]')
+        print(parsed_13.split('}}['))
+        print(parsed_13)
+        print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        dictionary = json.loads(parsed_13)
+
+        for weapon in dictionary:
+            weapon['OBJ_NAME'] = OBJECT_NAME
+
+        return Response(dictionary)
+"""
+
+
 
 
 class LazarusListUnits(APIView):
@@ -291,21 +602,21 @@ class LazarusListUnits(APIView):
         print('')
 
     def getUnitFbiUsingId(self, unit_id, mod_name):
-        printColored('getting unit fbi', 3)
+        # printColored('getting unit fbi', 3)
         try:
             unit_path = '/usr/src/app/static/mods/' + mod_name + '/units/' + unit_id + '.fbi'
-            printColored('unit path: ', 6)
-            printColored(unit_path, 5)
+            # printColored('unit path: ', 6)
+            # printColored(unit_path, 5)
             unitsArray = readFile(unit_path)
             for unit in unitsArray:
                 printKeyValuePair('name', unit.Name)
             json_response = {
                 "raw_fbi_file": "...."  # unitsArray
             }
-            print('wtf dude...')
+            # print('wtf dude...')
             return Response(json_response)
         except:
-            printKeyValuePair('shit', 'is fucked up nigga.')
+            # printKeyValuePair('shit', 'is fucked up nigga.')
             json_response = {
                 "raw_fbi_file": "...."
             }
@@ -316,16 +627,14 @@ class LazarusListUnits(APIView):
         self.f = []
         self.d = []
         self.jsonResponse = []
+        self.unit_fbi_final = []
         self.root = '/✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪/'
-        self.printColored('init completed!', 12)
+        # self.printColored('init completed!', 12)
 
     def printSubContents(self, pathName, mod_name):
 
-        self.printColored('pathName: ' + pathName, 2)
-        self.printColored('mod_name: ' + mod_name, 12)
-
         subcontents_to_print = '/usr/src/app/static/mods/' + mod_name
-        self.printColored(subcontents_to_print, 14)
+        # self.printColored(subcontents_to_print, 14)
 
         for (dirpath, dirnames, filenames) in walk(subcontents_to_print):
             # if pathName.lower() == 'unitpics':
@@ -355,11 +664,11 @@ class LazarusListUnits(APIView):
                     filename = filename.lower()
                     file_extension = file_extension.lower()
 
-                    self.printColoredFile(filename.lower(), file_extension.lower(), 18, 6)
+                    # self.printColoredFile(filename.lower(), file_extension.lower(), 18, 6)
                     pathToFile = '/usr/src/app/static/mods/' + mod_name + '/unitpics' + '/' + filename + '.pcx'
 
-                    self.printColored('GOING TO GET CONTENTS OF: ', 11)
-                    self.printColoredFile(mod_name, filename, 15, 3)
+                    # self.printColored('GOING TO GET CONTENTS OF: ', 11)
+                    # self.printColoredFile(mod_name, filename, 15, 3)
                     unit_fbi = ReadUnitFbi().get(mod_name, filename)
 
                     try:
@@ -377,31 +686,40 @@ class LazarusListUnits(APIView):
                                 'RESTful_unit_data': 'http://52.27.28.55/LazarusII/UnitFbiData/?mod_name=' + mod_name + '&unit_id=' + filename
                             }
                         )
+
+                        is_unique = True
+                        # remove duplicates:
+                        for item in self.unit_fbi_final:
+                            if item['UnitName'] == unit_fbi[0]['UnitName']:
+                                is_unique = False
+
+                        if is_unique == True:
+                            self.unit_fbi_final.append(unit_fbi[0])
                     except:
                         printError('failed to open ' + str(filename) + ' [' + str(file_extension) + ']')
             elif pathName.lower() == 'weapons':
                 for file in filenames:
                     filename, file_extension = os.path.splitext(file)
-                    self.printColoredFile(filename.lower(), file_extension.lower(), 10, 6)
+                    # self.printColoredFile(filename.lower(), file_extension.lower(), 10, 6)
         return self.jsonResponse
 
     def printContents(self, mod_path, mod_name):
-        self.printColored('will now loop through this "walk(mod_path)" ' + str(walk(mod_path)), 102)
+        # self.printColored('will now loop through this "walk(mod_path)" ' + str(walk(mod_path)), 102)
         for (dirpath, dirnames, filenames) in walk(mod_path):
-            self.printColored('self.f before extend: ', 105)
-            self.printColored(str(self.f), 15)
+            # self.printColored('self.f before extend: ', 105)
+            # self.printColored(str(self.f), 15)
             self.f.extend(filenames)
-            self.printColored('self.f after extend: ', 102)
-            self.printColored(str(self.f), 15)
-            self.printColored('self.d before extend: ', 106)
-            self.printColored(str(self.d), 16)
+            # self.printColored('self.f after extend: ', 102)
+            # self.printColored(str(self.f), 15)
+            # self.printColored('self.d before extend: ', 106)
+            # self.printColored(str(self.d), 16)
             self.d.extend(dirnames)
-            self.printColored('self.d after extend: ', 103)
-            self.printColored(str(self.d), 16)
-            self.printColored(' for (dirpath, dirnames, filenames) ', 101)
-            self.printColored(str(dirpath) + ' ' + str(dirnames) + ' ' + str(filenames), 14)
+            # self.printColored('self.d after extend: ', 103)
+            # self.printColored(str(self.d), 16)
+            # self.printColored(' for (dirpath, dirnames, filenames) ', 101)
+            # self.printColored(str(dirpath) + ' ' + str(dirnames) + ' ' + str(filenames), 14)
             for path in dirnames:
-                self.printColored(str(path), 13)
+            #     self.printColored(str(path), 13)
                 self.printSubContents(path, mod_name)
             break
 
@@ -413,13 +731,20 @@ class LazarusListUnits(APIView):
 
     def get(self, request, format=None):
         try:
-            mod_path = '/usr/src/app/static/mods/' + str(request.GET['mod_name']) + '/'
-            mod_name = str(request.GET['mod_name'])
-            self.printColored('Will now print the contents of ' + mod_path, 1)
-            # time.sleep(2)
-            self.printContents(mod_path, mod_name)
-            final_response = {'arm_data': self.jsonResponse}
-            return Response(final_response)
+            try:
+                should_get_user_content = str(request.GET['should_get_user_content'])
+                mod_path = '/usr/src/persistent/media/ta_data/' + str(request.GET['mod_name']) + '/'
+                mod_name = str(request.GET['mod_name'])
+                self.printContents(mod_path, mod_name)
+                print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
+                print(mod_path)
+                print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
+                return Response(self.unit_fbi_final)
+            except:
+                mod_path = '/usr/src/app/static/mods/' + str(request.GET['mod_name']) + '/'
+                mod_name = str(request.GET['mod_name'])
+                self.printContents(mod_path, mod_name)
+                return Response(self.unit_fbi_final)
         except:
             return Response('oh shit')
 

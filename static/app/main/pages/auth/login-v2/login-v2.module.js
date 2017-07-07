@@ -29,11 +29,11 @@
         $translatePartialLoaderProvider.addPart('/static/app/main/pages/auth/login-v2');
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.auth.login-v2', {
-            title : 'Login v2',
-            state : 'app.pages_auth_login-v2',
-            weight: 2
-        });
+        // msNavigationServiceProvider.saveItem('pages.auth.login-v2', {
+        //     title : 'Login v2',
+        //     state : 'app.pages_auth_login-v2',
+        //     weight: 2
+        // });
     }
 
 })();

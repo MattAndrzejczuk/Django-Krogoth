@@ -29,11 +29,11 @@
         $translatePartialLoaderProvider.addPart('/static/app/main/pages/auth/register-v2');
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.auth.register-v2', {
-            title : 'Register v2',
-            state : 'app.pages_auth_register-v2',
-            weight: 4
-        });
+        // msNavigationServiceProvider.saveItem('pages.auth.register-v2', {
+        //     title : 'Register v2',
+        //     state : 'app.pages_auth_register-v2',
+        //     weight: 4
+        // });
     }
 
 })();

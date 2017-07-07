@@ -29,11 +29,11 @@
         $translatePartialLoaderProvider.addPart('/static/app/main/pages/errors/500');
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.errors.error-500', {
-            title : '500',
-            state : 'app.pages_errors_error-500',
-            weight: 2
-        });
+        // msNavigationServiceProvider.saveItem('pages.errors.error-500', {
+        //     title : '500',
+        //     state : 'app.pages_errors_error-500',
+        //     weight: 2
+        // });
     }
 
 })();

@@ -14,7 +14,7 @@ def readFile(file_path):
     # file_object = open(file_path, 'r', errors='replace')
     # unit_object_rawstr = file_object.read()
 
-    printDebug('reading file: ' + file_path, 'readFile DataReaderTA.py')
+    # printDebug('reading file: ' + file_path, 'readFile DataReaderTA.py')
     f2 = open(file_path, 'r', errors='replace')
     f3 = open(file_path, 'r', errors='replace')
 
@@ -153,8 +153,8 @@ def readFile(file_path):
                 u.NoChaseCategory = keyVal[1].replace('\n', '')
         i -= 1
 
-    printLog('file reading has been completed:')
-    printInfo(file_path)
+    # printLog('file reading has been completed:')
+    # printInfo(file_path)
     return allUnitInstances
 
 

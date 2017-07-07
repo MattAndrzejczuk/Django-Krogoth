@@ -1,14 +1,17 @@
 <!-- LIST VIEW -->
-<md-button ng-click="vm.showCustomToast('yes')">toast example</md-button>
 
+
+<md-button ng-click="vm.showCustomToast()">search</md-button>
 
 
 <md-input-container>
   <label>Search</label>
-  <input type="text" ng-model="color" ng-model="searchText" md-maxlength="25">
+  <input type="text" ng-model="color" ng-model="searchText" md-maxlength="25" id="search_params">
 </md-input-container>
 
-
+<p>
+    {{vm.searchTextCustom}}
+</p>
 
 <table class="simple list-view">
     <thead>
@@ -29,21 +32,28 @@
         <!--<td class="name">{{file['thumbnail']}}</td>-->
         <!--<td class="type" hide show-gt-sm>{{file['object_name']}}</td>-->
         <!--<td class="owner" hide-xs>{{file['system_location']}}</td>-->
+
+
     <!--</tr>-->
     <!--</tbody>-->
     <tbody>
-    <tr ng-repeat="file in vm.files | filter:searchText" ng-click="vm.select(file)"
-        ng-class="{'selected' : vm.selected['JsonDump']['UnitName'].toLowerCase() === file['object_name'].toLowerCase()}">
-        <td class="image"><img md-whiteframe="1" src="{{file['thumbnail']}}"></td>
-        <td class="name">{{file['unit_data'][0]['JsonDump']['Name']}}</td>
-        <td class="type" hide show-gt-sm>{{file['unit_data'][0]['JsonDump']['TEDClass']}}</td>
-        <td class="owner" hide-xs>{{file['unit_data'][0]['JsonDump']['Side']}}</td>
-        <td class="owner" hide-xs>{{file['unit_data'][0]['JsonDump']['Description']}}</td>
-        <td class="owner" hide-xs>{{file['unit_data'][0]['JsonDump']['Category']}}</td>
-        <td class="owner" hide-xs>{{file['unit_data'][0]['JsonDump']['MaxDamage']}}</td>
+    <tr ng-repeat="file in vm.files | filter:vm.searchTextCustom" ng-click="vm.select(file)"
+        ng-class="{'selected' : vm.selected['UnitName'].toLowerCase() === file['UnitName'].toLowerCase()}">
+        <td class="image"><img md-whiteframe="1" src="/static/mods/{{vm.selectedMod}}/unitpics/{{file['UnitName'].toLowerCase()}}.png"></td>
+        <td class="name">{{file['Name']}}</td>
+        <td class="type" >{{file['TEDClass']}}</td>
+        <td class="image" >
+            <img width="30" src="/static/assets/images/logos/{{file['Side']}}_logo.png">
+        </td>
+        <td class="owner" >{{file['Description']}}</td>
+        <td class="owner" >{{file['Category']}}</td>
+        <td class="owner" >{{file['MaxDamage']}}</td>
     </tr>
     </tbody>
 </table>
+
+
+
 <!-- / LIST VIEW
 {
             "thumbnail": "/static/totala_files/unitpics/CORSONAR.png",

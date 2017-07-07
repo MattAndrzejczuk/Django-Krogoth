@@ -1,0 +1,12 @@
+from django.conf.urls import url
+from DatabaseSandbox.views import BasicUploadExample, UserAgentTracker, UploadDataTA
+
+
+# UploadDataTA
+
+urlpatterns = [
+    url(r'^BasicUploadExample/', BasicUploadExample.as_view(), name='BasicUploadExample'),
+    url(r'^UserAgentTracker/', UserAgentTracker.as_view(), name='UserAgentTracker'),
+    url(r'^UploadDataTA/', UploadDataTA.as_view(), name='UploadDataTA'),
+]
+

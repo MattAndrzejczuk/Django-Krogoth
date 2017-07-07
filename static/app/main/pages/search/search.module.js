@@ -49,12 +49,12 @@
         msApiProvider.register('search.contacts', ['/static/app/data/search/contacts.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.search', {
-            title : 'Search',
-            icon  : 'icon-magnify',
-            state : 'app.pages_search',
-            weight: 7
-        });
+        // msNavigationServiceProvider.saveItem('pages.search', {
+        //     title : 'Search',
+        //     icon  : 'icon-magnify',
+        //     state : 'app.pages_search',
+        //     weight: 7
+        // });
     }
 
 })();

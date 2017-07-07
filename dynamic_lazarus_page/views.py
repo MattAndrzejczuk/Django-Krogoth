@@ -78,7 +78,7 @@ class DynamicIndexModule(APIView):
         all_applications = AngularFuseApplication.objects.all()
         for application in all_applications:
             my_apps += ("'app." + application.name + "',")
-            
+
         index_module_pt3 = "'app.pages','app.ui','app.components']);})();"
         indexModuleJs = index_module_pt1 + index_module_pt2 + my_apps + index_module_pt3
         return HttpResponse(indexModuleJs)

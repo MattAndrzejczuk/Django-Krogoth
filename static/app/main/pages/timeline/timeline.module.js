@@ -66,26 +66,26 @@
         msApiProvider.register('timeline.page3', ['/static/app/data/timeline/page-3.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.timeline', {
-            title : 'Timeline',
-            icon  : 'icon-view-stream',
-            weight: 8
-        });
-
-        msNavigationServiceProvider.saveItem('pages.timeline.default', {
-            title: 'Default',
-            state: 'app.pages_timeline'
-        });
-
-        msNavigationServiceProvider.saveItem('pages.timeline.left-aligned', {
-            title: 'Left Aligned',
-            state: 'app.pages_timeline_left'
-        });
-
-        msNavigationServiceProvider.saveItem('pages.timeline.right-aligned', {
-            title: 'Right Aligned',
-            state: 'app.pages_timeline_right'
-        });
+        // msNavigationServiceProvider.saveItem('pages.timeline', {
+        //     title : 'Timeline',
+        //     icon  : 'icon-view-stream',
+        //     weight: 8
+        // });
+        //
+        // msNavigationServiceProvider.saveItem('pages.timeline.default', {
+        //     title: 'Default',
+        //     state: 'app.pages_timeline'
+        // });
+        //
+        // msNavigationServiceProvider.saveItem('pages.timeline.left-aligned', {
+        //     title: 'Left Aligned',
+        //     state: 'app.pages_timeline_left'
+        // });
+        //
+        // msNavigationServiceProvider.saveItem('pages.timeline.right-aligned', {
+        //     title: 'Right Aligned',
+        //     state: 'app.pages_timeline_right'
+        // });
     }
 
 })();

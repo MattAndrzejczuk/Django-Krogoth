@@ -29,12 +29,12 @@
         $translatePartialLoaderProvider.addPart('/static/app/main/pages/maintenance');
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.maintenance', {
-            title : 'Maintenance',
-            icon  : 'icon-oil',
-            state : 'app.pages_maintenance',
-            weight: 5
-        });
+        // msNavigationServiceProvider.saveItem('pages.maintenance', {
+        //     title : 'Maintenance',
+        //     icon  : 'icon-oil',
+        //     state : 'app.pages_maintenance',
+        //     weight: 5
+        // });
     }
 
 })();

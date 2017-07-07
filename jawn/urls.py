@@ -47,12 +47,15 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^rest-auth/', include('rest_auth.urls')),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin_a9k/', admin.site.urls),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^$', rest_auth.views.index),
     url(r'^armprime/', rest_auth.views.index),
     # url(r'^lazarus/', LazarusListUnits.as_view()),
     url(r'^api.lazarus/', include('lazarus.urls')),
     url(r'^LazarusII/', include('LazarusII.urls')),
+
+    url(r'^SandboxDB/', include('DatabaseSandbox.urls')),
+
     url(r'^dynamic_lazarus_page/', include('dynamic_lazarus_page.urls')),
 ]

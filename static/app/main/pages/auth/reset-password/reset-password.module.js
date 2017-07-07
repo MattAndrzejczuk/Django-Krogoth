@@ -29,11 +29,11 @@
         $translatePartialLoaderProvider.addPart('/static/app/main/pages/auth/reset-password');
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.auth.reset-password', {
-            title : 'Reset Password',
-            state : 'app.pages_auth_reset-password',
-            weight: 6
-        });
+        // msNavigationServiceProvider.saveItem('pages.auth.reset-password', {
+        //     title : 'Reset Password',
+        //     state : 'app.pages_auth_reset-password',
+        //     weight: 6
+        // });
     }
 
 })();

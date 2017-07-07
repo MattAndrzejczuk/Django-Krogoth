@@ -51,21 +51,21 @@
         msApiProvider.register('invoice', ['/static/app/data/invoice/invoice.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.invoice', {
-            title : 'Invoice',
-            icon  : 'icon-receipt',
-            weight: 4
-        });
-
-        msNavigationServiceProvider.saveItem('pages.invoice.modern', {
-            title : 'Modern',
-            state : 'app.pages_invoice_modern'
-        });
-
-        msNavigationServiceProvider.saveItem('pages.invoice.compact', {
-            title : 'Compact',
-            state : 'app.pages_invoice_compact'
-        });
+        // msNavigationServiceProvider.saveItem('pages.invoice', {
+        //     title : 'Invoice',
+        //     icon  : 'icon-receipt',
+        //     weight: 4
+        // });
+        //
+        // msNavigationServiceProvider.saveItem('pages.invoice.modern', {
+        //     title : 'Modern',
+        //     state : 'app.pages_invoice_modern'
+        // });
+        //
+        // msNavigationServiceProvider.saveItem('pages.invoice.compact', {
+        //     title : 'Compact',
+        //     state : 'app.pages_invoice_compact'
+        // });
     }
 
 })();

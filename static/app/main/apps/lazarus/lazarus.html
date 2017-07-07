@@ -1,4 +1,14 @@
-<div id="file-manager" class="page-layout simple right-sidenav" layout="row">
+<style>
+    .blurloading {
+        filter: blur(13px);
+        animation-duration: 0.8s;
+        background-color: blueviolet;
+    }
+</style>
+
+
+<div id="file-manager" class="page-layout simple right-sidenav" layout="row"
+     ng-class="{'blurloading': vm.isLoadingMod === true}">
 
     <!-- MAIN SIDENAV (EXTRA SIDENAV) -->
     <md-sidenav class="main-sidenav" md-component-id="main-sidenav"
@@ -13,10 +23,49 @@
         <!-- HEADER -->
         <div class="header md-accent-bg">
 
-            <div class="header-content" layout="column" layout-align="space-between">
+            <div class="header-content" layout="row" layout-align="start center">
 
-                <p>Some Shit Will Just go here.</p>
+                <md-menu>
+                    <md-button aria-label="Open phone interactions menu"
+                               ng-click="vm.openMenuDropDown($mdMenu, $event)">
+                        Select a mod
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item>
+                            <md-button ng-click="vm.selectModNamed('thepack')">
+                                ThePack
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="vm.selectModNamed('big_ta_mod')">
+                                big_ta_mod
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="vm.selectModNamed('taesc')">
+                                TAESC
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="vm.selectModNamed('totala_files')">
+                                totala_files
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="vm.selectModNamed('totala_files2')">
+                                totala_files2
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="vm.selectModNamed('mod_hoverattack')">
+                                mod_hoverattack
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+
             </div>
+
 
             <!-- ADD FILE BUTTON -->
             <div id="file-uploader"
@@ -59,7 +108,8 @@
     <!-- / CENTER -->
 
     <!-- SIDENAV -->
-    <md-sidenav class="sidenav details-sidenav md-sidenav-right" md-is-locked-open="$mdMedia('gt-md')"
+    <!-- md-is-locked-open="$mdMedia('gt-md')" -->
+    <md-sidenav class="sidenav details-sidenav md-sidenav-right" md-is-locked-open="true"
                 md-component-id="details-sidenav"
                 ng-include="'/static/app/main/apps/lazarus/sidenavs/details/details-sidenav.html'" ms-scroll
                 ms-sidenav-helper>

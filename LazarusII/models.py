@@ -16,6 +16,11 @@ from django.db import models
 
 
 
+
+
+
+
+
 # Documentation:
 # http://units.tauniverse.com/tutorials/tadesign/tadesign/tdfweapon.htm
 class WeaponTDF(models.Model):
@@ -158,6 +163,8 @@ class FeatureTDF(models.Model):
     world = models.CharField(max_length=135)
 
 
+# choices SelfDestructAS: BIG_UNIT,,,,,,,
+
 # Documentation:
 # http://units.tauniverse.com/tutorials/tadesign/tadesign/fbidesc.htm
 class UnitFbiData(models.Model):
@@ -247,6 +254,26 @@ class UnitFbiData(models.Model):
     MobileStandOrders = models.BooleanField(default=False)
     MoveRate1 = models.IntegerField()
     # TODO: PK below:
+    MOVEMENT_CLASSES = (
+        ('Tank1', 'TANKSH1'),
+        ('Tank SH2 (example: Arm Fark)', 'TANKSH2'),
+        ('Tank SH3 (example: Arm Podger)', 'TANKSH3'),
+        ('Tank DS2 (example: Core Necro)', 'TANKSH2'),
+        ('Tank (example: core sumo)', 'TANKBH3'),
+        ('', ''),
+        ('', ''),
+        ('Kbot S1', 'KBOTSS1'),
+        ('Kbot S2', 'KBOTSS2'),
+        ('Kbot S3', 'KBOTSS3'),
+        ('', ''),
+        ('', ''),
+        ('Spider', 'SPID3'),
+        ('', ''),
+        ('', ''),
+        ('', ''),
+        ('Boats S4 (used by small boats?)', 'BOATS4'),
+        ('', ''),
+    )
     MovementClass = models.CharField(max_length=100)
     Name = models.CharField(max_length=100)
     NoAutoFire = models.BooleanField(default=False)

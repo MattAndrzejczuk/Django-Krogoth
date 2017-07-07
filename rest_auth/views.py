@@ -25,7 +25,8 @@ from PIL import Image
 from django.contrib.auth.models import User
 from dynamic_lazarus_page.models import AngularFuseApplication
 
-
+from DatabaseSandbox.models import VisitorLogSB, LazarusCommanderAccountSB, \
+    LazarusModProjectSB, BasicUploadTrackerSB
 
 from .app_settings import (
     TokenSerializer, UserDetailsSerializer, LoginSerializer,
@@ -43,12 +44,17 @@ def index(request):
     Djangular = []
 
     all_applications = AngularFuseApplication.objects.all()
-
     for application in all_applications:
         Djangular.append(application.name)
 
+    _1 = str(request.META['REMOTE_ADDR'])
+    _2 = str(request.META['HTTP_USER_AGENT'])
+    _3 = str(request.META['HTTP_ACCEPT_LANGUAGE'])
+    newRecord = VisitorLogSB(remote_addr=_1, http_usr=_2, http_accept=_3, other_misc_notes='index.html requested.')
+    newRecord.save()
+
     context = {
-        "message": "Welcome to CiniCrafts official website!",
+        "message": "Total Annihilation: Lazarus",
         "Djangular": Djangular,
     }
     return HttpResponse(template.render(context, request))

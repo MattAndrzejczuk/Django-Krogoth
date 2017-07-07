@@ -12,15 +12,8 @@ class LazarusUnit:
         return 'Name: ' + self.Name + ', Info: ' + self.Description + ', HP: ' + self.MaxDamage + '.'
 
     def getJsonRepresentation(self):
-        printDebug('going to grab JSON representaion...', 'getJsonRepresentation FbiData.py')
-        the_json = {'Name': self.Name,
-                    'Description': self.Description,
-                    'Class': self.TEDClass,
-                    'HP': self.MaxDamage,
-                    'BuildCostEnergy': self.BuildCostEnergy,
-                    'BuildCostMetal': self.BuildCostMetal,
-                    'JsonDump': json.loads(self.toJSON()),
-                    'picture': '/static/totala_files2/unitpics/' + self.Objectname + '.png'}
+        # printDebug('going to grab JSON representaion...', 'getJsonRepresentation FbiData.py')
+        the_json = json.loads(self.toJSON())
         return the_json
 
     def __init__(self):

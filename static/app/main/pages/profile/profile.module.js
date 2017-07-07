@@ -43,12 +43,12 @@
         msApiProvider.register('profile.photosVideos', ['/static/app/data/profile/photos-videos.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.profile', {
-            title : 'Profile',
-            icon  : 'icon-account',
-            state : 'app.pages_profile',
-            weight: 6
-        });
+        // msNavigationServiceProvider.saveItem('pages.profile', {
+        //     title : 'Profile',
+        //     icon  : 'icon-account',
+        //     state : 'app.pages_profile',
+        //     weight: 6
+        // });
     }
 
 })();
