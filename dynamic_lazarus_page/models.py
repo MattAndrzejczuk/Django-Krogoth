@@ -2,7 +2,13 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import User
 
-DEFAULT_MODULE = '(function(){"use strict";function a(a,t,e,_){a.state("app.FUSE_APP_NAME",{url:"/FUSE_APP_NAME",views:{"content@app":{templateUrl:"/dynamic_lazarus_page/DynamicHTMLInjector/?name=FUSE_APP_NAME",controller:"FUSE_APP_NAMEController as vm"}},bodyClass:"file-manager"}),_.saveItem("apps.FUSE_APP_NAME",{title:"FUSE_APP_TITLE",icon:"icon-star",state:"app.FUSE_APP_NAME",weight:5})}angular.module("app.FUSE_APP_NAME",["flow"]).config(a)}();'
+
+
+DEFAULT_CONTROLLER = "(function () \n{ \n\t'use strict'; \n\tangular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController); \n\n\tfunction FUSE_APP_NAMEController() \n\t{ \n\t\t\tvar vm = this; \n\t\t\tvm.helloText = 'Welcome to FUSE_APP_NAME';   \n\t} \n})();"
+DEFAULT_MODULE = "(function () \n{ \n\t'use strict'; \n\tangular.module('app.FUSE_APP_NAME', ['flow']).config(config); \n\n\tfunction config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider) { \n\t$stateProvider.state('app.FUSE_APP_NAME', { \n\t\turl: '/FUSE_APP_NAME', \n\t\tviews: { \n\t\t\t'content@app': { \n\t\t\t\ttemplateUrl: '/dynamic_lazarus_page/DynamicHTMLInjector/?name=FUSE_APP_NAME', \n\t\t\t\tcontroller: 'FUSE_APP_NAMEController as vm'\n\t\t\t}\n\t\t}, \n\t\tbodyClass: 'file-manager' \n\t}); \n\tmsNavigationServiceProvider.saveItem('NAV_HEADER.FUSE_APP_NAME', { \n\t\ttitle: 'FUSE_APP_TITLE', \n\t\ticon: 'FUSE_APP_ICON', \n\t\tstate: 'app.FUSE_APP_NAME', \n\t\tweight: 3 \n\t});    \n\t} \n})();"
+
+
+
 ICONS = (
     ('icon-cloud', 'icon-cloud'),
     ('icon-cube', 'icon-cube'),
@@ -13,37 +19,43 @@ ICONS = (
     ('icon-home', 'icon-home'),
     ('icon-harddisk', 'icon-harddisk'),
     ('icon-view-list', 'icon-view-list'),
-    ('icon-terrain', 'icon-terrain'),
-    ('icon-dice', 'icon-dice'),
-    ('icon-help', 'icon-help'),
+    ('Terrain', 'icon-terrain'),
+    ('Dice Random', 'icon-dice'),
+    ('Question Mark', 'icon-help'),
+    ('Layers Cube', 'icon-layers'),
+    ('Memory Chip', 'icon-memory'),
+    ('Package Cube Closed', 'icon-package-variant-closed'),
+    ('Package Opened', 'icon-package-variant'),
+
+    ('Data Agenda', 'icon-view-agenda'),
+    ('Data Array', 'icon-view-array'),
+    ('Data Carousel', 'icon-view-carousel'),
+    ('Data Column', 'icon-view-column'),
+    ('Data Dashboard', 'icon-view-dashboard'),
+    ('Data Day', 'icon-view-day'),
+    ('Data Headline', 'icon-view-headline'),
+    ('Data List', 'icon-view-list'),
+    ('Data Module', 'icon-view-module'),
+    ('Data Quilt', 'icon-view-quilt'),
+    ('Data Stream', 'icon-view-stream'),
+    ('Data Week', 'icon-view-week'),
+    ('Web Globe Atlas', 'icon-web'),
+
     ('icon-ubuntu', 'icon-ubuntu'),
     ('icon-linux', 'icon-linux'),
     ('icon-apple', 'icon-apple'),
     ('icon-windows', 'icon-windows'),
 )
 
-class SuperBasicModel(models.Model):
-    basic_string = models.CharField(max_length=100)
-    basic_bool = models.BooleanField(default=False)
-    basic_int = models.IntegerField()
-
-
-class Car(models.Model):
-    name = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
-    photo = models.ImageField(upload_to='cars')
-
 
 class AngularFuseApplication(models.Model):
-    # def __str__(self):
-    #     return self.name
     name = models.CharField(max_length=255)
-    js_module = models.TextField(default=DEFAULT_MODULE)
+    category = models.CharField(max_length=30, default='Resources')
+    js_module = models.TextField(default=DEFAULT_MODULE.replace('; ', '; \n'))
+    js_controller = models.TextField(default=DEFAULT_CONTROLLER.replace('; ', '; \n'))
     icon = models.CharField(choices=ICONS, max_length=50, default='icon-hexagon-outline')
-
     def __str__(self):
         return self.name
-
 
 class FuseAppComponent(models.Model):
     name = models.CharField(max_length=255)
@@ -85,3 +97,38 @@ class LazarusModProject(models.Model):
     date_modified = models.DateTimeField(blank=True, null=True)
 
     author = models.ForeignKey(User, unique=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+######################
+##  USELESS STUFF:  ##
+######################
+class SuperBasicModel(models.Model):
+    basic_string = models.CharField(max_length=100)
+    basic_bool = models.BooleanField(default=False)
+    basic_int = models.IntegerField()
+
+
+class Car(models.Model):
+    name = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    photo = models.ImageField(upload_to='cars')

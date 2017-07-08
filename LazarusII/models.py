@@ -20,6 +20,13 @@ from django.db import models
 
 
 
+class Damage(models.Model):
+    name = models.CharField(max_length=100, default='default')
+    damage_amount = models.IntegerField(default=1230)
+
+
+
+
 
 # Documentation:
 # http://units.tauniverse.com/tutorials/tadesign/tadesign/tdfweapon.htm
@@ -106,13 +113,8 @@ class WeaponTDF(models.Model):
     weapontimer = models.FloatField(null=True, blank=True)
     weapontype2 = models.CharField(max_length=100, default='fx', blank=True)
     weaponvelocity = models.IntegerField(default=131)
+    damage = models.ManyToManyField(Damage)
 
-
-
-class Damage(models.Model):
-    name = models.CharField(max_length=100, default='default')
-    damage_amount = models.IntegerField(default=1230)
-    parent_weapon_id = models.ForeignKey(WeaponTDF, on_delete=models.CASCADE,)
 
 
 
@@ -197,7 +199,7 @@ class UnitFbiData(models.Model):
     canmove = models.BooleanField(default=False)
     canpatrol = models.BooleanField(default=False)
     CanReclamate = models.BooleanField(default=False)
-    canstop = models.BooleanField(default=False)
+    canstop = models.BooleanField(default=True)
     cantbetransported = models.BooleanField(default=False)
     Category = models.CharField(max_length=100)
     CloakCost = models.IntegerField()
@@ -291,12 +293,12 @@ class UnitFbiData(models.Model):
     RadarDistanceJam = models.IntegerField()
     Scale = models.IntegerField()
     # TODO: List of string choices will go below
-    SelfDestructAs = models.CharField(max_length=100)
+    SelfDestructAs = models.CharField(max_length=100) # ✦ ✦ ✦
     selfdestructcountdown = models.IntegerField()
     ShootMe = models.BooleanField(default=False)
     ShowPlayerName = models.BooleanField(default=False)
     # TODO: List of string choices will go below
-    Side = models.CharField(max_length=100)
+    Side = models.CharField(max_length=100) # ✦ ✦ ✦
     SightDistance = models.IntegerField()
     SonarDistance = models.IntegerField()
     SonarDistanceJam = models.IntegerField()
@@ -319,24 +321,24 @@ class UnitFbiData(models.Model):
     transportsize = models.IntegerField()
     TurnRate = models.IntegerField()
     # TODO: unique? ID?
-    UnitName = models.CharField(max_length=100)
+    UnitName = models.CharField(max_length=100, unique=True) # ✦ ✦ ✦
     # TODO: must be unique, PK?
-    UnitNumber = models.IntegerField()
+    UnitNumber = models.IntegerField(unique=True) # ✦ ✦ ✦
     Upright = models.BooleanField(default=False)
-    Version = models.IntegerField()
+    Version = models.IntegerField() # ✦ ✦ ✦
     WaterLine = models.IntegerField()
     # TODO: PK below
-    Weapon1 = models.CharField(max_length=100)
+    Weapon_One = models.ForeignKey(WeaponTDF, on_delete=models.CASCADE, related_name='Weapon1', null=True, blank=True)
     # TODO: PK below
-    Weapon2 = models.CharField(max_length=100)
+    Name_Weapon_Two = models.ForeignKey(WeaponTDF, on_delete=models.CASCADE, related_name='Weapon2', null=True, blank=True)
     # TODO: PK below
-    Weapon3 = models.CharField(max_length=100)
-    WindGenerator = models.IntegerField()
-    WorkerTime = models.IntegerField()
+    Name_Weapon_Three = models.ForeignKey(WeaponTDF, on_delete=models.CASCADE, related_name='Weapon3', null=True, blank=True)
+    WindGenerator = models.IntegerField(null=True, blank=True)
+    WorkerTime = models.IntegerField(null=True, blank=True)
     # TODO: PK below
-    wpri_badTargetCategory = models.CharField(max_length=100)
+    wpri_badTargetCategory = models.CharField(max_length=100, null=True, blank=True)
     # TODO: ManyToMany below
-    wsec_badTargetCategory = models.CharField(max_length=100)
+    wsec_badTargetCategory = models.CharField(max_length=100, null=True, blank=True)
     YardMap = models.CharField(max_length=100)
     def __str__(self):  # __unicode__ on Python 2
         return self.Objectname
@@ -351,72 +353,3 @@ class DownloadTDF(models.Model):
     MENU = models.PositiveSmallIntegerField(default=2)  # first menu in TA is actually '2' for some reason
     UNITMENU = models.CharField(max_length=35)  # short name for the construction unit that builds this unit
     UNITNAME = models.CharField(max_length=35)  # short name of the unit this button builds
-        # TA Button:
-        #######
-        # 0 1 #
-        # 2 3 #
-        # 4 5 #
-        #######
-
-
-# ONE-TO-ONE SAMPLE:
-"""
-class Place(models.Model):
-    name = models.CharField(max_length=50)
-    address = models.CharField(max_length=80)
-
-    def __str__(self):              # __unicode__ on Python 2
-        return "%s the place" % self.name
-
-class Restaurant(models.Model):
-    place = models.OneToOneField(
-        Place,
-        on_delete=models.CASCADE,
-        primary_key=True,
-    )
-
-"""
-
-# MANY-TO-MANY SAMPLE:
-"""
-class Publication(models.Model):
-    title = models.CharField(max_length=30)
-
-    def __str__(self):              # __unicode__ on Python 2
-        return self.title
-
-    class Meta:
-        ordering = ('title',)
-
-class Article(models.Model):
-    headline = models.CharField(max_length=100)
-    publications = models.ManyToManyField(Publication)
-
-    def __str__(self):              # __unicode__ on Python 2
-        return self.headline
-
-    class Meta:
-        ordering = ('headline',)
-"""
-
-# MANY-TO-ONE SAMPLE:
-"""
-class Reporter(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    email = models.EmailField()
-
-    def __str__(self):              # __unicode__ on Python 2
-        return "%s %s" % (self.first_name, self.last_name)
-
-class Article(models.Model):
-    headline = models.CharField(max_length=100)
-    pub_date = models.DateField()
-    reporter = models.ForeignKey(Reporter, on_delete=models.CASCADE)
-
-    def __str__(self):              # __unicode__ on Python 2
-        return self.headline
-
-    class Meta:
-        ordering = ('headline',)
-"""

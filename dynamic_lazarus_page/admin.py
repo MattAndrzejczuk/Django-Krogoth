@@ -5,7 +5,7 @@ from dynamic_lazarus_page.models import SuperBasicModel, Car, FuseAppComponent, 
 
 
 class AngularFuseApplicationAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'category', 'js_controller', 'js_module',)
 
 
 class FuseAppComponentAdmin(admin.ModelAdmin):

@@ -70,14 +70,18 @@ class CustomHtmlGenerator(APIView):
 
 class DynamicIndexModule(APIView):
     def get(self, request, format=None):
-        index_module_pt1 = "(function (){'use strict';angular.module('fuse', ['uiGmapgoogle-maps','textAngular','xeditable','app.core','app.sample','app.navigation','app.toolbar','app.quick-panel',"
-        index_module_pt2 = "'app.dashboards','app.calendar','app.e-commerce','app.mail','app.chat','app.file-manager','app.gantt-chart','app.scrumboard','app.todo','app.contacts','app.notes','app.sample','app.toastCtrl',"
+        index_module_pt1 = "(function (){'use strict';angular.module('fuse', ['uiGmapgoogle-maps','textAngular'," + \
+                           "'xeditable','app.core','app.sample','app.navigation','app.toolbar','app.quick-panel',"
+        index_module_pt2 = "'app.dashboards','app.calendar','app.e-commerce','app.mail','app.chat','app.file-manager'," + \
+                           "'app.gantt-chart','app.scrumboard','app.todo','app.contacts','app.notes','app.sample','app.toastCtrl',"
         my_apps = "'app.lazarus',"
 
         # inject dynamic apps
         all_applications = AngularFuseApplication.objects.all()
         for application in all_applications:
             my_apps += ("'app." + application.name + "',")
+
+        my_apps += "'ui.tree',"
 
         index_module_pt3 = "'app.pages','app.ui','app.components']);})();"
         indexModuleJs = index_module_pt1 + index_module_pt2 + my_apps + index_module_pt3
@@ -89,7 +93,14 @@ class DynamicJavaScriptInjector(APIView):
         name = request.GET['name']
         application = AngularFuseApplication.objects.get(name=name)
         components = FuseAppComponent.objects.filter(parent_app=application)
-        raw_js_response = ''
+
+        clean_js_slate = application.js_module + ' ' + application.js_controller
+
+        parsed1 = clean_js_slate.replace('FUSE_APP_NAME', application.name)
+        parsed2 = parsed1.replace('FUSE_APP_TITLE', application.name.replace('_', ' '))
+        parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon)
+        raw_js_response = parsed3
+
         for comp in components:
             if comp.type == 'js':
                 parsed1 = comp.contents.replace('FUSE_APP_NAME', application.name)

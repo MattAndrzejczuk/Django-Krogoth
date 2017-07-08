@@ -1,3 +1,4 @@
+
 (function ()
 {
     'use strict';
@@ -44,6 +45,7 @@
 
             // Pages
             'app.pages',
+            'ui.tree',
 
             // User Interface
             'app.ui',
@@ -55,3 +57,9 @@
 
         ]);
 })();
+
+///
+///  NOT USING THIS ANYMORE ! ! !
+///
+///  see dynamic_lazarus_page.views
+///
