@@ -1,0 +1,47 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Upload TA Data File</h2>
+    </div>
+    <div class="panel-body">
+        <p class="alert alert-{{ alert }}" role="alert">
+            {{ server_msg }}
+        </p>
+        <div>
+            <h5>Files Supported By Lazarus</h5>
+            <div>
+                <span class="label label-success">UFO</span>
+                <span class="label label-success">HPI</span>
+                <span class="label label-success">CCX</span>
+                <span class="label label-success">GP3</span>
+            </div>
+            <h5>Currently NOT Supported By Lazarus</h5>
+            <div>
+                <span class="label label-danger">TNT</span>
+                <span class="label label-danger">SCT</span>
+                <span class="label label-danger">OTA</span>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <form action="/SandboxDB/UploadDataTA/" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="fileInput">TA Data File</label>
+                <input type="file" class="form-control" id="fileInput" name="file">
+            </div>
+            <button type="submit" value="Submit" class="btn btn-default">Upload File</button>
+        </form>
+    </div>
+</div>

@@ -99,7 +99,8 @@ class DynamicJavaScriptInjector(APIView):
         parsed1 = clean_js_slate.replace('FUSE_APP_NAME', application.name)
         parsed2 = parsed1.replace('FUSE_APP_TITLE', application.name.replace('_', ' '))
         parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon)
-        raw_js_response = parsed3
+        parsed4 = parsed3.replace('NAV_HEADER', application.category)
+        raw_js_response = parsed4
 
         for comp in components:
             if comp.type == 'js':
@@ -121,6 +122,14 @@ class DynamicHTMLInjector(APIView):
                 parsed1 = comp.contents.replace('FUSE_APP_NAME', application.name)
                 parsed2 = parsed1.replace('FUSE_APP_TITLE', application.name.replace('_', ' '))
                 raw_html_response += parsed2
+        if raw_html_response == '':
+            raw_html_response += '<div layout="column" layout-padding layout-margin>'
+            raw_html_response += '<h1>' + application.name.replace('_', ' ') + '</h1>'
+            raw_html_response += '<h3>No Fuse App HTML Component</h3>'
+            info = "You're seeing this message because no Fuse App HTML component with the type: HTML has not been " + \
+                   "added to this Angular Fuse Application named " + application.name
+            raw_html_response += "<p>" + info + "</p>"
+            raw_html_response += '</div>'
         return HttpResponse(raw_html_response)
 
 

@@ -12,8 +12,9 @@
         var vm = this;
 
         // Data
-        vm.helloText = 'what the fuck';
+        vm.helloText = 'This one was created manually instead of using the database. ';
 
+        vm.helloText = 'This file can be used as a nice little scaffold.';
         // Methods
 
         //////////
