@@ -1,7 +1,0 @@
-[MENUENTRY1]
-	{
-	UNITMENU=CORLAB; //CORE Kbot Lab (Produces Kbots)
-	MENU=2;
-	BUTTON=5;
-	UNITNAME=GLADIATOR; //CORE Gladiator (Medium Infantry Kbot)
-	}

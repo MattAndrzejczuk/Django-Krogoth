@@ -1,7 +1,0 @@
-[MENUENTRY1]
-	{
-	UNITMENU=armaSY;
-	MENU=8;
-	BUTTON=1;
-	UNITNAME=orranis;
-	}

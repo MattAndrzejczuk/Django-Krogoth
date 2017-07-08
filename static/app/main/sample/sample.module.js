@@ -38,11 +38,11 @@
 
 
         // Navigation
-        msNavigationServiceProvider.saveItem('apps.sample', {
-            title: 'Sample',
-            icon: 'icon-star',
-            state: 'app.sample',
-            weight: 5
-        });
+        // msNavigationServiceProvider.saveItem('apps.sample', {
+        //     title: 'Sample',
+        //     icon: 'icon-star',
+        //     state: 'app.sample',
+        //     weight: 5
+        // });
     }
 })();

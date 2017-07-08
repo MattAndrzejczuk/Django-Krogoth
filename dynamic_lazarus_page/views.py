@@ -55,11 +55,6 @@ CCD = {
 }
 
 
-class SampleAPI(APIView):
-    def get(self, request, format=None):
-        sample_response = {'data': 'hello world'}
-        return Response(sample_response)
-
 
 class CustomHtmlGenerator(APIView):
     def get(self, request, format=None):
@@ -73,8 +68,8 @@ class DynamicIndexModule(APIView):
         index_module_pt1 = "(function (){'use strict';angular.module('fuse', ['uiGmapgoogle-maps','textAngular'," + \
                            "'xeditable','app.core','app.sample','app.navigation','app.toolbar','app.quick-panel',"
         index_module_pt2 = "'app.dashboards','app.calendar','app.e-commerce','app.mail','app.chat','app.file-manager'," + \
-                           "'app.gantt-chart','app.scrumboard','app.todo','app.contacts','app.notes','app.sample','app.toastCtrl',"
-        my_apps = "'app.lazarus',"
+                           "'app.gantt-chart','app.scrumboard','app.todo','app.contacts','app.notes','app.toastCtrl',"
+        my_apps = "'app.lazarus','app.sample',"
 
         # inject dynamic apps
         all_applications = AngularFuseApplication.objects.all()
@@ -132,31 +127,6 @@ class DynamicHTMLInjector(APIView):
             raw_html_response += '</div>'
         return HttpResponse(raw_html_response)
 
-
-class SuperBasicModelView(APIView):
-    # serializer_class = SuperBasicModelSerializer
-    permission_classes = (AllowAny,)  # IsAuthenticated
-
-    def get(self, request, format=None):
-        allmodels = Car.objects.all()
-        print(allmodels)
-        return Response(allmodels)
-
-    def post(self, request, *args, **kwargs):
-        file_obj = request.FILES['file']
-        f = open('/usr/src/app/static/uploaded_file', 'w')
-        print('preparing to write file to /usr/src/app/static/uploaded_file')
-        myfile = File(f)
-        # myfile.write(ContentFile(file_obj.read()))
-        path = default_storage.save('tmp/THE_FILE', ContentFile(file_obj.read()))
-        tmp_file = os.path.join(settings.MEDIA_ROOT, path)
-        print('writing completed ! ! !')
-        myfile.close()
-        print('closing files')
-        f.close()
-        print('PROCESS COMPLETED!!!')
-        response = {'result': 'everything is finished ! ! ! ' + str(tmp_file)}
-        return Response(response)
 
 
 class AngularFuseApplicationView(APIView):
@@ -255,3 +225,56 @@ class FuseAppComponentView(APIView):
 
         modified_component.save()
         return Response({'result_PUT': 'If you are reading this, that means it worked!!! '})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class SuperBasicModelView(APIView):
+    # serializer_class = SuperBasicModelSerializer
+    permission_classes = (AllowAny,)  # IsAuthenticated
+
+    def get(self, request, format=None):
+        allmodels = Car.objects.all()
+        print(allmodels)
+        return Response(allmodels)
+
+    def post(self, request, *args, **kwargs):
+        file_obj = request.FILES['file']
+        f = open('/usr/src/app/static/uploaded_file', 'w')
+        print('preparing to write file to /usr/src/app/static/uploaded_file')
+        myfile = File(f)
+        # myfile.write(ContentFile(file_obj.read()))
+        path = default_storage.save('tmp/THE_FILE', ContentFile(file_obj.read()))
+        tmp_file = os.path.join(settings.MEDIA_ROOT, path)
+        print('writing completed ! ! !')
+        myfile.close()
+        print('closing files')
+        f.close()
+        print('PROCESS COMPLETED!!!')
+        response = {'result': 'everything is finished ! ! ! ' + str(tmp_file)}
+        return Response(response)
+
+
+class SampleAPI(APIView):
+    def get(self, request, format=None):
+        sample_response = {'data': 'hello world'}
+        return Response(sample_response)

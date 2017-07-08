@@ -1,7 +1,0 @@
-[MENUENTRY1]
-	{
-	MENU=7;
-	BUTTON=0;
-	UNITNAME=AAHPNS; //ARM Adv. Hovercraft Platform - NS (Builds Hovercraft)
-	UNITMENU=ARMCH; //ARM Construction Hovercraft (Tech Level 1)
-	}

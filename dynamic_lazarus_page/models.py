@@ -3,7 +3,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-
 DEFAULT_CONTROLLER = "(function () \n{ \n\t'use strict'; \n\tangular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController); \n\n\tfunction FUSE_APP_NAMEController() \n\t{ \n\t\t\tvar vm = this; \n\t\t\tvm.helloText = 'Welcome to FUSE_APP_NAME';   \n\t} \n})();"
 DEFAULT_MODULE = "(function () \n{ \n\t'use strict'; \n\tangular.module('app.FUSE_APP_NAME', ['flow']).config(config); \n\n\tfunction config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider) { \n\t$stateProvider.state('app.FUSE_APP_NAME', { \n\t\turl: '/FUSE_APP_NAME', \n\t\tviews: { \n\t\t\t'content@app': { \n\t\t\t\ttemplateUrl: '/dynamic_lazarus_page/DynamicHTMLInjector/?name=FUSE_APP_NAME', \n\t\t\t\tcontroller: 'FUSE_APP_NAMEController as vm'\n\t\t\t}\n\t\t}, \n\t\tbodyClass: 'file-manager' \n\t}); \n\tmsNavigationServiceProvider.saveItem('NAV_HEADER.FUSE_APP_NAME', { \n\t\ttitle: 'FUSE_APP_TITLE', \n\t\ticon: 'FUSE_APP_ICON', \n\t\tstate: 'app.FUSE_APP_NAME', \n\t\tweight: 3 \n\t});    \n\t} \n})();"
 
@@ -19,27 +18,27 @@ ICONS = (
     ('icon-home', 'icon-home'),
     ('icon-harddisk', 'icon-harddisk'),
     ('icon-view-list', 'icon-view-list'),
-    ('Terrain', 'icon-terrain'),
-    ('Dice Random', 'icon-dice'),
-    ('Question Mark', 'icon-help'),
-    ('Layers Cube', 'icon-layers'),
-    ('Memory Chip', 'icon-memory'),
-    ('Package Cube Closed', 'icon-package-variant-closed'),
-    ('Package Opened', 'icon-package-variant'),
+    ( 'icon-terrain','Terrain'),
+    ( 'icon-dice','Terrain'),
+    ( 'icon-help','Question Mark'),
+    ('icon-layers','Layers Cube' ),
+    ( 'icon-memory','Memory Chip'),
+    ( 'icon-package-variant-closed','Package Cube Closed'),
+    ( 'icon-package-variant','Package Opened'),
 
-    ('Data Agenda', 'icon-view-agenda'),
-    ('Data Array', 'icon-view-array'),
-    ('Data Carousel', 'icon-view-carousel'),
-    ('Data Column', 'icon-view-column'),
-    ('Data Dashboard', 'icon-view-dashboard'),
-    ('Data Day', 'icon-view-day'),
-    ('Data Headline', 'icon-view-headline'),
-    ('Data List', 'icon-view-list'),
-    ('Data Module', 'icon-view-module'),
-    ('Data Quilt', 'icon-view-quilt'),
-    ('Data Stream', 'icon-view-stream'),
-    ('Data Week', 'icon-view-week'),
-    ('Web Globe Atlas', 'icon-web'),
+    ('icon-view-agenda','Data Agenda' ),
+    ( 'icon-view-array','Data Array'),
+    ('icon-view-carousel','Data Carousel' ),
+    ( 'icon-view-column','Data Column'),
+    ( 'icon-view-dashboard','Data Dashboard'),
+    ( 'icon-view-day','Data Day'),
+    ( 'icon-view-headline','Data Headline'),
+    ( 'icon-view-list','Data List'),
+    ( 'icon-view-module','Data Module'),
+    ( 'icon-view-quilt','Data Quilt'),
+    ( 'icon-view-stream','Data Stream'),
+    ('icon-view-week','Data Week' ),
+    ('icon-web','Web Globe Atlas' ),
 
     ('icon-ubuntu', 'icon-ubuntu'),
     ('icon-linux', 'icon-linux'),

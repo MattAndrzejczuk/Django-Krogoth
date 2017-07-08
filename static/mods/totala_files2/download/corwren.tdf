@@ -1,9 +1,0 @@
-// Core "Wren" shielded scout aircraft with anti-signal-missiles by Xubor
-[MENUENTRY1]
-	{
-	UNITMENU=CORAAP;
-                    MENU=3;
-                    BUTTON=0;
-	UNITNAME=CORWREN;
-	}
-
