@@ -13,7 +13,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from DatabaseSandbox.models import VisitorLogSB, LazarusCommanderAccountSB, \
     LazarusModProjectSB, BasicUploadTrackerSB, TotalAnnihilationUploadedFile
-
+from django.template import loader
 import subprocess
 
 
@@ -53,71 +53,98 @@ class BasicUploadExample(APIView):
         return Response(response)
 
 
+
 class UploadDataTA(APIView):
     permission_classes = (AllowAny,)
-
     def get(self, request, format=None):
-        allmodels = TotalAnnihilationUploadedFile.objects.all()
-        response_list = []
-        for item in allmodels:
-            response_list.append(item.file_name[:-4])
-        return Response(response_list)
+        template = loader.get_template('upload_iframe.html')
+        server_msg = 'Lazarus will automatically parse the data to help make it avaliable to the Lazarus community.'
+        alert = 'info'
+        try:
+            alert = request.GET['upload_result']
+            if alert == "success":
+                more_info = request.GET['msg']
+                server_msg = 'Upload successful! ' + more_info
+            elif alert == "danger":
+                more_info = request.GET['msg']
+                server_msg = 'Upload failed! ' + more_info
+        except:
+            print('first time visitor.')
+        context = {
+            "server_msg": server_msg,
+            "alert": alert
+        }
+        return HttpResponse(template.render(context, request))
 
 
     def post(self, request, *args, **kwargs):
+        import sys
 
-        print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
-        print(request.FILES)
-        print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        try:
+            print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+            print(request.FILES)
+            print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
 
-        file_obj = request.FILES['file']
+            file_obj = request.FILES['file']
 
-        parseName1 = str(file_obj).replace(' ', '_')
-        parseName2 = parseName1.replace('-', '').lower()
-        parseName3 = parseName2.replace('+', '__')
-        # parseName4 = parseName3.replace('.', '')
+            parseName1 = str(file_obj).replace(' ', '_')
+            parseName2 = parseName1.replace('-', '').lower()
+            parseName3 = parseName2.replace('+', '__')
+            # parseName4 = parseName3.replace('.', '')
 
-        path = default_storage.save('ta_data/' + parseName3, ContentFile(file_obj.read()))
-        print('path: %s' % path)
+            path = default_storage.save('ta_data/' + parseName3, ContentFile(file_obj.read()))
+            print('path: %s' % path)
 
-        tmp_file = os.path.join(settings.MEDIA_ROOT, path)
+            tmp_file = os.path.join(settings.MEDIA_ROOT, path)
 
-        file_name_regular = str(path).replace('ta_data/', '').strip()
+            file_name_regular = str(path).replace('ta_data/', '').strip()
 
-        response = {'result': 'everything is finished ! ! ! ' + str(tmp_file)}
+            response = {'result': 'everything is finished ! ! ! ' + str(tmp_file)}
 
-        file_type_parsed = file_name_regular[-3:]
+            file_type_parsed = file_name_regular[-3:]
 
-        extraction_point_directory = file_name_regular.replace(file_name_regular[-4:],'')
-        os.system('mkdir '+ '/usr/src/persistent/media/ta_data/'+extraction_point_directory)
+            extraction_point_directory = file_name_regular.replace(file_name_regular[-4:],'')
+            os.system('mkdir '+ '/usr/src/persistent/media/ta_data/'+extraction_point_directory)
 
-        ufo_path = '/usr/src/persistent/media/'+path
-        output_path = '/usr/src/persistent/media/ta_data/'+extraction_point_directory
+            ufo_path = '/usr/src/persistent/media/'+path
+            output_path = '/usr/src/persistent/media/ta_data/'+extraction_point_directory
 
 
-        bash_cmd = ['sh', 'extractTA_Mod.sh', ufo_path, output_path]
-        run_extraction_bash = str(subprocess.check_output(bash_cmd))
+            bash_cmd = ['sh', 'extractTA_Mod.sh', ufo_path, output_path]
+            run_extraction_bash = str(subprocess.check_output(bash_cmd))
 
-        print(run_extraction_bash)
-        # print('sh extractTA_Mod.sh ' + ufo_path + ' -o ' + output_path )
-        # os.system('sh extractTA_Mod.sh ' + ufo_path + ' -o ' + output_path)
+            print(run_extraction_bash)
 
-        # rename_files_bash = "bash bashRenameStuffToLowerInDirectory.sh " + mod_name
-        # os.system(rename_files_bash)
+            rename_files_bash = "bash bashRenameStuffToLowerInDirectory_public.sh " + extraction_point_directory
+            os.system(rename_files_bash)
 
-        rename_files_bash = "bash bashRenameStuffToLowerInDirectory_public.sh " + extraction_point_directory
-        os.system(rename_files_bash)
+            but_DB = TotalAnnihilationUploadedFile(file_name=file_name_regular,
+                                        download_url=ufo_path,
+                                        system_path=output_path,
+                                        author=request.user.username,
+                                        file_type=file_type_parsed,
+                                        HPI_Extractor_Log=run_extraction_bash
+                                        )
+            but_DB.save()
+            template = loader.get_template('upload_iframe.html')
+            server_msg = 'Upload successful! ' + str(file_obj)
+            alert = 'success'
+            context = {
+                "server_msg": server_msg,
+                "alert": alert
+            }
+            return HttpResponse(template.render(context, request))
 
-        but_DB = TotalAnnihilationUploadedFile(file_name=file_name_regular,
-                                    download_url=ufo_path,
-                                    system_path=output_path,
-                                    author=request.user.username,
-                                    file_type=file_type_parsed,
-                                    HPI_Extractor_Log=run_extraction_bash
-                                    )
+        except:
+            template = loader.get_template('upload_iframe.html')
+            server_msg = 'The upload seems to have failed: ' + str(sys.exc_info())
+            alert = 'danger'
+            context = {
+                "server_msg": server_msg,
+                "alert": alert
+            }
+            return HttpResponse(template.render(context, request))
 
-        but_DB.save()
-        return Response(response)
 
 
 

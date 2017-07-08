@@ -222,13 +222,28 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
         mod_paths = {}
         uploaded_data_files = TotalAnnihilationUploadedFile.objects.all()
         for data_file in uploaded_data_files:
+            print("data_file %s" % data_file)
             if os.path.isdir(data_file.system_path):
                 ls_current_modpath = str(subprocess.check_output(['ls', data_file.system_path]))
 
                 parsed_1 = ls_current_modpath.replace("\\n'","")
-                parsed_2 = parsed_1.replace("b'","")
+                dirs_in_mod = parsed_1.replace("b'","").split('\\n')
 
-                mod_paths[data_file.system_path] = parsed_2.split('\\n')
+                print("parsed_1 %s" % parsed_1)
+                print("dirs_in_mod : ")
+
+                listed_data_files = {}
+                for mod_item in dirs_in_mod:
+                    listed_data_files[mod_item] = []
+                    print("mod_item : %s" % mod_item)
+                    mod_item_path = data_file.system_path + '/' + mod_item
+                    if os.path.isdir(mod_item_path):
+                        ls_current_submodpath = str(subprocess.check_output(['ls', mod_item_path]))
+                        sub_parsed_1 = ls_current_submodpath.replace("\\n'", "")
+                        sub_parsed_2 = sub_parsed_1.replace("b'", "")
+                        listed_data_files[mod_item].append(sub_parsed_2.split('\\n'))
+
+                mod_paths[data_file.system_path] = listed_data_files #parsed_2.split('\\n')
             # mod_paths.append(data_file.system_path)
 
 
@@ -236,7 +251,7 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
         final_obj[directory_str] = str(result1).split('\\n')
         final_obj[directory_str][0] = final_obj[directory_str][0].replace("b'", "")
 
-        context = {'result': final_obj, 'mod_paths': mod_paths}
+        context = {'root_items': final_obj, 'mod_paths': mod_paths}
         return Response(context)
 
 
