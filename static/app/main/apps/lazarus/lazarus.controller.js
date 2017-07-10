@@ -8,13 +8,12 @@
     /** @ngInject */
     function LazarusController($mdSidenav, $log, $http, $mdToast, $mdDialog, $scope, $mdMenu) {
         var vm = this;
-
-
-        // Data
+        
         vm.accounts = {
             'creapond': 'johndoe@creapond.com',
             'withinpixels': 'johndoe@withinpixels.com'
         };
+        
         vm.selectedAccount = 'creapond';
         vm.currentView = 'list';
         vm.showDetails = true;
@@ -25,9 +24,9 @@
         vm.searchTextCustom = '';
         $scope.searchText = 'a';
         $log.log('LazarusController');
-        // $log.log(Documents);
-        vm.path = 'just a sample path'; //Documents['arm_data'];
-        vm.folders = []; // Documents.data['thumbnail'];
+
+        vm.path = 'just a sample path'; 
+        vm.folders = []; 
         vm.files = [
             {
                 "MetalStorage": "0",
@@ -93,29 +92,24 @@
                 "TEDClass": "KBOT",
                 "EnergyMake": "1.1"
             }];
+        
+        
         vm.selected = vm.files[0];
 
-
-        // Fuse Methods
         vm.fileAdded = fileAdded;
         vm.select = select;
         vm.toggleDetails = toggleDetails;
         vm.toggleSidenav = toggleSidenav;
         vm.toggleView = toggleView;
 
-        // Open Unit FBI Data in Dialog
         vm.dialogShowRawFbi = dialogShowRawFbi;
 
-        // ArmPrime Variables - Toast
         vm.isDlgOpen = false;
 
-        // ArmPrime Methods - Toast
         vm.closeToast = closeToast;
         vm.openMoreInfo = openMoreInfo;
         vm.showCustomToast = showCustomToast;
-
-
-        // ArmPrime Sound Effects
+        
         vm.playSoundError = playSoundError;
         vm.playSoundClickUnit = playSoundClickUnit;
         vm.playSoundClickSkirmish = playSoundClickSkirmish;
@@ -136,14 +130,14 @@
         
 
         function dialogShowRawFbi(ev) {
-            // alert(vm.selected['JsonDump']['UnitName']);
+
             $mdDialog.show({
                 controller: DialogController,
                 templateUrl: 'http://52.27.28.55/LazarusII/UnitFbiData/?mod_name=totala_files2&will_show_raw_fbi=pretty&unit_id=' + vm.selected['UnitName'],
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true,
-                fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+                fullscreen: $scope.customFullscreen 
             })
                 .then(function (answer) {
                     $scope.status = 'You said the information was "' + answer + '".';
@@ -152,7 +146,7 @@
                 });
         };
 
-        //
+        
         function playSoundError() {
             var audio = new Audio("/static/gui_sfx/alert_warn1.wav");
             audio.addEventListener('canplaythrough', function () {
@@ -186,15 +180,7 @@
             var msg = document.getElementById('search_params').value;
             $log.log(msg);
             vm.searchTextCustom = msg;
-            // if (msg) {
-            //     var final_msg = msg.replace(" ", "%20");
-            //     $mdToast.show({
-            //         hideDelay: 4000,
-            //         position: 'bottom left',
-            //         controller: 'ToastCtrl',
-            //         templateUrl: '/LazarusII/CustomToast/?msg=' + final_msg
-            //     });
-            // }
+
         }
 
 
@@ -211,8 +197,6 @@
 
 
         function openMoreInfo(e) {
-            // if (vm.isDlgOpen) return;
-
             vm.isDlgOpen = true;
             $mdDialog
                 .show($mdDialog
@@ -228,29 +212,8 @@
                 })
         }
 
-
-        /**
-         * File added callback
-         * Triggers when files added to the uploader
-         *
-         * @param file
-         */
+        
         function fileAdded(file) {
-            // Prepare the temp file data for file list
-            // var uploadingFile = {
-            //     id: file.uniqueIdentifier,
-            //     file: file,
-            //     type: '',
-            //     owner: 'Emily Bennett',
-            //     size: '',
-            //     modified: moment().format('MMMM D, YYYY'),
-            //     opened: '',
-            //     created: moment().format('MMMM D, YYYY'),
-            //     extention: '',
-            //     location: 'My Files > Documents',
-            //     offline: false,
-            //     preview: '/static/assets/images/etc/sample-file-preview.jpg'
-            // };
 
             var data = new FormData();
             data.append("file", file);
@@ -270,35 +233,6 @@
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
             xhr.send(data);
-
-            // $http({
-            //     method: 'POST',
-            //     url: '/SandboxDB/UploadDataTA/',
-            //     headers: {
-            //         'Content-Type': undefined,
-            //         'cache-control': 'no-cache'
-            //     },
-            //     data: {
-            //         file: file
-            //     },
-            //     transformRequest: function (data, headersGetter) {
-            //         var formData = new FormData();
-            //         angular.forEach(data, function (value, key) {
-            //             formData.append(key, value);
-            //         });
-            //         return formData;
-            //     }
-            // })
-            //     .success(function () {
-            //         showCustomToast('Upload Complete !');
-            //     })
-            //     .error(function () {
-            //         showCustomToast('Failed to upload unit, we will resolve this issue soon!');
-            //         vm.playSoundError();
-            //     });
-
-            // Append it to the file list
-            // vm.files.push(uploadingFile);
         }
 
 
@@ -309,7 +243,6 @@
          */
         function select(item) {
             console.log(item);
-            // Simple GET request example:
 
             $http({
                 method: 'GET',
@@ -318,14 +251,12 @@
                 vm.playSoundClickUnit();
                 vm.selected = response.data[0];
                 console.log(response.data[0]);
-                // this callback will be called asynchronously
-                // when the response is available
+
             }, function errorCallback(response) {
                 console.log(response.data);
                 showCustomToast('Failed to load unit, we will resolve this issue soon!');
                 vm.playSoundError();
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
+
             });
         }
 
@@ -343,20 +274,18 @@
                 vm.isLoadingMod = false;
 
                 vm.playSoundModFinishedLoading();
-                // this callback will be called asynchronously
-                // when the response is available
+
             }, function errorCallback(response) {
                 console.log(response.data);
                 showCustomToast('Failed to load mod, we will resolve this issue soon!');
                 vm.playSoundError();
                 vm.isLoadingMod = false;
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
+
             });
         }
 
 
-        /// /LazarusII/LazarusListUnits/?should_get_user_content=true&mod_name=
+        /*   /LazarusII/LazarusListUnits/?should_get_user_content=true&mod_name=    */
         vm.selectUploadedModNamed = selectUploadedModNamed;
         function selectUploadedModNamed(mod_name) {
             vm.playSoundClickSkirmish();
@@ -371,30 +300,24 @@
                 vm.isLoadingMod = false;
 
                 vm.playSoundModFinishedLoading();
-                // this callback will be called asynchronously
-                // when the response is available
+
             }, function errorCallback(response) {
                 console.log(response.data);
                 showCustomToast('Failed to load mod, we will resolve this issue soon!');
                 vm.playSoundError();
                 vm.isLoadingMod = false;
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
+
             });
         }
 
-        vm.customMods = [];
-
+        vm.customMods = {"":[], "":[]};
         $http({
             method: 'GET',
-            url: '/SandboxDB/UploadDataTA/'
+            url: '/LazarusII/ExecuteBash_LS_AllCustomModFiles/'
         }).then(function successCallback(response) {
-            $log.log(response.data);
             vm.customMods = response.data;
         }, function errorCallback(response) {
-            // failed to load custom mods
-            $log.log('FAIL ! ! !');
-            $log.log(response.data);
+            vm.customMods = {"FAIL":[], "SOMETHING BROKE":[]};
         });
 
         /**
@@ -440,18 +363,22 @@
 })();
 
 
+
+
+
+
+
+
 (function () {
     'use strict';
     angular
         .module('app.toastCtrl',
             [
-                // 3rd Party Dependencies
                 'flow'
             ]
         );
 
 })();
-
 (function () {
     'use strict';
     angular
@@ -466,63 +393,6 @@
         };
     }
 })();
-
-
-/*
-
- THIS WILL NOW BE AUTOMAGICALLY GENERATED BY DJANGO
-
- (function () {
- 'use strict';
-
- angular
- .module('app.lazarus',
- [
- // 3rd Party Dependencies
- 'flow'
- ]
- )
- .config(config);
-
- /*
- function config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider) {
- // State
- $stateProvider.state('app.dynamic_sample1', {
- url: '/dynamic_sample1',
- views: {
- 'content@app': {
- templateUrl: '/static/app/main/apps/lazarus/lazarus.html',
- controller: 'LazarusController as vm'
- }
- },
- bodyClass: 'file-manager'
- });
-
- // Navigation
- msNavigationServiceProvider.saveItem('apps.dynamic_sample1', {
- title: 'Dynamic Sample 1',
- icon: 'icon-star',
- state: 'app.dynamic_sample1',
- weight: 5
- });
- }
- })();
-
- (function () {
- 'use strict';
- angular
- .module('app.dynamic_sample1')
- .controller('DynamicSample1Ctrl', ToastCtrl);
- function DynamicSample1Ctrl($log) {
- var vm = this;
- $log.info('DynamicSample1Ctrl is online ! ! ! ');
- }
- })();
- */
-
-
-
-
 
 
 

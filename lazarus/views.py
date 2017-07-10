@@ -53,6 +53,15 @@ class bcolors:
 
 
 
+class CustomHtmlGenerator(APIView):
+    def get(self, request, format=None):
+        # msg = str(request.GET['msg'])
+        html = '<div> <h1>Some Basic HTML</h1> <p>This is everything.</p> </div>'
+        return HttpResponse(html)
+
+
+"""
+
 class LazarusListUnits:
     f = []
     d = []
@@ -452,6 +461,8 @@ class listWorkingDirectory(APIView):
         return Response(context)
 
 
+
+
 class index(APIView):
     def get(self, request, format=None):
         if platform.system() == "Darwin":
@@ -521,7 +532,13 @@ class convertPcxToPng(APIView):
         return Response(context)
 
 
+"""
 
+####    --------------------------------------------
+####    ------------------------------------------------------------------------------------------------------------
+####    --------------------------------------------
+
+"""
 class getRam(APIView):
     def get(self, request, format=None):
         if platform.system() == "Darwin":
@@ -925,3 +942,4 @@ class getProcessesNew(APIView):  # ps aux
                         "rows": rows}
 
         return Response(finalWrapper)
+"""

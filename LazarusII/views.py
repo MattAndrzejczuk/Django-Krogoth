@@ -231,8 +231,9 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
 
                 print("parsed_1 %s" % parsed_1)
                 print("dirs_in_mod : ")
-
+                mod_paths['system_path'] = data_file.system_path
                 listed_data_files = {}
+                # listed_data_files['system_path'] = data_file.system_path
                 for mod_item in dirs_in_mod:
                     listed_data_files[mod_item] = []
                     print("mod_item : %s" % mod_item)

@@ -77,9 +77,10 @@ class VisitorLog(models.Model):
     http_usr = models.CharField(max_length=255, blank=True, null=True)
     http_accept = models.CharField(max_length=255, blank=True, null=True)
 
+
 FACTIONS = (
-    ('Arm', 'Arm'),
-    ('Core', 'Core'),
+    ('ARM', 'Arm'),
+    ('CORE', 'Core'),
 )
 class LazarusCommanderAccount(models.Model):
     user = models.ForeignKey(User, unique=True)
