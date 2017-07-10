@@ -24,14 +24,785 @@ import subprocess
 from DatabaseSandbox.models import TotalAnnihilationUploadedFile, LazarusModProjectSB
 
 
+# from LazarusII.serializers import UnitFbiDataSerializer
+from LazarusII.models import UnitFbiData
+# from rest_framework import viewsets
+
+from rest_framework.decorators import detail_route, list_route
+
+
+
+
+class UnitFBIViewset(APIView):
+
+    def get(self, request, format=None):
+        mod_name = str(request.GET['mod_name'])
+        print('1 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        file_name = str(request.GET['file_name'])
+        print('2 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        directory_name = 'units'
+        print('3 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        file_path = '/usr/src/persistent/media/ta_data/' + mod_name + '/' + directory_name + '/' + file_name + '.fbi'
+        print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % file_path)
+        f3 = open(file_path, 'r', errors='replace')
+
+        print('5 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        OBJECT_NAME = 'UNITINFO'
+
+        tdf_without_comments = remove_comments(f3.read().strip().replace('\n', '').replace('\t', ''))
+
+        parsed_0 = tdf_without_comments.replace('[' + OBJECT_NAME + ']', '')
+        parsed_1 = parsed_0.replace('', '')
+        parsed_2 = parsed_1.replace('[', '"')
+        parsed_3 = parsed_2.replace(']', '" :')
+        parsed_4 = parsed_3.replace('=', '" : "')
+        parsed_5 = parsed_4.replace(';', '", "')
+        parsed_6 = parsed_5.replace('{', '{ "')
+        parsed_7 = parsed_6.replace(', "}', '}')
+        parsed_8 = parsed_7.replace(', ""', ', "')
+        total_weapons = [m.start() for m in re.finditer('[' + OBJECT_NAME + ']', tdf_without_comments)]
+        parsed_9 = parsed_8.replace('}{', '}, {', len(total_weapons) - 1)
+        parsed_10 = '[' + parsed_9 + ']'
+
+        tab_str = '	'
+        parsed_11 = parsed_10.replace('\t', '')
+        parsed_12 = parsed_11.replace('", "}', '"}')
+        # print(parsed_12)
+
+        dictionary = json.loads(parsed_12)
+
+        print(dictionary[0])
+
+        for weapon in dictionary:
+            weapon['OBJ_NAME'] = OBJECT_NAME
+
+        new_unit_fbi = UnitFbiData()
+        new_unit_fbi._raw_json_dump = '...'  # json.dumps(dictionary[0])
+        
+        try:
+            new_unit_fbi.Acceleration = float(dictionary[0]['Acceleration'])
+        except:
+            print('SKIPPING...' + str('Acceleration'))
+        try:
+            new_unit_fbi.ActiveWhenBuild = int(dictionary[0]['ActiveWhenBuild'])
+        except:
+            print('SKIPPING...' + str('ActiveWhenBuild'))
+        try:
+            new_unit_fbi.ai_limit = dictionary[0]['ai_limit']
+        except:
+            print('SKIPPING...' + str('ai_limit'))
+        try:
+            new_unit_fbi.ai_weight = dictionary[0]['ai_weight']
+        except:
+            print('SKIPPING...' + str('ai_weight'))
+        try:
+            new_unit_fbi.altfromsealevel = int(dictionary[0]['altfromsealevel'])
+        except:
+            print('SKIPPING...' + str('altfromsealevel'))
+        try:
+            new_unit_fbi.amphibious = int(dictionary[0]['amphibious'])
+        except:
+            print('SKIPPING...' + str('amphibious'))
+        try:
+            new_unit_fbi.antiweapons = int(dictionary[0]['antiweapons'])
+        except:
+            print('SKIPPING...' + str('antiweapons'))
+        try:
+            new_unit_fbi.attackrunlength = int(dictionary[0]['attackrunlength'])
+        except:
+            print('SKIPPING...' + str('attackrunlength'))
+        try:
+            new_unit_fbi.BMcode = int(dictionary[0]['BMcode'])
+        except:
+            print('SKIPPING...' + str('BMcode'))
+        try:
+            new_unit_fbi.BadTargetCategory = dictionary[0]['BadTargetCategory']
+        except:
+            print('SKIPPING...' + str('BadTargetCategory'))
+        try:
+            new_unit_fbi.BankScale = int(dictionary[0]['BankScale']) ### START
+        except:
+            print('SKIPPING...' + str('BankScale'))
+        try:
+            new_unit_fbi.BrakeRate = int(dictionary[0]['BrakeRate'])
+        except:
+            print('SKIPPING...' + str('BrakeRate'))
+        try:
+            new_unit_fbi.BuildAngle = int(dictionary[0]['BuildAngle'])
+        except:
+            print('SKIPPING...' + str('BuildAngle'))
+        try:
+            new_unit_fbi.BuildCostEnergy = int(dictionary[0]['BuildCostEnergy'])
+        except:
+            print('SKIPPING...' + str('BuildCostEnergy'))
+        try:
+            new_unit_fbi.BuildCostMetal = int(dictionary[0]['BuildCostMetal'])
+        except:
+            print('SKIPPING...' + str('BuildCostMetal'))
+        try:
+            new_unit_fbi.BuildTime = int(dictionary[0]['BuildTime'])
+        except:
+            print('SKIPPING...' + str('BuildTime'))
+        try:
+            new_unit_fbi.Builddistance = int(dictionary[0]['Builddistance'])
+        except:
+            print('SKIPPING...' + str('Builddistance'))
+        try:
+            new_unit_fbi.Builder = int(dictionary[0]['Builder'])
+        except:
+            print('SKIPPING...' + str('Builder'))
+        try:
+            new_unit_fbi.canattack = int(dictionary[0]['canattack'])
+        except:
+            print('SKIPPING...' + str('canattack'))
+        try:
+            new_unit_fbi.CanCapture = int(dictionary[0]['CanCapture'])
+        except:
+            print('SKIPPING...' + str('CanCapture'))
+        try:
+            new_unit_fbi.CanDgun = int(dictionary[0]['CanDgun'])
+        except:
+            print('SKIPPING...' + str('CanDgun'))
+        try:
+            new_unit_fbi.Canfly = int(dictionary[0]['Canfly'])
+        except:
+            print('SKIPPING...' + str('Canfly'))
+        try:
+            new_unit_fbi.canguard = int(dictionary[0]['canguard'])
+        except:
+            print('SKIPPING...' + str('canguard'))
+        try:
+            new_unit_fbi.canhover = int(dictionary[0]['canhover'])
+        except:
+            print('SKIPPING...' + str('canhover'))
+        try:
+            new_unit_fbi.canload = int(dictionary[0]['canload'])
+        except:
+            print('SKIPPING...' + str('canload'))
+        try:
+            new_unit_fbi.canmove = int(dictionary[0]['canmove'])
+        except:
+            print('SKIPPING...' + str('canmove'))
+        try:
+            new_unit_fbi.canpatrol = int(dictionary[0]['canpatrol'])
+        except:
+            print('SKIPPING...' + str('canpatrol'))
+        try:
+            new_unit_fbi.CanReclamate = int(dictionary[0]['CanReclamate'])
+        except:
+            print('SKIPPING...' + str('CanReclamate'))
+        try:
+            new_unit_fbi.canstop = int(dictionary[0]['canstop'])
+        except:
+            print('SKIPPING...' + str('canstop'))
+        try:
+            new_unit_fbi.cantbetransported = int(dictionary[0]['cantbetransported'])  ### END
+        except:
+            print('SKIPPING...' + int(str('cantbetransported')))
+        try:
+            new_unit_fbi.Category = dictionary[0]['Category']
+        except:
+            print('SKIPPING...' + str('Category'))
+        try:
+            new_unit_fbi.CloakCost = int(dictionary[0]['CloakCost'])
+        except:
+            print('SKIPPING...' + str('CloakCost'))
+        try:
+            new_unit_fbi.CloakCostMoving = int(dictionary[0]['CloakCostMoving'])
+        except:
+            print('SKIPPING...' + str('CloakCostMoving'))
+        try:
+            new_unit_fbi.Commander = int(dictionary[0]['Commander'])
+        except:
+            print('SKIPPING...' + str('Commander'))
+        try:
+            new_unit_fbi.Copyright = dictionary[0]['Copyright']
+        except:
+            print('SKIPPING...' + str('Copyright'))
+        try:
+            new_unit_fbi.Corpse = dictionary[0]['Corpse']
+        except:
+            print('SKIPPING...' + str('Corpse'))
+        try:
+            new_unit_fbi.cruisealt = int(dictionary[0]['cruisealt'])
+        except:
+            print('SKIPPING...' + str('cruisealt'))
+        try:
+            new_unit_fbi.DamageModifier = float(dictionary[0]['DamageModifier'])
+        except:
+            print('SKIPPING...' + str('DamageModifier'))
+        try:
+            new_unit_fbi.DefaultMissionType = dictionary[0]['DefaultMissionType']
+        except:
+            print('SKIPPING...' + str('DefaultMissionType'))
+        try:
+            new_unit_fbi.Description = dictionary[0]['Description']
+        except:
+            print('SKIPPING...' + str('Description'))
+        try:
+            new_unit_fbi.Designation = dictionary[0]['Designation']
+        except:
+            print('SKIPPING...' + str('Designation'))
+        try:
+            new_unit_fbi.digger = int(dictionary[0]['digger']) # BEGIN
+        except:
+            print('SKIPPING...' + str('digger'))
+        try:
+            new_unit_fbi.Downloadable = int(dictionary[0]['Downloadable'])
+        except:
+            print('SKIPPING...' + str('Downloadable'))
+        try:
+            new_unit_fbi.EnergyMake = int(dictionary[0]['EnergyMake'])
+        except:
+            print('SKIPPING...' + str('EnergyMake'))
+        try:
+            new_unit_fbi.EnergyStorage = int(dictionary[0]['EnergyStorage'])
+        except:
+            print('SKIPPING...' + str('EnergyStorage'))
+        try:
+            new_unit_fbi.EnergyUse = int(dictionary[0]['EnergyUse'])  # END
+        except:
+            print('SKIPPING...' + str('EnergyUse'))
+        try:
+            new_unit_fbi.ExplodeAs = dictionary[0]['ExplodeAs']
+        except:
+            print('SKIPPING...' + str('ExplodeAs'))
+        try:
+            new_unit_fbi.ExtractsMetal = float(dictionary[0]['ExtractsMetal']) # FLOAT__
+        except:
+            print('SKIPPING...' + str('ExtractsMetal'))
+        try:
+            new_unit_fbi.firestandorders = int(dictionary[0]['firestandorders'])  # BEGIN INT
+        except:
+            print('SKIPPING...' + str('firestandorders'))
+        try:
+            new_unit_fbi.Floater = int(dictionary[0]['Floater'])
+        except:
+            print('SKIPPING...' + str('Floater'))
+        try:
+            new_unit_fbi.FootprintX = int(dictionary[0]['FootprintX'])
+        except:
+            print('SKIPPING...' + str('FootprintX'))
+        try:
+            new_unit_fbi.FootprintZ = int(dictionary[0]['FootprintZ'])  # END INT
+        except:
+            print('SKIPPING...' + str('FootprintZ'))
+        try:
+            new_unit_fbi.FrenchDescription = dictionary[0]['FrenchDescription']
+        except:
+            print('SKIPPING...' + str('FrenchDescription'))
+        try:
+            new_unit_fbi.FrenchName = dictionary[0]['FrenchName']
+        except:
+            print('SKIPPING...' + str('FrenchName'))
+        try:
+            new_unit_fbi.GermanDescription = dictionary[0]['GermanDescription']
+        except:
+            print('SKIPPING...' + str('GermanDescription'))
+        try:
+            new_unit_fbi.GermanName = dictionary[0]['GermanName']
+        except:
+            print('SKIPPING...' + str('GermanName'))
+        try:
+            new_unit_fbi.HealTime = int(dictionary[0]['HealTime'])  # BEGIN INT
+        except:
+            print('SKIPPING...' + str('HealTime'))
+        try:
+            new_unit_fbi.HideDamage = int(dictionary[0]['HideDamage'])
+        except:
+            print('SKIPPING...' + str('HideDamage'))
+        try:
+            new_unit_fbi.HoverAttack = int(dictionary[0]['HoverAttack'])
+        except:
+            print('SKIPPING...' + str('HoverAttack'))
+        try:
+            new_unit_fbi.ImmuneToParalyzer = int(dictionary[0]['ImmuneToParalyzer'])
+        except:
+            print('SKIPPING...' + str('ImmuneToParalyzer'))
+        try:
+            new_unit_fbi.init_cloaked = int(dictionary[0]['init_cloaked'])
+        except:
+            print('SKIPPING...' + str('init_cloaked'))
+        try:
+            new_unit_fbi.IsAirBase = int(dictionary[0]['IsAirBase'])
+        except:
+            print('SKIPPING...' + str('IsAirBase'))
+        try:
+            new_unit_fbi.IsFeature = int(dictionary[0]['IsFeature'])
+        except:
+            print('SKIPPING...' + str('IsFeature'))
+        try:
+            new_unit_fbi.istargetingupgrade = int(dictionary[0]['istargetingupgrade'])  # END INT
+        except:
+            print('SKIPPING...' + str('istargetingupgrade'))
+        try:
+            new_unit_fbi.ItalianDescription = dictionary[0]['ItalianDescription']
+        except:
+            print('SKIPPING...' + str('ItalianDescription'))
+        try:
+            new_unit_fbi.ItalianName = dictionary[0]['ItalianName']
+        except:
+            print('SKIPPING...' + str('ItalianName'))
+        try:
+            new_unit_fbi.JapanesDescription = dictionary[0]['JapanesDescription']
+        except:
+            print('SKIPPING...' + str('JapanesDescription'))
+        try:
+            new_unit_fbi.JapaneseName = dictionary[0]['JapaneseName']
+        except:
+            print('SKIPPING...' + str('JapaneseName'))
+        try:
+            new_unit_fbi.kamikaze = int(dictionary[0]['kamikaze'])  # BEGIN INT
+        except:
+            print('SKIPPING...' + str('kamikaze'))
+        try:
+            new_unit_fbi.kamikazedistance = int(dictionary[0]['kamikazedistance'])
+        except:
+            print('SKIPPING...' + str('kamikazedistance'))
+        try:
+            new_unit_fbi.MakesMetal = int(dictionary[0]['MakesMetal'])
+        except:
+            print('SKIPPING...' + str('MakesMetal'))
+        try:
+            new_unit_fbi.maneuverleashlength = int(dictionary[0]['maneuverleashlength'])
+        except:
+            print('SKIPPING...' + str('maneuverleashlength'))
+        try:
+            new_unit_fbi.MaxDamage = int(dictionary[0]['MaxDamage'])
+        except:
+            print('SKIPPING...' + str('MaxDamage'))
+        try:
+            new_unit_fbi.MaxSlope = int(dictionary[0]['MaxSlope'])
+        except:
+            print('SKIPPING...' + str('MaxSlope'))
+        try:
+            new_unit_fbi.MaxVelocity = int(dictionary[0]['MaxVelocity'])
+        except:
+            print('SKIPPING...' + str('MaxVelocity'))
+        try:
+            new_unit_fbi.MaxWaterDepth = int(dictionary[0]['MaxWaterDepth'])
+        except:
+            print('SKIPPING...' + str('MaxWaterDepth'))
+        try:
+            new_unit_fbi.MetalMake = int(dictionary[0]['MetalMake'])
+        except:
+            print('SKIPPING...' + str('MetalMake'))
+        try:
+            new_unit_fbi.MetalStorage = int(dictionary[0]['MetalStorage'])
+        except:
+            print('SKIPPING...' + str('MetalStorage'))
+        try:
+            new_unit_fbi.mincloakdistance = int(dictionary[0]['mincloakdistance'])
+        except:
+            print('SKIPPING...' + str('mincloakdistance'))
+        try:
+            new_unit_fbi.MinWaterDepth = int(dictionary[0]['MinWaterDepth'])
+        except:
+            print('SKIPPING...' + str('MinWaterDepth'))
+        try:
+            new_unit_fbi.MobileStandOrders = int(dictionary[0]['MobileStandOrders'])
+        except:
+            print('SKIPPING...' + str('MobileStandOrders'))
+        try:
+            new_unit_fbi.MoveRate1 = int(dictionary[0]['MoveRate1'])  # END INT
+        except:
+            print('SKIPPING...' + str('MoveRate1'))
+        try:
+            new_unit_fbi.MovementClass = dictionary[0]['MovementClass']
+        except:
+            print('SKIPPING...' + str('MovementClass'))
+        try:
+            new_unit_fbi.Name = dictionary[0]['Name']
+        except:
+            print('SKIPPING...' + str('Name'))
+        try:
+            new_unit_fbi.NoAutoFire = int(dictionary[0]['NoAutoFire'])
+        except:
+            print('SKIPPING...' + str('NoAutoFire'))
+        try:
+            new_unit_fbi.NoChaseCategory = dictionary[0]['NoChaseCategory']
+        except:
+            print('SKIPPING...' + str('NoChaseCategory'))
+        try:
+            new_unit_fbi.norestrict = int(dictionary[0]['norestrict'])
+        except:
+            print('SKIPPING...' + str('norestrict'))
+        try:
+            new_unit_fbi.NoShadow = int(dictionary[0]['NoShadow'])
+        except:
+            print('SKIPPING...' + str('NoShadow'))
+        try:
+            new_unit_fbi.Objectname = dictionary[0]['Objectname']
+        except:
+            print('SKIPPING...' + str('Objectname'))
+        try:
+            new_unit_fbi.onoffable = int(dictionary[0]['onoffable'])
+        except:
+            print('SKIPPING...' + str('onoffable'))
+        try:
+            new_unit_fbi.Ovradjust = int(dictionary[0]['Ovradjust'])
+        except:
+            print('SKIPPING...' + str('Ovradjust'))
+        try:
+            new_unit_fbi.PigLatinDescription = dictionary[0]['PigLatinDescription']
+        except:
+            print('SKIPPING...' + str('PigLatinDescription'))
+        try:
+            new_unit_fbi.PigLatinName = dictionary[0]['PigLatinName']
+        except:
+            print('SKIPPING...' + str('PigLatinName'))
+        try:
+            new_unit_fbi.PitchScale = int(dictionary[0]['PitchScale'])  # BEGIN INT
+        except:
+            print('SKIPPING...' + str('PitchScale'))
+        try:
+            new_unit_fbi.RadarDistance = int(dictionary[0]['RadarDistance'])
+        except:
+            print('SKIPPING...' + str('RadarDistance'))
+        try:
+            new_unit_fbi.RadarDistanceJam = int(dictionary[0]['RadarDistanceJam'])
+        except:
+            print('SKIPPING...' + str('RadarDistanceJam'))
+        try:
+            new_unit_fbi.Scale = int(dictionary[0]['Scale'])  # END INT
+        except:
+            print('SKIPPING...' + str('Scale'))
+        try:
+            new_unit_fbi.SelfDestructAs = dictionary[0]['SelfDestructAs']
+        except:
+            print('SKIPPING...' + str('SelfDestructAs'))
+        try:
+            new_unit_fbi.selfdestructcountdown = int(dictionary[0]['selfdestructcountdown'])   # INT_()
+        except:
+            print('SKIPPING...' + str('selfdestructcountdown'))
+        try:
+            new_unit_fbi.ShootMe = int(dictionary[0]['ShootMe'])   # INT_()
+        except:
+            print('SKIPPING...' + str('ShootMe'))
+        try:
+            new_unit_fbi.ShowPlayerName = int(dictionary[0]['ShowPlayerName'])   # INT_()
+        except:
+            print('SKIPPING...' + str('ShowPlayerName'))
+        try:
+            new_unit_fbi.Side = dictionary[0]['Side']
+        except:
+            print('SKIPPING...' + str('Side'))
+        try:
+            new_unit_fbi.SightDistance = int(dictionary[0]['SightDistance'])   # INT_()
+        except:
+            print('SKIPPING...' + str('SightDistance'))
+        try:
+            new_unit_fbi.SonarDistance = int(dictionary[0]['SonarDistance'])   # INT_()
+        except:
+            print('SKIPPING...' + str('SonarDistance'))
+        try:
+            new_unit_fbi.SonarDistanceJam = int(dictionary[0]['SonarDistanceJam'])   # INT_()
+        except:
+            print('SKIPPING...' + str('SonarDistanceJam'))
+        try:
+            new_unit_fbi.sortbias = int(dictionary[0]['sortbias'])   # INT_()
+        except:
+            print('SKIPPING...' + str('sortbias'))
+        try:
+            new_unit_fbi.SoundCategory = dictionary[0]['SoundCategory']
+        except:
+            print('SKIPPING...' + str('SoundCategory'))
+        try:
+            new_unit_fbi.SpanishDescription = dictionary[0]['SpanishDescription']
+        except:
+            print('SKIPPING...' + str('SpanishDescription'))
+        try:
+            new_unit_fbi.SpanishName = dictionary[0]['SpanishName']
+        except:
+            print('SKIPPING...' + str('SpanishName'))
+        try:
+            new_unit_fbi.StandingFireOrder = int(dictionary[0]['StandingFireOrder'])   # INT_()
+        except:
+            print('SKIPPING...' + str('StandingFireOrder'))
+        try:
+            new_unit_fbi.StandingMoveOrder = int(dictionary[0]['StandingMoveOrder'])   # INT_()
+        except:
+            print('SKIPPING...' + str('StandingMoveOrder'))
+        try:
+            new_unit_fbi.Stealth = int(dictionary[0]['Stealth'])   # INT_()
+        except:
+            print('SKIPPING...' + str('Stealth'))
+        try:
+            new_unit_fbi.SteeringMode = int(dictionary[0]['SteeringMode'])   # INT_()
+        except:
+            print('SKIPPING...' + str('SteeringMode'))
+        try:
+            new_unit_fbi.TEDClass = dictionary[0]['TEDClass']
+        except:
+            print('SKIPPING...' + str('TEDClass'))
+        try:
+            new_unit_fbi.teleporter = int(ictionary[0]['teleporter'])   # INT_()
+        except:
+            print('SKIPPING...' + str('teleporter'))
+        try:
+            new_unit_fbi.ThreeD = int(dictionary[0]['ThreeD'])   # INT_()
+        except:
+            print('SKIPPING...' + str('ThreeD'))
+        try:
+            new_unit_fbi.TidalGenerator = int(dictionary[0]['TidalGenerator'])   # INT_()
+        except:
+            print('SKIPPING...' + str('TidalGenerator'))
+        try:
+            new_unit_fbi.TransMaxUnits = int(dictionary[0]['TransMaxUnits'])   # INT_()
+        except:
+            print('SKIPPING...' + str('TransMaxUnits'))
+        try:
+            new_unit_fbi.transportcapacity = int(dictionary[0]['transportcapacity'])   # INT_()
+        except:
+            print('SKIPPING...' + str('transportcapacity'))
+        try:
+            new_unit_fbi.transportsize = int(dictionary[0]['transportsize'])   # INT_()
+        except:
+            print('SKIPPING...' + str('transportsize'))
+        try:
+            new_unit_fbi.TurnRate = int(dictionary[0]['TurnRate'])   # INT_()
+        except:
+            print('SKIPPING...' + str('TurnRate'))
+        try:
+            new_unit_fbi.UnitName = dictionary[0]['UnitName']
+        except:
+            print('SKIPPING...' + str('UnitName'))
+        try:
+            new_unit_fbi.Upright = dictionary[0]['Upright']
+        except:
+            print('SKIPPING...' + str('Upright'))
+        try:
+            new_unit_fbi.Version = float(dictionary[0]['Version'])
+        except:
+            print('SKIPPING...' + str('Version'))
+        try:
+            new_unit_fbi.WaterLine = int(dictionary[0]['WaterLine'])   # INT_()
+        except:
+            print('SKIPPING...' + str('WaterLine'))
+        # try:
+        #     new_unit_fbi.Weapon_One = dictionary[0]['Weapon1']
+        # except:
+        #     print('SKIPPING...' + str('Weapon1'))
+        # try:
+        #     new_unit_fbi.Name_Weapon_Two = dictionary[0]['Weapon2']
+        # except:
+        #     print('SKIPPING...' + str('Weapon2'))
+        # try:
+        #     new_unit_fbi.Name_Weapon_Three = dictionary[0]['Weapon3']
+        # except:
+        #     print('SKIPPING...' + str('Weapon3'))
+        try:
+            new_unit_fbi.WindGenerator = int(dictionary[0]['WindGenerator'])   # INT_()
+        except:
+            print('SKIPPING...' + str('WindGenerator'))
+        try:
+            new_unit_fbi.WorkerTime = int(dictionary[0]['WorkerTime'])   # INT_()
+        except:
+            print('SKIPPING...' + str('WorkerTime'))
+        try:
+            new_unit_fbi.wpri_badTargetCategory = dictionary[0]['wpri_badTargetCategory']
+        except:
+            print('SKIPPING...' + str('wpri_badTargetCategory'))
+        try:
+            new_unit_fbi.wsec_badTargetCategory = dictionary[0]['wsec_badTargetCategory']
+        except:
+            print('SKIPPING...' + str('wsec_badTargetCategory'))
+        try:
+            new_unit_fbi.YardMap = dictionary[0]['YardMap']
+        except:
+            print('SKIPPING...' + str('YardMap'))
+        # 135
+
+        print('new_unit_fbi : ')
+        print('new_unit_fbi : ')
+        print('new_unit_fbi : ')
+        print('new_unit_fbi : ')
+        print('new_unit_fbi : ')
+        print(new_unit_fbi)
+
+        new_unit_fbi.save()
+
+        return Response(dictionary[0])
+
+
+    def post(self, request, *args, **kwargs):
+        raw_json = request.POST.dict()  # ['raw_json']
+
+        # obj_1 = json.loads(raw_json)
+        # print(json.dumps(raw_json))
+        print(raw_json)
+        print(request.POST)
+        return Response(raw_json)
+
+"""
+        new_unit_fbi = UnitFbiData()
+        new_unit_fbi._raw_json_dump = raw_json
+
+        new_unit_fbi.Acceleration
+        new_unit_fbi.ActiveWhenBuild
+        new_unit_fbi.ai_limit
+        new_unit_fbi.ai_weight
+        new_unit_fbi.altfromsealevel
+        new_unit_fbi.amphibious
+        new_unit_fbi.antiweapons
+        new_unit_fbi.attackrunlength
+        new_unit_fbi.BMcode
+        new_unit_fbi.BadTargetCategory
+
+        new_unit_fbi.BankScale
+        new_unit_fbi.BrakeRate
+        new_unit_fbi.BuildAngle
+        new_unit_fbi.BuildCostEnergy
+        new_unit_fbi.BuildCostMetal
+        new_unit_fbi.BuildTime
+        new_unit_fbi.Builddistance
+        new_unit_fbi.Builder
+        new_unit_fbi.canattack
+        new_unit_fbi.CanCapture
+
+        new_unit_fbi.CanDgun
+        new_unit_fbi.Canfly
+        new_unit_fbi.canguard
+        new_unit_fbi.canhover
+        new_unit_fbi.canload
+        new_unit_fbi.canmove
+        new_unit_fbi.canpatrol
+        new_unit_fbi.CanReclamate
+        new_unit_fbi.canstop
+        new_unit_fbi.cantbetransported
+
+        new_unit_fbi.Category
+        new_unit_fbi.CloakCost
+        new_unit_fbi.CloakCostMoving
+        new_unit_fbi.Commander
+        new_unit_fbi.Copyright
+        new_unit_fbi.Corpse
+        new_unit_fbi.cruisealt
+        new_unit_fbi.DamageModifier
+        new_unit_fbi.DefaultMissionType
+        new_unit_fbi.Description
+
+        new_unit_fbi.Designation
+        new_unit_fbi.digger
+        new_unit_fbi.Downloadable
+        new_unit_fbi.EnergyMake
+        new_unit_fbi.EnergyStorage
+        new_unit_fbi.EnergyUse
+        new_unit_fbi.ExplodeAs
+        new_unit_fbi.ExtractsMetal
+        new_unit_fbi.firestandorders
+        new_unit_fbi.Floater
+        # 50
+
+        new_unit_fbi.FootprintX
+        new_unit_fbi.FootprintZ
+        new_unit_fbi.FrenchDescription
+        new_unit_fbi.FrenchName
+        new_unit_fbi.GermanDescription
+        new_unit_fbi.GermanName
+        new_unit_fbi.HealTime
+        new_unit_fbi.HideDamage
+        new_unit_fbi.HoverAttack
+        new_unit_fbi.ImmuneToParalyzer
+
+        new_unit_fbi.init_cloaked
+        new_unit_fbi.IsAirBase
+        new_unit_fbi.IsFeature
+        new_unit_fbi.istargetingupgrade
+        new_unit_fbi.ItalianDescription
+        new_unit_fbi.ItalianName
+        new_unit_fbi.JapanesDescription
+        new_unit_fbi.JapaneseName
+        new_unit_fbi.kamikaze
+        new_unit_fbi.kamikazedistance
+
+        new_unit_fbi.MakesMetal
+        new_unit_fbi.maneuverleashlength
+        new_unit_fbi.MaxDamage
+        new_unit_fbi.MaxSlope
+        new_unit_fbi.MaxVelocity
+        new_unit_fbi.MaxWaterDepth
+        new_unit_fbi.MetalMake
+        new_unit_fbi.MetalStorage
+        new_unit_fbi.mincloakdistance
+        new_unit_fbi.MinWaterDepth
+
+        new_unit_fbi.MobileStandOrders
+        new_unit_fbi.MoveRate1
+        new_unit_fbi.MovementClass
+        new_unit_fbi.Name
+        new_unit_fbi.NoAutoFire
+        new_unit_fbi.NoChaseCategory
+        new_unit_fbi.norestrict
+        new_unit_fbi.NoShadow
+        new_unit_fbi.Objectname
+        new_unit_fbi.onoffable
+
+        new_unit_fbi.Ovradjust
+        new_unit_fbi.PigLatinDescription
+        new_unit_fbi.PigLatinName
+        new_unit_fbi.PitchScale
+        new_unit_fbi.RadarDistance
+        new_unit_fbi.RadarDistanceJam
+        new_unit_fbi.Scale
+        new_unit_fbi.SelfDestructAs
+        new_unit_fbi.selfdestructcountdown
+        new_unit_fbi.ShootMe
+        # 100
+
+        new_unit_fbi.ShowPlayerName
+        new_unit_fbi.Side
+        new_unit_fbi.SightDistance
+        new_unit_fbi.SonarDistance
+        new_unit_fbi.SonarDistanceJam
+        new_unit_fbi.sortbias
+        new_unit_fbi.SoundCategory
+        new_unit_fbi.SpanishDescription
+        new_unit_fbi.SpanishName
+        new_unit_fbi.StandingFireOrder
+
+        new_unit_fbi.StandingMoveOrder
+        new_unit_fbi.Stealth
+        new_unit_fbi.SteeringMode
+        new_unit_fbi.TEDClass
+        new_unit_fbi.teleporter
+        new_unit_fbi.ThreeD
+        new_unit_fbi.TidalGenerator
+        new_unit_fbi.TransMaxUnits
+        new_unit_fbi.transportcapacity
+        new_unit_fbi.transportsize
+
+        new_unit_fbi.TurnRate
+        new_unit_fbi.UnitName
+        new_unit_fbi.Upright
+        new_unit_fbi.Version
+        new_unit_fbi.WaterLine
+
+        new_unit_fbi.Weapon_One
+        new_unit_fbi.Name_Weapon_Two
+        new_unit_fbi.Name_Weapon_Three
+        new_unit_fbi.WindGenerator
+        new_unit_fbi.WorkerTime
+        new_unit_fbi.wpri_badTargetCategory
+        new_unit_fbi.wsec_badTargetCategory
+        new_unit_fbi.YardMap
+        # 135
+
+"""
+
+
+
+
+
+
+
+
 
 
 # Create your views here.
 def getUnitFbiUsingId(request):
     printKeyValuePair('hello', 'what the fuck?')
     try:
-
-
         mod_name = str(request.GET['mod_name'])
         unit_id = str(request.GET['unit_id'])
         unit_path = '/usr/src/app/static/mods/' + mod_name + '/units/' + unit_id + '.fbi'
@@ -52,6 +823,7 @@ def getUnitFbiUsingId(request):
         }
         return Response(json_response)
 
+"""
 
 class UnitFbiData(APIView):  # cat cpuinfo
     def get(self, request, format=None):
@@ -113,6 +885,9 @@ class UnitFbiData(APIView):  # cat cpuinfo
             # printLog(str(unitsArray))
             # printDebug('Unit FBI Data Extracted Successfully! ', 'it always crashed here...')
             return Response('oh shit')
+
+"""
+
 
 # AutoCollectStatic
 class ApiNavigationUrls(APIView):
@@ -219,6 +994,124 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
         # community mods:
         # /usr/src/persistent/media/ta_data/
 
+        mod_paths = []
+        uploaded_data_files = TotalAnnihilationUploadedFile.objects.all()
+        for data_file in uploaded_data_files:
+            print("data_file %s" % data_file)
+            if os.path.isdir(data_file.system_path):
+                ls_current_modpath = str(subprocess.check_output(['ls', data_file.system_path]))
+
+                parsed_1 = ls_current_modpath.replace("\\n'","")
+                dirs_in_mod = parsed_1.replace("b'","").split('\\n')
+
+                print("parsed_1 %s" % parsed_1)
+                print("dirs_in_mod : ")
+                listed_data_files = {
+                    'name': data_file.file_name[:-4],
+                    'type': data_file.file_name[-4:]
+                }
+
+                listed_data_files['directories'] = []
+                for mod_item in dirs_in_mod:
+                    # listed_data_files[mod_item + '_mod_items'] = {}
+
+                    mod_item_path = data_file.system_path + '/' + mod_item
+                    if os.path.isdir(mod_item_path):
+                        print("mod_item : %s" % mod_item)
+                        ls_current_submodpath = str(subprocess.check_output(['ls', mod_item_path]))
+                        sub_parsed_1 = ls_current_submodpath.replace("\\n'", "")
+                        sub_parsed_2 = sub_parsed_1.replace("b'", "")
+                        # listed_data_files[mod_item + '_mod_items'] = (sub_parsed_2.split('\\n'))
+                        elements_in_dir = (sub_parsed_2.split('\\n'))
+                        for raw_data_tdf in elements_in_dir:
+                            data_file_json = {
+                                'file_type': raw_data_tdf[-4:],
+                                'file_name': raw_data_tdf[:-4],
+                                'mod_path': mod_item_path.replace('/usr/src/persistent/', ''),
+                                'dir_type': mod_item,
+                                'raw_data_tdf': raw_data_tdf,
+                            }
+                            listed_data_files['directories'].append(data_file_json)
+                        # mod_paths[data_file.file_name] = (listed_data_files)
+                mod_paths.append(listed_data_files)
+
+
+
+
+        result1 = str(subprocess.check_output(['ls', directory_str]))
+        final_obj[directory_str] = str(result1).split('\\n')
+        final_obj[directory_str][0] = final_obj[directory_str][0].replace("b'", "")
+
+
+        # better_json_response = {'title':'hpi_dirs', 'HPIs': []}
+        # HPIs = {}
+        # x = 0
+        # for mod in mod_paths:
+        #     strKey = 'hpi_' + str(x)
+        #     HPIs[strKey] = mod_paths[mod]
+        #     x += 1
+
+        context = {'root_items': final_obj, 'mod_paths': mod_paths, 'HPIs': ''}
+        return Response(context)
+
+
+class OpenTotalAnnihilationFBIFileII(APIView):
+    def get(self, request, format=None):
+        mod_name = str(request.GET['mod_name'])
+        print('1 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        file_name = str(request.GET['file_name'])
+        print('2 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        directory_name = 'units'
+        print('3 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        file_path = '/usr/src/persistent/media/ta_data/' + mod_name + '/' + directory_name + '/' + file_name + '.fbi'
+        print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % file_path)
+        f3 = open(file_path, 'r', errors='replace')
+
+        print('5 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        OBJECT_NAME = 'UNITINFO'
+
+        tdf_without_comments = remove_comments(f3.read().strip().replace('\n', '').replace('\t', ''))
+
+        parsed_0 = tdf_without_comments.replace('[' + OBJECT_NAME + ']', '')
+        parsed_1 = parsed_0.replace('', '')
+        parsed_2 = parsed_1.replace('[', '"')
+        parsed_3 = parsed_2.replace(']', '" :')
+        parsed_4 = parsed_3.replace('=', '" : "')
+        parsed_5 = parsed_4.replace(';', '", "')
+        parsed_6 = parsed_5.replace('{', '{ "')
+        parsed_7 = parsed_6.replace(', "}', '}')
+        parsed_8 = parsed_7.replace(', ""', ', "')
+        total_weapons = [m.start() for m in re.finditer('[' + OBJECT_NAME + ']', tdf_without_comments)]
+        parsed_9 = parsed_8.replace('}{', '}, {', len(total_weapons) - 1)
+        parsed_10 = '[' + parsed_9 + ']'
+
+        tab_str = '	'
+        parsed_11 = parsed_10.replace('\t', '')
+        parsed_12 = parsed_11.replace('", "}', '"}')
+        print(parsed_12)
+
+        dictionary = json.loads(parsed_12)
+
+        for weapon in dictionary:
+            weapon['OBJ_NAME'] = OBJECT_NAME
+
+        return Response(dictionary)
+
+
+
+"""
+
+class ExecuteBash_LS_AllCustomModFilesOld(APIView):
+    def get(self, request, format=None):
+
+        final_obj = {}
+
+        # mod_name = request.GET['mod_name']
+        directory_str = '/usr/src/persistent/media/ta_data'
+
+        # community mods:
+        # /usr/src/persistent/media/ta_data/
+
         mod_paths = {}
         uploaded_data_files = TotalAnnihilationUploadedFile.objects.all()
         for data_file in uploaded_data_files:
@@ -255,6 +1148,68 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
         context = {'root_items': final_obj, 'mod_paths': mod_paths}
         return Response(context)
 
+
+
+
+class ExecuteBash_LS_AllCustomModFilesII(APIView):
+    def get(self, request, format=None):
+
+        final_obj = {}
+
+        # mod_name = request.GET['mod_name']
+        directory_str = '/usr/src/persistent/media/ta_data'
+
+        # community mods:
+        # /usr/src/persistent/media/ta_data/
+
+        mod_paths = {}
+        uploaded_data_files = TotalAnnihilationUploadedFile.objects.all()
+        i = 0
+        for data_file in uploaded_data_files:
+            print("data_file %s" % data_file)
+            if os.path.isdir(data_file.system_path):
+                ls_current_modpath = str(subprocess.check_output(['ls', data_file.system_path]))
+
+                parsed_1 = ls_current_modpath.replace("\\n'","")
+                dirs_in_mod = parsed_1.replace("b'","").split('\\n')
+
+                print("parsed_1 %s" % parsed_1)
+                print("dirs_in_mod : ")
+                mod_paths['system_path'] = data_file.system_path
+                listed_data_files = {}
+                # listed_data_files['system_path'] = data_file.system_path
+                for mod_item in dirs_in_mod:
+                    listed_data_files[mod_item] = []
+                    print("mod_item : %s" % mod_item)
+                    mod_item_path = data_file.system_path + '/' + mod_item
+                    if os.path.isdir(mod_item_path):
+                        ls_current_submodpath = str(subprocess.check_output(['ls', mod_item_path]))
+                        sub_parsed_1 = ls_current_submodpath.replace("\\n'", "")
+                        sub_parsed_2 = sub_parsed_1.replace("b'", "")
+                        listed_data_files[mod_item].append(sub_parsed_2.split('\\n'))
+
+                # mod_paths[data_file.system_path] = listed_data_files #parsed_2.split('\\n')
+                try:
+                    mod_paths['data_file_'+str(i)] = listed_data_files
+                except:
+                    print('damn...')
+                i += 1
+            # mod_paths.append(data_file.system_path)
+
+
+        result1 = str(subprocess.check_output(['ls', directory_str]))
+        final_obj[directory_str] = str(result1).split('\\n')
+        final_obj[directory_str][0] = final_obj[directory_str][0].replace("b'", "")
+
+        list_of_items_in_root = []
+        for item in final_obj:
+            if item != "'":
+                list_of_items_in_root.append(item)
+
+        context = {'root_items': list_of_items_in_root, 'mod_paths': mod_paths}
+        return Response(context)
+
+"""
 
 
 class AutoCollectStatic(APIView):

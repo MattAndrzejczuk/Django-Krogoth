@@ -74,17 +74,7 @@ class WeaponTDF(models.Model):
     randomdecay = models.FloatField(null=True, blank=True)
     _range = models.IntegerField(default=600)
     reloadtime = models.FloatField(default=0.5)
-    RENDER_TYPES = (
-        ('laser', 0),
-        ('modelled', 1),
-        ('not rendered', 2),
-        ('dgun', 3),
-        ('plasma shell', 4),
-        ('flame', 5),
-        ('bomb', 6),
-        ('lightning', 7),
-    )
-    rendertype = models.IntegerField(choices=RENDER_TYPES, default=0)
+    rendertype = models.IntegerField(default=0)
     selfprop = models.BooleanField(default=False)
     shakeduration = models.IntegerField(default=2)
     shakemagnitude = models.IntegerField(default=2)
@@ -172,22 +162,22 @@ class FeatureTDF(models.Model):
 class UnitFbiData(models.Model):
     _raw_json_dump = models.CharField(max_length=100)
     Acceleration = models.FloatField(null=True, blank=True)
-    ActiveWhenBuild = models.IntegerField()
-    ai_limit = models.CharField(max_length=100)
-    ai_weight = models.CharField(max_length=100)
-    altfromsealevel = models.IntegerField()
+    ActiveWhenBuild = models.IntegerField(null=True, blank=True)
+    ai_limit = models.CharField(max_length=101)
+    ai_weight = models.CharField(max_length=102)
+    altfromsealevel = models.IntegerField(null=True, blank=True)
     amphibious = models.BooleanField(default=False)
     antiweapons = models.BooleanField(default=False)
-    attackrunlength = models.IntegerField()
+    attackrunlength = models.IntegerField(null=True, blank=True)
     BMcode = models.BooleanField(default=False)
-    BadTargetCategory = models.CharField(max_length=100)
-    BankScale = models.IntegerField()
-    BrakeRate = models.IntegerField()
-    BuildAngle = models.IntegerField()
-    BuildCostEnergy = models.IntegerField()
-    BuildCostMetal = models.IntegerField()
-    BuildTime = models.IntegerField()
-    Builddistance = models.IntegerField()
+    BadTargetCategory = models.CharField(max_length=103)
+    BankScale = models.IntegerField(null=True, blank=True)
+    BrakeRate = models.IntegerField(null=True, blank=True)
+    BuildAngle = models.IntegerField(null=True, blank=True)
+    BuildCostEnergy = models.IntegerField(null=True, blank=True)
+    BuildCostMetal = models.IntegerField(null=True, blank=True)
+    BuildTime = models.IntegerField(null=True, blank=True)
+    Builddistance = models.IntegerField(null=True, blank=True)
     Builder = models.BooleanField(default=False)
     canattack = models.BooleanField(default=False)
     CanCapture = models.BooleanField(default=False)
@@ -201,132 +191,132 @@ class UnitFbiData(models.Model):
     CanReclamate = models.BooleanField(default=False)
     canstop = models.BooleanField(default=True)
     cantbetransported = models.BooleanField(default=False)
-    Category = models.CharField(max_length=100)
-    CloakCost = models.IntegerField()
-    CloakCostMoving = models.IntegerField()
+    Category = models.CharField(max_length=104)
+    CloakCost = models.IntegerField(null=True, blank=True)
+    CloakCostMoving = models.IntegerField(null=True, blank=True)
     Commander = models.BooleanField(default=False)
-    Copyright = models.CharField(max_length=100)
+    Copyright = models.CharField(max_length=105)
     #TODO: PK below
-    Corpse = models.CharField(max_length=100)
-    cruisealt = models.IntegerField()
+    Corpse = models.CharField(max_length=106)
+    cruisealt = models.IntegerField(null=True, blank=True)
     DamageModifier = models.FloatField(null=True, blank=True)
-    DefaultMissionType = models.CharField(max_length=100)
+    DefaultMissionType = models.CharField(max_length=107)
     Description = models.CharField(max_length=255)
     Designation = models.CharField(max_length=50)
     digger = models.BooleanField(default=False)
     Downloadable = models.BooleanField(default=False)
-    EnergyMake = models.IntegerField()
-    EnergyStorage = models.IntegerField()
-    EnergyUse = models.IntegerField()
+    EnergyMake = models.IntegerField(null=True, blank=True)
+    EnergyStorage = models.IntegerField(null=True, blank=True)
+    EnergyUse = models.IntegerField(null=True, blank=True)
     # TODO: Many-To-One
-    ExplodeAs = models.CharField(max_length=100)
+    ExplodeAs = models.CharField(max_length=108)
     ExtractsMetal = models.FloatField(null=True, blank=True)
-    firestandorders = models.IntegerField()
+    firestandorders = models.IntegerField(null=True, blank=True) # 50
     Floater = models.BooleanField(default=False)
-    FootprintX = models.IntegerField()
-    FootprintZ = models.IntegerField()
-    FrenchDescription = models.CharField(max_length=100)
-    FrenchName = models.CharField(max_length=100)
-    GermanDescription = models.CharField(max_length=100)
-    GermanName = models.CharField(max_length=100)
-    HealTime = models.IntegerField()
+    FootprintX = models.IntegerField(null=True, blank=True)
+    FootprintZ = models.IntegerField(null=True, blank=True)
+    FrenchDescription = models.CharField(max_length=109)
+    FrenchName = models.CharField(max_length=110)
+    GermanDescription = models.CharField(max_length=111)
+    GermanName = models.CharField(max_length=112)
+    HealTime = models.IntegerField(null=True, blank=True)
     HideDamage = models.BooleanField(default=False)
-    HoverAttack = models.BooleanField(default=False)
+    HoverAttack = models.BooleanField(default=False) #60
     ImmuneToParalyzer = models.BooleanField(default=False)
     init_cloaked = models.BooleanField(default=False)
     IsAirBase = models.BooleanField(default=False)
     IsFeature = models.BooleanField(default=False)
     istargetingupgrade = models.BooleanField(default=False)
-    ItalianDescription = models.CharField(max_length=100)
-    ItalianName = models.CharField(max_length=100)
-    JapanesDescription = models.CharField(max_length=100)
-    JapaneseName = models.CharField(max_length=100)
-    kamikaze = models.BooleanField(default=False)
-    kamikazedistance = models.IntegerField()
+    ItalianDescription = models.CharField(max_length=113)
+    ItalianName = models.CharField(max_length=114)
+    JapanesDescription = models.CharField(max_length=115)
+    JapaneseName = models.CharField(max_length=116)
+    kamikaze = models.BooleanField(default=False) # 70
+    kamikazedistance = models.IntegerField(null=True, blank=True)
     MakesMetal = models.BooleanField(default=False)
-    maneuverleashlength = models.IntegerField()
-    MaxDamage = models.IntegerField()
-    MaxSlope = models.IntegerField()
-    MaxVelocity = models.IntegerField()
-    MaxWaterDepth = models.IntegerField()
-    MetalMake = models.IntegerField()
-    MetalStorage = models.IntegerField()
-    mincloakdistance = models.IntegerField()
-    MinWaterDepth = models.IntegerField()
+    maneuverleashlength = models.IntegerField(null=True, blank=True)
+    MaxDamage = models.IntegerField(null=True, blank=True)
+    MaxSlope = models.IntegerField(null=True, blank=True)
+    MaxVelocity = models.IntegerField(null=True, blank=True)
+    MaxWaterDepth = models.IntegerField(null=True, blank=True)
+    MetalMake = models.IntegerField(null=True, blank=True)
+    MetalStorage = models.IntegerField(null=True, blank=True)
+    mincloakdistance = models.IntegerField(null=True, blank=True)
+    MinWaterDepth = models.IntegerField(null=True, blank=True)
     MobileStandOrders = models.BooleanField(default=False)
-    MoveRate1 = models.IntegerField()
+    MoveRate1 = models.IntegerField(null=True, blank=True)
     # TODO: PK below:
-    MOVEMENT_CLASSES = (
-        ('Tank1', 'TANKSH1'),
-        ('Tank SH2 (example: Arm Fark)', 'TANKSH2'),
-        ('Tank SH3 (example: Arm Podger)', 'TANKSH3'),
-        ('Tank DS2 (example: Core Necro)', 'TANKSH2'),
-        ('Tank (example: core sumo)', 'TANKBH3'),
-        ('', ''),
-        ('', ''),
-        ('Kbot S1', 'KBOTSS1'),
-        ('Kbot S2', 'KBOTSS2'),
-        ('Kbot S3', 'KBOTSS3'),
-        ('', ''),
-        ('', ''),
-        ('Spider', 'SPID3'),
-        ('', ''),
-        ('', ''),
-        ('', ''),
-        ('Boats S4 (used by small boats?)', 'BOATS4'),
-        ('', ''),
-    )
-    MovementClass = models.CharField(max_length=100)
+    # MOVEMENT_CLASSES = (
+    #     ('Tank1', 'TANKSH1'),
+    #     ('Tank SH2 (example: Arm Fark)', 'TANKSH2'),
+    #     ('Tank SH3 (example: Arm Podger)', 'TANKSH3'),
+    #     ('Tank DS2 (example: Core Necro)', 'TANKSH2'),
+    #     ('Tank (example: core sumo)', 'TANKBH3'),
+    #     ('', ''),
+    #     ('', ''),
+    #     ('Kbot S1', 'KBOTSS1'),
+    #     ('Kbot S2', 'KBOTSS2'),
+    #     ('Kbot S3', 'KBOTSS3'),
+    #     ('', ''),
+    #     ('', ''),
+    #     ('Spider', 'SPID3'),
+    #     ('', ''),
+    #     ('', ''),
+    #     ('', ''),
+    #     ('Boats S4 (used by small boats?)', 'BOATS4'),
+    #     ('', ''),
+    # )
+    MovementClass = models.CharField(max_length=117)
     Name = models.CharField(max_length=100)
     NoAutoFire = models.BooleanField(default=False)
-    NoChaseCategory = models.CharField(max_length=100)
+    NoChaseCategory = models.CharField(max_length=118)
     norestrict = models.BooleanField(default=False)
     NoShadow = models.BooleanField(default=False)
     # TODO: PK below
-    Objectname = models.CharField(max_length=100)
+    Objectname = models.CharField(max_length=119)
     onoffable = models.BooleanField(default=False)
     Ovradjust = models.BooleanField(default=False)
-    PigLatinDescription = models.CharField(max_length=100)
-    PigLatinName = models.CharField(max_length=100)
-    PitchScale = models.IntegerField(max_length=100)
-    RadarDistance = models.IntegerField()
-    RadarDistanceJam = models.IntegerField()
-    Scale = models.IntegerField()
+    PigLatinDescription = models.CharField(max_length=120)
+    PigLatinName = models.CharField(max_length=121)
+    PitchScale = models.IntegerField(max_length=122, null=True, blank=True)
+    RadarDistance = models.IntegerField(null=True, blank=True)
+    RadarDistanceJam = models.IntegerField(null=True, blank=True)
+    Scale = models.IntegerField(null=True, blank=True)
     # TODO: List of string choices will go below
-    SelfDestructAs = models.CharField(max_length=100) # ✦ ✦ ✦
-    selfdestructcountdown = models.IntegerField()
+    SelfDestructAs = models.CharField(max_length=123) # ✦ ✦ ✦
+    selfdestructcountdown = models.IntegerField(null=True, blank=True) # 100
     ShootMe = models.BooleanField(default=False)
     ShowPlayerName = models.BooleanField(default=False)
     # TODO: List of string choices will go below
-    Side = models.CharField(max_length=100) # ✦ ✦ ✦
-    SightDistance = models.IntegerField()
-    SonarDistance = models.IntegerField()
-    SonarDistanceJam = models.IntegerField()
-    sortbias = models.IntegerField()
+    Side = models.CharField(max_length=124) # ✦ ✦ ✦
+    SightDistance = models.IntegerField(null=True, blank=True)
+    SonarDistance = models.IntegerField(null=True, blank=True)
+    SonarDistanceJam = models.IntegerField(null=True, blank=True)
+    sortbias = models.IntegerField(null=True, blank=True)
     # TODO: List of string choices will go below
-    SoundCategory = models.CharField(max_length=100)
-    SpanishDescription = models.CharField(max_length=100)
-    SpanishName = models.CharField(max_length=100)
-    StandingFireOrder = models.IntegerField()
-    StandingMoveOrder = models.IntegerField()
+    SoundCategory = models.CharField(max_length=125)
+    SpanishDescription = models.CharField(max_length=126)
+    SpanishName = models.CharField(max_length=127)
+    StandingFireOrder = models.IntegerField(null=True, blank=True)
+    StandingMoveOrder = models.IntegerField(null=True, blank=True)
     Stealth = models.BooleanField(default=False)
-    SteeringMode = models.IntegerField()
+    SteeringMode = models.IntegerField(null=True, blank=True)
     # TODO: List of string choices will go below
-    TEDClass = models.CharField(max_length=100)
+    TEDClass = models.CharField(max_length=128)
     teleporter = models.BooleanField(default=False)
     ThreeD = models.BooleanField(default=False)
     TidalGenerator = models.BooleanField(default=False)
-    TransMaxUnits = models.IntegerField()
-    transportcapacity = models.IntegerField()
-    transportsize = models.IntegerField()
-    TurnRate = models.IntegerField()
+    TransMaxUnits = models.IntegerField(null=True, blank=True)
+    transportcapacity = models.IntegerField(null=True, blank=True)
+    transportsize = models.IntegerField(null=True, blank=True)
+    TurnRate = models.IntegerField(null=True, blank=True)
     # TODO: unique? ID?
-    UnitName = models.CharField(max_length=100, unique=True) # ✦ ✦ ✦
+    UnitName = models.CharField(max_length=129, unique=True) # ✦ ✦ ✦
     # TODO: must be unique, PK?
     UnitNumber = models.IntegerField(unique=True) # ✦ ✦ ✦
     Upright = models.BooleanField(default=False)
-    Version = models.IntegerField() # ✦ ✦ ✦
-    WaterLine = models.IntegerField()
+    Version = models.IntegerField(null=True, blank=True) # ✦ ✦ ✦
+    WaterLine = models.IntegerField(null=True, blank=True)
     # TODO: PK below
     Weapon_One = models.ForeignKey(WeaponTDF, on_delete=models.CASCADE, related_name='Weapon1', null=True, blank=True)
     # TODO: PK below
@@ -336,10 +326,10 @@ class UnitFbiData(models.Model):
     WindGenerator = models.IntegerField(null=True, blank=True)
     WorkerTime = models.IntegerField(null=True, blank=True)
     # TODO: PK below
-    wpri_badTargetCategory = models.CharField(max_length=100, null=True, blank=True)
+    wpri_badTargetCategory = models.CharField(max_length=130, null=True, blank=True)
     # TODO: ManyToMany below
-    wsec_badTargetCategory = models.CharField(max_length=100, null=True, blank=True)
-    YardMap = models.CharField(max_length=100)
+    wsec_badTargetCategory = models.CharField(max_length=131, null=True, blank=True)
+    YardMap = models.CharField(max_length=132) #135
     def __str__(self):  # __unicode__ on Python 2
         return self.Objectname
 

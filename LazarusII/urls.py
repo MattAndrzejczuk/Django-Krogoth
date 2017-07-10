@@ -1,13 +1,17 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from LazarusII import views
 from LazarusII.views import UnitFbiData, ApiNavigationUrls, LazarusListUnits, \
     CustomToastGenerator, ExecuteBash, AutoCollectStatic, OpenTotalAnnihilationFBIFile, OpenTotalAnnihilationTDFFile, \
-    UserAgentTracker, ExecuteBash_LS_AllCustomModFiles
+    UserAgentTracker, ExecuteBash_LS_AllCustomModFiles, OpenTotalAnnihilationFBIFileII, UnitFBIViewset
 
 # Pure Python Stuff:
 from LazarusII.DataReaderTA import readFile
 from LazarusII.FbiData import LazarusUnit
 from LazarusII.PyColors import bcolors, printKeyValuePair
+
+
+
+
 
 urlpatterns = [
 
@@ -17,7 +21,7 @@ urlpatterns = [
     url(r'^UserAgentTracker', UserAgentTracker.as_view()),
 
     url(r'^unit_fbi/$', views.getUnitFbiUsingId),
-    url(r'^UnitFbiData/$', UnitFbiData.as_view(), name='UnitFbiData'),
+    # url(r'^UnitFbiData/$', UnitFbiData.as_view(), name='UnitFbiData'),
     url(r'^LazarusListUnits/', LazarusListUnits.as_view(), name='LazarusListUnits'),
     url(r'^ExecuteBash/', ExecuteBash.as_view(), name='ExecuteBash'),
     url(r'^AutoCollectStatic/', AutoCollectStatic.as_view(), name='AutoCollectStatic'),
@@ -25,6 +29,11 @@ urlpatterns = [
 
     url(r'^OpenTotalAnnihilationFBIFile/', OpenTotalAnnihilationFBIFile.as_view(), name='OpenTotalAnnihilationFBIFile'),
     url(r'^OpenTotalAnnihilationTDFFile/', OpenTotalAnnihilationTDFFile.as_view(), name='OpenTotalAnnihilationTDFFile'),
+
+    url(r'^OpenTotalAnnihilationFBIFileII/', OpenTotalAnnihilationFBIFileII.as_view(), name='OpenTotalAnnihilationFBIFileII'),
+
+    url(r'^UnitFBIViewset/', UnitFBIViewset.as_view(), name='UnitFBIViewset'),
+    # url(r'^UnitFBIViewset/', include(router.urls)),
 
     url(r'^ExecuteBash_LS_AllCustomModFiles/', ExecuteBash_LS_AllCustomModFiles.as_view(), name='ExecuteBash_LS_AllCustomModFiles'),
 ]
