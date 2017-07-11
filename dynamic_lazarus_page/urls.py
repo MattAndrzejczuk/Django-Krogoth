@@ -3,7 +3,7 @@ from dynamic_lazarus_page import views
 
 from dynamic_lazarus_page.views import SampleAPI, CustomHtmlGenerator, DynamicIndexModule, SuperBasicModelView, \
     AngularFuseApplicationView, FuseAppComponentView, DynamicJavaScriptInjector, DynamicHTMLInjector, \
-    DynamicIndexRoute, DynamicHTMLToolbar
+    DynamicIndexRoute, DynamicHTMLToolbar, NgIncludedHtmlView
 
 
 
@@ -21,4 +21,6 @@ urlpatterns = [
 
     url(r'^AngularFuseApplication/', AngularFuseApplicationView.as_view(), name='AngularFuseApplication'),
     url(r'^FuseAppComponent/', FuseAppComponentView.as_view(), name='FuseAppComponent'),
+
+    url(r'^NgIncludedHtml/', NgIncludedHtmlView.as_view(), name='NgIncludedHtml'),
 ]

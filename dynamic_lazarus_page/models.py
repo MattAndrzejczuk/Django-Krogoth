@@ -101,12 +101,9 @@ class LazarusModProject(models.Model):
 
 
 
-
-
-
-
-
-
+class NgIncludedHtml(models.Model):
+    name = models.CharField(max_length=255)
+    contents = models.TextField(default='<h4> Djangular Error: There is nothing here yet! </h4>')
 
 
 

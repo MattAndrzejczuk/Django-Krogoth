@@ -77,6 +77,8 @@ INSTALLED_APPS = (
     'LazarusII',
     'dynamic_lazarus_page',
     'DatabaseSandbox',
+    'PhotoGalleryManager',
+    'GeneralWebsiteInfo',
 )
 
 

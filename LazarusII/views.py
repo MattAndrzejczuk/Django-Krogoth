@@ -1347,6 +1347,7 @@ class ApiNavigationUrls(APIView):
 
 
 
+
 class UserAgentTracker(APIView):
     def get(self, request, format=None):
         REMOTE_ADDR = str(request.META['REMOTE_ADDR'])
@@ -1741,6 +1742,9 @@ CCD = {
 import os.path
 
 class ReadUnitFbi:  # cat cpuinfo
+
+    permission_classes = (AllowAny,)
+
     def get(self, mod_name, unit_id):
         # printKeyValuePair('views.py','38')
         # print('')
@@ -1780,6 +1784,9 @@ class ReadUnitFbi:  # cat cpuinfo
 
 
 class OpenTotalAnnihilationFBIFile(APIView):
+
+    permission_classes = (AllowAny,)
+
     def get(self, request, format=None):
         mod_name = str(request.GET['mod_name'])
         print('1 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
@@ -1824,6 +1831,8 @@ class OpenTotalAnnihilationFBIFile(APIView):
 
 
 class OpenTotalAnnihilationTDFFile(APIView):
+
+    permission_classes = (AllowAny,)
 
     def get(self, request, format=None):
         mod_name = str(request.GET['mod_name'])

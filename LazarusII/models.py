@@ -119,47 +119,47 @@ class FeatureTDF(models.Model):
     animating = models.BooleanField(default=False)
     animtrans = models.BooleanField(default=False, blank=True)
     autoreclaimable = models.BooleanField(default=True)
-    burnmax = models.IntegerField(default=18, blank=True)
-    burnmin = models.IntegerField(default=15, blank=True)
+    burnmax = models.IntegerField(default=18, null=True, blank=True)
+    burnmin = models.IntegerField(default=15, null=True, blank=True)
     burnweapon = models.CharField(blank=True, max_length=95)
-    CATEGORIES = (
-        ('Arm Corpses', 'arm_corpses'),
-        ('Core Corpses', 'cor_corpses'),
-        ('Heaps', 'heaps'),
-        ('Steamvents', 'steamvents'),
-        ('Rocks', 'rocks'),
-    )
-    category = models.CharField(blank=True, choices=CATEGORIES, max_length=40)
-    description = models.CharField(max_length=135)
+    # CATEGORIES = (
+    #     ('Arm Corpses', 'arm_corpses'),
+    #     ('Core Corpses', 'cor_corpses'),
+    #     ('Heaps', 'heaps'),
+    #     ('Steamvents', 'steamvents'),
+    #     ('Rocks', 'rocks'),
+    # )
+    category = models.CharField(max_length=40, null=True, blank=True)
+    description = models.CharField(max_length=135, null=True, blank=True)
     blocking = models.BooleanField(default=False)
-    damage = models.IntegerField(default=1800)
-    energy = models.IntegerField(default=250)
-    featuredead = models.CharField(max_length=135)
-    featurereclamate = models.CharField(max_length=135)
-    filename = models.CharField(max_length=135)
+    damage = models.IntegerField(default=1800, null=True, blank=True)
+    energy = models.IntegerField(default=250, null=True, blank=True)
+    featuredead = models.CharField(max_length=135, null=True, blank=True)
+    featurereclamate = models.CharField(max_length=135, null=True, blank=True)
+    filename = models.CharField(max_length=135, null=True, blank=True)
     flamable = models.BooleanField(default=False)
-    footprintx = models.IntegerField(default=2)
-    footprintz = models.IntegerField(default=2)
+    footprintx = models.IntegerField(default=2, null=True, blank=True)
+    footprintz = models.IntegerField(default=2, null=True, blank=True)
     geothermal = models.BooleanField(default=False)
-    height = models.IntegerField(default=25)
-    hitdensity = models.IntegerField(default=25)
+    height = models.IntegerField(default=25, null=True, blank=True)
+    hitdensity = models.IntegerField(default=25, null=True, blank=True)
     indestructible = models.BooleanField(default=False)
-    metal = models.IntegerField(default=250)
+    metal = models.IntegerField(default=250, null=True, blank=True)
     nodisplayinfo = models.BooleanField(default=False)
-    _object = models.CharField(max_length=135)
+    _object = models.CharField(max_length=135, null=True, blank=True)
     permanent = models.BooleanField(default=False)
     reclaimable = models.BooleanField(default=True)
     reproduce = models.BooleanField(default=False)
     reproducearea = models.BooleanField(default=False)
-    seqname = models.CharField(max_length=135)
-    seqnameburn = models.CharField(max_length=135)
-    seqnamedie = models.CharField(max_length=135)
-    seqnamereclamate = models.CharField(max_length=135)
-    seqnameshad = models.CharField(max_length=135)
+    seqname = models.CharField(max_length=135, null=True, blank=True)
+    seqnameburn = models.CharField(max_length=135, null=True, blank=True)
+    seqnamedie = models.CharField(max_length=135, null=True, blank=True)
+    seqnamereclamate = models.CharField(max_length=135, null=True, blank=True)
+    seqnameshad = models.CharField(max_length=135, null=True, blank=True)
     shadtrans = models.BooleanField(default=True)
-    sparktime = models.IntegerField(default=5)
-    spreadchance = models.IntegerField(default=30)
-    world = models.CharField(max_length=135)
+    sparktime = models.IntegerField(default=5, null=True, blank=True)
+    spreadchance = models.IntegerField(default=30, null=True, blank=True)
+    world = models.CharField(max_length=135, null=True, blank=True)
 
 
 # choices SelfDestructAS: BIG_UNIT,,,,,,,
@@ -344,10 +344,10 @@ class UnitFbiData(models.Model):
 # Documentation:
 # http://units.tauniverse.com/tutorials/tadesign/tadesign/tdfdown.htm
 class DownloadTDF(models.Model):
-    parent_unit = models.ForeignKey(UnitFbiData, on_delete=models.CASCADE, )
+    parent_unit = models.ForeignKey(UnitFbiData, on_delete=models.CASCADE,)
     MENUENTRY = models.CharField(max_length=20,
                                      default='MENUENTRY1')  # [MENUENTRY1] [MENUENTRY2] [MENUENTRY3] etc...
     BUTTON = models.PositiveSmallIntegerField(default=0)  # See 'TA Button' below
     MENU = models.PositiveSmallIntegerField(default=2)  # first menu in TA is actually '2' for some reason
-    UNITMENU = models.CharField(max_length=35)  # short name for the construction unit that builds this unit
-    UNITNAME = models.CharField(max_length=35)  # short name of the unit this button builds
+    UNITMENU = models.CharField(max_length=35, null=True, blank=True)  # short name for the construction unit that builds this unit
+    UNITNAME = models.CharField(max_length=35, null=True, blank=True)  # short name of the unit this button builds
