@@ -7,10 +7,10 @@ from LazarusII.models import WeaponTDF, Damage, FeatureTDF, UnitFbiData, Downloa
 
 
 class WeaponTDFAdmin(admin.ModelAdmin):
-    list_display = ('name', 'rendertype', 'explosionart', 'energypershot',)
+    list_display = ('id', 'name', 'rendertype', 'explosionart', 'energypershot',)
 
 class DamageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'damage_amount',)
+    list_display = ('id', 'name', 'damage_amount',)
 
 class FeatureTDFAdmin(admin.ModelAdmin):
     list_display = ('category','description','footprintx','energy','metal')
@@ -29,3 +29,4 @@ admin.site.register(Damage, DamageAdmin)
 admin.site.register(FeatureTDF, FeatureTDFAdmin)
 admin.site.register(UnitFbiData, UnitFbiDataAdmin)
 admin.site.register(DownloadTDF, DownloadTDFAdmin)
+

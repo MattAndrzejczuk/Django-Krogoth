@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from LazarusII import views
 from LazarusII.views import UnitFbiData, ApiNavigationUrls, LazarusListUnits, \
     CustomToastGenerator, ExecuteBash, AutoCollectStatic, OpenTotalAnnihilationFBIFile, OpenTotalAnnihilationTDFFile, \
-    UserAgentTracker, ExecuteBash_LS_AllCustomModFiles, OpenTotalAnnihilationFBIFileII, UnitFBIViewset
+    UserAgentTracker, ExecuteBash_LS_AllCustomModFiles, UnitFBIViewset, WeaponTDFViewset, OpenTotalAnnihilationFBIFileII
 
 # Pure Python Stuff:
 from LazarusII.DataReaderTA import readFile
@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^OpenTotalAnnihilationFBIFileII/', OpenTotalAnnihilationFBIFileII.as_view(), name='OpenTotalAnnihilationFBIFileII'),
 
     url(r'^UnitFBIViewset/', UnitFBIViewset.as_view(), name='UnitFBIViewset'),
+    url(r'^WeaponTDFViewset/', WeaponTDFViewset.as_view(), name='WeaponTDFViewset'),
     # url(r'^UnitFBIViewset/', include(router.urls)),
 
     url(r'^ExecuteBash_LS_AllCustomModFiles/', ExecuteBash_LS_AllCustomModFiles.as_view(), name='ExecuteBash_LS_AllCustomModFiles'),
