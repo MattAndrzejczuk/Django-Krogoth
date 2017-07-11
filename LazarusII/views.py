@@ -8,7 +8,6 @@ from LazarusII.FbiData import LazarusUnit
 from LazarusII.PyColors import bcolors, printKeyValuePair, printKeyValuePair1, printKeyValuePair2, printError, printWarning, printInfo, printLog, printDebug
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
-import emoji
 
 # For listing units:
 from os import walk
@@ -1486,15 +1485,15 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
 class OpenTotalAnnihilationFBIFileII(APIView):
     def get(self, request, format=None):
         mod_name = str(request.GET['mod_name'])
-        print('1 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ ')
         file_name = str(request.GET['file_name'])
-        print('2 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
         directory_name = 'units'
-        print('3 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ ')
         file_path = '/usr/src/persistent/media/ta_data/' + mod_name + '/' + directory_name + '/' + file_name + '.fbi'
         print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % file_path)
         f3 = open(file_path, 'r', errors='replace')
-        print('5 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
+        print('5 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ ')
         OBJECT_NAME = 'UNITINFO'
 
         tdf_without_comments = remove_comments(f3.read().strip().replace('\n', '').replace('\t', ''))
@@ -1526,8 +1525,6 @@ class OpenTotalAnnihilationFBIFileII(APIView):
 
 
 """
-
-
 class ExecuteBash_LS_AllCustomModFilesOld(APIView):
     def get(self, request, format=None):
 
@@ -1635,7 +1632,6 @@ class ExecuteBash_LS_AllCustomModFilesII(APIView):
 
         context = {'root_items': list_of_items_in_root, 'mod_paths': mod_paths}
         return Response(context)
-
 """
 
 
