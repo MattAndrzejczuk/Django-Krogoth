@@ -34,6 +34,7 @@ from rest_framework.decorators import detail_route, list_route
 
 
 class WeaponTDFViewset(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         # mod_name = str(request.GET['mod_name'])
         # print('1 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
@@ -469,6 +470,7 @@ class WeaponTDFViewset(APIView):
 
 
 class ExecuteBash_LS_AllCustomModFiles(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
 
         final_obj = {}
@@ -569,6 +571,7 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
 
 
 class DownloadTDFViewset(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         parse_path1 = str(request.GET['encoded_path']).replace('_SLSH_', '/')
         file_path = '/usr/src/persistent/' + parse_path1 + '.tdf'
@@ -630,6 +633,7 @@ class DownloadTDFViewset(APIView):
 
 
 class UnitFBIViewset(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         parse_path1 = str(request.GET['encoded_path']).replace('_SLSH_', '/')
         file_path = '/usr/src/persistent/' + parse_path1 + '.fbi'
@@ -1423,7 +1427,7 @@ class UnitFBIViewset(APIView):
 
 # Create your views here.
 def getUnitFbiUsingId(request):
-    printKeyValuePair('hello', 'what the fuck?')
+    permission_classes = (AllowAny,)
     try:
         mod_name = str(request.GET['mod_name'])
         unit_id = str(request.GET['unit_id'])
@@ -1517,6 +1521,7 @@ class UnitFbiData(APIView):  # cat cpuinfo
 
 # AutoCollectStatic
 class ApiNavigationUrls(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         json_response = {
             "list_units_for_mod1": "http://52.27.28.55/LazarusII/LazarusListUnits/?mod_name=totala_files",
@@ -1548,6 +1553,7 @@ class ApiNavigationUrls(APIView):
 
 
 class UserAgentTracker(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         REMOTE_ADDR = str(request.META['REMOTE_ADDR'])
         HTTP_USER_AGENT = str(request.META['HTTP_USER_AGENT'])
@@ -1573,6 +1579,7 @@ class UserAgentTracker(APIView):
 
 
 class CustomToastGenerator(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         msg = str(request.GET['msg'])
         html = '<md-toast><span class="md-toast-text" flex>' + msg + '</span><md-button class="md-highlight" ng-click="openMoreInfo($event)">More info</md-button><md-button ng-click="closeToast()">Close</md-button></md-toast>'
@@ -1581,6 +1588,7 @@ class CustomToastGenerator(APIView):
 
 
 class ExecuteBash(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         cmd = request.GET['cmd']
         result = 'nan'
@@ -1613,6 +1621,7 @@ class ExecuteBash(APIView):
 
 
 class OpenTotalAnnihilationFBIFileII(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         mod_name = str(request.GET['mod_name'])
         print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ ')

@@ -35,6 +35,7 @@ from .app_settings import (
 )
 
 from GeneralWebsiteInfo.models import BootScreenLoader
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 
 import subprocess
@@ -44,6 +45,7 @@ redis_connection_pool = ConnectionPool(**redis_settings.WS4REDIS_CONNECTION)
 
 
 def index(request):
+    permission_classes = (AllowAny,)
     template = loader.get_template('index.html')
 
     Djangular = []

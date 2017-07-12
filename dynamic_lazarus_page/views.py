@@ -204,6 +204,7 @@ class DynamicHTMLSubNavbarView(APIView):
 
 
 class DynamicSplashScreenView(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         splash = BootScreenLoader.objects.filter(enabled=True)
         final_html = navBar[0]
@@ -431,6 +432,7 @@ class SuperBasicModelView(APIView):
 
 
 class SampleAPI(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         sample_response = {'data': 'hello world'}
         return Response(sample_response)

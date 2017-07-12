@@ -41,6 +41,7 @@ class GalleryCollectionList(APIView):
 
 
 class GalleryItemList(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         collection_name = request.GET['collection_name']
         collection_query = GalleryCollection.objects.get(unique_name=collection_name)
@@ -60,6 +61,7 @@ class GalleryItemList(APIView):
 # unique_name
 
 class GalleryItemDetail(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         item_id = request.GET['id']
         gallery_item = GalleryItem.objects.get(id=item_id)
