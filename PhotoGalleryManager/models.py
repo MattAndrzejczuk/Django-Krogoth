@@ -17,6 +17,7 @@ class GalleryCollection(models.Model):
 
 
 class GalleryItem(models.Model):
+    parent_gallery = models.ForeignKey(GalleryCollection, on_delete=models.CASCADE)
     model_pic = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg')
     title = models.CharField(max_length=255)
     subheading = models.CharField(max_length=255)
