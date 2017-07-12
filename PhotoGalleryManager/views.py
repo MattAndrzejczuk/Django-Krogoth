@@ -64,7 +64,7 @@ class GalleryItemDetail(APIView):
         item_id = request.GET['id']
         gallery_item = GalleryItem.objects.get(id=item_id)
         response_json = {}
-        response_json['pic_url'] = '/media/' + gallery_item.model_pic
+        response_json['pic_url'] = '/media/' + str(gallery_item.model_pic)
         response_json['title'] = gallery_item.title
         response_json['subheading'] = gallery_item.subheading
         response_json['pub_date'] = gallery_item.pub_date
