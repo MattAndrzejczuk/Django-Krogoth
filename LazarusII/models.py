@@ -20,6 +20,18 @@ from django.db import models
 
 
 
+class StoredFiles(models.Model):
+    absolute_path = models.CharField(max_length=255, unique=True)
+    file_type = models.CharField(max_length=15, default='FAILED TO READ')
+    file_name = models.CharField(max_length=100, unique=True)
+    date_logged = models.DateTimeField(auto_now_add=True)
+
+
+
+
+
+
+
 class Damage(models.Model):
     name = models.CharField(max_length=100, default='default')
     damage_amount = models.IntegerField(default=1230)

@@ -58,4 +58,7 @@ urlpatterns = [
     url(r'^SandboxDB/', include('DatabaseSandbox.urls')),
 
     url(r'^dynamic_lazarus_page/', include('dynamic_lazarus_page.urls')),
+
+    url(r'^GeneralWebsiteInfo/', include('GeneralWebsiteInfo.urls')),
+    url(r'^PhotoGalleryManager/', include('PhotoGalleryManager.urls')),
 ]

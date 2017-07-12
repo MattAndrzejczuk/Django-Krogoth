@@ -133,7 +133,7 @@
 
             $mdDialog.show({
                 controller: DialogController,
-                templateUrl: 'http://52.27.28.55/LazarusII/UnitFbiData/?mod_name=totala_files2&will_show_raw_fbi=pretty&unit_id=' + vm.selected['UnitName'],
+                templateUrl: '/LazarusII/UnitFbiData/?mod_name=totala_files2&will_show_raw_fbi=pretty&unit_id=' + vm.selected['UnitName'],
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true,

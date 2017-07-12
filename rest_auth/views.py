@@ -34,6 +34,9 @@ from .app_settings import (
     PasswordChangeSerializer
 )
 
+from GeneralWebsiteInfo.models import BootScreenLoader
+
+
 import subprocess
 
 redis_connection_pool = ConnectionPool(**redis_settings.WS4REDIS_CONNECTION)

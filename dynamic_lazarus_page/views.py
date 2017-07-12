@@ -17,6 +17,10 @@ from django.core.files.base import ContentFile
 from django.core.files import File
 from django.conf import settings
 
+from GeneralWebsiteInfo.models import WebsiteColorTheme, WebsiteLayout, NavigationBar, BootScreenLoader
+
+from LazarusII.FbiData import remove_comments
+
 CCD = {
     0: '\033[0m',  # end
 
@@ -60,13 +64,68 @@ class NgIncludedHtmlView(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
         name = str(request.GET['name'])
-        
+
         try:
-            html_view = NgIncludedHtml.objects.get(name=name)
-            return HttpResponse(html_view.contents)
+            try:
+                data = str(request.GET['data'])
+                html_view = NgIncludedHtml.objects.get(name=name)
+                final_html = html_view.contents.replace('INJECTED_DATA', data)
+                return HttpResponse(final_html)
+            except:
+                html_view = NgIncludedHtml.objects.get(name=name)
+                return HttpResponse(html_view.contents)
         except:
             html = '<div> <h1>Fatal Error</h1> <p>Unable to load HTML: <b>' + name + '</b> </p> </div>'
             return HttpResponse(html)
+
+#### 07/12/2017
+class OpenTADataFile(APIView):
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        # msg = str(request.GET['msg'])
+        parse_path1 = str(request.GET['encoded_path']).replace('_SLSH_', '/')
+        file_type = str(request.GET['type'])
+        title = str(request.GET['title'])
+        file_path = '/usr/src/persistent/' + parse_path1 + file_type
+
+        try:
+            try:
+                print('opening file...')
+                print(file_path)
+                fbi_file = open(file_path, 'r', errors='replace')
+
+                print('file was opened successfully.')
+
+                html1 = '<md-dialog><form ng-cloak>'
+                html2_start = '<md-toolbar><div class="md-toolbar-tools"><h2>TITLE_DIALOG_HEADER</h2><span flex></span>'
+                html3 = '<md-button class="md-icon-button" ng-click="cancel()">' + \
+                        '<md-icon md-svg-src="icon-hexagon" aria-label="Close dialog"></md-icon></md-button>'
+                print('1...')
+                html4_end = '</div></md-toolbar><md-dialog-content><div class="md-dialog-content">'
+                html5 = '</div></md-dialog-content>'
+                dialog_actions = '<md-dialog-actions layout="row"><span flex></span>' + \
+                                 '<md-button ng-click="answer(\'not useful\')">Cancel</md-button>' + \
+                                 '<md-button ng-click="answer(\'useful\')">Add To Current Mod</md-button>' + \
+                                 '</md-dialog-actions></form></md-dialog>'
+                print('2...')
+                content_head = html1 + html2_start + html3 + html4_end
+                content_foot = html5 + dialog_actions
+
+                read_file_str = content_head.replace('TITLE_DIALOG_HEADER', title) + remove_comments(fbi_file.read())
+                print('3...')
+                # read_file_str = read_file_str.replace(';', '; <br>&emsp;')
+                # read_file_str = read_file_str.replace('{', '{<br>&emsp;')
+                read_file_str += content_foot
+                return HttpResponse(read_file_str)
+                # json_response = {'raw_data': fbi_file.read()}
+
+
+            except:
+                unitsArray = readFile(unit_path)
+                return Response(unitsArray)
+
+        except:
+            return Response('oh shit')
 
 
 class CustomHtmlGenerator(APIView):
@@ -102,24 +161,80 @@ class DynamicIndexModule(APIView):
 class DynamicIndexRoute(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
-        full_js = "(function (){    'use strict';    angular        .module('fuse')        .config(routeConfig);    /** @ngInject */    function routeConfig($stateProvider, $urlRouterProvider, $locationProvider)    {        $locationProvider.hashPrefix('!');        $urlRouterProvider.otherwise('/FUSE_DEFAULT_APP');        var $cookies;        angular.injector(['ngCookies']).invoke([            '$cookies', function (_$cookies)            {                $cookies = _$cookies;            }        ]);        var layoutStyle = $cookies.get('layoutStyle') || 'verticalNavigation';        var layouts = {            verticalNavigation  : {                main      : '/static/app/core/layouts/vertical-navigation.html',                toolbar   : 'FUSE_TOOLBAR_HTML',                navigation: '/static/app/navigation/layouts/vertical-navigation/navigation.html'            },            verticalNavigationFullwidthToolbar  : {                main      : '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar.html',                toolbar   : '/static/app/toolbar/layouts/vertical-navigation-fullwidth-toolbar/toolbar.html',                navigation: '/static/app/navigation/layouts/vertical-navigation/navigation.html'            },            verticalNavigationFullwidthToolbar2  : {                main      : '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar-2.html',                toolbar   : '/static/app/toolbar/layouts/vertical-navigation-fullwidth-toolbar-2/toolbar.html',                navigation: '/static/app/navigation/layouts/vertical-navigation-fullwidth-toolbar-2/navigation.html'            },            horizontalNavigation: {                main      : '/static/app/core/layouts/horizontal-navigation.html',                toolbar   : '/static/app/toolbar/layouts/horizontal-navigation/toolbar.html',                navigation: '/static/app/navigation/layouts/horizontal-navigation/navigation.html'            },            contentOnly         : {                main      : '/static/app/core/layouts/content-only.html',                toolbar   : '',                navigation: ''            },            contentWithToolbar  : {                main      : '/static/app/core/layouts/content-with-toolbar.html',                toolbar   : '/static/app/toolbar/layouts/content-with-toolbar/toolbar.html',                navigation: ''            }        };        $stateProvider            .state('app', {                abstract: true,                views   : {                    'main@'         : {                        templateUrl: layouts[layoutStyle].main,                        controller : 'MainController as vm'                    },                    'toolbar@app'   : {                        templateUrl: layouts[layoutStyle].toolbar,                        controller : 'ToolbarController as vm'                    },                    'navigation@app': {                        templateUrl: layouts[layoutStyle].navigation,                        controller : 'NavigationController as vm'                    },                    'quickPanel@app': {                        templateUrl: '/static/app/quick-panel/quick-panel.html',                        controller : 'QuickPanelController as vm'                    }                }            });    }})();"
+        full_js = "(function (){ 'use strict'; angular     .module('fuse')     .config(routeConfig); /** @ngInject */ function routeConfig($stateProvider, $urlRouterProvider, $locationProvider) {     $locationProvider.hashPrefix('!');     $urlRouterProvider.otherwise('/FUSE_DEFAULT_APP');     var $cookies;     angular.injector(['ngCookies']).invoke([      '$cookies', function (_$cookies)      {          $cookies = _$cookies;      }     ]);     var layoutStyle = $cookies.get('layoutStyle') || 'verticalNavigation';     var layouts = {      verticalNavigation  : {          main   : 'MAIN_NAV_HTML',          toolbar   : 'FUSE_TOOLBAR_HTML',          navigation: 'NAV_MISC_HTML'      },      verticalNavigationFullwidthToolbar  : {          main   : '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar.html',          toolbar   : '/static/app/toolbar/layouts/vertical-navigation-fullwidth-toolbar/toolbar.html',          navigation: '/static/app/navigation/layouts/vertical-navigation/navigation.html'      },      verticalNavigationFullwidthToolbar2  : {          main   : '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar-2.html',          toolbar   : '/static/app/toolbar/layouts/vertical-navigation-fullwidth-toolbar-2/toolbar.html',          navigation: '/static/app/navigation/layouts/vertical-navigation-fullwidth-toolbar-2/navigation.html'      },      horizontalNavigation: {          main   : '/static/app/core/layouts/horizontal-navigation.html',          toolbar   : '/static/app/toolbar/layouts/horizontal-navigation/toolbar.html',          navigation: '/static/app/navigation/layouts/horizontal-navigation/navigation.html'      },      contentOnly      : {          main   : '/static/app/core/layouts/content-only.html',             toolbar   : '',                navigation: ''            },            contentWithToolbar  : {                main      : '/static/app/core/layouts/content-with-toolbar.html',                toolbar   : '/static/app/toolbar/layouts/content-with-toolbar/toolbar.html',                navigation: ''            }        };        $stateProvider            .state('app', {                abstract: true,                views   : {                    'main@'         : {                        templateUrl: layouts[layoutStyle].main,                        controller : 'MainController as vm'                    },                    'toolbar@app'   : {                        templateUrl: layouts[layoutStyle].toolbar,                        controller : 'ToolbarController as vm'                    },                    'navigation@app': {                        templateUrl: layouts[layoutStyle].navigation,                        controller : 'NavigationController as vm'                    },                    'quickPanel@app': {                        templateUrl: '/static/app/quick-panel/quick-panel.html',                        controller : 'QuickPanelController as vm'                    }                }            });    }})();"
 
         default_url = 'News' # FUSE_DEFAULT_APP
         toolbar_html = '/dynamic_lazarus_page/DynamicHTMLToolbar/' # FUSE_TOOLBAR_HTML
+        main_nav_html = '/dynamic_lazarus_page/DynamicHTMLMainNavbar/' # MAIN_NAV_HTML   # '/static/app/core/layouts/vertical-navigation.html'
+        nav_sub_html = '/dynamic_lazarus_page/DynamicHTMLSubNavbar/' # NAV_MISC_HTML   # '/static/app/navigation/layouts/vertical-navigation/navigation.html'
 
         parsed_js_1 = full_js.replace('FUSE_DEFAULT_APP', default_url)
         parsed_js_2 = parsed_js_1.replace('FUSE_TOOLBAR_HTML', toolbar_html)
-        return HttpResponse(parsed_js_2)
+        parsed_js_3 = parsed_js_2.replace('MAIN_NAV_HTML', main_nav_html)
+        parsed_js_4 = parsed_js_3.replace('NAV_MISC_HTML', nav_sub_html)
+        return HttpResponse(parsed_js_4)
 
 
-class DynamicHTMLToolbar(APIView):
+class DynamicHTMLMainNavbarView(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
-        full_html = '<div layout="row" layout-align="start center">    <div layout="row" layout-align="start center" flex>        <md-button id="navigation-toggle" class="md-icon-button" ng-click="vm.toggleSidenav(\'navigation\')"                   hide-gt-sm aria-label="Toggle navigation" translate                   translate-attr-aria-label="TOOLBAR.TOGGLE_NAVIGATION">            <md-icon md-font-icon="icon-menu" class="icon"></md-icon>        </md-button>        <ms-shortcuts></ms-shortcuts>        <div class="toolbar-separator"></div>    </div>    <div layout="row" layout-align="start center">                <md-progress-circular id="toolbar-progress" ng-disabled="!$root.loadingProgress"  class="md-accent" md-diameter="32">        </md-progress-circular>                <div class="toolbar-separator"></div>        <md-menu-bar id="user-menu">            <md-menu md-position-mode="left bottom">                <md-button class="user-button" ng-click="$mdOpenMenu()"                           aria-label="User settings"                           translate translate-attr-aria-label="TOOLBAR.USER_SETTINGS">                    <div layout="row" layout-align="space-between center">                        <div class="avatar-wrapper">                            <img md-menu-align-target class="avatar" src="/static/assets/images/avatars/profile.jpg">                            <md-icon md-font-icon ng-class="vm.userStatus.icon"                                     ng-style="{\'color\': vm.userStatus.color }"                                     class="icon status s16">                            </md-icon>                        </div>                        <span class="username" hide show-gt-sm>DJANGULAR_USERNAME</span>                        <md-icon md-font-icon="icon-chevron-down"                                 class="icon s16" hide-xs></md-icon>                    </div>                </md-button>                <md-menu-content width="3">                    <md-menu-item class="md-indent" ui-sref="app.pages_profile">                        <md-icon md-font-icon="icon-account" class="icon"></md-icon>                        <md-button>My Profile</md-button>                    </md-menu-item><!--                    <md-menu-item class="md-indent" ui-sref="app.mail">                        <md-icon md-font-icon="icon-email" class="icon"></md-icon>                        <md-button>Inbox</md-button>                    </md-menu-item>                    <md-menu-item class="md-indent">                        <md-icon md-font-icon ng-class="vm.userStatus.icon"                                 ng-style="{\'color\': vm.userStatus.color }" class="icon"></md-icon>                        <md-menu id="user-status-menu">                            <md-button ng-click="$mdOpenMenu()" class="status" ng-class="vm.userStatus.class">                                {{vm.userStatus.title}}                            </md-button>                            <md-menu-content width="2">                                <md-menu-item class="status md-indent"                                              ng-class="{\'selected\': status === vm.userStatus}"                                              ng-repeat="status in vm.userStatusOptions">                                    <md-icon md-font-icon="{{status.icon}}" ng-style="{\'color\': status.color }"                                             class="icon"></md-icon>                                    <md-button ng-click="vm.setUserStatus(status)">                                        {{status.title}}                                    </md-button>                                </md-menu-item>                            </md-menu-content>                        </md-menu>                    </md-menu-item>-->                    <md-menu-divider></md-menu-divider>                    <md-menu-item class="md-indent">                        <md-icon md-font-icon="icon-logout" class="icon"></md-icon>                        <md-button ng-click="vm.logout()">Logout</md-button>                    </md-menu-item>                </md-menu-content>            </md-menu>        </md-menu-bar>                <div class="toolbar-separator"></div>        <!--        <ms-search-bar on-search="vm.search(query)" on-result-click="vm.searchResultClick(item)" debounce="300"></ms-search-bar>        <div class="toolbar-separator"></div>        <md-menu id="language-menu" md-offset="0 72" md-position-mode="target-right target">            <md-button class="language-button" ng-click="$mdOpenMenu()"                       aria-label="Language" md-menu-origin md-menu-align-target>                <div layout="row" layout-align="center center">                    <img class="flag" ng-src="/static/assets/images/flags/{{vm.selectedLanguage.flag}}.png">                    <span class="iso">{{vm.selectedLanguage.code}}</span>                </div>            </md-button>            <md-menu-content width="3" id="language-menu-content">                <md-menu-item ng-repeat="(iso, lang) in vm.languages">                    <md-button ng-click="vm.changeLanguage(lang)" aria-label="{{lang.title}}" translate                               translate-attr-aria-label="{{lang.title}}">                        <span layout="row" layout-align="start center">                            <img class="flag" ng-src="/static/assets/images/flags/{{lang.flag}}.png">                            <span translate="{{lang.translation}}">{{lang.title}}</span>                        </span>                    </md-button>                </md-menu-item>            </md-menu-content>        </md-menu>        <div class="toolbar-separator"></div>        <md-button id="quick-panel-toggle" class="md-icon-button" ng-click="vm.toggleSidenav(\'quick-panel\')"                   aria-label="Toggle quick panel" translate translate-attr-aria-label="TOOLBAR.TOGGLE_QUICK_PANEL">            <md-icon md-font-icon="icon-format-list-bulleted" class="icon"></md-icon>        </md-button>        -->    </div></div>'
+        full_html = '<div id="layout-vertical-navigation" class="template-layout" layout="row" flex>    <md-sidenav id="vertical-navigation" class="md-primary-bg" md-is-locked-open="$mdMedia(\'gt-sm\')"                md-component-id="navigation" ms-scroll ui-view="navigation"></md-sidenav>    <div id="content-container" flex layout="column">        <md-toolbar id="toolbar" class="md-menu-toolbar md-whiteframe-1dp" ui-view="toolbar"></md-toolbar>        <md-content id="content" class="animate-slide-up md-hue-2" ms-scroll ui-view="content" flex></md-content>    </div>    <md-sidenav id="quick-panel" class="md-sidenav-right md-whiteframe-4dp" md-component-id="quick-panel" ms-scroll                ui-view="quickPanel"></md-sidenav></div>'
         username = request.user.username # DJANGULAR_USERNAME
         final_html = full_html.replace('DJANGULAR_USERNAME', username)
         return HttpResponse(final_html)
 
+
+class DynamicHTMLSubNavbarView(APIView):
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        full_html = '<md-toolbar class="navigation-header md-whiteframe-1dp" layout="row" layout-align="space-between center"><div class="logo" layout="row" layout-align="start center">NAV_BAR_LOGO_HTML<span class="logo-text">NAV_BAR_TITLE</span></div><md-icon class="fold-toggle s18" md-font-icon="icon-backburger" hide show-gt-sm ng-click="vm.toggleMsNavigationFolded()"></md-icon></md-toolbar><ms-navigation class="scrollable" folded="vm.folded" ms-scroll="vm.msScrollOptions"></ms-navigation>'
+        username = request.user.username # DJANGULAR_USERNAME NAV_BAR_LOGO_HTML NAV_BAR_TITLE
+
+        navBar = NavigationBar.objects.filter(enabled=True)
+        try:
+            nav_bar_logo = navBar[0].logo_html_code
+            nav_bar_title = navBar[0].title
+            parsed1 = full_html.replace('NAV_BAR_LOGO_HTML', nav_bar_logo)
+            parsed2 = parsed1.replace('NAV_BAR_TITLE', nav_bar_title)
+            final_html = parsed2.replace('DJANGULAR_USERNAME', username)
+            return HttpResponse(final_html)
+        except:
+            final_html = full_html.replace('DJANGULAR_USERNAME', username)
+            return HttpResponse(final_html)
+
+
+class DynamicSplashScreenView(APIView):
+    def get(self, request, format=None):
+        splash = BootScreenLoader.objects.filter(enabled=True)
+        final_html = navBar[0]
+        return HttpResponse(final_html)
+
+
+class DynamicHTMLToolbarView(APIView):
+    # permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        full_html = '<div layout="row" layout-align="start center">    <div layout="row" layout-align="start center" flex>   ' + \
+                    '  <md-button id="navigation-toggle" class="md-icon-button" ng-click="vm.toggleSidenav(\'navigation\')"        ' + \
+                    '           hide-gt-sm aria-label="Toggle navigation" translate                   translate-attr-aria-label="TOOLBAR.TOGGLE_NAVIGATION">     ' + \
+                    '       <md-icon md-font-icon="icon-menu" class="icon"></md-icon>        </md-button>        <ms-shortcuts></ms-shortcuts>        <div class="toolbar-separator"></div>    </div>' + \
+                    '<div layout="row" layout-align="start center">                <md-progress-circular id="toolbar-progress" ng-disabled="!$root.loadingProgress"  class="md-accent" md-diameter="32">' + \
+                    '</md-progress-circular>                <div class="toolbar-separator"></div>        <md-menu-bar id="user-menu"> ' + \
+                    ' <md-menu md-position-mode="left bottom">                <md-button class="user-button" ng-click="$mdOpenMenu()" ' + \
+                    'aria-label="User settings"                           translate translate-attr-aria-label="TOOLBAR.USER_SETTINGS"> ' + \
+                    '<div layout="row" layout-align="space-between center">                        <div class="avatar-wrapper"> ' + \
+                    '<img md-menu-align-target class="avatar" src="/static/assets/images/avatars/profile.jpg">' + \
+                    '<md-icon md-font-icon ng-class="vm.userStatus.icon"  ng-style="{\'color\': vm.userStatus.color }"' + \
+                    'class="icon status s16"> </md-icon>  </div><span class="username" hide show-gt-sm> DJANGULAR_USERNAME</span> ' + \
+                    ' <md-icon md-font-icon="icon-chevron-down" class="icon s16" hide-xs></md-icon> </div> ' + \
+                    '      </md-button>                <md-menu-content width="3"><md-menu-item class="md-indent" ui-sref="app.pages_profile"> ' + \
+                    '<md-icon md-font-icon="icon-account" class="icon"></md-icon><md-button>My Profile</md-button>    </md-menu-item>' + \
+                    '<md-menu-divider></md-menu-divider>    <md-menu-item class="md-indent"><md-icon md-font-icon="icon-logout" class="icon"></md-icon><md-button ng-click="vm.logout()">Logout</md-button>' + \
+                    '</md-menu-item></md-menu-content>    </md-menu></md-menu-bar><div class="toolbar-separator"></div></div></div>'
+        username = request.user.username # DJANGULAR_USERNAME
+        final_html = full_html.replace('DJANGULAR_USERNAME', username)
+        print("USER NAME")
+        print(username)
+        return HttpResponse(final_html)
 
 
 class DynamicJavaScriptInjector(APIView):
