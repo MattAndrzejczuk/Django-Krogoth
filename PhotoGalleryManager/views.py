@@ -44,7 +44,7 @@ class GalleryItemList(APIView):
     def get(self, request, format=None):
         collection_name = request.GET['collection_name']
         collection_query = GalleryCollection.objects.get(unique_name=collection_name)
-        gallery_items = GalleryItem.obbjects.filter(parent_gallery=collection_query)
+        gallery_items = GalleryItem.objects.filter(parent_gallery=collection_query)
         response_list = []
         for item in gallery_items:
             new_json = {}
@@ -57,7 +57,7 @@ class GalleryItemList(APIView):
             response_list.append(response_list)
 
         return Response(response_list)
-
+# unique_name
 
 class GalleryItemDetail(APIView):
     def get(self, request, format=None):
