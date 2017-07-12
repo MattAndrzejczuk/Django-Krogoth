@@ -54,7 +54,7 @@ class GalleryItemList(APIView):
             new_json['pub_date'] = item.pub_date
             new_json['description'] = item.description
             new_json['id'] = item.id
-            response_list.append(response_list)
+            response_list.append(new_json)
 
         return Response(response_list)
 # unique_name
