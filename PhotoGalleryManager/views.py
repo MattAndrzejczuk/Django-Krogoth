@@ -48,7 +48,7 @@ class GalleryItemList(APIView):
         response_list = []
         for item in gallery_items:
             new_json = {}
-            new_json['pic_url'] = '/media/' + item.model_pic.url
+            new_json['pic_url'] = '/media/' + str(item.model_pic)
             new_json['title'] = item.title
             new_json['subheading'] = item.subheading
             new_json['pub_date'] = item.pub_date
