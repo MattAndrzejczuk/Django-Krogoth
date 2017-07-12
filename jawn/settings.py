@@ -79,6 +79,7 @@ INSTALLED_APPS = (
     'DatabaseSandbox',
     'PhotoGalleryManager',
     'GeneralWebsiteInfo',
+    'LazarusDatabase',
 )
 
 
