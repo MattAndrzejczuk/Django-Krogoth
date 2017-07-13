@@ -5,12 +5,12 @@
 .cm-s-colorforth .CodeMirror-linenumber { color: #bababa; }
 .cm-s-colorforth .CodeMirror-cursor { border-left: 1px solid white; }
 
-.cm-s-colorforth span.cm-comment     { color: #ededed; }
-.cm-s-colorforth span.cm-def         { color: #ff1c1c; font-weight:bold; }
-.cm-s-colorforth span.cm-keyword     { color: #ffd900; }
-.cm-s-colorforth span.cm-builtin     { color: #00d95a; }
-.cm-s-colorforth span.cm-variable    { color: #73ff00; }
-.cm-s-colorforth span.cm-string      { color: #007bff; }
+.cm-s-colorforth span.cm-comment     { color: #19b65e; }
+.cm-s-colorforth span.cm-def         { color: #00a0ff; font-weight:bold; }
+.cm-s-colorforth span.cm-keyword     { color: #d31895; }
+.cm-s-colorforth span.cm-builtin     { color: #23ff83; }
+.cm-s-colorforth span.cm-variable    { color: #ccff00; }
+.cm-s-colorforth span.cm-string      { color: #ff2c38; }
 .cm-s-colorforth span.cm-number      { color: #00c4ff; }
 .cm-s-colorforth span.cm-atom        { color: #606060; }
 
