@@ -24,12 +24,25 @@ from DatabaseSandbox.models import TotalAnnihilationUploadedFile, LazarusModProj
 
 
 # from LazarusII.serializers import UnitFbiDataSerializer
-from LazarusII.models import UnitFbiData, WeaponTDF, Damage, StoredFiles
+from LazarusII.models import UnitFbiData, WeaponTDF, Damage
 # from rest_framework import viewsets
 from rest_framework.decorators import detail_route, list_route
+from django.core import serializers
 
 
 
+
+class UnitFBIFromSQL(APIView):
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        all_units = UnitFbiData.objects.all()
+        serialized_obj = serializers.serialize("json", all_units)
+        json_dict = json.loads(serialized_obj)
+        list_response = []
+        for item in json_dict:
+            betterJson = item['fields']
+            list_response.append(betterJson)
+        return Response(list_response)
 
 
 
@@ -49,11 +62,9 @@ class WeaponTDFViewset(APIView):
         file_path = '/usr/src/persistent/' + parse_path1 + '.tdf'
 
         f3 = open(file_path, 'r', errors='replace')
-        print('5 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
-
+        print('5 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ ')
 
         tdf_without_comments = remove_comments(f3.read().strip().replace('\n', '').replace('\t', ''))
-
         def parseNested(_tdf, nOBJECT_NAME):
             # nOBJECT_NAME = 'DAMAGE'
             nparsed_0 = _tdf.replace('[' + nOBJECT_NAME + ']', '')
@@ -2338,7 +2349,9 @@ class LazarusListUnits(APIView):
 
 
     def get(self, request, format=None):
-        try:
+
+        return Response('greetings!')
+        # try:
             # try:
             #     should_get_user_content = str(request.GET['should_get_user_content'])
             #     mod_path = '/usr/src/persistent/media/ta_data/' + str(request.GET['mod_name']) + '/'
@@ -2346,17 +2359,4 @@ class LazarusListUnits(APIView):
             #     self.printContents(mod_path, mod_name)
             #     print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
             #     print(mod_path)
-            #     print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
-            #     return Response(self.unit_fbi_final)
-            # except:
-            mod_path = '/usr/src/persistent/media/ta_data/' + str(request.GET['mod_name']) + '/'
-            mod_name = str(request.GET['mod_name'])
-            self.printContents(mod_path, mod_name)
-            return Response(self.unit_fbi_final)
-        except:
-            return Response(self.unit_fbi_final)
-
-"""
-/LazarusII/UnitFbiData/?mod_name=totala_files2&unit_id=arach
-"""
-
+      

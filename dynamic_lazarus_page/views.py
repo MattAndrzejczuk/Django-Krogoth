@@ -119,7 +119,6 @@ class OpenTADataFile(APIView):
                 return HttpResponse(read_file_str)
                 # json_response = {'raw_data': fbi_file.read()}
 
-
             except:
                 unitsArray = readFile(unit_path)
                 return Response(unitsArray)
@@ -207,7 +206,7 @@ class DynamicSplashScreenView(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
         splash = BootScreenLoader.objects.filter(enabled=True)
-        final_html = navBar[0]
+        final_html = splash[0]
         return HttpResponse(final_html)
 
 
@@ -268,7 +267,7 @@ class DynamicHTMLInjector(APIView):
         name = request.GET['name']
         application = AngularFuseApplication.objects.get(name=name)
         components = FuseAppComponent.objects.filter(parent_app=application)
-        raw_html_response = ''
+        raw_html_response = application.html_main
         for comp in components:
             if comp.type == 'html':
                 parsed1 = comp.contents.replace('FUSE_APP_NAME', application.name)

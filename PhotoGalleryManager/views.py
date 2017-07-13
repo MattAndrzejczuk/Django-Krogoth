@@ -60,6 +60,7 @@ class GalleryItemList(APIView):
         return Response(response_list)
 # unique_name
 
+
 class GalleryItemDetail(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):

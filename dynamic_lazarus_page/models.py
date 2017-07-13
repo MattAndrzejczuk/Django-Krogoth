@@ -48,13 +48,16 @@ ICONS = (
 
 
 class AngularFuseApplication(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, help_text='please use "_" instead of spaces!')
     category = models.CharField(max_length=30, default='Resources')
     js_module = models.TextField(default=DEFAULT_MODULE.replace('; ', '; \n'))
     js_controller = models.TextField(default=DEFAULT_CONTROLLER.replace('; ', '; \n'))
+    html_main = models.TextField(default='<h1>Djangular Lazarus</h1>')
     icon = models.CharField(choices=ICONS, max_length=50, default='icon-hexagon-outline')
     def __str__(self):
         return self.name
+
+
 
 class FuseAppComponent(models.Model):
     name = models.CharField(max_length=255)

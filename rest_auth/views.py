@@ -48,8 +48,30 @@ def index(request):
     permission_classes = (AllowAny,)
     template = loader.get_template('index.html')
 
-    Djangular = []
+    splash_html = '<ms-splash-screen id="splash-screen"> <div class="center"> <div class="logo" style="width:250px; font-size: 36px; background-color: darkorange;"> <span>Lazarus</span> </div> <!-- Material Design Spinner --> <div class="spinner-wrapper"> <div class="spinner"> <div class="inner"> <div class="gap"></div> <div class="left"> <div class="half-circle"></div> </div> <div class="right"> <div class="half-circle"></div> </div> </div> </div> </div> <!-- / Material Design Spinner --> </div></ms-splash-screen>'
 
+    splash_title = 'Lazarus'
+    font_size = 36
+    splash_logo_bg_color = 'antiquewhite'
+    width = 250
+    main_bg_color = 'darkolive'
+    font_color = 'black'
+
+    try:
+        splash = BootScreenLoader.objects.filter(enabled=True)
+        splash_html = splash[0].html_code
+
+        splash_title = splash[0].title
+        font_size = splash[0].font_size
+        splash_logo_bg_color = splash[0].logo_background_color
+        width = splash[0].width
+        main_bg_color = splash[0].main_background_color
+        font_color = splash[0].font_color
+    except:
+        print('There is no splash screen in the Database!')
+
+
+    Djangular = []
     all_applications = AngularFuseApplication.objects.all()
     for application in all_applications:
         Djangular.append(application.name)
@@ -73,7 +95,13 @@ def index(request):
 
     context = {
         "message": "TA Lazarus " + current_build_1[:3] + "." + current_build_2,
-        "Djangular": Djangular
+        "Djangular": Djangular,
+        "splash_title": splash_title,
+        "font_size": font_size,
+        "splash_logo_bg_color": splash_logo_bg_color,
+        "width": width,
+        "main_bg_color": main_bg_color,
+        "font_color": font_color,
     }
     return HttpResponse(template.render(context, request))
 

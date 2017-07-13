@@ -53,14 +53,18 @@
       class="{{state.current.bodyClass || ''}}">
 
 <!-- SPLASH SCREEN -->
-<ms-splash-screen id="splash-screen">
+
+<ms-splash-screen id="splash-screen" style="background-color: {% endverbatim %}{{ main_bg_color }}{% verbatim %}">
     <div class="center">
-        <div class="logo" style="width:250px; font-size: 36px; background-color: darkorange;">
-            <span>Lazarus</span>
+        <div class="logo"
+             style="width:{% endverbatim %}{{ width }}{% verbatim %}px;
+             font-size: {% endverbatim %}{{ font_size }}{% verbatim %}px;
+             background-color: {% endverbatim %}{{ splash_logo_bg_color }}{% verbatim %};">
+            <span style="color: {% endverbatim %}{{ font_color }}{% verbatim %};" >{% endverbatim %}{{ splash_title }}{% verbatim %}</span>
         </div>
         <!-- Material Design Spinner -->
         <div class="spinner-wrapper">
-            <div class="spinner">
+            <div class="spinner" style="color: darkolivegreen">
                 <div class="inner">
                     <div class="gap"></div>
                     <div class="left">
@@ -75,6 +79,7 @@
         <!-- / Material Design Spinner -->
     </div>
 </ms-splash-screen>
+
 <!-- / SPLASH SCREEN -->
 
 <div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>

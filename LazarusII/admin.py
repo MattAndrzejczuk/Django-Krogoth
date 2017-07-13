@@ -1,13 +1,13 @@
 from django.contrib import admin
 
 # Register your models here.
-from LazarusII.models import WeaponTDF, Damage, FeatureTDF, UnitFbiData, DownloadTDF, StoredFiles
+from LazarusII.models import WeaponTDF, Damage, FeatureTDF, UnitFbiData, DownloadTDF
 
 
 
 
-class StoredFilesAdmin(admin.ModelAdmin):
-    list_display = ('id', 'file_name', 'file_type', 'absolute_path', 'date_logged',)
+# class StoredFilesAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'file_name', 'file_type', 'absolute_path', 'date_logged',)
 
 class WeaponTDFAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'rendertype', 'explosionart', 'energypershot',)
@@ -27,11 +27,10 @@ class DownloadTDFAdmin(admin.ModelAdmin):
 
 
 
-admin.site.register(StoredFiles, StoredFilesAdmin)
+# admin.site.register(StoredFiles, StoredFilesAdmin)
 
 admin.site.register(WeaponTDF, WeaponTDFAdmin)
 admin.site.register(Damage, DamageAdmin)
 admin.site.register(FeatureTDF, FeatureTDFAdmin)
 admin.site.register(UnitFbiData, UnitFbiDataAdmin)
 admin.site.register(DownloadTDF, DownloadTDFAdmin)
-
