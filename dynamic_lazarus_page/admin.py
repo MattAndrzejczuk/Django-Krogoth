@@ -6,8 +6,8 @@ from django.db import models
 
 
 # Register your models here.
-from dynamic_lazarus_page.models import SuperBasicModel, Car, \
-    FuseAppComponent, AngularFuseApplication, NgIncludedHtml
+from dynamic_lazarus_page.models import FuseAppComponent, AngularFuseApplication, NgIncludedHtml
+
 
 
 class AngularFuseApplicationAdmin(admin.ModelAdmin):

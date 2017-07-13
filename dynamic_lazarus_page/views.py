@@ -6,8 +6,7 @@ from rest_framework.response import Response
 
 from rest_framework.generics import GenericAPIView
 
-from dynamic_lazarus_page.models import SuperBasicModel, Car, FuseAppComponent, AngularFuseApplication, NgIncludedHtml
-from dynamic_lazarus_page.serializers import SuperBasicModelSerializer
+from dynamic_lazarus_page.models import FuseAppComponent, AngularFuseApplication, NgIncludedHtml
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
@@ -211,7 +210,7 @@ class DynamicSplashScreenView(APIView):
 
 
 class DynamicHTMLToolbarView(APIView):
-    # permission_classes = (AllowAny,)
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         full_html = '<div layout="row" layout-align="start center">    <div layout="row" layout-align="start center" flex>   ' + \
                     '  <md-button id="navigation-toggle" class="md-icon-button" ng-click="vm.toggleSidenav(\'navigation\')"        ' + \

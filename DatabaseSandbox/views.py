@@ -82,50 +82,56 @@ class UploadDataTA(APIView):
 
         try:
             print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
-            print(request.FILES)
+            print(request.FILES.getlist('file'))
             print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
 
-            file_obj = request.FILES['file']
 
-            parseName1 = str(file_obj).replace(' ', '_')
-            parseName2 = parseName1.replace('-', '').lower()
-            parseName3 = parseName2.replace('+', '__')
-            # parseName4 = parseName3.replace('.', '')
+            for file_obj in request.FILES.getlist('file'):
+                print(file_obj)
 
-            path = default_storage.save('ta_data/' + parseName3, ContentFile(file_obj.read()))
-            print('path: %s' % path)
+                parseName1 = str(file_obj).replace(' ', '_')
+                parseName2 = parseName1.replace('-', '').lower()
+                parseName3 = parseName2.replace('+', '__')
+                # parseName4 = parseName3.replace('.', '')
 
-            tmp_file = os.path.join(settings.MEDIA_ROOT, path)
+                server_msg = ''
 
-            file_name_regular = str(path).replace('ta_data/', '').strip()
+                path = default_storage.save('ta_data/' + parseName3, ContentFile(file_obj.read()))
+                print('path: %s' % path)
 
-            response = {'result': 'everything is finished ! ! ! ' + str(tmp_file)}
+                tmp_file = os.path.join(settings.MEDIA_ROOT, path)
 
-            file_type_parsed = file_name_regular[-3:]
+                file_name_regular = str(path).replace('ta_data/', '').strip()
 
-            extraction_point_directory = file_name_regular.replace(file_name_regular[-4:],'')
-            os.system('mkdir '+ '/usr/src/persistent/media/ta_data/'+extraction_point_directory)
+                response = {'result': 'everything is finished ! ! ! ' + str(tmp_file)}
 
-            ufo_path = '/usr/src/persistent/media/'+path
-            output_path = '/usr/src/persistent/media/ta_data/'+extraction_point_directory
+                file_type_parsed = file_name_regular[-3:]
+
+                extraction_point_directory = file_name_regular.replace(file_name_regular[-4:],'')
+                os.system('mkdir '+ '/usr/src/persistent/media/ta_data/'+extraction_point_directory)
+
+                ufo_path = '/usr/src/persistent/media/'+path
+                output_path = '/usr/src/persistent/media/ta_data/'+extraction_point_directory
 
 
-            bash_cmd = ['sh', 'extractTA_Mod.sh', ufo_path, output_path]
-            run_extraction_bash = str(subprocess.check_output(bash_cmd))
+                bash_cmd = ['sh', 'extractTA_Mod.sh', ufo_path, output_path]
+                run_extraction_bash = str(subprocess.check_output(bash_cmd))
 
-            print(run_extraction_bash)
+                print(run_extraction_bash)
 
-            rename_files_bash = "bash bashRenameStuffToLowerInDirectory_public.sh " + extraction_point_directory
-            os.system(rename_files_bash)
+                rename_files_bash = "bash bashRenameStuffToLowerInDirectory_public.sh " + extraction_point_directory
+                os.system(rename_files_bash)
 
-            but_DB = TotalAnnihilationUploadedFile(file_name=file_name_regular,
-                                        download_url=ufo_path,
-                                        system_path=output_path,
-                                        author=request.user.username,
-                                        file_type=file_type_parsed,
-                                        HPI_Extractor_Log=run_extraction_bash
-                                        )
-            but_DB.save()
+                but_DB = TotalAnnihilationUploadedFile(file_name=file_name_regular,
+                                            download_url=ufo_path,
+                                            system_path=output_path,
+                                            author=request.user.username,
+                                            file_type=file_type_parsed,
+                                            HPI_Extractor_Log=run_extraction_bash
+                                            )
+                but_DB.save()
+                server_msg = 'Upload successful! ' + str(file_obj)
+
             template = loader.get_template('upload_iframe.html')
             server_msg = 'Upload successful! ' + str(file_obj)
             alert = 'success'
