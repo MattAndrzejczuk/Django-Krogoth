@@ -51,7 +51,7 @@ class FuseAppComponentAdmin(admin.ModelAdmin):
 
 
 class NgIncludedHtmlAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name',)
+    list_display = ('id', 'name', 'url_helper', )
 
 
 admin.site.register(AngularFuseApplication, AngularFuseApplicationAdmin)

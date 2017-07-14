@@ -1,6 +1,6 @@
 from django.db import models
 # Create your models here.
-from django.contrib.auth.models import User
+
 
 
 DEFAULT_CONTROLLER = "(function () \n{ \n\t'use strict'; \n\tangular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController); \n\n\tfunction FUSE_APP_NAMEController() \n\t{ \n\t\t\tvar vm = this; \n\t\t\tvm.helloText = 'Welcome to FUSE_APP_NAME';   \n\t} \n})();"
@@ -85,6 +85,7 @@ class VisitorLog(models.Model):
 class NgIncludedHtml(models.Model):
     name = models.CharField(max_length=255)
     contents = models.TextField(default='<h4> Djangular Error: There is nothing here yet! </h4>')
+    url_helper = models.CharField(max_length=255, default='/dynamic_lazarus_page/NgIncludedHtml/?name=_NAME_')
 
 
 
