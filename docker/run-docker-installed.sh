@@ -13,6 +13,8 @@ docker run --name jawn-postgres -e POSTGRES_PASSWORD=58bdf87d93a3f325574900aa2f5
 docker run -d -P --name=jawn-redis redis
 docker run -d -p 80:80 -v $parentdir:/usr/src/app/ --link jawn-postgres:postgres --link jawn-redis:redis --name=jawn jawn
 echo "Running Containers...."
+
+docker exec -it jawn pip3 install django-dbbackup
 sleep 3
 docker exec -it jawn ./manage.py migrate
 docker exec jawn-redis redis-cli config set notify-keyspace-events KEA
