@@ -3,7 +3,7 @@ from LazarusII import views
 from LazarusII.views import UnitFbiData, ApiNavigationUrls, LazarusListUnits, \
     CustomToastGenerator, ExecuteBash, AutoCollectStatic, OpenTotalAnnihilationFBIFile, OpenTotalAnnihilationTDFFile, \
     UserAgentTracker, ExecuteBash_LS_AllCustomModFiles, UnitFBIViewset, \
-    WeaponTDFViewset, OpenTotalAnnihilationFBIFileII, DownloadTDFViewset, UnitFBIFromSQL
+    WeaponTDFViewset, OpenTotalAnnihilationFBIFileII, DownloadTDFViewset
 
 # Pure Python Stuff:
 from LazarusII.DataReaderTA import readFile
@@ -40,7 +40,7 @@ urlpatterns = [
     # url(r'^UnitFBIViewset/', include(router.urls)),
 
     url(r'^ExecuteBash_LS_AllCustomModFiles/', ExecuteBash_LS_AllCustomModFiles.as_view(), name='ExecuteBash_LS_AllCustomModFiles'),
-    url(r'^UnitFBIFromSQL/', UnitFBIFromSQL.as_view(), name='UnitFBIFromSQL'),
+
 
 ]
 
@@ -201,3 +201,4 @@ urlpatterns = [
     YardMap	                    Defines in more detail the "footprint" of a construction yard (or any stationary building). As an example, the ARM Adv. Air Plant data at the right has 6 groups of 7 values defining an X-Z coordinate "footprint" for the construction yard. The following values are available:
 
 """
+

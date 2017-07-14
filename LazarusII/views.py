@@ -27,22 +27,12 @@ from DatabaseSandbox.models import TotalAnnihilationUploadedFile, LazarusModProj
 from LazarusII.models import UnitFbiData, WeaponTDF, Damage
 # from rest_framework import viewsets
 from rest_framework.decorators import detail_route, list_route
-from django.core import serializers
 
 
 
 
-class UnitFBIFromSQL(APIView):
-    permission_classes = (AllowAny,)
-    def get(self, request, format=None):
-        all_units = UnitFbiData.objects.all()
-        serialized_obj = serializers.serialize("json", all_units)
-        json_dict = json.loads(serialized_obj)
-        list_response = []
-        for item in json_dict:
-            betterJson = item['fields']
-            list_response.append(betterJson)
-        return Response(list_response)
+
+
 
 
 
@@ -781,6 +771,7 @@ class UnitFBIViewset(APIView):
             try:
                 new_unit_fbi.Builder = int(dictionary[0]['Builder'])
             except:
+                new_unit_fbi.Builder = False
                 print('SKIPPING...' + str('Builder'))
             try:
                 new_unit_fbi.canattack = int(dictionary[0]['canattack'])

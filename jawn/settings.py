@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     'PhotoGalleryManager',
     'GeneralWebsiteInfo',
     'LazarusDatabase',
+    'dbbackup',
 )
 
 
@@ -210,6 +211,18 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'chat.serializers.GetUserSerializer',
 }
+
+###
+# SQL BACKUP
+#
+#  TODO: figure out how to get this thing working.
+#
+# DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+# DBBACKUP_STORAGE_OPTIONS = {'location': '/usr/src/app/backupSQL'}
+# pip3 install django-dbbackup
+###
+
+
 
 import django
 import rest_framework
