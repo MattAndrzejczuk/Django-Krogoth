@@ -9,10 +9,6 @@
     /** @ngInject */
     function RegisterV2Controller()
     {
-        // Data
 
-        // Methods
-
-        //////////
     }
 })();

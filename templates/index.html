@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>{{ message }}</title>
-{% verbatim %}
+    {% verbatim %}
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
@@ -45,9 +45,9 @@
 </head>
 
 <!--[if lt IE 10]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-        your browser</a> to improve your experience.</p>
-    <![endif]-->
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
 
 <body md-theme="{{vm.themes.active.name}}" md-theme-watch ng-controller="IndexController as vm"
       class="{{state.current.bodyClass || ''}}">
@@ -60,7 +60,7 @@
              style="width:{% endverbatim %}{{ width }}{% verbatim %}px;
              font-size: {% endverbatim %}{{ font_size }}{% verbatim %}px;
              background-color: {% endverbatim %}{{ splash_logo_bg_color }}{% verbatim %};">
-            <span style="color: {% endverbatim %}{{ font_color }}{% verbatim %};" >{% endverbatim %}{{ splash_title }}{% verbatim %}</span>
+            <span style="color: {% endverbatim %}{{ font_color }}{% verbatim %};">{% endverbatim %}{{ splash_title }}{% verbatim %}</span>
         </div>
         <!-- Material Design Spinner -->
         <div class="spinner-wrapper">
@@ -264,6 +264,7 @@
 <script src="/static/app/main/components/material-docs/demo-partials/autocomplete/demoBasicUsage/script.js"></script>
 -->
 
+
 <script src="/static/app/main/ui/theme-colors/theme-colors.module.js"></script>
 <script src="/static/app/main/ui/theme-colors/dialogs/custom-theme/custom-theme-dialog.controller.js"></script>
 <script src="/static/app/main/ui/page-layouts/simple/tabbed/tabbed.module.js"></script>
@@ -365,6 +366,8 @@
 <script src="/static/app/main/components/charts/chart-js/chart-js.controller.js"></script>
 <script src="/static/app/main/components/charts/c3/c3.module.js"></script>
 <script src="/static/app/main/components/charts/c3/c3.controller.js"></script>
+
+<!--
 <script src="/static/app/main/apps/scrumboard/services/filters.service.js"></script>
 <script src="/static/app/main/apps/scrumboard/services/dialog.service.js"></script>
 <script src="/static/app/main/apps/scrumboard/services/board.service.js"></script>
@@ -379,6 +382,8 @@
 <script src="/static/app/main/apps/dashboards/analytics/dashboard-analytics.controller.js"></script>
 <script src="/static/app/main/apps/chat/chat.module.js"></script>
 <script src="/static/app/main/apps/chat/services/chats.service.js"></script>
+-->
+
 <script src="/static/app/quick-panel/quick-panel.module.js"></script>
 <script src="/static/app/quick-panel/tabs/chat/chat-tab.controller.js"></script>
 <script src="/static/app/main/ui/typography/typography.module.js"></script>
@@ -416,6 +421,7 @@
 <script src="/static/app/main/components/custom-directives/custom-directives.controller.js"></script>
 <script src="/static/app/main/components/cards/cards.module.js"></script>
 <script src="/static/app/main/components/cards/cards.controller.js"></script>
+<!--
 <script src="/static/app/main/apps/todo/todo.controller.js"></script>
 <script src="/static/app/main/apps/scrumboard/scrumboard.controller.js"></script>
 <script src="/static/app/main/apps/notes/notes.controller.js"></script>
@@ -428,14 +434,14 @@
 <script src="/static/app/main/apps/contacts/contacts.controller.js"></script>
 <script src="/static/app/main/apps/chat/chat.controller.js"></script>
 <script src="/static/app/main/apps/calendar/calendar.controller.js"></script>
-
+-->
 <script src="/static/app/main/sample/sample.module.js"></script>
 <script src="/static/app/main/sample/sample.controller.js"></script>
 
 {% endverbatim %}
 
 {% for fuse_app in Djangular %}
-    <script src="/dynamic_lazarus_page/DynamicJavaScriptInjector/?name={{fuse_app}}"></script>
+<script src="/dynamic_lazarus_page/DynamicJavaScriptInjector/?name={{fuse_app}}"></script>
 {% endfor %}
 
 {% verbatim %}
@@ -503,3 +509,20 @@
 </body>
 {% endverbatim %}
 </html>
+
+<style>
+    #vertical-navigation {
+        background-image: url("/static/assets/images/bg-tile-metal-bw-10.png");
+        background-repeat: repeat;
+    }
+
+    #toolbar {
+        background-image: url("/static/assets/images/bg-tile-metalwall-bw-10.png");
+        background-repeat: repeat;
+    }
+
+    #content {
+        background-image: url("/static/assets/images/bg-tile-metalwater-bw-10.png");
+        background-repeat: repeat;
+    }
+</style>

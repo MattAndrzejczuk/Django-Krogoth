@@ -139,9 +139,12 @@ class DynamicIndexModule(APIView):
     def get(self, request, format=None):
         index_module_pt1 = "(function (){'use strict';angular.module('fuse', ['uiGmapgoogle-maps','textAngular'," + \
                            "'xeditable','app.core','app.sample','app.navigation','app.toolbar','app.quick-panel',"
-        index_module_pt2 = "'app.dashboards','app.calendar','app.e-commerce','app.mail','app.chat','app.file-manager'," + \
-                           "'app.gantt-chart','app.scrumboard','app.todo','app.contacts','app.notes','app.toastCtrl',"
-        my_apps = "'app.lazarus','app.sample',"
+
+        index_module_pt2 = ''
+        # index_module_pt2 = "'app.dashboards','app.calendar','app.e-commerce','app.mail','app.chat','app.file-manager'," + \
+        #                   "'app.gantt-chart','app.scrumboard','app.todo','app.contacts','app.notes','app.toastCtrl','app.lazarus',"
+
+        my_apps = "'app.sample',"
 
         # inject dynamic apps
         all_applications = AngularFuseApplication.objects.all()
