@@ -166,8 +166,7 @@ STATICFILES_DIRS = (
     #'/Users/Dominooch/Dropbox/Dev/theEmpire/static/',
 )
 
-print('STATIC FILES: ')
-print(os.path.join(BASE_DIR, 'static'))
+
 
 STATIC_ROOT = ('/usr/src/volatile/static/')
 #STATIC_ROOT = ('/usr/arm-prime/static/')
@@ -212,3 +211,10 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'chat.serializers.GetUserSerializer',
 }
 
+import django
+try:
+    print('')
+    print('Initializing Django ' + str(django.VERSION[0]) + '.' + str(django.VERSION[1]) + '.' + str(django.VERSION[2]) + '')
+    print('')
+except:
+    print('Django initialized, but the version is unknown... wtf?')
