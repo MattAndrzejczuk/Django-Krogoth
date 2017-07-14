@@ -3,7 +3,7 @@ from LazarusII import views
 from LazarusII.views import UnitFbiData, ApiNavigationUrls, LazarusListUnits, \
     CustomToastGenerator, ExecuteBash, AutoCollectStatic, OpenTotalAnnihilationFBIFile, OpenTotalAnnihilationTDFFile, \
     UserAgentTracker, ExecuteBash_LS_AllCustomModFiles, UnitFBIViewset, \
-    WeaponTDFViewset, OpenTotalAnnihilationFBIFileII, DownloadTDFViewset
+    WeaponTDFViewset, OpenTotalAnnihilationFBIFileII, DownloadTDFViewset, FeatureTDFViewset
 
 # Pure Python Stuff:
 from LazarusII.DataReaderTA import readFile
@@ -36,7 +36,8 @@ urlpatterns = [
     url(r'^UnitFBIViewset/', UnitFBIViewset.as_view(), name='UnitFBIViewset'),
     url(r'^WeaponTDFViewset/', WeaponTDFViewset.as_view(), name='WeaponTDFViewset'),
     url(r'^DownloadTDFViewset/', DownloadTDFViewset.as_view(), name='DownloadTDFViewset'),
-    url(r'^FeatureTDFViewset/', WeaponTDFViewset.as_view(), name='WeaponTDFViewset'),
+    url(r'^FeatureTDFViewset/', FeatureTDFViewset.as_view(), name='FeatureTDFViewset'),
+
     # url(r'^UnitFBIViewset/', include(router.urls)),
 
     url(r'^ExecuteBash_LS_AllCustomModFiles/', ExecuteBash_LS_AllCustomModFiles.as_view(), name='ExecuteBash_LS_AllCustomModFiles'),

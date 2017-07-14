@@ -37,7 +37,7 @@ class WeaponTDFFromSQLView(APIView):
 class DownloadTDFFromSQLView(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
-        all_objs = WeaponTDF.objects.all()
+        all_objs = DownloadTDF.objects.all()
         serialized_obj = serializers.serialize("json", all_objs)
         json_dict = json.loads(serialized_obj)
         list_response = []

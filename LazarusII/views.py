@@ -24,12 +24,24 @@ from DatabaseSandbox.models import TotalAnnihilationUploadedFile, LazarusModProj
 
 
 # from LazarusII.serializers import UnitFbiDataSerializer
-from LazarusII.models import UnitFbiData, WeaponTDF, Damage
+from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF
 # from rest_framework import viewsets
 from rest_framework.decorators import detail_route, list_route
 
 
 
+
+
+
+
+
+class FeatureTDFViewset(APIView):
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+
+
+
+        return Response(dict_list)
 
 
 
@@ -492,6 +504,7 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
                 parsed_1 = ls_current_modpath.replace("\\n'","")
                 dirs_in_mod = parsed_1.replace("b'","").split('\\n')
 
+                print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ ')
                 print("parsed_1 %s" % parsed_1)
                 print("dirs_in_mod : ")
                 listed_data_files = {
@@ -513,6 +526,7 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
                         elements_in_dir = (sub_parsed_2.split('\\n'))
                         for raw_data_tdf in elements_in_dir:
                             does_contain_json = True
+                            subdirectory_components = 'NIL'
                             parse_moditempath2 = ''
                             if raw_data_tdf[-4:] == '.fbi':
                                 parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
@@ -535,6 +549,21 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
                                                                                                            :-4]
                                     parse_moditempath3 = 'nan'
                                     does_contain_json = False
+                            elif raw_data_tdf[-4:] == 'pses': # CORPSE FEATURE DETECTED! #      7/14/2017
+                                # subdirectory_components = mod_item_path  #'THIS IS A CORPSE ! ! !'
+                                corpses_dir = mod_item_path + '/corpses'
+                                ls_cmd_features_dir = str(subprocess.check_output(['ls', corpses_dir]))
+                                corpses_parsed_1 = ls_cmd_features_dir.replace("\\n'", "")
+                                corpses_parsed_2 = corpses_parsed_1.replace("b'", "")
+                                replace_me_str = '\\' + 'n'
+                                replace_regex1 = corpses_parsed_2.replace(replace_me_str, '_NL_')
+                                subdirectory_components = replace_regex1.split('_NL_')
+                                for feat in subdirectory_components:
+                                    parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
+                                    parse_moditempath2 = parse_moditempath1.replace('/',
+                                                                                '_SLSH_') + '_SLSH_' + raw_data_tdf + '_SLSH_'
+                                raw_data_tdf = 'CORPSES_dir'
+
                             else:
                                 parse_moditempath3 = 'nan'
                                 does_contain_json = False
@@ -558,7 +587,9 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
                                 'dir_type': mod_item,
                                 'raw_data_tdf': raw_data_tdf,
                                 'does_contain_json': does_contain_json,
+                                'subdirectory_components': subdirectory_components
                             }
+
                             listed_data_files['directories'].append(data_file_json)
                         # mod_paths[data_file.file_name] = (listed_data_files)
                 mod_paths.append(listed_data_files)
@@ -630,6 +661,96 @@ class DownloadTDFViewset(APIView):
 
         print('JSON DUMPS: ')
         print(json.dumps(dict_list))
+
+        ## SAVE TO SQL:
+        for item in dict_list:
+            new_download = DownloadTDF()
+            get_pk_unit = UnitFbiData.objects.filter(UnitName__iexact=item['UNITNAME'])
+            new_download.parent_unit = get_pk_unit[0]
+
+            new_download.MENUENTRY = item['Object_Name']
+            new_download.BUTTON = item['BUTTON']
+            new_download.MENU = item['MENU']
+            new_download.UNITMENU = item['UNITMENU']
+            new_download.UNITNAME = item['UNITNAME']
+            new_download.save()
+
+        return Response(dict_list)
+
+
+class FeatureTDFViewset(APIView):
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        parse_path1 = str(request.GET['encoded_path']).replace('_SLSH_', '/')
+        file_path = '/usr/src/persistent/' + parse_path1 + '.tdf'
+        f3 = open(file_path, 'r', errors='replace')
+
+        print("OPENING DOWNLOAD TDF... ")
+        incoming_tdf = remove_comments(f3.read())
+        print(incoming_tdf)
+        print('TDF Opened Successfully ! ! !')
+
+        def parseNested(_tdf, nOBJECT_NAME):
+            nparsed_0 = _tdf.replace('[' + nOBJECT_NAME + ']', '')
+            nparsed_1 = nparsed_0
+            nparsed_2 = nparsed_1.replace('[', '"')
+            nparsed_3 = nparsed_2.replace(']', '" :')
+            nparsed_4 = nparsed_3.replace('=', '" : "')
+            nparsed_5 = nparsed_4.replace(';', '", "')
+            nparsed_6 = nparsed_5.replace('{', '{ "')
+            nparsed_7 = nparsed_6.replace(', "}', '}')
+            nparsed_8 = nparsed_7.replace(', ""', ', "')
+            nparsed_9 = nparsed_8.replace('", " }', '"}').replace(' ', '')
+            return nparsed_9
+
+        def getNestedType(_tdf):
+            try:
+                _BrkStart = [m.start() for m in re.finditer('\[', _tdf)]
+                _BrkEnd = [m.start() for m in re.finditer('\]', _tdf)]
+                return _tdf[int(str(_BrkStart[0])) + 1:int(str(_BrkEnd[0]))]
+            except:
+                return ''
+
+        dict_list = []
+        rmv_tabs_n_spaces0 = incoming_tdf.replace('\t', '')
+        rmv_tabs_n_spaces1 = rmv_tabs_n_spaces0.replace('\n', '').strip()
+        _tdf_prep = rmv_tabs_n_spaces1.replace(' ', '').replace('} [', '}|[').replace('}[', '}|[')
+
+        print('TDF PREPPED AND READY FOR JSONIFYING: ')
+        print(_tdf_prep)
+        print('______________________________________')
+
+        split_tdf = _tdf_prep.split('|')
+
+        for item in split_tdf:
+            nested_obj = parseNested(item, getNestedType(item))
+            print(nested_obj)
+
+        for item in split_tdf:
+            nested_type = getNestedType(item)
+            print("NESTED TYPE:  " + nested_type)
+            nested_obj = parseNested(item, nested_type)
+            print(nested_obj)
+            dictionary = json.loads(nested_obj)
+            dictionary['Object_Name'] = nested_type
+            dict_list.append(dictionary)
+
+        print('JSON DUMPS: ')
+        print(json.dumps(dict_list))
+
+        ## SAVE TO SQL:
+        # for item in dict_list:
+        #     new_download = DownloadTDF()
+        #     get_pk_unit = UnitFbiData.objects.filter(UnitName__iexact=item['UNITNAME'])
+        #     new_download.parent_unit = get_pk_unit[0]
+        #
+        #     new_download.MENUENTRY = item['Object_Name']
+        #     new_download.BUTTON = item['BUTTON']
+        #     new_download.MENU = item['MENU']
+        #     new_download.UNITMENU = item['UNITMENU']
+        #     new_download.UNITNAME = item['UNITNAME']
+        #     new_download.save()
+
         return Response(dict_list)
 
 
