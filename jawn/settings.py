@@ -212,9 +212,11 @@ REST_AUTH_SERIALIZERS = {
 }
 
 import django
+import rest_framework
 try:
     print('')
     print('Initializing Django ' + str(django.VERSION[0]) + '.' + str(django.VERSION[1]) + '.' + str(django.VERSION[2]) + '')
+    print('Django REST Framework ' + str(rest_framework.VERSION))
     print('')
 except:
     print('Django initialized, but the version is unknown... wtf?')
