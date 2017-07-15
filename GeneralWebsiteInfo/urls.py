@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 
 
+
 # GeneralWebsiteInfo
 
 ###   WebsiteColorTheme
@@ -17,7 +18,6 @@ from django.contrib.auth.models import User
 
 
 urlpatterns = [
-
     url(r'^WebsiteColorTheme/', WebsiteColorThemeView.as_view(), name=' '),
     url(r'^WebsiteLayout/', WebsiteLayoutView.as_view(), name=' '),
 
