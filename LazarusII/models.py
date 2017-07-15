@@ -120,7 +120,7 @@ class WeaponTDF(models.Model):
 
 class FeatureTDF(models.Model):
     animating = models.PositiveSmallIntegerField(null=True, blank=True)
-    animtrans = models.PositiveSmallIntegerField(null=True, blank=True, blank=True)
+    animtrans = models.PositiveSmallIntegerField(null=True, blank=True)
     autoreclaimable = models.BooleanField(default=True)
     burnmax = models.IntegerField(default=18, null=True, blank=True)
     burnmin = models.IntegerField(default=15, null=True, blank=True)
