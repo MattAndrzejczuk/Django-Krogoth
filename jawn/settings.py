@@ -234,3 +234,7 @@ try:
     print('')
 except:
     print('Django initialized, but the version is unknown... wtf?')
+
+
+# from jawn.default_sql_injector import populateDefaultSQL
+# populateDefaultSQL(os.path.join(BASE_DIR, 'static'))

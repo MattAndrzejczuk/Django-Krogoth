@@ -62,6 +62,7 @@ class AngularFuseApplication(models.Model):
     def save(self, *args, **kwargs):
         print('Saving AngularFuseApplication')
         print(self.name)
+        self.name = self.name.replace(' ', '_')
         self.js_module = jsbeautifier.beautify(self.js_module)
         self.js_controller = jsbeautifier.beautify(self.js_controller)
         super(AngularFuseApplication, self).save(*args, **kwargs)
@@ -98,9 +99,10 @@ class VisitorLog(models.Model):
 class NgIncludedHtml(models.Model):
     name = models.CharField(max_length=255)
     contents = models.TextField(default='<h4> Djangular Error: There is nothing here yet! </h4>')
-    url_helper = models.CharField(max_length=255, default='/dynamic_lazarus_page/NgIncludedHtml/?name=_NAME_')
+    url_helper = models.CharField(max_length=255,
+                                  default='Dont worry about this text.',
+                                  help_text='Djangular will take care of this.')
 
-
-
-
-
+    def save(self, *args, **kwargs):
+        self.url_helper = '/dynamic_lazarus_page/NgIncludedHtml/?name=' + self.name
+        super(NgIncludedHtml, self).save(*args, **kwargs)

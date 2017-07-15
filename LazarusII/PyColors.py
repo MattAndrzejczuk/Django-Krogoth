@@ -65,7 +65,7 @@ def printError(msg):
 def printWarning(msg):
     return
     try:
-        print('\033[96m[' + '\033[91mWarning\033[0m' + '\033[96m]\033[0m: \033[33m' + str(msg) + '\033[0m')
+        print('\033[96m[' + '\033[91mAlert\033[0m' + '\033[96m]\033[0m: \033[33m' + str(msg) + '\033[0m')
     except:
         print('FAIL! printWarning')
 
@@ -90,4 +90,5 @@ def printDebug(msg, origin):
         print('\033[96m[\033[36m' + origin + '\033[0m\033[96m]\033[0m: \033[34m' + str(msg) + '\033[0m')
     except:
         print('FAIL! printDebug')
+
 
