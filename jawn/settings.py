@@ -15,6 +15,8 @@ import os
 from django.core.mail import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DJANGULAR_STATIC = 'DjangularStaticFiles'
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -229,12 +231,12 @@ import django
 import rest_framework
 try:
     print('')
-    print('Initializing Django ' + str(django.VERSION[0]) + '.' + str(django.VERSION[1]) + '.' + str(django.VERSION[2]) + '')
-    print('Django REST Framework ' + str(rest_framework.VERSION))
+    print('\033[90mInitializing Django ' + str(django.VERSION[0]) + '.' + str(django.VERSION[1]) + '.' + str(django.VERSION[2]) + '\033[0m')
+    print('\033[96mDjango REST Framework ' + str(rest_framework.VERSION) + '\033[0m')
     print('')
 except:
     print('Django initialized, but the version is unknown... wtf?')
 
 
-# from jawn.default_sql_injector import populateDefaultSQL
-# populateDefaultSQL(os.path.join(BASE_DIR, 'static'))
+
+
