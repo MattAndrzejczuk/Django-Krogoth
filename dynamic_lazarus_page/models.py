@@ -1,7 +1,8 @@
 from django.db import models
+import jsbeautifier
 # Create your models here.
 
-
+from LazarusII.PyColors import printError, printInfo, printWarning, printLog, printDebug
 
 DEFAULT_CONTROLLER = "(function () \n{ \n\t'use strict'; \n\tangular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController); \n\n\tfunction FUSE_APP_NAMEController() \n\t{ \n\t\t\tvar vm = this; \n\t\t\tvm.helloText = 'Welcome to FUSE_APP_NAME';   \n\t} \n})();"
 DEFAULT_MODULE = "(function () \n{ \n\t'use strict'; \n\tangular.module('app.FUSE_APP_NAME', ['flow']).config(config); \n\n\tfunction config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider) { \n\t$stateProvider.state('app.FUSE_APP_NAME', { \n\t\turl: '/FUSE_APP_NAME', \n\t\tviews: { \n\t\t\t'content@app': { \n\t\t\t\ttemplateUrl: '/dynamic_lazarus_page/DynamicHTMLInjector/?name=FUSE_APP_NAME', \n\t\t\t\tcontroller: 'FUSE_APP_NAMEController as vm'\n\t\t\t}\n\t\t}, \n\t\tbodyClass: 'file-manager' \n\t}); \n\tmsNavigationServiceProvider.saveItem('NAV_HEADER.FUSE_APP_NAME', { \n\t\ttitle: 'FUSE_APP_TITLE', \n\t\ticon: 'FUSE_APP_ICON', \n\t\tstate: 'app.FUSE_APP_NAME', \n\t\tweight: 3 \n\t});    \n\t} \n})();"
@@ -58,14 +59,29 @@ class AngularFuseApplication(models.Model):
         return self.name
 
 
+    def save(self, *args, **kwargs):
+        print('Saving AngularFuseApplication')
+        print(self.name)
+        self.js_module = jsbeautifier.beautify(self.js_module)
+        self.js_controller = jsbeautifier.beautify(self.js_controller)
+        super(AngularFuseApplication, self).save(*args, **kwargs)
+
+
 
 class FuseAppComponent(models.Model):
     name = models.CharField(max_length=255)
     type = models.CharField(max_length=100) ### .HTML .JS .CSS     etc...
     parent_app = models.ForeignKey(AngularFuseApplication, on_delete=models.CASCADE,)
     contents = models.TextField()
+
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        print('Saving FuseAppComponent')
+        print(self.name)
+        self.contents = jsbeautifier.beautify(self.contents)
+        super(AngularFuseApplication, self).save(*args, **kwargs)
 
 
 
@@ -75,9 +91,6 @@ class VisitorLog(models.Model):
     remote_addr = models.CharField(max_length=255, blank=True, null=True)
     http_usr = models.CharField(max_length=255, blank=True, null=True)
     http_accept = models.CharField(max_length=255, blank=True, null=True)
-
-
-
 
 
 

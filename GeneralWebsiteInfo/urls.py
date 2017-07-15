@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from GeneralWebsiteInfo.views import WebsiteColorThemeView, WebsiteLayoutView, \
-    NavigationBarView, BootScreenLoaderView
-
+    NavigationBarView, BootScreenLoaderView, PressArticleListView, PressArticleView
+from django.contrib.auth.models import User
 
 
 
@@ -24,4 +24,7 @@ urlpatterns = [
     url(r'^NavigationBar/', NavigationBarView.as_view(), name=' '),
     url(r'^BootScreenLoader/', BootScreenLoaderView.as_view(), name='  '),
 
+    url(r'^PressArticleList/', PressArticleListView.as_view(), name='Press Articles'),
+    url(r'^PressArticle/', PressArticleView.as_view(), name='Press Article'),
 ]
+
