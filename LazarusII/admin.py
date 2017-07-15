@@ -34,3 +34,5 @@ admin.site.register(Damage, DamageAdmin)
 admin.site.register(FeatureTDF, FeatureTDFAdmin)
 admin.site.register(UnitFbiData, UnitFbiDataAdmin)
 admin.site.register(DownloadTDF, DownloadTDFAdmin)
+
+

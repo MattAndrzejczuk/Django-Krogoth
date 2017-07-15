@@ -3,7 +3,7 @@
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
   font-family: monospace;
-  height: 300px;
+  height: auto;
   color: black;
 }
 
@@ -40,7 +40,6 @@
 .CodeMirror-guttermarker-subtle { color: #999; }
 
 /* CURSOR */
-
 .CodeMirror-cursor {
   border-left: 1px solid black;
   border-right: none;
@@ -350,4 +349,8 @@ span.CodeMirror-selectedtext { background: none; }
 
 .tab-content-main {
   width: 1080px;
+}
+
+.save-box {
+  z-index: 1000;
 }

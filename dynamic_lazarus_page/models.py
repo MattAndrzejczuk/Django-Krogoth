@@ -82,7 +82,7 @@ class FuseAppComponent(models.Model):
         print('Saving FuseAppComponent')
         print(self.name)
         self.contents = jsbeautifier.beautify(self.contents)
-        super(AngularFuseApplication, self).save(*args, **kwargs)
+        super(FuseAppComponent, self).save(*args, **kwargs)
 
 
 

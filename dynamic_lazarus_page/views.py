@@ -151,7 +151,7 @@ class DynamicIndexModule(APIView):
         for application in all_applications:
             my_apps += ("'app." + application.name + "',")
 
-        my_apps += "'ui.tree',"
+        my_apps += "'ui.tree', "
 
         index_module_pt3 = "'app.pages','app.ui','app.components']);})();"
         indexModuleJs = index_module_pt1 + index_module_pt2 + my_apps + index_module_pt3
