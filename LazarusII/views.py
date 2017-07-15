@@ -5,7 +5,8 @@ from rest_framework.response import Response
 import json
 from LazarusII.DataReaderTA import readFile
 from LazarusII.FbiData import LazarusUnit
-from LazarusII.PyColors import bcolors, printKeyValuePair, printKeyValuePair1, printKeyValuePair2, printError, printWarning, printInfo, printLog, printDebug
+from LazarusII.PyColors import bcolors, printKeyValuePair, printKeyValuePair1, printKeyValuePair2, \
+    printError, printWarning, printInfo, printLog, printDebug
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
@@ -24,11 +25,12 @@ from DatabaseSandbox.models import TotalAnnihilationUploadedFile, LazarusModProj
 
 
 # from LazarusII.serializers import UnitFbiDataSerializer
-from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF
+from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF, FeatureTDF
+
 # from rest_framework import viewsets
 from rest_framework.decorators import detail_route, list_route
 
-
+from rest_framework import status
 
 
 
@@ -690,6 +692,8 @@ class FeatureTDFViewset(APIView):
         print(incoming_tdf)
         print('TDF Opened Successfully ! ! !')
 
+        status_code = status.HTTP_200_OK
+
         def parseNested(_tdf, nOBJECT_NAME):
             nparsed_0 = _tdf.replace('[' + nOBJECT_NAME + ']', '')
             nparsed_1 = nparsed_0
@@ -738,20 +742,208 @@ class FeatureTDFViewset(APIView):
         print('JSON DUMPS: ')
         print(json.dumps(dict_list))
 
-        ## SAVE TO SQL:
-        # for item in dict_list:
-        #     new_download = DownloadTDF()
-        #     get_pk_unit = UnitFbiData.objects.filter(UnitName__iexact=item['UNITNAME'])
-        #     new_download.parent_unit = get_pk_unit[0]
-        #
-        #     new_download.MENUENTRY = item['Object_Name']
-        #     new_download.BUTTON = item['BUTTON']
-        #     new_download.MENU = item['MENU']
-        #     new_download.UNITMENU = item['UNITMENU']
-        #     new_download.UNITNAME = item['UNITNAME']
-        #     new_download.save()
+        ##### SAVE TO SQL:
+        for item in dict_list:
+            new_feature = FeatureTDF()
+            ### 37
+            try:
+                new_feature.animating = item['animating']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.animtrans = item['animtrans']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.autoreclaimable = item['autoreclaimable']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.burnmax = item['burnmax']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.burnmin = item['burnmin']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.burnweapon = item['burnweapon']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.category = item['category']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.description = item['description']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.blocking = item['blocking']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.damage = item['damage']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.energy = item['energy']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.featuredead = item['featuredead']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.featurereclamate = item['featurereclamate']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.filename = item['filename']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.flamable = item['flamable']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.footprintx = item['footprintx']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.footprintz = item['footprintz']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.geothermal = item['geothermal']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.height = item['height']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.hitdensity = item['hitdensity']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.indestructible = item['indestructible']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.metal = item['metal']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.nodisplayinfo = item['nodisplayinfo']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature._object = item['object']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.permanent = item['permanent']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.reclaimable = item['reclaimable']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.reproduce = item['reproduce']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.reproducearea = item['reproducearea']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.seqname = item['seqname']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.seqnameburn = item['seqnameburn']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.seqnamedie = item['seqnamedie']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.seqnamereclamate = item['seqnamereclamate']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.seqnameshad = item['seqnameshad']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.shadtrans = item['shadtrans']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.sparktime = item['sparktime']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.spreadchance = item['spreadchance']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.world = item['world']
+            except:
+                print('SKIPPING    animating')
+            try:
+                new_feature.save()
+                status_code = status.HTTP_201_CREATED
+            except:
+                print('no new content.')
 
-        return Response(dict_list)
+        return Response(dict_list, status=status_code)
+
+
+
+# animating
+# animtrans
+# autoreclaimable
+# burnmax
+# burnmin
+# burnweapon
+# category
+# description
+# blocking
+# damage
+# energy
+# featuredead
+# featurereclamate
+# filename
+# flamable
+# footprintx
+# footprintz
+# geothermal
+# height
+# hitdensity
+# indestructible
+# metal
+# nodisplayinfo
+# _object
+# permanent
+# reclaimable
+# reproduce
+# reproducearea
+# seqname
+# seqnameburn
+# seqnamedie
+# seqnamereclamate
+# seqnameshad
+# shadtrans
+# sparktime
+# spreadchance
+# world
+
+
+
 
 
 class UnitFBIViewset(APIView):

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF
+from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF, FeatureTDF
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -47,3 +47,14 @@ class DownloadTDFFromSQLView(APIView):
         return Response(list_response)
 
 
+class FeatureTDFFromSQLView(APIView):
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        all_objs = FeatureTDF.objects.all()
+        serialized_obj = serializers.serialize("json", all_objs)
+        json_dict = json.loads(serialized_obj)
+        list_response = []
+        for item in json_dict:
+            betterJson = item['fields']
+            list_response.append(betterJson)
+        return Response(list_response)
