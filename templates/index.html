@@ -439,10 +439,17 @@
 <script src="/static/app/main/sample/sample.controller.js"></script>
 <script src="/static/angular-carousel/carousel.min.js"></script>
 
+<script src="/static/app/core/theme-options/theme-options.directive.js"></script>
+<script src="/static/app/core/theming/fuse-theming.service.js"></script>
+<script src="/static/app/core/theming/fuse-theming.config.js"></script>
+
+
+<div ng-include="/dynamic_lazarus_page/NgIncludedHtml/?name=djangularTheme"></div>
+
 {% endverbatim %}
 
-{% for fuse_app in Djangular %}
-<script src="/dynamic_lazarus_page/DynamicJavaScriptInjector/?name={{fuse_app}}"></script>
+{% for djangular in AngularFuseApplications %}
+<script src="/dynamic_lazarus_page/DynamicJavaScriptInjector/?name={{djangular}}"></script>
 {% endfor %}
 
 {% verbatim %}
@@ -465,10 +472,8 @@
 <script src="/static/app/core/directives/ms-masonry/ms-masonry.directive.js"></script>
 <script src="/static/app/core/directives/ms-datepicker-fix/ms-datepicker-fix.directive.js"></script>
 <script src="/static/app/core/directives/ms-card/ms-card.directive.js"></script>
-<script src="/static/app/core/theme-options/theme-options.directive.js"></script>
-<script src="/static/app/core/theming/fuse-theming.service.js"></script>
-<script src="/static/app/core/theming/fuse-theming.config.js"></script>
-<script src="/api.lazarus/gettheme"></script>
+
+<!--<script src="/api.lazarus/gettheme"></script>-->
 <script src="/static/app/core/theming/fuse-palettes.constant.js"></script>
 <script src="/static/app/core/theming/fuse-generator.service.js"></script>
 <script src="/static/app/core/services/ms-utils.service.js"></script>

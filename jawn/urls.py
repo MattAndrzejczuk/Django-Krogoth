@@ -39,6 +39,8 @@ router.register(r'link-messages', LinkMessageViewSet)
 router.register(r'youtube-messages', YouTubeMessageViewSet)
 router.register(r'youtube', YouTubeMessageViewSet)
 
+
+
 # LEGACY SUPPORT OF iOS 8 VERSION, THE iOS 8 CLIENT MUST BE UPDATED SO WE CAN REMOVE THIS LINE LATER
 
 urlpatterns = [

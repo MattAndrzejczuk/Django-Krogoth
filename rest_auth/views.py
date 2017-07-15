@@ -70,10 +70,10 @@ def index(request):
         print('There is no splash screen in the Database!')
 
 
-    Djangular = []
+    AngularFuseApplications = []
     all_applications = AngularFuseApplication.objects.all()
     for application in all_applications:
-        Djangular.append(application.name)
+        AngularFuseApplications.append(application.name)
 
     _1 = str(request.META['REMOTE_ADDR'])
     _2 = str(request.META['HTTP_USER_AGENT'])
@@ -94,7 +94,7 @@ def index(request):
 
     context = {
         "message": "TA Lazarus " + current_build_1[:3] + "." + current_build_2,
-        "Djangular": Djangular,
+        "AngularFuseApplications": AngularFuseApplications,
         "splash_title": splash_title,
         "font_size": font_size,
         "splash_logo_bg_color": splash_logo_bg_color,
