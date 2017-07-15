@@ -80,8 +80,9 @@ INSTALLED_APPS = (
     'PhotoGalleryManager',
     'GeneralWebsiteInfo',
     'LazarusDatabase',
-    'dbbackup',
 )
+#   'dbbackup',
+
 
 
 MIDDLEWARE_CLASSES = (
