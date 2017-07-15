@@ -6,6 +6,7 @@ urlpatterns = [
 
     # url(r'^listWorkingDirectory/$', views.listWorkingDirectory.as_view(), name='listWorkingDirectory'),
     url(r'^main/$', views.CustomHtmlGenerator.as_view(), name='index'),
+    url(r'^gettheme/$', views.ThemeConstantConfigView.as_view(), name='custom theme'),
     # url(r'^convert_to_png', views.convertPcxToPng.as_view(), name='convertPcxToPng'),
 
 

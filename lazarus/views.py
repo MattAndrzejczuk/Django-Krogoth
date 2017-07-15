@@ -25,6 +25,9 @@ from PIL import Image
 import json
 import re
 
+from GeneralWebsiteInfo import WebsiteColorTheme
+
+
 
 
 class bcolors:
@@ -62,8 +65,16 @@ class CustomHtmlGenerator(APIView):
 
 class ThemeConstantConfigView(APIView):
     def get(self, request, format=None):
-        html = '<div> <h1>Some Basic HTML</h1> <p>This is everything.</p> </div>'
-        return HttpResponse(html)
+        theme_to_use = 'default : {"primary":{"name":"fuse-paleblue","hues":{"default":"700","hue-1":"500","hue-2":"600","hue-3":"400"}},"accent":{"name":"deep-orange","hues":{"default":"600","hue-1":"400","hue-2":"700","hue-3":"A100"}},"warn":{"name":"fuse-blue","hues":{"default":"500","hue-1":"300","hue-2":"800","hue-3":"A100"}},"background":{"name":"blue-grey","hues":{"default":"50","hue-1":"A100","hue-2":"100","hue-3":"200"}}}'
+        pt1_path = '/usr/src/app/DjangularStaticFiles/fuse-themes.constant.pt1.js'
+        pt2_path = '/usr/src/app/DjangularStaticFiles/fuse-themes.constant.pt2.js'
+        theme_js_pt1 = open(pt1_path, 'r', errors='replace').read()
+        theme_js_pt2 = open(pt2_path, 'r', errors='replace').read()
+        theme_in_db = WebsiteColorTheme.objects.filter(enabled=True)
+        if len(theme_in_db) > 0:
+            theme_to_use = theme_in_db[0].replace('"CUSTOM_THEME_NAME"', 'default')
+        finalHTML = theme_js_pt1 + theme_to_use + theme_js_pt2
+        return HttpResponse(finalHTML)
 
 
 """
