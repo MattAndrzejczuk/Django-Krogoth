@@ -25,7 +25,7 @@ from PIL import Image
 import json
 import re
 
-from GeneralWebsiteInfo import WebsiteColorTheme
+from GeneralWebsiteInfo.models import WebsiteColorTheme
 
 
 
