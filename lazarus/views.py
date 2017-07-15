@@ -60,6 +60,12 @@ class CustomHtmlGenerator(APIView):
         return HttpResponse(html)
 
 
+class ThemeConstantConfigView(APIView):
+    def get(self, request, format=None):
+        html = '<div> <h1>Some Basic HTML</h1> <p>This is everything.</p> </div>'
+        return HttpResponse(html)
+
+
 """
 
 class LazarusListUnits:
