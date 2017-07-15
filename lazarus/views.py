@@ -74,6 +74,7 @@ class ThemeConstantConfigView(APIView):
         if len(theme_in_db) > 0:
             theme_to_use = theme_in_db[0].replace('"CUSTOM_THEME_NAME"', 'default')
         finalHTML = theme_js_pt1 + theme_to_use + theme_js_pt2
+        print(finalHTML)
         return HttpResponse(finalHTML)
 
 
