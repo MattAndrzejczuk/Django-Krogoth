@@ -23,15 +23,13 @@ import subprocess
 
 from DatabaseSandbox.models import TotalAnnihilationUploadedFile, LazarusModProjectSB
 
-
-# from LazarusII.serializers import UnitFbiDataSerializer
+from LazarusII.serializers import UnitFbiDataSerializer
 from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF, FeatureTDF
 
 # from rest_framework import viewsets
 from rest_framework.decorators import detail_route, list_route
-
 from rest_framework import status
-
+from rest_framework import viewsets
 
 
 
@@ -943,6 +941,13 @@ class FeatureTDFViewset(APIView):
 # world
 
 
+
+
+
+
+class UnitFBIViewSerialized(viewsets.ModelViewSet):
+    serializer_class = UnitFbiDataSerializer
+    queryset = UnitFbiData.objects.all()
 
 
 

@@ -3,7 +3,7 @@ from LazarusII import views
 from LazarusII.views import UnitFbiData, ApiNavigationUrls, LazarusListUnits, \
     CustomToastGenerator, ExecuteBash, AutoCollectStatic, OpenTotalAnnihilationFBIFile, OpenTotalAnnihilationTDFFile, \
     UserAgentTracker, ExecuteBash_LS_AllCustomModFiles, UnitFBIViewset, \
-    WeaponTDFViewset, OpenTotalAnnihilationFBIFileII, DownloadTDFViewset, FeatureTDFViewset
+    WeaponTDFViewset, OpenTotalAnnihilationFBIFileII, DownloadTDFViewset, FeatureTDFViewset, UnitFBIViewSerialized
 
 # Pure Python Stuff:
 from LazarusII.DataReaderTA import readFile
@@ -11,10 +11,20 @@ from LazarusII.FbiData import LazarusUnit
 from LazarusII.PyColors import bcolors, printKeyValuePair
 
 
+from rest_framework.routers import DefaultRouter
 
+
+
+
+
+router = DefaultRouter()
+
+router.register(r'FBISerialized', UnitFBIViewSerialized)
 
 
 urlpatterns = [
+
+    url(r'^serialized/', include(router.urls)),
 
     url(r'^help_api/$', ApiNavigationUrls.as_view()),
 

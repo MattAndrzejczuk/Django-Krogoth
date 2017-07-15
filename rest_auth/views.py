@@ -60,7 +60,6 @@ def index(request):
     try:
         splash = BootScreenLoader.objects.filter(enabled=True)
         splash_html = splash[0].html_code
-
         splash_title = splash[0].title
         font_size = splash[0].font_size
         splash_logo_bg_color = splash[0].logo_background_color
