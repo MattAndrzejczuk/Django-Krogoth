@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
 
 from dynamic_lazarus_page.models import FuseAppComponent, AngularFuseApplication, NgIncludedHtml
+from Djangular.models import DjangularMasterViewController
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
@@ -147,8 +148,13 @@ class DynamicIndexModule(APIView):
         my_apps = "'app.sample',"
 
         # inject dynamic apps
-        all_applications = AngularFuseApplication.objects.all()
-        for application in all_applications:
+        # all_applications = AngularFuseApplication.objects.all()
+        # for application in all_applications:
+        #     my_apps += ("'app." + application.name + "',")
+
+
+        all_djangular = DjangularMasterViewController.objects.all()
+        for application in all_djangular:
             my_apps += ("'app." + application.name + "',")
 
         my_apps += "'ui.tree', "

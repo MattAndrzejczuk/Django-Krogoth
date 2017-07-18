@@ -1,6 +1,10 @@
 from django.conf.urls import url
 from rest_auth import views
 
+from rest_framework.routers import DefaultRouter
+
+
+
 
 from rest_auth.views import (
     LoginView, LogoutView, UserDetailsView, PasswordChangeView,

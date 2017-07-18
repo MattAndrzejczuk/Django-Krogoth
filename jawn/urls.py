@@ -64,4 +64,5 @@ urlpatterns = [
     url(r'^GeneralWebsiteInfo/', include('GeneralWebsiteInfo.urls')),
     url(r'^PhotoGalleryManager/', include('PhotoGalleryManager.urls')),
     url(r'^LazarusDatabase/', include('LazarusDatabase.urls')),
+    url(r'^Djangular/', include('Djangular.urls')),
 ]

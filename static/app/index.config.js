@@ -7,7 +7,7 @@
         .config(config);
 
     /** @ngInject */
-    function config(uiGmapGoogleMapApiProvider, $translateProvider, $provide)
+    function config(uiGmapGoogleMapApiProvider, $translateProvider, $provide, $resourceProvider)
     {
         // Put your common app configurations here
 
@@ -76,6 +76,9 @@
                 return taTools;
             }
         ]);
+
+        $resourceProvider.defaults.stripTrailingSlashes = false;
+
     }
 
 })();

@@ -83,6 +83,7 @@ INSTALLED_APPS = (
     'PhotoGalleryManager',
     'GeneralWebsiteInfo',
     'LazarusDatabase',
+    'Djangular',
 )
 #   'dbbackup',
 
@@ -226,7 +227,7 @@ REST_AUTH_SERIALIZERS = {
 # pip3 install django-dbbackup
 ###
 
-
+APPEND_SLASH = True
 
 import django
 import rest_framework

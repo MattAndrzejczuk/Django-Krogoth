@@ -441,8 +441,12 @@
 
 {% endverbatim %}
 
-{% for fuse_app in Djangular %}
+{% for fuse_app in AngularFuseApplications %}
 <script src="/dynamic_lazarus_page/DynamicJavaScriptInjector/?name={{fuse_app}}"></script>
+{% endfor %}
+
+{% for fuse_app in DjangularMasterViewControllers %}
+<script src="/Djangular/DynamicJavaScriptInjector/?name={{fuse_app}}"></script>
 {% endfor %}
 
 {% verbatim %}

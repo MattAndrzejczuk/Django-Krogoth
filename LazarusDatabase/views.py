@@ -8,6 +8,49 @@ import json
 
 
 
+from LazarusDatabase.serializers import TotalAnnihilationModSerializer
+from LazarusDatabase.models import TotalAnnihilationMod
+from rest_framework.decorators import detail_route, list_route
+from rest_framework import status
+from rest_framework import viewsets
+
+
+from rest_auth.models import LazarusCommanderAccount
+
+
+class TotalAnnihilationModViewset(viewsets.ModelViewSet):
+    serializer_class = TotalAnnihilationModSerializer
+    queryset = TotalAnnihilationMod.objects.all()
+
+
+
+class CommanderAccountView(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request, format=None):
+        all_units = LazarusCommanderAccount.objects.all()
+        serialized_obj = serializers.serialize("json", all_units)
+        json_dict = json.loads(serialized_obj)
+        list_response = []
+        for item in json_dict:
+            betterJson = item['fields']
+            list_response.append(betterJson)
+        return Response(list_response)
+
+    def post(self, request, *args, **kwargs):
+        faction = request.POST['faction']
+        new_commander = LazarusCommanderAccount()
+        new_commander.user = request.user
+        new_commander.about_me = request.user
+        new_commander.profile_pic = request.user
+        new_commander.faction = faction
+
+        new_commander.save()
+
+        return Response('Welcome commander.')
+
+
+
+
 class UnitFBIFromSQLView(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
@@ -58,6 +101,7 @@ class FeatureTDFFromSQLView(APIView):
             betterJson = item['fields']
             list_response.append(betterJson)
         return Response(list_response)
+
 
 
 
