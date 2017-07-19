@@ -172,8 +172,8 @@ class DynamicIndexRoute(APIView):
         try:
             print('Getting Djangular app with id: 1')
             application = DjangularMasterViewController.objects.get(id=1)
-            print(application)
-            default_url = application.name
+            print(application.title)
+            default_url = application.name.replace(' ', '_')
             print(application.name)
         except:
             print('Something fucked up, reverting to Home')
