@@ -956,11 +956,22 @@ class UnitFBIViewset(APIView):
     def get(self, request, format=None):
         parse_path1 = str(request.GET['encoded_path']).replace('_SLSH_', '/')
         file_path = '/usr/src/persistent/' + parse_path1 + '.fbi'
+        png_path = ''
 
         try:
             parse_path1 = str(request.GET['encoded_path']).replace('_SLSH_', '/')
             file_path = '/usr/src/persistent/' + parse_path1 + '.fbi'
-            print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % file_path)
+
+            # LETS MAKE SOME PNGs
+            pcx_path = '/usr/src/persistent/' + parse_path1.replace('units', 'unitpics') + '.pcx'
+            try:
+                print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % pcx_path)
+                img = Image.open(pcx_path)
+                png_path = '/usr/src/persistent/' + parse_path1.replace('units', 'unitpics') + '.png'
+                img.save(png_path, format='png')
+                print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % png_path)
+            except:
+                print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % png_path)
             print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % file_path)
             print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % file_path)
         except:
@@ -1016,7 +1027,7 @@ class UnitFBIViewset(APIView):
                 weapon['OBJ_NAME'] = OBJECT_NAME
 
             new_unit_fbi = UnitFbiData()
-            new_unit_fbi._raw_json_dump = '...'  # json.dumps(dictionary[0])
+            new_unit_fbi._raw_json_dump = png_path.replace('/usr/src/persistent', '')  # json.dumps(dictionary[0])
 
             try:
                 new_unit_fbi.Acceleration = float(dictionary[0]['Acceleration'])
@@ -1523,18 +1534,18 @@ class UnitFBIViewset(APIView):
                 new_unit_fbi.WaterLine = int(dictionary[0]['WaterLine'])   # INT_()
             except:
                 print('SKIPPING...' + str('WaterLine'))
-            # try:
-            #     new_unit_fbi.Weapon_One = dictionary[0]['Weapon1']
-            # except:
-            #     print('SKIPPING...' + str('Weapon1'))
-            # try:
-            #     new_unit_fbi.Name_Weapon_Two = dictionary[0]['Weapon2']
-            # except:
-            #     print('SKIPPING...' + str('Weapon2'))
-            # try:
-            #     new_unit_fbi.Name_Weapon_Three = dictionary[0]['Weapon3']
-            # except:
-            #     print('SKIPPING...' + str('Weapon3'))
+            try:
+                new_unit_fbi.Weapon_One = dictionary[0]['Weapon1']
+            except:
+                print('SKIPPING...' + str('Weapon1'))
+            try:
+                new_unit_fbi.Name_Weapon_Two = dictionary[0]['Weapon2']
+            except:
+                print('SKIPPING...' + str('Weapon2'))
+            try:
+                new_unit_fbi.Name_Weapon_Three = dictionary[0]['Weapon3']
+            except:
+                print('SKIPPING...' + str('Weapon3'))
             try:
                 new_unit_fbi.WindGenerator = int(dictionary[0]['WindGenerator'])   # INT_()
             except:
@@ -1561,6 +1572,7 @@ class UnitFBIViewset(APIView):
             print(new_unit_fbi)
 
             new_unit_fbi.save()
+            dictionary[0]['png_path'] = png_path
 
             return Response(dictionary)
 

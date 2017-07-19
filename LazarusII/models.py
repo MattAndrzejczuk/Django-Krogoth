@@ -321,11 +321,11 @@ class UnitFbiData(models.Model):
     Version = models.IntegerField(null=True, blank=True) # ✦ ✦ ✦
     WaterLine = models.IntegerField(null=True, blank=True)
     # TODO: PK below
-    Weapon_One = models.ForeignKey(WeaponTDF, on_delete=models.CASCADE, related_name='Weapon1', null=True, blank=True)
+    # Weapon_One = models.ForeignKey(WeaponTDF, on_delete=models.CASCADE, related_name='Weapon1', null=True, blank=True)
     # TODO: PK below
-    Name_Weapon_Two = models.ForeignKey(WeaponTDF, on_delete=models.CASCADE, related_name='Weapon2', null=True, blank=True)
+    # Name_Weapon_Two = models.ForeignKey(WeaponTDF, on_delete=models.CASCADE, related_name='Weapon2', null=True, blank=True)
     # TODO: PK below
-    Name_Weapon_Three = models.ForeignKey(WeaponTDF, on_delete=models.CASCADE, related_name='Weapon3', null=True, blank=True)
+    # Name_Weapon_Three = models.ForeignKey(WeaponTDF, on_delete=models.CASCADE, related_name='Weapon3', null=True, blank=True)
     WindGenerator = models.IntegerField(null=True, blank=True)
     WorkerTime = models.IntegerField(null=True, blank=True)
     # TODO: PK below
