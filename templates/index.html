@@ -498,10 +498,13 @@
 <script src="/static/app/core/core.run.js"></script>
 <script src="/static/app/core/core.config.js"></script>
 <script src="/static/app/index.run.js"></script>
+{% endverbatim %}
 
-<!-- THIS WILL LOAD DYNAMICALLY -->
+<script src="{{ index_route_js }}"></script>
+<!-- THIS WILL LOAD DYNAMICALLY
 <script src="/dynamic_lazarus_page/DynamicIndexRoute/"></script>
 <!-- -->
+
 
 <script src="/static/app/index.controller.js"></script>
 <script src="/static/app/index.constants.js"></script>
@@ -513,7 +516,7 @@
 <script src="/static/app/main/components/components.module.js"></script>
 
 </body>
-{% endverbatim %}
+
 </html>
 
 <style>

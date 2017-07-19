@@ -1,6 +1,9 @@
 (function () {
     'use strict';
     angular.module('fuse').config(routeConfig);
+    
+    /* ngIncludedHtmls: mainHtmlLayout */
+    
     /** @ngInject */ function routeConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         $locationProvider.hashPrefix('!');
         $urlRouterProvider.otherwise('/FUSE_DEFAULT_APP');
@@ -10,9 +13,6 @@
         }]);
 
         var layoutStyle = $cookies.get('layoutStyle') || 'LAYOUT_STYLE';
-
-        
-
         
         var layouts = {
             LAYOUT_STYLE: {
