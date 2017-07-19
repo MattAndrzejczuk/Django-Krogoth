@@ -1,23 +1,18 @@
 (function () {
     'use strict';
     angular.module('fuse').config(routeConfig);
-    
-    /* ngIncludedHtmls: mainHtmlLayout */
-    
     /** @ngInject */ function routeConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         $locationProvider.hashPrefix('!');
-        $urlRouterProvider.otherwise('/FUSE_DEFAULT_APP');
+        $urlRouterProvider.otherwise('/KMD');
         var $cookies;
         angular.injector(['ngCookies']).invoke(['$cookies', function (_$cookies) {
             $cookies = _$cookies;
         }]);
-
-        var layoutStyle = $cookies.get('layoutStyle') || 'LAYOUT_STYLE';
-        
+        var layoutStyle = $cookies.get('layoutStyle') || 'verticalNavigation';
         var layouts = {
-            LAYOUT_STYLE: {
+            verticalNavigation: {
                 main: '/static/app/core/layouts/vertical-navigation.html',
-                toolbar: 'FUSE_TOOLBAR_HTML',
+                toolbar: '/dynamic_lazarus_page/DynamicHTMLToolbar/',
                 navigation: '/static/app/navigation/layouts/vertical-navigation/navigation.html'
             },
             verticalNavigationFullwidthToolbar: {
