@@ -178,7 +178,7 @@ class DynamicIndexRoute(APIView):
         except:
             print('Something fucked up, reverting to Home')
             default_url = 'Home'
-        toolbar_html = '/dynamic_lazarus_page/DynamicHTMLToolbar/' # FUSE_TOOLBAR_HTML
+        toolbar_html =  '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar.html' ## '/dynamic_lazarus_page/DynamicHTMLToolbar/'
         parsed_js_1 = full_js.replace('FUSE_DEFAULT_APP', default_url)
         parsed_js_2 = parsed_js_1.replace('FUSE_TOOLBAR_HTML', toolbar_html)
         return HttpResponse(parsed_js_2)
