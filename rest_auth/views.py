@@ -194,9 +194,9 @@ def index(request):
         print(index_route_js)
         print('_ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ _')
     except:
-        _main_ = '"/static/app/core/layouts/vertical-navigation-fullwidth-toolbar-2.html"'
-        _toolbar_ = '"/static/app/toolbar/layouts/vertical-navigation-fullwidth-toolbar-2/toolbar.html"'
-        _navigation_ = '"/static/app/navigation/layouts/vertical-navigation-fullwidth-toolbar-2/navigation.html"'
+        _main_ = " '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar-2.html' "
+        _toolbar_ = " '/static/app/toolbar/layouts/vertical-navigation-fullwidth-toolbar-2/toolbar.html' "
+        _navigation_ = " '/static/app/navigation/layouts/vertical-navigation-fullwidth-toolbar-2/navigation.html' "
         js_raw = "(function () {'use strict';angular.module('fuse').config(routeConfig); function routeConfig($stateProvider, $urlRouterProvider, $locationProvider) {$locationProvider.hashPrefix('!');$urlRouterProvider.otherwise('/home');var $cookies;angular.injector(['ngCookies']).invoke(['$cookies', function (_$cookies) {$cookies = _$cookies;}]);var layoutStyle = $cookies.get('layoutStyle') || 'LAYOUT_STYLE';' + " \
                  "'var layouts = {LAYOUT_STYLE: {main: " + \
                  _main_ + \
