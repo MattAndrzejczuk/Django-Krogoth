@@ -190,6 +190,9 @@ def index(request):
     try:
         mainHtmlLayout = NgIncludedHtml.objects.get(name='mainHtmlLayout')
         index_route_js = mainHtmlLayout.url_helper
+        print('_ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ _')
+        print(index_route_js)
+        print('_ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ _')
     except:
         _main_ = '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar-2.html'
         _toolbar_ = '/static/app/toolbar/layouts/vertical-navigation-fullwidth-toolbar-2/toolbar.html'
