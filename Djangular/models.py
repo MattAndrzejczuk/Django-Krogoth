@@ -1,5 +1,5 @@
 from django.db import models
-
+import jsbeautifier
 
 
 DEFAULT_CONTROLLER = "(function () \n{ \n\t'use strict'; \n\tangular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController); \n\tfunction FUSE_APP_NAMEController() \n\t{ \n\t\t\tvar vm = this; \n\t\t\t vm.viewName = 'FUSE_APP_NAME'; \n\t} \n})();"
