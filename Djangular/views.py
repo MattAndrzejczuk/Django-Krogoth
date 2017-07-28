@@ -66,6 +66,25 @@ def index(request):
     except:
         print('There is no splash screen in the Database!')
 
+    check_if_default_vc_exists = DjangularMasterViewController.objects.all()
+    if len(check_if_default_vc_exists) == 0:
+        print('NO DEFAULT APP DETECTED!')
+        print('creating a default Djangular application...')
+        defaultCategory = DjangularCategory(name='Djangular', code='hello!!')
+        defaultCategory.save()
+
+        default_html_header = '<h1>It works!</h1>'
+        default_html_body = "<h4>Congratulations, you've successfully installed a new Djangular Application.</h4>"
+        default_html_pt1 = '<div flex="20"></div><div flex="60" layout="column">'
+        default_html_pt2 = '</div><div flex="20"></div>'
+
+        default = DjangularMasterViewController(name='home',
+                                                title='It Works',
+                                                icon='icon-home',
+                                                category=defaultCategory,
+                                                view_html=default_html_pt1 + default_html_header + default_html_body + default_html_pt2)
+        default.save()
+
     DjangularMasterViewControllers = []
     all_applications = DjangularMasterViewController.objects.all()
     for application in all_applications:
