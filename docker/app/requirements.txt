@@ -13,3 +13,4 @@ django-rest-swagger
 redis
 Pillow
 django-redis-sessions
+jsbeautifier
