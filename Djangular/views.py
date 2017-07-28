@@ -18,7 +18,7 @@ from os import walk
 from PIL import Image
 
 from django.contrib.auth.models import User
-from Djangular.models import DjangularMasterViewController
+from Djangular.models import DjangularMasterViewController, DjangularCategory, DjangularIcon
 
 
 from GeneralWebsiteInfo.models import BootScreenLoader
@@ -71,6 +71,10 @@ def index(request):
     check_if_default_vc_exists = DjangularMasterViewController.objects.all()
     print(len(check_if_default_vc_exists))
     if len(check_if_default_vc_exists) == 0:
+
+        defaultIcon = DjangularIcon(name='home, house', code='icon-home')
+        defaultIcon.save()
+
         print('NO DEFAULT APP DETECTED!')
         print('creating a default Djangular application...')
         defaultCategory = DjangularCategory(name='Djangular', code='hello!!')
@@ -83,7 +87,7 @@ def index(request):
 
         default = DjangularMasterViewController(name='home',
                                                 title='It Works',
-                                                icon='icon-home',
+                                                icon=defaultIcon,
                                                 category=defaultCategory,
                                                 view_html=default_html_pt1 + default_html_header + default_html_body + default_html_pt2)
         default.save()
