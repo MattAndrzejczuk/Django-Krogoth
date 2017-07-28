@@ -66,7 +66,10 @@ def index(request):
     except:
         print('There is no splash screen in the Database!')
 
+    print('SOMEONE IS REQUESTING THE INDEX HTML PAGE ! ! !')
+
     check_if_default_vc_exists = DjangularMasterViewController.objects.all()
+    print(len(check_if_default_vc_exists))
     if len(check_if_default_vc_exists) == 0:
         print('NO DEFAULT APP DETECTED!')
         print('creating a default Djangular application...')
