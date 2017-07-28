@@ -189,7 +189,7 @@ def index(request):
     index_route_js = '/static/app/index.route.js'
     try:
         mainHtmlLayout = NgIncludedHtml.objects.get(name='mainHtmlLayout')
-        index_route_js = mainHtmlLayout
+        index_route_js = mainHtmlLayout.url_helper
     except:
         _main_ = '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar-2.html'
         _toolbar_ = '/static/app/toolbar/layouts/vertical-navigation-fullwidth-toolbar-2/toolbar.html'
