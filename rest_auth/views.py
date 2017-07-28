@@ -206,7 +206,9 @@ def index(request):
         newLayout = NgIncludedHtml(name='mainHtmlLayout', contents=js_raw)
         newLayout.save()
         index_route_js = newLayout.url_helper
+        print(' ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
         print(index_route_js)
+        print(' ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
 
     context = {
         "message": "TA Lazarus " + current_build_1[:3] + "." + current_build_2,
