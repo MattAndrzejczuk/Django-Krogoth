@@ -21,6 +21,12 @@ class DjangularService(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        self.service_js = jsbeautifier.beautify(self.service_js)
+        super(DjangularService, self).save(*args, **kwargs)
+
+
+
 class DjangularDirective(models.Model):
     name = models.CharField(max_length=25, unique=True)
     title = models.CharField(max_length=55, default='Untitled Djangular Directive',
@@ -28,6 +34,12 @@ class DjangularDirective(models.Model):
     directive_js = models.TextField(default=DEFAULT_DIRECTIVE)
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.directive_js = jsbeautifier.beautify(self.directive_js)
+        super(DjangularDirective, self).save(*args, **kwargs)
+
+
 
 class DjangularSlaveViewController(models.Model):
     name = models.CharField(max_length=25, unique=True, help_text='MUST BE EXACT NAME OF MASTER VIEW CONTROLLER.')
@@ -38,17 +50,28 @@ class DjangularSlaveViewController(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        self.controller_js = jsbeautifier.beautify(self.controller_js)
+        super(DjangularSlaveViewController, self).save(*args, **kwargs)
+
+
+
+
 class DjangularIcon(models.Model):
     name = models.CharField(max_length=25, unique=True)
     code = models.CharField(max_length=75, unique=True)
     def __str__(self):
         return self.name
 
+
+
 class DjangularCategory(models.Model):
     name = models.CharField(max_length=25, unique=True)
     code = models.CharField(max_length=75, unique=True)
     def __str__(self):
         return self.name
+
+
 
 class DjangularMasterViewController(models.Model):
     name = models.CharField(max_length=25, unique=True)
@@ -71,6 +94,11 @@ class DjangularMasterViewController(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        self.module_js = jsbeautifier.beautify(self.module_js)
+        self.controller_js = jsbeautifier.beautify(self.controller_js)
+        super(DjangularMasterViewController, self).save(*args, **kwargs)
 
 
 
