@@ -37,7 +37,7 @@ class AngularFuseApplicationAdmin(admin.ModelAdmin):
 
             '/static/codemirror/addon/hint/javascript-hint.js',
 
-            '/static/codemirror_run_ngInclude.js',
+            '/static/codemirror_run.js',
         )
         css = {
             'all': ('/static/codemirror.css', '/static/colorforth.css', '/static/dracula.css',)
@@ -52,6 +52,35 @@ class FuseAppComponentAdmin(admin.ModelAdmin):
 
 class NgIncludedHtmlAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'url_helper', )
+
+    formfield_overrides = {
+        models.TextField: {'widget': Textarea(attrs={'rows':20,
+                                                     'cols':100,
+                                                     'name':'codesnippet_editable'})},
+    }
+
+    class Media:
+        js = (
+            '/static/codemirror/lib/codemirror.js',
+
+            '/static/codemirror/mode/xml/xml.js',
+            '/static/codemirror/mode/htmlmixed/htmlmixed.js',
+            '/static/codemirror/mode/javascript/javascript.js',
+
+            '/static/codemirror/addon/edit/matchtags.js',
+            '/static/codemirror/addon/edit/closebrackets.js',
+            '/static/codemirror/addon/edit/continuelist.js',
+            '/static/codemirror/addon/edit/matchbrackets.js',
+            '/static/codemirror/addon/edit/matchtags.js',
+            '/static/codemirror/addon/edit/trailingspace.js',
+
+            '/static/codemirror/addon/hint/javascript-hint.js',
+
+            '/static/codemirror_run.js',
+        )
+        css = {
+            'all': ('/static/codemirror.css', '/static/colorforth.css', '/static/dracula.css',)
+        }
 
 
 admin.site.register(AngularFuseApplication, AngularFuseApplicationAdmin)
