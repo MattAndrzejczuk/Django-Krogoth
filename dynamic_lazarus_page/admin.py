@@ -76,7 +76,7 @@ class NgIncludedHtmlAdmin(admin.ModelAdmin):
 
             '/static/codemirror/addon/hint/javascript-hint.js',
 
-            '/static/codemirror_run_ngInclude.js',
+            '/static/code_mirror_run_ngInclude.js',
         )
         css = {
             'all': ('/static/codemirror.css', '/static/colorforth.css', '/static/dracula.css',)
