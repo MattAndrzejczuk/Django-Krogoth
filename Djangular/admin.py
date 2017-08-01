@@ -8,7 +8,7 @@ from Djangular.models import DjangularMasterViewController, DjangularService, Dj
 
 
 class DjangularMasterViewControllerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', )
+    list_display = ('id', 'title', 'name', )
     class Media:
         js = (
             '/static/codemirror/lib/codemirror.js',
@@ -35,7 +35,7 @@ class DjangularMasterViewControllerAdmin(admin.ModelAdmin):
         }
 
 class DjangularServiceAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', )
+    list_display = ('id', 'title', 'name', )
     class Media:
         js = (
             '/static/codemirror/lib/codemirror.js',
@@ -62,7 +62,7 @@ class DjangularServiceAdmin(admin.ModelAdmin):
         }
 
 class DjangularDirectiveAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', )
+    list_display = ('id', 'title', 'name', )
     class Media:
         js = (
             '/static/codemirror/lib/codemirror.js',
@@ -89,7 +89,7 @@ class DjangularDirectiveAdmin(admin.ModelAdmin):
         }
 
 class DjangularSlaveViewControllerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', )
+    list_display = ('id', 'title', 'name', )
     class Media:
         js = (
             '/static/codemirror/lib/codemirror.js',

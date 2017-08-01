@@ -8,19 +8,48 @@ import json
 
 
 
-from LazarusDatabase.serializers import TotalAnnihilationModSerializer
-from LazarusDatabase.models import TotalAnnihilationMod
+from LazarusDatabase.serializers import TotalAnnihilationModSerializer, \
+    LazarusModProjectSerializer, LazarusModAssetSerializer, LazarusModDependencySerializer
+
+from LazarusDatabase.models import TotalAnnihilationMod, LazarusModProject, LazarusModAsset, LazarusModDependency
+
 from rest_framework.decorators import detail_route, list_route
 from rest_framework import status
 from rest_framework import viewsets
 
-
 from rest_auth.models import LazarusCommanderAccount
+
+
+
+
+
+
+
+
+
+class LazarusModProjectViewset(viewsets.ModelViewSet):
+    serializer_class = LazarusModProjectSerializer
+    queryset = LazarusModProject.objects.all()
+
+class LazarusModAssetViewset(viewsets.ModelViewSet):
+    serializer_class = LazarusModAssetSerializer
+    queryset = LazarusModAsset.objects.all()
+
+class LazarusModDependencyViewset(viewsets.ModelViewSet):
+    serializer_class = LazarusModDependencySerializer
+    queryset = LazarusModDependency.objects.all()
+
+
+
 
 
 class TotalAnnihilationModViewset(viewsets.ModelViewSet):
     serializer_class = TotalAnnihilationModSerializer
     queryset = TotalAnnihilationMod.objects.all()
+
+
+
+
 
 
 

@@ -219,7 +219,10 @@ class DynamicJavaScriptInjector(APIView):
         parsed2 = parsed1.replace('FUSE_APP_TITLE', application.title)
         parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon.code)
         parsed4 = parsed3.replace('NAV_HEADER', application.category.name.replace(' ','_'))
-        raw_js_response = parsed4
+        try:
+            raw_js_response = parsed4.replace('DJANGULAR_USERNAME', request.user.username)
+        except:
+            raw_js_response = parsed4
 
         return HttpResponse(raw_js_response)
 

@@ -125,7 +125,7 @@ class UploadDataTA(APIView):
                 but_DB = TotalAnnihilationUploadedFile(file_name=file_name_regular,
                                             download_url=ufo_path,
                                             system_path=output_path,
-                                            author=request.user.username,
+                                            uploader=request.user.username,
                                             file_type=file_type_parsed,
                                             HPI_Extractor_Log=run_extraction_bash
                                             )

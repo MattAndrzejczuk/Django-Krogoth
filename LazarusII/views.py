@@ -1557,15 +1557,15 @@ class UnitFBIViewset(APIView):
             except:
                 print('SKIPPING...' + str('WaterLine'))
             try:
-                new_unit_fbi.Weapon_One = dictionary[0]['Weapon1']
+                new_unit_fbi.Weapon1 = dictionary[0]['Weapon1']
             except:
                 print('SKIPPING...' + str('Weapon1'))
             try:
-                new_unit_fbi.Name_Weapon_Two = dictionary[0]['Weapon2']
+                new_unit_fbi.Name_Weapon2 = dictionary[0]['Weapon2']
             except:
                 print('SKIPPING...' + str('Weapon2'))
             try:
-                new_unit_fbi.Name_Weapon_Three = dictionary[0]['Weapon3']
+                new_unit_fbi.Name_Weapon3 = dictionary[0]['Weapon3']
             except:
                 print('SKIPPING...' + str('Weapon3'))
             try:
