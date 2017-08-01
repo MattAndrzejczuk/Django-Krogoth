@@ -19,7 +19,7 @@ class VisitorLogSBAdmin(admin.ModelAdmin):
 
 
 class TotalAnnihilationUploadedFileAdmin(admin.ModelAdmin):
-    list_display = ('id','author','file_name','download_url','system_path', 'file_type','is_public')
+    list_display = ('id','designation','file_name','download_url','system_path', 'file_type','is_public')
 
 
 

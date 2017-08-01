@@ -80,13 +80,16 @@ class WeaponTDFFromSQLView(APIView):
 class DownloadTDFFromSQLView(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
-        all_objs = DownloadTDF.objects.all()
-        serialized_obj = serializers.serialize("json", all_objs)
-        json_dict = json.loads(serialized_obj)
-        list_response = []
-        for item in json_dict:
-            betterJson = item['fields']
-            list_response.append(betterJson)
+        try:
+            all_objs = DownloadTDF.objects.all()
+            serialized_obj = serializers.serialize("json", all_objs)
+            json_dict = json.loads(serialized_obj)
+            list_response = []
+            for item in json_dict:
+                betterJson = item['fields']
+                list_response.append(betterJson)
+        except:
+            return Response('Failed to find a parent unit for this TDF.')
         return Response(list_response)
 
 

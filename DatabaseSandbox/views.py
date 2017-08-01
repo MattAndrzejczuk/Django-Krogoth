@@ -129,6 +129,10 @@ class UploadDataTA(APIView):
                                             file_type=file_type_parsed,
                                             HPI_Extractor_Log=run_extraction_bash
                                             )
+                try:
+                    but_DB.uploader = request.user.username
+                except:
+                    print('failed to get uploader username')
                 but_DB.save()
                 server_msg = 'Upload successful! ' + str(file_obj)
 

@@ -61,7 +61,11 @@ class TotalAnnihilationUploadedFile(models.Model):
     file_name = models.CharField(max_length=100)
     download_url = models.CharField(max_length=255)
     system_path = models.CharField(max_length=255)
-    author = models.CharField(max_length=255,blank=True, null=True)
+
+    designation = models.CharField(max_length=255,blank=True, null=True)
+    category = models.CharField(max_length=255, blank=True, null=True)
+    uploader = models.CharField(max_length=255, blank=True, null=True)
+
     is_public = models.BooleanField(default=True)
     is_terminated = models.BooleanField(default=False)
 

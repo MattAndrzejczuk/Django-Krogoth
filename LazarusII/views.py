@@ -155,9 +155,9 @@ class WeaponTDFViewset(APIView):
 
         try:
             for item in split_tdf:
-                print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
-                print(item)
-                print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
+                # print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
+                # print(item)
+                # print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
                 tdf_without_comments1 = remove_comments(item)
                 nested_obj = parseNested(tdf_without_comments1.replace('\t', ''), getNestedType(tdf_without_comments1))
                 base_obj = parseBase(tdf_without_comments1.replace(nested_obj, ''), getBaseType(tdf_without_comments1))
@@ -166,10 +166,11 @@ class WeaponTDFViewset(APIView):
                     parseBase(nested_obj, getNestedType(tdf_without_comments1)))
                 # getBaseType(item)
                 dict_list.append(dictionary)
-                print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ dictionary ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
-                print(dictionary)
-                print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
+                # print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ dictionary ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
+                # print(dictionary)
+                # print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
                 new_weapon_tdf = WeaponTDF()
+                new_weapon_tdf._DEV_root_data_path = file_path
                 try:
                     new_weapon_tdf.accuracy = int(dictionary['accuracy'])
                 except:
@@ -459,8 +460,21 @@ class WeaponTDFViewset(APIView):
                 except:
                     print('SKIPPING... weaponvelocity ')
                 try:
-                    new_damage_obj = Damage()
-                    new_weapon_tdf.damage = Damage.objects.get(id=1)
+                    print(dictionary['DAMAGE'])
+                    list_dmg = []
+                    for key, value in dictionary['DAMAGE'].items():
+                        print('ADDING WEAPON DAMAGE: ' + key)
+                        new_damage_obj = Damage(name=key, damage_amount=value)
+                        # new_damage_obj.damage_amount = value
+                        # new_damage_obj.name = key
+                        new_damage_obj.save()
+                        list_dmg.append(new_damage_obj)
+                    print('FINISHED PROCESSING DAMAGE.')
+                    print(list_dmg)
+                    print('___________________________')
+                    for dmg in list_dmg:
+                        print(dmg)
+                        new_weapon_tdf.damage.add(dmg)
                 except:
                     print('SKIPPING... Damage Obj ')
                 try:
@@ -665,6 +679,9 @@ class DownloadTDFViewset(APIView):
         ## SAVE TO SQL:
         for item in dict_list:
             new_download = DownloadTDF()
+
+            new_download._DEV_root_data_path = file_path
+
             get_pk_unit = UnitFbiData.objects.filter(UnitName__iexact=item['UNITNAME'])
             new_download.parent_unit = get_pk_unit[0]
 
@@ -743,6 +760,7 @@ class FeatureTDFViewset(APIView):
         ##### SAVE TO SQL:
         for item in dict_list:
             new_feature = FeatureTDF()
+            new_feature._DEV_root_data_path = file_path
             ### 37
             try:
                 new_feature.animating = item['animating']
@@ -965,15 +983,15 @@ class UnitFBIViewset(APIView):
             # LETS MAKE SOME PNGs
             pcx_path = '/usr/src/persistent/' + parse_path1.replace('units', 'unitpics') + '.pcx'
             try:
-                print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % pcx_path)
+                # print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % pcx_path)
                 img = Image.open(pcx_path)
                 png_path = '/usr/src/persistent/' + parse_path1.replace('units', 'unitpics') + '.png'
                 img.save(png_path, format='png')
                 print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % png_path)
             except:
                 print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % png_path)
-            print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % file_path)
-            print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % file_path)
+            # print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % file_path)
+            # print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ %s ' % file_path)
         except:
             print('falling back to old API...')
 
@@ -985,11 +1003,11 @@ class UnitFBIViewset(APIView):
 
         tdf_without_comments = remove_comments(f3.read().strip().replace('\n', '').replace('\t', ''))
 
-        print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
-        print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
-        print(tdf_without_comments)
-        print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
-        print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
+        # print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
+        # print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
+        # print(tdf_without_comments)
+        # print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
+        # print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
 
         parsed_0 = tdf_without_comments.replace('[' + OBJECT_NAME + ']', '')
         parsed_1 = parsed_0.replace('', '')
@@ -1011,13 +1029,13 @@ class UnitFBIViewset(APIView):
         # print(parsed_12)
 
 
-        print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
-        print(parsed_13)
-        print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
+        # print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
+        # print(parsed_13)
+        # print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
         dictionary = json.loads(parsed_13)
-        print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
-        print(dictionary)
-        print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
+        # print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
+        # print(dictionary)
+        # print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
 
         print(dictionary[0])
 
@@ -1028,6 +1046,10 @@ class UnitFBIViewset(APIView):
 
             new_unit_fbi = UnitFbiData()
             new_unit_fbi._raw_json_dump = png_path.replace('/usr/src/persistent', '')  # json.dumps(dictionary[0])
+            new_unit_fbi._DEV_root_data_path = file_path
+            print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
+            print(file_path)
+            print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
 
             try:
                 new_unit_fbi.Acceleration = float(dictionary[0]['Acceleration'])

@@ -84,9 +84,10 @@ INSTALLED_APPS = (
     'GeneralWebsiteInfo',
     'LazarusDatabase',
     'Djangular',
+    'CommunityForum',
+    'ModBuilder',
 )
 #   'dbbackup',
-
 
 
 MIDDLEWARE_CLASSES = (

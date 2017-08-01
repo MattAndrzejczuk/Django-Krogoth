@@ -26,7 +26,8 @@ from django.db import models
 class Damage(models.Model):
     name = models.CharField(max_length=100, default='default')
     damage_amount = models.IntegerField(default=1230)
-
+    def __str__(self):  # __unicode__ on Python 2
+        return self.name
 
 
 
@@ -34,6 +35,7 @@ class Damage(models.Model):
 # Documentation:
 # http://units.tauniverse.com/tutorials/tadesign/tadesign/tdfweapon.htm
 class WeaponTDF(models.Model):
+    _DEV_root_data_path = models.CharField(max_length=100, default='nan')
     accuracy = models.IntegerField(null=True, blank=True)   # int()
     aimrate = models.IntegerField(null=True, blank=True)   # int()
     areaofeffect = models.IntegerField(null=True, blank=True)   # int()
@@ -114,11 +116,14 @@ class WeaponTDF(models.Model):
     weapontype2 = models.CharField(max_length=100, default='fx', blank=True)
     weaponvelocity = models.IntegerField(default=131, null=True, blank=True)   # int()
     damage = models.ManyToManyField(Damage)   # 73
-
+    def __str__(self):  # __unicode__ on Python 2
+        return self.name
 
 
 
 class FeatureTDF(models.Model):
+    _DEV_root_data_path = models.CharField(max_length=100, default='nan')
+
     animating = models.PositiveSmallIntegerField(null=True, blank=True)
     animtrans = models.PositiveSmallIntegerField(null=True, blank=True)
     autoreclaimable = models.BooleanField(default=True)
@@ -156,7 +161,8 @@ class FeatureTDF(models.Model):
     sparktime = models.IntegerField(default=5, null=True, blank=True)
     spreadchance = models.IntegerField(default=30, null=True, blank=True)
     world = models.CharField(max_length=135, null=True, blank=True)
-
+    def __str__(self):  # __unicode__ on Python 2
+        return self._object
 
 # choices SelfDestructAS: BIG_UNIT,,,,,,,
 
@@ -164,6 +170,8 @@ class FeatureTDF(models.Model):
 # http://units.tauniverse.com/tutorials/tadesign/tadesign/fbidesc.htm
 class UnitFbiData(models.Model):
     _raw_json_dump = models.CharField(max_length=100)
+    _DEV_root_data_path = models.CharField(max_length=100, default='nan')
+
     Acceleration = models.FloatField(null=True, blank=True)
     ActiveWhenBuild = models.IntegerField(null=True, blank=True)
     ai_limit = models.CharField(max_length=101)
@@ -341,6 +349,9 @@ class UnitFbiData(models.Model):
 # http://units.tauniverse.com/tutorials/tadesign/tadesign/tdfdown.htm
 class DownloadTDF(models.Model):
     parent_unit = models.ForeignKey(UnitFbiData, on_delete=models.CASCADE,)
+
+    _DEV_root_data_path = models.CharField(max_length=100, default='nan')
+
     MENUENTRY = models.CharField(max_length=20,
                                      default='MENUENTRY1')  # [MENUENTRY1] [MENUENTRY2] [MENUENTRY3] etc...
     BUTTON = models.PositiveSmallIntegerField(default=0)  # See 'TA Button' below
