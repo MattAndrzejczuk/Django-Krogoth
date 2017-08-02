@@ -117,7 +117,7 @@ def index(request):
         print('failed to check version!!!')
 
     context = {
-        "message": "TA Lazarus " + current_build_1[:3] + "." + current_build_2,
+        "message": "Djangular " + current_build_1[:3] + "." + current_build_2,
         "DjangularMasterViewControllers": DjangularMasterViewControllers,
         "splash_title": splash_title,
         "font_size": font_size,
