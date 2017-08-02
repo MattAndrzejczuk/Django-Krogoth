@@ -97,7 +97,7 @@ class VisitorLog(models.Model):
 
 
 class NgIncludedHtml(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     contents = models.TextField(default='<h4> Djangular Error: There is nothing here yet! </h4>')
     url_helper = models.CharField(max_length=255,
                                   default='Dont worry about this text.',
@@ -112,7 +112,7 @@ class NgIncludedHtml(models.Model):
 
 
 class NgIncludedJs(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     contents = models.TextField(default='<h4> Djangular Error: There is nothing here yet! </h4>')
     url_helper = models.CharField(max_length=255,
                                   default='Dont worry about this text.',
