@@ -100,9 +100,7 @@ class DjangularMasterViewController(models.Model):
     def save(self, *args, **kwargs):
         self.module_js = jsbeautifier.beautify(self.module_js)
         self.controller_js = jsbeautifier.beautify(self.controller_js)
-
-        strxml = xml.dom.minidom.parse(self.view_html)
-        self.view_html = strxml.toprettyxml()
+        self.view_html = xml.dom.minidom.parse(self.view_html).toprettyxml()
 
         super(DjangularMasterViewController, self).save(*args, **kwargs)
 
