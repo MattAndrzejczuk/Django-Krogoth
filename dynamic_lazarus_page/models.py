@@ -121,4 +121,4 @@ class NgIncludedJs(models.Model):
     def save(self, *args, **kwargs):
         self.url_helper = '/dynamic_lazarus_page/NgIncludedJs/?name=' + self.name
         self.contents = jsbeautifier.beautify(self.contents)
-        super(NgIncludedHtml, self).save(*args, **kwargs)
+        super(NgIncludedJs, self).save(*args, **kwargs)
