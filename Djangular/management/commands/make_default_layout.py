@@ -27,6 +27,8 @@ class Command(BaseCommand):
         module = open('static/app/toolbar/toolbar.module.js', 'r')
 
         jsLayout = codecs.open('Djangular/management/default_templates/mainHtmlLayout.js', 'r')
+        jsColorThemesConstants = codecs.open('Djangular/management/default_templates/colorThemesConstants.js', 'r')
+
         htmlMain = codecs.open('Djangular/management/default_templates/layoutMain.html', 'r')
         htmlNav = codecs.open('Djangular/management/default_templates/layoutNavigation.html', 'r')
         htmlToolbar = codecs.open('Djangular/management/default_templates/layoutToolbar.html', 'r')
@@ -34,6 +36,7 @@ class Command(BaseCommand):
         str_ctrl = ctrl.read()
         str_module = module.read()
 
+        str_jsColorThemesConstants = jsColorThemesConstants.read()
         str_jsLayout = jsLayout.read()
         str_htmlMain = htmlMain.read()
         str_htmlNav = htmlNav.read()
@@ -66,6 +69,15 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS('ADDED... mainHtmlLayout'))
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... mainHtmlLayout'))
+
+        # colorThemesConstants
+        try:
+            colorThemesConstants = NgIncludedJs(name='colorThemesConstants')
+            colorThemesConstants.contents = str_jsColorThemesConstants
+            colorThemesConstants.save()
+            self.stdout.write(self.style.SUCCESS('ADDED... colorThemesConstants'))
+        except:
+            self.stdout.write(self.style.WARNING('SKIPPING... colorThemesConstants'))
 
         # htmlMainLayout
         try:
