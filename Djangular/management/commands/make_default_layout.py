@@ -35,7 +35,7 @@ class Command(BaseCommand):
         # self.stdout.write("", ending='\n\n')
             self.stdout.write(self.style.SUCCESS( 'ADDED... toolbarController' ))
         except:
-            self.stdout.write(self.style.SUCCESS('SKIPPING... toolbarController'))
+            self.stdout.write(self.style.WARNING('SKIPPING... toolbarController'))
 
         try:
             modCtrl = NgIncludedJs(name='toolbarModule')
@@ -45,4 +45,4 @@ class Command(BaseCommand):
             # self.stdout.write("", ending='\n\n')
             self.stdout.write(self.style.SUCCESS('ADDED... toolbarModule'))
         except:
-            self.stdout.write(self.style.SUCCESS('SKIPPING... toolbarModule'))
+            self.stdout.write(self.style.WARNING('SKIPPING... toolbarModule'))
