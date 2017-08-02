@@ -6,7 +6,7 @@ from Djangular.models import DjangularMasterViewController
 
 
 class Command(BaseCommand):
-    help = 'prints all Djangular Master View Controllers to allow for backups'
+    help = 'prints the contents of a Djangular Master View Controllers, given the id of the dmvc as an argument'
 
     def add_arguments(self, parser):
         parser.add_argument('mvc_id', nargs="+", type=int)
@@ -15,4 +15,7 @@ class Command(BaseCommand):
         for mvc_id in options['mvc_id']:
             djangularApp = DjangularMasterViewController.objects.get(id=mvc_id)
 
+            self.stdout.write("", ending='\n\n')
+            self.stdout.write(self.style.SUCCESS(djangularApp.module_js))
             self.stdout.write(self.style.SUCCESS(djangularApp.controller_js))
+            self.stdout.write(self.style.SUCCESS(djangularApp.view_html))
