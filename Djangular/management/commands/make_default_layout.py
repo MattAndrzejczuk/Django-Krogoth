@@ -1,5 +1,9 @@
 from django.core.management.base import BaseCommand, CommandError
 from dynamic_lazarus_page.models import NgIncludedJs, NgIncludedHtml
+import codecs
+
+
+
 
 
 #  READ JS & HTML FILES AS A STRING LIKE SO:
@@ -23,9 +27,9 @@ class Command(BaseCommand):
         module = open('static/app/toolbar/toolbar.module.js', 'r')
 
         jsLayout = open('Djangular/management/default_templates/mainHtmlLayout.js', 'r')
-        htmlMain = open('Djangular/management/default_templates/layoutMain.html', 'r')
-        htmlNav = open('Djangular/management/default_templates/layoutNavigation.html', 'r')
-        htmlToolbar = open('Djangular/management/default_templates/layoutToolbar.html', 'r')
+        htmlMain = codecs.open('Djangular/management/default_templates/layoutMain.html', 'r')
+        htmlNav = codecs.open('Djangular/management/default_templates/layoutNavigation.html', 'r')
+        htmlToolbar = codecs.open('Djangular/management/default_templates/layoutToolbar.html', 'r')
 
         str_ctrl = ctrl.read()
         str_module = module.read()
