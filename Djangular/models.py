@@ -1,5 +1,7 @@
 from django.db import models
 import jsbeautifier
+import xml.dom.minidom
+
 
 
 DEFAULT_CONTROLLER = "(function () \n{ \n\t'use strict'; \n\tangular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController); \n\tfunction FUSE_APP_NAMEController() \n\t{ \n\t\t\tvar vm = this; \n\t\t\t vm.viewName = 'FUSE_APP_NAME'; \n\t} \n})();"
@@ -98,6 +100,10 @@ class DjangularMasterViewController(models.Model):
     def save(self, *args, **kwargs):
         self.module_js = jsbeautifier.beautify(self.module_js)
         self.controller_js = jsbeautifier.beautify(self.controller_js)
+
+        xml = xml.dom.minidom.parse(self.view_html)
+        self.view_html = xml.toprettyxml()
+
         super(DjangularMasterViewController, self).save(*args, **kwargs)
 
 

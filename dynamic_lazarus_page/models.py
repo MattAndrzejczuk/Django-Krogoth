@@ -1,5 +1,6 @@
 from django.db import models
 import jsbeautifier
+import xml.dom.minidom
 # Create your models here.
 
 from LazarusII.PyColors import printError, printInfo, printWarning, printLog, printDebug
@@ -105,7 +106,11 @@ class NgIncludedHtml(models.Model):
 
     def save(self, *args, **kwargs):
         self.url_helper = '/dynamic_lazarus_page/NgIncludedHtml/?name=' + self.name
-        self.contents = jsbeautifier.beautify(self.contents)
+        # self.contents = jsbeautifier.beautify(self.contents)
+
+        xml = xml.dom.minidom.parse(self.contents)
+        self.contents = xml.toprettyxml()
+
         super(NgIncludedHtml, self).save(*args, **kwargs)
 
 

@@ -53,39 +53,39 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS('ADDED... toolbarModule'))
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... toolbarModule'))
-        
+
         # jsLayout
         try:
-            modCtrl = NgIncludedJs(name='jsLayout')
+            modCtrl = NgIncludedJs(name='mainHtmlLayout')
             modCtrl.contents = str_jsLayout
             modCtrl.save()
-            self.stdout.write(self.style.SUCCESS('ADDED... jsLayout'))
+            self.stdout.write(self.style.SUCCESS('ADDED... mainHtmlLayout'))
         except:
-            self.stdout.write(self.style.WARNING('SKIPPING... jsLayout'))
+            self.stdout.write(self.style.WARNING('SKIPPING... mainHtmlLayout'))
 
         # htmlMainLayout
         try:
             modCtrl = NgIncludedHtml(name='htmlMainLayout')
             modCtrl.contents = str_htmlMain
             modCtrl.save()
-            self.stdout.write(self.style.SUCCESS('ADDED... jsLayout'))
+            self.stdout.write(self.style.SUCCESS('ADDED... htmlMainLayout'))
         except:
-            self.stdout.write(self.style.WARNING('SKIPPING... jsLayout'))
+            self.stdout.write(self.style.WARNING('SKIPPING... htmlMainLayout'))
 
         # htmlNavLayout
         try:
             modCtrl = NgIncludedHtml(name='htmlNavLayout')
             modCtrl.contents = str_htmlNav
             modCtrl.save()
-            self.stdout.write(self.style.SUCCESS('ADDED... jsLayout'))
+            self.stdout.write(self.style.SUCCESS('ADDED... htmlNavLayout'))
         except:
-            self.stdout.write(self.style.WARNING('SKIPPING... jsLayout'))
+            self.stdout.write(self.style.WARNING('SKIPPING... htmlNavLayout'))
 
         # htmlToolbarLayout
         try:
             modCtrl = NgIncludedHtml(name='htmlToolbarLayout')
             modCtrl.contents = str_htmlToolbar
             modCtrl.save()
-            self.stdout.write(self.style.SUCCESS('ADDED... jsLayout'))
+            self.stdout.write(self.style.SUCCESS('ADDED... htmlToolbarLayout'))
         except:
-            self.stdout.write(self.style.WARNING('SKIPPING... jsLayout'))
+            self.stdout.write(self.style.WARNING('SKIPPING... htmlToolbarLayout'))
