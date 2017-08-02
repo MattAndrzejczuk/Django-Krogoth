@@ -26,7 +26,7 @@ class Command(BaseCommand):
         ctrl = open('static/app/toolbar/toolbar.controller.js', 'r')
         module = open('static/app/toolbar/toolbar.module.js', 'r')
 
-        jsLayout = open('Djangular/management/default_templates/mainHtmlLayout.js', 'r')
+        jsLayout = codecs.open('Djangular/management/default_templates/mainHtmlLayout.js', 'r')
         htmlMain = codecs.open('Djangular/management/default_templates/layoutMain.html', 'r')
         htmlNav = codecs.open('Djangular/management/default_templates/layoutNavigation.html', 'r')
         htmlToolbar = codecs.open('Djangular/management/default_templates/layoutToolbar.html', 'r')
@@ -93,3 +93,5 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS('ADDED... htmlToolbarLayout'))
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... htmlToolbarLayout'))
+
+
