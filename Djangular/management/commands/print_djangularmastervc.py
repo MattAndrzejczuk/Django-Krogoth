@@ -2,6 +2,10 @@ from django.core.management.base import BaseCommand, CommandError
 from Djangular.models import DjangularMasterViewController
 
 
+# python3 manage.py print_djangularmastervc 1
+
+
+
 
 
 
