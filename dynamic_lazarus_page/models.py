@@ -106,12 +106,7 @@ class NgIncludedHtml(models.Model):
 
     def save(self, *args, **kwargs):
         self.url_helper = '/dynamic_lazarus_page/NgIncludedHtml/?name=' + self.name
-        # self.contents = jsbeautifier.beautify(self.contents)
 
-        xmlstr = xml.dom.minidom.parseString(self.contents).toprettyxml()
-        print(xmlstr)
-        self.contents = xmlstr.replace('<?xml version="1.0" ?>', '')
-        print(self.contents)
         super(NgIncludedHtml, self).save(*args, **kwargs)
 
 
