@@ -29,9 +29,11 @@ class Command(BaseCommand):
 
         sqlCtrl = NgIncludedJs(name='toolbarController')
         sqlCtrl.contents = str_ctrl
+        sqlCtrl.save()
 
         modCtrl = NgIncludedJs(name='toolbarModule')
         modCtrl.contents = str_module
+        modCtrl.save()
 
         self.stdout.write("", ending='\n\n')
         self.stdout.write(self.style.SUCCESS( str_ctrl ))
