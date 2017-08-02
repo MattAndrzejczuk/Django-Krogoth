@@ -101,8 +101,8 @@ class DjangularMasterViewController(models.Model):
         self.module_js = jsbeautifier.beautify(self.module_js)
         self.controller_js = jsbeautifier.beautify(self.controller_js)
 
-        xml = xml.dom.minidom.parse(self.view_html)
-        self.view_html = xml.toprettyxml()
+        strxml = xml.dom.minidom.parse(self.view_html)
+        self.view_html = strxml.toprettyxml()
 
         super(DjangularMasterViewController, self).save(*args, **kwargs)
 
