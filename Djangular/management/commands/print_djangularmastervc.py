@@ -8,7 +8,7 @@ from Djangular.models import DjangularMasterViewController
 
 
 
-f = open('Djangular/management/default_templates/base_controller.js', 'r')
+# f = open('Djangular/management/default_templates/base_controller.js', 'r')
 
 
 
