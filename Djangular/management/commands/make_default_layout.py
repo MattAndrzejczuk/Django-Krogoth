@@ -2,13 +2,12 @@ from django.core.management.base import BaseCommand, CommandError
 from Djangular.models import DjangularMasterViewController
 
 
-# python3 manage.py print_djangularmastervc 1
 
 
 
+#  READ JS & HTML FILES AS A STRING LIKE SO:
 
-
-f = open('Djangular/management/default_templates/base_controller.js', 'r')
+#     f = open('Djangular/management/default_templates/base_controller.js', 'r')
 
 
 

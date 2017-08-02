@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 from rest_framework.generics import GenericAPIView
 
-from dynamic_lazarus_page.models import FuseAppComponent, AngularFuseApplication, NgIncludedHtml
+from dynamic_lazarus_page.models import FuseAppComponent, AngularFuseApplication, NgIncludedHtml, NgIncludedJs
 from Djangular.models import DjangularMasterViewController
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -60,11 +60,28 @@ CCD = {
 
 
 
+class NgIncludedJsView(APIView):
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        name = str(request.GET['name'])
+        try:
+            try:
+                data = str(request.GET['data'])
+                js_view = NgIncludedJs.objects.get(name=name)
+                final_html = js_view.contents.replace('INJECTED_DATA', data)
+                return HttpResponse(final_html)
+            except:
+                js_view = NgIncludedHtml.objects.get(name=name)
+                return HttpResponse(js_view.contents)
+        except:
+            html = '<div> <h1>Fatal Error</h1> <p>Unable to load HTML: <b>' + name + '</b> </p> </div>'
+            return HttpResponse(html)
+
+
 class NgIncludedHtmlView(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
         name = str(request.GET['name'])
-
         try:
             try:
                 data = str(request.GET['data'])
@@ -77,6 +94,8 @@ class NgIncludedHtmlView(APIView):
         except:
             html = '<div> <h1>Fatal Error</h1> <p>Unable to load HTML: <b>' + name + '</b> </p> </div>'
             return HttpResponse(html)
+
+
 
 #### 07/12/2017
 class OpenTADataFile(APIView):

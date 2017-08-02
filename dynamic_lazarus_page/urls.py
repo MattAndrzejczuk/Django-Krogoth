@@ -4,7 +4,9 @@ from dynamic_lazarus_page import views
 from dynamic_lazarus_page.views import SampleAPI, CustomHtmlGenerator, DynamicIndexModule, SuperBasicModelView, \
     AngularFuseApplicationView, FuseAppComponentView, DynamicJavaScriptInjector, DynamicHTMLInjector, \
     DynamicIndexRoute, NgIncludedHtmlView, DynamicHTMLToolbarView, DynamicHTMLSubNavbarView, \
-    DynamicHTMLMainNavbarView, DynamicSplashScreenView, OpenTADataFile
+    DynamicHTMLMainNavbarView, DynamicSplashScreenView, OpenTADataFile, NgIncludedJsView
+
+
 
 
 
@@ -31,6 +33,7 @@ urlpatterns = [
     url(r'^FuseAppComponent/', FuseAppComponentView.as_view(), name='FuseAppComponent'),
 
     url(r'^NgIncludedHtml/', NgIncludedHtmlView.as_view(), name='NgIncludedHtml'),
+    url(r'^NgIncludedJs/', NgIncludedJsView.as_view(), name='NgIncludedJs'),
 ]
 
 # DynamicSplashScreen
