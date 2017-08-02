@@ -18,31 +18,74 @@ class Command(BaseCommand):
     #     parser.add_argument('mvc_id', nargs="+", type=int)
 
     def handle(self, *args, **options):
+
         ctrl = open('static/app/toolbar/toolbar.controller.js', 'r')
         module = open('static/app/toolbar/toolbar.module.js', 'r')
+
+        jsLayout = open('Djangular/management/default_templates/mainHtmlLayout.js', 'r')
+        htmlMain = open('Djangular/management/default_templates/layoutMain.html', 'r')
+        htmlNav = open('Djangular/management/default_templates/layoutNavigation.html', 'r')
+        htmlToolbar = open('Djangular/management/default_templates/layoutToolbar.html', 'r')
 
         str_ctrl = ctrl.read()
         str_module = module.read()
 
-        # toolbarModule
-        # toolbarController
+        str_jsLayout = jsLayout.read()
+        str_htmlMain = htmlMain.read()
+        str_htmlNav = htmlNav.read()
+        str_htmlToolbar = htmlToolbar.read()
 
+        self.stdout.write(self.style.SUCCESS(''))
+        # toolbarController
         try:
             sqlCtrl = NgIncludedJs(name='toolbarController')
             sqlCtrl.contents = str_ctrl
             sqlCtrl.save()
-
-        # self.stdout.write("", ending='\n\n')
             self.stdout.write(self.style.SUCCESS( 'ADDED... toolbarController' ))
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... toolbarController'))
 
+        # toolbarModule
         try:
             modCtrl = NgIncludedJs(name='toolbarModule')
             modCtrl.contents = str_module
             modCtrl.save()
-
-            # self.stdout.write("", ending='\n\n')
             self.stdout.write(self.style.SUCCESS('ADDED... toolbarModule'))
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... toolbarModule'))
+        
+        # jsLayout
+        try:
+            modCtrl = NgIncludedJs(name='jsLayout')
+            modCtrl.contents = str_jsLayout
+            modCtrl.save()
+            self.stdout.write(self.style.SUCCESS('ADDED... jsLayout'))
+        except:
+            self.stdout.write(self.style.WARNING('SKIPPING... jsLayout'))
+
+        # htmlMainLayout
+        try:
+            modCtrl = NgIncludedHtml(name='htmlMainLayout')
+            modCtrl.contents = str_htmlMain
+            modCtrl.save()
+            self.stdout.write(self.style.SUCCESS('ADDED... jsLayout'))
+        except:
+            self.stdout.write(self.style.WARNING('SKIPPING... jsLayout'))
+
+        # htmlNavLayout
+        try:
+            modCtrl = NgIncludedHtml(name='htmlNavLayout')
+            modCtrl.contents = str_htmlNav
+            modCtrl.save()
+            self.stdout.write(self.style.SUCCESS('ADDED... jsLayout'))
+        except:
+            self.stdout.write(self.style.WARNING('SKIPPING... jsLayout'))
+
+        # htmlToolbarLayout
+        try:
+            modCtrl = NgIncludedHtml(name='htmlToolbarLayout')
+            modCtrl.contents = str_htmlToolbar
+            modCtrl.save()
+            self.stdout.write(self.style.SUCCESS('ADDED... jsLayout'))
+        except:
+            self.stdout.write(self.style.WARNING('SKIPPING... jsLayout'))
