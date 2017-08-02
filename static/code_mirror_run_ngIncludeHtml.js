@@ -1,3 +1,6 @@
+/**
+ * Created by mattmbp on 8/2/17.
+ */
 window.onload = function () {
 
     console.log('CODEMIRROR INITIALIZING... ');
@@ -7,8 +10,8 @@ window.onload = function () {
 
     var editor3 = CodeMirror.fromTextArea(txt_html_main, {
         lineNumbers: true,
-        mode: "javascript",
-        theme: "colorforth",
+        mode: "htmlmixed",
+        theme: "dracula",
         indentUnit: 4,
         indentWithTabs: true
     });
