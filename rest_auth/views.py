@@ -23,7 +23,7 @@ from PIL import Image
 
 
 from django.contrib.auth.models import User
-from dynamic_lazarus_page.models import AngularFuseApplication, NgIncludedHtml
+from dynamic_lazarus_page.models import AngularFuseApplication, NgIncludedHtml, NgIncludedJs
 
 from DatabaseSandbox.models import VisitorLogSB, LazarusCommanderAccountSB, \
     LazarusModProjectSB, BasicUploadTrackerSB
@@ -188,7 +188,7 @@ def index(request):
 
     index_route_js = '/static/app/index.route.js'
     try:
-        mainHtmlLayout = NgIncludedHtml.objects.get(name='mainHtmlLayout')
+        mainHtmlLayout = NgIncludedJs.objects.get(name='mainHtmlLayout')
         index_route_js = mainHtmlLayout.url_helper
         print('_ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ _')
         print(index_route_js)
@@ -206,7 +206,7 @@ def index(request):
                  _navigation_ + \
                  "}, " + \
                  "contentOnly: {main: '/static/app/core/layouts/content-only.html', toolbar: '', navigation: ''},contentWithToolbar: {main: '/static/app/core/layouts/content-with-toolbar.html',toolbar: '/static/app/toolbar/layouts/content-with-toolbar/toolbar.html',navigation: ''}};$stateProvider.state('app', {abstract: true,views: {'main@': {templateUrl: layouts[layoutStyle].main, controller: 'MainController as vm'},'toolbar@app': {templateUrl: layouts[layoutStyle].toolbar, controller: 'ToolbarController as vm'},'navigation@app': {templateUrl: layouts[layoutStyle].navigation,controller: 'NavigationController as vm'},'quickPanel@app': {templateUrl: '/static/app/quick-panel/quick-panel.html',controller: 'QuickPanelController as vm'}}});}})();"
-        newLayout = NgIncludedHtml(name='mainHtmlLayout', contents=jsbeautifier.beautify(js_raw))
+        newLayout = NgIncludedJs(name='mainHtmlLayout', contents=jsbeautifier.beautify(js_raw))
         newLayout.save()
         index_route_js = newLayout.url_helper
         print(' ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
