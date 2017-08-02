@@ -51,8 +51,8 @@ from dynamic_lazarus_page.models import FuseAppComponent, AngularFuseApplication
 
 
 
-class FuseAppComponentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name','type','parent_app','contents',)
+# class FuseAppComponentAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'name','type','parent_app','contents',)
 
 
 
@@ -123,6 +123,7 @@ class NgIncludedHtmlAdmin(admin.ModelAdmin):
         }
 
 
-admin.site.register(AngularFuseApplication, AngularFuseApplicationAdmin)
-admin.site.register(FuseAppComponent, FuseAppComponentAdmin)
+# admin.site.register(AngularFuseApplication, AngularFuseApplicationAdmin)
+# admin.site.register(FuseAppComponent, FuseAppComponentAdmin)
 admin.site.register(NgIncludedHtml, NgIncludedHtmlAdmin)
+admin.site.register(NgIncludedJs, NgIncludedJsAdmin)
