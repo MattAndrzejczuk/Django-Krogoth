@@ -1,14 +1,10 @@
 from django.core.management.base import BaseCommand, CommandError
-from Djangular.models import DjangularMasterViewController
+from dynamic_lazarus_page.models import NgIncludedJs, NgIncludedHtml
 
 
 #  READ JS & HTML FILES AS A STRING LIKE SO:
 #     f = open('static/app/toolbar/toolbar.controller.js', 'r')
 #     f = open('static/app/toolbar/toolbar.module.js', 'r')
-
-
-
-
 
 
 
@@ -28,10 +24,17 @@ class Command(BaseCommand):
         str_ctrl = ctrl.read()
         str_module = module.read()
 
+        # toolbarModule
+        # toolbarController
+
+        sqlCtrl = NgIncludedJs(name='toolbarController')
+        sqlCtrl.contents = str_ctrl
+
+        modCtrl = NgIncludedJs(name='toolbarModule')
+        modCtrl.contents = str_module
+
         self.stdout.write("", ending='\n\n')
         self.stdout.write(self.style.SUCCESS( str_ctrl ))
+
         self.stdout.write("", ending='\n\n')
         self.stdout.write(self.style.SUCCESS( str_module ))
-
-
-
