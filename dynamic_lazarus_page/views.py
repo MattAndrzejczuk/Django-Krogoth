@@ -71,7 +71,7 @@ class NgIncludedJsView(APIView):
                 final_html = js_view.contents.replace('INJECTED_DATA', data)
                 return HttpResponse(final_html)
             except:
-                js_view = NgIncludedHtml.objects.get(name=name)
+                js_view = NgIncludedJs.objects.get(name=name)
                 return HttpResponse(js_view.contents)
         except:
             html = '<div> <h1>Fatal Error</h1> <p>Unable to load HTML: <b>' + name + '</b> </p> </div>'
