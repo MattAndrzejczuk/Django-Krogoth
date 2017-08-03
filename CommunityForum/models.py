@@ -29,3 +29,4 @@ class ForumReply(models.Model):
     post = models.ForeignKey(ForumPost, on_delete=models.CASCADE)
     def __str__(self):
         return self.name
+

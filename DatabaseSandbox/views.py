@@ -52,7 +52,27 @@ class BasicUploadExample(APIView):
         print('PROCESS COMPLETED!!!')
         return Response(response)
 
-
+class KubaNetAnalytics(APIView):
+    def get(self, request, format=None):
+        permission_classes = (AllowAny,)
+        visitors = VisitorLogSB.objects.all()
+        list_data = []
+        total_visitors = 0
+        total_unique_visitors = 0
+        unique = {}
+        # res = {}
+        for item in visitors:
+            res = {}
+            res['remote_addr'] = item.remote_addr
+            res['date_visited'] = item.date_created
+            list_data.append(res)
+            total_visitors += 1
+            unique[str(item.remote_addr)] = item.http_usr
+        final_answer = {}
+        final_answer['total_visitors'] = total_visitors
+        final_answer['total_unique_visitors'] = len(unique)
+        final_answer['visior_data'] = list_data
+        return Response(final_answer)
 
 class UploadDataTA(APIView):
     permission_classes = (AllowAny,)
