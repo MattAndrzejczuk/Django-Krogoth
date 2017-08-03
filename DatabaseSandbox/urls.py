@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from DatabaseSandbox.views import BasicUploadExample, UserAgentTracker, UploadDataTA
+from DatabaseSandbox.views import BasicUploadExample, UserAgentTracker, UploadDataTA, KubaNetAnalytics
 
 
 # UploadDataTA
