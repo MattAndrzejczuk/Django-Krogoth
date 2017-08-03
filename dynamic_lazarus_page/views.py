@@ -164,7 +164,7 @@ class DynamicIndexModule(APIView):
         # index_module_pt2 = "'app.dashboards','app.calendar','app.e-commerce','app.mail','app.chat','app.file-manager'," + \
         #                   "'app.gantt-chart','app.scrumboard','app.todo','app.contacts','app.notes','app.toastCtrl','app.lazarus',"
 
-        my_apps = "'app.sample',"
+        my_apps = "'app.sample','hljs',"
 
         # inject dynamic apps
         # all_applications = AngularFuseApplication.objects.all()
