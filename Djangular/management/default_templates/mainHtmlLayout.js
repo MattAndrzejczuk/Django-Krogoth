@@ -16,9 +16,9 @@
         ' + '
         var layouts = {
             LAYOUT_STYLE: {
-                main: '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar-2.html',
-                toolbar: '/static/app/toolbar/layouts/vertical-navigation-fullwidth-toolbar-2/toolbar.html',
-                navigation: '/static/app/navigation/layouts/vertical-navigation-fullwidth-toolbar-2/navigation.html'
+                main: '/dynamic_lazarus_page/NgIncludedHtml/?name=htmlMainLayout',
+                toolbar: '/dynamic_lazarus_page/NgIncludedHtml/?name=htmlToolbarLayout',
+                navigation: '/dynamic_lazarus_page/NgIncludedHtml/?name=htmlNavLayout'
             },
             contentOnly: {
                 main: '/static/app/core/layouts/content-only.html',
