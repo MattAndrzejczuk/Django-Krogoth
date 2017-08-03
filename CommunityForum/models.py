@@ -16,7 +16,7 @@ class ForumPost(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)
-    category = models.ForeignKey(ForumPost, on_delete=models.CASCADE)
+    category = models.ForeignKey(ForumCategory, on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
