@@ -14,7 +14,7 @@ class ForumPost(models.Model):
     title = models.CharField(max_length=100, default='new post')
     body = models.TextField(default='new post')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    pub_date = models.DateTimeField(auto_create_now=True)
+    pub_date = models.DateTimeField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)
     category = models.ForeignKey(ForumPost, on_delete=models.CASCADE)
     def __str__(self):
