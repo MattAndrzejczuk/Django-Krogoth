@@ -24,7 +24,7 @@ class ForumPost(models.Model):
 class ForumReply(models.Model):
     body = models.TextField(default='new reply')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    pub_date = models.DateTimeField(auto_create_now=True)
+    pub_date = models.DateTimeField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)
     post = models.ForeignKey(ForumPost, on_delete=models.CASCADE)
     def __str__(self):
