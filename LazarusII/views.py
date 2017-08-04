@@ -31,7 +31,11 @@ from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF, Featur
 from rest_framework.decorators import detail_route, list_route
 from rest_framework import status
 from rest_framework import viewsets
+import sys
+import codecs
 
+from LazarusII.FbiData import remove_comments
+from lazarus.views import WeaponTDFFetch, SoundTDFFetch
 
 
 
@@ -63,470 +67,60 @@ class bcolors:
 
 
 
-class FeatureTDFFetch():
-    def get(self, file_path):
-        f3 = open(file_path, 'r', errors='replace')
-
-        # print("OPENING DOWNLOAD TDF... ")
-        incoming_tdf = remove_comments(f3.read())
-        # print(incoming_tdf)
-        # print('TDF Opened Successfully ! ! !')
-
-        status_code = status.HTTP_200_OK
-
-        def parseNested(_tdf, nOBJECT_NAME):
-            nparsed_0 = _tdf.replace('[' + nOBJECT_NAME + ']', '')
-            nparsed_1 = nparsed_0
-            nparsed_2 = nparsed_1.replace('[', '"')
-            nparsed_3 = nparsed_2.replace(']', '" :')
-            nparsed_4 = nparsed_3.replace('=', '" : "')
-            nparsed_5 = nparsed_4.replace(';', '", "')
-            nparsed_6 = nparsed_5.replace('{', '{ "')
-            nparsed_7 = nparsed_6.replace(', "}', '}')
-            nparsed_8 = nparsed_7.replace(', ""', ', "')
-            nparsed_9 = nparsed_8.replace('", " }', '"}').replace(' ', '')
-            return nparsed_9
-
-        def getNestedType(_tdf):
-            try:
-                _BrkStart = [m.start() for m in re.finditer('\[', _tdf)]
-                _BrkEnd = [m.start() for m in re.finditer('\]', _tdf)]
-                return _tdf[int(str(_BrkStart[0])) + 1:int(str(_BrkEnd[0]))]
-            except:
-                return ''
-
-        dict_list = []
-        rmv_tabs_n_spaces0 = incoming_tdf.replace('\t', '')
-        rmv_tabs_n_spaces1 = rmv_tabs_n_spaces0.replace('\n', '').strip()
-        _tdf_prep = rmv_tabs_n_spaces1.replace(' ', '').replace('} [', '}|[').replace('}[', '}|[')
-
-        print('TDF PREPPED AND READY FOR JSONIFYING: ')
-        print(_tdf_prep)
-        print('______________________________________')
-
-        split_tdf = _tdf_prep.split('|')
-
-        for item in split_tdf:
-            nested_obj = parseNested(item, getNestedType(item))
-            print(nested_obj)
-
-        for item in split_tdf:
-            nested_type = getNestedType(item)
-            print("NESTED TYPE:  " + nested_type)
-            nested_obj = parseNested(item, nested_type)
-            print(nested_obj)
-            dictionary = json.loads(nested_obj)
-            dictionary['Object_Name'] = nested_type
-            dict_list.append(dictionary)
-
-        print('JSON DUMPS: ')
-        print(json.dumps(dict_list))
-
-        ##### SAVE TO SQL:
-        for item in dict_list:
-            new_feature = FeatureTDF()
-            new_feature._DEV_root_data_path = file_path
-            ### 37
-            try:
-                new_feature.animating = item['animating']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.animtrans = item['animtrans']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.autoreclaimable = item['autoreclaimable']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.burnmax = item['burnmax']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.burnmin = item['burnmin']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.burnweapon = item['burnweapon']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.category = item['category']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.description = item['description']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.blocking = item['blocking']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.damage = item['damage']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.energy = item['energy']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.featuredead = item['featuredead']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.featurereclamate = item['featurereclamate']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.filename = item['filename']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.flamable = item['flamable']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.footprintx = item['footprintx']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.footprintz = item['footprintz']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.geothermal = item['geothermal']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.height = item['height']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.hitdensity = item['hitdensity']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.indestructible = item['indestructible']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.metal = item['metal']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.nodisplayinfo = item['nodisplayinfo']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature._object = item['object']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.permanent = item['permanent']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.reclaimable = item['reclaimable']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.reproduce = item['reproduce']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.reproducearea = item['reproducearea']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.seqname = item['seqname']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.seqnameburn = item['seqnameburn']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.seqnamedie = item['seqnamedie']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.seqnamereclamate = item['seqnamereclamate']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.seqnameshad = item['seqnameshad']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.shadtrans = item['shadtrans']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.sparktime = item['sparktime']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.spreadchance = item['spreadchance']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.world = item['world']
-            except:
-                print('SKIPPING    animating')
-            try:
-                new_feature.save()
-                status_code = status.HTTP_201_CREATED
-            except:
-                print('no new content.')
-
-        return new_feature
 
 
 
 
 
 
-class DependenciesForUnitFBI(APIView):
-    permission_classes = (AllowAny,)
+
+
+
+
+
+
+
+
+class ReadVanillaTAData(APIView):
     def get(self, request, format=None):
-        sampleunit = UnitFbiData.objects.filter(UnitName='ARMDEF')
-        serialized_obj = serializers.serialize("json", sampleunit)
-        json_dict = json.loads(serialized_obj)
+        # 'SOUND',
+        vanillaTaFiles = ['WEAPONS', 'MISSILES', 'ROCKETS', 'CANNONS', 'FIRES', 'METEORS', 'LASERS', 'UNITS', ]
+        for filename in vanillaTaFiles:
+            txtFile = codecs.open('static/' + filename + '.txt')
+            print(filename)
+            print('')
+            txtFileNoComments = remove_comments(txtFile.read())
+            strippedAndMinified = txtFileNoComments.strip().replace('\n', '').replace('\t', '')
+            insertedSplitter = strippedAndMinified.replace('}}[', '}}|[')
+            arrayOfWeaponObjects = insertedSplitter.split('|')
 
-        ## NEED TO GRAB THE
-        dev_root_path = '/usr/src/persistent/media/ta_data/arm_fubar/units/armdef.fbi'
-        last_occurance_of_slash = dev_root_path.rfind("/")
-        fbi_file = dev_root_path[last_occurance_of_slash:]
-        # THE ROOT PATH OF THE UNIT HPI
-        path_without_fbi = dev_root_path.replace(fbi_file, '').replace('/units', '')
-        # WE NEED THIS TO KNOW WHERE TO LOOK FOR ALL DEPENDENCIES.
-
-        # SO NOW WE HAVE THIS:
-        # '/usr/src/persistent/media/ta_data/arm_fubar/'
-        # BEGIN SCANNING THE FBI FILE TO LOCATE ALL DEPENDENCIES
-        #
-        # keys used to find dependencies:
-        # -------------------------------
-        # Objectname        ->  /arm_fubar/objects3d/{ Objectname }
-        #                       /arm_fubar/scripts/{ Objectname }
-        # UnitName          ->  /arm_fubar/unitpics/{ UnitName }
-        #                       /arm_fubar/download/{ UnitName }
-        # SoundCategory     -> SOUNDS.txt
-        # ExplodeAs         -> UNITS.txt
-        # SelfDestructAs    -> UNITS.txt
-        # Corpse            -> /arm_fubar/features/corpses/{ UnitName }
-        # Weapon1           -> /arm_fubar/weapons/{ UnitName }
-        # Weapon2           -> /arm_fubar/weapons/{ UnitName }
-        # Weapon3           -> /arm_fubar/weapons/{ UnitName }
-        # -------------------------------
+            for obj in arrayOfWeaponObjects:
+                print('')
+                weaponTDF = WeaponTDFFetch().getUsingString(obj)
+            # '}}['
+            print(weaponTDF)
+            print('')
+        return Response('')
 
 
-
-        #   /usr/src/persistent/media/ta_data/arm_fubar : /armdef.fbi
-        definer = bcolors.purple + \
-                  path_without_fbi + \
-                  ' : ' + bcolors.ENDC
-        end_val = bcolors.orange + \
-                  fbi_file + \
-                  bcolors.ENDC
-        print(definer + end_val)
-
-
-        ### DEPENDENCIES CHECKLIST:
-        dp_unitpic = False
-        dp_3dmodel = False
-        dp_script = False
-        dp_corpses = False
-        dp_allweapons = False
-
+class ReadVanillaTASoundData(APIView):
+    def get(self, request, format=None):
+        filename = 'SOUND'
+        txtFile = codecs.open('static/' + filename + '.txt')
+        print(filename)
         print('')
+        txtFileNoComments = remove_comments(txtFile.read())
+        strippedAndMinified = txtFileNoComments.strip().replace('\n', '').replace('\t', '')
+        insertedSplitter = strippedAndMinified.replace('}}[', '}}|[')
+        arrayOfWeaponObjects = insertedSplitter.split('|')
 
-
-        # UnitName
-        definer = bcolors.TEAL + \
-                  'UnitName' + \
-                  bcolors.ENDC
-        midchar = bcolors.lightgreen + \
-                  '       ->  ' + \
-                  bcolors.ENDC
-        end_val = bcolors.orange + \
-                  sampleunit[0].UnitName + \
-                  bcolors.ENDC
-        print(definer + midchar + end_val)
-        unit_pic_path = path_without_fbi + '/unitpics/'
-        uname = sampleunit[0].UnitName.lower()
-        # /ta_data/UNAME/unitpics/
-        dp_unitpic = os.path.exists(unit_pic_path + uname + '.pcx')
-        print('unit pic exists : ' + str(dp_unitpic))
-        # -------------------------------
-
-        # Objectname
-        definer = bcolors.TEAL + \
-                  'Objectname' + \
-                  bcolors.ENDC
-        midchar = bcolors.lightgreen + \
-                  '     ->  ' + \
-                  bcolors.ENDC
-        end_val = bcolors.orange + \
-                  sampleunit[0].Objectname + \
-                  bcolors.ENDC
-        print(definer + midchar + end_val)
-        # /ta_data/UNAME/objects3d/
-        unit_3do_path = path_without_fbi + '/objects3d/'
-        uobjname = sampleunit[0].Objectname.lower()
-        dp_3dmodel = os.path.exists(unit_3do_path + uobjname + '.3do')
-        print('unit 3do exists : ' + str(dp_3dmodel))
-        # /ta_data/UNAME/scripts/
-        unit_cob_path = path_without_fbi + '/scripts/'
-        ucobname = sampleunit[0].Objectname.lower()
-        dp_script = os.path.exists(unit_cob_path + ucobname + '.cob')
-        print('unit cob exists : ' + str(dp_script))
-        # -------------------------------
-
-
-        # SoundCategory
-        definer = bcolors.TEAL + \
-                  'SoundCategory' + \
-                  bcolors.ENDC
-        midchar = bcolors.lightgreen + \
-                  '  ->  ' + \
-                  bcolors.ENDC
-        end_val = bcolors.lightred + \
-                  sampleunit[0].SoundCategory + \
-                  bcolors.ENDC
-        print(definer + midchar + end_val)
-        # -------------------------------
-
-        # ExplodeAs
-        definer = bcolors.TEAL + \
-                  'ExplodeAs' + \
-                  bcolors.ENDC
-        midchar = bcolors.lightgreen + \
-                  '      ->  ' + \
-                  bcolors.ENDC
-        end_val = bcolors.lightred + \
-                  sampleunit[0].ExplodeAs + \
-                  bcolors.ENDC
-        print(definer + midchar + end_val)
-        # -------------------------------
-
-        # SelfDestructAs
-        definer = bcolors.TEAL + \
-                  'SelfDestructAs' + \
-                  bcolors.ENDC
-        midchar = bcolors.lightgreen + \
-                  ' ->  ' + \
-                  bcolors.ENDC
-        end_val = bcolors.lightred + \
-                  sampleunit[0].SelfDestructAs + \
-                  bcolors.ENDC
-        print(definer + midchar + end_val)
-        # -------------------------------
-
-        # Corpse
-        definer = bcolors.TEAL + \
-                  'Corpse' + \
-                  bcolors.ENDC
-        midchar = bcolors.lightgreen + \
-                  '         ->  ' + \
-                  bcolors.ENDC
-        end_val = bcolors.lightred + \
-                  sampleunit[0].Corpse + \
-                  bcolors.ENDC
-        print(definer + midchar + end_val)
-        # /ta_data/UNAME/features/corpses/
-        corpsename = sampleunit[0].Corpse.lower()
-        unit_corpse_path = path_without_fbi + '/features/corpses/' + corpsename + '.tdf'
-        dp_corpses = os.path.exists(unit_corpse_path)
-        print('unit feature corpse exists : ' + str(dp_corpses))
-        #FeatureTDFViewset.get()
-        # -------------------------------
-
-        # Weapon1
-        definer = bcolors.TEAL + \
-                  'Weapon1' + \
-                  bcolors.ENDC
-        midchar = bcolors.lightgreen + \
-                  '        ->  ' + \
-                  bcolors.ENDC
-        end_val = bcolors.lightred + \
-                  sampleunit[0].Weapon1 + \
-                  bcolors.ENDC
-        print(definer + midchar + end_val)
-        # -------------------------------
-
-        try:
-            # Weapon2
-            definer = bcolors.TEAL + \
-                      'Weapon2' + \
-                      bcolors.ENDC
-            midchar = bcolors.lightgreen + \
-                      '        ->  ' + \
-                      bcolors.ENDC
-            end_val = bcolors.lightred + \
-                      sampleunit[0].Weapon2 + \
-                      bcolors.ENDC
-            print(definer + midchar + end_val)
-        except:
+        for obj in arrayOfWeaponObjects:
             print('')
-        # -------------------------------
-
-        try:
-            # Weapon3
-            definer = bcolors.TEAL + \
-                      'Weapon3' + \
-                      bcolors.ENDC
-            midchar = bcolors.lightgreen + \
-                      '        ->  ' + \
-                      bcolors.ENDC
-            end_val = bcolors.lightred + \
-                      sampleunit[0].Weapon3 + \
-                      bcolors.ENDC
-            print(definer + midchar + end_val)
-        except:
-            print('')
-        # -------------------------------
-
-        print('unit pic path: ')
-        print(os.listdir(unit_pic_path))
-
-        corpseTDF = FeatureTDFFetch().get(unit_corpse_path)
-        print(corpseTDF)
-
-
-        return Response(json_dict)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            soundTDF = SoundTDFFetch().get(obj)
+        # '}}['
+        print(soundTDF)
+        print('')
+        return Response('')
 
 
 
@@ -567,7 +161,7 @@ class WeaponTDFViewset(APIView):
         f3 = open(file_path, 'r', errors='replace')
         print('5 ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ ')
 
-        tdf_without_comments = remove_comments(f3.read().strip().replace('\n', '').replace('\t', ''))
+        tdf_without_comments = remove_comments(f3.read()).strip().replace('\n', '').replace('\t', '')
         def parseNested(_tdf, nOBJECT_NAME):
             # nOBJECT_NAME = 'DAMAGE'
             nparsed_0 = _tdf.replace('[' + nOBJECT_NAME + ']', '')
@@ -665,6 +259,9 @@ class WeaponTDFViewset(APIView):
                 dictionary = json.loads(base_obj)
                 dictionary[getNestedType(tdf_without_comments1)] = json.loads(
                     parseBase(nested_obj, getNestedType(tdf_without_comments1)))
+
+                baseobjectkeyname = getBaseType(tdf_without_comments1)
+
                 # getBaseType(item)
                 dict_list.append(dictionary)
                 # print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ dictionary ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
@@ -672,6 +269,11 @@ class WeaponTDFViewset(APIView):
                 # print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
                 new_weapon_tdf = WeaponTDF()
                 new_weapon_tdf._DEV_root_data_path = file_path
+                try:
+                    new_weapon_tdf._OBJECT_KEY_NAME = baseobjectkeyname
+                    new_weapon_tdf._Lazarus_Identifier = baseobjectkeyname + '_' + dictionary['ID']
+                except:
+                    pass
                 try:
                     new_weapon_tdf.accuracy = int(dictionary['accuracy'])
                 except:
@@ -1502,12 +1104,12 @@ class UnitFBIViewset(APIView):
 
         OBJECT_NAME = 'UNITINFO'
 
-        tdf_without_comments = remove_comments(f3.read().strip().replace('\n', '').replace('\t', ''))
+        tdf_without_comments = remove_comments(f3.read()).strip().replace('\n', '').replace('\t', '')
 
         # print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
-        # print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
-        # print(tdf_without_comments)
-        # print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
+        print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
+        print(tdf_without_comments)
+        print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
         # print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
 
         parsed_0 = tdf_without_comments.replace('[' + OBJECT_NAME + ']', '')
@@ -1530,10 +1132,24 @@ class UnitFBIViewset(APIView):
         # print(parsed_12)
 
 
-        # print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
-        # print(parsed_13)
-        # print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
-        dictionary = json.loads(parsed_13)
+        print('✦ parsed_13 ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
+        print(parsed_13)
+        print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
+        dictionary = {}
+
+        ### TRY TO TAKE THE TDF WE PARSED AND LOAD IT AS A JSON:
+        try:
+            dictionary = json.loads(parsed_13)
+        except:
+            ### TDF TO JSON CONVERSION FAILED, ATTEMPTING REPAIR ATTEMPT 1:
+            parsed_14 = parsed_13.replace('", " }]', '" }]')
+
+            print('✦ parsed_14 ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
+            print(parsed_14)
+            print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
+
+            dictionary = json.loads(parsed_14)
+            pass
         # print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
         # print(dictionary)
         # print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
@@ -2091,16 +1707,26 @@ class UnitFBIViewset(APIView):
                 print('SKIPPING...' + str('YardMap'))
             # 135
 
-            print('new_unit_fbi : ')
+            print('\n\n\n')
+            print('NEW UNIT FBI MODEL : ')
             print(new_unit_fbi)
 
             new_unit_fbi.save()
+
+            definer = bcolors.purple + \
+                      str(new_unit_fbi)+ \
+                      ' : ' + bcolors.ENDC
+            end_val = bcolors.orange + \
+                      'SAVED TO SQL SUCCESSFULLY' + \
+                      bcolors.ENDC
+            print(definer + end_val)
             dictionary[0]['png_path'] = png_path
 
             return Response(dictionary)
 
 
         except:
+            print(bcolors.FAIL + str(sys.exc_info()) + bcolors.ENDC)
             return Response(dictionary)
 
     def post(self, request, *args, **kwargs):

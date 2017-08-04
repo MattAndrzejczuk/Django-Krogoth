@@ -4,7 +4,7 @@ from LazarusII.views import UnitFbiData, ApiNavigationUrls, LazarusListUnits, \
     CustomToastGenerator, ExecuteBash, AutoCollectStatic, OpenTotalAnnihilationFBIFile, OpenTotalAnnihilationTDFFile, \
     UserAgentTracker, ExecuteBash_LS_AllCustomModFiles, UnitFBIViewset, \
     WeaponTDFViewset, OpenTotalAnnihilationFBIFileII, DownloadTDFViewset, FeatureTDFViewset, \
-    UnitFBIViewSerialized, DependenciesForUnitFBI
+    UnitFBIViewSerialized, ReadVanillaTAData, ReadVanillaTASoundData
 
 # Pure Python Stuff:
 from LazarusII.DataReaderTA import readFile
@@ -53,12 +53,13 @@ urlpatterns = [
 
     url(r'^ExecuteBash_LS_AllCustomModFiles/', ExecuteBash_LS_AllCustomModFiles.as_view(), name='ExecuteBash_LS_AllCustomModFiles'),
 
-
+    url(r'^ReadVanillaTAData/', ReadVanillaTAData.as_view(), name='Read Vanilla TA Data'),
+    url(r'^ReadVanillaTASoundData/', ReadVanillaTASoundData.as_view(), name='Read Vanilla TA Sound Data'),
 ]
 
 
 
-
+# ReadVanillaTASoundData
 
 
 

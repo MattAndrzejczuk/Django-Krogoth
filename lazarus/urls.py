@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from lazarus import views
-from lazarus.views import DependenciesForUnitFBI
+# from lazarus.views import DependenciesForUnitFBI
 
 urlpatterns = [
 
@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^main/$', views.CustomHtmlGenerator.as_view(), name='index'),
     url(r'^gettheme/$', views.ThemeConstantConfigView.as_view(), name='custom theme'),
     # url(r'^convert_to_png', views.convertPcxToPng.as_view(), name='convertPcxToPng'),
-    url(r'^DependenciesForUnitFBI/', DependenciesForUnitFBI.as_view(), name='Dependencies For Unit FBI'),
+    url(r'^DependenciesForUnitFBI/', views.DependenciesForUnitFBI.as_view(), name='Dependencies For Unit FBI'),
 
     # url(r'^ram/$', views.getRam.as_view(), name='ram'),
     # url(r'^processes/$', views.getProcesses.as_view(), name='processes'),

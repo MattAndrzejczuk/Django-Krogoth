@@ -20,6 +20,32 @@ from django.db import models
 
 
 
+# kloak1un
+class SoundSetTDF(models.Model):
+    _DEV_root_data_path = models.CharField(max_length=100, default='SOUND.txt')
+    _OBJECT_KEY_NAME = models.CharField(max_length=100, unique=True, default='NOSOUND')
+    ok1 = models.CharField(max_length=100, null=True, blank=True)
+    cant1 = models.CharField(max_length=100, null=True, blank=True)
+    build = models.CharField(max_length=100, null=True, blank=True)
+    cloak = models.CharField(max_length=100, null=True, blank=True)
+    repair = models.CharField(max_length=100, null=True, blank=True)
+    select1 = models.CharField(max_length=100, null=True, blank=True)
+    Capture = models.CharField(max_length=100, null=True, blank=True)
+    working = models.CharField(max_length=100, null=True, blank=True)
+    arrived1 = models.CharField(max_length=100, null=True, blank=True)
+    activate = models.CharField(max_length=100, null=True, blank=True)
+    ballistic = models.CharField(max_length=100, null=True, blank=True)
+    deactivate = models.CharField(max_length=100, null=True, blank=True)
+    underattack = models.CharField(max_length=100, null=True, blank=True)
+    unitcomplete = models.CharField(max_length=100, null=True, blank=True)
+    canceldestruct = models.CharField(max_length=100, null=True, blank=True)
+    count0 = models.CharField(max_length=100, null=True, blank=True)
+    count1 = models.CharField(max_length=100, null=True, blank=True)
+    count2 = models.CharField(max_length=100, null=True, blank=True)
+    count3 = models.CharField(max_length=100, null=True, blank=True)
+    count4 = models.CharField(max_length=100, null=True, blank=True)
+    count5 = models.CharField(max_length=100, null=True, blank=True)
+
 
 
 
@@ -36,6 +62,8 @@ class Damage(models.Model):
 # http://units.tauniverse.com/tutorials/tadesign/tadesign/tdfweapon.htm
 class WeaponTDF(models.Model):
     _DEV_root_data_path = models.CharField(max_length=100, default='nan')
+    _OBJECT_KEY_NAME = models.CharField(max_length=100, null=True, blank=True)
+    _Lazarus_Identifier = models.CharField(max_length=100, unique=True)
     accuracy = models.IntegerField(null=True, blank=True)   # int()
     aimrate = models.IntegerField(null=True, blank=True)   # int()
     areaofeffect = models.IntegerField(null=True, blank=True)   # int()
