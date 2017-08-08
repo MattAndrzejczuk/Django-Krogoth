@@ -1162,10 +1162,12 @@ class UnitFBIViewset(APIView):
                 weapon['OBJ_NAME'] = OBJECT_NAME
 
             new_unit_fbi = UnitFbiData()
-            new_unit_fbi._raw_json_dump = png_path.replace('/usr/src/persistent', '')  # json.dumps(dictionary[0])
+            new_unit_fbi._raw_json_dump = png_path.replace('/usr/src/persistent', '')  #
             new_unit_fbi._DEV_root_data_path = file_path
             print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
             print(file_path)
+            print('\n\n')
+            print(json.dumps(dictionary[0]))
             print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
 
             try:
@@ -1678,11 +1680,11 @@ class UnitFBIViewset(APIView):
             except:
                 print('SKIPPING...' + str('Weapon1'))
             try:
-                new_unit_fbi.Name_Weapon2 = dictionary[0]['Weapon2']
+                new_unit_fbi.Weapon2 = dictionary[0]['Weapon2']
             except:
                 print('SKIPPING...' + str('Weapon2'))
             try:
-                new_unit_fbi.Name_Weapon3 = dictionary[0]['Weapon3']
+                new_unit_fbi.Weapon3 = dictionary[0]['Weapon3']
             except:
                 print('SKIPPING...' + str('Weapon3'))
             try:
@@ -2829,4 +2831,4 @@ class LazarusListUnits(APIView):
             #     self.printContents(mod_path, mod_name)
             #     print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
             #     print(mod_path)
-      
+
