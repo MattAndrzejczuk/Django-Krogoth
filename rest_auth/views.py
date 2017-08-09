@@ -213,6 +213,9 @@ def index(request):
         print(index_route_js)
         print(' ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
 
+    if current_build_2 == '00':
+        current_build_2 = '0'
+
     context = {
         "message": "Djangular " + current_build_1[:3] + "." + current_build_2,
         "DjangularMasterViewControllers": DjangularMasterViewControllers,

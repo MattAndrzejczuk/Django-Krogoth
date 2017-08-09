@@ -1,10 +1,12 @@
 from django.conf.urls import url, include
 from LazarusII import views
+
 from LazarusII.views import UnitFbiData, ApiNavigationUrls, LazarusListUnits, \
     CustomToastGenerator, ExecuteBash, AutoCollectStatic, OpenTotalAnnihilationFBIFile, OpenTotalAnnihilationTDFFile, \
     UserAgentTracker, ExecuteBash_LS_AllCustomModFiles, UnitFBIViewset, \
     WeaponTDFViewset, OpenTotalAnnihilationFBIFileII, DownloadTDFViewset, FeatureTDFViewset, \
-    UnitFBIViewSerialized, ReadVanillaTAData, ReadVanillaTASoundData
+    UnitFBIViewSerialized, ReadVanillaTAData, ReadVanillaTASoundData, \
+    ReadCoreContingencySoundData, ReadCoreContingencyWeaponData
 
 # Pure Python Stuff:
 from LazarusII.DataReaderTA import readFile
@@ -55,6 +57,9 @@ urlpatterns = [
 
     url(r'^ReadVanillaTAData/', ReadVanillaTAData.as_view(), name='Read Vanilla TA Data'),
     url(r'^ReadVanillaTASoundData/', ReadVanillaTASoundData.as_view(), name='Read Vanilla TA Sound Data'),
+
+    url(r'^ReadCoreContingencyWeaponData/', ReadCoreContingencyWeaponData.as_view(), name='Read TA CC Data'),
+    url(r'^ReadCoreContingencySoundData/', ReadCoreContingencySoundData.as_view(), name='Read TA CC Sound Data'),
 ]
 
 

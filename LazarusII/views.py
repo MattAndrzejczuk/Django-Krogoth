@@ -3,13 +3,19 @@ from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.core import serializers
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.decorators import detail_route, list_route
+from rest_framework import status
+from rest_framework import viewsets
 import json
+
+
 from LazarusII.DataReaderTA import readFile
 from LazarusII.FbiData import LazarusUnit
 from LazarusII.PyColors import bcolors, printKeyValuePair, printKeyValuePair1, printKeyValuePair2, \
     printError, printWarning, printInfo, printLog, printDebug
 
-from rest_framework.permissions import IsAuthenticated, AllowAny
+
 
 # For listing units:
 from os import walk
@@ -28,9 +34,6 @@ from LazarusII.serializers import UnitFbiDataSerializer
 from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF, FeatureTDF
 
 # from rest_framework import viewsets
-from rest_framework.decorators import detail_route, list_route
-from rest_framework import status
-from rest_framework import viewsets
 import sys
 import codecs
 
@@ -123,8 +126,46 @@ class ReadVanillaTASoundData(APIView):
         return Response('')
 
 
+class ReadCoreContingencySoundData(APIView):
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        filename = 'SOUND_CC'
+        txtFile = codecs.open('static/' + filename + '.txt')
+        print(filename)
+        print('')
+        txtFileNoComments = remove_comments(txtFile.read())
+        strippedAndMinified = txtFileNoComments.strip().replace('\n', '').replace('\t', '')
+        insertedSplitter = strippedAndMinified.replace('}}[', '}}|[')
+        arrayOfWeaponObjects = insertedSplitter.split('|')
 
+        for obj in arrayOfWeaponObjects:
+            print('')
+            soundTDF = SoundTDFFetch().get(obj)
+        # '}}['
+        print(soundTDF)
+        print('')
+        return Response('')
 
+class ReadCoreContingencyWeaponData(APIView):
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        vanillaTaFiles = ['WEAPONS_CC', ]
+        for filename in vanillaTaFiles:
+            txtFile = codecs.open('static/' + filename + '.txt')
+            print(filename)
+            print('')
+            txtFileNoComments = remove_comments(txtFile.read())
+            strippedAndMinified = txtFileNoComments.strip().replace('\n', '').replace('\t', '')
+            insertedSplitter = strippedAndMinified.replace('}}[', '}}|[')
+            arrayOfWeaponObjects = insertedSplitter.split('|')
+
+            for obj in arrayOfWeaponObjects:
+                print('')
+                weaponTDF = WeaponTDFFetch().getUsingString(obj)
+            # '}}['
+            print(weaponTDF)
+            print('')
+        return Response('')
 
 
 

@@ -7,7 +7,7 @@ class ForumCategory(models.Model):
     title = models.CharField(max_length=100, unique=True, default='new category')
     is_deleted = models.BooleanField(default=False)
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class ForumPost(models.Model):
@@ -18,7 +18,7 @@ class ForumPost(models.Model):
     is_deleted = models.BooleanField(default=False)
     category = models.ForeignKey(ForumCategory, on_delete=models.CASCADE)
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class ForumReply(models.Model):
@@ -28,5 +28,5 @@ class ForumReply(models.Model):
     is_deleted = models.BooleanField(default=False)
     post = models.ForeignKey(ForumPost, on_delete=models.CASCADE)
     def __str__(self):
-        return self.name
+        return self.body
 
