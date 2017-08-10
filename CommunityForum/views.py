@@ -86,13 +86,13 @@ class ForumPostDetailView(APIView):
         post_json['id'] = post.id
         post_json['title'] = post.title
         post_json['body'] = post.body
-        post_json['author'] = post.author
+        post_json['author'] = {'username': post.author.username, 'id': post.author.id}
         post_json['pub_date'] = post.pub_date
         post_json['replies'] = []
         for reply in replies:
             reply_json = {}
             reply_json['id'] = reply.id
-            reply_json['author'] = reply.author
+            reply_json['author'] = {'username': reply.author.username, 'id': reply.author.id}
             reply_json['body'] = reply.body
             reply_json['pub_date'] = reply.pub_date
             post_json['replies'].append(reply_json)
@@ -133,9 +133,17 @@ class ForumReplySubmitView(APIView):
     def post(self, request, *args, **kwargs):
         # Create a serializer with request.data
         try:
-            newreply_title = request.POST['title']
-            newreply_body = request.POST['body']
             newreply_author = request.user
+            newreply_body = request.POST['body']
+            newreply_post = request.POST['post']
+            post = ForumPost.objects.get(id=int(newreply_post))
+
+            reply = ForumReply()
+            reply.author = newreply_author
+            reply.body = newreply_body
+            reply.post = post
+
+            reply.save()
             return Response(
                 {"success": "New reply created."},
                 status=201

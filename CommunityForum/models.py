@@ -18,7 +18,7 @@ class ForumPost(models.Model):
     is_deleted = models.BooleanField(default=False)
     category = models.ForeignKey(ForumCategory, on_delete=models.CASCADE)
     def __str__(self):
-        return self.title
+        return str(self.id) + self.title
 
 
 class ForumReply(models.Model):
