@@ -14,3 +14,9 @@ redis
 Pillow
 django-redis-sessions
 jsbeautifier
+drfdocs
+coreapi
+pygments
+markdown
+django-angular
+

@@ -66,4 +66,8 @@ urlpatterns = [
     url(r'^LazarusDatabase/', include('LazarusDatabase.urls')),
     url(r'^Djangular/', include('Djangular.urls')),
     url(r'^Forum/', include('CommunityForum.urls')),
+
+    url(r'^djangular_dashboard/', include('djangular_dashboard.urls')),
+
+    url(r'^docs/', include('rest_framework_docs.urls')),
 ]

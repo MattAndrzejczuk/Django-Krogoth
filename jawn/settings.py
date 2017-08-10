@@ -72,6 +72,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ws4redis',
+    'rest_framework_docs',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
@@ -86,6 +87,7 @@ INSTALLED_APPS = (
     'Djangular',
     'CommunityForum',
     'ModBuilder',
+    'djangular_dashboard',
 )
 #   'dbbackup',
 
