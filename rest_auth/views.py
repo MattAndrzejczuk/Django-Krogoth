@@ -290,7 +290,6 @@ class LoginView(GenericAPIView):
 
 
 class LogoutView(APIView):
-
     """
     Calls Django logout method and delete the Token object
     assigned to the current User object.
@@ -345,7 +344,6 @@ class RegisterUserBasic(APIView):
 
 
 class UserDetailsView(RetrieveUpdateAPIView):
-
     """
     Returns User's details in JSON format.
 
@@ -372,6 +370,11 @@ class UserDetailsView(RetrieveUpdateAPIView):
         user['username'] = request.user.username
         user['id'] = request.user.id
         user['is_staff'] = request.user.is_staff
+        try:
+            jawn_user = JawnUser.objects.get(base_user=request.user)
+            user['faction'] = jawn_user.faction
+        except:
+            pass
 
         return Response(
             user,
@@ -380,7 +383,6 @@ class UserDetailsView(RetrieveUpdateAPIView):
 
 
 class PasswordResetView(GenericAPIView):
-
     """
     Calls Django Auth PasswordResetForm save method.
 
