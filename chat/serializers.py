@@ -46,7 +46,7 @@ class JawnUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JawnUser
-        fields = ('id', 'profile_pic', 'about_me', 'follows', 'date_of_birth', 'sex',
+        fields = ('id', 'profile_pic', 'about_me', 'follows', 'date_of_birth', 'faction',
                   'base_user',
                   'followers')
         #depth = 2
@@ -55,7 +55,7 @@ class GetJawnUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JawnUser
-        fields = ('id', 'profile_pic', 'about_me', 'follows', 'date_of_birth', 'sex',
+        fields = ('id', 'profile_pic', 'about_me', 'follows', 'date_of_birth', 'faction',
                   'followers')
         #depth = 2
 

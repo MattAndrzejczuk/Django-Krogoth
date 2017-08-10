@@ -18,7 +18,7 @@ class ChannelAdmin(admin.ModelAdmin):
 
 
 class JawnUserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'about_me', )
+    list_display = ('id', 'about_me', 'faction', )
 
 
 admin.site.register(Message, MessageAdmin)

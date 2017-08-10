@@ -15,7 +15,7 @@ import json
 from CommunityForum.models import ForumCategory, ForumPost, ForumReply
 # Create your views here.
 
-
+from django.views.decorators.csrf import csrf_exempt
 
 
 
@@ -101,9 +101,9 @@ class ForumPostDetailView(APIView):
     def post(self, request, *args, **kwargs):
         # Create a serializer with request.data
         try:
-            newpost_title = request.POST['title']
-            newpost_body = request.POST['body']
-            newpost_category = request.POST['category']
+            newpost_title = request.data['title']
+            newpost_body = request.data['body']
+            newpost_category = request.data['category']
             newpost_author = request.user
             newpost = ForumPost()
             newpost.title = newpost_title
@@ -112,8 +112,14 @@ class ForumPostDetailView(APIView):
             cat = ForumCategory.objects.get(id=int(newpost_category))
             newpost.category = cat
             newpost.save()
+
+            responsePost = {}
+            responsePost['id'] = newpost.id
+            responsePost['title'] = newpost.title
+            responsePost['success'] = "New thread created."
+
             return Response(
-                {"success": "New thread created."},
+                responsePost,
                 status=201
             )
 
@@ -123,6 +129,7 @@ class ForumPostDetailView(APIView):
                 status=405
             )
 
+
 class ForumReplySubmitView(APIView):
     def get(self, request, format=None):
         return Response(
@@ -130,12 +137,15 @@ class ForumReplySubmitView(APIView):
             status=405
         )
 
+    @csrf_exempt
     def post(self, request, *args, **kwargs):
         # Create a serializer with request.data
+
+
         try:
             newreply_author = request.user
-            newreply_body = request.POST['body']
-            newreply_post = request.POST['post']
+            newreply_body = request.data['body']
+            newreply_post = request.data['post']
             post = ForumPost.objects.get(id=int(newreply_post))
 
             reply = ForumReply()

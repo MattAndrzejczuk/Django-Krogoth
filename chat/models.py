@@ -11,11 +11,11 @@ class JawnUser(models.Model):
     about_me = models.CharField(max_length=400, blank=True, null=True)
     follows = models.ManyToManyField('self', related_name='followers', symmetrical=False, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
-    SEX = (
-        ('male', 'Male'),
-        ('female', 'Female'),
+    SIDES = (
+        ('core', 'Core'),
+        ('arm', 'Arm'),
     )
-    sex = models.CharField(choices=SEX, null=True, blank=True, max_length=10)
+    faction = models.CharField(choices=SIDES, null=True, blank=True, max_length=10)
 
     def __str__(self):
         return self.base_user.username

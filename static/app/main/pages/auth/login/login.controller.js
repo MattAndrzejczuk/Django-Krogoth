@@ -7,12 +7,14 @@
         .controller('LoginController', LoginController);
 
     /** @ngInject */
-    function LoginController()
+    function LoginController($log)
     {
         // Data
 
         // Methods
 
         //////////
+
+        $log.log('Is the static login ctrl working????');
     }
 })();

@@ -315,13 +315,28 @@ class RegisterUserBasic(APIView):
     permission_classes = (AllowAny,)
 
     def post(self, request):
-        print('PRINTING POST REQUEST: ')
-        print(request.POST)
+
         try:
-            #user = User.objects.create_user('foo', password='bar')
-            #user.is_superuser = True
-            #user.is_staff = True
-            #user.save()
+            POST_username = request.data['username']
+            POST_email = request.data['email']
+            POST_password = request.data['password']
+            user = User.objects.create_user(POST_username, password=POST_password)
+            user.email = POST_email
+            user.is_superuser = False
+            user.is_staff = False
+            user.save()
+
+            jawn_user = JawnUser()
+            jawn_user.base_user = user
+
+            try:
+                POST_side = request.data['faction']
+                jawn_user.faction = POST_side
+            except:
+                pass
+
+            jawn_user.save()
+
             return Response({"result": "Successfully registered."},
                             status=status.HTTP_201_CREATED)
         except:
@@ -343,8 +358,25 @@ class UserDetailsView(RetrieveUpdateAPIView):
     serializer_class = UserDetailsSerializer
     permission_classes = (IsAuthenticated,)
 
-    def get_object(self):
-        return self.request.user
+
+
+    # def get_object(self):
+    #     return self.request.user
+
+    def get(self, request, format=None):
+        print('CURRENT USER: ')
+        print('is_staff: ')
+        print(request.user.is_staff)
+
+        user = {}
+        user['username'] = request.user.username
+        user['id'] = request.user.id
+        user['is_staff'] = request.user.is_staff
+
+        return Response(
+            user,
+            status=200
+        )
 
 
 class PasswordResetView(GenericAPIView):
