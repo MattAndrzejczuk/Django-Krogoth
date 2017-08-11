@@ -370,6 +370,7 @@ class UserDetailsView(RetrieveUpdateAPIView):
         user['username'] = request.user.username
         user['id'] = request.user.id
         user['is_staff'] = request.user.is_staff
+
         try:
             jawn_user = JawnUser.objects.get(base_user=request.user)
             user['faction'] = jawn_user.faction
