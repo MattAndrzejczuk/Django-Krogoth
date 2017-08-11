@@ -57,6 +57,7 @@ class ForumCategoryListView(APIView):
         return Response(response_list)
 
 class ForumCategoryDetailView(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         cat_id = request.GET['cat_id']
         cat = ForumCategory.objects.get(id=int(cat_id))
@@ -131,6 +132,7 @@ class ForumPostDetailView(APIView):
 
 
 class ForumReplySubmitView(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         return Response(
             {"warning": "You don't belong here."},
