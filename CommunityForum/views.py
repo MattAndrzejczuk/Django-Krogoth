@@ -79,6 +79,7 @@ class ForumCategoryDetailView(APIView):
         return Response(response_dict)
 
 class ForumPostDetailView(APIView):
+    permission_classes = (AllowAny,)
     def get(self, request, format=None):
         post_id = request.GET['post_id']
         post = ForumPost.objects.get(id=post_id)
