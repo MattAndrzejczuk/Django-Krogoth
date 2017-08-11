@@ -199,6 +199,7 @@ class FeatureTDF(models.Model):
 class UnitFbiData(models.Model):
     _raw_json_dump = models.CharField(max_length=100)
     _DEV_root_data_path = models.CharField(max_length=100, default='nan')
+    _UPLOAD_DESIGNATION = models.CharField(max_length=150, default='nan')
 
     Acceleration = models.FloatField(null=True, blank=True)
     ActiveWhenBuild = models.IntegerField(null=True, blank=True)

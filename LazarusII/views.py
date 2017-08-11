@@ -29,6 +29,7 @@ import datetime
 import subprocess
 
 from DatabaseSandbox.models import TotalAnnihilationUploadedFile, LazarusModProjectSB
+from LazarusDatabase.models import SelectedAssetUploadRepository
 
 from LazarusII.serializers import UnitFbiDataSerializer
 from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF, FeatureTDF
@@ -640,125 +641,6 @@ class WeaponTDFViewset(APIView):
             return Response(dict_list)
 
 
-class ExecuteBash_LS_AllCustomModFiles(APIView):
-    permission_classes = (AllowAny,)
-    def get(self, request, format=None):
-
-        final_obj = {}
-
-        # mod_name = request.GET['mod_name']
-        directory_str = '/usr/src/persistent/media/ta_data'
-
-        # community mods:
-        # /usr/src/persistent/media/ta_data/
-
-        mod_paths = []
-        uploaded_data_files = TotalAnnihilationUploadedFile.objects.all()
-        for data_file in uploaded_data_files:
-            print("data_file %s" % data_file)
-            if os.path.isdir(data_file.system_path):
-                ls_current_modpath = str(subprocess.check_output(['ls', data_file.system_path]))
-
-                parsed_1 = ls_current_modpath.replace("\\n'","")
-                dirs_in_mod = parsed_1.replace("b'","").split('\\n')
-
-                print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ ')
-                print("parsed_1 %s" % parsed_1)
-                print("dirs_in_mod : ")
-                listed_data_files = {
-                    'name': data_file.file_name[:-4],
-                    'type': data_file.file_name[-4:]
-                }
-
-                listed_data_files['directories'] = []
-                for mod_item in dirs_in_mod:
-                    # listed_data_files[mod_item + '_mod_items'] = {}
-
-                    mod_item_path = data_file.system_path + '/' + mod_item
-                    if os.path.isdir(mod_item_path):
-                        print("mod_item : %s" % mod_item)
-                        ls_current_submodpath = str(subprocess.check_output(['ls', mod_item_path]))
-                        sub_parsed_1 = ls_current_submodpath.replace("\\n'", "")
-                        sub_parsed_2 = sub_parsed_1.replace("b'", "")
-                        # listed_data_files[mod_item + '_mod_items'] = (sub_parsed_2.split('\\n'))
-                        elements_in_dir = (sub_parsed_2.split('\\n'))
-                        for raw_data_tdf in elements_in_dir:
-                            does_contain_json = True
-                            subdirectory_components = 'NIL'
-                            parse_moditempath2 = ''
-                            if raw_data_tdf[-4:] == '.fbi':
-                                parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
-                                parse_moditempath2 = parse_moditempath1.replace('/', '_SLSH_') + '_SLSH_' + raw_data_tdf[:-4]
-                                parse_moditempath3 = '/LazarusII/UnitFBIViewset/?encoded_path=' + parse_moditempath2
-                            elif raw_data_tdf[-4:] == '.tdf':
-                                parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
-                                parse_moditempath2 = parse_moditempath1.replace('/',
-                                                                                '_SLSH_') + '_SLSH_' + raw_data_tdf[:-4]
-                                if mod_item == 'weapons':
-                                    parse_moditempath3 = '/LazarusII/WeaponTDFViewset/?encoded_path=' + parse_moditempath2
-                                elif mod_item == 'download':
-                                    parse_moditempath3 = '/LazarusII/DownloadTDFViewset/?encoded_path=' + parse_moditempath2
-                                elif mod_item == 'units':
-                                    parse_moditempath3 = '/LazarusII/UnitFBIViewset/?encoded_path=' + parse_moditempath2
-                                else:
-                                    parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
-                                    parse_moditempath2 = parse_moditempath1.replace('/',
-                                                                                    '_SLSH_') + '_SLSH_' + raw_data_tdf[
-                                                                                                           :-4]
-                                    parse_moditempath3 = 'nan'
-                                    does_contain_json = False
-                            elif raw_data_tdf[-4:] == 'pses': # CORPSE FEATURE DETECTED! #      7/14/2017
-                                # subdirectory_components = mod_item_path  #'THIS IS A CORPSE ! ! !'
-                                corpses_dir = mod_item_path + '/corpses'
-                                ls_cmd_features_dir = str(subprocess.check_output(['ls', corpses_dir]))
-                                corpses_parsed_1 = ls_cmd_features_dir.replace("\\n'", "")
-                                corpses_parsed_2 = corpses_parsed_1.replace("b'", "")
-                                replace_me_str = '\\' + 'n'
-                                replace_regex1 = corpses_parsed_2.replace(replace_me_str, '_NL_')
-                                subdirectory_components = replace_regex1.split('_NL_')
-                                for feat in subdirectory_components:
-                                    parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
-                                    parse_moditempath2 = parse_moditempath1.replace('/',
-                                                                                '_SLSH_') + '_SLSH_' + raw_data_tdf + '_SLSH_'
-                                raw_data_tdf = 'CORPSES_dir'
-
-                            else:
-                                parse_moditempath3 = 'nan'
-                                does_contain_json = False
-
-                            _type = raw_data_tdf[-4:]
-                            if _type == '.tdf' or _type == '.fbi':
-                                try:
-                                    logTheAsolutePath = StoredFiles()
-                                    logTheAsolutePath.absolute_path = '/usr/src/persistent/' + raw_data_tdf
-                                    logTheAsolutePath.file_type = raw_data_tdf[-3:]
-                                    logTheAsolutePath.file_name = raw_data_tdf[:-4] + '_' + raw_data_tdf[-3:]
-                                    logTheAsolutePath.save()
-                                except:
-                                    print('skipping StoredFiles log, file already exists.')
-
-                            data_file_json = {
-                                'file_type': raw_data_tdf[-4:],
-                                'file_name': raw_data_tdf[:-4],
-                                'mod_path': parse_moditempath3,
-                                'mod_path_slug': parse_moditempath2,
-                                'dir_type': mod_item,
-                                'raw_data_tdf': raw_data_tdf,
-                                'does_contain_json': does_contain_json,
-                                'subdirectory_components': subdirectory_components
-                            }
-
-                            listed_data_files['directories'].append(data_file_json)
-                        # mod_paths[data_file.file_name] = (listed_data_files)
-                mod_paths.append(listed_data_files)
-
-        result1 = str(subprocess.check_output(['ls', directory_str]))
-        final_obj[directory_str] = str(result1).split('\\n')
-        final_obj[directory_str][0] = final_obj[directory_str][0].replace("b'", "")
-
-        context = {'root_items': final_obj, 'mod_paths': mod_paths, 'HPIs': ''}
-        return Response(context)
-
 
 class DownloadTDFViewset(APIView):
     permission_classes = (AllowAny,)
@@ -1120,6 +1002,13 @@ class UnitFBIViewset(APIView):
         file_path = '/usr/src/persistent/' + parse_path1 + '.fbi'
         png_path = ''
 
+        # get a path to the root HPI extraction:
+        last_occurance_of_slash = file_path.rfind("/")
+        fbi_file = file_path[last_occurance_of_slash:]
+        path_without_fbi = file_path.replace(fbi_file, '').replace('/units', '')
+
+
+
         try:
             parse_path1 = str(request.GET['encoded_path']).replace('_SLSH_', '/')
             file_path = '/usr/src/persistent/' + parse_path1 + '.fbi'
@@ -1205,6 +1094,7 @@ class UnitFBIViewset(APIView):
             new_unit_fbi = UnitFbiData()
             new_unit_fbi._raw_json_dump = png_path.replace('/usr/src/persistent', '')  #
             new_unit_fbi._DEV_root_data_path = file_path
+            new_unit_fbi._UPLOAD_DESIGNATION = path_without_fbi
             print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
             print(file_path)
             print('\n\n')
@@ -2872,4 +2762,152 @@ class LazarusListUnits(APIView):
             #     self.printContents(mod_path, mod_name)
             #     print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
             #     print(mod_path)
+
+
+
+
+class ExecuteBash_LS_AllCustomModFiles(APIView):
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+
+        final_obj = {}
+
+        ModFileDesignation = ''
+        raw_repo_name = ''
+        directory_str = '/usr/src/persistent/media/ta_data'
+
+        # SelectedAssetUploadRepository
+        # TotalAnnihilationUploadedFile
+
+        try:
+            print('')
+            ModFileDesignation = str(request.GET['mod_repo']) + '_SelectedAssetUploadRepository'
+            raw_repo_name = request.GET['mod_repo']
+        except:
+            pass
+
+        # uploadedFilesFilter = []
+        # repository = SelectedAssetUploadRepository.objects.get(name=raw_repo_name)
+        # taUploadedFileRecords = TotalAnnihilationUploadedFile.objects.filter(designation=ModFileDesignation)
+        # for record in taUploadedFileRecords:
+        #     uploadedFilesFilter.append(system_path.replace(directory_str + '/', ''))
+        # mod_name = request.GET['mod_name']
+
+
+        # community mods:
+        # /usr/src/persistent/media/ta_data/
+
+        mod_paths = []
+        uploaded_data_files = TotalAnnihilationUploadedFile.objects.all()
+        if ModFileDesignation != '':
+            uploaded_data_files = TotalAnnihilationUploadedFile.objects.filter(designation=ModFileDesignation)
+            print('\n\n\n\n\n\n\n\nMOD DESIGNATION FILTER IS WORKING ! ! ! !\n\n\n\n\n')
+        else:
+            print('\n\n\n\n\n FAIL ! ! ! \n\n' + str(request.GET['mod_repo']) + ' \n\n\n\n\n\n\n')
+        for data_file in uploaded_data_files:
+            print("data_file %s" % data_file)
+            if os.path.isdir(data_file.system_path):
+                ls_current_modpath = str(subprocess.check_output(['ls', data_file.system_path]))
+
+                parsed_1 = ls_current_modpath.replace("\\n'","")
+                dirs_in_mod = parsed_1.replace("b'","").split('\\n')
+
+                print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ ')
+                print("parsed_1 %s" % parsed_1)
+                print("dirs_in_mod : ")
+                listed_data_files = {
+                    'name': data_file.file_name[:-4],
+                    'type': data_file.file_name[-4:]
+                }
+
+                listed_data_files['directories'] = []
+                for mod_item in dirs_in_mod:
+                    # listed_data_files[mod_item + '_mod_items'] = {}
+
+                    mod_item_path = data_file.system_path + '/' + mod_item
+                    if os.path.isdir(mod_item_path):
+                        print("mod_item : %s" % mod_item)
+                        ls_current_submodpath = str(subprocess.check_output(['ls', mod_item_path]))
+                        sub_parsed_1 = ls_current_submodpath.replace("\\n'", "")
+                        sub_parsed_2 = sub_parsed_1.replace("b'", "")
+                        # listed_data_files[mod_item + '_mod_items'] = (sub_parsed_2.split('\\n'))
+                        elements_in_dir = (sub_parsed_2.split('\\n'))
+                        for raw_data_tdf in elements_in_dir:
+                            does_contain_json = True
+                            subdirectory_components = 'NIL'
+                            parse_moditempath2 = ''
+                            if raw_data_tdf[-4:] == '.fbi':
+                                parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
+                                parse_moditempath2 = parse_moditempath1.replace('/', '_SLSH_') + '_SLSH_' + raw_data_tdf[:-4]
+                                parse_moditempath3 = '/LazarusII/UnitFBIViewset/?encoded_path=' + parse_moditempath2
+                            elif raw_data_tdf[-4:] == '.tdf':
+                                parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
+                                parse_moditempath2 = parse_moditempath1.replace('/',
+                                                                                '_SLSH_') + '_SLSH_' + raw_data_tdf[:-4]
+                                if mod_item == 'weapons':
+                                    parse_moditempath3 = '/LazarusII/WeaponTDFViewset/?encoded_path=' + parse_moditempath2
+                                elif mod_item == 'download':
+                                    parse_moditempath3 = '/LazarusII/DownloadTDFViewset/?encoded_path=' + parse_moditempath2
+                                elif mod_item == 'units':
+                                    parse_moditempath3 = '/LazarusII/UnitFBIViewset/?encoded_path=' + parse_moditempath2
+                                else:
+                                    parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
+                                    parse_moditempath2 = parse_moditempath1.replace('/',
+                                                                                    '_SLSH_') + '_SLSH_' + raw_data_tdf[
+                                                                                                           :-4]
+                                    parse_moditempath3 = 'nan'
+                                    does_contain_json = False
+                            elif raw_data_tdf[-4:] == 'pses': # CORPSE FEATURE DETECTED! #      7/14/2017
+                                # subdirectory_components = mod_item_path  #'THIS IS A CORPSE ! ! !'
+                                corpses_dir = mod_item_path + '/corpses'
+                                ls_cmd_features_dir = str(subprocess.check_output(['ls', corpses_dir]))
+                                corpses_parsed_1 = ls_cmd_features_dir.replace("\\n'", "")
+                                corpses_parsed_2 = corpses_parsed_1.replace("b'", "")
+                                replace_me_str = '\\' + 'n'
+                                replace_regex1 = corpses_parsed_2.replace(replace_me_str, '_NL_')
+                                subdirectory_components = replace_regex1.split('_NL_')
+                                for feat in subdirectory_components:
+                                    parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
+                                    parse_moditempath2 = parse_moditempath1.replace('/',
+                                                                                '_SLSH_') + '_SLSH_' + raw_data_tdf + '_SLSH_'
+                                raw_data_tdf = 'CORPSES_dir'
+
+                            else:
+                                parse_moditempath3 = 'nan'
+                                does_contain_json = False
+
+                            _type = raw_data_tdf[-4:]
+                            if _type == '.tdf' or _type == '.fbi':
+                                try:
+                                    logTheAsolutePath = StoredFiles()
+                                    logTheAsolutePath.absolute_path = '/usr/src/persistent/' + raw_data_tdf
+                                    logTheAsolutePath.file_type = raw_data_tdf[-3:]
+                                    logTheAsolutePath.file_name = raw_data_tdf[:-4] + '_' + raw_data_tdf[-3:]
+                                    logTheAsolutePath.save()
+                                except:
+                                    print('skipping StoredFiles log, file already exists.')
+
+                            data_file_json = {
+                                'file_type': raw_data_tdf[-4:],
+                                'file_name': raw_data_tdf[:-4],
+                                'mod_path': parse_moditempath3,
+                                'mod_path_slug': parse_moditempath2,
+                                'dir_type': mod_item,
+                                'raw_data_tdf': raw_data_tdf,
+                                'does_contain_json': does_contain_json,
+                                'subdirectory_components': subdirectory_components
+                            }
+
+                            listed_data_files['directories'].append(data_file_json)
+                        # mod_paths[data_file.file_name] = (listed_data_files)
+                mod_paths.append(listed_data_files)
+
+        result1 = str(subprocess.check_output(['ls', directory_str]))
+        final_obj[directory_str] = str(result1).split('\\n')
+        final_obj[directory_str][0] = final_obj[directory_str][0].replace("b'", "")
+
+        context = {'root_items': final_obj, 'mod_paths': mod_paths, 'HPIs': ''}
+        return Response(context)
+
+
 

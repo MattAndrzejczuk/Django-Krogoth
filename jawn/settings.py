@@ -88,6 +88,7 @@ INSTALLED_APPS = (
     'CommunityForum',
     'ModBuilder',
     'djangular_dashboard',
+    'django_filters',
 )
 #   'dbbackup',
 

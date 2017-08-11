@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from django.conf import settings
 import json
 import os
+
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 import datetime
@@ -15,7 +16,8 @@ from DatabaseSandbox.models import VisitorLogSB, LazarusCommanderAccountSB, \
     LazarusModProjectSB, BasicUploadTrackerSB, TotalAnnihilationUploadedFile
 from django.template import loader
 import subprocess
-
+from chat.models import JawnUser
+from LazarusDatabase.models import SelectedAssetUploadRepository
 
 
 # Create your views here.
@@ -75,7 +77,7 @@ class KubaNetAnalytics(APIView):
         return Response(final_answer)
 
 class UploadDataTA(APIView):
-    permission_classes = (AllowAny,)
+    # permission_classes = (AllowAny,)
     def get(self, request, format=None):
         template = loader.get_template('upload_iframe.html')
         server_msg = 'Lazarus will automatically parse the data to help make it avaliable to the Lazarus community.'
@@ -108,6 +110,8 @@ class UploadDataTA(APIView):
 
             for file_obj in request.FILES.getlist('file'):
                 print(file_obj)
+
+
 
                 parseName1 = str(file_obj).replace(' ', '_')
                 parseName2 = parseName1.replace('-', '').lower()
@@ -149,6 +153,28 @@ class UploadDataTA(APIView):
                                             file_type=file_type_parsed,
                                             HPI_Extractor_Log=run_extraction_bash
                                             )
+
+
+
+                thisdesignation = ''
+                thiscategory = 'NOT YET IMPLEMENTED'
+
+
+                try:
+                    currentJawnUser = JawnUser.objects.get(base_user=request.user.id)
+                    currentUploadRepo = SelectedAssetUploadRepository.objects.filter(author=currentJawnUser)
+
+                    for repo in currentUploadRepo:
+                        if repo.is_selected == True:
+                            thisdesignation = repo.name + '_SelectedAssetUploadRepository'
+                            break
+
+                    but_DB.designation = thisdesignation
+                    but_DB.category = thiscategory
+
+                except:
+                    print('upload designation is not configured.')
+
                 try:
                     but_DB.uploader = request.user.username
                 except:

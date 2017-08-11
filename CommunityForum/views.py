@@ -133,7 +133,7 @@ class ForumPostDetailView(APIView):
 
 
 class ForumReplySubmitView(APIView):
-    permission_classes = (AllowAny,)
+    
     def get(self, request, format=None):
         return Response(
             {"warning": "You don't belong here."},

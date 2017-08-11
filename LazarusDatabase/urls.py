@@ -8,6 +8,7 @@ router.register(r'Mods', views.TotalAnnihilationModViewset)
 router.register(r'LazarusModProject', views.LazarusModProjectViewset)
 router.register(r'LazarusModAsset', views.LazarusModAssetViewset)
 router.register(r'LazarusModDependency', views.LazarusModDependencyViewset)
+router.register(r'SelectedAssetUploadRepository', views.SelectedAssetUploadRepositoryViewset)
 
 urlpatterns = [
     url(r'^TotalAnnihilation/', include(router.urls)),

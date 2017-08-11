@@ -4,26 +4,42 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.core import serializers
+from chat.models import JawnUser
 import json
 
+from rest_framework import renderers
+from rest_framework import viewsets, filters
+import django_filters
+from rest_framework import permissions
 
-
-from LazarusDatabase.serializers import TotalAnnihilationModSerializer, \
+from LazarusDatabase.serializers import TotalAnnihilationModSerializer, SelectedAssetUploadRepositorySerializer, \
     LazarusModProjectSerializer, LazarusModAssetSerializer, LazarusModDependencySerializer
 
-from LazarusDatabase.models import TotalAnnihilationMod, LazarusModProject, LazarusModAsset, LazarusModDependency
+from LazarusDatabase.models import TotalAnnihilationMod, LazarusModProject, LazarusModAsset, \
+    LazarusModDependency, SelectedAssetUploadRepository
 
 from rest_framework.decorators import detail_route, list_route
 from rest_framework import status
 from rest_framework import viewsets
+import django_filters
 
 from rest_auth.models import LazarusCommanderAccount
 
 
+class SelectedAssetUploadRepositoryFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(name="name")
 
+    class Meta:
+        model = SelectedAssetUploadRepository
+        fields = ['name', 'id', 'author']
 
-
-
+class SelectedAssetUploadRepositoryViewset(viewsets.ModelViewSet):
+    queryset = SelectedAssetUploadRepository.objects.all()
+    serializer_class = SelectedAssetUploadRepositorySerializer
+    permission_classes = (permissions.IsAuthenticated, )
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('name', 'id', 'author',)
+    filter_class = SelectedAssetUploadRepositoryFilter
 
 
 

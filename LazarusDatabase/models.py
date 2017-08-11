@@ -1,4 +1,6 @@
 from django.db import models
+from chat.models import JawnUser
+
 
 # Create your models here.
 from rest_auth.models import LazarusCommanderAccount
@@ -28,7 +30,15 @@ class TotalAnnihilationMod(models.Model):
 
 
 
+class SelectedAssetUploadRepository(models.Model):
+    name = models.CharField(max_length=400, unique=True)
+    created = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(JawnUser, related_name='author', blank=True, null=True)
+    description = models.TextField(max_length=400, blank=True, null=True)
+    is_selected = models.BooleanField(default=True)
 
+    def __str__(self):
+        return self.name
 
 
 
