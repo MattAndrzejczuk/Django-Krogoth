@@ -14,7 +14,9 @@ urlpatterns = [
     url(r'^TotalAnnihilation/', include(router.urls)),
 
     url(r'^CommanderAccount/', views.CommanderAccountView.as_view(), name='Commander Account'),
-
+    url(r'^SelectedAssetRepo/', views.SelectedAssetRepo.as_view(), name='Selected Asset Repo'),
+    url(r'^SelectedModProjectsList/', views.SelectedModProjectsList.as_view(), name='Selected Mod Projects'),
+    url(r'^SelectedModProject/', views.SelectedModProject.as_view(), name='Currently Selected Mod Project'),
     url(r'^UnitFBIFromSQLView/', views.UnitFBIFromSQLView.as_view(), name='UnitFBIFromSQL'),
     url(r'^WeaponTDFFromSQLView/', views.WeaponTDFFromSQLView.as_view(), name='WeaponTDFFromSQL'),
     url(r'^DownloadTDFFromSQLView/', views.DownloadTDFFromSQLView.as_view(), name='DownloadTDFFromSQLView'),

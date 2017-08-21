@@ -447,25 +447,20 @@ class WeaponTDFFetch():
             except:
                 pass
             try:
-                # print(dictionary['DAMAGE'])
-                list_dmg = []
-                for key, value in dictionary['DAMAGE'].items():
-                    # print('ADDING WEAPON DAMAGE: ' + key)
-                    new_damage_obj = Damage(name=key, damage_amount=value)
-                    # new_damage_obj.damage_amount = value
-                    # new_damage_obj.name = key
-                    new_damage_obj.save()
-                    list_dmg.append(new_damage_obj)
-                # print('FINISHED PROCESSING DAMAGE.')
-                # print(list_dmg)
-                # print('___________________________')
-                for dmg in list_dmg:
-                    # print(dmg)
-                    new_weapon_tdf.damage.add(dmg)
+                print(dictionary['DAMAGE'])
             except:
                 pass
 
             try:
+                new_weapon_tdf.save()
+                list_dmg = []
+                for key, value in dictionary['DAMAGE'].items():
+                    new_damage_obj = Damage(name=key, damage_amount=value)
+                    new_damage_obj.weapon_id = new_weapon_tdf.id
+                    new_damage_obj.save()
+                    list_dmg.append(new_damage_obj)
+                for dmg in list_dmg:
+                    new_weapon_tdf.damage.add(dmg)
                 new_weapon_tdf.save()
             except:
                 pass

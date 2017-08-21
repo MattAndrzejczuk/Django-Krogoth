@@ -8,7 +8,7 @@ if django.VERSION[:2] >= (1, 7):
     django.setup()
 from django.conf import settings
 from django.contrib.auth import get_user
-from django.core.handlers.wsgi import WSGIRequest, logger
+from django.core.handlers.wsgi import WSGIRequest
 from django.core.exceptions import PermissionDenied
 from django import http
 from django.utils.encoding import force_str
@@ -123,7 +123,7 @@ class WebsocketWSGIServer(object):
                 except AttributeError:
                     pass
             websocket = self.upgrade_websocket(environ, start_response)
-            logger.debug('Subscribed to channels: {0}'.format(', '.join(channels)))
+            print('Subscribed to channels: {0}'.format(', '.join(channels)))
             subscriber.set_pubsub_channels(request, channels)
             websocket_fd = websocket.get_file_descriptor()
             listening_fds = [websocket_fd]
@@ -269,25 +269,25 @@ class WebsocketWSGIServer(object):
                             print(m + " this is inside the websocket loop (sendmsg)")
                             websocket.send(sendmsg)
                     else:
-                        logger.error('Invalid file descriptor: {0}'.format(fd))
+                        print('Invalid file descriptor: {0}'.format(fd))
                 # Check again that the websocket is closed before sending the heartbeat,
                 # because the websocket can closed previously in the loop.
                 if private_settings.WS4REDIS_HEARTBEAT and not websocket.closed:
                     websocket.send(private_settings.WS4REDIS_HEARTBEAT)
         except WebSocketError as excpt:
-            logger.warning('WebSocketError: {}'.format(excpt), exc_info=sys.exc_info())
+            print('WebSocketError: {}'.format(excpt), exc_info=sys.exc_info())
             response = http.HttpResponse(status=1001, content='Websocket Closed')
         except UpgradeRequiredError as excpt:
-            logger.info('Websocket upgrade required')
+            print('Websocket upgrade required')
             response = http.HttpResponseBadRequest(status=426, content=excpt)
         except HandshakeError as excpt:
-            logger.warning('HandshakeError: {}'.format(excpt), exc_info=sys.exc_info())
+            print('HandshakeError: {}'.format(excpt), exc_info=sys.exc_info())
             response = http.HttpResponseBadRequest(content=excpt)
         except PermissionDenied as excpt:
-            logger.warning('PermissionDenied: {}'.format(excpt), exc_info=sys.exc_info())
+            print('PermissionDenied: {}'.format(excpt), exc_info=sys.exc_info())
             response = http.HttpResponseForbidden(content=excpt)
         except Exception as excpt:
-            logger.error('Other Exception: {}'.format(excpt), exc_info=sys.exc_info())
+            print('Other Exception: {}'.format(excpt), exc_info=sys.exc_info())
             response = http.HttpResponseServerError(content=excpt)
         else:
             response = http.HttpResponse()
@@ -297,12 +297,12 @@ class WebsocketWSGIServer(object):
             if websocket:
                 websocket.close(code=1001, message='Websocket Closed')
             else:
-                logger.warning('Starting late response on websocket')
+                print('Starting late response on websocket')
                 status_text = http_client.responses.get(response.status_code, 'UNKNOWN STATUS CODE')
                 status = '{0} {1}'.format(response.status_code, status_text)
                 headers = response._headers.values()
                 if six.PY3:
                     headers = list(headers)
                 start_response(force_str(status), headers)
-                logger.info('Finish non-websocket response with status code: {}'.format(response.status_code))
+                print('Finish non-websocket response with status code: {}'.format(response.status_code))
         return response

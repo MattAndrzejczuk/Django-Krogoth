@@ -29,8 +29,8 @@ window.onload = function () {
         editor2.setSize('640px', '480px');
         editor3.setSize('640px', '480px');
     } else {
-        editor2.setSize('1000px', '1400px');
-        editor3.setSize('1000px', '1400px');
+        editor2.setSize('900px', '1000px');
+        editor3.setSize('900px', '1000px');
     }
 
 };

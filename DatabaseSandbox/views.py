@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from django.conf import settings
 import json
 import os
+import random
 
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
@@ -112,10 +113,14 @@ class UploadDataTA(APIView):
                 print(file_obj)
 
 
+                randIntStr = str(random.randint(1, 1000)) + '_'
+
 
                 parseName1 = str(file_obj).replace(' ', '_')
                 parseName2 = parseName1.replace('-', '').lower()
-                parseName3 = parseName2.replace('+', '__')
+                parseName3 = randIntStr + parseName2.replace('+', '__')
+
+
                 # parseName4 = parseName3.replace('.', '')
 
                 server_msg = ''
@@ -154,26 +159,27 @@ class UploadDataTA(APIView):
                                             HPI_Extractor_Log=run_extraction_bash
                                             )
 
+                currentJawnUser = JawnUser.objects.get(base_user=request.user.id)
+                currentUploadRepo = SelectedAssetUploadRepository.objects.filter(author=currentJawnUser)
 
+                thisdesignation = currentUploadRepo[0].name + '_SelectedAssetUploadRepository'
 
-                thisdesignation = ''
+                for repo in currentUploadRepo:
+                    if repo.is_selected == True:
+                        thisdesignation = repo.name + '_SelectedAssetUploadRepository'
+                        break
+
                 thiscategory = 'NOT YET IMPLEMENTED'
 
 
-                try:
-                    currentJawnUser = JawnUser.objects.get(base_user=request.user.id)
-                    currentUploadRepo = SelectedAssetUploadRepository.objects.filter(author=currentJawnUser)
+                print('\n\n')
+                print('currentUploadRepo: ')
+                print(currentUploadRepo[0].name)
+                print('\n\n')
 
-                    for repo in currentUploadRepo:
-                        if repo.is_selected == True:
-                            thisdesignation = repo.name + '_SelectedAssetUploadRepository'
-                            break
 
-                    but_DB.designation = thisdesignation
-                    but_DB.category = thiscategory
-
-                except:
-                    print('upload designation is not configured.')
+                but_DB.designation = thisdesignation
+                but_DB.category = thiscategory
 
                 try:
                     but_DB.uploader = request.user.username

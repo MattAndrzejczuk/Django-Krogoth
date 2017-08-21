@@ -1007,6 +1007,12 @@ class UnitFBIViewset(APIView):
         fbi_file = file_path[last_occurance_of_slash:]
         path_without_fbi = file_path.replace(fbi_file, '').replace('/units', '')
 
+        repo_name = 'N/A: _REPOSITORY'
+
+        try:
+            repo_name = str(request.GET['repo_name'])
+        except:
+            pass
 
 
         try:
@@ -1095,6 +1101,8 @@ class UnitFBIViewset(APIView):
             new_unit_fbi._raw_json_dump = png_path.replace('/usr/src/persistent', '')  #
             new_unit_fbi._DEV_root_data_path = file_path
             new_unit_fbi._UPLOAD_DESIGNATION = path_without_fbi
+            new_unit_fbi._REPOSITORY = repo_name
+
             print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
             print(file_path)
             print('\n\n')
@@ -2776,6 +2784,7 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
         raw_repo_name = ''
         directory_str = '/usr/src/persistent/media/ta_data'
 
+
         # SelectedAssetUploadRepository
         # TotalAnnihilationUploadedFile
 
@@ -2803,7 +2812,7 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
             uploaded_data_files = TotalAnnihilationUploadedFile.objects.filter(designation=ModFileDesignation)
             print('\n\n\n\n\n\n\n\nMOD DESIGNATION FILTER IS WORKING ! ! ! !\n\n\n\n\n')
         else:
-            print('\n\n\n\n\n FAIL ! ! ! \n\n' + str(request.GET['mod_repo']) + ' \n\n\n\n\n\n\n')
+            print('\n\n\n\n\n FAIL ! ! ! ' + str(request.GET['mod_repo']) + ' \n\n\n\n\n\n\n')
         for data_file in uploaded_data_files:
             print("data_file %s" % data_file)
             if os.path.isdir(data_file.system_path):

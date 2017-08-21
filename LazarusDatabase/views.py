@@ -67,6 +67,72 @@ class TotalAnnihilationModViewset(viewsets.ModelViewSet):
 
 
 
+class SelectedAssetRepo(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request, format=None):
+
+        jawnuser = JawnUser.objects.get(base_user=request.user.id)
+        queryset = SelectedAssetUploadRepository.objects.filter(author=jawnuser)
+
+        list_response = []
+        for item in queryset:
+            dictionary = {}
+            dictionary['id'] = item.id
+            dictionary['name'] = item.name
+            dictionary['description'] = item.description
+            dictionary['created'] = item.created
+            dictionary['author'] = item.author.id
+            dictionary['is_selected'] = item.is_selected
+            list_response.append(dictionary)
+
+        final = {"results": list_response}
+        return Response(final)
+
+
+
+class SelectedModProjectsList(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request, format=None):
+
+        jawnuser = JawnUser.objects.get(base_user=request.user.id)
+        queryset = LazarusModProject.objects.filter(created_by=jawnuser)
+
+        list_response = []
+        for item in queryset:
+            dictionary = {}
+            dictionary['id'] = item.id
+            dictionary['name'] = item.name
+            dictionary['description'] = item.description
+            dictionary['created'] = item.created
+            dictionary['created_by'] = item.created_by.id
+            dictionary['is_selected'] = item.is_selected
+            list_response.append(dictionary)
+
+        final = {"results": list_response}
+        return Response(final)
+
+
+class SelectedModProject(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request, format=None):
+
+        jawnuser = JawnUser.objects.get(base_user=request.user.id)
+        queryset = LazarusModProject.objects.filter(created_by=jawnuser)
+
+        list_response = []
+        for item in queryset:
+            if item.is_selected == True:
+                dictionary = {}
+                dictionary['id'] = item.id
+                dictionary['name'] = item.name
+                dictionary['description'] = item.description
+                dictionary['created'] = item.created
+                dictionary['created_by'] = item.created_by.id
+                dictionary['is_selected'] = item.is_selected
+                list_response.append(dictionary)
+
+        final = {"results": list_response}
+        return Response(final)
 
 
 class CommanderAccountView(APIView):

@@ -20,7 +20,7 @@ from lazarus.views import WeaponTDFFetch, FeatureTDFFetch, DownloadTDFFetch, Sou
 
 from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF, FeatureTDF, SoundSetTDF
 from LazarusDatabase.models import LazarusModProject, LazarusModAsset, LazarusModDependency
-
+from chat.models import JawnUser
 
 
 emojKill = '💔'
@@ -364,9 +364,31 @@ class DependenciesForUnitFBI(APIView):
 
         self.txtOutput += '</span>'
 
-    permission_classes = (AllowAny,)
+    #permission_classes = (AllowAny,)
     def get(self, request, format=None):
         uid = request.GET['uid']
+
+
+
+        # CHECK IF THIS DEPENDENCY ALREADY EXISTS:
+        try:
+            lazarusmodasset = LazarusModAsset.objects.get(name=uid)
+            for mod in modprojects:
+                if mod.id == lazarusmodasset.project_id:
+                    return Response({'result': 'Aborting, mod asset with UnitName ' + uid + ' already exists for this mod.'})
+        except:
+            pass
+
+
+        jawn_user = JawnUser.objects.get(base_user=request.user.id)
+        modprojects = LazarusModProject.objects.filter(created_by=jawn_user)
+        mod_id = 0
+
+        for mod in modprojects:
+            if mod.is_selected == True:
+                mod_id = mod.id
+        newLazarusModAsset = LazarusModAsset(name=uid, type='UnitFBI', project_id=mod_id, uploader=jawn_user)
+
 
         # Get unit with UnitName from database.
         sampleunit = UnitFbiData.objects.filter(UnitName=uid)
@@ -401,6 +423,7 @@ class DependenciesForUnitFBI(APIView):
         ### STORE ATOMIC DEPENDENCIES IN RAM:
         SYSPATH_unitpic = ''
         SYSPATH_3DModel = ''
+        SYSPATH_TDCrpse = ''
         SYSPATH_3DCrpse = ''
         SYSPATH_animGAF = ''
         SYSPATH_scriCOB = ''
@@ -418,6 +441,7 @@ class DependenciesForUnitFBI(APIView):
         dp_3dmodel = False
         dp_script = False
         dp_corpses = False
+        dp_corpsemodel = False
         dp_download = False
         dp_animation = False
         this_unit_has_weapons = False
@@ -444,6 +468,8 @@ class DependenciesForUnitFBI(APIView):
         # UNIT DOWNLOAD PATH DETECTOR:
         unit_download_path = path_without_fbi + '/download/' + uname + '.tdf'
         dp_download = os.path.exists(unit_download_path)
+        if dp_download == True:
+            download = DownloadTDFFetch().get(unit_download_path)
         self.printBOOL('dp_download', dp_download)
 
 
@@ -613,6 +639,8 @@ class DependenciesForUnitFBI(APIView):
 
         cavedogsoundspath = 'static/cavedog_sfx/'
 
+        finalizedSoundPaths = []
+
         if len(weapon1FromSQL) > 0:
             # Grab all sound effect keys from Weapon1:
             self.printyellowkeygreenvalue('║ Weapon1: ', weapon1FromSQL[0]._OBJECT_KEY_NAME)
@@ -645,6 +673,7 @@ class DependenciesForUnitFBI(APIView):
                 else:
                     if (sfx1_key.lower() + '.wav') in allsoundfiles:
                         self.print_yellow_purple_teal('║ soundhit -> ', sfx1_key, ' Third Party')
+                        finalizedSoundPaths.append(sounds_path + sfx1_key.lower() + '.wav')
                     else:
                         self.print_yellow_purple_red('║ soundhit -> ', sfx1_key, '  WARNING : .wav file not found')
 
@@ -654,6 +683,7 @@ class DependenciesForUnitFBI(APIView):
                 else:
                     if (sfx2_key.lower() + '.wav') in allsoundfiles:
                         self.print_yellow_purple_teal('║ soundhit -> ', sfx2_key, ' Third Party')
+                        finalizedSoundPaths.append(sounds_path + sfx2_key.lower() + '.wav')
                     else:
                         self.print_yellow_purple_red('║ soundhit -> ', sfx2_key, '  WARNING : .wav file not found')
 
@@ -663,6 +693,7 @@ class DependenciesForUnitFBI(APIView):
                 else:
                     if (sfx3_key.lower() + '.wav') in allsoundfiles:
                         self.print_yellow_purple_teal('║ soundhit -> ', sfx3_key, ' Third Party')
+                        finalizedSoundPaths.append(sounds_path + sfx3_key.lower() + '.wav')
                     else:
                         self.print_yellow_purple_red('║ soundhit -> ', sfx3_key, '  WARNING : .wav file not found')
 
@@ -672,6 +703,7 @@ class DependenciesForUnitFBI(APIView):
                 else:
                     if (sfx4_key.lower() + '.wav') in allsoundfiles:
                         self.print_yellow_purple_teal('║ soundhit -> ', sfx4_key, ' Third Party')
+                        finalizedSoundPaths.append(sounds_path + sfx4_key.lower() + '.wav')
                     else:
                         self.print_yellow_purple_red('║ soundhit -> ', sfx4_key, '  WARNING : .wav file not found')
 
@@ -708,9 +740,13 @@ class DependenciesForUnitFBI(APIView):
             self.printgreen( '\n╔══[' + emoj2 + ' ] - Corpse evaluation.════' )
             corpsename = sampleunit[0].Corpse.lower()
             unit_corpse_path = path_without_fbi + '/features/corpses/' + corpsename + '.tdf'
+            corpse_3do_path = path_without_fbi + '/objects3d/' + corpsename + '.3do'
+            dp_corpsemodel = os.path.exists(corpse_3do_path)
             dp_corpses = os.path.exists(unit_corpse_path)
             if dp_corpses == True:
-                SYSPATH_3DCrpse = unit_corpse_path
+                SYSPATH_TDCrpse = unit_corpse_path
+            if dp_corpsemodel == True:
+                SYSPATH_3DCrpse = corpse_3do_path
             self.printBOOL('║ dp_corpses', dp_corpses)
         self.printgreen('╚════════════════════════════════════════════════════════════════')
 
@@ -718,11 +754,13 @@ class DependenciesForUnitFBI(APIView):
 
         # Final Conclusion Evaluation
         self.printblue('\n╔══[' + emoj1 + ' ] - Final Evaluation.════')
+
         # SYSPATH_unitpic
         # SYSPATH_3DModel
         # SYSPATH_animGAF
         # SYSPATH_scriCOB
         # SYSPATH_3DCrpse
+        # SYSPATH_TDCrpse
 
         # dp_unitpic
         # dp_3dmodel
@@ -730,6 +768,7 @@ class DependenciesForUnitFBI(APIView):
         # dp_corpses
         # dp_download
         # dp_animation
+
 
         self.printbluekeypurplevalue('║ SYSPATH_unitpic -> ',
                                      SYSPATH_unitpic.replace('/usr/src/persistent/media/ta_data', ''))
@@ -741,6 +780,12 @@ class DependenciesForUnitFBI(APIView):
                                      SYSPATH_scriCOB.replace('/usr/src/persistent/media/ta_data', ''))
         self.printbluekeypurplevalue('║ SYSPATH_3DCrpse -> ',
                                      SYSPATH_3DCrpse.replace('/usr/src/persistent/media/ta_data', ''))
+        self.printbluekeypurplevalue('║ SYSPATH_TDCrpse -> ',
+                                     SYSPATH_TDCrpse.replace('/usr/src/persistent/media/ta_data', ''))
+
+        for sound in finalizedSoundPaths:
+            self.printbluekeypurplevalue('║ SYSPATH_WAVfile -> ',
+                                         sound.replace('/usr/src/persistent/media/ta_data', ''))
 
         # self.printbluekeyredvalue('║ ', ' -> ')
         # self.printbluekeyyellowvalue('║ ', ' -> ')
@@ -780,9 +825,12 @@ class DependenciesForUnitFBI(APIView):
         else:
             self.printbluekeyredvalue('║ Unit Animation Dependency', '[ ✕ ]')
 
+        mod_asset_has_all_dependencies = False
+
         self.printblue('║')
         if dp_animation == True and dp_download == True and dp_corpses == True and \
                         dp_script == True and dp_3dmodel == True and dp_unitpic == True:
+            mod_asset_has_all_dependencies = True
             self.printbluekeygreenvalue('║ LazarusModAsset Dependencies Scanned & Verified ', 'SUCCESS')
             self.printblue('║')
             self.printblue('║ Creating a new LazarusModAsset <b style="color: #79ff9d">' + uname + '</b> for public distribution... ')
@@ -791,6 +839,58 @@ class DependenciesForUnitFBI(APIView):
             self.printblue('║')
             self.printbluekeyyellowvalue('║ ', ' This Total Annihilation UFO/HPI file has missing dependencies, aborting mod asset generation. ')
 
+        if mod_asset_has_all_dependencies == True:
+            newLazarusModAsset.save()
+
+            # SYSPATH_3DModel 2
+            # SYSPATH_animGAF 3
+            # SYSPATH_scriCOB 4
+            # SYSPATH_3DCrpse 5
+            # SYSPATH_TDCrpse 6
+
+            newDependency1 = LazarusModDependency(name=uid,
+                                                  type='unitpic',
+                                                  system_path=SYSPATH_unitpic,
+                                                 asset_id=newLazarusModAsset.id)
+            newDependency1.save()
+            newDependency2 = LazarusModDependency(name=uid,
+                                                  type='objects3d',
+                                                  system_path=SYSPATH_3DModel,
+                                                  asset_id=newLazarusModAsset.id)
+            newDependency2.save()
+            newDependency3 = LazarusModDependency(name=uid,
+                                                  type='anims',
+                                                  system_path=SYSPATH_animGAF,
+                                                  asset_id=newLazarusModAsset.id)
+            newDependency3.save()
+            newDependency4 = LazarusModDependency(name=uid,
+                                                  type='scripts',
+                                                  system_path=SYSPATH_scriCOB,
+                                                  asset_id=newLazarusModAsset.id)
+            newDependency4.save()
+            newDependency5 = LazarusModDependency(name=uid,
+                                                  type='objects3d',
+                                                  system_path=SYSPATH_3DCrpse,
+                                                  asset_id=newLazarusModAsset.id)
+            newDependency5.save()
+            corpse = FeatureTDFFetch().get(SYSPATH_TDCrpse)
+            newDependency6 = LazarusModDependency(name=uid,
+                                                  type='corpse_TDF',
+                                                  system_path=SYSPATH_TDCrpse,
+                                                  asset_id=newLazarusModAsset.id)
+            newDependency6.save()
+            newDependency7 = LazarusModDependency(name=uid,
+                                                  type='download_TDF',
+                                                  system_path=SYSPATH_TDCrpse,
+                                                  asset_id=newLazarusModAsset.id)
+            newDependency7.save()
+
+            for sound in finalizedSoundPaths:
+                newSoundDp = LazarusModDependency(name=uid,
+                                                  type='sound_WAV',
+                                                  system_path=sound,
+                                                  asset_id=newLazarusModAsset.id)
+                newSoundDp.save()
 
         self.printblue('╚════════════════════════════════════════════════════════════════')
 

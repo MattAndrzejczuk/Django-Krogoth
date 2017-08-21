@@ -40,9 +40,9 @@ window.onload = function () {
         editor2.setSize('640px', '480px');
         editor3.setSize('640px', '480px');
     } else {
-        editor1.setSize('1000px', '800px');
-        editor2.setSize('1000px', '1400px');
-        editor3.setSize('1000px', '1400px');
+        editor1.setSize('900px', '800px');
+        editor2.setSize('900px', '1000px');
+        editor3.setSize('900px', '1000px');
     }
 
 };

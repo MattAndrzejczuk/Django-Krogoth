@@ -52,8 +52,9 @@ class SoundSetTDF(models.Model):
 class Damage(models.Model):
     name = models.CharField(max_length=100, default='default')
     damage_amount = models.IntegerField(default=1230)
+    weapon_id = models.IntegerField(default=0)
     def __str__(self):  # __unicode__ on Python 2
-        return self.name
+        return self.name + '_'
 
 
 
@@ -145,7 +146,7 @@ class WeaponTDF(models.Model):
     weaponvelocity = models.IntegerField(default=131, null=True, blank=True)   # int()
     damage = models.ManyToManyField(Damage)   # 73
     def __str__(self):  # __unicode__ on Python 2
-        return self.name
+        return self.name + '_'
 
 
 
@@ -190,7 +191,7 @@ class FeatureTDF(models.Model):
     spreadchance = models.IntegerField(default=30, null=True, blank=True)
     world = models.CharField(max_length=135, null=True, blank=True)
     def __str__(self):  # __unicode__ on Python 2
-        return self._object
+        return self._object + '_'
 
 # choices SelfDestructAS: BIG_UNIT,,,,,,,
 
@@ -200,6 +201,7 @@ class UnitFbiData(models.Model):
     _raw_json_dump = models.CharField(max_length=100)
     _DEV_root_data_path = models.CharField(max_length=100, default='nan')
     _UPLOAD_DESIGNATION = models.CharField(max_length=150, default='nan')
+    _REPOSITORY = models.CharField(max_length=150, default='nan')
 
     Acceleration = models.FloatField(null=True, blank=True)
     ActiveWhenBuild = models.IntegerField(null=True, blank=True)
@@ -372,7 +374,7 @@ class UnitFbiData(models.Model):
     YardMap = models.CharField(max_length=132) #135
     ZBuffer = models.IntegerField(default=1, null=True, blank=False)
     def __str__(self):  # __unicode__ on Python 2
-        return self.Objectname
+        return self.Objectname + '_'
 
 # Documentation:
 # http://units.tauniverse.com/tutorials/tadesign/tadesign/tdfdown.htm
