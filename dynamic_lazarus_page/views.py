@@ -74,9 +74,8 @@ class NgIncludedJsView(APIView):
                 js_view = NgIncludedJs.objects.get(name=name)
                 return HttpResponse(js_view.contents)
         except:
-            html = '<div> <h1>Fatal Error</h1> <p>Unable to load JS: <b>' + name + '</b> </p> </div>'
-            html += '<script>alert("fatal Djangular error, unable to load HTML view: ' + name + \
-                    ' try executing: python3 manage.py make_default_layout");</script>'
+            html = 'alert("fatal Djangular error, unable to load HTML view: ' + name + \
+                    ' try executing: python3 manage.py make_default_layout");'
             return HttpResponse(html)
 
 
