@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from dynamic_lazarus_page.models import NgIncludedJs, NgIncludedHtml
+from Djangular import DjangularMasterViewController, DjangularIcon, DjangularCategory
 import codecs
 
 
@@ -47,32 +48,28 @@ class Command(BaseCommand):
         str_loginModule = codecs.open('Djangular/management/default_templates/login/module.js', 'r').read()
         str_loginController = codecs.open('Djangular/management/default_templates/login/controller.js', 'r').read()
 
-        # loginController---------------------------------------------------------
-        try:
-            sqlCtrl = NgIncludedJs(name='djangularLoginController')
-            sqlCtrl.contents = str_loginController
-            sqlCtrl.save()
-            self.stdout.write(self.style.SUCCESS( 'ADDED... loginController' ))
-        except:
-            self.stdout.write(self.style.WARNING('SKIPPING... loginController'))
 
-        # loginModule
-        try:
-            sqlCtrl = NgIncludedJs(name='djangularLoginModule')
-            sqlCtrl.contents = str_loginModule
-            sqlCtrl.save()
-            self.stdout.write(self.style.SUCCESS( 'ADDED... loginModule' ))
-        except:
-            self.stdout.write(self.style.WARNING('SKIPPING... loginModule'))
 
-        # loginView
+
+        # loginMasterViewController---------------------------------------------------------
         try:
-            sqlCtrl = NgIncludedJs(name='djangularLoginView')
-            sqlCtrl.contents = str_loginView
-            sqlCtrl.save()
-            self.stdout.write(self.style.SUCCESS( 'ADDED... loginView' ))
+            mvc = DjangularMasterViewController(name='LoginDjangular', title='Login')
+            mvc.view_html = str_loginView
+            mvc.controller_js = str_loginController
+            mvc.module_js = str_loginModule
+
+            cat = DjangularCategory(name='Authentication', code='Authentication')
+            cat.save()
+
+            icon = DjangularIcon(name='icon-ubuntu', code='icon-ubuntu')
+            icon.save()
+
+            mvc.category = cat
+            mvc.icon = icon
+            mvc.save()
+            self.stdout.write(self.style.SUCCESS( 'ADDED... loginMasterViewController' ))
         except:
-            self.stdout.write(self.style.WARNING('SKIPPING... loginView'))
+            self.stdout.write(self.style.WARNING('SKIPPING... loginMasterViewController'))
         #-------------------------------------------------------------------------
 
 
