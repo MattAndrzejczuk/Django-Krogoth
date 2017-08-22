@@ -22,6 +22,7 @@ class Command(BaseCommand):
     #     parser.add_argument('mvc_id', nargs="+", type=int)
 
     def handle(self, *args, **options):
+        self.stdout.write(self.style.SUCCESS(''))
 
         ctrl = open('Djangular/management/default_templates/toolbarCtrl.js', 'r')
         module = open('static/app/toolbar/toolbar.module.js', 'r')
@@ -75,7 +76,7 @@ class Command(BaseCommand):
         #-------------------------------------------------------------------------
 
 
-        self.stdout.write(self.style.SUCCESS(''))
+
         # toolbarController
         try:
             sqlCtrl = NgIncludedJs(name='toolbarController')
