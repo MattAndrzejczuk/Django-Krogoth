@@ -23,7 +23,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        ctrl = open('static/app/toolbar/toolbar.controller.js', 'r')
+        ctrl = open('Djangular/management/default_templates/toolbarCtrl.js', 'r')
         module = open('static/app/toolbar/toolbar.module.js', 'r')
 
         jsLayout = codecs.open('Djangular/management/default_templates/mainHtmlLayout.js', 'r')
@@ -41,6 +41,39 @@ class Command(BaseCommand):
         str_htmlMain = htmlMain.read()
         str_htmlNav = htmlNav.read()
         str_htmlToolbar = htmlToolbar.read()
+
+        str_loginView = codecs.open('Djangular/management/default_templates/login/view.html', 'r').read()
+        str_loginModule = codecs.open('Djangular/management/default_templates/login/module.js', 'r').read()
+        str_loginController = codecs.open('Djangular/management/default_templates/login/controller.js', 'r').read()
+
+        # loginController---------------------------------------------------------
+        try:
+            sqlCtrl = NgIncludedJs(name='djangularLoginController')
+            sqlCtrl.contents = str_loginController
+            sqlCtrl.save()
+            self.stdout.write(self.style.SUCCESS( 'ADDED... loginController' ))
+        except:
+            self.stdout.write(self.style.WARNING('SKIPPING... loginController'))
+
+        # loginModule
+        try:
+            sqlCtrl = NgIncludedJs(name='djangularLoginModule')
+            sqlCtrl.contents = str_loginModule
+            sqlCtrl.save()
+            self.stdout.write(self.style.SUCCESS( 'ADDED... loginModule' ))
+        except:
+            self.stdout.write(self.style.WARNING('SKIPPING... loginModule'))
+
+        # loginView
+        try:
+            sqlCtrl = NgIncludedJs(name='djangularLoginView')
+            sqlCtrl.contents = str_loginView
+            sqlCtrl.save()
+            self.stdout.write(self.style.SUCCESS( 'ADDED... loginView' ))
+        except:
+            self.stdout.write(self.style.WARNING('SKIPPING... loginView'))
+        #-------------------------------------------------------------------------
+
 
         self.stdout.write(self.style.SUCCESS(''))
         # toolbarController
