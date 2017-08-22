@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from dynamic_lazarus_page.models import NgIncludedJs, NgIncludedHtml
-from Djangular import DjangularMasterViewController, DjangularIcon, DjangularCategory
+from Djangular.models import DjangularMasterViewController, DjangularIcon, DjangularCategory
 import codecs
 
 
