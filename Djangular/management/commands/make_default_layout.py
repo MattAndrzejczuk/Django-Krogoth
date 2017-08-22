@@ -49,6 +49,20 @@ class Command(BaseCommand):
         str_loginController = codecs.open('Djangular/management/default_templates/login/controller.js', 'r').read()
 
 
+        mvc = DjangularMasterViewController(name='LoginDjangular', title='Login')
+        mvc.view_html = str_loginView
+        mvc.controller_js = str_loginController
+        mvc.module_js = str_loginModule
+
+        cat = DjangularCategory(name='Authentication', code='Authentication')
+        cat.save()
+
+        icon = DjangularIcon(name='icon-ubuntu', code='icon-ubuntu')
+        icon.save()
+
+        mvc.category = cat
+        mvc.icon = icon
+        mvc.save()
 
 
         # loginMasterViewController---------------------------------------------------------
