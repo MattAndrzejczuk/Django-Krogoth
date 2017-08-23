@@ -164,6 +164,7 @@ class DynamicIndexModule(APIView):
                            "'xeditable','ui.codemirror','app.core','app.sample','app.navigation','app.toolbar','app.quick-panel',"
 
         index_module_pt2 = ''
+
         # index_module_pt2 = "'app.dashboards','app.calendar','app.e-commerce','app.mail','app.chat','app.file-manager'," + \
         #                   "'app.gantt-chart','app.scrumboard','app.todo','app.contacts','app.notes','app.toastCtrl','app.lazarus',"
 
@@ -181,7 +182,11 @@ class DynamicIndexModule(APIView):
 
         my_apps += "'ui.tree', "
 
-        index_module_pt3 = "'app.pages','app.ui','app.components']);})();"
+        # my_apps += "'app.pages','app.ui','app.components', "
+        my_apps += "'app.sample'"
+
+        index_module_pt3 = "" + \
+                           "]);})();"
         indexModuleJs = index_module_pt1 + index_module_pt2 + my_apps + index_module_pt3
         return HttpResponse(indexModuleJs)
 
