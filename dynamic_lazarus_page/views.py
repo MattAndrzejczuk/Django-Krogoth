@@ -161,7 +161,7 @@ class DynamicIndexModule(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
         index_module_pt1 = "(function (){'use strict';angular.module('fuse', ['uiGmapgoogle-maps','textAngular'," + \
-                           "'xeditable','app.core','app.sample','app.navigation','app.toolbar','app.quick-panel',"
+                           "'xeditable','ui.codemirror','app.core','app.sample','app.navigation','app.toolbar','app.quick-panel',"
 
         index_module_pt2 = ''
         # index_module_pt2 = "'app.dashboards','app.calendar','app.e-commerce','app.mail','app.chat','app.file-manager'," + \
@@ -207,6 +207,7 @@ class DynamicIndexRoute(APIView):
 
 
 
+
 class DynamicHTMLMainNavbarView(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
@@ -240,6 +241,7 @@ class DynamicHTMLSubNavbarView(APIView):
         except:
             final_html = full_html.replace('DJANGULAR_USERNAME', username)
             return HttpResponse(final_html)
+
 
 
 class DynamicSplashScreenView(APIView):
