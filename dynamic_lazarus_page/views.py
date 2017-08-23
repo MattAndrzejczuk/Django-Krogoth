@@ -208,40 +208,6 @@ class DynamicIndexRoute(APIView):
 
 
 
-class DynamicHTMLMainNavbarView(APIView):
-    permission_classes = (AllowAny,)
-    def get(self, request, format=None):
-        full_html = '<div id="layout-vertical-navigation" class="template-layout" layout="row" flex>    <md-sidenav id="vertical-navigation" class="md-primary-bg" md-is-locked-open="$mdMedia(\'gt-sm\')"                md-component-id="navigation" ms-scroll ui-view="navigation"></md-sidenav>    <div id="content-container" flex layout="column">        <md-toolbar id="toolbar" class="md-menu-toolbar md-whiteframe-1dp" ui-view="toolbar"></md-toolbar>        <md-content id="content" class="animate-slide-up md-hue-2" ms-scroll ui-view="content" flex></md-content>    </div>    <md-sidenav id="quick-panel" class="md-sidenav-right md-whiteframe-4dp" md-component-id="quick-panel" ms-scroll                ui-view="quickPanel"></md-sidenav></div>'
-        username = request.user.username # DJANGULAR_USERNAME
-        full_html = '<div id="layout-vertical-navigation" class="template-layout" layout="row" flex>  ' + \
-                    '  <md-sidenav id="vertical-navigation" class="md-primary-bg" md-is-locked-open="$mdMedia(\'gt-sm\')"  ' +\
-                    ' md-component-id="navigation" ms-scroll ui-view="navigation"></md-sidenav>' + \
-                    '<div id="content-container" flex layout="column"> ' + \
-                    ' <md-toolbar id="toolbar" class="md-menu-toolbar md-whiteframe-1dp" ui-view="toolbar"></md-toolbar> ' + \
-                    ' <md-content id="content" class="animate-slide-up md-hue-2" ms-scroll ui-view="content" flex></md-content>' +\
-                    '</div>    <md-sidenav id="quick-panel" class="md-sidenav-right md-whiteframe-4dp" md-component-id="quick-panel" ms-scroll                ui-view="quickPanel"></md-sidenav></div>'
-        final_html = full_html.replace('DJANGULAR_USERNAME', username)
-        return HttpResponse(final_html)
-
-
-class DynamicHTMLSubNavbarView(APIView):
-    permission_classes = (AllowAny,)
-    def get(self, request, format=None):
-        full_html = '<md-toolbar class="navigation-header md-whiteframe-1dp" layout="row" layout-align="space-between center"><div class="logo" layout="row" layout-align="start center">NAV_BAR_LOGO_HTML<span class="logo-text">NAV_BAR_TITLE</span></div><md-icon class="fold-toggle s18" md-font-icon="icon-backburger" hide show-gt-sm ng-click="vm.toggleMsNavigationFolded()"></md-icon></md-toolbar><ms-navigation class="scrollable" folded="vm.folded" ms-scroll="vm.msScrollOptions"></ms-navigation>'
-        username = request.user.username # DJANGULAR_USERNAME NAV_BAR_LOGO_HTML NAV_BAR_TITLE
-
-        navBar = NavigationBar.objects.filter(enabled=True)
-        try:
-            nav_bar_logo = navBar[0].logo_html_code
-            nav_bar_title = navBar[0].title
-            parsed1 = full_html.replace('NAV_BAR_LOGO_HTML', nav_bar_logo)
-            parsed2 = parsed1.replace('NAV_BAR_TITLE', nav_bar_title)
-            final_html = parsed2.replace('DJANGULAR_USERNAME', username)
-            return HttpResponse(final_html)
-        except:
-            final_html = full_html.replace('DJANGULAR_USERNAME', username)
-            return HttpResponse(final_html)
-
 
 
 class DynamicSplashScreenView(APIView):
@@ -252,40 +218,6 @@ class DynamicSplashScreenView(APIView):
         return HttpResponse(final_html)
 
 
-class DynamicHTMLToolbarView(APIView):
-    permission_classes = (AllowAny,)
-    def get(self, request, format=None):
-        # full_html = '<div layout="row" layout-align="start center">    <div layout="row" layout-align="start center" flex>   ' + \
-        #             '  <md-button id="navigation-toggle" class="md-icon-button" ng-click="vm.toggleSidenav(\'navigation\')"        ' + \
-        #             '           hide-gt-sm aria-label="Toggle navigation" translate                   translate-attr-aria-label="TOOLBAR.TOGGLE_NAVIGATION">     ' + \
-        #             '       <md-icon md-font-icon="icon-menu" class="icon"></md-icon>        </md-button>        <ms-shortcuts></ms-shortcuts>        <div class="toolbar-separator"></div>    </div>' + \
-        #             '<div layout="row" layout-align="start center">                <md-progress-circular id="toolbar-progress" ng-disabled="!$root.loadingProgress"  class="md-accent" md-diameter="32">' + \
-        #             '</md-progress-circular>                <div class="toolbar-separator"></div>        <md-menu-bar id="user-menu"> ' + \
-        #             ' <md-menu md-position-mode="left bottom">                <md-button class="user-button" ng-click="$mdOpenMenu()" ' + \
-        #             'aria-label="User settings"                           translate translate-attr-aria-label="TOOLBAR.USER_SETTINGS"> ' + \
-        #             '<div layout="row" layout-align="space-between center">                        <div class="avatar-wrapper"> ' + \
-        #             '<img md-menu-align-target class="avatar" src="/static/assets/images/avatars/profile.jpg">' + \
-        #             '<md-icon md-font-icon ng-class="vm.userStatus.icon"  ng-style="{\'color\': vm.userStatus.color }"' + \
-        #             'class="icon status s16"> </md-icon>  </div><span class="username" hide show-gt-sm> DJANGULAR_USERNAME</span> ' + \
-        #             ' <md-icon md-font-icon="icon-chevron-down" class="icon s16" hide-xs></md-icon> </div> ' + \
-        #             '      </md-button>                <md-menu-content width="3"><md-menu-item class="md-indent" ui-sref="app.pages_profile"> ' + \
-        #             '<md-icon md-font-icon="icon-account" class="icon"></md-icon><md-button>My Profile</md-button>    </md-menu-item>' + \
-        #             '<md-menu-divider></md-menu-divider>    <md-menu-item class="md-indent"><md-icon md-font-icon="icon-logout" class="icon"></md-icon><md-button ng-click="vm.logout()">Logout</md-button>' + \
-        #             '</md-menu-item></md-menu-content>    </md-menu></md-menu-bar><div class="toolbar-separator"></div></div></div>'
-
-        full_html = '<div layout="row" layout-align="start center">    <div layout="row" layout-align="start center" flex>   ' + \
-                    '  <md-button id="navigation-toggle" class="md-icon-button" ng-click="vm.toggleSidenav(\'navigation\')"        ' + \
-                    '           hide-gt-sm aria-label="Toggle navigation" translate                   translate-attr-aria-label="TOOLBAR.TOGGLE_NAVIGATION">     ' + \
-                    '       <md-icon md-font-icon="icon-menu" class="icon"></md-icon>        </md-button>         <div class="toolbar-separator"></div>    </div>' + \
-                    '<div layout="row" layout-align="start center">                <md-progress-circular id="toolbar-progress" ng-disabled="!$root.loadingProgress"  class="md-accent" md-diameter="32">' + \
-                    '</md-progress-circular>                <div class="toolbar-separator"></div>        <md-menu-bar id="user-menu"> ' + \
-                    '</md-menu-bar><div class="toolbar-separator"></div></div></div>'
-
-        username = request.user.username # DJANGULAR_USERNAME
-        final_html = full_html.replace('DJANGULAR_USERNAME', username)
-        print("USER NAME")
-        print(username)
-        return HttpResponse(final_html)
 
 
 class DynamicJavaScriptInjector(APIView):

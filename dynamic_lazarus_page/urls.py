@@ -3,8 +3,7 @@ from dynamic_lazarus_page import views
 
 from dynamic_lazarus_page.views import SampleAPI, CustomHtmlGenerator, DynamicIndexModule, SuperBasicModelView, \
     AngularFuseApplicationView, FuseAppComponentView, DynamicJavaScriptInjector, DynamicHTMLInjector, \
-    DynamicIndexRoute, NgIncludedHtmlView, DynamicHTMLToolbarView, DynamicHTMLSubNavbarView, \
-    DynamicHTMLMainNavbarView, DynamicSplashScreenView, OpenTADataFile, NgIncludedJsView
+    DynamicIndexRoute, NgIncludedHtmlView, DynamicSplashScreenView, OpenTADataFile, NgIncludedJsView
 
 
 
@@ -16,9 +15,7 @@ urlpatterns = [
     url(r'^DynamicIndexModule/', DynamicIndexModule.as_view(), name='DynamicIndexModule'),
     url(r'^DynamicIndexRoute/', DynamicIndexRoute.as_view(), name='DynamicIndexRoute'),
 
-    url(r'^DynamicHTMLToolbar/', DynamicHTMLToolbarView.as_view(), name=''),
-    url(r'^DynamicHTMLMainNavbar/', DynamicHTMLMainNavbarView.as_view(), name=''),
-    url(r'^DynamicHTMLSubNavbar/', DynamicHTMLSubNavbarView.as_view(), name=''),
+
     url(r'^DynamicSplashScreen/', DynamicSplashScreenView.as_view(), name=''),
 
     url(r'^OpenTADataFile/', OpenTADataFile.as_view(), name='OpenTADataFile'),
