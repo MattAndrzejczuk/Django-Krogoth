@@ -14,15 +14,15 @@
 .cm-s-colorforth span.cm-number      { color: #00c4ff; }
 .cm-s-colorforth span.cm-atom        { color: #606060; }
 
-.cm-s-colorforth span.cm-variable-2  { color: #EEE; }
-.cm-s-colorforth span.cm-variable-3, .cm-s-colorforth span.cm-type { color: #DDD; }
+.cm-s-colorforth span.cm-variable-2  { color: #a459ff; }
+.cm-s-colorforth span.cm-variable-3, .cm-s-colorforth span.cm-type { color: #ffc3fc; }
 .cm-s-colorforth span.cm-property    {}
 .cm-s-colorforth span.cm-operator    {}
 
 .cm-s-colorforth span.cm-meta        { color: yellow; }
 .cm-s-colorforth span.cm-qualifier   { color: #FFF700; }
 .cm-s-colorforth span.cm-bracket     { color: #cc7; }
-.cm-s-colorforth span.cm-tag         { color: #FFBD40; }
+.cm-s-colorforth span.cm-tag         { color: #ff9100; }
 .cm-s-colorforth span.cm-attribute   { color: #FFF700; }
 .cm-s-colorforth span.cm-error       { color: #f00; }
 

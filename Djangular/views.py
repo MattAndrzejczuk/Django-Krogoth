@@ -130,6 +130,9 @@ def index(request):
 
 
 
+
+
+
 class DynamicJavaScriptInjector(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
