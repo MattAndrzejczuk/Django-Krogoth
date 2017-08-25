@@ -1,0 +1,107 @@
+<div layout="column" style="padding: 15px">
+    <div style="padding: 20px">
+        <p>Organize all your raw HPI, UFO and CCX uploaded content here.</p>
+        <p>Create repositories to organize all your uploaded content i.e.
+            'Hovercraft Units' or 'Unofficial Patch Units'</p>
+        <p>Creating Arm Prime repositories simply allow you to organize your uploads if
+            you are planning to upload hundreds of unique unit HPI packages. You may want to
+            break them up into repositories to make the HPI Directory Explorer easier to navigate.</p>
+    </div>
+	<br />
+		  <md-input-container ng-if="vm.newRepositoryEditorMode === false" layout="row" layout-align="center center">
+			  <md-button ng-click="vm.newRepositoryEditorMode = true"
+						 style="width:30%"
+						 class="md-accent-bg">
+					create new mod project
+			  </md-button>
+		  </md-input-container>
+	<br />
+	
+      <md-input-container style="width:30%" ng-if="vm.newRepositoryEditorMode === true">
+        <label>New Mod Name</label>
+        <input ng-model="vm.newRepository.name">
+      </md-input-container>
+      <md-input-container style="width:30%" ng-if="vm.newRepositoryEditorMode === true">
+        <label>New Mod Description</label>
+        <textarea ng-model="vm.newRepository.description">
+		</textarea>
+      </md-input-container>
+      <md-input-container style="width:60%" ng-if="vm.newRepositoryEditorMode === true">
+        	<md-button  ng-click="vm.newRepositoryRESTfulPOST()" 
+				   		class="md-accent-bg">
+			Finalize and submit {{ vm.newRepository.title }}
+		    </md-button>
+		  <md-button ng-click="vm.newRepositoryEditorMode = false" 
+					 ng-if="vm.newRepositoryEditorMode === true"
+					 class="md-warn-bg">
+				cancel
+		  </md-button>
+      </md-input-container>
+
+    <div ng-hide="vm.thisControllerDidFullyLoad === false || vm.controllerIsReloading === true">
+        <table class="dataTable row-border hover" datatable="ng" dt-instance="vm.dtUploaderInstance"
+               dt-options="vm.dtUploaderOptions">
+            <thead>
+            <tr>
+                <th class="secondary-text">
+                    <div class="table-header">
+                        <span class="column-title">Created</span>
+                    </div>
+                </th>
+                <th class="secondary-text">
+                    <div class="table-header">
+                        <span class="column-title">Name</span>
+                    </div>
+                </th>
+                <th class="secondary-text">
+                    <div class="table-header">
+                        <span class="column-title">Description</span>
+                    </div>
+                </th>
+                <th class="primary-text">
+                    <div class="table-header">
+                        <span class="column-title">Selected</span>
+                    </div>
+                </th><!--
+                <th class="primary-text">
+                    <div class="table-header">
+                        <span class="column-title">Author</span>
+                    </div>
+                </th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="mod in ::vm.userRepoItems | orderBy : mod['id'] ">
+                <td>
+                    {{mod['created'] | date }}
+                </td>
+                <td>
+                    <span class="text-boxed m-0 indigo-bg white-fg">{{ mod['name'] }}</span>
+                </td>
+                <td>
+					{{ mod['description'] }}
+				</td>
+                <td>
+                    <md-button disabled ng-if="mod['is_selected']"
+                               class="md-grey-100-bg md-blue-grey-fg"> Selected
+                    </md-button>
+                    <md-button ng-click="vm.selectDtRepositoryRow(mod['id'])"
+                               ng-if="!mod['is_selected']"
+                               class="md-accent-bg md-grey-50-fg"> Select
+                    </md-button>
+                </td><!--
+                <td>
+					{{ mod['author'] }}
+				</td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+	
+	<md-button ng-click="vm.reloadMods()">
+		reload my mods
+	</md-button>
+	<pre>
+		{{ vm.userRepoItems | json }}
+	</pre>
+</div>

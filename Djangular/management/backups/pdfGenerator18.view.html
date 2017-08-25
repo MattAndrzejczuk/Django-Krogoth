@@ -1,0 +1,126 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+
+
+<md-button ng-click="vm.showDialog()"> show Dialog </md-button>
+<md-button ng-click="vm.canvasTest()"> Canvas Test </md-button>
+<md-button ng-click="vm.generateAllImagesToPDF()"> Elements named gallery </md-button>
+<md-button ng-click="vm.getInnerText()"> Canvas Test </md-button>
+
+                    <video width="500" 
+                           height="300" 
+                           style="z-index:20000;"
+                           muted
+						   autoplay
+                           loop="loop"
+                           id="videoPlayOnHover">
+                        <source id="videoSource" src="/static/rome.mp4" type="video/mp4" autostart="false">
+						Your browser does not support the video tag.
+                    </video> 
+
+<md-button ng-mouseover="hoverOnVideo()" ng-mouseleave="unhoverOnVideo()"> Video Hover </md-button>
+
+<canvas id="myCanvas"></canvas>
+        <div class="col-md-12" id="scrapeThis">
+            <div class="portlet light form-fit bordered">
+                <div class="col-md-12">
+                    <div name="summernote" class="summernote" id="summernote_1">
+                        <section id="posts-landing">
+                            <img id="studentProfile" src="..//static/upwork/student.png" style="margin-left:25%;" />
+                            <br />
+                            <h4>
+                                <b style="margin-left:35%;">Quarter Program Report -january - March'2017 </b>
+                            </h4>
+                            <br />
+                            <h4>
+                                <b style="margin-left:50%;"> On </b>
+                                <br />
+                            </h4>
+                            <h4>
+                                <b style="margin-left:55%;">Developement @ Valai School </b>
+                            </h4>
+                            <br />
+                            <h4>
+                                <b style="margin-left:45%;"> Presented to </b>
+                            </h4>
+                            <br />
+                            <img id="presentedTo" style="margin-left:42%;" src="/static/upwork/10-schoolLogo.png" />
+                            <h4>
+                                <b style="margin-left:50%;"> by </b>
+                            </h4>
+                            <br />
+                            <img id="presentedBy" style="margin-left:42%;" src="/static/upwork/10-schoolLogo.png" />
+                            <h4>
+                                <b>
+                                    <i>
+                                        <u>Program high lights</u>
+                                    </i>
+                                </b>
+                            </h4>
+                            <br />
+                            <h4 style="margin-left:5%;">
+                                <b>
+                                    During the reporting period, Valai school supported Development
+                                    program reached out to Staff from 11 unique schools
+                                </b>
+                            </h4>
+                            <h4 style="margin-left:8%;">
+                                <i>a) Total no. of staff reached in July, 2016: 1,149</i>
+                            </h4>
+                            <h4 style="margin-left:8%;">
+                                <i>b) Total no. of staff reached in August, 2016: 1,149</i>
+                            </h4>
+                            <h4 style="margin-left:8%;">
+                                <i>c) Total no. of staff reached in September, 2016: 443</i>
+                            </h4>
+                            <h4 style="margin-left:8%;">
+                                <i> 1. Special programs and events: </i>
+                            </h4>
+                            <h4 style="margin-left:8%;">
+                                <i>i) Development program was inaugurated in July, 2016 </i>
+                            </h4>
+                            <h4 style="margin-left:8%;">
+                                <i>ii) angular training was conducted in September, 2016 </i>
+                            </h4>
+                            <h4>
+                                <b><i><u>Gallery</u></i></b>
+                            </h4>
+                            <br /><br />
+                            <img name="gallery" style="width:45%" src="/static/upwork/IMG-20170513-WA0009.jpg" />
+                            <img name="gallery" style="width:45%" src="/static/upwork/IMG-20170513-WA0010.jpg" />
+                            <br /><br />
+                            <img name="gallery" style="width:45%" src="/static/upwork/IMG-20170513-WA0011.jpg" />
+                            <img name="gallery" style="width:45%" src="/static/upwork/IMG-20170513-WA0012.jpg" />
+                            <br /><br />
+                            <img name="gallery" style="width:45%" src="/static/upwork/IMG-20170513-WA0013.jpg" />
+                            <img name="gallery" style="width:45%" src="/static/upwork/IMG-20170513-WA0014.jpg" />
+                            <br /><br />
+                            <img name="gallery" style="width:45%" src="/static/upwork/IMG-20170513-WA0015.jpg" />
+                            <img name="gallery" style="width:45%" src="/static/upwork/IMG-20170513-WA0016.jpg" />
+                            <br /><br />
+                            <h4>
+                                <b><i><u>Chart</u></i></b>
+                            </h4>
+                            <br />
+                            <img name="chart" src="/static/upwork/graph22.gif" />
+
+                            <h4>
+                                <b><i><u>Feedback</u></i></b>
+                            </h4>
+                            <br />
+                            <img name="lastpage" style="width:100%" src="/static/upwork/thank-you-185078737-58adfa013df78c345b0837e7.jpg" /><br />
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-offset-9 col-md-4">
+                        <button type="submit" class="btn green" ng-click="vm.downloadPDF();">
+                            <i class="fa fa-check"></i>Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>

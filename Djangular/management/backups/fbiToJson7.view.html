@@ -1,0 +1,327 @@
+<!-- BLUE SECTOR -->
+<md-content layout="column" layout-align="center stretch" md-padding
+			id="SectorI" class="md-primary-bg md-hue-1">
+
+					<span class="md-headline">Converting Total Annihilation FBI to JSON</span>
+					<span class="md-subheading">Using Python 3.x</span>
+
+						<p>
+							An interesting thing about Total Annihilation data is how ahead of it's time the game 
+							engine was, regardless of the fact that TA has not seen a single update since 1998.
+						</p>
+						<p>
+							Total Annihilation data is represented by data structures which almost resemble the
+							JSON syntax. 
+						</p>
+						<p>
+							Below is a basic Python example which demonstrates how to convert any Weapon.TDF
+							into an array of Json objects. Converting TA data into JSON will allow us to
+							manipulate it later with any language of your choice such as JavaScript.
+						</p>
+</md-content>
+
+<hljs lang="python" class="source-code" layout="column" layout-align="center" flex ms-scroll>
+class WeaponTDFFetch():
+    def get(self, file_path):
+        try:
+            f3 = codecs.open(file_path, 'r', errors='replace')
+            tdf_without_comments = remove_comments(f3.read()).strip().replace('\n', '').replace('\t', '')
+        except:
+            f3 = open(file_path, 'r', errors='replace')
+            tdf_without_comments = remove_comments(f3.read()).strip().replace('\n', '').replace('\t', '')
+        # print(tdf_without_comments)
+        def parseNested(_tdf, nOBJECT_NAME):
+            # nOBJECT_NAME = 'DAMAGE'
+            nparsed_0 = _tdf.replace('[' + nOBJECT_NAME + ']', '')
+            nparsed_1 = nparsed_0.replace('', '')
+            nparsed_2 = nparsed_1.replace('[', '"')
+            nparsed_3 = nparsed_2.replace(']', '" :')
+            nparsed_4 = nparsed_3.replace('=', '" : "')
+            nparsed_5 = nparsed_4.replace(';', '", "')
+            nparsed_6 = nparsed_5.replace('{', '{ "')
+            nparsed_7 = nparsed_6.replace(', "}', '}')
+            nparsed_8 = nparsed_7.replace(', ""', ', "')
+            total_weapons = [m.start() for m in re.finditer('[' + nOBJECT_NAME + ']', _tdf)]
+            nparsed_9 = nparsed_8.replace('}{', '}, {', len(total_weapons) - 1)
+            nparsed_10 = '[' + nparsed_9 + ']'
+            tab_str = '	'
+            nparsed_11 = nparsed_10.replace('\t', '')
+            nparsed_12 = nparsed_11.replace('", "}', '"}')
+
+            _BrkStart = [m.start() for m in re.finditer('\[', _tdf)]
+            _BrkEnd = [m.start() for m in re.finditer('\}', _tdf)]
+            if len(_BrkStart) == len(_BrkEnd):
+                i = 0
+                for obj in _BrkStart:
+                    obj_name = _tdf[_BrkStart[i]:_BrkEnd[i]]
+                    is_nested = (_tdf[_BrkStart[i] - 1:_BrkStart[i] + 1])
+                    if is_nested:
+                        # print('IS NESTED: ')
+                        # print(obj_name)
+                        return obj_name
+                    i += 1
+        def parseBase(_tdf, bOBJECT_NAME):
+            # bOBJECT_NAME = 'Hellfire_LASER'
+            tdf_without_comments = remove_comments(_tdf)
+            parsed_0 = tdf_without_comments.replace('[' + bOBJECT_NAME + ']', '')
+            parsed_1 = parsed_0.replace('', '')
+            parsed_2 = parsed_1.replace('[', '"')
+            parsed_3 = parsed_2.replace(']', '" :')
+            parsed_4 = parsed_3.replace('=', '" : "')
+            parsed_5 = parsed_4.replace(';', '", "')
+            parsed_6 = parsed_5.replace('{', '{ "')
+            parsed_7 = parsed_6.replace(', "}', '}')
+            parsed_8 = parsed_7.replace(', ""', ', "')
+            total_weapons = [m.start() for m in re.finditer('[' + bOBJECT_NAME + ']', _tdf)]
+            parsed_9 = parsed_8.replace('}{', '}, {', len(total_weapons) - 1)
+            parsed_10 = parsed_9  # '[' + parsed_9 + ']'
+            tab_str = '	'
+            parsed_11 = parsed_10.replace('\t', '')
+            parsed_12 = parsed_11.replace('", "}', '"}')
+            # print('PARSING BASE')
+            # print(parsed_12)
+            return parsed_12
+        def getNestedType(_tdf):
+            _BrkStart = [m.start() for m in re.finditer('\[', _tdf)]
+            _BrkEnd = [m.start() for m in re.finditer('\]', _tdf)]
+            if len(_BrkStart) == len(_BrkEnd):
+                i = 0
+                for obj in _BrkStart:
+                    obj_name = _tdf[_BrkStart[i]:_BrkEnd[i]]
+                    is_nested = (_tdf[_BrkStart[i] - 1:_BrkStart[i] + 1])
+                    if is_nested:
+                        # print('GETTING NESTED TYPE')
+                        # print(obj_name.replace('[', ''))
+                        return obj_name.replace('[', '')
+                    i += 1
+        def getBaseType(_tdf):
+            _BrkStart = [m.start() for m in re.finditer('\[', _tdf)]
+            _BrkEnd = [m.start() for m in re.finditer('\]', _tdf)]
+            if len(_BrkStart) == len(_BrkEnd):
+                i = 0
+                for obj in _BrkStart:
+                    obj_name = _tdf[_BrkStart[i]:_BrkEnd[i]]
+                    is_nested = (_tdf[_BrkStart[i] - 1:_BrkStart[i] + 1])
+                    if is_nested:
+                        pass
+                        # print('GETTING BASE TYPE')
+                        # print(obj_name.replace('[', ''))
+                    return obj_name.replace('[', '')
+                    i += 1
+        dict_list = []
+        _tdf_prep = tdf_without_comments.replace(';}}[', ';}}|[')
+        split_tdf = _tdf_prep.split('|')
+        for item in split_tdf:
+            tdf_without_comments1 = (item)
+
+            nested_obj = parseNested(tdf_without_comments1.replace('\t', ''), getNestedType(tdf_without_comments1))
+            base_obj = parseBase(tdf_without_comments1.replace(nested_obj, ''), getBaseType(tdf_without_comments1))
+
+            baseobjectkeyname = getBaseType(tdf_without_comments1)
+            dictionary = {}
+            try:
+                dictionary = json.loads(base_obj)
+            except:
+                repairattempt1 = base_obj.replace(', " }', ' }')
+                dictionary = json.loads(repairattempt1)
+
+            dictionary[getNestedType(tdf_without_comments1)] = json.loads(
+                parseBase(nested_obj, getNestedType(tdf_without_comments1)))
+            dictionary['_REFERENCE_POINTER'] = baseobjectkeyname
+            dict_list.append(dictionary)
+           
+            # print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
+            # print((dict_list))
+            # print('✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ')
+
+        return (dict_list)
+</hljs>
+
+<!--
+<md-content layout="column" layout-align="start stretch" class="SlaveWrapper" id="SectorI">
+			<div flex="10" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-3">
+				<div flex></div>
+				<div flex="80" layout="column" layout-align="center start">
+					<span class="md-headline">Cavedog's Compression Formats</span>
+				</div>
+				<div flex></div>
+			</div>
+			<section flex="90" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+				<div flex>
+				</div>
+				
+				<div flex="80" layout="column" >
+				
+				<span flex="20"></span>
+					
+				
+				<span flex="20"></span>
+
+				</div>
+				
+				<div flex>
+				</div>
+			</section>
+</md-content>
+
+
+
+
+
+
+
+
+
+<md-content layout="column" layout-align="center stretch" class="SlaveWrapper" id="SectorI">
+			<div flex="10" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-3">
+				<div flex></div>
+				<div flex="80" layout="column" layout-align="center start">
+					<span class="md-headline">Saving &amp; Viewing Our Example View Controller</span>
+				</div>
+				<div flex></div>
+			</div>
+			<section flex="10" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+				<div flex>
+				</div>			
+				<div flex="80" layout="column" >
+					<p>
+						We'll set the properties of our Djangular Master View Controller with the following values:
+					</p>			
+				</div>			
+				<div flex>
+				</div>
+			</section>
+			<section flex="30" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+				<div flex="100" layout="column" layout-margin layout-padding class="img7">				
+				</div>
+			</section>
+			<section flex="20" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+				<div flex>
+				</div>			
+				<div flex="80" layout="column" >
+					<p>
+						In order to set the icon, you will need to use the Fuse icons list as a reference to get the css class name 
+						of the icon you wish to use:
+					</p>			
+				</div>			
+				<div flex>
+				</div>
+			</section>
+			<section flex="30" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+				<div flex="100" layout="column" layout-margin layout-padding class="img6">				
+				</div>
+			</section>
+</md-content>
+
+
+
+<md-content layout="column" layout-align="center stretch" class="SlaveWrapper" id="SectorI">
+			<div flex="20" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-3">
+				<div flex></div>
+				<div flex="80" layout="column" layout-align="center start">
+					<span class="md-headline">That's It! Preview It Live</span>
+				</div>
+				<div flex></div>
+			</div>
+			<section flex="20" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+				<div flex>
+				</div>			
+				<div flex="80" layout="column" >
+					<p>
+						This is what our Djangular app will now appear in the browser:
+					</p>			
+				</div>			
+				<div flex>
+				</div>
+			</section>
+			<section flex="60" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+				<div flex="100" layout="column" layout-margin layout-padding class="img8">				
+				</div>
+			</section>
+</md-content>
+-->
+
+
+
+
+<style>
+
+.img2 {
+    background-image: url("/static/first_djangular_mvc_2.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
+
+.img3 {
+    background-image: url("/static/first_djangular_mvc_3.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
+
+.img4 {
+    background-image: url("/static/first_djangular_mvc_4.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
+
+.img5 {
+    background-image: url("/static/first_djangular_mvc_5.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
+
+.img6 {
+    background-image: url("/static/first_djangular_mvc_6.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
+
+.img7 {
+    background-image: url("/static/first_djangular_mvc_7.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
+
+.img8 {
+    background-image: url("/static/first_djangular_mvc_8.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
+
+.MasterWrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.SlaveWrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.VideoWrapperMaster {
+    position: absolute;
+    top: -100;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	overflow: hidden;
+    z-index: 8;
+}
+
+.VideoWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	overflow: hidden;
+    z-index: 9;
+}
+</style>

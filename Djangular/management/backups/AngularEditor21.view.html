@@ -1,0 +1,71 @@
+<style>
+
+.fix-to-bottom {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    border: 3px solid #73AD21;
+}
+
+/*
+.CodeMirror {
+height: auto;
+}
+.CodeMirror-scroll {
+max-height: 1440px;
+}
+*/
+
+.MasterWrapper {
+    width: 100%;
+    height: 100%;
+}
+
+</style>
+<md-content class="MasterWrapper" layout="row">
+	<md-card flex="80" ms-scroll class="scrollable" >
+		<md-tabs md-dynamic-height md-border-bottom>
+			  <md-tab label="{{vm.editorContent['name']}} View">
+				<md-content class="md-padding">
+					<p>vm.editorContent['name']</p>
+					  <ui-codemirror ui-codemirror-opts="vm.editorOptions2" 
+									 ui-codemirror="{onLoad:vm.codemirrorLoadedView}">
+					  </ui-codemirror>
+				</md-content>
+			  </md-tab>
+			  <md-tab label="{{vm.editorContent['name']}} Controller">
+				<md-content class="md-padding">
+					<p>vm.editorContent['name']</p>
+					<ui-codemirror ui-codemirror-opts="vm.editorOptions" 
+								   ui-codemirror="{onLoad:vm.codemirrorLoaded}">
+					</ui-codemirror>
+				</md-content>
+			  </md-tab>
+			  <md-tab label="{{vm.editorContent['name']}} Module">
+				<md-content class="md-padding">
+					<p>vm.editorContent['name']</p>
+				    <ui-codemirror ui-codemirror-opts="vm.editorOptions3" 
+								   ui-codemirror="{onLoad:vm.codemirrorLoadedModule}">
+					</ui-codemirror>
+				</md-content>
+			  </md-tab>
+		</md-tabs>
+	</md-card>
+	<md-card flex="20" layout="column"flex="20" layout="column" ms-scroll class="scrollable" style="max-height:900px">		
+		<md-button ng-click="vm.getMasterViewControllers()" class="md-accent-bg red-50-fg">
+			Get Master Views
+		</md-button>
+		<md-button ng-click="vm.highlightKeyword('$http'); vm.highlightVm()" class="md-accent-bg red-50-fg">
+			Highlight VM
+		</md-button>
+		<md-button ng-click="vm.putMasterViewControllerDetail();" class="md-warn-bg md-hue-1 red-50-fg">
+			Save
+		</md-button>
+		<md-button 
+				   ng-repeat="mvc in vm.data"
+				   ng-click="vm.getMasterViewControllerDetail(mvc['id'])">
+				{{ mvc['title'] }}
+		</md-button>
+	</md-card>
+</md-content>

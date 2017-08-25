@@ -1,0 +1,106 @@
+<div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Upload HPI & UFO Files">
+        <md-content class="md-padding">
+          	<h1 class="md-display-2">Total Annihilation Upload Repository</h1>
+			<span class="md-headline">Upload destination: {{ vm.selectedRepo['name'] }}</span>
+          	<div class="slide-animate" 
+			   ng-include="'/dynamic_lazarus_page/NgIncludedHtml/?name=dataUploader'">
+			</div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Upload HPI Data" ng-click="vm.initDirectoryExplorerTabMiniCtrl()">
+        <md-content class="md-padding">
+          	<h1 class="md-display-2">Directory Explorer</h1>
+			<span class="md-headline">Showing Uploaded Files in {{ vm.selectedRepo['name'] }}</span>
+          	<div class="slide-animate" 
+			   ng-include="'/dynamic_lazarus_page/NgIncludedHtml/?name=hpiDirectoryExplorer'">
+			</div>
+        </md-content>
+      </md-tab>
+		<!--
+      <md-tab label="three">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Tab Three</h1>
+          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+        </md-content>
+      </md-tab>
+		-->
+    </md-tabs>
+  </md-content>
+</div>
+
+<!-- when showing the picture -->
+<style>
+    .ng-hide-remove {
+        animation: 0.5s flipInX ease;
+    }
+
+    @keyframes flipInX {
+        0% {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            transition-timing-function: ease-in;
+            opacity: 0;
+        }
+
+        40% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            transition-timing-function: ease-in;
+            transition-timing-function: ease-in;
+        }
+
+        60% {
+            transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+            transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+            transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+            opacity: 1;
+        }
+
+        80% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+            transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+            transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+        }
+
+        100% {
+            transform: perspective(400px);
+            transform: perspective(400px);
+            transform: perspective(400px);
+        }
+    }
+</style>
+
+<!-- when hiding the picture -->
+<style>
+    .ng-hide-add {
+        animation: 0.5s lightSpeedOut ease;
+    }
+
+    @keyframes lightSpeedOut {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            transform: translate3d(100%, 0, 0) skewX(30deg);
+            transform: translate3d(100%, 0, 0) skewX(30deg);
+            opacity: 0;
+        }
+    }
+
+    @keyframes lightSpeedOut {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            transform: translate3d(100%, 0, 0) skewX(30deg);
+            transform: translate3d(100%, 0, 0) skewX(30deg);
+            transform: translate3d(100%, 0, 0) skewX(30deg);
+            opacity: 0;
+        }
+    }
+</style>

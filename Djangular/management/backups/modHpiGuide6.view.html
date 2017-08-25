@@ -1,0 +1,294 @@
+<!-- BLUE SECTOR -->
+<md-content layout="column" layout-align="center stretch" class="SlaveWrapper" id="SectorI">
+			<div flex="10" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-3">
+				<div flex></div>
+				<div flex="80" layout="column" layout-align="center start">
+					<span class="md-headline">Total Annihilation: The Nuts and Bolts</span>
+					<span class="md-subheading">Published By <a href="http://units.tauniverse.com/tutorials/tadesign/tadesign/ta-files.htm">
+							Total Annihilation Universe</a> on November 7th, 1998 12:14 AM</span>
+				</div>
+				<div flex></div>
+			</div>
+	
+	
+			<section flex="80" layout="column" layout-padding
+					 layout-align="space-between stretch" class="md-primary-bg md-hue-2">
+					<div flex="40">
+						<p><i style="font-size: 11px">
+							A big thanks to <a href="http://units.tauniverse.com/tutorials/tadesign/tadesign/ta-files.htm">
+							Total Annihilation Universe</a> for hosting this very useful guide since 
+							1998! Without this useful documentation, ArmPrime would've been extremely difficult to
+							develop.</i>
+						</p>
+						<p >
+							The first step in understanding how Total Annihilation is put together is to understand where 
+							CaveDog put all their files, and what all the different files do. In Total Annihilation, 
+							everything begins with the HPI, UFO, and CCX files. 
+						</p>
+						<p >
+							CaveDog compresses all of their information into an HPI file. For all practical purposes, 
+							you can think of the HPI file like their own home-grown ZIP file, containing its own directory structure 
+							and groups of files. Since the addition of the expansion packs (The Core Contingency and Battle Tactics), 
+							as well as the addition of new units through their internet web page, 
+							fiiles with extensions of UFO and CCX were added. These other file extension, however, 
+							are formatted and compressed in the same way HPI files are compressed.
+						</p>
+					</div>
+
+					<div flex="60" layout="column">
+						<table align="center" flex="60"
+						   width="100%" class="h2" cellspacing="0" cellpadding="2" style="font-size: 12px">
+							  <tbody>
+							<tr>
+								<th style="font-size: 12px">File Extension</th>
+								<th style="font-size: 12px">Description</th>
+							  </tr>
+							  <tr class="altRow md-primary-bg md-hue-3">
+								<td valign="top" style="font-size: 12px" class="md-primary-bg md-hue-1"><b>HPI</b></td>
+								<td valign="top" style="font-size: 12px">
+								Nearly all of the original Total Annihilation data is stored
+								in HPI files.
+								<ul style="margin-top:0px;margin-left:25px;">
+								<li><b>totala1.hpi</b><br>
+								This is the "main" HPI file that is placed in your Total
+								Annihilation install directory (such as C:\CAVEDOG\TOTALA).
+
+								</li><li><b>totala2.hpi</b><br>
+								Found on the original TA Disc 1 (The Skirmish CD). Contains maps and
+								other miscellaneous bitmaps use for multiplayer games.
+
+								</li><li><b>totala3.hpi</b><br>
+								Found on the original TA Disc 1 (The Skirmish CD). Contains
+								information used during the installation of the Total Annihilation game from the original
+								CD's.
+
+								</li><li><b>totala4.hpi</b><br>
+								Found on the original TA Disc 2 (The Missions CD). Contains all the campaigns, maps, etc
+								</li></ul>
+								</td>
+							  </tr>
+							  <tr>
+								<td valign="top" class="md-primary-bg"><b>UFO</b></td>
+								<td valign="top">Typically used for the release of new units, UFO files almost
+								always contain the data needed for a single unit, map, or a small group of units.
+								Think of it as a "tiny HPI".</td>
+							  </tr>
+							  <tr class="altRow md-primary-bg md-hue-3">
+								<td valign="top" class="md-primary-bg md-hue-1"><b>CCX</b></td>
+								<td valign="top">Additional information specific to TA:CC (Total Annihilation:
+								The Core Contingency)
+								<ul style="margin-top:0px;margin-left:25px;">
+								<li><b>ccdata.ccx</b><br>
+								Additional data used by the TA:CC expansion pack, such as new units,
+								terrain features, etc.
+
+								</li><li><b>ccmaps.ccx</b><br>
+								Map information for the TA:CC expansion pack.
+
+								</li><li><b>ccmiss.ccx</b><br>
+								Mission information for the TA:CC expansion pack.
+								</li></ul>
+								</td>
+							  </tr>
+							</tbody>
+						</table>
+						<div flex="40">
+							Keeping in mind that the contents of an HPI, UFO, or CCX file is simply a compressed directory 
+							structure, you could just as easily create directories with the same names under 
+							your C:\CAVEDOG\TOTALA directory, and put the desired files in the appropriate places. 
+							Total Annihilation sees the contents of the compressed files exactly as it does the actual 
+							file system directory structure.
+						</div>
+					</div>
+				
+				
+			</section>
+	
+			<section flex="10" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+
+			</section>
+</md-content>
+
+<!--
+<md-content layout="column" layout-align="start stretch" class="SlaveWrapper" id="SectorI">
+			<div flex="10" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-3">
+				<div flex></div>
+				<div flex="80" layout="column" layout-align="center start">
+					<span class="md-headline">Cavedog's Compression Formats</span>
+				</div>
+				<div flex></div>
+			</div>
+			<section flex="90" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+				<div flex>
+				</div>
+				
+				<div flex="80" layout="column" >
+				
+				<span flex="20"></span>
+					
+				
+				<span flex="20"></span>
+
+				</div>
+				
+				<div flex>
+				</div>
+			</section>
+</md-content>
+
+
+
+
+<md-content layout="column" layout-align="center stretch" class="SlaveWrapper" id="SectorI">
+			<div flex="10" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-3">
+				<div flex></div>
+				<div flex="80" layout="column" layout-align="center start">
+					<span class="md-headline">Saving &amp; Viewing Our Example View Controller</span>
+				</div>
+				<div flex></div>
+			</div>
+			<section flex="10" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+				<div flex>
+				</div>			
+				<div flex="80" layout="column" >
+					<p>
+						We'll set the properties of our Djangular Master View Controller with the following values:
+					</p>			
+				</div>			
+				<div flex>
+				</div>
+			</section>
+			<section flex="30" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+				<div flex="100" layout="column" layout-margin layout-padding class="img7">				
+				</div>
+			</section>
+			<section flex="20" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+				<div flex>
+				</div>			
+				<div flex="80" layout="column" >
+					<p>
+						In order to set the icon, you will need to use the Fuse icons list as a reference to get the css class name 
+						of the icon you wish to use:
+					</p>			
+				</div>			
+				<div flex>
+				</div>
+			</section>
+			<section flex="30" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+				<div flex="100" layout="column" layout-margin layout-padding class="img6">				
+				</div>
+			</section>
+</md-content>
+
+
+
+<md-content layout="column" layout-align="center stretch" class="SlaveWrapper" id="SectorI">
+			<div flex="20" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-3">
+				<div flex></div>
+				<div flex="80" layout="column" layout-align="center start">
+					<span class="md-headline">That's It! Preview It Live</span>
+				</div>
+				<div flex></div>
+			</div>
+			<section flex="20" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+				<div flex>
+				</div>			
+				<div flex="80" layout="column" >
+					<p>
+						This is what our Djangular app will now appear in the browser:
+					</p>			
+				</div>			
+				<div flex>
+				</div>
+			</section>
+			<section flex="60" layout="row" layout-align="space-around stretch" class="md-primary-bg md-hue-2">
+				<div flex="100" layout="column" layout-margin layout-padding class="img8">				
+				</div>
+			</section>
+</md-content>
+-->
+
+
+
+
+<style>
+
+.img2 {
+    background-image: url("/static/first_djangular_mvc_2.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
+
+.img3 {
+    background-image: url("/static/first_djangular_mvc_3.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
+
+.img4 {
+    background-image: url("/static/first_djangular_mvc_4.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
+
+.img5 {
+    background-image: url("/static/first_djangular_mvc_5.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
+
+.img6 {
+    background-image: url("/static/first_djangular_mvc_6.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
+
+.img7 {
+    background-image: url("/static/first_djangular_mvc_7.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
+
+.img8 {
+    background-image: url("/static/first_djangular_mvc_8.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+}
+
+.MasterWrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.SlaveWrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.VideoWrapperMaster {
+    position: absolute;
+    top: -100;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	overflow: hidden;
+    z-index: 8;
+}
+
+.VideoWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	overflow: hidden;
+    z-index: 9;
+}
+</style>

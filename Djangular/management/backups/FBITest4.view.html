@@ -1,0 +1,95 @@
+<style>
+    .blurloading {
+        filter: blur(13px);
+        animation-duration: 0.8s;
+        background-color: blueviolet;
+    }
+</style>
+
+
+<div id="file-manager" class="page-layout simple right-sidenav" layout="row"
+     ng-class="{'blurloading': vm.isLoadingMod === true}">
+
+    <!-- MAIN SIDENAV (EXTRA SIDENAV) -->
+	<!--
+    <md-sidenav class="main-sidenav" md-component-id="main-sidenav"
+                ng-include="'/static/app/main/apps/lazarus/sidenavs/main/main-sidenav.html'" ms-scroll
+                ms-sidenav-helper>
+    </md-sidenav>
+	-->
+    <!-- / MAIN SIDENAV (EXTRA SIDENAV) -->
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+        <!-- HEADER -->
+        <div class="header md-accent-bg">
+            <div class="header-content" layout="row" layout-align="start center">
+            </div>
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+        <md-content class="content" flex ms-scroll>
+
+
+<md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="{{ mod['name'] }}" ng-repeat="mod in vm.customMods['mod_paths']" ng-click="vm.selectModNamed(mod['name'])" >
+<!--         <md-content class="md-padding">
+        </md-content> -->
+      </md-tab>
+</md-tabs>
+<md-button ng-click="vm.showCustomToast()">search</md-button>
+
+
+<md-input-container>
+  <label>Search</label>
+  <input type="text" ng-model="color" ng-model="searchText" md-maxlength="25" id="search_params">
+</md-input-container>
+
+<p>
+    showing results for: <b>{{vm.searchTextCustom}}</b>
+</p>
+
+<table class="simple list-view">
+    <thead>
+    <tr>
+        <th>Thumbnail</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Owner</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>HP</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="file in vm.files | filter:vm.searchTextCustom" ng-click="vm.select(file)"
+        ng-class="{'selected' : vm.selected['UnitName'].toLowerCase() === file['UnitName'].toLowerCase()}">
+        <td class="image"><img md-whiteframe="1" src="{{ file['_raw_json_dump'] }}"></td>
+        <td class="name">{{file['Name']}}</td>
+        <td class="type" >{{file['TEDClass']}}</td>
+        <td class="image" >
+            <img width="30" src="/static/assets/images/logos/{{file['Side']}}_logo.png">
+        </td>
+        <td class="owner" >{{file['Description']}}</td>
+        <td class="owner" >{{file['Category']}}</td>
+        <td class="owner" >{{file['MaxDamage']}}</td>
+    </tr>
+    </tbody>
+</table>
+        </md-content>
+        <!-- / CONTENT -->
+
+    </div>
+    <!-- / CENTER -->
+
+    <!-- SIDENAV -->
+    <!-- md-is-locked-open="$mdMedia('gt-md')" -->
+
+    <md-sidenav class="sidenav details-sidenav md-sidenav-right" md-is-locked-open="true"
+                md-component-id="details-sidenav"
+                ng-include="'/static/app/main/apps/lazarus/sidenavs/details/details-sidenav.html'" ms-scroll
+                ms-sidenav-helper>
+    </md-sidenav>
+    <!-- / SIDENAV -->
+
+</div>

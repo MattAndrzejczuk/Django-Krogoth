@@ -1,0 +1,149 @@
+<h1>{{ vm.viewName }}</h1>
+
+<div class="page-layout carded fullwidth" layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+
+        <!-- CONTENT HEADER -->
+
+        <!-- / CONTENT HEADER -->
+        <br><br>
+        <!-- CONTENT CARD -->
+        <div class="content-card" layout="column" flex>
+
+            <!-- CONTENT TOOLBAR -->
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="{{ mod['name'] }}" ng-repeat="mod in vm.customMods['mod_paths']" ng-click="vm.selectDirectory($index)" >
+                    <!--         <md-content class="md-padding">
+                            </md-content> -->
+                </md-tab>
+            </md-tabs>
+            <!-- </div> -->
+            <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <md-content class="content" flex ms-scroll>
+
+				{{ vm.customMods['mod_paths'][vm.selectedDirectory] }}
+                <div>
+
+
+                    <!-- <md-button ng-repeat="mod in vm.customMods['mod_paths']" class="md-raised md-primary" ng-click="vm.selectDirectory($index)">open {{ mod['name'] }}</md-button> -->
+
+
+
+                    <div layout="row" layout-align="space-between center">
+
+                        <div>
+                            <h3>Filter Options</h3>
+                        </div>
+                        <md-checkbox ng-model="vm.filteredByJsonified" aria-label="Show Data With TDF or FBI Data" ng-change="vm.toggleJsonifiedFilter()">
+                            Show Data With TDF or FBI Data
+                        </md-checkbox>
+                    </div>
+
+                    <table class="dataTable row-border hover" datatable="ng" dt-instance="vm.dtInstance" dt-options="vm.dtOptions" >
+                        <thead>
+                        <tr>
+                            <th class="primary-text">
+                                <div class="table-header">
+                                    <span class="column-title">File Name</span>
+                                </div>
+                            </th>
+                            <th class="secondary-text">
+                                <div class="table-header">
+                                    <span class="column-title">File Type</span>
+                                </div>
+                            </th>
+                            <th class="secondary-text">
+                                <div class="table-header">
+                                    <span class="column-title">Raw Data TDF</span>
+                                </div>
+                            </th>
+                            <th class="secondary-text">
+                                <div class="table-header">
+                                    <span class="column-title">Directory</span>
+                                </div>
+                            </th>
+                            <th class="secondary-text">
+                                <div class="table-header">
+                                    <span class="column-title">Download URL</span>
+                                </div>
+                            </th>
+                            <th class="secondary-text">
+                                <div class="table-header">
+                                    <span class="column-title">RESTful</span>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="mod in ::vm.selectedDirItems ">
+                            <td>{{ mod['file_name'] }}</td>
+                            <td>
+                                <span ng-if="mod['file_type'] === '.tdf'" class="text-boxed m-0 green-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+                                <span ng-if="mod['file_type'] === '.fbi'" class="text-boxed m-0 blue-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+                                <span ng-if="mod['file_type'] === '.3do'" class="text-boxed m-0 red-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+                                <span ng-if="mod['file_type'] === '.wav'" class="text-boxed m-0 orange-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+                                <span ng-if="mod['file_type'] === '.gaf'" class="text-boxed m-0 teal-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+                                <span ng-if="mod['file_type'] === '.cob'" class="text-boxed m-0 indigo-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+                                <span ng-if="mod['file_type'] === '.pcx'" class="text-boxed m-0 cyan-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+                                <span ng-if="mod['file_type'] === '.gui'" class="text-boxed m-0 deep-orange-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+                                <span ng-if="mod['file_type'] === '.txt'" class="text-boxed m-0 blue-grey-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+                                <span ng-if="mod['file_type'] === '.bmp'" class="text-boxed m-0 amber-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+                                <span ng-if="mod['file_type'] === '.bos'" class="text-boxed m-0 lime-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+                                <span ng-if="mod['file_type'] === '.gif'" class="text-boxed m-0 deep-purple-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+                            </td>
+                            <td>{{ mod['raw_data_tdf'] }}</td>
+                            <td>{{ mod['dir_type'] }}
+								<div ng-if="mod['dir_type'] === 'features'">
+									<md-button href="/LazarusII/FeatureTDFViewset/?encoded_path={{mod['mod_path_slug']}}{{ item.replace('.tdf','') }}"
+											   target="_blank"
+											   ng-repeat="item in mod['subdirectory_components']">
+										{{ item }}
+									</md-button>
+								</div>
+							</td>
+                            <td>
+                                <md-button
+                                        ng-if="mod['mod_path'] != 'nan' && (mod['dir_type'] === 'units' || mod['dir_type'] === 'weapons' || mod['dir_type'] === 'download')"
+                                        class="md-raised md-hue-1"
+                                        href="{{mod['mod_path']}}"
+                                        target="_blank">
+                                    Open {{mod['file_type']}}
+                                </md-button>
+                            </td>
+                            <td>
+                                <md-button class="md-raised md-accent" ng-click="vm.showAdvancedDialog($event, mod['file_name'], mod['file_type'], mod['mod_path_slug'])">
+                                    open {{ $index }}
+                                </md-button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+<!--
+                    <div ng-include="'/dynamic_lazarus_page/NgIncludedHtml/?name=open_ta_data'"></div>
+
+            <pre>
+                {{ vm.dtInstance | json }}
+            </pre>
+-->
+                </div>
+
+
+            </md-content>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>
