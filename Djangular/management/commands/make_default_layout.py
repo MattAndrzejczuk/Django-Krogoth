@@ -91,8 +91,8 @@ class Command(BaseCommand):
 
             mvc = DjangularMasterViewController(name='RegisterDjangular', title='Register')
             mvc.view_html = str_View
-            mvc.controller_js = str_Module
-            mvc.module_js = str_Controller
+            mvc.controller_js = str_Controller
+            mvc.module_js = str_Module
 
             mvc.category = cat
             mvc.icon = icon
@@ -110,8 +110,8 @@ class Command(BaseCommand):
 
             mvc = DjangularMasterViewController(name='userprofile', title='user profile')
             mvc.view_html = str_View
-            mvc.controller_js = str_Module
-            mvc.module_js = str_Controller
+            mvc.controller_js = str_Controller
+            mvc.module_js = str_Module
 
             mvc.category = cat
             mvc.icon = icon
@@ -129,8 +129,8 @@ class Command(BaseCommand):
 
             mvc = DjangularMasterViewController(name='mvc_editor', title='mvc editor')
             mvc.view_html = str_View
-            mvc.controller_js = str_Module
-            mvc.module_js = str_Controller
+            mvc.controller_js = str_Controller
+            mvc.module_js = str_Module
 
             mvc.category = cat
             mvc.icon = icon
@@ -148,8 +148,8 @@ class Command(BaseCommand):
 
             mvc = DjangularMasterViewController(name='dashboard', title='dashboard')
             mvc.view_html = str_View
-            mvc.controller_js = str_Module
-            mvc.module_js = str_Controller
+            mvc.controller_js = str_Controller
+            mvc.module_js = str_Module
 
             mvc.category = cat
             mvc.icon = icon
@@ -159,51 +159,29 @@ class Command(BaseCommand):
             self.stdout.write(self.style.WARNING('SKIPPING... dashboardMasterViewController'))
         #-------------------------------------------------------------------------
 
-        str_View = codecs.open('Djangular/management/default_templates/forums/view.html', 'r').read()
-        str_Module = codecs.open('Djangular/management/default_templates/forums/module.js', 'r').read()
-        str_Controller = codecs.open('Djangular/management/default_templates/forums/controller.js', 'r').read()
-        str_slaveView = codecs.open('Djangular/management/default_templates/forums/slaveview.html', 'r').read()
-        str_slaveController = codecs.open('Djangular/management/default_templates/forums/slavecontroller.js', 'r').read()
-        mvc = DjangularMasterViewController(name='forums', title='forums')
-        mvc.view_html = str_View
-        mvc.controller_js = str_Module
-        mvc.module_js = str_Controller
-        svc = DjangularSlaveViewController(name='Thread', title='Thread')
-        svc.view_html = str_slaveView
-        svc.controller_js = str_slaveController
-        svc.save()
-        mvc.category = cat
-        mvc.icon = icon
-        mvc.save()
-        mvc.djangular_slave_vc.add(svc)
-        mvc.save()
-        self.stdout.write(self.style.SUCCESS('ADDED... forumsMasterViewController'))
+
         # forumsMasterViewController---------------------------------------------------------
         try:
             str_View = codecs.open('Djangular/management/default_templates/forums/view.html', 'r').read()
             str_Module = codecs.open('Djangular/management/default_templates/forums/module.js', 'r').read()
             str_Controller = codecs.open('Djangular/management/default_templates/forums/controller.js', 'r').read()
             str_slaveView = codecs.open('Djangular/management/default_templates/forums/slaveview.html', 'r').read()
-            str_slaveController = codecs.open('Djangular/management/default_templates/forums/slavecontroller.js', 'r').read()
-
+            str_slaveController = codecs.open('Djangular/management/default_templates/forums/slavecontroller.js',
+                                              'r').read()
             mvc = DjangularMasterViewController(name='forums', title='forums')
             mvc.view_html = str_View
-            mvc.controller_js = str_Module
-            mvc.module_js = str_Controller
-
+            mvc.controller_js = str_Controller
+            mvc.module_js = str_Module
             svc = DjangularSlaveViewController(name='Thread', title='Thread')
             svc.view_html = str_slaveView
             svc.controller_js = str_slaveController
             svc.save()
-
             mvc.category = cat
             mvc.icon = icon
             mvc.save()
-
             mvc.djangular_slave_vc.add(svc)
             mvc.save()
-
-            self.stdout.write(self.style.SUCCESS( 'ADDED... forumsMasterViewController' ))
+            self.stdout.write(self.style.SUCCESS('ADDED... forumsMasterViewController'))
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... forumsMasterViewController'))
         #-------------------------------------------------------------------------
