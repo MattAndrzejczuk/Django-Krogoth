@@ -159,7 +159,28 @@ class Command(BaseCommand):
             self.stdout.write(self.style.WARNING('SKIPPING... dashboardMasterViewController'))
         #-------------------------------------------------------------------------
 
+        str_View = codecs.open('Djangular/management/default_templates/forums/view.html', 'r').read()
+        str_Module = codecs.open('Djangular/management/default_templates/forums/module.js', 'r').read()
+        str_Controller = codecs.open('Djangular/management/default_templates/forums/controller.js', 'r').read()
+        str_slaveView = codecs.open('Djangular/management/default_templates/forums/slaveview.html', 'r').read()
+        str_slaveController = codecs.open('Djangular/management/default_templates/forums/slavecontroller.js',
+                                          'r').read()
 
+        mvc = DjangularMasterViewController(name='forums', title='forums')
+        mvc.view_html = str_View
+        mvc.controller_js = str_Module
+        mvc.module_js = str_Controller
+
+        svc = DjangularSlaveViewController(name='Thread', title='Thread')
+        svc.view_html = str_slaveView
+        svc.controller_js = str_slaveController
+        svc.save()
+
+        mvc.djangular_slave_vc.add(svc)
+        mvc.category = cat
+        mvc.icon = icon
+        mvc.save()
+        self.stdout.write(self.style.SUCCESS('ADDED... forumsMasterViewController'))
         # forumsMasterViewController---------------------------------------------------------
         try:
             str_View = codecs.open('Djangular/management/default_templates/forums/view.html', 'r').read()
@@ -182,9 +203,9 @@ class Command(BaseCommand):
             mvc.category = cat
             mvc.icon = icon
             mvc.save()
-            self.stdout.write(self.style.SUCCESS( 'ADDED... dashboardMasterViewController' ))
+            self.stdout.write(self.style.SUCCESS( 'ADDED... forumsMasterViewController' ))
         except:
-            self.stdout.write(self.style.WARNING('SKIPPING... dashboardMasterViewController'))
+            self.stdout.write(self.style.WARNING('SKIPPING... forumsMasterViewController'))
         #-------------------------------------------------------------------------
 
 
