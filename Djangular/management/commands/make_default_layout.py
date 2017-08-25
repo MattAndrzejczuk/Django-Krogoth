@@ -173,7 +173,7 @@ class Command(BaseCommand):
             mvc.controller_js = str_Module
             mvc.module_js = str_Controller
 
-            svc = DjangularSlaveViewController(name='forums', title='forums')
+            svc = DjangularSlaveViewController(name='Thread', title='Thread')
             svc.view_html = str_slaveView
             svc.controller_js = str_slaveController
             svc.save()
