@@ -63,6 +63,20 @@ class Command(BaseCommand):
         except:
             cat = DjangularCategory.objects.get(name='icon-ubuntu')
 
+
+        mvc = DjangularMasterViewController(name='LoginDjangular', title='Login')
+        mvc.view_html = str_loginView
+        mvc.controller_js = str_loginController
+        mvc.module_js = str_loginModule
+
+        icon = DjangularIcon(name='icon-ubuntu', code='icon-ubuntu')
+        icon.save()
+
+        mvc.category = cat
+        mvc.icon = icon
+        mvc.save()
+        self.stdout.write(self.style.SUCCESS('ADDED... loginMasterViewController'))
+
         # loginMasterViewController---------------------------------------------------------
         try:
             mvc = DjangularMasterViewController(name='LoginDjangular', title='Login')
