@@ -57,13 +57,11 @@ class Command(BaseCommand):
             icon = DjangularIcon.objects.get(name='icon-ubuntu')
 
         cat = DjangularCategory()
-        cat = DjangularCategory(name='Administration', code='nan')
-        cat.save()
         try:
             cat = DjangularCategory(name='Administration', code='nan')
             cat.save()
         except:
-            cat = DjangularCategory.objects.get(name='icon-ubuntu')
+            cat = DjangularCategory.objects.get(name='Administration')
 
 
         mvc = DjangularMasterViewController(name='LoginDjangular', title='Login')
