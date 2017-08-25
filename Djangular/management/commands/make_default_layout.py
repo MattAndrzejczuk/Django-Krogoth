@@ -68,10 +68,6 @@ class Command(BaseCommand):
         mvc.view_html = str_loginView
         mvc.controller_js = str_loginController
         mvc.module_js = str_loginModule
-
-        icon = DjangularIcon(name='icon-ubuntu', code='icon-ubuntu')
-        icon.save()
-
         mvc.category = cat
         mvc.icon = icon
         mvc.save()
@@ -83,9 +79,6 @@ class Command(BaseCommand):
             mvc.view_html = str_loginView
             mvc.controller_js = str_loginController
             mvc.module_js = str_loginModule
-
-            icon = DjangularIcon(name='icon-ubuntu', code='icon-ubuntu')
-            icon.save()
 
             mvc.category = cat
             mvc.icon = icon
