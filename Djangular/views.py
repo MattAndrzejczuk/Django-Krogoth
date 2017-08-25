@@ -19,11 +19,10 @@ from PIL import Image
 
 from django.contrib.auth.models import User
 from Djangular.models import DjangularMasterViewController, DjangularCategory, DjangularIcon
-
-
 from GeneralWebsiteInfo.models import BootScreenLoader
-from rest_framework.permissions import IsAuthenticated, AllowAny
 
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from DatabaseSandbox.models import VisitorLogSB
 
@@ -32,7 +31,6 @@ from Djangular.models import DjangularService, DjangularDirective, DjangularSlav
 
 from rest_framework import status
 from rest_framework import viewsets
-
 from Djangular.serializers import SampleModelOneSerializer
 
 import subprocess
@@ -134,6 +132,7 @@ def index(request):
 
 
 class DynamicJavaScriptInjector(APIView):
+    authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
         name = request.GET['name']
@@ -231,6 +230,7 @@ class DynamicJavaScriptInjector(APIView):
 
 
 class DynamicHTMLInjector(APIView):
+    authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
         name = request.GET['name']
@@ -250,6 +250,7 @@ class DynamicHTMLInjector(APIView):
 
 
 class DynamicHTMLSlaveInjector(APIView):
+    authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
     def get(self, request, id, format=None):
         slave_application = DjangularSlaveViewController.objects.get(id=id)
@@ -257,6 +258,7 @@ class DynamicHTMLSlaveInjector(APIView):
 
 
 class DynamicJavaScriptSlaveInjector(APIView):
+    authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
     def get(self, request, id, format=None):
         slave_application = DjangularSlaveViewController.objects.get(id=id)

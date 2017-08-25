@@ -37,7 +37,8 @@ ALLOWED_HOSTS = ['*']
 REST_FRAMEWORK = {
     'PAGE_SIZE': 20,
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',),
+        'rest_framework.permissions.AllowAny',
+    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         # 'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
