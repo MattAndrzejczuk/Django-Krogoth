@@ -199,10 +199,13 @@ class Command(BaseCommand):
             svc.controller_js = str_slaveController
             svc.save()
 
-            mvc.djangular_slave_vc.add(svc)
             mvc.category = cat
             mvc.icon = icon
             mvc.save()
+
+            mvc.djangular_slave_vc.add(svc)
+            mvc.save()
+            
             self.stdout.write(self.style.SUCCESS( 'ADDED... forumsMasterViewController' ))
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... forumsMasterViewController'))
