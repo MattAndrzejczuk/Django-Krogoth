@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from dynamic_lazarus_page.models import NgIncludedJs, NgIncludedHtml
-from Djangular.models import DjangularMasterViewController, DjangularIcon, DjangularCategory
+from Djangular.models import DjangularMasterViewController, DjangularIcon, \
+    DjangularCategory, DjangularSlaveViewController
 import codecs
 
 
@@ -48,7 +49,19 @@ class Command(BaseCommand):
         str_loginModule = codecs.open('Djangular/management/default_templates/login/module.js', 'r').read()
         str_loginController = codecs.open('Djangular/management/default_templates/login/controller.js', 'r').read()
 
+        icon = DjangularIcon()
+        try:
+            icon = DjangularIcon(name='icon-ubuntu', code='icon-ubuntu')
+            icon.save()
+        except:
+            icon = DjangularIcon.objects.get(name='icon-ubuntu')
 
+        cat = DjangularCategory()
+        try:
+            cat = DjangularCategory(name='Administration', code='nan')
+            cat.save()
+        except:
+            cat = DjangularCategory.objects.get(name='icon-ubuntu')
 
         # loginMasterViewController---------------------------------------------------------
         try:
@@ -56,9 +69,6 @@ class Command(BaseCommand):
             mvc.view_html = str_loginView
             mvc.controller_js = str_loginController
             mvc.module_js = str_loginModule
-
-            cat = DjangularCategory(name='Authentication', code='Authentication')
-            cat.save()
 
             icon = DjangularIcon(name='icon-ubuntu', code='icon-ubuntu')
             icon.save()
@@ -72,6 +82,81 @@ class Command(BaseCommand):
         #-------------------------------------------------------------------------
 
 
+        # registerMasterViewController---------------------------------------------------------
+        try:
+            str_View = codecs.open('Djangular/management/default_templates/register/view.html', 'r').read()
+            str_Module = codecs.open('Djangular/management/default_templates/register/module.js', 'r').read()
+            str_Controller = codecs.open('Djangular/management/default_templates/register/controller.js', 'r').read()
+
+            mvc = DjangularMasterViewController(name='RegisterDjangular', title='Register')
+            mvc.view_html = str_View
+            mvc.controller_js = str_Module
+            mvc.module_js = str_Controller
+
+            mvc.category = cat
+            mvc.icon = icon
+            mvc.save()
+            self.stdout.write(self.style.SUCCESS( 'ADDED... registerMasterViewController' ))
+        except:
+            self.stdout.write(self.style.WARNING('SKIPPING... registerMasterViewController'))
+        #-------------------------------------------------------------------------
+
+        # userprofileMasterViewController---------------------------------------------------------
+        try:
+            str_View = codecs.open('Djangular/management/default_templates/userprofile/view.html', 'r').read()
+            str_Module = codecs.open('Djangular/management/default_templates/userprofile/module.js', 'r').read()
+            str_Controller = codecs.open('Djangular/management/default_templates/userprofile/controller.js', 'r').read()
+
+            mvc = DjangularMasterViewController(name='userprofile', title='user profile')
+            mvc.view_html = str_View
+            mvc.controller_js = str_Module
+            mvc.module_js = str_Controller
+
+            mvc.category = cat
+            mvc.icon = icon
+            mvc.save()
+            self.stdout.write(self.style.SUCCESS( 'ADDED... userprofileMasterViewController' ))
+        except:
+            self.stdout.write(self.style.WARNING('SKIPPING... userprofileMasterViewController'))
+        #-------------------------------------------------------------------------
+
+        # mvc_editorMasterViewController---------------------------------------------------------
+        try:
+            str_View = codecs.open('Djangular/management/default_templates/mvc_editor/view.html', 'r').read()
+            str_Module = codecs.open('Djangular/management/default_templates/mvc_editor/module.js', 'r').read()
+            str_Controller = codecs.open('Djangular/management/default_templates/mvc_editor/controller.js', 'r').read()
+
+            mvc = DjangularMasterViewController(name='mvc_editor', title='mvc editor')
+            mvc.view_html = str_View
+            mvc.controller_js = str_Module
+            mvc.module_js = str_Controller
+
+            mvc.category = cat
+            mvc.icon = icon
+            mvc.save()
+            self.stdout.write(self.style.SUCCESS( 'ADDED... mvc_editorMasterViewController' ))
+        except:
+            self.stdout.write(self.style.WARNING('SKIPPING... mvc_editorMasterViewController'))
+        #-------------------------------------------------------------------------
+
+        # dashboardMasterViewController---------------------------------------------------------
+        try:
+            str_View = codecs.open('Djangular/management/default_templates/dashboard/view.html', 'r').read()
+            str_Module = codecs.open('Djangular/management/default_templates/dashboard/module.js', 'r').read()
+            str_Controller = codecs.open('Djangular/management/default_templates/dashboard/controller.js', 'r').read()
+
+            mvc = DjangularMasterViewController(name='dashboard', title='dashboard')
+            mvc.view_html = str_View
+            mvc.controller_js = str_Module
+            mvc.module_js = str_Controller
+
+            mvc.category = cat
+            mvc.icon = icon
+            mvc.save()
+            self.stdout.write(self.style.SUCCESS( 'ADDED... dashboardMasterViewController' ))
+        except:
+            self.stdout.write(self.style.WARNING('SKIPPING... dashboardMasterViewController'))
+        #-------------------------------------------------------------------------
 
         # toolbarController
         try:
