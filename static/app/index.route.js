@@ -1,13 +1,17 @@
 (function () {
     'use strict';
     angular.module('fuse').config(routeConfig);
-    /** @ngInject */ function routeConfig($stateProvider, $urlRouterProvider, $locationProvider) {
+    /** @ngInject */ function routeConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+
         $locationProvider.hashPrefix('!');
         $urlRouterProvider.otherwise('/home');
+
         var $cookies;
+
         angular.injector(['ngCookies']).invoke(['$cookies', function (_$cookies) {
             $cookies = _$cookies;
         }]);
+
         var layoutStyle = $cookies.get('layoutStyle') || 'verticalNavigation';
         var layouts = {
             verticalNavigation: {
@@ -37,6 +41,7 @@
                 navigation: ''
             }
         };
+
         $stateProvider.state('app', {
             abstract: true,
             views: {
@@ -52,5 +57,22 @@
                 }
             }
         });
+
+        $httpProvider.interceptors.push(function (userService) {
+            return {
+                request: function (req) {
+                    // Set the `Authorization` header for every outgoing HTTP request
+                    req.headers.Authorization = 'Token 72f4186c78ac72fb4d6fe803946d8753b8872715';
+                    return req;
+                }
+            };
+        }
+
+
+
+
+        ///*  - - - - - - - - - - - - - - - - - - - - - - - -  *///
     }
 })();
+
+
