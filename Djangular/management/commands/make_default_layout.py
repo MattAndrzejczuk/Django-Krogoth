@@ -57,6 +57,8 @@ class Command(BaseCommand):
             icon = DjangularIcon.objects.get(name='icon-ubuntu')
 
         cat = DjangularCategory()
+        cat = DjangularCategory(name='Administration', code='nan')
+        cat.save()
         try:
             cat = DjangularCategory(name='Administration', code='nan')
             cat.save()
