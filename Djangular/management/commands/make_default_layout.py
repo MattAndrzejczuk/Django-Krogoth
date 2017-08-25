@@ -64,14 +64,19 @@ class Command(BaseCommand):
             cat = DjangularCategory.objects.get(name='Administration')
 
 
-        mvc = DjangularMasterViewController(name='LoginDjangular', title='Login')
-        mvc.view_html = str_loginView
-        mvc.controller_js = str_loginController
-        mvc.module_js = str_loginModule
+
+
+        str_View = codecs.open('Djangular/management/default_templates/register/view.html', 'r').read()
+        str_Module = codecs.open('Djangular/management/default_templates/register/module.js', 'r').read()
+        str_Controller = codecs.open('Djangular/management/default_templates/register/controller.js', 'r').read()
+        mvc = DjangularMasterViewController(name='RegisterDjangular', title='Register')
+        mvc.view_html = str_View
+        mvc.controller_js = str_Module
+        mvc.module_js = str_Controller
         mvc.category = cat
         mvc.icon = icon
         mvc.save()
-        self.stdout.write(self.style.SUCCESS('ADDED... loginMasterViewController'))
+        self.stdout.write(self.style.SUCCESS('ADDED... registerMasterViewController'))
 
         # loginMasterViewController---------------------------------------------------------
         try:
