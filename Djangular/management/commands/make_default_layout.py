@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from dynamic_lazarus_page.models import NgIncludedJs, NgIncludedHtml
-from Djangular.models import DjangularMasterViewController, DjangularIcon, \
+from Djangular.models import DjangularMasterViewController, DjangularIcon, DjangularService, \
     DjangularCategory, DjangularSlaveViewController
 import codecs
 
@@ -172,13 +172,21 @@ class Command(BaseCommand):
             mvc.view_html = str_View
             mvc.controller_js = str_Controller
             mvc.module_js = str_Module
+
             svc = DjangularSlaveViewController(name='Thread', title='Thread')
             svc.view_html = str_slaveView
             svc.controller_js = str_slaveController
             svc.save()
+
+            str_Service = codecs.open('Djangular/management/default_templates/forums/CommunityForumService.js', 'r').read()
+            service = DjangularService(name='CommunityForumService', title='Community Forum Service RESTful CRUD')
+            service.service_js = str_Service
+            service.save()
+
             mvc.category = cat
             mvc.icon = icon
             mvc.save()
+            mvc.djangular_service.add(service)
             mvc.djangular_slave_vc.add(svc)
             mvc.save()
             self.stdout.write(self.style.SUCCESS('ADDED... forumsMasterViewController'))

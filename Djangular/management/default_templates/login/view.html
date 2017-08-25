@@ -1,35 +1,44 @@
-<div id="login-v2" layout="row" layout-align="start">
+<div id="login-v2" layout="row" layout-align="start" class=" md-background-bg">
     <div id="login-v2-intro" flex hide show-gt-sm>
-		<div class="logo md-background-bg">
+		<div class="logo">
 			<span>
-				<img src="/static/ArmLogoVector.svg" style="color:white;">
+				<img src="/static/ArmLogoVectorWhite.svg" style="color:white;">
 			</span>
 		</div>
         <div class="title" class="md-background-fg" style="color:white;">
-            Welcome to {{ vm.name }}!
+            Welcome to {{ vm.name }}
         </div>
         <div class="description" class="md-primary-fg" style="color:white;">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper nisl erat,
-            vel convallis elit fermentum pellentesque. Sed mollis velit facilisis facilisis viverra.
+            The most powerful Total Annihilation mod development tool in the galaxy. Browse a collection of thousands of
+			Total Annihilation units, and assemble them together quickly into a new mod project. This web-based mod builder will
+			destory all TA game data conflicts in seconds for Unit IDs, Weapon IDs, and 'download' command card buttons.
+
+			Join our discussions in the community forum, or send private messages to our members. You must have an Arm Prime
+			account in order to use any services provided on this site.
         </div>
     </div>
 
-    <div id="login-v2-form-wrapper" class="flex-scrollable md-whiteframe-8dp" ms-scroll>
-        <div id="login-v2-form">
-            <div class="logo md-accent-bg" hide-gt-sm>
-                <span>F</span>
+    <div id="login-v2-form-wrapper" class="flex-scrollable md-background-bg" ms-scroll>
+        <div id="login-v2-form" class="md-background-bg" style="height:100%;">
+            <div class="logo" hide-gt-sm>
+			<span>
+				<img src="/static/ArmLogoVector.svg">
+			</span>
             </div>
 
-            <div class="title" translate="LOGIN_V2.TITLE">Log in to {{ vm.name }}</div>
-            <div class="description" translate="LOGIN_V2.DESCRIPTION">Sed mollis velit facilisis facilisis viverra</div>
+            <div class="title md-background-fg md-hue-3">Log in to {{ vm.name }}</div>
+            <div class="description md-background-fg md-hue-3">
+				Please sign in to access our large collection of Total Annihilation game assets, mod builder, HPI/UFO uploader and 					more.
+			</div>
 
             <form name="loginForm" novalidate>
                 <md-input-container class="md-block" md-no-float>
 					<!--<input type="email" name="email" ng-model="vm.form.email" placeholder="Email"
                            translate translate-attr-placeholder="LOGIN_V2.EMAIL"
                            ng-pattern="/^.+@.+\..+$/" required>-->
-					<input type="text" name="username" ng-model="vm.form.username" placeholder="Username"
-                           ng-pattern="/^[a-zA-Z0-9]*$/" required>
+					<label class="md-primary-fg md-hue-2">Username</label>
+					<input type="text" name="username" ng-model="vm.form.username"
+                           ng-pattern="/^[a-zA-Z0-9]*$/" required class="md-accent-fg">
                     <div ng-messages="loginForm.username.$error" role="alert" multiple>
                         <div ng-message="required">
                             <span>Username field is required</span>
@@ -41,12 +50,12 @@
                 </md-input-container>
 
                 <md-input-container class="md-block" md-no-float>
-                    <input type="password" name="password" ng-model="vm.form.password" placeholder="Password"
-                           translate translate-attr-placeholder="LOGIN_V2.PASSWORD"
-                           required>
+					<label class="md-primary-fg md-hue-2">Password</label>
+                    <input type="password" name="password" ng-model="vm.form.password"
+                           required class="md-accent-fg">
                     <div ng-messages="loginForm.password.$error" role="alert">
                         <div ng-message="required">
-                            <span translate="LOGIN_V2.ERRORS.PASSWORD_REQUIRED">Password field is required</span>
+                            <span>Password field is required</span>
                         </div>
                     </div>
                 </md-input-container>
@@ -54,17 +63,15 @@
                 <div class="remember-forgot-password" layout="row" layout-sm="column"
                      layout-align="space-between center">
                     <md-checkbox class="remember-me" ng-model="data.cb1" aria-label="Remember Me">
-                        <span translate="LOGIN_V2.REMEMBER_ME">Remember Me</span>
+                        <span class="md-background-fg md-hue-3">Remember Me</span>
                     </md-checkbox>
 
-                    <a ui-sref="app.pages_auth_forgot-password" class="forgot-password md-accent-color"
-                       translate="LOGIN_V2.FORGOT_PASSWORD">Forgot Password?</a>
+                    <a ui-sref="app.pages_auth_forgot-password" class="forgot-password">Forgot Password?</a>
                 </div>
 
                 <md-button class="md-raised md-accent submit-button" aria-label="LOG IN"
 						   ng-click="vm.clickLogin(loginForm.$invalid || loginForm.$pristine)"
-                           ng-disabled="loginForm.$invalid || loginForm.$pristine"
-                           translate="LOGIN_V2.LOG_IN" translate-attr-aria-label="LOGIN_V2.LOG_IN">
+                           ng-disabled="loginForm.$invalid || loginForm.$pristine">
                     LOG IN
                 </md-button>
             </form>
@@ -94,8 +101,8 @@
             </div>-->
 
             <div class="register" layout="row" layout-sm="column" layout-align="center center">
-                <span class="text" translate="LOGIN_V2.DONT_HAVE_ACCOUNT">Don't have an account?</span>
-                <a class="link" ui-sref="app.pages_auth_register-v2" translate="LOGIN_V2.CREATE_ACCOUNT">Create an
+                <span class="text md-background-fg md-hue-3">Don't have an account?</span>
+                <a class="link" ui-sref="app.RegisterDjangular">Create an
                     account</a>
             </div>
         </div>
