@@ -13,20 +13,24 @@
             }
             if (vm.uploadMiniControllerDidLoad === false) {
                 vm.popToastRepository('initializing FUSE_APP_NAMEController...');
-                $timeout(reload, 1000);
+                $timeout(reload, 2000);
             }
             vm.uploadMiniControllerDidLoad = true;
         }
 
-        vm.dtUploaderInstance = {};
-        vm.dtUploaderOptions = {
-            dom: '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
-            pagingType: 'simple',
-            autoWidth: false,
-            responsive: true,
-            order: [1, 'desc']
-        };
+        var defaultTabName = document.getElementById("DjangularMetaText_01").innerHTML;
+        document.getElementById("DjangularMetaText_01").innerHTML = 'ArmPrime Mods';
 
+        /*
+                vm.dtUploaderInstance = {};
+                vm.dtUploaderOptions = {
+                    dom: '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
+                    pagingType: 'simple',
+                    autoWidth: false,
+                    responsive: true,
+                    order: [1, 'desc']
+                };
+        */
         vm.userRepoItems = [];
         vm.thisControllerDidFullyLoad = false;
         vm.controllerIsReloading = false;
@@ -44,8 +48,8 @@
         function selectRepository(index) {
             vm.userRepoItems = vm.customMods['mod_paths'][index]['directories'];
             vm.selectedDirectory = index;
-            vm.dtUploaderInstance.rerender();
-            vm.dtUploaderInstance.reloadData();
+            //vm.dtUploaderInstance.rerender();
+            //vm.dtUploaderInstance.reloadData();
             if (name) {
                 vm.selectedDirectory = name;
             }
@@ -107,8 +111,8 @@
                         $log.info(vm.userRepoItems[i]);
                     }
                 }
-                vm.dtUploaderInstance.rerender();
-                vm.dtUploaderInstance.reloadData();
+                // vm.dtUploaderInstance.rerender();
+                // vm.dtUploaderInstance.reloadData();
                 vm.thisControllerDidFullyLoad = true;
             }, function errorCallback(response) {
                 vm.popToastRepository('Failed to load selected upload repositories.');
@@ -141,8 +145,8 @@
                         $log.info(vm.userRepoItems[i]);
                     }
                 }
-                vm.dtUploaderInstance.rerender();
-                vm.dtUploaderInstance.reloadData();
+                // vm.dtUploaderInstance.rerender();
+                // vm.dtUploaderInstance.reloadData();
                 vm.thisControllerDidFullyLoad = true;
             }, function errorCallback(response) {
                 vm.popToastRepository('Failed to load selected upload repositories.');

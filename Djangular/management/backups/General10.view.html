@@ -14,7 +14,8 @@
 	
     <section layout="row" layout-align="start center">
         <div >
-                <md-button ui-sref="app.General.Thread" class="md-accent md-hue-2 md-raised">
+                <md-button ui-sref="app.General.Thread" 
+						   class="md-hover-button-amber">
                     Create New Thread
                 </md-button>
 		</div>
@@ -42,7 +43,7 @@
                 <p>{{ thread['body'] }}</p>
             </md-card-content>
             <md-card-actions layout="row" layout-align="end center">
-                <md-button ui-sref="app.General.Thread({ id: thread['id'] })" class="md-primary md-hue-2 md-raised">
+                <md-button ui-sref="app.General.Thread({ id: thread['id'] })" class="md-hover-button-blue">
                     Open
                 </md-button>
                 <!--
@@ -56,3 +57,45 @@
         </md-card>
     </section>
 </md-content>
+
+<style>
+	.md-hover-button-purple:hover {
+        background-color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-purple {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+    }
+
+    .md-hover-button-amber:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+	
+    .md-hover-button-blue:hover {
+        background-color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-blue {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+    }
+
+    .md-icon-button-blue > .iconhover {
+        color: rgb(41,98,255) !important;
+    }
+</style>

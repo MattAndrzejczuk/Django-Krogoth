@@ -1,42 +1,60 @@
 <div id="register-v2" layout="row" layout-align="start">
     <div id="register-v2-intro" flex hide show-gt-sm>
-        <div class="logo md-accent-bg">
-            <span>F</span>
+		<div class="logo">
+			<span>
+				<img src="/static/ArmLogoVectorWhite.svg" style="color:white;">
+			</span>
+		</div>
+        <div class="title" class="md-background-fg" style="color:white;">
+            Welcome to {{ vm.name }}
         </div>
-        <div class="title">
-            Welcome to the FUSE!
-        </div>
-        <div class="description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper nisl erat,
-            vel convallis elit fermentum pellentesque. Sed mollis velit facilisis facilisis viverra.
+        <div class="description" class="md-primary-fg" style="color:white;">
+            The most powerful Total Annihilation mod development tool in the galaxy. Browse a collection of thousands of 
+			Total Annihilation units, and assemble them together quickly into a new mod project. This web-based mod builder will
+			destory all TA game data conflicts in seconds for Unit IDs, Weapon IDs, and 'download' command card buttons.
+			
+			Join our discussions in the community forum, or send private messages to our members. You must have an Arm Prime 
+			account in order to use any services provided on this site.
         </div>
     </div>
 
-    <div id="register-v2-form-wrapper" class="flex-scrollable md-whiteframe-8dp" layout="column" flex ms-scroll>
-        <div id="register-v2-form">
-            <div class="logo md-accent-bg" hide-gt-sm>
-                <span>F</span>
+    <div id="register-v2-form-wrapper" class="flex-scrollable md-blue-grey-900-bg" layout="column" flex ms-scroll>
+        <div id="register-v2-form" class="md-blue-grey-900-bg">
+			
+			
+			
+            <div class="logo" hide-gt-sm>
+			<span>
+				<img src="/static/ArmLogoVector.svg">
+			</span>
             </div>
-
-            <div class="title">Create an account</div>
-            <div class="description">Sed mollis velit facilisis facilisis viverra
-            </div>
+            <div class="title blue-grey-100-fg">Create a new {{ vm.name }} account</div>
+            <div class="description blue-grey-100-fg">
+				Please sign in to access our large collection of Total Annihilation game assets, mod builder, HPI/UFO uploader and 					more.
+			</div>
+			
+			
 
             <form name="registerForm" novalidate>
                 <md-input-container class="md-block" md-no-float>
-                    <input name="username" ng-model="vm.form.username" placeholder="Name"
-                           required>
+					<label class="md-primary-fg md-hue-2">Username</label>
+                    <input name="username" ng-model="vm.form.username" class="md-accent-fg"
+                           required ng-pattern="/^[a-zA-Z0-9]*$/">
                     <div ng-messages="registerForm.username.$error" role="alert">
                         <div ng-message="required">
                             <span >Username field is required</span>
+                        </div>
+                        <div ng-message="pattern">
+                            <span>Usernames cannot contain whitespaces or special characters.</span>
                         </div>
                     </div>
                 </md-input-container>
 
                 <md-input-container class="md-block" md-no-float>
-                    <input type="email" name="email" ng-model="vm.form.email" placeholder="Email"
+					<label class="md-primary-fg md-hue-2">Email Address</label>
+                    <input type="email" name="email" ng-model="vm.form.email" class="md-accent-fg"
                            ng-pattern="/^.+@.+\..+$/" required>
-                    <div ng-messages="registerForm.email.$error" role="alert" multiple>
+                    <div ng-messages="registerForm.email.$error" role="alert" multiple >
                         <div ng-message="required">
                             <span >Email field is required</span>
                         </div>
@@ -47,7 +65,8 @@
                 </md-input-container>
 
                 <md-input-container class="md-block" md-no-float>
-                    <input type="password" name="password" ng-model="vm.form.password" placeholder="Password"
+					<label class="md-primary-fg md-hue-2">Password</label>
+                    <input type="password" name="password" ng-model="vm.form.password" class="md-accent-fg"
                            required>
                     <div ng-messages="registerForm.password.$error" role="alert">
                         <div ng-message="required">
@@ -57,12 +76,15 @@
                 </md-input-container>
 
                 <md-input-container class="md-block" md-no-float>
-                    <input type="password" name="passwordConfirm" ng-model="vm.form.passwordConfirm"
-                           placeholder="Password (Confirm)"
-                           required>
+					<label class="md-primary-fg md-hue-2">Password (Confirm)</label>
+                    <input type="password" name="passwordConfirm" ng-model="vm.form.passwordConfirm" class="md-accent-fg"
+                           required ng-pattern="\b{{vm.form.password}}\b">
                     <div ng-messages="registerForm.passwordConfirm.$error" role="alert">
                         <div ng-message="required">
                             <span >Password (Confirm) field is required</span>
+                        </div>
+						<div ng-message="pattern">
+                            <span>Passwords do not match!</span>
                         </div>
                     </div>
                 </md-input-container>
@@ -70,21 +92,40 @@
                 <div class="terms" layout="row" layout-align="center center">
                     <md-checkbox name="terms" ng-model="data.cb1" aria-label="I read and accept" required></md-checkbox>
                     <div layout="row" layout-sm="column" layout-align="start center">
-                        <span >I read and accept</span>
-                        <a href="#" class="md-accent-color">terms and conditions</a>
+                        <span class="blue-grey-200-fg">I read and accept</span>
+                        <a ng-click="vm.showEula($event)" class="md-accent-color">terms and conditions</a>
                     </div>
                 </div>
 
-                <md-button type="submit" class="md-raised md-accent submit-button" aria-label="CREATE MY ACCOUNT"
+                <md-button type="submit" class="md-raised md-accent submit-button" 
+						   ng-click="vm.clickRegister(registerForm.$invalid || registerForm.$pristine)"
+						   aria-label="CREATE MY ACCOUNT"
                            ng-disabled="registerForm.$invalid || registerForm.$pristine">
                     CREATE MY ACCOUNT
                 </md-button>
             </form>
 
             <div class="login" layout="row" layout-sm="column" layout-align="center center">
-                <span class="text">Already have an account?</span>
+                <span class="text blue-grey-200-fg">Already have an account?</span>
                 <a class="link" ui-sref="app.LoginDjangular">Log in</a>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+::-webkit-input-placeholder { /* Chrome */
+  color: red;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: red;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: red;
+  opacity: 1;
+}
+:-moz-placeholder { /* Firefox 4 - 18 */
+  color: red !important;
+  opacity: 1;
+}
+</style>

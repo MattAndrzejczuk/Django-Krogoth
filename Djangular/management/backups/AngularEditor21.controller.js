@@ -40,10 +40,12 @@
         vm.codemirrorLoaded = codemirrorLoaded;
         vm.codemirrorLoadedModule = codemirrorLoadedModule;
         vm.codemirrorLoadedView = codemirrorLoadedView;
+        vm.collectStaticGET = collectStaticGET;
         vm.editorModel = {};
         vm.editorModuleJS = {};
         vm.editorViewHTML = {};
 
+        vm.docWasModified = false;
         vm.markTest = markTest;
         vm.data = [];
         vm.mvcCtrl = {};
@@ -69,7 +71,7 @@
             _editor.setOption('firstLineNumber', 0);
             // Events
             _editor.on("beforeChange", function() {
-                $log.info('codemirror : `beforeChange` called!');
+                vm.codeWillChange();
             });
             _editor.on("change", function() {
                 vm.codeChanged();
@@ -88,10 +90,10 @@
             _editor.setOption('firstLineNumber', 0);
             // Events
             _editor.on("beforeChange", function() {
-                $log.info('codemirror : `beforeChange` called!');
+                vm.codeWillChange();
             });
             _editor.on("change", function() {
-                /// vm.codeChanged();
+                vm.codeChanged();
             });
             vm.editorModuleJS = _editor;
             _editor.setValue("// Hello world.");
@@ -107,16 +109,17 @@
             _editor.setOption('firstLineNumber', 0);
             // Events
             _editor.on("beforeChange", function() {
-                $log.info('codemirror : `beforeChange` called!');
+                vm.codeWillChange();
             });
             _editor.on("change", function() {
-                /// vm.codeChanged();
+                vm.codeChanged();
             });
             vm.editorViewHTML = _editor;
             _editor.setValue("// Hello world.");
         }
         vm.getMasterViewControllers = getMasterViewControllers;
         vm.codeChanged = codeChanged;
+        vm.codeWillChange = codeWillChange;
         vm.highlightVm = highlightVm;
         vm.highlightKeyword = highlightKeyword;
         vm.putMasterViewControllerDetail = putMasterViewControllerDetail;
@@ -125,6 +128,12 @@
 
         function codeChanged() {
             $log.info('codemirror : `change` called!');
+            vm.docWasModified = true;
+        }
+
+        function codeWillChange() {
+            $log.info('codemirror : `beforeChange` called!');
+            vm.docWasModified = true;
         }
 
         function highlightVm() {
@@ -157,6 +166,35 @@
                     });
                 }
             }
+
+            for (var j = 0; j < lineCount; j++) {
+                var temp = vm.editorModel.getDoc().getLine(j);
+                var count = (temp.match(/$mdToast/g) || []).length;
+                var step = 0;
+                for (var i = 0; i < count; i++) {
+                    var n = temp.indexOf("$mdToast", step);
+                    step = n;
+                    vm.editorModel.getDoc().markText({
+                        "line": j,
+                        "ch": n
+                    }, {
+                        "line": j,
+                        "ch": n + 8
+                    }, {
+                        "css": "color : #23FF83"
+                    });
+                    vm.editorModel.getDoc().markText({
+                        "line": j,
+                        "ch": n + 8
+                    }, {
+                        "line": j,
+                        "ch": n + 9
+                    }, {
+                        "css": "color : #00A0FF"
+                    });
+                }
+            }
+
         }
 
         function highlightKeyword(keyword) {
@@ -198,7 +236,116 @@
                     });
                 }
             }
+            for (var j = 0; j < lineCount; j++) {
+                var temp = vm.editorModel.getDoc().getLine(j);
+                var count = (temp.match(/mdToast/g) || []).length;
+                var step = 0;
+                for (var i = 0; i < count; i++) {
+                    var n = temp.indexOf('mdToast', step);
+                    step = n;
+                    vm.editorModel.getDoc().markText({
+                        "line": j,
+                        "ch": n
+                    }, {
+                        "line": j,
+                        "ch": n + 7
+                    }, {
+                        "css": "color : #FF9100"
+                    });
+                }
+            }
+            for (var j = 0; j < lineCount; j++) {
+                var temp = vm.editorModel.getDoc().getLine(j);
+                var count = (temp.match(/scope/g) || []).length;
+                var step = 0;
+                for (var i = 0; i < count; i++) {
+                    var n = temp.indexOf('scope', step);
+                    step = n;
+                    vm.editorModel.getDoc().markText({
+                        "line": j,
+                        "ch": n
+                    }, {
+                        "line": j,
+                        "ch": n + 5
+                    }, {
+                        "css": "color : #FF9100"
+                    });
+                }
+            }
+            for (var j = 0; j < lineCount; j++) {
+                var temp = vm.editorModel.getDoc().getLine(j);
+                var count = (temp.match(/Controller/g) || []).length;
+                var step = 0;
+                for (var i = 0; i < count; i++) {
+                    var n = temp.indexOf('Controller', step);
+                    step = n;
+                    vm.editorModel.getDoc().markText({
+                        "line": j,
+                        "ch": n
+                    }, {
+                        "line": j,
+                        "ch": n + 10
+                    }, {
+                        "css": "color : #A459FF"
+                    });
+                }
+            }
+            for (var j = 0; j < lineCount; j++) {
+                var temp = vm.editorModel.getDoc().getLine(j);
+                var count = (temp.match(/.on/g) || []).length;
+                var step = 0;
+                for (var i = 0; i < count; i++) {
+                    var n = temp.indexOf('cookies', step);
+                    step = n;
+                    vm.editorModel.getDoc().markText({
+                        "line": j,
+                        "ch": n
+                    }, {
+                        "line": j,
+                        "ch": n + 7
+                    }, {
+                        "css": "color : #D31895"
+                    });
+                }
+            }
+            for (var j = 0; j < lineCount; j++) {
+                var temp = vm.editorModel.getDoc().getLine(j);
+                var count = (temp.match(/mdDialog/g) || []).length;
+                var step = 0;
+                for (var i = 0; i < count; i++) {
+                    var n = temp.indexOf('mdDialog', step);
+                    step = n;
+                    vm.editorModel.getDoc().markText({
+                        "line": j,
+                        "ch": n
+                    }, {
+                        "line": j,
+                        "ch": n + 8
+                    }, {
+                        "css": "color : #D31895"
+                    });
+                }
+            }
+            for (var j = 0; j < lineCount; j++) {
+                var temp = vm.editorModel.getDoc().getLine(j);
+                var count = (temp.match(/state/g) || []).length;
+                var step = 0;
+                for (var i = 0; i < count; i++) {
+                    var n = temp.indexOf('$state', step);
+                    step = n;
+                    vm.editorModel.getDoc().markText({
+                        "line": j,
+                        "ch": n
+                    }, {
+                        "line": j,
+                        "ch": n + 6
+                    }, {
+                        "css": "color : #47DBE2"
+                    });
+                }
+            }
         }
+
 
         function getMasterViewControllers() {
             $http({
@@ -208,6 +355,7 @@
                 /// Success
                 $log.info('/Djangular/MasterViewControllerEditorList/');
                 vm.data = response.data;
+                document.getElementById("DjangularMetaText_01").innerHTML = 'Djangular Editor ';
             }, function errorCallback(response) {
                 /// Fail
                 $mdToast.show($mdToast.simple().textContent('Server Error - Login'));
@@ -231,9 +379,27 @@
                 vm.editorModel.doc.setValue(response.data['controller_js']);
                 vm.editorViewHTML.doc.setValue(response.data.view_html);
                 vm.input.mvcId = response.data.id;
+
+                document.getElementById("DjangularMetaText_01").innerHTML = 'Djangular Editor: ' + response.data.name + ')';
             }, function errorCallback(response) {
                 /// Fail
                 $mdToast.show($mdToast.simple().textContent('Server Error - Login'));
+            });
+        }
+
+
+        function collectStaticGET() {
+            $log.info('/LazarusII/AutoCollectStatic/');
+            $http({
+                method: 'GET',
+                url: '/LazarusII/AutoCollectStatic/'
+            }).then(function successCallback(response) {
+                /// Success
+
+                $mdToast.show($mdToast.simple().textContent('Django Finished Copying Static Files!'));
+            }, function errorCallback(response) {
+                /// Fail
+                $mdToast.show($mdToast.simple().textContent('Server Error - Collect Static'));
             });
         }
 
@@ -255,10 +421,22 @@
                 vm.editorModel.doc.setValue(response.data['controller_js']);
                 vm.editorViewHTML.doc.setValue(response.data.view_html);
                 $mdToast.show($mdToast.simple().textContent('Saved ' + vm.editorContent['title']));
+                vm.docWasModified = false;
             }, function errorCallback(response) {
                 /// Fail
                 $mdToast.show($mdToast.simple().textContent('Failed To Save Master View Controller.'));
             });
+        }
+
+
+        window.onbeforeunload = documentWillClose;
+
+        function documentWillClose() {
+            if (vm.docWasModified) {
+                if (vm.docWasModified === true) {
+                    return "Warning\n\nYou're about to close an unsaved document.\n\nContinue?";
+                }
+            }
         }
 
         ////// -----------

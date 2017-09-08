@@ -7,6 +7,8 @@
         vm.name = 'Arm Prime';
         vm.form = {};
 
+        var defaultTabName = document.getElementById("DjangularMetaText_01").innerHTML;
+        document.getElementById("DjangularMetaText_01").innerHTML = 'ArmPrime: Login - (' + defaultTabName.replace('Djangular', '') + ')';
 
         vm.clickLogin = clickLogin;
 
@@ -25,7 +27,7 @@
                     $log.info('Login Successful');
                     $log.debug(response.data);
                     $log.log(response.data.key);
-                    $mdToast.show($mdToast.simple().textContent('Login Successful'));
+                    $mdToast.show($mdToast.simple().textContent('Server Response: ' + response.status));
                     $cookies.put('token', response.data.key);
                     $state.go('app.home');
                 }, function errorCallback(response) {

@@ -13,10 +13,10 @@ import django_filters
 from rest_framework import permissions
 
 from LazarusDatabase.serializers import TotalAnnihilationModSerializer, SelectedAssetUploadRepositorySerializer, \
-    LazarusModProjectSerializer, LazarusModAssetSerializer, LazarusModDependencySerializer
+    LazarusModProjectSerializer, LazarusModAssetSerializer, LazarusModDependencySerializer, HPIUploadSerializer
 
 from LazarusDatabase.models import TotalAnnihilationMod, LazarusModProject, LazarusModAsset, \
-    LazarusModDependency, SelectedAssetUploadRepository
+    LazarusModDependency, SelectedAssetUploadRepository, HPIUpload
 
 from rest_framework.decorators import detail_route, list_route
 from rest_framework import status
@@ -37,9 +37,10 @@ class SelectedAssetUploadRepositoryViewset(viewsets.ModelViewSet):
     queryset = SelectedAssetUploadRepository.objects.all()
     serializer_class = SelectedAssetUploadRepositorySerializer
     permission_classes = (permissions.IsAuthenticated, )
-    filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('name', 'id', 'author',)
-    filter_class = SelectedAssetUploadRepositoryFilter
+
+    def get_queryset(self):
+        jawnuser = JawnUser.objects.get(base_user=self.request.user.id)
+        return SelectedAssetUploadRepository.objects.filter(author=jawnuser)
 
 
 
@@ -56,6 +57,16 @@ class LazarusModDependencyViewset(viewsets.ModelViewSet):
     queryset = LazarusModDependency.objects.all()
 
 
+from rest_framework.parsers import FileUploadParser
+
+class NewUploadDataTAView(APIView):
+    parser_classes = (FileUploadParser,)
+    def get(self, request, format=None):
+        return HttpResponse('yes...')
+
+class HPIUploadViewset(viewsets.ModelViewSet):
+    serializer_class = HPIUploadSerializer
+    queryset = HPIUpload.objects.all()
 
 
 
@@ -165,14 +176,43 @@ class CommanderAccountView(APIView):
 class UnitFBIFromSQLView(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
-        all_units = UnitFbiData.objects.all()
-        serialized_obj = serializers.serialize("json", all_units)
-        json_dict = json.loads(serialized_obj)
+
+        selected_mod = LazarusModProject()
+        jawnuser = JawnUser.objects.get(base_user=request.user.id)
+        queryset = LazarusModProject.objects.filter(created_by=jawnuser)
+        for mod in queryset:
+            if mod.is_selected == True:
+                selected_mod = mod
+                break
+
         list_response = []
-        for item in json_dict:
-            betterJson = item['fields']
-            list_response.append(betterJson)
-        return Response(list_response)
+        assets = LazarusModAsset.objects.filter(project_id=selected_mod.id)
+        for asset in assets:
+            asset_dependencies = LazarusModDependency.objects.filter(asset_id=asset.id)
+            for dependency in asset_dependencies:
+                if dependency.model_schema == 'UnitFbiData':
+                    unitFbiSQL = UnitFbiData.objects.filter(id=dependency.model_id)
+                    serialized_obj = serializers.serialize("json", unitFbiSQL)
+                    json_dict = json.loads(serialized_obj)
+                    json_dict[0]['fields']['ID'] = dependency.model_id
+                    list_response.append(json_dict[0]['fields'])
+
+        json_response = {
+            'list_response': list_response,
+            'mod': selected_mod.name,
+            'total_units': len(list_response)
+        }
+
+        return Response(json_response)
+
+        # all_units = UnitFbiData.objects.all()
+        # serialized_obj = serializers.serialize("json", all_units)
+        # json_dict = json.loads(serialized_obj)
+        # list_response = []
+        # for item in json_dict:
+        #     betterJson = item['fields']
+        #     list_response.append(betterJson)
+        # return Response(list_response)
 
 
 class WeaponTDFFromSQLView(APIView):

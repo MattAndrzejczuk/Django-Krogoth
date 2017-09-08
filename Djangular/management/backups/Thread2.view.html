@@ -1,4 +1,16 @@
 <style>
+    .md-hover-button-amber:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+
     .md-hover-button:hover {
         background-color: rgb(2, 136, 209) !important;
         border-color: rgb(2, 136, 209, 0) !important;
@@ -11,7 +23,7 @@
     }
 
     .md-hover-button:hover > .iconhover {
-        color: white !important;
+        color: rgb(60,66,82) !important;
     }
 
     .md-icon-button > .iconhover {
@@ -20,20 +32,19 @@
 </style>
 
 <div layout="column">
-    <section layout="row" layout-align="start stretch">
-        <div>
+    <section layout="column" layout-align="start stretch" layout-padding>
+        <div layout="row" layout-align="start center">
             <md-button aria-label="back"
                        class="md-icon-button md-accent md-hover-button"
                        ui-sref="app.General">
                 <md-icon class="iconhover" md-font-icon="icon-arrow-left"></md-icon>
             </md-button>
-
-        </div>
-        <div>
-            &nbsp;
-        </div>
-        <div>
-            <h1> {{ vm.viewName }}</h1>
+			<div>
+				&nbsp;
+			</div>
+			<div>
+				<h1> {{ vm.viewName }}</h1>
+			</div>
         </div>
     </section>
 
@@ -80,35 +91,15 @@
                 <p>{{ reply['body'] }}</p>
             </md-card-content>
             <md-card-actions layout="row" layout-align="center center">
-                <!--
-                <md-button ui-sref="app.General.Thread({ id: thread['id'] })" class="md-primary md-hue-2 md-raised">
-                    Open
-                </md-button>
 
-                    <md-card-icon-actions>
-                      <md-button class="md-icon-button" aria-label="icon">
-                        <md-icon md-svg-icon="/static/CoreLogoVector.svg"></md-icon>
-                      </md-button>
-                    </md-card-icon-actions>
-
- 
-
-                -->
             </md-card-actions>
         </md-card>
         <div layout="row" layout-align="center center" ng-if="vm.createReplyMode === false">
             <md-button ng-click="vm.addReply()"
 					   style="width: 30%"
-                       class="md-primary md-hue-2 md-raised">
+                       class="md-hover-button-amber">
                 Add Reply
             </md-button>
-			<!--
-            <md-button ui-sref="app.General.NewReply({ id: vm.listData['id'] })" 
-					   style="width: 30%"
-                       class="md-primary md-hue-2 md-raised">
-                Add Reply
-            </md-button>
-			-->
         </div>
     </div>
 
@@ -116,100 +107,31 @@
 	
 	
     <div layout="row">
-		<!--
-        <md-card ng-if="vm.createReplyMode === true" >
-            <md-card-content>
-                <md-input-container class="md-block">
-				  <textarea ng-model="vm.form.body" type="text"
-                            placeholder="Enter your reply for the thread named {{ vm.listData['title'] }}." ng-required="true"></textarea>
-                </md-input-container>
-            </md-card-content>
-            <md-card-actions layout="row" layout-align="center center">
-				<md-button class="md-warn md-hue-2 md-raised" ng-click="vm.addReply()">
-					Cancel
-				</md-button>
-				<md-button class="md-primary md-hue-2 md-raised" ng-click="vm.newReplyHttpPOSTRequest()">
-					Submit
-				</md-button>					
-            </md-card-actions>
-        </md-card>
-		-->
-		
-			
-
-
     </div>
-
-    <!--
-    <section ng-if="vm.createReplyMode == true">
-        <md-card class="md-background-bg md-hue-3">
-            <md-card-content>
-                <md-input-container class="md-block">
-				  <textarea ng-model="vm.form.body" type="text" placeholder="Body" ng-required="true">
-                </md-input-container>
-            </md-card-content>
-        </md-card>
-        <md-button
-                class="md-primary md-hue-2 md-raised">
-            Submit
-        </md-button>
-    </section>-->
 </div>
 
-<!--
-<md-content>
-        <md-card ng-if="vm.createThreadMode === true" >
-            <md-card-content>
-                <md-input-container md-no-float class="md-block">
-                    <input ng-model="vm.form.title" type="text" placeholder="Title">
-                </md-input-container>
-                <md-input-container class="md-block">
-				  <textarea ng-model="vm.form.body" type="text" 
-							placeholder="Enter the text contents for this new thread." 
-							ng-required="true">
-					</textarea>
-                </md-input-container>
-            </md-card-content>
-			<md-card-actions layout="row" layout-align="center center">
-				<md-button class="md-primary md-hue-2 md-raised" ng-click="vm.newThreadHttpPOSTRequest()">
-					Submit
-				</md-button>
-			</md-card-actions>
-        </md-card>
-</md-content>
--->
 
 <md-content ng-if="vm.createThreadMode === true">
             <md-input-container md-no-float class="md-block" flex style="width:89%;">
-                <input ng-model="vm.form.title" type="text" placeholder="Title">
+				<label class="md-primary-fg md-hue-2">New Thread Name</label>
+                <input ng-model="vm.form.title" type="text" class="md-accent-fg">
             </md-input-container>
         <md-card layout="column" layout-align="start center">
 			<div class="form" flex style="width:100%; margin:10px">
-                <textarea placeholder="Write something.." translate style="width:99%; margin:10px"
+                <textarea placeholder="Write something.." 
+						  class="md-accent-fg"
+						  style="width:99%; margin:10px; height: 300px; background-color: transparent"
 						  ng-model="vm.form.body"></textarea>
                 <footer layout="row" layout-align="space-between center">
                     <div layout="row" layout-align="start center">
-                        <md-button class="md-icon-button" aria-label="insert photo" translate
-                                   translate-attr-aria-label="PROFILE.INSERT_PHOTO">
+                        <md-button class="md-icon-button" aria-label="insert photo">
                             <md-icon md-font-icon="icon-file-image-box"></md-icon>
-                            <md-tooltip><span translate="PROFILE.INSERT_PHOTO">insert photo</span></md-tooltip>
-                        </md-button>
-
-                        <md-button class="md-icon-button" aria-label="add person" translate
-                                   translate-attr-aria-label="PROFILE.ADD_PERSON">
-                            <md-icon md-font-icon="icon-person-plus"></md-icon>
-                            <md-tooltip><span translate="PROFILE.ADD_PERSON">add person</span></md-tooltip>
-                        </md-button>
-
-                        <md-button class="md-icon-button" aria-label="add location" translate
-                                   translate-attr-aria-label="PROFILE.LOCATION">
-                            <md-icon md-font-icon="icon-map-marker"></md-icon>
-                            <md-tooltip><span translate="PROFILE.LOCATION">add location</span></md-tooltip>
+                            <md-tooltip><span>insert photo</span></md-tooltip>
                         </md-button>
                     </div>
 					<div layout="row" layout-align="end center">
-						<md-button ng-click="vm.newThreadHttpPOSTRequest()" class="post-button md-accent md-raised" aria-label="POST"
-								   translate="PROFILE.POST" translate-attr-aria-label="PROFILE.POST">
+						<md-button ng-click="vm.newThreadHttpPOSTRequest()" 
+								   class="md-hover-button-amber" aria-label="POST">
 							Submit
 						</md-button>
 					</div>
@@ -221,35 +143,26 @@
 <md-content ng-if="vm.createReplyMode === true">
         <md-card>
 			<div class="form" flex>
-                <textarea placeholder="Write something.." translate style="width:100%; margin:10px"
+                <textarea placeholder="Write your reply.." 
+						  class="md-accent-fg"
+						  style="width:100%; margin:10px; height: 300px; background-color: transparent"
 						  ng-model="vm.form.body"></textarea>
 
                 <footer layout="row" layout-align="space-between center">
                     <div layout="row" layout-align="start center">
-                        <md-button class="md-icon-button" aria-label="insert photo" translate
-                                   translate-attr-aria-label="PROFILE.INSERT_PHOTO">
+                        <md-button class="md-icon-button" aria-label="insert photo">
                             <md-icon md-font-icon="icon-file-image-box"></md-icon>
-                            <md-tooltip><span translate="PROFILE.INSERT_PHOTO">insert photo</span></md-tooltip>
-                        </md-button>
-
-                        <md-button class="md-icon-button" aria-label="add person" translate
-                                   translate-attr-aria-label="PROFILE.ADD_PERSON">
-                            <md-icon md-font-icon="icon-person-plus"></md-icon>
-                            <md-tooltip><span translate="PROFILE.ADD_PERSON">add person</span></md-tooltip>
-                        </md-button>
-
-                        <md-button class="md-icon-button" aria-label="add location" translate
-                                   translate-attr-aria-label="PROFILE.LOCATION">
-                            <md-icon md-font-icon="icon-map-marker"></md-icon>
-                            <md-tooltip><span translate="PROFILE.LOCATION">add location</span></md-tooltip>
+                            <md-tooltip><span>insert photo</span></md-tooltip>
                         </md-button>
                     </div>
 					<div layout="row" layout-align="end center">
-						<md-button class="md-warn md-hue-2 md-raised" ng-click="vm.addReply()">
+						<md-button class="md-hover-button-amber" 
+								   ng-click="vm.addReply()">
 							Cancel
 						</md-button>
-						<md-button ng-click="vm.newReplyHttpPOSTRequest()" class="post-button md-accent md-raised" aria-label="POST"
-								   translate="PROFILE.POST" translate-attr-aria-label="PROFILE.POST">
+						<md-button ng-click="vm.newReplyHttpPOSTRequest()" 
+								   class="md-hover-button-primary"
+								   aria-label="POST">
 							Submit
 						</md-button>
 					</div>

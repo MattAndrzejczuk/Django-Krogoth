@@ -30,4 +30,8 @@ urlpatterns = [
     url(r'^MasterViewControllerEditorDetail/',
         viewseditor.MasterViewControllerEditorDetailView.as_view(),
         name='MasterViewControllerEditorDetail'),
+
+    url(r'^DjangularModelForm/',
+        views.DjangularModelForm.as_view(),
+        name='Djangular Model Form'),
 ]

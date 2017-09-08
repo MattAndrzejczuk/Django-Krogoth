@@ -3,17 +3,26 @@
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="Upload HPI & UFO Files">
         <md-content class="md-padding">
-          	<h1 class="md-display-2">Total Annihilation Upload Repository</h1>
-			<span class="md-headline">Upload destination: {{ vm.selectedRepo['name'] }}</span>
+          	<h1 class="md-display-2 md-background-fg md-hue-3">Total Annihilation Upload Repository</h1>
+			<span class="md-headline md-background-fg md-hue-3">Upload destination: {{ vm.selectedRepo['name'] }}</span>
           	<div class="slide-animate" 
 			   ng-include="'/dynamic_lazarus_page/NgIncludedHtml/?name=dataUploader'">
 			</div>
+			
+			<input id="file_input" name="file" type="file">
+			
+                <md-button flow-btn 
+						   class="md-icon-button-blue md-hover-button-blue"
+						   ng-click="vm.startUpload()"
+                           aria-label="Add file">
+                    <md-icon md-font-icon="icon-cloud-upload"></md-icon>
+                </md-button>		
         </md-content>
       </md-tab>
       <md-tab label="Upload HPI Data" ng-click="vm.initDirectoryExplorerTabMiniCtrl()">
         <md-content class="md-padding">
-          	<h1 class="md-display-2">Directory Explorer</h1>
-			<span class="md-headline">Showing Uploaded Files in {{ vm.selectedRepo['name'] }}</span>
+          	<h1 class="md-display-2 md-background-fg md-hue-3">Directory Explorer</h1>
+			<span class="md-headline md-background-fg md-hue-3">Showing Uploaded Files in {{ vm.selectedRepo['name'] }}</span>
           	<div class="slide-animate" 
 			   ng-include="'/dynamic_lazarus_page/NgIncludedHtml/?name=hpiDirectoryExplorer'">
 			</div>
@@ -103,4 +112,61 @@
             opacity: 0;
         }
     }
+	.md-hover-button-purple:hover {
+        background-color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-purple {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+    }
+
+    .md-hover-button-amber-dark-bg:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber-dark-bg {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+	
+    .md-hover-button-amber-selected {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: white !important;
+    }
+    .md-hover-button-amber {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+	
+    .md-hover-button-blue:hover {
+        background-color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-blue {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+    }
+
+    .md-icon-button-blue > .iconhover {
+        color: rgb(41,98,255) !important;
+    }
+	
 </style>

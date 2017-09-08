@@ -7,16 +7,52 @@
 </style>
 
 
+
+	<div layout="row" layout="start start">
+		<span> &nbsp;&nbsp; </span>
+		<div style="margin-top:10px;">
+			<md-button aria-label="back" class="md-icon-button md-accent md-hover-button-2" ui-sref="app.LazarusMainMenu">
+				<md-icon class="iconhover-2" md-font-icon="icon-arrow-left"></md-icon>
+				<md-tooltip md-direction="bottom">Back to {{ vm.selectedMod }} Project Manager.</md-tooltip>
+			</md-button>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div>
+			<h1 class="breadcrubs taFont-large">LAZARUS MODS</h1>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div style="margin-top:12px;">
+			<md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div>
+			<h1 class="breadcrubs taFont-large">{{ vm.selectedMod | uppercase }}</h1>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div style="margin-top:12px;">
+			<md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div>
+			<h1 class="breadcrubs taFont-large">UNIT EDITOR</h1>
+		</div>
+	</div>
+
+
+
+
+
+
 <div id="file-manager" class="page-layout simple right-sidenav" layout="row"
      ng-class="{'blurloading': vm.isLoadingMod === true}">
 
     <!-- MAIN SIDENAV (EXTRA SIDENAV) -->
-	<!--
+    <!--
     <md-sidenav class="main-sidenav" md-component-id="main-sidenav"
                 ng-include="'/static/app/main/apps/lazarus/sidenavs/main/main-sidenav.html'" ms-scroll
                 ms-sidenav-helper>
     </md-sidenav>
-	-->
+    -->
     <!-- / MAIN SIDENAV (EXTRA SIDENAV) -->
 
     <!-- CENTER -->
@@ -24,58 +60,65 @@
         <!-- HEADER -->
         <div class="header md-accent-bg">
             <div class="header-content" layout="row" layout-align="start center">
+
             </div>
         </div>
         <!-- / HEADER -->
         <!-- CONTENT -->
         <md-content class="content" flex ms-scroll>
+			<br>
+			<span>&nbsp</span>
+			
+            <md-input-container layout-padding>
+                <label>Filter Units in {{ vm.selectedMod }}</label>
+                <input type="text" ng-model="color" ng-model="searchText" md-maxlength="25" id="search_params">
+            </md-input-container>
+			
+            <md-input-container layout-padding>
+                <md-button class="md-hover-button-purple" ng-click="vm.showCustomToast()">
+					search
+				</md-button>
+            </md-input-container>
 
+            <table class="simple list-view">
+                <thead>
+                <tr>
+                    <th>Thumbnail</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Owner</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>HP</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="file in vm.files | filter:vm.searchTextCustom" ng-click="vm.select(file)"
+                    ng-class="{'selected' : vm.selected['UnitName'].toLowerCase() === file['UnitName'].toLowerCase()}">
+                    <td class="image"><img md-whiteframe="1" src="{{ file['_raw_json_dump'] }}"></td>
+                    <td class="name">
+                        <md-button ng-click="vm.showFbiEditForm($event, file['ID'])"
+                                   class="md-hover-button-blue">
+                            {{file['Name']}}
+                        </md-button>
+                    </td>
+                    <td class="type">{{file['TEDClass']}}</td>
+                    <td class="image">
+                        <img width="30" src="/static/assets/images/logos/{{file['Side']}}_logo.png">
+                    </td>
+                    <td class="owner">{{file['Description']}}</td>
+                    <td class="owner">{{file['Category']}}</td>
+                    <td class="owner">{{file['MaxDamage']}}</td>
+                </tr>
+                </tbody>
+            </table>
 
-<md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="{{ mod['name'] }}" ng-repeat="mod in vm.customMods['mod_paths']" ng-click="vm.selectModNamed(mod['name'])" >
-<!--         <md-content class="md-padding">
-        </md-content> -->
-      </md-tab>
-</md-tabs>
-<md-button ng-click="vm.showCustomToast()">search</md-button>
+            <br>
+			
+<pre>
+	{{ vm.files | json }}
+</pre>
 
-
-<md-input-container>
-  <label>Search</label>
-  <input type="text" ng-model="color" ng-model="searchText" md-maxlength="25" id="search_params">
-</md-input-container>
-
-<p>
-    showing results for: <b>{{vm.searchTextCustom}}</b>
-</p>
-
-<table class="simple list-view">
-    <thead>
-    <tr>
-        <th>Thumbnail</th>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Owner</th>
-        <th>Description</th>
-        <th>Category</th>
-        <th>HP</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="file in vm.files | filter:vm.searchTextCustom" ng-click="vm.select(file)"
-        ng-class="{'selected' : vm.selected['UnitName'].toLowerCase() === file['UnitName'].toLowerCase()}">
-        <td class="image"><img md-whiteframe="1" src="{{ file['_raw_json_dump'] }}"></td>
-        <td class="name">{{file['Name']}}</td>
-        <td class="type" >{{file['TEDClass']}}</td>
-        <td class="image" >
-            <img width="30" src="/static/assets/images/logos/{{file['Side']}}_logo.png">
-        </td>
-        <td class="owner" >{{file['Description']}}</td>
-        <td class="owner" >{{file['Category']}}</td>
-        <td class="owner" >{{file['MaxDamage']}}</td>
-    </tr>
-    </tbody>
-</table>
         </md-content>
         <!-- / CONTENT -->
 
@@ -91,5 +134,84 @@
                 ms-sidenav-helper>
     </md-sidenav>
     <!-- / SIDENAV -->
-
 </div>
+
+
+<style>
+    .taFont-large {
+        font-family: Haettenschweiler;
+        font-size: 44px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 26px;
+        letter-spacing: 3px;
+    }
+    .breadcrubs {
+        line-height: 0px !important;
+    }
+	
+	
+	.md-hover-button-purple:hover {
+        background-color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+        color: white !important;
+        /* color: rgb(60,66,82) !important; */
+    }
+    .md-hover-button-purple {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+    }
+
+    .md-hover-button-blue:hover {
+        background-color: rgb(41, 98, 255) !important;
+        border-color: rgb(41, 98, 255) !important;
+        color: white !important;
+        /* color: rgb(60,66,82) !important; */
+    }
+    .md-hover-button-blue {
+        border-style: solid !important;
+        border-width: 1px !important;
+        color: rgb(41, 98, 255) !important;
+        border-color: rgb(41, 98, 255) !important;
+    }
+
+    .md-hover-button-blue-dialog:hover {
+        background-color: rgb(41, 98, 255) !important;
+        border-color: rgb(41, 98, 255) !important;
+        color: rgb(60, 66, 82) !important;
+    }
+
+    .md-hover-button-blue-dialog {
+        border-style: solid !important;
+        border-width: 1px !important;
+        color: rgb(41, 98, 255) !important;
+        border-color: rgb(41, 98, 255) !important;
+    }
+	
+	
+	/* 
+	      ICON BUTTON 
+	*/
+    .md-hover-button-2:hover {
+        background-color: #FF6F00 !important;
+        border-color: #FF6F00 !important;
+    }
+    .md-hover-button-2 {
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: #FF6F00 !important;
+    }
+    .md-hover-button-2:hover > .iconhover-2 {
+        color: rgb(60,66,82) !important;
+    }
+    .md-icon-button-2 > .iconhover-2 {
+        color: #FF6F00 !important;
+    }
+	/* 
+	      /ICON BUTTON 
+	*/
+	
+</style>

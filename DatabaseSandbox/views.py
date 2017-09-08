@@ -77,6 +77,8 @@ class KubaNetAnalytics(APIView):
         final_answer['visior_data'] = list_data
         return Response(final_answer)
 
+
+
 class UploadDataTA(APIView):
     # permission_classes = (AllowAny,)
     def get(self, request, format=None):
@@ -103,6 +105,10 @@ class UploadDataTA(APIView):
     def post(self, request, *args, **kwargs):
         import sys
 
+        print('\n\n\nUPLOAD FILE REQUEST NEW: ')
+        print(request.data['file'])
+        print('\n\nend of file data...')
+
         try:
             print('✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪')
             print(request.FILES.getlist('file'))
@@ -111,43 +117,42 @@ class UploadDataTA(APIView):
 
             for file_obj in request.FILES.getlist('file'):
                 print(file_obj)
-
-
                 randIntStr = str(random.randint(1, 1000)) + '_'
-
-
                 parseName1 = str(file_obj).replace(' ', '_')
                 parseName2 = parseName1.replace('-', '').lower()
                 parseName3 = randIntStr + parseName2.replace('+', '__')
-
-
-                # parseName4 = parseName3.replace('.', '')
-
                 server_msg = ''
-
                 path = default_storage.save('ta_data/' + parseName3, ContentFile(file_obj.read()))
                 print('path: %s' % path)
 
                 tmp_file = os.path.join(settings.MEDIA_ROOT, path)
 
+                # 177_arm_crabe.ufo
                 file_name_regular = str(path).replace('ta_data/', '').strip()
 
                 response = {'result': 'everything is finished ! ! ! ' + str(tmp_file)}
 
+                # ufo
                 file_type_parsed = file_name_regular[-3:]
 
+                # 177_arm_crabe
                 extraction_point_directory = file_name_regular.replace(file_name_regular[-4:],'')
+                ### mkdir /usr/src/persistent/media/ta_data/177_arm_crabe
                 os.system('mkdir '+ '/usr/src/persistent/media/ta_data/'+extraction_point_directory)
 
+                # /usr/src/persistent/media/ta_data/177_arm_crabe.ufo
                 ufo_path = '/usr/src/persistent/media/'+path
+                # /usr/src/persistent/media/ta_data/177_arm_crabe
                 output_path = '/usr/src/persistent/media/ta_data/'+extraction_point_directory
 
 
+                # sh extractTA_Mod.sh /usr/src/persistent/media/ta_data/177_arm_crabe.ufo /usr/src/persistent/media/ta_data/177_arm_crabe
                 bash_cmd = ['sh', 'extractTA_Mod.sh', ufo_path, output_path]
                 run_extraction_bash = str(subprocess.check_output(bash_cmd))
 
                 print(run_extraction_bash)
 
+                # bash bashRenameStuffToLowerInDirectory_public.sh 177_arm_crabe
                 rename_files_bash = "bash bashRenameStuffToLowerInDirectory_public.sh " + extraction_point_directory
                 os.system(rename_files_bash)
 

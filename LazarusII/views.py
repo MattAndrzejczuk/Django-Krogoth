@@ -690,6 +690,32 @@ class DownloadTDFViewset(APIView):
             nested_obj = parseNested(item, getNestedType(item))
             print(nested_obj)
 
+        # for item in split_tdf:
+        #     nested_type = getNestedType(item)
+        #     print("NESTED TYPE:  " + nested_type)
+        #     nested_obj = parseNested(item, nested_type)
+        #     print(nested_obj)
+        #     dictionary = json.loads(nested_obj)
+        #     dictionary['Object_Name'] = nested_type
+        #     dict_list.append(dictionary)
+        #
+        # print('JSON DUMPS: ')
+        # print(json.dumps(dict_list))
+        #
+        # ## SAVE TO SQL:
+        # for item in dict_list:
+        #     new_download = DownloadTDF()
+        #     new_download._DEV_root_data_path = file_path
+        #     get_pk_unit = UnitFbiData.objects.filter(UnitName__iexact=item['UNITNAME'])
+        #     new_download.parent_unit = get_pk_unit[0]
+        #     new_download.MENUENTRY = item['Object_Name']
+        #     new_download.BUTTON = item['BUTTON']
+        #     new_download.MENU = item['MENU']
+        #     new_download.UNITMENU = item['UNITMENU']
+        #     new_download.UNITNAME = item['UNITNAME']
+        #     new_download.save()
+        #     item['id'] = new_download.id
+
         for item in split_tdf:
             nested_type = getNestedType(item)
             print("NESTED TYPE:  " + nested_type)
@@ -697,26 +723,22 @@ class DownloadTDFViewset(APIView):
             print(nested_obj)
             dictionary = json.loads(nested_obj)
             dictionary['Object_Name'] = nested_type
+
+            new_download = DownloadTDF()
+            new_download._DEV_root_data_path = file_path
+            get_pk_unit = UnitFbiData.objects.filter(UnitName__iexact=dictionary['UNITNAME'])
+            new_download.parent_unit = get_pk_unit[0]
+            new_download.MENUENTRY = dictionary['Object_Name']
+            new_download.BUTTON = dictionary['BUTTON']
+            new_download.MENU = dictionary['MENU']
+            new_download.UNITMENU = dictionary['UNITMENU']
+            new_download.UNITNAME = dictionary['UNITNAME']
+            new_download.save()
+            dictionary['ID'] = new_download.id
             dict_list.append(dictionary)
 
         print('JSON DUMPS: ')
         print(json.dumps(dict_list))
-
-        ## SAVE TO SQL:
-        for item in dict_list:
-            new_download = DownloadTDF()
-
-            new_download._DEV_root_data_path = file_path
-
-            get_pk_unit = UnitFbiData.objects.filter(UnitName__iexact=item['UNITNAME'])
-            new_download.parent_unit = get_pk_unit[0]
-
-            new_download.MENUENTRY = item['Object_Name']
-            new_download.BUTTON = item['BUTTON']
-            new_download.MENU = item['MENU']
-            new_download.UNITMENU = item['UNITMENU']
-            new_download.UNITNAME = item['UNITNAME']
-            new_download.save()
 
         return Response(dict_list)
 

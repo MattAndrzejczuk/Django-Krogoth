@@ -53,19 +53,92 @@ max-height: 1440px;
 		</md-tabs>
 	</md-card>
 	<md-card flex="20" layout="column"flex="20" layout="column" ms-scroll class="scrollable" style="max-height:900px">		
-		<md-button ng-click="vm.getMasterViewControllers()" class="md-accent-bg red-50-fg">
+		<md-button ng-click="vm.getMasterViewControllers()" 
+				   class="md-hover-button-amber">
 			Get Master Views
 		</md-button>
-		<md-button ng-click="vm.highlightKeyword('$http'); vm.highlightVm()" class="md-accent-bg red-50-fg">
+		<md-button ng-click="vm.highlightKeyword('$http'); vm.highlightVm()" 
+				   class="md-hover-button-amber">
 			Highlight VM
 		</md-button>
-		<md-button ng-click="vm.putMasterViewControllerDetail();" class="md-warn-bg md-hue-1 red-50-fg">
+		<md-button ng-click="vm.collectStaticGET()" 
+				   class="md-hover-button-blue">
+			Collect Static
+		</md-button>
+		<md-button ng-click="vm.putMasterViewControllerDetail();" 
+				   class="md-hover-button-purple"
+				   ng-show="vm.docWasModified === true">
 			Save
 		</md-button>
-		<md-button 
+		<md-button class="md-hover-button-gray"
+				   ng-click="vm.putMasterViewControllerDetail();" 
+				   ng-show="vm.docWasModified === false">
+			Save
+		</md-button>
+		<md-button style="font-size:10px"
+				   class="md-primary-fg md-hue-2"
 				   ng-repeat="mvc in vm.data"
 				   ng-click="vm.getMasterViewControllerDetail(mvc['id'])">
 				{{ mvc['title'] }}
 		</md-button>
 	</md-card>
 </md-content>
+
+<style>
+    .md-hover-button-purple:hover {
+        background-color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-purple {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+    }
+
+    .md-hover-button-amber:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+	
+    .md-hover-button-gray:hover {
+        background-color: gray !important;
+        border-color: gray !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-gray {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: gray !important;
+        border-color: gray !important;
+    }
+	
+    .md-hover-button-blue:hover {
+        background-color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-blue {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+    }
+
+    .md-hover-button-blue:hover > .iconhover {
+        color: white !important;
+    }
+
+    .md-icon-button-blue > .iconhover {
+        color: rgb(41,98,255) !important;
+    }
+	
+</style>

@@ -14,7 +14,7 @@ class LazarusModAssetAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'type', 'project_id')
 
 class LazarusModDependencyAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'type', 'system_path', 'asset_id')
+    list_display = ('id', 'name', 'model_schema', 'model_id', 'system_path', 'asset_id')
 
 class SelectedAssetUploadRepositoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name',)

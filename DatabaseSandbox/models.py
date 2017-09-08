@@ -58,19 +58,27 @@ class BasicUploadTrackerSB(models.Model):
 
 
 class TotalAnnihilationUploadedFile(models.Model):
-    file_name = models.CharField(max_length=100)
-    download_url = models.CharField(max_length=255)
-    system_path = models.CharField(max_length=255)
+    file_name = models.CharField(max_length=100,help_text='Full name of this HPI/UFO file.')
+    download_url = models.CharField(max_length=255,help_text='System path to this HPI/UFO file.')
+    system_path = models.CharField(max_length=255,help_text='System path to the HPI extraction directory.')
 
-    designation = models.CharField(max_length=255,blank=True, null=True)
-    category = models.CharField(max_length=255, blank=True, null=True)
+    designation = models.CharField(max_length=255,
+                                   blank=True,
+                                   null=True,
+                                   help_text='The pointer name to the parent Asset Upload Repository.')
+    hpi_upload_id = models.CharField(max_length=255,
+                                     blank=True,
+                                     null=True,
+                                     help_text='The id of the origin HPIUpload model.')
     uploader = models.CharField(max_length=255, blank=True, null=True)
 
     is_public = models.BooleanField(default=True)
     is_terminated = models.BooleanField(default=False)
 
     file_type = models.CharField(max_length=10)
-    HPI_Extractor_Log = models.TextField(blank=True, null=True)
+    HPI_Extractor_Log = models.TextField(blank=True,
+                                         null=True,
+                                         help_text='The output result of EXE command that extracted this HPI/UFO.')
 
     def __str__(self):              # __unicode__ on Python 2
         return "%s" % self.file_name

@@ -1,3 +1,19 @@
+	<div layout="row" layout="start start">
+		<span> &nbsp;&nbsp; </span>
+		<div style="padding-top:10px;">
+			<!--
+			<md-button aria-label="back" class="md-icon-button md-accent md-hover-button-2" ui-sref="app.MyModProjects">
+				<md-icon class="iconhover-2" md-font-icon="icon-arrow-left"></md-icon>
+				<md-tooltip md-direction="bottom">Return To Your Mod Library</md-tooltip>
+			</md-button>
+			-->
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div>
+			<h1 class="breadcrubs">LAZARUS MODS</h1>
+		</div>
+	</div>
+
 <div layout="column" style="padding: 15px">
     <div style="padding: 20px">
         <p>Organize all your raw HPI, UFO and CCX uploaded content here.</p>
@@ -11,38 +27,65 @@
 		  <md-input-container ng-if="vm.newRepositoryEditorMode === false" layout="row" layout-align="center center">
 			  <md-button ng-click="vm.newRepositoryEditorMode = true"
 						 style="width:30%"
-						 class="md-accent-bg">
+						 class="md-hover-button-purple">
 					create new mod project
 			  </md-button>
 		  </md-input-container>
 	<br />
 	
       <md-input-container style="width:30%" ng-if="vm.newRepositoryEditorMode === true">
-        <label>New Mod Name</label>
-        <input ng-model="vm.newRepository.name">
+        <label class="md-primary-fg md-hue-2">New Mod Name</label>
+        <input ng-model="vm.newRepository.name" class="md-accent-fg">
       </md-input-container>
       <md-input-container style="width:30%" ng-if="vm.newRepositoryEditorMode === true">
-        <label>New Mod Description</label>
-        <textarea ng-model="vm.newRepository.description">
+        <label class="md-primary-fg md-hue-2">New Mod Description</label>
+        <textarea ng-model="vm.newRepository.description" class="md-accent-fg">
 		</textarea>
       </md-input-container>
       <md-input-container style="width:60%" ng-if="vm.newRepositoryEditorMode === true">
         	<md-button  ng-click="vm.newRepositoryRESTfulPOST()" 
-				   		class="md-accent-bg">
+				   		class="md-hover-button-amber">
 			Finalize and submit {{ vm.newRepository.title }}
 		    </md-button>
 		  <md-button ng-click="vm.newRepositoryEditorMode = false" 
 					 ng-if="vm.newRepositoryEditorMode === true"
-					 class="md-warn-bg">
+					 class="md-hover-button-purple">
 				cancel
 		  </md-button>
       </md-input-container>
-
-    <div ng-hide="vm.thisControllerDidFullyLoad === false || vm.controllerIsReloading === true">
-        <table class="dataTable row-border hover" datatable="ng" dt-instance="vm.dtUploaderInstance"
+	
+	
+	<section layout="column" style="width:100%">
+		<div ng-repeat="mod in vm.userRepoItems | orderBy : mod['id']" layout="row" layout-align="start center">
+                <span flex="25">
+                    {{mod['created'] | date }}
+                </span>
+                <span flex="25">
+                    <span class="text-boxed m-0 primary-bg white-fg">{{ mod['name'] }}</span>
+                </span>
+                <span flex="25">
+					{{ mod['description'] }}
+				</span>
+                <span flex="25">
+                    <md-button disabled ng-if="mod['is_selected']"
+                               class="md-hover-button-amber-selected"> Selected
+                    </md-button>
+                    <md-button ng-click="vm.selectDtRepositoryRow(mod['id'])"
+                               ng-if="!mod['is_selected']"
+                               class="md-hover-button-amber-select"> Select
+                    </md-button>
+                </span>
+		</div>
+	</section>
+	
+<!--
+    <div ng-hide="vm.thisControllerDidFullyLoad === false || vm.controllerIsReloading === true" >
+        <table class="dataTable row-border hover md-warn-bg md-hue-1" 
+			   datatable="ng" 
+			   dt-instance="vm.dtUploaderInstance"
                dt-options="vm.dtUploaderOptions">
-            <thead>
-            <tr>
+            <thead style="background-color: transparent">
+            <tr style="background-color: transparent">
                 <th class="secondary-text">
                     <div class="table-header">
                         <span class="column-title">Created</span>
@@ -50,7 +93,7 @@
                 </th>
                 <th class="secondary-text">
                     <div class="table-header">
-                        <span class="column-title">Name</span>
+                        <span class="column-title">Mod Project Name</span>
                     </div>
                 </th>
                 <th class="secondary-text">
@@ -62,46 +105,101 @@
                     <div class="table-header">
                         <span class="column-title">Selected</span>
                     </div>
-                </th><!--
-                <th class="primary-text">
-                    <div class="table-header">
-                        <span class="column-title">Author</span>
-                    </div>
-                </th>-->
+                </th>
             </tr>
             </thead>
-            <tbody>
-            <tr ng-repeat="mod in ::vm.userRepoItems | orderBy : mod['id'] ">
+            <tbody style="background-color: transparent">
+            <tr ng-repeat="mod in vm.userRepoItems | orderBy : mod['id'] " style="background-color: transparent">
                 <td>
                     {{mod['created'] | date }}
                 </td>
                 <td>
-                    <span class="text-boxed m-0 indigo-bg white-fg">{{ mod['name'] }}</span>
+                    <span class="text-boxed m-0 primary-bg white-fg">{{ mod['name'] }}</span>
                 </td>
                 <td>
 					{{ mod['description'] }}
 				</td>
                 <td>
                     <md-button disabled ng-if="mod['is_selected']"
-                               class="md-grey-100-bg md-blue-grey-fg"> Selected
+                               class="md-hover-button-amber-selected"> Selected
                     </md-button>
                     <md-button ng-click="vm.selectDtRepositoryRow(mod['id'])"
                                ng-if="!mod['is_selected']"
-                               class="md-accent-bg md-grey-50-fg"> Select
+                               class="md-hover-button-amber-select"> Select
                     </md-button>
-                </td><!--
-                <td>
-					{{ mod['author'] }}
-				</td>-->
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
+-->
 	
-	<md-button ng-click="vm.reloadMods()">
+	<md-button ng-click="vm.reloadMods()" class="md-hover-button-blue">
 		reload my mods
 	</md-button>
 	<pre>
 		{{ vm.userRepoItems | json }}
 	</pre>
 </div>
+
+<style>
+    .md-hover-button-purple:hover {
+        background-color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-purple {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+    }
+
+    .md-hover-button-amber-selected {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(98,0,234) !important;
+    }
+    .md-hover-button-amber:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+	.md-hover-button-amber-select:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(98,0,234) !important;
+    }
+	.md-hover-button-amber-select {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+    .md-hover-button-amber {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+	
+    .md-hover-button-blue:hover {
+        background-color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-blue {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+    }
+
+    .md-hover-button-blue:hover > .iconhover {
+        color: white !important;
+    }
+
+    .md-icon-button-blue > .iconhover {
+        color: rgb(41,98,255) !important;
+    }
+</style>

@@ -23,7 +23,6 @@ from rest_framework.routers import DefaultRouter
 from chat.views import *
 from django.contrib import admin
 # from rest_auth.views import LazarusListUnits
-
 import rest_auth
 
 router = DefaultRouter()
@@ -52,6 +51,7 @@ urlpatterns = [
     url(r'^admin_a9k/', admin.site.urls),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^$', rest_auth.views.index),
+    url(r'^GooglePlusOAuthCallback', rest_auth.views.GooglePlusOAuthCallbackView.as_view()),
     url(r'^armprime/', rest_auth.views.index),
     # url(r'^lazarus/', LazarusListUnits.as_view()),
     url(r'^api.lazarus/', include('lazarus.urls')),

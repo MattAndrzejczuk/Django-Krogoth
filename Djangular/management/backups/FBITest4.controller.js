@@ -6,7 +6,7 @@
         var vm = this;
         vm.viewName = 'FUSE_APP_NAME';
 
-
+        document.getElementById("DjangularMetaText_01").innerHTML = 'Lazarus Unit Editor';
 
         vm.accounts = {
             'creapond': 'johndoe@creapond.com',
@@ -40,10 +40,127 @@
         vm.dialogShowRawFbi = dialogShowRawFbi;
 
         vm.isDlgOpen = false;
-
         vm.closeToast = closeToast;
         vm.showCustomToast = showCustomToast;
 
+        vm.selectedMod = '';
+
+
+        vm.showFbiEditForm = showFbiEditForm;
+
+        function showFbiEditForm($event, fbiId) {
+            $http({
+                method: 'GET',
+                url: '/Djangular/DjangularModelForm/?model_name=UnitFbiData&model_id=' + fbiId
+            }).then(function successCallback(response) {
+                vm.playSoundClickSkirmish();
+                var dialogHtmlBody = response.data;
+                $mdDialog.show({
+                    targetEvent: $event,
+                    template: '<md-dialog>' +
+                        '<md-toolbar>' +
+                        '<div class="md-toolbar-tools">' +
+                        '<h2>{{ titleFromOutside }}</h2>' +
+                        '<span flex></span>' +
+                        '<md-button class="md-icon-button" ng-click="closeDialog()">' +
+                        '<md-icon class="icon-window-close" aria-label="Close dialog"></md-icon>' +
+                        '</md-button>' +
+                        '</div>' +
+                        '</md-toolbar>' +
+                        '<md-dialog-content class="md-dialog-content" layout="column" style="width:600px">' +
+
+                        '<div layout="row" layout-align="start center">' +
+                        '<md-checkbox ng-model="filter.cbCombat" aria-label="Combat">' +
+                        '<span class="md-background-fg md-hue-3">Combat</span>' +
+                        '</md-checkbox>' +
+
+                        '<md-checkbox ng-model="filter.cbOther" aria-label="Misc">' +
+                        '<span class="md-background-fg md-hue-3">Misc</span>' +
+                        '</md-checkbox>' +
+
+                        '<md-checkbox ng-model="filter.cbResources" aria-label="Misc">' +
+                        '<span class="md-background-fg md-hue-3">Resources</span>' +
+                        '</md-checkbox>' +
+                        '</div>' +
+
+                        '<div layout="row" layout-align="start center">' +
+                        '<md-checkbox ng-model="filter.cbPathfinder" aria-label="Misc">' +
+                        '<span class="md-background-fg md-hue-3">Pathfinder</span>' +
+                        '</md-checkbox>' +
+
+                        '<md-checkbox ng-model="filter.cbNameInfo" aria-label="Misc">' +
+                        '<span class="md-background-fg md-hue-3">NameInfo</span>' +
+                        '</md-checkbox>' +
+                        '</div>' +
+
+                        '<br>' +
+                        /// '<div class="md-dialog-content" layout="column" style="width:700px">' +
+                        dialogHtmlBody +
+                        /// '</div>' +
+                        '</md-dialog-content>' +
+                        '  <md-dialog-actions>' +
+                        '    <md-button ng-click="saveChanges()" class="md-hover-button-blue-dialog">' +
+                        '      save changes' +
+                        '    </md-button>' +
+                        '    <md-button ng-click="closeDialog()" class="md-hover-button-blue-dialog">' +
+                        '      cancel' +
+                        '    </md-button>' +
+                        '  </md-dialog-actions>' +
+                        '</md-dialog>',
+                    controller: FBIEditorController,
+                    onComplete: afterShowAnimation,
+                    locals: {
+                        editorTitle: 'Edit Unit Data ' + fbiId,
+                        unitId: fbiId
+                    }
+                });
+            }, function errorCallback(response) {
+                console.log(response.data);
+                vm.showCustomToast('Failed to load FBI data.');
+                vm.playSoundError();
+            });
+
+            function afterShowAnimation(scope, element, options) {
+                /// Dialog finished appearing, do something here...
+            }
+        }
+
+        function FBIEditorController($scope, $mdDialog, editorTitle, unitId) {
+            $scope.filter = {};
+            $scope.filter.cbCombat = true;
+            $scope.filter.cbResources = false;
+            $scope.filter.cbPathfinder = false;
+            $scope.filter.cbConstruction = false;
+            $scope.filter.cbNameInfo = false;
+            $scope.filter.cbOther = false;
+
+            $scope.unitId = unitId;
+            $scope.titleFromOutside = editorTitle;
+            $scope.djangularForm = {};
+            $http({
+                method: 'GET',
+                url: '/LazarusII/serialized/FBISerialized/' + unitId + '/'
+            }).then(function successCallback(response) {
+                $scope.djangularForm = response.data;
+            }, function errorCallback(response) {
+                console.log(response.data);
+            });
+            $scope.closeDialog = function() {
+                $mdDialog.hide();
+            };
+            $scope.saveChanges = function() {
+                $http({
+                    method: 'PUT',
+                    data: $scope.djangularForm,
+                    url: '/LazarusII/serialized/FBISerialized/' + $scope.unitId + '/'
+                }).then(function successCallback(response) {
+                    $mdDialog.hide();
+                }, function errorCallback(response) {
+                    console.log(response.data);
+                });
+
+            };
+        }
         // vm.openMenuDropDown = openMenuDropDown;
         /**
          * Select an item
@@ -53,7 +170,6 @@
         function select(item) {
             console.log("YOU SELECTED A UNIT SON! ! !");
             console.log(item);
-
             var txtMsg = item["_DEV_root_data_path"];
             txtMsg = txtMsg.replace('/usr/src/persistent/', '');
             var path_raw_root = txtMsg.replace('/', '_SLSH_').replace('/', '_SLSH_').replace('/', '_SLSH_').replace('/', '_SLSH_').replace('.fbi', '');
@@ -81,7 +197,9 @@
             url: '/LazarusDatabase/UnitFBIFromSQLView/'
         }).then(function successCallback(response) {
             $log.log('vm.selectModNamed has been called ! ! !');
-            vm.files = response.data;
+            $log.log(response.data);
+            vm.files = response.data['list_response'];
+            vm.selectedMod = response.data['mod'];
             vm.isLoadingMod = false;
             vm.playSoundModFinishedLoading();
         }, function errorCallback(response) {

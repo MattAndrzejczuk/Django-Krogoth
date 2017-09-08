@@ -2,7 +2,7 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
-    function FUSE_APP_NAMEController($http, $log, $mdDialog, $mdToast, $timeout, $scope) {
+    function FUSE_APP_NAMEController($http, $log, $mdDialog, $mdToast, $timeout, $scope, $cookies) {
         var vm = this;
 
         /* UPLOAD MINI-CONTROLLER */
@@ -41,6 +41,34 @@
         vm.newRepositoryRESTfulPOST = newRepositoryRESTfulPOST;
         vm.newRepositoryEditorMode = false;
         vm.newRepository = {};
+        vm.startUpload = startUpload;
+
+
+
+        function startUpload() {
+            var fileInputField = document.getElementById('file_input');
+            var file = fileInputField.files[0];
+            var data = new FormData();
+            data.append("upload", file);
+            data.append("name", file.name);
+            data.append("size", file.size);
+            data.append("type", file.name.slice(-3));
+            //data.append("lastModifiedDate",
+            //    file.lastModifiedDate.toString().slice(-4) + '000000Z');
+
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+            xhr.addEventListener("readystatechange", function() {
+                if (this.readyState === 4) {
+                    console.log(this.responseText);
+                    vm.popToastRepository(this.responseText);
+                }
+            });
+            xhr.open("POST", "/LazarusDatabase/TotalAnnihilation/Upload/");
+            xhr.setRequestHeader("authorization", "Token " + $cookies.get('token'));
+            xhr.send(data);
+        }
+
 
 
         /// vm.initUploaderTabMiniCtrl = initUploaderTabMiniCtrl;

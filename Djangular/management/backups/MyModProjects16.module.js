@@ -19,7 +19,7 @@
             title: 'FUSE_APP_TITLE',
             icon: 'FUSE_APP_ICON',
             state: 'app.FUSE_APP_NAME',
-            weight: 3
+            weight: 2
         });
         _DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_
     }

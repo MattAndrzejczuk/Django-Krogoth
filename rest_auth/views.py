@@ -233,6 +233,17 @@ def index(request):
 
 
 
+class GooglePlusOAuthCallbackView(APIView):
+
+    permission_classes = (AllowAny,)
+
+    def get(self, request, format=None):
+        msg = "There's nothing here yet..."
+        return Response(
+            msg,
+            status=200
+        )
+
 
 
 class LoginView(GenericAPIView):

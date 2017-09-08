@@ -21,6 +21,6 @@
             state: 'app.FUSE_APP_NAME',
             weight: 4
         });
-        /* _DJANGULAR_ SLAVE_NAV_ SERVICE_INJECTIONS_ */
+        _DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_
     }
 })();
