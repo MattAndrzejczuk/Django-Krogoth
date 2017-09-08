@@ -166,8 +166,8 @@ class DynamicIndexModule(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
-        index_module_pt1 = "(function (){'use strict';angular.module('fuse', ['uiGmapgoogle-maps','textAngular'," + \
-                           "'xeditable','ui.codemirror','app.core','app.sample','app.navigation','app.toolbar','app.quick-panel',"
+        index_module_pt1 = "(function (){'use strict';angular.module('fuse', ['uiGmapgoogle-maps','textAngular', " + \
+                           "'jkAngularCarousel','xeditable','ui.codemirror','app.core','app.sample','app.navigation','app.toolbar','app.quick-panel',"
 
         index_module_pt2 = ''
 
