@@ -1,0 +1,291 @@
+<div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Upload HPI & UFO Files">
+        <md-content class="md-padding">
+          	<h1 class="md-display-2 md-background-fg md-hue-3">Total Annihilation Upload Repository</h1>
+			<span class="md-headline md-background-fg md-hue-3">Upload destination: {{ vm.selectedRepo['name'] }}</span>
+          	<div class="slide-animate">
+<div layout="column">
+    <div style="padding: 20px" class="md-background-fg md-hue-3">
+        <p>Organize all your raw HPI, UFO and CCX uploaded content here.</p>
+        <p>Create repositories to organize all your uploaded content i.e.
+            'Hovercraft Units' or 'Unofficial Patch Units'</p>
+        <p>Creating Arm Prime repositories simply allow you to organize your uploads if
+            you are planning to upload hundreds of unique unit HPI packages. You may want to
+            break them up into repositories to make the HPI Directory Explorer easier to navigate.</p>
+    </div>
+	<br />
+		  <md-input-container ng-if="vm.newRepositoryEditorMode === false" layout="row" layout-align="center center">
+			  <md-button ng-click="vm.newRepositoryEditorMode = true"
+						 style="width:30%"
+						 class="md-hover-button-amber-dark-bg">
+					create new repository
+			  </md-button>
+			  <md-button ng-click="vm.reloadDataREST()"
+						 style="width:30%"
+						 class="md-hover-button-blue">
+					refresh repository list
+			  </md-button>
+		  </md-input-container>
+	<br />
+	
+      <md-input-container style="width:30%" ng-if="vm.newRepositoryEditorMode === true">
+        <label class="md-primary-fg md-hue-2">New Repository Name</label>
+        <input ng-model="vm.newRepository.name" class="md-accent-fg">
+      </md-input-container>
+      <md-input-container style="width:30%" ng-if="vm.newRepositoryEditorMode === true">
+        <label class="md-primary-fg md-hue-2">New Repository Description</label>
+        <textarea ng-model="vm.newRepository.description" class="md-accent-fg">
+		</textarea>
+      </md-input-container>
+      <md-input-container style="width:60%" ng-if="vm.newRepositoryEditorMode === true">
+        	<md-button  ng-click="vm.newRepositoryRESTfulPOST()" 
+				   		class="md-hover-button-amber-dark-bg">
+			Finalize and submit {{ vm.newRepository.title }}
+		    </md-button>
+		  <md-button ng-click="vm.newRepositoryEditorMode = false" 
+					 ng-if="vm.newRepositoryEditorMode === true"
+					 class="md-hover-button-purple">
+				cancel
+		  </md-button>
+      </md-input-container>
+
+        <div layout="column">
+            <section ng-repeat="mod in vm.userRepoItems | orderBy : mod['id']" layout="row"
+				style="background-color: transparent">
+                <div flex="25" style="color:white">
+                    {{mod['created'] | date }}
+                </div>
+                <div flex="25">
+                    <span class="text-boxed m-0 indigo-bg white-fg">{{ mod['name'] }}</span>
+                </div>
+                <div flex="25" style="color:white">
+					{{ mod['description'] }}
+				</div>
+                <div flex="25">
+                    <md-button disabled ng-if="mod['is_selected']"
+                               class="md-hover-button-amber-selected"> Selected
+                    </md-button>
+                    <md-button ng-click="vm.selectDtRepositoryRow(mod['id'])"
+                               ng-if="!mod['is_selected']"
+                               class="md-hover-button-amber-dark-bg"> Select
+                    </md-button>
+                </div>	
+            </section>
+        </div>
+    <md-button ng-click="vm.showUploadDialog($event)" class="md-hover-button-amber">
+        <span>Upload file to {{ vm.selectedRepo['name'] }}</span>
+    </md-button>
+</div>
+			</div>
+			
+			<input id="file_input" name="file" type="file">
+			
+                <md-button flow-btn 
+						   class="md-icon-button-blue md-hover-button-blue"
+						   ng-click="vm.startUpload()"
+                           aria-label="Add file">
+                    <md-icon md-font-icon="icon-cloud-upload"></md-icon>
+                </md-button>		
+        </md-content>
+      </md-tab>
+      <md-tab label="Upload HPI Data" ng-click="vm.initDirectoryExplorerTabMiniCtrl()">
+        <md-content class="md-padding">
+          	<h1 class="md-display-2 md-background-fg md-hue-3">Directory Explorer</h1>
+			<span class="md-headline md-background-fg md-hue-3">Showing Uploaded Files in {{ vm.selectedRepo['name'] }}</span>
+          	<div class="slide-animate">
+<div ng-cloak ng-hide="vm.loadingDirectoryExplorer === true">
+	
+	<h5>There are {{ vm.customMods['mod_paths'].length }} total HPI files in {{ vm.selectedRepo['name'] }}: </h5>
+	
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="{{ mod['name'] }}" ng-repeat="mod in vm.customMods['mod_paths']" ng-click="vm.selectDirectory($index)" >
+                </md-tab>
+            </md-tabs>
+	<br>
+<div layout="column">
+	<br>
+    <section ng-repeat="mod in vm.selectedDirItems" layout="row" layout-align="start center" layout-padding>
+        <div style="color:white" flex="20">{{ mod['file_name'] }}</div>
+        <div flex="20">
+            <span ng-if="mod['file_type'] === '.tdf'" class="text-boxed m-0 green-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+            <span ng-if="mod['file_type'] === '.fbi'" class="text-boxed m-0 blue-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+            <span ng-if="mod['file_type'] === '.3do'" class="text-boxed m-0 red-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+            <span ng-if="mod['file_type'] === '.wav'" class="text-boxed m-0 orange-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+            <span ng-if="mod['file_type'] === '.gaf'" class="text-boxed m-0 teal-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+            <span ng-if="mod['file_type'] === '.cob'" class="text-boxed m-0 indigo-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+            <span ng-if="mod['file_type'] === '.pcx'" class="text-boxed m-0 cyan-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+            <span ng-if="mod['file_type'] === '.gui'" class="text-boxed m-0 deep-orange-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+            <span ng-if="mod['file_type'] === '.txt'" class="text-boxed m-0 blue-grey-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+            <span ng-if="mod['file_type'] === '.bmp'" class="text-boxed m-0 amber-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+            <span ng-if="mod['file_type'] === '.bos'" class="text-boxed m-0 lime-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+            <span ng-if="mod['file_type'] === '.gif'" class="text-boxed m-0 deep-purple-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
+        </div>
+        <div style="color:white" flex="20">{{ mod['raw_data_tdf'] }}</div>
+        <div style="color:white" flex="20">{{ mod['dir_type'] }}
+            <div ng-if="mod['dir_type'] === 'features'">
+                <md-button
+                        href="/LazarusII/FeatureTDFViewset/?encoded_path={{mod['mod_path_slug']}}{{ item.replace('.tdf','') }}"
+                        target="_blank"
+						class="md-hover-button-blue"
+                        ng-repeat="item in mod['subdirectory_components']">
+                    {{ item }}
+                </md-button>
+            </div>
+        </div>
+        <div flex="20">
+            <md-button
+                    ng-if="mod['mod_path'] !== 'nan' && mod['dir_type'] === 'units'"
+					ng-click="vm.showFBIToSQLDialog($event, mod['mod_path'])"
+                    class="md-hover-button-blue"
+                    target="_blank"
+					   >
+                Open {{mod['file_type']}}
+            </md-button>
+        </div>
+    </section>
+	<br>
+</div>
+
+	
+
+	
+
+			</div>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
+
+<!-- when showing the picture -->
+<style>
+    .ng-hide-remove {
+        animation: 0.5s flipInX ease;
+    }
+
+    @keyframes flipInX {
+        0% {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            transition-timing-function: ease-in;
+            opacity: 0;
+        }
+
+        40% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            transition-timing-function: ease-in;
+            transition-timing-function: ease-in;
+        }
+
+        60% {
+            transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+            transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+            transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+            opacity: 1;
+        }
+
+        80% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+            transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+            transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+        }
+
+        100% {
+            transform: perspective(400px);
+            transform: perspective(400px);
+            transform: perspective(400px);
+        }
+    }
+</style>
+
+<!-- when hiding the picture -->
+<style>
+    .ng-hide-add {
+        animation: 0.5s lightSpeedOut ease;
+    }
+
+    @keyframes lightSpeedOut {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            transform: translate3d(100%, 0, 0) skewX(30deg);
+            transform: translate3d(100%, 0, 0) skewX(30deg);
+            opacity: 0;
+        }
+    }
+
+    @keyframes lightSpeedOut {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            transform: translate3d(100%, 0, 0) skewX(30deg);
+            transform: translate3d(100%, 0, 0) skewX(30deg);
+            transform: translate3d(100%, 0, 0) skewX(30deg);
+            opacity: 0;
+        }
+    }
+	.md-hover-button-purple:hover {
+        background-color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-purple {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+    }
+
+    .md-hover-button-amber-dark-bg:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber-dark-bg {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+	
+    .md-hover-button-amber-selected {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: white !important;
+    }
+    .md-hover-button-amber {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+	
+    .md-hover-button-blue:hover {
+        background-color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-blue {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+    }
+
+    .md-icon-button-blue > .iconhover {
+        color: rgb(41,98,255) !important;
+    }
+	
+</style>

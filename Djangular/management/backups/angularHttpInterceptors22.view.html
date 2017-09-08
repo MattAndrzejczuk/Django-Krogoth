@@ -1,0 +1,50 @@
+<h1>{{ vm.viewName }}</h1>
+
+<p>
+	Extremely useful for large AngularJS applications which make dozens of unique $http requests.
+</p>
+
+<p>
+	It is imperative any single-paged application handles <b>401: Unauthorized</b> errors coming back from
+	Django-REST. 
+</p>
+
+<hljs lang="js" theme="dracula">
+        var tokenDefaultSetter = function($q) {
+            return {
+				
+                request: function(req) {
+                    if ($cookies.get('token')) {
+						/// Using Access Token From Cookie
+                        console.debug('Using Cookie Token: ' + $cookies.get('token'));
+                        req.headers.Authorization = 'Token ' + $cookies.get('token');
+                    } else if (sessionStorage.getItem('token')) {
+						/// Using Access Token From Session
+                        console.debug('Using Session Token: ' + sessionStorage.getItem('token'));
+                        req.headers.Authorization = 'Token ' + sessionStorage.getItem('token');
+                    } else {
+						/// No access tokens! 'responseError' below will resolve this issue.
+                        console.warn('Client Login Credentials Are Unavailable.');
+                    }
+                    return req;
+                },
+// optional
+// response: function(res) {
+//   console.debug('Got Some Kind of Response ! ! !');
+//   return res;
+// },
+                responseError: function(res) {
+                    if (res.status === 401) {
+						/// Users without acess tokens will be properly redirected to login.
+                        console.warn('Unauthorized Entry Detected.');
+                        window.location = "#!/LoginDjangular";
+						return $q.reject(res);
+                    } else {
+                        console.warn('$httpProvider Interceptor has detected a server error!!!');
+                        return $q.reject(res);
+                    }
+                }
+            };
+        }
+        $httpProvider.interceptors.push(tokenDefaultSetter);
+</hljs>

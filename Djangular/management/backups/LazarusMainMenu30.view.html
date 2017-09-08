@@ -1,0 +1,501 @@
+	<div layout="row" layout="start start">
+		<span> &nbsp;&nbsp; </span>
+		<div style="padding-top:10px;">
+			<md-button aria-label="back" class="md-icon-button md-accent md-hover-button-2" ui-sref="app.MyModProjects">
+				<md-icon class="iconhover-2" md-font-icon="icon-arrow-left"></md-icon>
+				<md-tooltip md-direction="bottom">Return To Your Mod Library</md-tooltip>
+			</md-button>					
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div>
+			<h1 class="breadcrubs">LAZARUS</h1>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div style="margin-top:12px;">
+			<md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div>
+			<h1 class="breadcrubs">{{ vm.modName | uppercase }}</h1>
+		</div>
+	</div>
+
+<section layout="column"
+         layout-margin
+         layout-padding
+>
+	
+    <md-card class="md-primary" layout="row">
+        <div flex="50" class="md-accent" layout="column" layout-margin layout-padding>
+            <h1 class="md-background-fg md-hue-3">MOD ART</h1>
+            <!-- GRID LIST -->
+            <md-grid-list md-cols="1"
+                          md-cols-sm="2"
+                          md-cols-md="3"
+                          md-cols-gt-md="6"
+                          md-row-height-gt-md="1:1"
+                          md-row-height="2:2"
+                          md-gutter="8px"
+                          md-gutter-gt-sm="4px"
+            >
+                <!-- MODEL NAME HERE -->
+                <md-grid-tile ng-repeat="tile in vm.panel_ModArt"
+                              md-rowspan="{{tile.span.row}}"
+                              md-colspan="{{tile.span.col}}"
+                              md-colspan-sm="1"
+                              md-colspan-xs="1"
+                              ng-class="tile.background"
+                >
+                    <img src="{{tile.img}}" style="height: 100%; width: 700px">
+                    </img>
+                    <md-grid-tile-footer layout-padding>
+                        <h2 style="font-size: 28px; color: #FFECB3;">{{tile.title}}</h2>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
+            <!-- /END GRID LIST -->
+        </div>
+        <div flex="50" class="md-background md-hue-2" layout="column" layout-margin layout-padding>
+            <h1 class="md-background-fg md-hue-3">LAZARUS APPS</h1>
+            <!-- GRID LIST -->
+            <md-grid-list md-cols="1"
+                          md-cols-sm="2"
+                          md-cols-md="3"
+                          md-cols-gt-md="6"
+                          md-row-height-gt-md="1:1"
+                          md-row-height="2:2"
+                          md-gutter="8px"
+                          md-gutter-gt-sm="4px"
+            >
+                <!-- MODEL NAME HERE -->
+                <md-grid-tile ng-repeat="tile in vm.panel_LazarusApps"
+                              md-rowspan="{{tile.span.row}}"
+                              md-colspan="{{tile.span.col}}"
+                              md-colspan-sm="1"
+                              md-colspan-xs="1"
+                              ng-class="tile.background"
+							  class="bg-pattern-aluminum"
+                >
+					<!--
+					icon-arrow-right
+                    <md-icon class="{{tile.icon}} s256 faint-text">
+                    </md-icon>-->
+					<md-grid-tile-header>
+					    <p layout-padding layout-margin style="color: #FFECB3;">{{tile.description}}</p>
+				    </md-grid-tile-header>
+
+                    <md-grid-tile-footer style="background: rgba(0, 0, 0, 0.55);">
+						<div layout="row" layout-align="space-between center" layout-padding layout-margin>
+                        	<h2 style="color: #FFECB3;">{{tile.title}}</h2>
+							<md-button aria-label="back" class="md-icon-button md-accent md-hover-button" ui-sref="app.FBITest">
+								<md-icon class="iconhover" md-font-icon="icon-arrow-right"></md-icon>
+								<md-tooltip md-direction="right">LAUNCH {{tile.title}}</md-tooltip>
+							</md-button>
+						</div>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
+            <!-- /END GRID LIST -->
+        </div>
+    </md-card>
+
+    <md-card class="md-primary" layout="column" style="min-height: 400px">
+        <section flex="10">
+            <h1 class="md-background-fg md-hue-3">COMPILE, BUILD &amp; PUBLISH MOD</h1>
+			<p class="md-background-fg md-hue-3">
+				Here is a summary of your Total Annihilation mod project.
+				Once you are ready to download and play your mod "{{ vm.modName }}", select a game client version. 
+				The version number you select will determine the maximum number of unit weapons in order to resolve any possible
+				weapon ID conflicts which will be resolved by Lazarus.
+			</p>
+			<p class="md-background-fg md-hue-3">
+				Total Annihilation v3.1 will only allow for a maximum of 255 Weapon IDs, while v3.9.02 allows for
+				thousands of unique weapon IDs.
+			</p>
+        </section>
+        <section flex="80" layout="row" style="min-height: 335px">
+            <div flex="25" layout="row" >
+                <!-- WIDGET UnitCount -->
+                <ms-widget class="h-300" layout="column" flex="100" flex-gt-xs="50"
+                           flex-gt-md="100">
+                    <!-- Front -->
+                    <ms-widget-front class="p-16 green-bg white-fg" layout="row" flex>
+                        <div layout="column" layout-align="center center" flex>
+                            <div class="md-display-3 pb-8">{{vm.widgetUnitCount.value}}</div>
+                            <div class="h3 font-weight-500">{{vm.widgetUnitCount.title}}</div>
+                        </div>
+                        <div class="background-image-center">
+                            <md-icon md-font-icon="icon-cube-outline" class="s256 faint-text"></md-icon>
+                        </div>
+                    </ms-widget-front>
+                    <!-- / Front -->
+                </ms-widget>
+                <!-- / WIDGET UnitCount -->
+            </div>
+            <div flex="25" layout="row">
+                <!-- WIDGET WeaponCount -->
+                <ms-widget class="h-300" layout="column" flex="100" flex-gt-xs="50"
+                           flex-gt-md="100">
+                    <!-- Front -->
+                    <ms-widget-front class="p-16 deep-orange-bg white-fg" layout="row" flex>
+                        <div layout="column" layout-align="center center" flex>
+                            <div class="md-display-3 pb-8">{{vm.widgetWeaponCount.value}}</div>
+                            <div class="h3 font-weight-500">{{vm.widgetWeaponCount.title}}</div>
+                        </div>
+                        <div class="background-image-center">
+                            <md-icon md-font-icon="icon-fire" class="s256 faint-text"></md-icon>
+                        </div>
+                    </ms-widget-front>
+                    <!-- / Front -->
+                </ms-widget>
+                <!-- / WIDGET WeaponCount -->
+            </div>
+
+            <div flex="50" layout="column" class="md-background-fg md-hue-3">
+                <h3 style="color: #FFECB3;">TOTAL ANNIHILATION GAME CLIENT</h3>
+				
+                <md-radio-group ng-model="vm.publish.compatibility" class="md-background-fg md-hue-3">
+                    <md-radio-button value="cavedog" class="md-green-fg"> Cavedog v3.1
+						<md-tooltip md-direction="top">
+							The latest official build from Cavedog Entertainment. Allows the mod to run on Linux and Mac OS X.
+						</md-tooltip>
+					</md-radio-button>
+                    <md-radio-button value="unofficial" class="md-lime-fg"> Unofficial Patch v3.9.02
+						<md-tooltip md-direction="bottom">
+							Powerful hack patch which greatly improves the experience of Total Annihilation. Increases maximum weapons >255.
+						</md-tooltip>
+                    </md-radio-button>
+                </md-radio-group>
+                <div>
+                    <md-input-container>
+                        <label class="md-primary-fg md-hue-1">Build Revision</label>
+                        <input ng-model="vm.publish.revision" class="md-accent-fg md-hue-1">
+                    </md-input-container>
+                    <md-input-container>
+                        <label class="md-primary-fg md-hue-1">Build Info</label>
+                        <input ng-model="vm.publish.info" class="md-accent-fg md-hue-1">
+                    </md-input-container>
+                </div>
+            </div>
+        </section>
+		
+        <section flex="10" layout="row" layout-align="end center">
+				<md-button class="md-hover-button-amber-dark-bg">
+					Publish Mod
+				</md-button>
+        </section>
+
+    </md-card>
+
+    <md-card class="md-primary" layout="column">
+        <h1 class="md-background-fg md-hue-3">BUILDS</h1>
+		<!-- GRID LIST -->
+		<md-grid-list md-cols="1"
+					  md-cols-sm="3"
+					  md-cols-md="4"
+					  md-cols-gt-md="6"
+					  md-row-height-gt-md="1:1"
+					  md-row-height="4:3"
+					  md-gutter="8px"
+					  md-gutter-gt-sm="4px"
+					>
+			<md-grid-tile ng-repeat="tile in vm.panel_PublishedMods"
+						  md-rowspan="{{tile.span.row}}"
+						  md-colspan="{{tile.span.col}}"
+						  md-colspan-sm="1"
+						  md-colspan-xs="1"
+						  ng-class="tile.background"
+						  class="bg-pattern-aluminum"
+					>
+				<!--
+				<md-icon class="{{tile.icon}}">
+				</md-icon>
+				-->
+				<div layout="column" layout-align="space-around center">
+					<div layout="row" flex="20" layout-align="center center">
+						<md-icon md-font-icon="icon-windows" class="icon-windows s32">
+						</md-icon>
+						<md-icon md-font-icon="icon-apple" class="icon-apple s32" ng-if="tile.universalCompatibility === true">
+						</md-icon>
+						<md-icon md-font-icon="icon-linux" class="icon-linux s32" ng-if="tile.universalCompatibility === true">
+						</md-icon>
+							<md-tooltip md-direction="top" ng-if="tile.universalCompatibility === true">
+								Requires Total Annihilation v3.1, all OSes are supported by this mod.
+							</md-tooltip>
+							<md-tooltip md-direction="top" ng-if="tile.universalCompatibility === false">
+								OS X &amp; Linux are not supported: Built for Total Annihilation v3.0.02
+							</md-tooltip>
+					</div>
+					<p flex="10"> &nbsp; </p>
+					<div flex="40">
+						<md-button aria-label="back"
+								   class="md-icon-button md-accent md-hover-button"
+								   ui-sref="app.General"
+								   >
+							<md-icon class="iconhover" md-font-icon="icon-cloud-download"></md-icon>
+							<md-tooltip md-direction="bottom">Download: {{vm.modName}} {{tile.title}}</md-tooltip>
+						</md-button>
+					</div>
+					<p flex="30"> &nbsp; </p>
+				</div>
+				
+				<md-grid-tile-footer layout-padding>
+					<h2 class="publishedModTitle">{{tile.title}}</h2>
+				</md-grid-tile-footer>
+			</md-grid-tile>
+		</md-grid-list>
+		<!-- /END GRID LIST -->
+    </md-card>
+</section>
+
+<style>
+    h1 {
+        font-family: Haettenschweiler;
+        font-size: 44px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 26px;
+        letter-spacing: 3px;
+    }
+    .breadcrubs {
+        line-height: 0px !important;
+    }
+	
+    h2 {
+        font-family: Haettenschweiler;
+        font-size: 40px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 46px;
+        letter-spacing: 3px;
+    }
+
+    h3 {
+        font-family: Haettenschweiler;
+        font-size: 40px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 350;
+        line-height: 15px;
+        letter-spacing: 3px;
+    }
+    .publishedModTitle {
+        font-family: "Courier New", Courier, monospace !important;
+        font-size: 15px !important;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 50 !important;
+        line-height: 15px;
+        letter-spacing: 2px !important;
+    }
+
+	/* 
+	      ICON BUTTON 
+	*/
+    .md-hover-button:hover {
+        background-color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+    }
+    .md-hover-button {
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: rgb(41,98,255) !important;
+    }
+    .md-hover-button:hover > .iconhover {
+        color: black !important;
+    }
+    .md-icon-button > .iconhover {
+        color: rgb(41,98,255) !important;
+    }
+	/* 
+	      /ICON BUTTON 
+	*/
+	/* 
+	      ICON BUTTON 
+	*/
+    .md-hover-button-2:hover {
+        background-color: #FF6F00 !important;
+        border-color: #FF6F00 !important;
+    }
+    .md-hover-button-2 {
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: #FF6F00 !important;
+		color: #FF6F00 !important;
+    }
+    .md-hover-button-2:hover > .iconhover-2 {
+        color: rgb(60,66,82) !important;
+    }
+    .md-icon-button-2 > .iconhover-2 {
+        color: #FF6F00 !important;
+    }
+	/* 
+	      /ICON BUTTON 
+	*/
+	
+	
+	
+	
+
+	.md-hover-button-purple:hover {
+        background-color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-purple {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+    }
+
+    .md-hover-button-amber-dark-bg:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber-dark-bg {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+	
+    .md-hover-button-amber-selected {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: white !important;
+    }
+    .md-hover-button-amber {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+	
+    .md-hover-button-blue:hover {
+        background-color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-blue {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+    }
+
+    .md-icon-button-blue > .iconhover {
+        color: rgb(41,98,255) !important;
+    }
+	
+	
+	
+
+    .gridListdemoDynamicTiles md-icon {
+        width: 50%;
+        height: 30%;
+    }
+
+    .gridListdemoDynamicTiles md-icon svg {
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+    }
+
+    .gridListdemoDynamicTiles .s64 {
+        font-size: 64px;
+    }
+
+    .gridListdemoDynamicTiles .s32 {
+        font-size: 48px;
+    }
+
+    .gridListdemoDynamicTiles md-icon.fa {
+        display: block;
+        padding-left: 0;
+    }
+
+    .gridListdemoDynamicTiles md-icon.s32 span {
+        padding-left: 8px;
+    }
+
+    .gridListdemoDynamicTiles md-grid-list {
+        margin: 8px;
+    }
+
+    .gridListdemoDynamicTiles md-grid-tile {
+        transition: all 300ms ease-out 50ms;
+    }
+
+    .gridListdemoDynamicTiles md-grid-tile md-icon {
+        padding-bottom: 32px;
+    }
+
+    .gridListdemoDynamicTiles md-grid-tile md-grid-tile-footer {
+        background: rgba(0, 0, 0, 0.68);
+        height: 36px;
+    }
+
+    .gridListdemoDynamicTiles md-grid-tile-footer figcaption {
+        width: 100%;
+    }
+
+    .gridListdemoDynamicTiles md-grid-tile-footer figcaption h3 {
+        margin: 0;
+        font-weight: 700;
+        width: 100%;
+        text-align: center;
+    }
+	
+	.bg-pattern-aluminum {
+	  background-image: url('/static/bg-patterns/light-aluminum.png');
+	  background-repeat: repeat; 
+	}
+	
+	.bg-pattern-rubber-grip {
+	  background-image: url('/static/bg-patterns/rubber-grip.png');
+	  background-repeat: repeat; 
+	}
+	
+	.bg-pattern-irongrip {
+	  background-image: url('/static/bg-patterns/iron-grip.png');
+	  background-repeat: repeat; 	
+	}
+	
+	.bg-pattern-dark-fish-skin {
+	  background-image: url('/static/bg-patterns/dark-fish-skin.png');
+	  background-repeat: repeat; 	
+	}
+	
+	.bg-pattern-outlets {
+	  background-image: url('/static/bg-patterns/outlets.png');
+	  background-repeat: repeat; 	
+	}
+	
+	.bg-pattern-diagnal {
+	  background-image: url('/static/bg-patterns/rough-diagonal.png');
+	  background-repeat: repeat; 	
+	}
+	
+	.editor-units {
+		background-image: url('/static/editorTiles/editor-Units.png') !important;
+		background-size: cover;
+	}
+	.editor-weapons {
+		background-image: url('/static/editorTiles/editor-Weapons.png') !important;
+		background-size: cover;
+	}	
+	.editor-techtree {
+		background-image: url('/static/editorTiles/editor-TechTree.png') !important;
+		background-size: cover;
+	}
+	
+</style>
