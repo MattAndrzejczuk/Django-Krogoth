@@ -1,12 +1,12 @@
 	<div layout="row" layout="start start">
 		<span> &nbsp;&nbsp; </span>
 		<div style="padding-top:10px;">
-			<!--
-			<md-button aria-label="back" class="md-icon-button md-accent md-hover-button-2" ui-sref="app.MyModProjects">
+			
+			<md-button aria-label="back" class="md-icon-button md-accent md-hover-button-2" ui-sref="app.LazarusHome">
 				<md-icon class="iconhover-2" md-font-icon="icon-arrow-left"></md-icon>
 				<md-tooltip md-direction="bottom">Return To Your Mod Library</md-tooltip>
 			</md-button>
-			-->
+			
 		</div>
 		<span> &nbsp;&nbsp; </span>
 		<div>
@@ -133,16 +133,145 @@
         </table>
     </div>
 -->
-	
+	<!--
 	<md-button ng-click="vm.reloadMods()" class="md-hover-button-blue">
 		reload my mods
+	</md-button>
+	-->
+	<md-button ui-sref="app.LazarusMainMenu" class="md-hover-button-blue">
+		Launch Project Manager For Selected Mod
 	</md-button>
 	<pre>
 		{{ vm.userRepoItems | json }}
 	</pre>
+	
+	
+	
+	
+	
+<div>
+	  <md-grid-list md-cols-xs="2" 
+					md-cols-sm="3" 
+					md-cols-md="5" 
+					md-cols-gt-md="7" 
+					md-row-height-gt-md="1:1" 
+					md-row-height="2:2" 
+					md-gutter="12px" 
+					md-gutter-gt-sm="8px">
+
+		<md-grid-tile class="gray" md-rowspan="3" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
+		  <md-grid-tile-footer>
+			<h3>#1: (3r x 2c)</h3>
+		  </md-grid-tile-footer>
+		</md-grid-tile>
+
+			<md-grid-tile ng-repeat="tile in vm.panel_PublishedMods"
+						  md-rowspan="{{tile.span.row}}"
+						  md-colspan="{{tile.span.col}}"
+						  md-colspan-sm="1"
+						  md-colspan-xs="1"
+						  ng-class="tile.background"
+						  class="bg-pattern-aluminum"
+					>
+			</md-grid-tile>
+
+	  </md-grid-list>
+</div>
+	
+	
 </div>
 
 <style>
+	h1 {
+        font-family: Haettenschweiler;
+        font-size: 44px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 26px;
+        letter-spacing: 3px;
+    }
+    .breadcrubs {
+        line-height: 0px !important;
+    }
+	
+    h2 {
+        font-family: Haettenschweiler;
+        font-size: 40px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 46px;
+        letter-spacing: 3px;
+    }
+
+    h3 {
+        font-family: Haettenschweiler;
+        font-size: 40px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 350;
+        line-height: 15px;
+        letter-spacing: 3px;
+    }
+    .publishedModTitle {
+        font-family: "Courier New", Courier, monospace !important;
+        font-size: 15px !important;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 50 !important;
+        line-height: 15px;
+        letter-spacing: 2px !important;
+    }
+
+	/* 
+	      ICON BUTTON 
+	*/
+    .md-hover-button:hover {
+        background-color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+    }
+    .md-hover-button {
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: rgb(41,98,255) !important;
+    }
+    .md-hover-button:hover > .iconhover {
+        color: black !important;
+    }
+    .md-icon-button > .iconhover {
+        color: rgb(41,98,255) !important;
+    }
+	/* 
+	      /ICON BUTTON 
+	*/
+	/* 
+	      ICON BUTTON 
+	*/
+    .md-hover-button-2:hover {
+        background-color: #FF6F00 !important;
+        border-color: #FF6F00 !important;
+    }
+    .md-hover-button-2 {
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: #FF6F00 !important;
+		color: #FF6F00 !important;
+    }
+    .md-hover-button-2:hover > .iconhover-2 {
+        color: rgb(60,66,82) !important;
+    }
+    .md-icon-button-2 > .iconhover-2 {
+        color: #FF6F00 !important;
+    }
+	/* 
+	      /ICON BUTTON 
+	*/
+	
+
+
+
+
     .md-hover-button-purple:hover {
         background-color: rgb(124,77,255) !important;
         border-color: rgb(124,77,255) !important;

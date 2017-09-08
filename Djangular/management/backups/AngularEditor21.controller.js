@@ -356,6 +356,7 @@
                 $log.info('/Djangular/MasterViewControllerEditorList/');
                 vm.data = response.data;
                 document.getElementById("DjangularMetaText_01").innerHTML = 'Djangular Editor ';
+                document.getElementById("globalStatusBar").innerHTML = 'Djangular Editor ';
             }, function errorCallback(response) {
                 /// Fail
                 $mdToast.show($mdToast.simple().textContent('Server Error - Login'));
@@ -380,7 +381,10 @@
                 vm.editorViewHTML.doc.setValue(response.data.view_html);
                 vm.input.mvcId = response.data.id;
 
-                document.getElementById("DjangularMetaText_01").innerHTML = 'Djangular Editor: ' + response.data.name + ')';
+                document.getElementById("DjangularMetaText_01").innerHTML = 'Djangular Editor: "' + response.data.name + '"';
+                document.getElementById("globalStatusBar").innerHTML = 'Editing Document: "<span class="md-accent-fg">' +
+                    response.data.name + '</span>" [<span class="md-warn-fg">' + response.data.id + '</span>]' +
+                    '&nbsp;&nbsp; - &nbsp;&nbsp;<span class="md-primary-fg md-hue-1">' + response.data.title + '</span>';
             }, function errorCallback(response) {
                 /// Fail
                 $mdToast.show($mdToast.simple().textContent('Server Error - Login'));

@@ -1,0 +1,100 @@
+<h1>{{ vm.viewName }}</h1>
+<p>{{ vm.lazarusVersion }}</p>
+
+<div layout="column" layout-align="space-around center">
+	<div layout="row">
+		<article flex layout="column" layout-align="center center">
+			<span class="title-1 blue-50-fg">TOTAL</span>
+			<span class="title-5 blue-50-fg">
+				<span class="logoH">A</span>NNIHILATIO<span class="logoH">N</span>
+			</span>
+			<span class="title-3 blue-50-fg">LAZARUS</span>
+			<span class="title-7">v{{ vm.lazarusVersion }}</span>
+			<span>&nbsp;</span>
+			<span>&nbsp;</span>
+			<span>&nbsp;</span>
+			<span>&nbsp;</span>
+		</article>
+	</div>
+	
+	<br>
+
+	<div layout="row" layout-align="space-between center">
+			<md-button flex="20" 
+					   ui-sref="app.LazarusSupport"
+					   style="width: 250px;"
+					   class="md-hover-button-amber-dark-bg">Help</md-button>
+			<div flex style="width: 200px;">&nbsp;</div>
+			<md-button flex="20" 
+					   ui-sref="app.LazarusPatchNotes"
+					   style="width: 250px;" 
+					   class="md-hover-button-amber-dark-bg">Patch Notes</md-button>
+	</div>
+	
+	<br><br>
+	<div layout="row" layout-align="space-between center">
+			<md-button flex="20" 
+					   ui-sref="app.MyModProjects"
+					   style="width: 250px;" 
+					   class="md-hover-button-amber-dark-bg">Mod Editor</md-button>
+			<div flex style="width: 200px;">&nbsp;</div>
+			<md-button flex="20" 
+					   ui-sref="app.uploadRepository"
+					   style="width: 250px;" 
+					   class="md-hover-button-amber-dark-bg">Asset Repository</md-button>
+	</div>
+</div>
+
+<style>
+.title-1 {
+        font-family: Haettenschweiler;
+        font-size: 160px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 40px;
+        letter-spacing: 3px;	
+}
+.title-3 {
+	        font-family: Haettenschweiler;
+        font-size: 180px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 170px;
+        letter-spacing: 3px;
+}
+.title-5 {
+	        font-family: Haettenschweiler;
+        font-size: 240px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 210px;
+        letter-spacing: 3px;
+}
+.logoH {
+	font-size: 310px !important;
+}
+.title-7 {
+	        font-family: Haettenschweiler;
+        font-size: 34px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 200;
+        line-height: 105px;
+        letter-spacing: 3px;
+}
+
+    .md-hover-button-amber-dark-bg:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber-dark-bg {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+</style>

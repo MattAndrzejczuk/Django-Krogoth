@@ -159,5 +159,78 @@
 
 
 
+
+
+        vm.initGridModel = initGridModel;
+
+        function initGridModel() {
+            vm.publishedMods = [{
+                info: "Alpha",
+                build: '0.1',
+                compatibility: 'v3.1'
+            }, {
+                info: "Alpha",
+                build: '0.2',
+                compatibility: 'v3.1'
+            }, {
+                info: "Alpha",
+                build: '0.3',
+                compatibility: 'v3.1'
+            }, {
+                info: "Public Beta",
+                build: '0.4',
+                compatibility: 'v3.9.02'
+            }, {
+                info: "Release Candidate",
+                build: '1.0',
+                compatibility: 'v3.9.02'
+            }];
+            vm.panel_ModEditorList = buildGridModel_ModEditorList({
+                icon: "avatar:svg-",
+                title: "Svg-",
+                background: "md-amber-bg"
+            }, vm.userRepoItems.length);
+        }
+
+        function buildGridModel_ModEditorList(tileTmpl, totalTiles) {
+            var it = [];
+            var results = [];
+            for (var j = 0; j < totalTiles; j++) {
+                it = angular.extend({}, tileTmpl);
+                it.icon = 'icon-cloud-download' ///it.icon + (j + 1);
+                it.title = vm.publishedMods[j].build + ' ' + vm.publishedMods[j].info;
+                it.universalCompatibility = (vm.publishedMods[j].compatibility === 'v3.9.02');
+                it.background = "md-background-bg md-hue-3";
+                it.span = {
+                    row: 1,
+                    col: 1
+                };
+                /*
+                switch (j + 1) {
+                    case 1:
+                        it.background = "md-accent-bg md-hue-1";
+                        it.title = 'Initial Build';
+                        break; 
+                    case 2:
+                        it.background = "md-accent-bg md-hue-1";
+                        it.title = 'WEAPON EDITOR';
+                        break;
+                    case 3:
+                        it.background = "md-accent-bg md-hue-1";
+                        it.title = 'TECH TREE EDITOR';
+                        break;
+                }
+				*/
+                results.push(it);
+            }
+            return results;
+        }
+
+
+
+
+
+
+
     }
 })();

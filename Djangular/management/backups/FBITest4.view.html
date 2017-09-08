@@ -11,9 +11,9 @@
 	<div layout="row" layout="start start">
 		<span> &nbsp;&nbsp; </span>
 		<div style="margin-top:10px;">
-			<md-button aria-label="back" class="md-icon-button md-accent md-hover-button-2" ui-sref="app.LazarusMainMenu">
+			<md-button aria-label="back" class="md-icon-button md-accent md-hover-button-2" ui-sref="app.LazarusUnitEditorIndex">
 				<md-icon class="iconhover-2" md-font-icon="icon-arrow-left"></md-icon>
-				<md-tooltip md-direction="bottom">Back to {{ vm.selectedMod }} Project Manager.</md-tooltip>
+				<md-tooltip md-direction="bottom">Back to Unit Editor</md-tooltip>
 			</md-button>
 		</div>
 		<span> &nbsp;&nbsp; </span>
@@ -35,6 +35,13 @@
 		<span> &nbsp;&nbsp; </span>
 		<div>
 			<h1 class="breadcrubs taFont-large">UNIT EDITOR</h1>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div style="margin-top:12px;">
+			<md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
+		</div>
+		<div>
+			<h1 class="breadcrubs taFont-large">PROPERTIES</h1>
 		</div>
 	</div>
 
@@ -77,6 +84,24 @@
             <md-input-container layout-padding>
                 <md-button class="md-hover-button-purple" ng-click="vm.showCustomToast()">
 					search
+				</md-button>
+            </md-input-container>
+			
+            <md-input-container layout-padding>
+				<label>Import My Units From</label>
+				<br>
+                <md-button class="md-hover-button-blue" ng-click="vm.showCustomToast()">
+					custom repository 
+					<md-tooltip md-direction="top">Personal units you have uploaded to your ArmPrime account.</md-tooltip>
+				</md-button>
+            </md-input-container>
+			
+            <md-input-container layout-padding>
+				<label>Import Public Units From</label>
+				<br>
+                <md-button class="md-hover-button-blue" ng-click="vm.showCustomToast()">
+					lazarus community
+					<md-tooltip md-direction="top">All units created by members of the ArmPrime community.</md-tooltip>
 				</md-button>
             </md-input-container>
 

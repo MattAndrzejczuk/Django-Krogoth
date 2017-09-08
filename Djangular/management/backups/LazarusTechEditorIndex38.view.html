@@ -1,0 +1,120 @@
+<div layout="row" layout="start start">
+		<span> &nbsp;&nbsp; </span>
+		<div style="margin-top:10px;">
+			<md-button aria-label="back" class="md-icon-button md-accent md-hover-button-2" ui-sref="app.LazarusMainMenu">
+				<md-icon class="iconhover-2" md-font-icon="icon-arrow-left"></md-icon>
+				<md-tooltip md-direction="bottom">Back to {{ vm.modName }} Project Manager.</md-tooltip>
+			</md-button>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div>
+			<h1 class="breadcrubs taFont-large">LAZARUS MODS</h1>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div style="margin-top:12px;">
+			<md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div>
+			<h1 class="breadcrubs taFont-large">{{ vm.modName | uppercase }}</h1>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div style="margin-top:12px;">
+			<md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div>
+			<h1 class="breadcrubs taFont-large">TECH TREE EDITOR</h1>
+		</div>
+</div>
+
+<h1>{{ vm.viewName }}</h1>
+
+
+<style>
+    h1 {
+        font-family: Haettenschweiler;
+        font-size: 44px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 26px;
+        letter-spacing: 3px;
+    }
+    .breadcrubs {
+        line-height: 0px !important;
+    }
+	
+    h2 {
+        font-family: Haettenschweiler;
+        font-size: 40px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 46px;
+        letter-spacing: 3px;
+    }
+
+    h3 {
+        font-family: Haettenschweiler;
+        font-size: 40px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 350;
+        line-height: 15px;
+        letter-spacing: 3px;
+    }
+    .publishedModTitle {
+        font-family: "Courier New", Courier, monospace !important;
+        font-size: 15px !important;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 50 !important;
+        line-height: 15px;
+        letter-spacing: 2px !important;
+    }
+
+	/* 
+	      ICON BUTTON 
+	*/
+    .md-hover-button:hover {
+        background-color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+    }
+    .md-hover-button {
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: rgb(41,98,255) !important;
+    }
+    .md-hover-button:hover > .iconhover {
+        color: black !important;
+    }
+    .md-icon-button > .iconhover {
+        color: rgb(41,98,255) !important;
+    }
+	/* 
+	      /ICON BUTTON 
+	*/
+	/* 
+	      ICON BUTTON 
+	*/
+    .md-hover-button-2:hover {
+        background-color: #FF6F00 !important;
+        border-color: #FF6F00 !important;
+    }
+    .md-hover-button-2 {
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: #FF6F00 !important;
+		color: #FF6F00 !important;
+    }
+    .md-hover-button-2:hover > .iconhover-2 {
+        color: rgb(60,66,82) !important;
+    }
+    .md-icon-button-2 > .iconhover-2 {
+        color: #FF6F00 !important;
+    }
+	/* 
+	      /ICON BUTTON 
+	*/
+</style>

@@ -1,4 +1,4 @@
-	<div layout="row" layout="start start">
+<div layout="row" layout="start start">
 		<span> &nbsp;&nbsp; </span>
 		<div style="padding-top:10px;">
 			<md-button aria-label="back" class="md-icon-button md-accent md-hover-button-2" ui-sref="app.MyModProjects">
@@ -25,18 +25,20 @@
          layout-padding
 >
 	
-    <md-card class="md-primary" layout="row">
-        <div flex="50" class="md-accent" layout="column" layout-margin layout-padding>
+    <md-content class="md-background-bg" layout="row" style="min-height: 880px" md-whiteframe="3">
+        <div flex="60" class="md-accent" layout="column" layout-margin layout-padding>
             <h1 class="md-background-fg md-hue-3">MOD ART</h1>
+			<p>Customize the menu UI of your mod.</p>
             <!-- GRID LIST -->
-            <md-grid-list md-cols="1"
-                          md-cols-sm="2"
-                          md-cols-md="3"
-                          md-cols-gt-md="6"
+            <md-grid-list md-cols="2"
+                          md-cols-sm="1"
+                          md-cols-md="2"
+                          md-cols-gt-md="4"
                           md-row-height-gt-md="1:1"
-                          md-row-height="2:2"
+                          md-row-height="1:1"
                           md-gutter="8px"
                           md-gutter-gt-sm="4px"
+						  
             >
                 <!-- MODEL NAME HERE -->
                 <md-grid-tile ng-repeat="tile in vm.panel_ModArt"
@@ -48,24 +50,26 @@
                 >
                     <img src="{{tile.img}}" style="height: 100%; width: 700px">
                     </img>
-                    <md-grid-tile-footer layout-padding>
-                        <h2 style="font-size: 28px; color: #FFECB3;">{{tile.title}}</h2>
+                    <md-grid-tile-footer layout-padding style="background: rgba(0, 0, 0, 0.55);">
+                        <h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">{{tile.title}}</h2>
                     </md-grid-tile-footer>
                 </md-grid-tile>
             </md-grid-list>
             <!-- /END GRID LIST -->
         </div>
-        <div flex="50" class="md-background md-hue-2" layout="column" layout-margin layout-padding>
+        <div flex="40" class="md-background md-hue-2" layout="column" layout-margin layout-padding>
             <h1 class="md-background-fg md-hue-3">LAZARUS APPS</h1>
+			<p>The core features of Lazarus.</p>
             <!-- GRID LIST -->
             <md-grid-list md-cols="1"
-                          md-cols-sm="2"
-                          md-cols-md="3"
+                          md-cols-sm="1"
+                          md-cols-md="2"
                           md-cols-gt-md="6"
-                          md-row-height-gt-md="1:1"
-                          md-row-height="2:2"
+                          md-row-height-gt-md="4:3"
+                          md-row-height="16:9"
                           md-gutter="8px"
                           md-gutter-gt-sm="4px"
+						  style="width:100%"
             >
                 <!-- MODEL NAME HERE -->
                 <md-grid-tile ng-repeat="tile in vm.panel_LazarusApps"
@@ -75,31 +79,38 @@
                               md-colspan-xs="1"
                               ng-class="tile.background"
 							  class="bg-pattern-aluminum"
+							  style="height: 250px"
                 >
+					
 					<!--
 					icon-arrow-right
                     <md-icon class="{{tile.icon}} s256 faint-text">
-                    </md-icon>-->
+                    </md-icon>
+					-->
+					
 					<md-grid-tile-header>
 					    <p layout-padding layout-margin style="color: #FFECB3;">{{tile.description}}</p>
 				    </md-grid-tile-header>
 
-                    <md-grid-tile-footer style="background: rgba(0, 0, 0, 0.55);">
-						<div layout="row" layout-align="space-between center" layout-padding layout-margin>
-                        	<h2 style="color: #FFECB3;">{{tile.title}}</h2>
-							<md-button aria-label="back" class="md-icon-button md-accent md-hover-button" ui-sref="app.FBITest">
-								<md-icon class="iconhover" md-font-icon="icon-arrow-right"></md-icon>
-								<md-tooltip md-direction="right">LAUNCH {{tile.title}}</md-tooltip>
-							</md-button>
+                    <md-grid-tile-footer style="background: rgba(0, 0, 0, 0.65);" style="width: 100%">
+						<div style="width: 100%" flex="100" layout="row" layout-padding layout-align="center center"> 
+							<h2 style="color: #FFECB3; font-size: 18px; line-height: 15px;">{{tile.title}}</h2>
+						
+						
+								<md-button aria-label="back" 
+										   class="md-icon-button md-accent md-hover-button" ui-sref="{{tile.url}}">
+									<md-icon class="iconhover" md-font-icon="icon-arrow-right"></md-icon>
+									<md-tooltip md-direction="right">LAUNCH {{tile.title}}</md-tooltip>
+								</md-button>
 						</div>
                     </md-grid-tile-footer>
                 </md-grid-tile>
             </md-grid-list>
             <!-- /END GRID LIST -->
         </div>
-    </md-card>
+    </md-content>
 
-    <md-card class="md-primary" layout="column" style="min-height: 400px">
+    <md-card class="md-primary" layout="column" layout-align="space-between stretch" style="min-height: 400px">
         <section flex="10">
             <h1 class="md-background-fg md-hue-3">COMPILE, BUILD &amp; PUBLISH MOD</h1>
 			<p class="md-background-fg md-hue-3">
@@ -108,12 +119,15 @@
 				The version number you select will determine the maximum number of unit weapons in order to resolve any possible
 				weapon ID conflicts which will be resolved by Lazarus.
 			</p>
+        </section>
+        <section flex="10">
 			<p class="md-background-fg md-hue-3">
 				Total Annihilation v3.1 will only allow for a maximum of 255 Weapon IDs, while v3.9.02 allows for
 				thousands of unique weapon IDs.
 			</p>
         </section>
-        <section flex="80" layout="row" style="min-height: 335px">
+		<br><br>
+        <section flex="70" layout="row" style="min-height: 300px">
             <div flex="25" layout="row" >
                 <!-- WIDGET UnitCount -->
                 <ms-widget class="h-300" layout="column" flex="100" flex-gt-xs="50"
@@ -125,7 +139,7 @@
                             <div class="h3 font-weight-500">{{vm.widgetUnitCount.title}}</div>
                         </div>
                         <div class="background-image-center">
-                            <md-icon md-font-icon="icon-cube-outline" class="s256 faint-text"></md-icon>
+                            <img src="/static/editorTiles/megabot.svg" width="200" style="opacity:0.25">
                         </div>
                     </ms-widget-front>
                     <!-- / Front -->
@@ -143,7 +157,7 @@
                             <div class="h3 font-weight-500">{{vm.widgetWeaponCount.title}}</div>
                         </div>
                         <div class="background-image-center">
-                            <md-icon md-font-icon="icon-fire" class="s256 faint-text"></md-icon>
+							<img src="/static/editorTiles/missile-pod.svg" width="200" style="opacity:0.25">
                         </div>
                     </ms-widget-front>
                     <!-- / Front -->

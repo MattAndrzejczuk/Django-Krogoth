@@ -18,7 +18,6 @@
         vm.panel_LazarusApps = buildGridModel_LazarusApps({
             icon: "avatar:svg-",
             title: "Svg-",
-            title: "Svg-",
             background: "md-amber-bg"
         }, 3);
 
@@ -63,8 +62,8 @@
                 it.icon = 'icon-hexagon' ///it.icon + (j + 1);
                 it.title = it.title + (j + 1);
                 it.span = {
-                    row: 3,
-                    col: 3
+                    row: 2,
+                    col: 2
                 };
                 switch (j + 1) {
                     // Mod Art
@@ -112,16 +111,19 @@
                     case 1:
                         it.background = "md-accent-bg md-hue-3 editor-units";
                         it.title = 'UNIT EDITOR';
+                        it.url = 'app.LazarusUnitEditorIndex';
                         it.description = "Customize unit hitpoints, resource cost, and many other properties.";
                         break;
                     case 2:
                         it.background = "md-accent-bg md-hue-3 editor-weapons";
                         it.title = 'WEAPON EDITOR';
+                        it.url = 'app.LazarusWeaponEditorIndex';
                         it.description = "Modify unit damage, units can carry up to three weapons. " +
                             "(Mods with more than 255 weapons will require Unofficial Patch v3.9.02)";
                         break;
                     case 3:
                         it.background = "md-accent-bg md-hue-3 editor-techtree";
+                        it.url = 'app.LazarusTechEditorIndex';
                         it.title = 'TECH TREE EDITOR';
                         it.description = "Create your own tech levels here! Customize what all units are able to build here.";
                         break;
@@ -191,7 +193,6 @@
         }];
         vm.panel_PublishedMods = buildGridModel_PublishedMods({
             icon: "avatar:svg-",
-            title: "Svg-",
             title: "Svg-",
             background: "md-amber-bg"
         }, 5);
