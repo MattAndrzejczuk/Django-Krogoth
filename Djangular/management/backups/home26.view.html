@@ -1,1 +1,170 @@
-<h1>{{ vm.viewName }}</h1>
+
+<md-content class="md-background-bg md-hue-2" layout-padding layout-margin>
+ 
+	
+    <section layout="row">
+		<span class="md-background-fg md-hue-3 md-display-1" flex="80">Latest News</span>
+    </section>
+	
+	<div>
+		&nbsp;
+	</div>
+	<div>
+		&nbsp;
+	</div>	
+	
+	
+	
+<div layout="column" layout-align="space-around center">
+	<div layout="row">
+		<article flex layout="column" layout-align="center center">
+			<span class="title-1 blue-50-fg">TOTAL</span>
+			<span class="title-5 blue-50-fg">
+				<span class="logoH">A</span>NNIHILATIO<span class="logoH">N</span>
+			</span>
+			<span class="title-3 blue-50-fg">LAZARUS</span>
+			<span class="title-7 blue-50-fg">v{{ vm.lazarusVersion }} BETA</span>
+			<span>&nbsp;</span>
+			<span>&nbsp;</span>
+			<span>&nbsp;</span>
+			<span class="title-8 blue-50-fg">PUBLIC BETA NOW LIVE</span>
+			<span>&nbsp;</span>
+		</article>
+	</div>
+	
+
+
+</div>
+<!--
+	<p class="md-background-fg md-hue-3">
+		Above this, stands a symbol of oppression. Corrupt Total Annihilation data. 
+		Where thousands of 3rd party unit packs for Total Annihilation have languished under the consequences of conflict with one another.
+		And do you accept, this massive headache? And do you accept the problems with all of these UFO files, of the corrupt?
+	</p>
+	<p class="md-background-fg md-hue-3">
+		We take mod development away from the CORRUPT .UFO distributors, the tech savvy,
+		the oppressors of generations who have kept your TA game crashing with myths of conflict free unit packs.
+		and we give it back to you... the people.
+	</p>
+	<p class="md-background-fg md-hue-3">
+		The chance to make kick ass Total Annihilation mods is yours. None shall interfere, do as you please!
+	</p>
+-->
+    <section layout="row" layout-align="center center">
+        <span flex="30"></span>
+		<span class="md-background-fg md-hue-3 md-display-1 flex="40"">
+		
+		</span>
+        <span flex="30"></span>
+    </section>
+	
+	<md-divider class="md-accent-fg md-hue-3 ">
+	</md-divider>
+
+    <section>
+        <md-card ng-repeat="thread in vm.listData.posts">
+            <md-card-header>
+                <md-card-avatar>
+                    <img class="md-user-avatar" src="/static/ArmLogoVectorWhite.svg">
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title md-accent-fg">
+						{{ thread['title'] }}
+					</span>
+                    <span class="md-subhead md-accent-fg md-hue-1">
+						Posted by {{ thread['author']['username'] }} on {{ thread['pub_date'] | date:'fullDate' }}
+					</span>
+                </md-card-header-text>
+            </md-card-header>
+            <!-- <img src="card-image.png" class="md-card-image" alt="image caption">-->
+            <md-card-title>
+                <md-card-title-text>
+                    <!--<span class="md-headline">Card headline</span>-->
+                    <!--<span class="md-subhead">{{ thread['pub_date'] }}</span>-->
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+				<div id="threadBody{{ thread['id'] }}" class="md-background-fg md-hue-3">
+					Thread Content:
+				</div>
+                <!--<p>{{ thread['body'] }}</p>-->
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                <!--
+                <md-button ui-sref="app.General.Thread({ id: thread['id'] })" class="md-hover-button-blue">
+                    Open
+                </md-button>
+                -->
+            </md-card-actions>
+        </md-card>
+    </section>
+</md-content>
+
+
+<style>
+.title-1 {
+        font-family: Haettenschweiler;
+        font-size: 160px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 40px;
+        letter-spacing: 3px;	
+}
+.title-3 {
+	        font-family: Haettenschweiler;
+        font-size: 180px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 170px;
+        letter-spacing: 3px;
+}
+.title-5 {
+	        font-family: Haettenschweiler;
+        font-size: 240px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 210px;
+        letter-spacing: 3px;
+}
+.logoH {
+	font-size: 310px !important;
+}
+.title-7 {
+	        font-family: Haettenschweiler;
+        font-size: 34px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 200;
+        line-height: 105px;
+        letter-spacing: 3px;
+}
+.title-8 {
+	        font-family: Haettenschweiler;
+        font-size: 20px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 200;
+        line-height: 105px;
+        letter-spacing: 3px;
+}
+
+
+    .md-hover-button-amber-dark-bg:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber-dark-bg {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+	.bg-pattern-diagnal {
+	  background-image: url('/static/bg-patterns/rough-diagonal.png');
+	  background-repeat: repeat; 	
+	}
+</style>

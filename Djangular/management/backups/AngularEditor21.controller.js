@@ -77,7 +77,7 @@
                 vm.codeChanged();
             });
             vm.editorModel = _editor;
-            _editor.setValue("// Hello world.");
+            ///_editor.setValue("// Hello world.");
             ///_editor.setSize('100%', '1000px');
         }
 
@@ -96,7 +96,7 @@
                 vm.codeChanged();
             });
             vm.editorModuleJS = _editor;
-            _editor.setValue("// Hello world.");
+            ///_editor.setValue("// Hello world.");
             ///_editor.setSize('100%', '1000px');
         }
 
@@ -115,7 +115,7 @@
                 vm.codeChanged();
             });
             vm.editorViewHTML = _editor;
-            _editor.setValue("// Hello world.");
+            ///_editor.setValue("// Hello world.");
         }
         vm.getMasterViewControllers = getMasterViewControllers;
         vm.codeChanged = codeChanged;
@@ -133,7 +133,7 @@
 
         function codeWillChange() {
             $log.info('codemirror : `beforeChange` called!');
-            vm.docWasModified = true;
+            ///vm.docWasModified = true;
         }
 
         function highlightVm() {
@@ -385,6 +385,7 @@
                 document.getElementById("globalStatusBar").innerHTML = 'Editing Document: "<span class="md-accent-fg">' +
                     response.data.name + '</span>" [<span class="md-warn-fg">' + response.data.id + '</span>]' +
                     '&nbsp;&nbsp; - &nbsp;&nbsp;<span class="md-primary-fg md-hue-1">' + response.data.title + '</span>';
+                vm.docWasModified = false;
             }, function errorCallback(response) {
                 /// Fail
                 $mdToast.show($mdToast.simple().textContent('Server Error - Login'));

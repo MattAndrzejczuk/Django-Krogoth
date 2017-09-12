@@ -5,8 +5,9 @@ from LazarusII.views import UnitFbiData, ApiNavigationUrls, LazarusListUnits, \
     CustomToastGenerator, ExecuteBash, AutoCollectStatic, OpenTotalAnnihilationFBIFile, OpenTotalAnnihilationTDFFile, \
     UserAgentTracker, ExecuteBash_LS_AllCustomModFiles, UnitFBIViewset, \
     WeaponTDFViewset, OpenTotalAnnihilationFBIFileII, DownloadTDFViewset, FeatureTDFViewset, \
-    UnitFBIViewSerialized, ReadVanillaTAData, ReadVanillaTASoundData, \
-    ReadCoreContingencySoundData, ReadCoreContingencyWeaponData
+     ReadVanillaTAData, ReadVanillaTASoundData, \
+    ReadCoreContingencySoundData, ReadCoreContingencyWeaponData, UnitFBIViewSerialized, WeaponTDFViewSerialized, \
+    FeatureTDFViewSerialized, DownloadTDFViewSerialized, SoundTDFViewSerialized
 
 # Pure Python Stuff:
 from LazarusII.DataReaderTA import readFile
@@ -23,6 +24,10 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 
 router.register(r'FBISerialized', UnitFBIViewSerialized)
+router.register(r'WeaponTDF', WeaponTDFViewSerialized)
+router.register(r'FeatureTDF', FeatureTDFViewSerialized)
+router.register(r'DownloadTDF', DownloadTDFViewSerialized)
+router.register(r'SoundTDF', SoundTDFViewSerialized)
 
 
 urlpatterns = [

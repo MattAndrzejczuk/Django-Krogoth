@@ -45,14 +45,20 @@ class SelectedAssetUploadRepositoryViewset(viewsets.ModelViewSet):
 
 
 class LazarusModProjectViewset(viewsets.ModelViewSet):
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('name', 'description', 'is_selected', 'created_by', 'created',)
     serializer_class = LazarusModProjectSerializer
     queryset = LazarusModProject.objects.all()
 
 class LazarusModAssetViewset(viewsets.ModelViewSet):
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('type', 'project_id', 'uploader', 'is_deleted',)
     serializer_class = LazarusModAssetSerializer
     queryset = LazarusModAsset.objects.all()
 
 class LazarusModDependencyViewset(viewsets.ModelViewSet):
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('type', 'name', 'asset_id', 'is_deleted', 'model_schema', 'model_id',)
     serializer_class = LazarusModDependencySerializer
     queryset = LazarusModDependency.objects.all()
 

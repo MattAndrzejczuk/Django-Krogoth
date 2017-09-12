@@ -4,6 +4,8 @@
 
     function FUSE_APP_NAMEController($mdSidenav, $log, $http, $mdToast, $mdDialog, $scope, $mdMenu) {
         var vm = this;
+
+
         vm.viewName = 'FUSE_APP_NAME';
 
         document.getElementById("DjangularMetaText_01").innerHTML = 'Lazarus Unit Editor';
@@ -60,16 +62,8 @@
                     template: '<md-dialog>' +
                         '<md-toolbar>' +
                         '<div class="md-toolbar-tools">' +
-                        '<h2>{{ titleFromOutside }}</h2>' +
-                        '<span flex></span>' +
-                        '<md-button class="md-icon-button" ng-click="closeDialog()">' +
-                        '<md-icon class="icon-window-close" aria-label="Close dialog"></md-icon>' +
-                        '</md-button>' +
-                        '</div>' +
-                        '</md-toolbar>' +
-                        '<md-dialog-content class="md-dialog-content" layout="column" style="width:600px">' +
 
-                        '<div layout="row" layout-align="start center">' +
+                        '<span flex="10"></span>' +
                         '<md-checkbox ng-model="filter.cbCombat" aria-label="Combat">' +
                         '<span class="md-background-fg md-hue-3">Combat</span>' +
                         '</md-checkbox>' +
@@ -81,9 +75,7 @@
                         '<md-checkbox ng-model="filter.cbResources" aria-label="Misc">' +
                         '<span class="md-background-fg md-hue-3">Resources</span>' +
                         '</md-checkbox>' +
-                        '</div>' +
 
-                        '<div layout="row" layout-align="start center">' +
                         '<md-checkbox ng-model="filter.cbPathfinder" aria-label="Misc">' +
                         '<span class="md-background-fg md-hue-3">Pathfinder</span>' +
                         '</md-checkbox>' +
@@ -91,8 +83,15 @@
                         '<md-checkbox ng-model="filter.cbNameInfo" aria-label="Misc">' +
                         '<span class="md-background-fg md-hue-3">NameInfo</span>' +
                         '</md-checkbox>' +
-                        '</div>' +
 
+                        '<span flex></span>' +
+                        '<md-button class="md-icon-button" ng-click="closeDialog()">' +
+                        '<md-icon class="icon-window-close" aria-label="Close dialog"></md-icon>' +
+                        '</md-button>' +
+                        '</div>' +
+                        '</md-toolbar>' +
+                        '<md-dialog-content class="md-dialog-content" layout="column" style="width:1200px">' +
+                        '<h5>{{titleFromOutside}}</h5>' +
                         '<br>' +
                         /// '<div class="md-dialog-content" layout="column" style="width:700px">' +
                         dialogHtmlBody +

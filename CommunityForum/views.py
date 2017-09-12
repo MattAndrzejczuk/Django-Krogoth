@@ -70,7 +70,10 @@ class ForumCategoryDetailView(APIView):
             post_json = {}
             post_json['id'] = post.id
             post_json['title'] = post.title
-            post_json['body'] = post.body
+
+            ## FORMAT THE POST CONTENT:
+            rawtext = post.body.replace('\n', '<br>').replace('\t', '&nbsp; &nbsp; &nbsp; &nbsp;')
+            post_json['body'] = rawtext
             post_json['author'] = {'username': post.author.username, 'id': post.author.id}
             post_json['pub_date'] = post.pub_date
             post_json['category'] = cat.id

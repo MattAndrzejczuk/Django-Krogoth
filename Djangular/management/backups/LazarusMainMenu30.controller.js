@@ -19,7 +19,7 @@
             icon: "avatar:svg-",
             title: "Svg-",
             background: "md-amber-bg"
-        }, 3);
+        }, 4);
 
         /// buildGridModel_PublishedMods
         vm.widgetUnitCount = {
@@ -126,6 +126,13 @@
                         it.url = 'app.LazarusTechEditorIndex';
                         it.title = 'TECH TREE EDITOR';
                         it.description = "Create your own tech levels here! Customize what all units are able to build here.";
+                        break;
+                    case 4:
+                        it.background = "md-background-bg md-hue-1";
+                        it.url = 'app.LazarusAssetExplorerIndex';
+                        it.title = 'ASSET EXPLORER';
+                        it.description = "View the raw dump of all units associated with this mod," +
+                            " along with each unit's dependencies.";
                         break;
 
                 }

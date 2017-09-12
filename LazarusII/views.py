@@ -31,8 +31,11 @@ import subprocess
 from DatabaseSandbox.models import TotalAnnihilationUploadedFile, LazarusModProjectSB
 from LazarusDatabase.models import SelectedAssetUploadRepository
 
-from LazarusII.serializers import UnitFbiDataSerializer
-from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF, FeatureTDF
+from LazarusII.serializers import UnitFbiDataSerializer, WeaponTDFDataSerializer, \
+    FeatureTDFDataSerializer, DownloadTDFDataSerializer, SoundTDFDataSerializer
+
+
+from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF, FeatureTDF, SoundSetTDF
 
 # from rest_framework import viewsets
 import sys
@@ -1015,6 +1018,21 @@ class UnitFBIViewSerialized(viewsets.ModelViewSet):
     serializer_class = UnitFbiDataSerializer
     queryset = UnitFbiData.objects.all()
 
+class WeaponTDFViewSerialized(viewsets.ModelViewSet):
+    serializer_class = WeaponTDFDataSerializer
+    queryset = WeaponTDF.objects.all()
+
+class FeatureTDFViewSerialized(viewsets.ModelViewSet):
+    serializer_class = FeatureTDFDataSerializer
+    queryset = FeatureTDF.objects.all()
+
+class DownloadTDFViewSerialized(viewsets.ModelViewSet):
+    serializer_class = DownloadTDFDataSerializer
+    queryset = DownloadTDF.objects.all()
+
+class SoundTDFViewSerialized(viewsets.ModelViewSet):
+    serializer_class = SoundTDFDataSerializer
+    queryset = SoundSetTDF.objects.all()
 
 
 class UnitFBIViewset(APIView):
