@@ -117,6 +117,7 @@
             vm.editorViewHTML = _editor;
             ///_editor.setValue("// Hello world.");
         }
+
         vm.getMasterViewControllers = getMasterViewControllers;
         vm.codeChanged = codeChanged;
         vm.codeWillChange = codeWillChange;
@@ -136,6 +137,9 @@
             ///vm.docWasModified = true;
         }
 
+
+        vm.vmVarNames = [];
+
         function highlightVm() {
             $log.info('codemirror : `highlightVm` called!');
             var lineCount = vm.editorModel.getDoc().lineCount();
@@ -144,26 +148,49 @@
                 var count = (temp.match(/vm./g) || []).length;
                 var step = 0;
                 for (var i = 0; i < count; i++) {
-                    var n = temp.indexOf("vm.", step);
+                    /// Highlight all: VM.VARNAME
+                    var n = temp.indexOf("  vm.", step);
+                    var end = temp.indexOf(" = ", step);
+
                     step = n;
                     vm.editorModel.getDoc().markText({
                         "line": j,
                         "ch": n
                     }, {
                         "line": j,
-                        "ch": n + 2
+                        "ch": n + 4
                     }, {
-                        "css": "color : #23FF83"
+                        "css": "color : #d31895"
                     });
                     vm.editorModel.getDoc().markText({
                         "line": j,
-                        "ch": n + 2
+                        "ch": n + 4
                     }, {
                         "line": j,
-                        "ch": n + 3
+                        "ch": n + 5
                     }, {
-                        "css": "color : #00A0FF"
+                        "css": "color : #f00"
                     });
+
+
+                    if (n !== -1 && end !== -1) {
+                        if (temp) {
+                            if (temp.substring(n, end)) {
+                                var vmName = temp.substring(n, end);
+                                vm.vmVarNames.push(vmName.replace(' ', ''));
+                                vm.editorModel.getDoc().markText({
+                                    "line": j,
+                                    "ch": n + 5
+                                }, {
+                                    "line": j,
+                                    "ch": n + vmName.length
+                                }, {
+                                    "css": "color: #6666FF; font-weight:bold;"
+                                });
+                            }
+                        }
+                    }
+
                 }
             }
 
@@ -181,7 +208,7 @@
                         "line": j,
                         "ch": n + 8
                     }, {
-                        "css": "color : #23FF83"
+                        "css": "color : #00a0ff"
                     });
                     vm.editorModel.getDoc().markText({
                         "line": j,
@@ -190,7 +217,7 @@
                         "line": j,
                         "ch": n + 9
                     }, {
-                        "css": "color : #00A0FF"
+                        "css": "color : #ccff00; font-weight:bold;"
                     });
                 }
             }
@@ -214,7 +241,7 @@
                         "line": j,
                         "ch": n + 4
                     }, {
-                        "css": "color : #FF9100"
+                        "css": "color : #FF9100; font-weight:bold;"
                     });
                 }
             }
@@ -232,7 +259,7 @@
                         "line": j,
                         "ch": n + 5
                     }, {
-                        "css": "color : #A459FF"
+                        "css": "color : #A459FF; font-weight:bold;"
                     });
                 }
             }
@@ -250,7 +277,7 @@
                         "line": j,
                         "ch": n + 7
                     }, {
-                        "css": "color : #FF9100"
+                        "css": "color : #FF9100; font-weight:bold;"
                     });
                 }
             }
@@ -268,7 +295,7 @@
                         "line": j,
                         "ch": n + 5
                     }, {
-                        "css": "color : #FF9100"
+                        "css": "color : #FF9100; font-weight:bold;"
                     });
                 }
             }
@@ -286,7 +313,7 @@
                         "line": j,
                         "ch": n + 10
                     }, {
-                        "css": "color : #A459FF"
+                        "css": "color : #A459FF; font-weight:bold;"
                     });
                 }
             }
@@ -304,7 +331,7 @@
                         "line": j,
                         "ch": n + 7
                     }, {
-                        "css": "color : #D31895"
+                        "css": "color : #D31895; font-weight:bold;"
                     });
                 }
             }
@@ -322,7 +349,7 @@
                         "line": j,
                         "ch": n + 8
                     }, {
-                        "css": "color : #D31895"
+                        "css": "color : #D31895; font-weight:bold;"
                     });
                 }
             }
@@ -340,10 +367,69 @@
                         "line": j,
                         "ch": n + 6
                     }, {
-                        "css": "color : #47DBE2"
+                        "css": "color : #47DBE2; font-weight:bold;"
                     });
                 }
             }
+            for (var j = 0; j < lineCount; j++) {
+                var temp = vm.editorModel.getDoc().getLine(j);
+                var count = (temp.match(/\);/g) || []).length;
+                var step = 0;
+                for (var i = 0; i < count; i++) {
+                    var n = temp.indexOf(');', step);
+                    step = n;
+                    vm.editorModel.getDoc().markText({
+                        "line": j,
+                        "ch": n
+                    }, {
+                        "line": j,
+                        "ch": n + 1
+                    }, {
+                        "css": "color : #ffc3fc;"
+                    });
+                }
+            }
+            for (var j = 0; j < lineCount; j++) {
+                var temp = vm.editorModel.getDoc().getLine(j);
+                var count = (temp.match(/\(/g) || []).length;
+                var step = 0;
+                for (var i = 0; i < count; i++) {
+                    var n = temp.indexOf('(', step);
+                    step = n;
+                    vm.editorModel.getDoc().markText({
+                        "line": j,
+                        "ch": n
+                    }, {
+                        "line": j,
+                        "ch": n + 1
+                    }, {
+                        "css": "color : #ffc3fc;"
+                    });
+                }
+            }
+
+
+            /*  'v.' '.' 
+            for (var j = 0; j < lineCount; j++) {
+                var temp = vm.editorModel.getDoc().getLine(j);
+                var count = (temp.match(/ vm.|./g) || []).length;
+                var step = 0;
+                for (var i = 0; i < count; i++) {
+                    var n = temp.indexOf(' vm.', step);
+                    step = n;
+                    vm.editorModel.getDoc().markText({
+                        "line": j,
+                        "ch": n + 4
+                    }, {
+                        "line": j,
+                        "ch": n + temp.indexOf('.', n + 4) - 3
+                    }, {
+                        "css": "color : #23ff83;"
+                    });
+                }
+            }
+			*/
+
         }
 
 

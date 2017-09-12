@@ -414,7 +414,7 @@
                     url: iframeUrl
                 }).then(function successCallback(response) {
                     $scope.rawResponse = response.data;
-                    $scope.status = 'SUCCESS';
+                    $scope.status = 'SUCCESS: ' + iframeUrl;
                     $scope.info = "Success! this unit's FBI data has been parsed and successfully saved " +
                         "to the database. To proceed, click the 'ADD MOD ASSET' button below. This will allow " +
                         "you to use this asset in your Mod Project.";
@@ -428,7 +428,7 @@
             $scope.addModAsset = function() {
                 $http({
                     method: 'GET',
-                    url: '/LazarusIII/DependenciesForUnitFBI/?uid=' + $scope.rawResponse[0]['UnitName']
+                    url: '/LazarusIII/DependenciesForUnitFBI/?uid=' + $scope.rawResponse[0]['_SNOWFLAKE']
                 }).then(function successCallback(response) {
                     // this callback will be called asynchronously
                     // when the response is available

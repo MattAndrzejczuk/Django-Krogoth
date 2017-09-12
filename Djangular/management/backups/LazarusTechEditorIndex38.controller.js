@@ -13,6 +13,9 @@
             method: 'GET',
             url: '/LazarusDatabase/UnitFBIFromSQLView/'
         }).then(function successCallback(response) {
+            $log.log('[GET]');
+            $log.info('/LazarusDatabase/UnitFBIFromSQLView/');
+            $log.debug(response.data['list_response']);
             vm.totalUnits = response.data['list_response'].length;
             vm.modName = response.data['mod'];
         }, function errorCallback(response) {
@@ -34,6 +37,9 @@
                 method: 'GET',
                 url: '/LazarusDatabase/SelectedModProject/'
             }).then(function successCallback(response) {
+                $log.log('[GET]');
+                $log.info('/LazarusDatabase/SelectedModProject/');
+                $log.debug(response.data['results']);
                 vm.userMods = response.data['results'];
                 for (var i = 0; i < vm.userMods.length; i++) {
                     if (vm.userMods[i]['is_selected'] === true) {
@@ -58,8 +64,16 @@
                 method: 'GET',
                 url: '/LazarusDatabase/TotalAnnihilation/LazarusModAsset/?project_id=' + withModId
             }).then(function successCallback(response) {
+                $log.log('- - - - - - - - - - - - - - - -');
+                $log.log('-ASSETS ARE LOCKED AND LOADED -');
+                $log.log('- - - - - - - - - - - - - - - -');
+                $log.log('[GET]');
+                $log.info('/LazarusDatabase/TotalAnnihilation/LazarusModAsset/?project_id=' + withModId);
+                $log.debug(response.data['results']);
                 vm.modAssets = response.data['results'];
+                $log.debug('Okay, the asset needs to fucking loop through some shit.');
                 for (var i = 0; i < vm.modAssets.length; i++) {
+                    $log.log('looping... ' + i);
                     vm.loadDependencies(vm.modAssets[i]['id']);
                 }
 
@@ -80,6 +94,7 @@
         vm.groupedAssetsWithDependencies = {};
         vm.totalAssetSets = 0;
         vm.workersWithBuildSchematic = {};
+        vm.globalUnitPngDictionary = {};
 
         function loadDependencies(withAssetId) {
             $http({
@@ -87,6 +102,9 @@
                 url: '/LazarusDatabase/TotalAnnihilation/LazarusModDependency/?asset_id=' + withAssetId
             }).then(function successCallback(response) {
                 /// vm.modDependencies = response.data['results'];
+                $log.log('[GET]');
+                $log.info('/LazarusDatabase/TotalAnnihilation/LazarusModDependency/?asset_id=' + withAssetId);
+                $log.debug(response.data['results']);
                 for (var i = 0; i < response.data['results'].length; i++) {
                     var dependencyItem = response.data['results'][i];
                     if (dependencyItem.model_schema === 'DownloadTDF') {
@@ -106,6 +124,12 @@
                     var picName = unitName.toLowerCase() + '.png';
                     var previewPicUrl = '/media/ta_data/' + origNameHPI + '/unitpics/' + picName;
 
+                    if (vm.globalUnitPngDictionary[unitName.toUpperCase()]) {
+
+                    } else {
+                        vm.globalUnitPngDictionary[unitName.toUpperCase()] = previewPicUrl;
+                    }
+
                     dependencyItem.pngImg = previewPicUrl;
                     if (dependencyItem.type === 'unitpic') {
                         for (var j = 0; j < 9; j++) {
@@ -123,19 +147,29 @@
                         dependencyItem.built_by = dependencyItem.type.split(' -> ')[0];
                         dependencyItem.snowflake = dependencyItem.type.split(' -> ')[1];
                         if (vm.workersWithBuildSchematic[dependencyItem.built_by.toUpperCase()]) {
+                            //if (vm.workersWithBuildSchematic[dependencyItem.built_by.toUpperCase()][dependencyItem].includes(dependencyItem) === false)
+                            vm.workersWithBuildSchematic[dependencyItem.built_by.toUpperCase()][dependencyItem.type] = (dependencyItem);
+                        } else {
+                            vm.workersWithBuildSchematic[dependencyItem.built_by.toUpperCase()] = {};
+                            vm.workersWithBuildSchematic[dependencyItem.built_by.toUpperCase()][dependencyItem.type] = (dependencyItem);
+                        }
+                        // the if block below results in duplicates:
+                        /*
+                        if (vm.workersWithBuildSchematic[dependencyItem.built_by.toUpperCase()]) {
                             if (vm.workersWithBuildSchematic[dependencyItem.built_by.toUpperCase()].includes(dependencyItem) === false)
                                 vm.workersWithBuildSchematic[dependencyItem.built_by.toUpperCase()].push(dependencyItem);
                         } else {
                             vm.workersWithBuildSchematic[dependencyItem.built_by.toUpperCase()] = [];
                             vm.workersWithBuildSchematic[dependencyItem.built_by.toUpperCase()].push(dependencyItem);
                         }
+						*/
 
                         /// Unit/Structure Product -> [all workers who can build this product]
-                        if (vm.groupedAssetsWithDependencies[dependencyItem.asset_id + '|' + dependencyItem.snowflake]) {
-                            vm.groupedAssetsWithDependencies[dependencyItem.asset_id + '|' + dependencyItem.snowflake].push(dependencyItem);
+                        if (vm.groupedAssetsWithDependencies[dependencyItem.snowflake]) {
+                            vm.groupedAssetsWithDependencies[dependencyItem.snowflake].push(dependencyItem);
                         } else {
-                            vm.groupedAssetsWithDependencies[dependencyItem.asset_id + '|' + dependencyItem.snowflake] = [];
-                            vm.groupedAssetsWithDependencies[dependencyItem.asset_id + '|' + dependencyItem.snowflake].push(dependencyItem);
+                            vm.groupedAssetsWithDependencies[dependencyItem.snowflake] = [];
+                            vm.groupedAssetsWithDependencies[dependencyItem.snowflake].push(dependencyItem);
                             vm.totalAssetSets += 1;
                         }
                     }
@@ -154,7 +188,8 @@
             });
         }
 
-
+        // vm.vanillaArmConstructorDict.hasOwnProperty('ARMCOMARMCOM')  =  true
+        // vm.vanillaArmConstructorDict.hasOwnProperty('RABLEAFGLLTT')  =  false
         vm.vanillaArmConstructorDict = {
             ARMAAP: "/static/vanillaTAUnitPics/ARMAAP.PNG",
             ARMACA: "/static/vanillaTAUnitPics/ARMACA.PNG",
@@ -185,18 +220,18 @@
             CORCS: "/static/vanillaTAUnitPics/CORCS.PNG",
             CORCV: "/static/vanillaTAUnitPics/CORCV.PNG",
 
-            ARMACSUB: "/static/TACC_unitdata/ARMACSUB.PNG",
-            ARMCH: "/static/TACC_unitdata/ARMCH.PNG",
-            ARMCSA: "/static/TACC_unitdata/ARMCSA.PNG",
-            ARMHP: "/static/TACC_unitdata/ARMHP.PNG",
-            ARMPLAT: "/static/TACC_unitdata/ARMPLAT.PNG",
+            ARMACSUB: "/static/CCTAUnitPics/ARMACSUB.PNG",
+            ARMCH: "/static/CCTAUnitPics/ARMCH.PNG",
+            ARMCSA: "/static/CCTAUnitPics/ARMCSA.PNG",
+            ARMHP: "/static/CCTAUnitPics/ARMHP.PNG",
+            ARMPLAT: "/static/CCTAUnitPics/ARMPLAT.PNG",
 
-            CORACSUB: "/static/TACC_unitdata/CORACSUB.PNG",
-            CORCH: "/static/TACC_unitdata/CORCH.PNG",
-            CCORCSA: "/static/TACC_unitdata/CCORCSA.PNG",
-            CORGANT: "/static/TACC_unitdata/.PNG",
-            CORHP: "/static/TACC_unitdata/CORGANT.PNG",
-            CORPLAT: "/static/TACC_unitdata/CORPLAT.PNG",
+            CORACSUB: "/static/CCTAUnitPics/CORACSUB.PNG",
+            CORCH: "/static/CCTAUnitPics/CORCH.PNG",
+            CCORCSA: "/static/CCTAUnitPics/CCORCSA.PNG",
+            CORGANT: "/static/CCTAUnitPics/CORGANT.PNG",
+            CORHP: "/static/CCTAUnitPics/CORHP.PNG",
+            CORPLAT: "/static/CCTAUnitPics/CORPLAT.PNG",
         };
 
 
@@ -205,51 +240,6 @@
         // "VTOL" - worker tech lvl 1
         // "CNSTR" - worker tech lvl 2
         /// - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-        vm.vanillaArmConstructorPics = [{
-            "snowflake": "ARMAAP",
-            "img": "/static/vanillaTAUnitPics/ARMAAP.PNG"
-        }, {
-            "snowflake": "ARMACA",
-            "img": "/static/vanillaTAUnitPics/ARMACA.PNG"
-        }, {
-            "snowflake": "ARMACK",
-            "img": "/static/vanillaTAUnitPics/ARMACK.PNG"
-        }, {
-            "snowflake": "ARMACV",
-            "img": "/static/vanillaTAUnitPics/ARMACV.PNG"
-        }, {
-            "snowflake": "ARMALAB",
-            "img": "/static/vanillaTAUnitPics/ARMALAB.PNG"
-        }, {
-            "snowflake": "ARMAP",
-            "img": "/static/vanillaTAUnitPics/ARMAP.PNG"
-        }, {
-            "snowflake": "ARMASY",
-            "img": "/static/vanillaTAUnitPics/ARMASY.PNG"
-        }, {
-            "snowflake": "ARMAVP",
-            "img": "/static/vanillaTAUnitPics/ARMAVP.PNG"
-        }, {
-            "snowflake": "ARMCA",
-            "img": "/static/vanillaTAUnitPics/ARMCA.PNG"
-        }, {
-            "snowflake": "ARMCK",
-            "img": "/static/vanillaTAUnitPics/ARMCK.PNG"
-        }, {
-            "snowflake": "ARMCOM",
-            "img": "/static/vanillaTAUnitPics/ARMCOM.PNG"
-        }, {
-            "snowflake": "ARMCS",
-            "img": "/static/vanillaTAUnitPics/ARMCS.PNG"
-        }, {
-            "snowflake": "ARMCV",
-            "img": "/static/vanillaTAUnitPics/ARMCV.PNG"
-        }, {
-            "snowflake": "ARMLAB",
-            "img": "/static/vanillaTAUnitPics/ARMLAB.PNG"
-        }];
 
 
 

@@ -147,8 +147,11 @@ class WeaponTDFFetch():
                 repairattempt1 = base_obj.replace(', " }', ' }')
                 dictionary = json.loads(repairattempt1)
 
+            print('\n VALIDATING JSON:')
+            print(parseBase(nested_obj, getNestedType(tdf_without_comments1)))
+            print('\n')
             dictionary[getNestedType(tdf_without_comments1)] = json.loads(
-                parseBase(nested_obj, getNestedType(tdf_without_comments1)))
+                parseBase(nested_obj, getNestedType(tdf_without_comments1)).replace('", "   }', '"}'))
             dictionary['_REFERENCE_POINTER'] = baseobjectkeyname
             dict_list.append(dictionary)
             new_weapon_tdf = WeaponTDF()

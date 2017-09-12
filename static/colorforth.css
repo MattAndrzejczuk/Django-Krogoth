@@ -1,4 +1,4 @@
-.cm-s-colorforth.CodeMirror { background: #000000; color: #f8f8f8; }
+.cm-s-colorforth.CodeMirror { background: #000000; color: #ffffff; }
 .cm-s-colorforth .CodeMirror-gutters { background: #0a001f; border-right: 1px solid #aaa; }
 .cm-s-colorforth .CodeMirror-guttermarker { color: #FFBD40; }
 .cm-s-colorforth .CodeMirror-guttermarker-subtle { color: #78846f; }
@@ -12,12 +12,12 @@
 .cm-s-colorforth span.cm-variable    { color: #ccff00; }
 .cm-s-colorforth span.cm-string      { color: #ff2c38; }
 .cm-s-colorforth span.cm-number      { color: #00c4ff; }
-.cm-s-colorforth span.cm-atom        { color: #606060; }
+.cm-s-colorforth span.cm-atom        { color: #6666FF; }
 
-.cm-s-colorforth span.cm-variable-2  { color: #EEE; }
-.cm-s-colorforth span.cm-variable-3, .cm-s-colorforth span.cm-type { color: #DDD; }
-.cm-s-colorforth span.cm-property    {}
-.cm-s-colorforth span.cm-operator    {}
+.cm-s-colorforth span.cm-variable-2  { color: #ffc3fc; font-weight:bold; }
+.cm-s-colorforth span.cm-variable-3, .cm-s-colorforth span.cm-type { color: #00a0ff; }
+.cm-s-colorforth span.cm-property    { color: #23ff83; }
+.cm-s-colorforth span.cm-operator    { color: #ff9100; font-weight:bold; }
 
 .cm-s-colorforth span.cm-meta        { color: yellow; }
 .cm-s-colorforth span.cm-qualifier   { color: #FFF700; }

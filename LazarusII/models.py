@@ -65,6 +65,8 @@ class WeaponTDF(models.Model):
     _DEV_root_data_path = models.CharField(max_length=100, default='nan')
     _OBJECT_KEY_NAME = models.CharField(max_length=100, null=True, blank=True)
     _Lazarus_Identifier = models.CharField(max_length=100, unique=True)
+    _SNOWFLAKE = models.CharField(max_length=150, default='nan')
+
     accuracy = models.IntegerField(null=True, blank=True)   # int()
     aimrate = models.IntegerField(null=True, blank=True)   # int()
     areaofeffect = models.IntegerField(null=True, blank=True)   # int()
@@ -152,6 +154,7 @@ class WeaponTDF(models.Model):
 
 class FeatureTDF(models.Model):
     _DEV_root_data_path = models.CharField(max_length=100, default='nan')
+    _SNOWFLAKE = models.CharField(max_length=150, default='nan')
 
     animating = models.PositiveSmallIntegerField(null=True, blank=True)
     animtrans = models.PositiveSmallIntegerField(null=True, blank=True)
@@ -202,6 +205,7 @@ class UnitFbiData(models.Model):
     _DEV_root_data_path = models.CharField(max_length=100, default='nan')
     _UPLOAD_DESIGNATION = models.CharField(max_length=150, default='nan')
     _REPOSITORY = models.CharField(max_length=150, default='nan')
+    _SNOWFLAKE = models.CharField(max_length=150, default='nan')
 
     Acceleration = models.FloatField(null=True, blank=True)
     ActiveWhenBuild = models.IntegerField(null=True, blank=True)
@@ -244,7 +248,7 @@ class UnitFbiData(models.Model):
     DamageModifier = models.FloatField(null=True, blank=True)
     DefaultMissionType = models.CharField(max_length=107, null=True, blank=True)
     Description = models.CharField(max_length=255, null=True, blank=True)
-    Designation = models.CharField(max_length=50, null=True, blank=True)
+    Designation = models.CharField(max_length=250, null=True, blank=True)
     digger = models.PositiveSmallIntegerField(null=True, blank=True)
     Downloadable = models.PositiveSmallIntegerField(null=True, blank=True)
     EnergyMake = models.IntegerField(null=True, blank=True)
@@ -353,9 +357,9 @@ class UnitFbiData(models.Model):
     transportsize = models.IntegerField(null=True, blank=True)
     TurnRate = models.IntegerField(null=True, blank=True)
     # TODO: unique? ID?
-    UnitName = models.CharField(max_length=129, unique=True) # ✦ ✦ ✦
+    UnitName = models.CharField(max_length=129, null=True, blank=True) # ✦ ✦ ✦
     # TODO: must be unique, PK?
-    UnitNumber = models.IntegerField(unique=True) # ✦ ✦ ✦
+    UnitNumber = models.IntegerField(null=True, blank=True) # ✦ ✦ ✦
     Upright = models.PositiveSmallIntegerField(null=True, blank=True)
     Version = models.IntegerField(null=True, blank=True) # ✦ ✦ ✦
     WaterLine = models.IntegerField(null=True, blank=True)
@@ -380,7 +384,7 @@ class UnitFbiData(models.Model):
 # http://units.tauniverse.com/tutorials/tadesign/tadesign/tdfdown.htm
 class DownloadTDF(models.Model):
     parent_unit = models.ForeignKey(UnitFbiData, on_delete=models.CASCADE,)
-
+    _SNOWFLAKE = models.CharField(max_length=150, default='nan')
     _DEV_root_data_path = models.CharField(max_length=100, default='nan')
 
     MENUENTRY = models.CharField(max_length=20,

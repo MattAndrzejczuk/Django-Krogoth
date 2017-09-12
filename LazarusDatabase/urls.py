@@ -8,6 +8,7 @@ router.register(r'Mods', views.TotalAnnihilationModViewset)
 router.register(r'LazarusModProject', views.LazarusModProjectViewset)
 router.register(r'LazarusModAsset', views.LazarusModAssetViewset)
 router.register(r'LazarusModDependency', views.LazarusModDependencyViewset)
+router.register(r'LazarusPublicAssets', views.LazarusPublicAssetsViewset)
 router.register(r'SelectedAssetUploadRepository', views.SelectedAssetUploadRepositoryViewset)
 router.register(r'Upload', views.HPIUploadViewset)
 
@@ -23,5 +24,5 @@ urlpatterns = [
     url(r'^WeaponTDFFromSQLView/', views.WeaponTDFFromSQLView.as_view(), name='WeaponTDFFromSQL'),
     url(r'^DownloadTDFFromSQLView/', views.DownloadTDFFromSQLView.as_view(), name='DownloadTDFFromSQLView'),
     url(r'^FeatureTDFFromSQLView/', views.FeatureTDFFromSQLView.as_view(), name='FeatureTDFFromSQLView'),
-
+    url(r'^rawDependencyAsTextView/', views.rawDependencyAsTextView.as_view(), name='rawDependencyAsTextView'),
 ]

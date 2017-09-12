@@ -1,6 +1,6 @@
 from django.db import models
 from chat.models import JawnUser
-
+import codecs
 
 # Create your models here.
 from rest_auth.models import LazarusCommanderAccount
@@ -60,6 +60,7 @@ class LazarusModProject(models.Model):
     created_by = models.ForeignKey(JawnUser, related_name='created_by', blank=True, null=True)
     description = models.TextField(max_length=400, blank=True, null=True)
     is_selected = models.BooleanField(default=True)
+    is_deleted = models.BooleanField(default=False)
     def __str__(self):
         return self.name
 
@@ -78,15 +79,17 @@ class LazarusModAsset(models.Model):
         return self.name
 
 
-
-
 class LazarusModDependency(models.Model):
-    name = models.CharField(max_length=100)
-    type = models.CharField(max_length=100)
-    system_path = models.CharField(max_length=100)
+    name = models.CharField(max_length=250)
+    type = models.CharField(max_length=250)
+    system_path = models.CharField(max_length=250)
+    raw_string_url = models.TextField(blank=True,
+                                      null=True,
+                                      help_text='URL to display raw file as a string.',
+                                      default='nan')
     asset_id = models.IntegerField()
     is_deleted = models.BooleanField(default=False)
-    model_schema = models.CharField(max_length=100,
+    model_schema = models.CharField(max_length=250,
                                     blank=True,
                                     null=True,
                                     help_text='Class name this asset conforms to. i.e. UnitFbiData')
@@ -94,6 +97,46 @@ class LazarusModDependency(models.Model):
                                    null=True,
                                    default=-1,
                                    help_text='LazarusII Object id this dependency belongs to.')
+    meta_data = models.TextField(blank=True,
+                                null=True,
+                                help_text='Useful for showing info on HTML frontend.',
+                                default='nan')
     created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        remove_syspath = self.system_path.replace('/usr/src/persistent/media/ta_data/','')
+        urlencoded = remove_syspath.replace('/', '_SLSH_')
+        self.raw_string_url = '/LazarusDatabase/rawDependencyAsTextView?syspath=' + urlencoded
+        super(LazarusModDependency, self).save(*args, **kwargs)
+
+
+class LazarusPublicAsset(models.Model):
+    user_uploader = models.ForeignKey(JawnUser, related_name='user_uploader', blank=True, null=True)
+    likes = models.IntegerField(help_text='Users who liked this asset.', default=0)
+    dislikes = models.IntegerField(help_text='Users that disliked this asset.', default=0)
+    side = models.CharField(max_length=100, help_text='Arm or Core faction', default='ARM')
+    name = models.CharField(max_length=100, help_text='name of this unit', default='No Name')
+    encoded_path = models.CharField(max_length=125, help_text='The sys path to the FBI file with Url encoding', default='NOTAIR')
+
+    tags = models.CharField(max_length=125, help_text='i.e. VTOL TANK LEVEL2 KBOT NOTAIR', default='NOTAIR')
+    description = models.TextField(blank=True,
+                                 null=True,
+                                 help_text='Summary info about this unit asset.',
+                                 default='nan')
+
+    unitpic = models.CharField(max_length=160, default='/static/assets/images/logos/ARM_logo.png')
+    created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    HP = models.IntegerField(help_text='This units hitpoints', default=-1)
+    size = models.CharField(max_length=160, help_text='The size of the unit i.e. 2x2', default='0x0')
+    energyCost = models.IntegerField(help_text='The amount of energy this unit needs', default=-1)
+    metalCost = models.IntegerField(help_text='The amount of metal this unit needs', default=-1)
+
+    is_deleted = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=False)
+
+    fbiSnowflake = models.CharField(max_length=160, null=True, blank=True)
+
     def __str__(self):
         return self.name

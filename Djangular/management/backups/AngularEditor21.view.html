@@ -17,6 +17,11 @@ max-height: 1440px;
 }
 */
 
+	.CodeMirror-code {
+		font-size: 14px !important;
+		line-height: 16px !important;
+	}
+	
 .MasterWrapper {
     width: 100%;
     height: 100%;
@@ -81,6 +86,7 @@ max-height: 1440px;
 				   ng-click="vm.getMasterViewControllerDetail(mvc['id'])">
 				{{ mvc['title'] }}
 		</md-button>
+		<pre class="color: #ff2c38; font-weight:bold">{{vm.vmVarNames | json}}</pre>
 	</md-card>
 </md-content>
 

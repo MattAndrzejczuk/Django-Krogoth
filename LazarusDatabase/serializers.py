@@ -1,5 +1,5 @@
 from LazarusDatabase.models import TotalAnnihilationMod, LazarusModProject, LazarusModAsset, \
-    LazarusModDependency, SelectedAssetUploadRepository, HPIUpload
+    LazarusModDependency, SelectedAssetUploadRepository, HPIUpload, LazarusPublicAsset
 from rest_framework import serializers, exceptions
 from chat.models import JawnUser
 from DatabaseSandbox.models import TotalAnnihilationUploadedFile
@@ -102,6 +102,20 @@ class LazarusModDependencySerializer(serializers.ModelSerializer):
     class Meta:
         model = LazarusModDependency
         fields = '__all__'
+
+
+class LazarusPublicAssetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LazarusPublicAsset
+        fields = ("id", "likes","dislikes","side","name","encoded_path","tags","description","unitpic","HP",
+                  "size","energyCost","metalCost","is_deleted","is_featured","fbiSnowflake",)
+
+    def update(self, instance, validated_data):
+        instance.save()
+        return instance
+
+
+
 
 import threading
 

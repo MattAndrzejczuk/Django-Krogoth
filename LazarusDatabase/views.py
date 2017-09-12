@@ -13,10 +13,11 @@ import django_filters
 from rest_framework import permissions
 
 from LazarusDatabase.serializers import TotalAnnihilationModSerializer, SelectedAssetUploadRepositorySerializer, \
-    LazarusModProjectSerializer, LazarusModAssetSerializer, LazarusModDependencySerializer, HPIUploadSerializer
+    LazarusModProjectSerializer, LazarusModAssetSerializer, LazarusModDependencySerializer, \
+    HPIUploadSerializer, LazarusPublicAssetSerializer
 
 from LazarusDatabase.models import TotalAnnihilationMod, LazarusModProject, LazarusModAsset, \
-    LazarusModDependency, SelectedAssetUploadRepository, HPIUpload
+    LazarusModDependency, SelectedAssetUploadRepository, HPIUpload, LazarusPublicAsset
 
 from rest_framework.decorators import detail_route, list_route
 from rest_framework import status
@@ -24,6 +25,7 @@ from rest_framework import viewsets
 import django_filters
 
 from rest_auth.models import LazarusCommanderAccount
+import codecs
 
 
 class SelectedAssetUploadRepositoryFilter(django_filters.FilterSet):
@@ -48,19 +50,26 @@ class LazarusModProjectViewset(viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('name', 'description', 'is_selected', 'created_by', 'created',)
     serializer_class = LazarusModProjectSerializer
-    queryset = LazarusModProject.objects.all()
+    queryset = LazarusModProject.objects.filter(is_deleted=False)
 
 class LazarusModAssetViewset(viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('type', 'project_id', 'uploader', 'is_deleted',)
     serializer_class = LazarusModAssetSerializer
-    queryset = LazarusModAsset.objects.all()
+    queryset = LazarusModAsset.objects.filter(is_deleted=False)
 
 class LazarusModDependencyViewset(viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('type', 'name', 'asset_id', 'is_deleted', 'model_schema', 'model_id',)
     serializer_class = LazarusModDependencySerializer
-    queryset = LazarusModDependency.objects.all()
+    queryset = LazarusModDependency.objects.filter(is_deleted=False)
+
+
+class LazarusPublicAssetsViewset(viewsets.ModelViewSet):
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('user_uploader', 'name', 'side', 'is_deleted', 'is_featured', 'HP', 'created',)
+    serializer_class = LazarusPublicAssetSerializer
+    queryset = LazarusPublicAsset.objects.filter(is_deleted=False)
 
 
 from rest_framework.parsers import FileUploadParser
@@ -83,6 +92,14 @@ class TotalAnnihilationModViewset(viewsets.ModelViewSet):
 
 
 
+
+class rawDependencyAsTextView(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request, format=None):
+        syspath = '/usr/src/persistent/media/ta_data/' + request.GET['syspath'].replace('_SLSH_', '/')
+        f3 = codecs.open(syspath, 'r', errors='replace')
+        tdf_without_comments = f3.read()
+        return HttpResponse(tdf_without_comments)
 
 class SelectedAssetRepo(APIView):
     permission_classes = (IsAuthenticated,)

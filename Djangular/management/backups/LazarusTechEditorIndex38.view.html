@@ -28,69 +28,24 @@
 		</div>
 </div>
 
-
-<section ng-repeat="(key, value) in vm.groupedAssetsWithDependencies">
-        <div flex class="md-accent" layout="column" layout-margin layout-padding ng-if="vm.dependenciesDidLoad === true">
-            <h1 class="md-accent-fg ">ASSET: {{key}}</h1>
-            <!-- GRID LIST -->
-            <md-grid-list md-cols="6"
-						  md-cols-xs="2"
-                          md-cols-sm="4"
-                          md-cols-md="6"
-                          md-cols-gt-lg="8"
-                          md-row-height-gt-md="1:1"
-                          md-row-height="1:1"
-                          md-gutter="8px"
-                          md-gutter-gt-sm="4px"
-						  
-						  
-            >
-                <!-- MODEL NAME HERE -->
-                <md-grid-tile ng-repeat="tile in value"
-                              md-rowspan="tile.heightRowSpan"
-                              md-colspan="tile.widthColSpan"
-                              md-colspan-sm="tile.widthColSpan"
-                              md-colspan-xs="tile.widthColSpan"							
-                              ng-class="tile.bgClass"
-                >
-                    <md-grid-tile-header layout-padding style="background: rgba(0, 0, 0, 0.55);">
-                        <h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">{{tile.name}}</h2>
-                    </md-grid-tile-header>
-                    
-					<img src="{{tile.pngImg}}" style="height: 96px; width: 96px">
-                    </img>
-				
-				<p class="md-accent-fg">{{tile.model_schema}}</p>
-					
-                    <md-grid-tile-footer layout-padding style="background: rgba(0, 0, 0, 0.55);">
-                        <h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">{{tile.type}}</h2>
-                    </md-grid-tile-footer>
-					
-                </md-grid-tile>
-            </md-grid-list>
-            <!-- /END GRID LIST -->
-        </div>
-</section>
-
+<h5>Total Units: {{vm.totalUnits}}</h5>
+<pre>Mod Assets: {{ vm.modAssets | json }}</pre>
+<pre>Grouped Assets With Dependencies: {{ vm.groupedAssetsWithDependencies | json }}</pre>
 
 <section ng-repeat="(builder_key, unit_value) in vm.workersWithBuildSchematic">	
-	<h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">{{ builder_key }}</h2>
-	<img src="/static/vanillaTAUnitPics/{{ builder_key | uppercase}}.PNG" 
+	<h1 class="md-primary-fg md-hue-1">{{ builder_key }}</h1>
+	<img src="/static/CCTAUnitPics/{{ builder_key | uppercase}}.PNG" 
 		 style="height: 96px; width: 96px"
 		 ng-if="vm.vanillaArmConstructorDict.hasOwnProperty(builder_key.toUpperCase())">
     </img>
-	<img src="/static/vanillaTAUnitPics/{{ builder_key | uppercase}}.PNG" 
-		 style="height: 6px; width: 6px"
-		 ng-if="vm.vanillaArmConstructorDict.hasOwnProperty(builder_key.toUpperCase()) === false">
+	<img src="{{vm.globalUnitPngDictionary[builder_key]}}" 
+		 style="height: 96px; width: 96px"
+		 ng-if="vm.vanillaArmConstructorDict.hasOwnProperty(builder_key.toUpperCase()) === false && vm.globalUnitPngDictionary[builder_key]">
     </img>
-	<div ng-repeat="unit in units">
-		<h2 style="font-size: 15px; color: #FFECB3; line-height: 14px;">unit.snowflake: {{ unit.snowflake }}</h2>
-	</div>
-
-	<section ng-repeat="worker in vm.workersWithBuildSchematic[builder_key]">
-		
-			<div flex class="md-accent" layout="column" layout-margin layout-padding ng-if="vm.dependenciesDidLoad === true">
-				<!-- 
+	<p style="color:red;"
+	   ng-if="vm.vanillaArmConstructorDict.hasOwnProperty(builder_key.toUpperCase()) === false && !vm.globalUnitPngDictionary[builder_key]">
+		No Construction Unit with UnitName {{ builder_key }} is avaliable!
+	</p>
 				<md-grid-list md-cols="6"
 							  md-cols-xs="2"
 							  md-cols-sm="4"
@@ -103,7 +58,7 @@
 
 
 				>
-					<md-grid-tile ng-repeat="tile in worker"
+					<md-grid-tile ng-repeat="tile in vm.workersWithBuildSchematic[builder_key]"
 								  ng-if="builder_key === tile.built_by"
 								  md-rowspan="tile.heightRowSpan"
 								  md-colspan="tile.widthColSpan"
@@ -112,13 +67,13 @@
 								  ng-class="tile.bgClass"
 					>
 						<md-grid-tile-header layout-padding style="background: rgba(0, 0, 0, 0.55);">
-							<h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">{{tile.name}}</h2>
+							<h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">{{tile.snowflake}}</h2>
 						</md-grid-tile-header>
 
 						<img src="{{tile.pngImg}}" style="height: 96px; width: 96px">
 						</img>
-
-					<p class="md-accent-fg">{{tile.model_schema}}</p>
+					<span>&nbsp;</span>
+						<p class="md-accent-fg">{{tile.model_schema}}</p>
 
 						<md-grid-tile-footer layout-padding style="background: rgba(0, 0, 0, 0.55);">
 							<h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">{{tile.type}}</h2>
@@ -126,54 +81,13 @@
 
 					</md-grid-tile>
 				</md-grid-list>
--->
-			</div>
-
-worker.snowflake: {{ worker.snowflake }} <br>
-builder_key: {{ builder_key }} <br>
-worker.built_by: {{ worker.built_by }} <br>
-unit_value: <pre>{{ unit_value | json }}</pre> <br>
-
-	</section>
 
 </section>
+
 vm.workersWithBuildSchematic:
 <pre>
-	{{ vm.workersWithBuildSchematic | json }}
+	{{vm.workersWithBuildSchematic | json}}
 </pre>
-
-<section layout="row">
-	<div class="md-primary-bg" layout="column">
-		<h5>Selected Mod:</h5>
-		<pre>
-		{{ vm.currentlyLoadedMod | json }}
-		</pre>
-	</div>
-	<div class="md-warn-bg" layout="column">
-		<h5>Mod Assets:</h5>
-		<pre>
-		{{ vm.modAssets | json }}
-		</pre>
-	</div>
-	<div class="md-accent-bg" layout="column">
-		<h5>Mod Dependencies for asset [52]:</h5>
-		<pre>
-		{{ vm.groupedAssetsWithDependencies | json }}
-		</pre>
-	</div>
-</section>
-
-
-<md-content>
-	<div id="div2" style="width: 100px; height: 100px; top:300px; left:500px; background:#333; position:absolute;">
-	</div>
-	
-	<div id="div3" style="width: 100px; height: 100px; top:100px; left:800px; background:#333; position:absolute;">
-	</div>
-
-	<svg width="800" height="900"><line x1="550" y1="350" x2="850" y2="150" stroke="orange"/></svg>
-</md-content>
-
 
 <style>
     h1 {

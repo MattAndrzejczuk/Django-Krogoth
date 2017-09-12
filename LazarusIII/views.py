@@ -19,8 +19,10 @@ from lazarus.views import WeaponTDFFetch, FeatureTDFFetch, DownloadTDFFetch, Sou
 # Create your views here.
 
 from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF, FeatureTDF, SoundSetTDF
-from LazarusDatabase.models import LazarusModProject, LazarusModAsset, LazarusModDependency
+from LazarusDatabase.models import LazarusModProject, LazarusModAsset, LazarusModDependency, LazarusPublicAsset
 from chat.models import JawnUser
+import copy
+
 
 emojKill = '💔'
 emoj0 = ''  # '🖤'
@@ -361,6 +363,8 @@ class DependenciesForUnitFBI(APIView):
 
         self.txtOutput += '</span>'
 
+
+
     # permission_classes = (AllowAny,)
     def get(self, request, format=None):
         uid = request.GET['uid']
@@ -385,16 +389,38 @@ class DependenciesForUnitFBI(APIView):
         newLazarusModAsset = LazarusModAsset(name=uid, type='UnitFBI', project_id=mod_id, uploader=jawn_user)
 
         # Get unit with UnitName from database.
-        sampleunit = UnitFbiData.objects.filter(UnitName=uid)
+        sampleunit = UnitFbiData.objects.filter(_SNOWFLAKE=(uid))
+        newSnowflake = sampleunit[0]._SNOWFLAKE + '|' + str(jawn_user.id)
+        self.printbluekeypurplevalue('Preparing To Clone: ', sampleunit[0]._SNOWFLAKE)
+
+
+        fbiUnitClone = copy.deepcopy(sampleunit[0])
+        fbiUnitClone._SNOWFLAKE = newSnowflake
+        print(sampleunit[0].id)
+        print(sampleunit[0])
+        fbiUnitClone.id = sampleunit[0].id + 1
+        print(fbiUnitClone.id)
+        print(fbiUnitClone)
+        self.printbluekeygreenvalue('Clone Successful!!! ', fbiUnitClone._SNOWFLAKE)
+        fbiUnitClone.save()
+
+
         serialized_obj = serializers.serialize("json", sampleunit)
         json_dict = json.loads(serialized_obj)
 
-        self.txtOutput += '<h1 class="' + self.HTML_TEAL + '">'
-        self.txtOutput += str(sampleunit[0].UnitName)
-        self.txtOutput += '</h1>'
+        try:
+            printName = fbiUnitClone.UnitName
+            self.txtOutput += '<h1 class="' + self.HTML_TEAL + '">'
+            self.txtOutput += str(printName)
+            self.txtOutput += '</h1>'
+        except:
+            printName = uid
+            self.txtOutput += '<h1 class="' + self.HTML_TEAL + '">'
+            self.txtOutput += str(printName) + ' - failed to get name: fbiUnitClone.UnitName'
+            self.txtOutput += '</h1>'
 
         # Use the unit from SQL and get a path to the root HPI extraction:
-        dev_root_path = sampleunit[0]._DEV_root_data_path
+        dev_root_path = fbiUnitClone._DEV_root_data_path
         last_occurance_of_slash = dev_root_path.rfind("/")
         fbi_file = dev_root_path[last_occurance_of_slash:]
         path_without_fbi = dev_root_path.replace(fbi_file, '').replace('/units', '')
@@ -441,7 +467,7 @@ class DependenciesForUnitFBI(APIView):
 
         # Evaluate paths ahead of time:
         unit_weapon_path = ''
-        uname = sampleunit[0].UnitName.lower()
+        uname = fbiUnitClone.UnitName.lower()
 
         # UNIT PIC PATH DETECTOR:
         PCX_filename = uname + '.pcx'
@@ -470,7 +496,7 @@ class DependenciesForUnitFBI(APIView):
 
         # 3DO MODEL PATH DETECTOR:
         unit_3do_path = path_without_fbi + '/objects3d/'
-        uobjname = sampleunit[0].Objectname.lower()
+        uobjname = fbiUnitClone.Objectname.lower()
         _3DO_filename = uobjname + '.3do'
         dp_3dmodel = os.path.exists(unit_3do_path + _3DO_filename)
         self.printBOOL('dp_3dmodel', dp_3dmodel)
@@ -479,7 +505,7 @@ class DependenciesForUnitFBI(APIView):
 
         # COB SCRIPT PATH DETECTOR:
         unit_cob_path = path_without_fbi + '/scripts/'
-        ucobname = sampleunit[0].Objectname.lower()
+        ucobname = fbiUnitClone.Objectname.lower()
         COB_filename = ucobname + '.cob'
         dp_script = os.path.exists(unit_cob_path + COB_filename)
         self.printBOOL('dp_script', dp_script)
@@ -518,46 +544,46 @@ class DependenciesForUnitFBI(APIView):
         FBIKey_Weapon2 = ej_notfound2
         FBIKey_Weapon3 = ej_notfound2
         try:
-            FBIKey_UnitName = sampleunit[0].UnitName
+            FBIKey_UnitName = fbiUnitClone.UnitName
         except:
             self.printred('║FAILED TO READ - UnitName')
         try:
-            FBIKey_Objectname = sampleunit[0].Objectname
+            FBIKey_Objectname = fbiUnitClone.Objectname
         except:
             self.printred('║FAILED TO READ - Objectname')
         try:
-            FBIKey_SoundCategory = sampleunit[0].SoundCategory
+            FBIKey_SoundCategory = fbiUnitClone.SoundCategory
         except:
             self.printred('║FAILED TO READ - SoundCategory')
         try:
-            FBIKey_ExplodeAs = sampleunit[0].ExplodeAs
+            FBIKey_ExplodeAs = fbiUnitClone.ExplodeAs
         except:
             self.printred('║FAILED TO READ - ExplodeAs')
         try:
-            FBIKey_SelfDestructAs = sampleunit[0].SelfDestructAs
+            FBIKey_SelfDestructAs = fbiUnitClone.SelfDestructAs
         except:
             self.printred('║FAILED TO READ - SelfDestructAs')
         try:
-            FBIKey_Corpse = sampleunit[0].Corpse
+            FBIKey_Corpse = fbiUnitClone.Corpse
             if FBIKey_Corpse == '' or FBIKey_Corpse == None:
                 FBIKey_Corpse = ej_none
         except:
             self.printred('║FAILED TO READ - Corpse')
             FBIKey_Corpse = ej_notfound2
         try:
-            FBIKey_Weapon1 = sampleunit[0].Weapon1
+            FBIKey_Weapon1 = fbiUnitClone.Weapon1
             if FBIKey_Weapon1 == None:
                 FBIKey_Weapon1 = ej_none
         except:
             self.printred('║This unit has no weapons')
         try:
-            FBIKey_Weapon2 = sampleunit[0].Weapon2
+            FBIKey_Weapon2 = fbiUnitClone.Weapon2
             if FBIKey_Weapon2 == None:
                 FBIKey_Weapon2 = ej_notfound2
         except:
             self.printred('║This unit has no Weapon2')
         try:
-            FBIKey_Weapon3 = sampleunit[0].Weapon3
+            FBIKey_Weapon3 = fbiUnitClone.Weapon3
             if FBIKey_Weapon3 == None:
                 FBIKey_Weapon3 = ej_notfound2
         except:
@@ -725,7 +751,7 @@ class DependenciesForUnitFBI(APIView):
         else:
             # CORPSE FEATURE PATH DETECTOR:
             self.printgreen('\n╔══[' + emoj2 + ' ] - Corpse evaluation.════')
-            corpsename = sampleunit[0].Corpse.lower()
+            corpsename = fbiUnitClone.Corpse.lower()
             unit_corpse_path = path_without_fbi + '/features/corpses/' + corpsename + '.tdf'
             corpse_3do_path = path_without_fbi + '/objects3d/' + corpsename + '.3do'
             dp_corpsemodel = os.path.exists(corpse_3do_path)
@@ -798,23 +824,24 @@ class DependenciesForUnitFBI(APIView):
         if dp_corpses == True:
             self.printbluekeygreenvalue('║ Unit Corpse Dependency', '[ ✓ ]')
         else:
-            self.printbluekeyredvalue('║ Unit Corpse Dependency', '[ ✕ ]')
+            self.printbluekeyyellowvalue('║ Unit Corpse Dependency', '[ ! ]')
 
         if dp_download == True:
             self.printbluekeygreenvalue('║ Unit Download Dependency', '[ ✓ ]')
         else:
-            self.printbluekeyredvalue('║ Unit Download Dependency', '[ ✕ ]')
+            self.printbluekeyyellowvalue('║ Download TDF Not Found', '[ ! ]')
+            self.printbluekeyyellowvalue('║ This wont crash the game, but you may not be able to construct this unit.', '')
 
         if dp_animation == True:
             self.printbluekeygreenvalue('║ Unit Animation Dependency', '[ ✓ ]')
         else:
-            self.printbluekeyredvalue('║ Unit Animation Dependency', '[ ✕ ]')
+            self.printbluekeyyellowvalue('║ Unit Animation Dependency', '[ ! ]')
 
         mod_asset_has_all_dependencies = False
 
         self.printblue('║')
-        if dp_animation == True and dp_download == True and dp_corpses == True and \
-                        dp_script == True and dp_3dmodel == True and dp_unitpic == True:
+        # dp_animation == True and dp_download == True and dp_corpses == True
+        if dp_script == True and dp_3dmodel == True and dp_unitpic == True:
             mod_asset_has_all_dependencies = True
             self.printbluekeygreenvalue('║ LazarusModAsset Dependencies Scanned & Verified ', 'SUCCESS')
             self.printblue('║')
@@ -825,6 +852,8 @@ class DependenciesForUnitFBI(APIView):
             self.printblue('║')
             self.printbluekeyyellowvalue('║ ',
                                          ' This Total Annihilation UFO/HPI file has missing dependencies, aborting mod asset generation. ')
+
+        self.printblue('╚════════════════════════════════════════════════════════════════')
 
         if mod_asset_has_all_dependencies == True:
             PNG_filename = uname + '.png'
@@ -843,112 +872,149 @@ class DependenciesForUnitFBI(APIView):
             # SYSPATH_3DCrpse 5
             # SYSPATH_TDCrpse 6
 
-            newDependency1 = LazarusModDependency(name=uid + '_' + str(sampleunit[0].id),
+            # Save Asset for Public use:
+            publicAsset = LazarusPublicAsset()
+            publicAsset.user_uploader = jawn_user
+            publicAsset.side = fbiUnitClone.Side
+            publicAsset.name = fbiUnitClone.Name
+            publicAsset.tags = fbiUnitClone.Category
+            publicAsset.description = fbiUnitClone.Description
+            publicAsset.unitpic = fbiUnitClone._raw_json_dump
+            publicAsset.size = str(fbiUnitClone.FootprintX) + 'x' + str(fbiUnitClone.FootprintZ)
+            publicAsset.energyCost = fbiUnitClone.BuildCostEnergy
+            publicAsset.metalCost = fbiUnitClone.BuildCostMetal
+            publicAsset.fbiSnowflake = fbiUnitClone._SNOWFLAKE
+            publicAsset.HP = fbiUnitClone.MaxDamage
+            encPath = fbiUnitClone._UPLOAD_DESIGNATION.replace('/usr/src/persistent/', '')
+            publicAsset.encoded_path = encPath.replace('/', '_SLSH_') + '_SLSH_units_SLSH_' + fbiUnitClone.UnitName.lower()
+            publicAsset.save()
+            print('PUBLIC ASSET SAVED:')
+            print(publicAsset.id)
+
+            newDependency1 = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                   type='unitpic',
                                                   system_path=SYSPATH_unitpic,
-                                                  model_id=sampleunit[0].id,
+                                                  model_id=fbiUnitClone.id,
                                                   model_schema='file.pcx',
                                                   asset_id=newLazarusModAsset.id)
             newDependency1.save()
-            newDependency2 = LazarusModDependency(name=uid + '_' + str(sampleunit[0].id),
+            self.printyellow_orange_teal('Saved: ', 'unitpic', fbiUnitClone.Name)
+            newDependency2 = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                   type='objects3d',
                                                   system_path=SYSPATH_3DModel,
-                                                  model_id=sampleunit[0].id,
+                                                  model_id=fbiUnitClone.id,
                                                   model_schema='file.3do',
                                                   asset_id=newLazarusModAsset.id)
             newDependency2.save()
-            newDependency3 = LazarusModDependency(name=uid + '_' + str(sampleunit[0].id),
+            self.printyellow_orange_teal('Saved: ', 'objects3d', fbiUnitClone.Name)
+            newDependency3 = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                   type='anims',
                                                   system_path=SYSPATH_animGAF,
-                                                  model_id=sampleunit[0].id,
+                                                  model_id=fbiUnitClone.id,
                                                   model_schema='file.gaf',
                                                   asset_id=newLazarusModAsset.id)
             newDependency3.save()
-            newDependency4 = LazarusModDependency(name=uid + '_' + str(sampleunit[0].id),
+            self.printyellow_orange_teal('Saved: ', 'anims', fbiUnitClone.Name)
+            newDependency4 = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                   type='scripts',
                                                   system_path=SYSPATH_scriCOB,
-                                                  model_id=sampleunit[0].id,
+                                                  model_id=fbiUnitClone.id,
                                                   model_schema='file.cob',
                                                   asset_id=newLazarusModAsset.id)
             newDependency4.save()
-            newDependency5 = LazarusModDependency(name=uid + '_' + str(sampleunit[0].id),
+            self.printyellow_orange_teal('Saved: ', 'scripts', fbiUnitClone.Name)
+            newDependency5 = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                   type='objects3d.corpse',
                                                   system_path=SYSPATH_3DCrpse,
-                                                  model_id=sampleunit[0].id,
+                                                  model_id=fbiUnitClone.id,
                                                   model_schema='file.3do',
                                                   asset_id=newLazarusModAsset.id)
             newDependency5.save()
-            corpse = FeatureTDFFetch().get(SYSPATH_TDCrpse)
-            newDependency6 = LazarusModDependency(name=uid + '_' + str(sampleunit[0].id),
-                                                  type='corpse_TDF',
-                                                  system_path=SYSPATH_TDCrpse,
-                                                  model_id=corpse[0].id,
-                                                  model_schema='FeatureTDF',
-                                                  asset_id=newLazarusModAsset.id)
-            newDependency6.save()
+            self.printyellow_orange_teal('Saved: ', 'objects3d.corpse', fbiUnitClone.Name)
+            if os.path.isfile(SYSPATH_TDCrpse):
+                corpse = FeatureTDFFetch().get(SYSPATH_TDCrpse)
+                newDependency6 = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
+                                                      type='corpse_TDF',
+                                                      system_path=SYSPATH_TDCrpse,
+                                                      model_id=corpse[0].id,
+                                                      model_schema='FeatureTDF',
+                                                      asset_id=newLazarusModAsset.id)
+                newDependency6.save()
+                self.printyellow_orange_teal('Saved: ', 'corpse_TDF', fbiUnitClone.Name)
             try:
                 ## NOT VERY EFFICIENT HACK FOR GRABING THE DOWNLOAD TDF FROM SQL:
-                tdfs = DownloadTDF.objects.filter(parent_unit=sampleunit[0])
+                tdfs = DownloadTDF.objects.filter(_DEV_root_data_path=unit_download_path)
                 for tdf in tdfs:
-                    newDependencyX = LazarusModDependency(name=uid + '_' + str(sampleunit[0].id),
+                    str_meta = 'entry=' + tdf.MENUENTRY + '|'
+                    str_meta += 'menu=' + str(tdf.MENU) + '|'
+                    str_meta += 'button=' + str(tdf.BUTTON)
+                    newDependencyX = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                           type=tdf.UNITMENU + ' -> ' + tdf.UNITNAME,
                                                           system_path=unit_download_path,
                                                           model_id=tdf.id,
                                                           model_schema='DownloadTDF',
+                                                          meta_data=str_meta,
                                                           asset_id=newLazarusModAsset.id)
                     newDependencyX.save()
+                    self.print_yellow_purple_teal('Saved: ', 'DownloadTDF', fbiUnitClone.Name)
             except:
+                self.print_yellow_purple_red('Failed To Save: ', 'DownloadTDF', fbiUnitClone.Name)
                 pass
 
             try:
-                newDependency8 = LazarusModDependency(name=uid + '_' + str(sampleunit[0].id),
+                newDependency8 = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                       type='weapon1_TDF',
                                                       system_path=path_without_fbi + '/weapons/' + allWeaponTDFFiles[0],
                                                       model_id=weapon1FromSQL[0].id,
                                                       model_schema='WeaponTDF',
                                                       asset_id=newLazarusModAsset.id)
                 newDependency8.save()
+                self.print_yellow_purple_green('Saved: ', 'WeaponTDF', weapon1FromSQL[0].name)
             except:
                 pass
             try:
-                newDependency9 = LazarusModDependency(name=uid + '_' + str(sampleunit[0].id),
+                newDependency9 = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                       type='weapon2_TDF',
                                                       system_path=path_without_fbi + '/weapons/' + allWeaponTDFFiles[0],
                                                       model_id=weapon2FromSQL[0].id,
                                                       model_schema='WeaponTDF',
                                                       asset_id=newLazarusModAsset.id)
                 newDependency9.save()
+                self.print_yellow_purple_green('Saved: ', 'WeaponTDF', weapon2FromSQL[0].name)
             except:
                 pass
             try:
-                newDependency10 = LazarusModDependency(name=uid + '_' + str(sampleunit[0].id),
+                newDependency10 = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                        type='weapon3_TDF',
                                                        system_path=path_without_fbi + '/weapons/' + allWeaponTDFFiles[0],
                                                        model_id=weapon3FromSQL[0].id,
                                                        model_schema='WeaponTDF',
                                                        asset_id=newLazarusModAsset.id)
                 newDependency10.save()
+                self.print_yellow_purple_green('Saved: ', 'WeaponTDF', weapon3FromSQL[0].name)
             except:
                 pass
 
-            newDependency11 = LazarusModDependency(name=uid + '_' + str(sampleunit[0].id),
+            newDependency11 = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                    type='unit_FBI',
                                                    system_path=dev_root_path,
-                                                   model_id=sampleunit[0].id,
+                                                   model_id=fbiUnitClone.id,
                                                    model_schema='UnitFbiData',
                                                    asset_id=newLazarusModAsset.id)
             newDependency11.save()
+            self.printredkeybluevalue('Saved UnitFbiData: ', fbiUnitClone.UnitName)
 
             for sound in finalizedSoundPaths:
-                newSoundDp = LazarusModDependency(name=uid + '_' + str(sampleunit[0].id),
+                newSoundDp = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                   type='sound_WAV',
                                                   system_path=sound,
                                                   model_id=-1,
                                                   model_schema='n/a',
                                                   asset_id=newLazarusModAsset.id)
                 newSoundDp.save()
+                self.printredkeygreenvalue('Saved .WAV File: ', sound)
 
-        self.printblue('╚════════════════════════════════════════════════════════════════')
+
 
         # ║╚╔╗╝
 

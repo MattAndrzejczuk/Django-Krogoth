@@ -1080,7 +1080,11 @@ class UnitFBIViewset(APIView):
 
         OBJECT_NAME = 'UNITINFO'
 
-        tdf_without_comments = remove_comments(f3.read()).strip().replace('\n', '').replace('\t', '')
+        s = '     '
+        s3 = '; '
+        s2 = '  '
+        tdf_without_comments = remove_comments(f3.read().replace(s,'').replace(s2,'')).strip().replace('\n','').replace('\t','')
+        tdf_without_comments = tdf_without_comments.replace(s3, ';')
 
         # print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
         print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪  ! ! ! ! ')
@@ -1691,6 +1695,9 @@ class UnitFBIViewset(APIView):
             print('\n\n\n')
             print('NEW UNIT FBI MODEL : ')
             print(new_unit_fbi)
+            import uuid
+
+            new_unit_fbi._SNOWFLAKE = str(uuid.uuid4()).upper()
 
             new_unit_fbi.save()
 
@@ -1702,6 +1709,10 @@ class UnitFBIViewset(APIView):
                       bcolors.ENDC
             print(definer + end_val)
             dictionary[0]['png_path'] = png_path
+            dictionary[0]['_SNOWFLAKE'] = new_unit_fbi._SNOWFLAKE
+            dictionary[0]['_REPOSITORY'] = new_unit_fbi._REPOSITORY
+            dictionary[0]['_UPLOAD_DESIGNATION'] = new_unit_fbi._UPLOAD_DESIGNATION
+            dictionary[0]['_DEV_root_data_path'] = new_unit_fbi._DEV_root_data_path
 
             return Response(dictionary)
 

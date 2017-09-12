@@ -90,6 +90,7 @@ INSTALLED_APPS = (
     'ModBuilder',
     'djangular_dashboard',
     'django_filters',
+    'LazarusPublicAssets',
 )
 #   'dbbackup',
 
