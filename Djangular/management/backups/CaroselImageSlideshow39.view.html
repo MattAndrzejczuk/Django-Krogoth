@@ -1,0 +1,34 @@
+<h1>{{ vm.viewName }}</h1>
+
+    <md-card layout="column" layout-align="center center" style="padding-bottom: 10px" class="jk">
+      	<h3>Basic Carousel setup</h3>
+		<h5>A stupid template is required for this thing...</h5>
+      <jk-carousel
+        data="dataArray"
+        item-template-url="'item-template.html'"
+        max-width="800" 
+        max-height="500" >
+        </jk-carousel>
+    </md-card>
+    <md-card layout="column" layout-align="center center" style="padding-bottom: 10px" class="jk">
+      <h3>AutoSlide Carousel</h3>
+      	<jk-carousel
+        data="vm.dataArray"
+        item-template-url="'/dynamic_lazarus_page/NgIncludedHtml/?name=carouselSample'"
+        max-width="800" 
+        max-height="500"
+        auto-slide="true"
+        auto-slide-time="2000">
+        </jk-carousel>
+    </md-card>
+
+<style>
+
+.jk {
+  margin: auto;
+  left: 0;
+  right: 0;
+  margin-bottom: 20px;
+}
+
+</style>

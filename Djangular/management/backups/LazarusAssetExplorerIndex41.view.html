@@ -1,0 +1,256 @@
+<div layout="row" layout="start start">
+		<span> &nbsp;&nbsp; </span>
+		<div style="margin-top:10px;">
+			<md-button aria-label="back" class="md-icon-button md-accent md-hover-button-2" ui-sref="app.LazarusMainMenu">
+				<md-icon class="iconhover-2" md-font-icon="icon-arrow-left"></md-icon>
+				<md-tooltip md-direction="bottom">Back to {{ vm.modName }} Project Manager.</md-tooltip>
+			</md-button>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div>
+			<h1 class="breadcrubs taFont-large">LAZARUS MODS</h1>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div style="margin-top:12px;">
+			<md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div>
+			<h1 class="breadcrubs taFont-large">{{ vm.modName | uppercase }}</h1>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div style="margin-top:12px;">
+			<md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
+		</div>
+		<span> &nbsp;&nbsp; </span>
+		<div>
+			<h1 class="breadcrubs taFont-large">ASSET EXPLORER</h1>
+		</div>
+</div>
+
+
+
+
+
+
+<section ng-if="1 === 2">
+        <div flex class="md-accent" layout="column" layout-margin layout-padding ng-if="vm.dependenciesDidLoad === true">
+            <h1 class="md-background-fg md-hue-3">Download TDFs</h1>
+			<p>Scanned download TDFs avaliable: </p>
+            <!-- GRID LIST -->
+            <md-grid-list md-cols="8"
+						  md-cols-xs="2"
+                          md-cols-sm="4"
+                          md-cols-md="6"
+                          md-cols-gt-md="8"
+                          md-row-height-gt-md="1:1"
+                          md-row-height="1:1"
+                          md-gutter="8px"
+                          md-gutter-gt-sm="4px"
+						  
+						  
+            >
+                <!-- MODEL NAME HERE -->
+                <md-grid-tile ng-repeat="tile in vm.modDependencies"
+                              md-rowspan="tile.heightRowSpan"
+                              md-colspan="tile.widthColSpan"
+                              md-colspan-sm="tile.widthColSpan"
+                              md-colspan-xs="tile.widthColSpan"							
+                              ng-class="tile.bgClass"
+                >
+                    <md-grid-tile-header layout-padding style="background: rgba(0, 0, 0, 0.55);">
+                        <h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">{{tile.name}}</h2>
+                    </md-grid-tile-header>
+                    
+					<img src="{{tile.pngImg}}" style="height: 96px; width: 96px">
+                    </img>
+					
+                    <md-grid-tile-footer layout-padding style="background: rgba(0, 0, 0, 0.55);">
+                        <h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">{{tile.type}}</h2>
+                    </md-grid-tile-footer>
+					
+                </md-grid-tile>
+            </md-grid-list>
+            <!-- /END GRID LIST -->
+        </div>
+</section>
+
+<md-button class="md-hover-button-amber" ng-click="vm.showFirstJsonRow = !vm.showFirstJsonRow">Toggle 1st JSON</md-button>
+<section layout="row" ng-show="vm.showFirstJsonRow === true">
+	<div class="md-primary-bg" layout="column">
+		<h5>Selected Mod:</h5>
+		<pre>
+		{{ vm.currentlyLoadedMod | json }}
+		</pre>
+	</div>
+	<div class="md-warn-bg" layout="column">
+		<h5>Mod Assets:</h5>
+		<pre>
+		{{ vm.modAssets | json }}
+		</pre>
+	</div>
+	<div class="md-accent-bg" layout="column">
+		<h5>Mod Dependencies for asset [52]:</h5>
+		<pre>
+		{{ vm.modDependencies | json }}
+		</pre>
+	</div>
+</section>
+<br>
+<br>
+<md-button class="md-hover-button-blue" ng-click="vm.showSecondJsonRow = !vm.showSecondJsonRow">Toggle 2nd JSON</md-button>
+<div ng-show="vm.showSecondJsonRow === true">
+	<pre>{{vm.groupedAssetsWithDependencies | json}}</pre>
+</div>
+
+
+<br>
+<md-button class="md-hover-button-purple" ng-click="vm.showSecondJsonRow = !vm.showSecondJsonRow">Launch Viewer</md-button>
+<section ng-repeat="(key, value) in vm.groupedAssetsWithDependencies">
+        <div flex class="md-accent" layout="column" layout-margin layout-padding ng-if="vm.dependenciesDidLoad === true">
+            <h1 class="md-accent-fg ">ASSET: {{key}}</h1>
+            <!-- GRID LIST -->
+            <md-grid-list md-cols="6"
+						  md-cols-xs="2"
+                          md-cols-sm="4"
+                          md-cols-md="6"
+                          md-cols-gt-lg="8"
+                          md-row-height-gt-md="1:1"
+                          md-row-height="1:1"
+                          md-gutter="8px"
+                          md-gutter-gt-sm="4px"
+						  
+						  
+            >
+                <!-- MODEL NAME HERE -->
+                <md-grid-tile ng-repeat="tile in value"
+                              md-rowspan="tile.heightRowSpan"
+                              md-colspan="tile.widthColSpan"
+                              md-colspan-sm="tile.widthColSpan"
+                              md-colspan-xs="tile.widthColSpan"							
+                              ng-class="tile.bgClass"
+                >
+                    <md-grid-tile-header layout-padding style="background: rgba(0, 0, 0, 0.55);">
+                        <h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">{{tile.name}}</h2>
+                    </md-grid-tile-header>
+                    
+					<img src="{{tile.pngImg}}" style="height: 96px; width: 96px">
+                    </img>
+				
+				<p class="md-accent-fg">{{tile.model_schema}}</p>
+					
+                    <md-grid-tile-footer layout-padding style="background: rgba(0, 0, 0, 0.55);">
+                        <h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">{{tile.type}}</h2>
+                    </md-grid-tile-footer>
+					
+                </md-grid-tile>
+            </md-grid-list>
+            <!-- /END GRID LIST -->
+        </div>
+</section>
+
+
+
+
+<style>
+	.hideThis {
+		opacity: 0.0 !important;
+	}
+
+	/* 
+	      ICON BUTTON 
+	*/
+    .md-hover-button:hover {
+        background-color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+    }
+    .md-hover-button {
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: rgb(41,98,255) !important;
+    }
+    .md-hover-button:hover > .iconhover {
+        color: black !important;
+    }
+    .md-icon-button > .iconhover {
+        color: rgb(41,98,255) !important;
+    }
+	/* 
+	      /ICON BUTTON 
+	*/
+	/* 
+	      ICON BUTTON 
+	*/
+    .md-hover-button-2:hover {
+        background-color: #FF6F00 !important;
+        border-color: #FF6F00 !important;
+    }
+    .md-hover-button-2 {
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: #FF6F00 !important;
+		color: #FF6F00 !important;
+    }
+    .md-hover-button-2:hover > .iconhover-2 {
+        color: rgb(60,66,82) !important;
+    }
+    .md-icon-button-2 > .iconhover-2 {
+        color: #FF6F00 !important;
+    }
+	/* 
+	      /ICON BUTTON 
+	*/
+
+	.md-hover-button-purple:hover {
+        background-color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-purple {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+    }
+
+    .md-hover-button-amber-dark-bg:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber-dark-bg {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+	
+    .md-hover-button-amber-selected {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: white !important;
+    }
+    .md-hover-button-amber {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+	
+    .md-hover-button-blue:hover {
+        background-color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-blue {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+    }
+</style>

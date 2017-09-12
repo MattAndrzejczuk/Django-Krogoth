@@ -1,0 +1,18 @@
+<h1>{{ vm.viewName }}</h1>
+
+<div layout="column" layout-padding layout-margin>
+	
+	<div ng-repeat="api in vm.documentation">
+		<span class="md-primary-fg md-hue-2">
+			{{api['name']}}
+		</span>
+		<br>
+		<span class="md-accent-fg md-hue-2">{{api['root']}}</span>
+		<span class="md-accent-fg">{{api['endpoint']}}</span>
+		<br>
+		<span  class="md-background-fg md-hue-3">
+		{{api['description']}}
+		</span>
+	</div>
+	
+</div>
