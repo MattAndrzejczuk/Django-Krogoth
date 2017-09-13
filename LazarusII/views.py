@@ -1018,6 +1018,7 @@ class UnitFBIViewSerialized(viewsets.ModelViewSet):
     serializer_class = UnitFbiDataSerializer
     queryset = UnitFbiData.objects.all()
 
+
 class WeaponTDFViewSerialized(viewsets.ModelViewSet):
     serializer_class = WeaponTDFDataSerializer
     queryset = WeaponTDF.objects.all()

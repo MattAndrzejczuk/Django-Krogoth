@@ -19,7 +19,7 @@ max-height: 1440px;
 
 	.CodeMirror-code {
 		font-size: 14px !important;
-		line-height: 16px !important;
+		line-height: 19px !important;
 	}
 	
 .MasterWrapper {
@@ -28,11 +28,11 @@ max-height: 1440px;
 }
 
 </style>
-<md-content class="MasterWrapper" layout="row">
-	<md-card flex="80" ms-scroll class="scrollable" >
+<div class="MasterWrapper glass_bg" layout="row" layout-padding>
+	<md-card flex="90" ms-scroll class="scrollable" style="background-color: rgba(0, 0, 0, 0) !important;" >
 		<md-tabs md-dynamic-height md-border-bottom>
 			  <md-tab label="{{vm.editorContent['name']}} View">
-				<md-content class="md-padding">
+				<md-content class="md-padding " style="background-color: rgba(0, 0, 0, 0) !important;">
 					<p>vm.editorContent['name']</p>
 					  <ui-codemirror ui-codemirror-opts="vm.editorOptions2" 
 									 ui-codemirror="{onLoad:vm.codemirrorLoadedView}">
@@ -57,7 +57,7 @@ max-height: 1440px;
 			  </md-tab>
 		</md-tabs>
 	</md-card>
-	<md-card flex="20" layout="column"flex="20" layout="column" ms-scroll class="scrollable" style="max-height:900px">		
+	<div flex="10" layout="column" style="height: {{(vm.data.length * 45) + 500}}px; overflow: scroll;">		
 		<md-button ng-click="vm.getMasterViewControllers()" 
 				   class="md-hover-button-amber">
 			Get Master Views
@@ -80,15 +80,27 @@ max-height: 1440px;
 				   ng-show="vm.docWasModified === false">
 			Save
 		</md-button>
-		<md-button style="font-size:10px; line-height:9px"
-				   class="md-primary-fg md-hue-2"
+		<br>
+		<md-button style="font-size:12px; line-height:9px"
+				   class="md-hover-button-red"
+				   flex
 				   ng-repeat="mvc in vm.data"
+				   ng-if="mvc['title'].toLowerCase().startsWith('lazarus');"
 				   ng-click="vm.getMasterViewControllerDetail(mvc['id'])">
 				{{ mvc['title'] }}
 		</md-button>
-		<pre class="color: #ff2c38; font-weight:bold">{{vm.vmVarNames | json}}</pre>
-	</md-card>
-</md-content>
+		<br>
+		<md-button style="font-size:12px; line-height:13px"
+				   class="md-hover-button-white"
+				   flex
+				   ng-repeat="mvc in vm.data"
+				   ng-if="!mvc['title'].toLowerCase().startsWith('lazarus');"
+				   ng-click="vm.getMasterViewControllerDetail(mvc['id'])">
+				{{ mvc['title'] }}
+		</md-button>
+		<pre class="color: white; font-weight:bold">{{vm.vmVarNames | json}}</pre>
+	</div>
+</div>
 
 <style>
     .md-hover-button-purple:hover {
@@ -145,6 +157,32 @@ max-height: 1440px;
 
     .md-icon-button-blue > .iconhover {
         color: rgb(41,98,255) !important;
+    }
+	
+
+	
+	
+    .md-hover-button-white:hover {
+        background-color: white !important;
+        border-color: white !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-white {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: white !important;
+        border-color: white !important;
+    }
+    .md-hover-button-red:hover {
+        background-color: red !important;
+        border-color: red !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-red {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: red !important;
+        border-color: red !important;
     }
 	
 </style>

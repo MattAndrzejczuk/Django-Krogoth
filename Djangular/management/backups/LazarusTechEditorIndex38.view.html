@@ -1,97 +1,237 @@
 <div layout="row" layout="start start">
-		<span> &nbsp;&nbsp; </span>
-		<div style="margin-top:10px;">
-			<md-button aria-label="back" class="md-icon-button md-accent md-hover-button-2" ui-sref="app.LazarusMainMenu">
-				<md-icon class="iconhover-2" md-font-icon="icon-arrow-left"></md-icon>
-				<md-tooltip md-direction="bottom">Back to {{ vm.modName }} Project Manager.</md-tooltip>
-			</md-button>
-		</div>
-		<span> &nbsp;&nbsp; </span>
-		<div>
-			<h1 class="breadcrubs taFont-large">LAZARUS MODS</h1>
-		</div>
-		<span> &nbsp;&nbsp; </span>
-		<div style="margin-top:12px;">
-			<md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
-		</div>
-		<span> &nbsp;&nbsp; </span>
-		<div>
-			<h1 class="breadcrubs taFont-large">{{ vm.modName | uppercase }}</h1>
-		</div>
-		<span> &nbsp;&nbsp; </span>
-		<div style="margin-top:12px;">
-			<md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
-		</div>
-		<span> &nbsp;&nbsp; </span>
-		<div>
-			<h1 class="breadcrubs taFont-large">TECH TREE EDITOR</h1>
-		</div>
+    <span> &nbsp;&nbsp; </span>
+    <div style="margin-top:10px;">
+        <md-button aria-label="back" class="md-icon-button md-accent md-hover-button-2" ui-sref="app.LazarusMainMenu">
+            <md-icon class="iconhover-2" md-font-icon="icon-arrow-left"></md-icon>
+            <md-tooltip md-direction="bottom">Back to {{ vm.modName }} Project Manager.</md-tooltip>
+        </md-button>
+    </div>
+    <span> &nbsp;&nbsp; </span>
+    <div>
+        <h1 class="breadcrubs taFont-large">LAZARUS MODS</h1>
+    </div>
+    <span> &nbsp;&nbsp; </span>
+    <div style="margin-top:12px;">
+        <md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
+    </div>
+    <span> &nbsp;&nbsp; </span>
+    <div>
+        <h1 class="breadcrubs taFont-large">{{ vm.modName | uppercase }}</h1>
+    </div>
+    <span> &nbsp;&nbsp; </span>
+    <div style="margin-top:12px;">
+        <md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
+    </div>
+    <span> &nbsp;&nbsp; </span>
+    <div>
+        <h1 class="breadcrubs taFont-large">TECH TREE EDITOR</h1>
+    </div>
 </div>
 
-<h5>Total Units: {{vm.totalUnits}}</h5>
-<pre>Mod Assets: {{ vm.modAssets | json }}</pre>
-<pre>Grouped Assets With Dependencies: {{ vm.groupedAssetsWithDependencies | json }}</pre>
 
-<section ng-repeat="(builder_key, unit_value) in vm.workersWithBuildSchematic">	
+<section>
+    <div layout="row" md-padding>
+        <div flex="10"></div>
+        <div flex="80" class="glass_bg" md-padding>
+            <!--
+            <pre>Mod Assets: {{ vm.modAssets | json }}</pre>
+            <pre>Grouped Assets With Dependencies: {{ vm.groupedAssetsWithDependencies | json }}</pre>
+            -->
+
+            <p style="color:white;">
+                The TDF file within the download directory contains information that describes which build menus of
+                which construction units are able to build the unit it is describing. The file is a text file that is
+                typcially given a name like unitname.tdf, where "unitname" is the unit's short name.
+            </p>
+
+            <p style="color:white;">
+                Within these TDF files, are (possibly) multiple occurrances of blocks of statements like the following
+                example:
+            </p>
+
+            <hljs lang="cpp" theme="dracula">
+                [MENUENTRYX]
+                {
+                    UNITMENU=CORAVP; // Who Builds It?
+                    MENU=4; // Which Menu?
+                    BUTTON=2; // Which Button?
+                    UNITNAME=Hellfire; // Unit To Be Built
+                }
+            </hljs>
+
+            <p style="color:white;">
+                Within a TDF file in the download subdirectory, the following variables have meaning:
+            </p>
+
+
+            <div layout="column" style="color:white;">
+                <div layout="row" style="border-color: rgb(41,98,255); border-style: solid; border-width: 1px;">
+		<span flex="10">
+			[]
+		</span>
+                    <span flex="10"></span>
+			<span flex="60">
+				Set to a value of "MENUENTRY1", "MENUENTRY2", etc. depending on how many blocks of information you have in this particular file. It simply ennumerates 					the entries within the file.
+			</span>
+                    <span flex="10"></span>
+		<span flex="10">
+			[MENUENTRY1]
+		</span>
+                </div>
+                <div layout="row" style="border-color: rgb(41,98,255); border-style: solid; border-width: 1px;">
+		<span flex="10">
+			BUTTON
+		</span>
+                    <span flex="10"></span>
+			<span flex="60">
+				Set to a value of 0-5, depending on which position on the build menu "page" does the button appear in.
+			</span>
+                    <span flex="10"></span>
+		<span flex="10">
+			button=2;
+		</span>
+                </div>
+                <div layout="row" style="border-color: rgb(41,98,255); border-style: solid; border-width: 1px;">
+		<span flex="10">
+			MENU
+		</span>
+                    <span flex="10"></span>
+			<span flex="60">
+				Set to the number of the menu you wish the unit's build menu button to appear (i.e. which build menu "page" does it appear on). The only confusing thing about this variable is that the first menu is actually menu #2. The second is #3, and so on.
+			</span>
+                    <span flex="10"></span>
+		<span flex="10">
+			menu=4;
+		</span>
+                </div>
+                <div layout="row" style="border-color: rgb(41,98,255); border-style: solid; border-width: 1px;">
+		<span flex="10">
+			UNITMENU
+		</span>
+                    <span flex="10"></span>
+			<span flex="60">
+				Set to the short name of the construction unit that is able to build your unit (e.g. ARMALAB for the ARM Advanced Kbot Lab).
+			</span>
+                    <span flex="10"></span>
+		<span flex="10">
+			unitmenu=CORAVP
+		</span>
+                </div>
+                <div layout="row" style="border-color: rgb(41,98,255); border-style: solid; border-width: 1px;">
+		<span flex="10">
+			UNITNAME
+		</span>
+                    <span flex="10"></span>
+			<span flex="60">
+					The short name of your unit.
+			</span>
+                    <span flex="10"></span>
+		<span flex="10">
+			unitname=Hellfire
+		</span>
+                </div>
+                <!-- ADD MORE ROWS LATER...
+                <div layout="row">
+                    <span flex="10">
+                    </span>
+                    <span flex="10"></span>
+                        <span flex="60">
+                        </span>
+                    <span flex="10"></span>
+                    <span flex="10">
+                    </span>
+                </div>
+                -->
+            </div>
+
+
+            <p style="color:white;">
+                Like Unit Numbers and Weapon Numbers, build menu locations for units must be unique. That is, each build
+                menu location for each unit that can build other units must be occupied by only one unit. If two units
+                have the same build menu location, only one will show up, and it is hard to say which one.
+            </p>
+
+
+        </div>
+        <div flex="10"></div>
+    </div>
+
+    <div layout="row" layout-align="center center">
+        <span flex="10"></span>
+			<span flex="80">
+
+<section ng-repeat="(builder_key, unit_value) in vm.workersWithBuildSchematic"
+         layout-padding
+         style="border-color: #FF6F00; border-style: solid; border-width: 1px; background-color: rgba(0,0,0,0.5); padding:25px;">
 	<h1 class="md-primary-fg md-hue-1">{{ builder_key }}</h1>
-	<img src="/static/CCTAUnitPics/{{ builder_key | uppercase}}.PNG" 
-		 style="height: 96px; width: 96px"
-		 ng-if="vm.vanillaArmConstructorDict.hasOwnProperty(builder_key.toUpperCase())">
+	<img src="/static/CCTAUnitPics/{{ builder_key | uppercase}}.PNG"
+         style="height: 96px; width: 96px"
+         ng-if="vm.vanillaArmConstructorDict.hasOwnProperty(builder_key.toUpperCase())">
     </img>
-	<img src="{{vm.globalUnitPngDictionary[builder_key]}}" 
-		 style="height: 96px; width: 96px"
-		 ng-if="vm.vanillaArmConstructorDict.hasOwnProperty(builder_key.toUpperCase()) === false && vm.globalUnitPngDictionary[builder_key]">
+	<img src="{{vm.globalUnitPngDictionary[builder_key]}}"
+         style="height: 96px; width: 96px"
+         ng-if="vm.vanillaArmConstructorDict.hasOwnProperty(builder_key.toUpperCase()) === false && vm.globalUnitPngDictionary[builder_key]">
     </img>
 	<p style="color:red;"
-	   ng-if="vm.vanillaArmConstructorDict.hasOwnProperty(builder_key.toUpperCase()) === false && !vm.globalUnitPngDictionary[builder_key]">
-		No Construction Unit with UnitName {{ builder_key }} is avaliable!
+       ng-if="vm.vanillaArmConstructorDict.hasOwnProperty(builder_key.toUpperCase()) === false && !vm.globalUnitPngDictionary[builder_key]">
+		No Construction Unit with UnitName <b style="color:#00a0ff">{{ builder_key }}</b> is avaliable for your mod <b style="color:#00a0ff">{{ vm.modName }}</b>!
 	</p>
-				<md-grid-list md-cols="6"
-							  md-cols-xs="2"
-							  md-cols-sm="4"
-							  md-cols-md="6"
-							  md-cols-gt-lg="8"
-							  md-row-height-gt-md="1:1"
-							  md-row-height="1:1"
-							  md-gutter="8px"
-							  md-gutter-gt-sm="4px"
+				<md-grid-list md-cols="3"
+                              md-cols-xs="1"
+                              md-cols-sm="2"
+                              md-cols-md="3"
+                              md-cols-gt-lg="6"
+                              md-row-height-gt-md="1:1"
+                              md-row-height="1:1"
+                              md-gutter="8px"
+                              md-gutter-gt-sm="4px"
 
 
-				>
+                >
 					<md-grid-tile ng-repeat="tile in vm.workersWithBuildSchematic[builder_key]"
-								  ng-if="builder_key === tile.built_by"
-								  md-rowspan="tile.heightRowSpan"
-								  md-colspan="tile.widthColSpan"
-								  md-colspan-sm="tile.widthColSpan"
-								  md-colspan-xs="tile.widthColSpan"							
-								  ng-class="tile.bgClass"
-					>
+                                  ng-if="builder_key === tile.built_by"
+                                  md-rowspan="tile.heightRowSpan"
+                                  md-colspan="tile.widthColSpan"
+                                  md-colspan-sm="tile.widthColSpan"
+                                  md-colspan-xs="tile.widthColSpan"
+                                  class="glass_bg"
+                    >
 						<md-grid-tile-header layout-padding style="background: rgba(0, 0, 0, 0.55);">
-							<h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">{{tile.snowflake}}</h2>
+							<h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">Entry: {{tile.entry_id}}</h2>
 						</md-grid-tile-header>
 
-						<img src="{{tile.pngImg}}" style="height: 96px; width: 96px">
-						</img>
-					<span>&nbsp;</span>
-						<p class="md-accent-fg">{{tile.model_schema}}</p>
+						<div layout="row" layout-align="space-around center">
+							<img src="{{tile.pngImg}}" style="height: 96px; width: 96px" flex="40">
+                            </img>
+                            <span flex="40"> &nbsp;&nbsp;&nbsp;&nbsp; </span>
+							<img src="{{tile.button_png}}" style="height: 233px; width: 128px">
+                            </img>
+						</div>
 
 						<md-grid-tile-footer layout-padding style="background: rgba(0, 0, 0, 0.55);">
-							<h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">{{tile.type}}</h2>
+							<h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">Menu: {{tile.menu_num}}</h2>
 						</md-grid-tile-footer>
 
 					</md-grid-tile>
 				</md-grid-list>
 
 </section>
+			</span>
+        <span flex="10"></span>
+    </div>
+</section>
 
+<!--
 vm.workersWithBuildSchematic:
 <pre>
 	{{vm.workersWithBuildSchematic | json}}
 </pre>
+-->
+
 
 <style>
     h1 {
-        font-family: Haettenschweiler;
+        font-family: haettenschweilerregular;
         font-size: 44px;
         font-style: normal;
         font-variant: normal;
@@ -99,12 +239,13 @@ vm.workersWithBuildSchematic:
         line-height: 26px;
         letter-spacing: 3px;
     }
+
     .breadcrubs {
         line-height: 0px !important;
     }
-	
+
     h2 {
-        font-family: Haettenschweiler;
+        font-family: haettenschweilerregular;
         font-size: 40px;
         font-style: normal;
         font-variant: normal;
@@ -114,7 +255,7 @@ vm.workersWithBuildSchematic:
     }
 
     h3 {
-        font-family: Haettenschweiler;
+        font-family: haettenschweilerregular;
         font-size: 40px;
         font-style: normal;
         font-variant: normal;
@@ -122,6 +263,7 @@ vm.workersWithBuildSchematic:
         line-height: 15px;
         letter-spacing: 3px;
     }
+
     .publishedModTitle {
         font-family: "Courier New", Courier, monospace !important;
         font-size: 15px !important;
@@ -132,50 +274,103 @@ vm.workersWithBuildSchematic:
         letter-spacing: 2px !important;
     }
 
-	/* 
-	      ICON BUTTON 
-	*/
+    /*
+          ICON BUTTON
+    */
     .md-hover-button:hover {
-        background-color: rgb(41,98,255) !important;
-        border-color: rgb(41,98,255) !important;
+        background-color: rgb(41, 98, 255) !important;
+        border-color: rgb(41, 98, 255) !important;
     }
+
     .md-hover-button {
         border-style: solid !important;
         border-width: 1px !important;
-        border-color: rgb(41,98,255) !important;
+        border-color: rgb(41, 98, 255) !important;
     }
+
     .md-hover-button:hover > .iconhover {
         color: black !important;
     }
+
     .md-icon-button > .iconhover {
-        color: rgb(41,98,255) !important;
+        color: rgb(41, 98, 255) !important;
     }
-	/* 
-	      /ICON BUTTON 
-	*/
-	/* 
-	      ICON BUTTON 
-	*/
+
+    /*
+          /ICON BUTTON
+    */
+    /*
+          ICON BUTTON
+    */
     .md-hover-button-2:hover {
         background-color: #FF6F00 !important;
         border-color: #FF6F00 !important;
     }
+
     .md-hover-button-2 {
         border-style: solid !important;
         border-width: 1px !important;
         border-color: #FF6F00 !important;
-		color: #FF6F00 !important;
+        color: #FF6F00 !important;
     }
+
     .md-hover-button-2:hover > .iconhover-2 {
-        color: rgb(60,66,82) !important;
+        color: rgb(60, 66, 82) !important;
     }
+
     .md-icon-button-2 > .iconhover-2 {
         color: #FF6F00 !important;
     }
-	.hideThis {
-		opacity: 0.0 !important;
-	}
-	/* 
-	      /ICON BUTTON 
-	*/
+
+    .hideThis {
+        opacity: 0.0 !important;
+    }
+
+    /*
+          /ICON BUTTON
+    */
+        .glass_bg {
+		    -webkit-transition-duration: 0.8s; /* Safari */
+    transition-duration: 0.8s;
+      	background-image: url('/static/assets/ArmPrimeBg_b-01.jpg') !important;
+    }
+
+    .multi_bg_example_opaque {
+			    -webkit-transition-duration: 0.8s; /* Safari */
+    transition-duration: 0.8s;
+        background-image: url('/static/assets/ArmPrimeBg-01.jpg') !important;
+    }
+
+    .multi_bg_example_glass {
+			    -webkit-transition-duration: 0.8s; /* Safari */
+    transition-duration: 0.8s;
+        background-image: url('/static/assets/ArmPrimeBg_b-01.jpg') !important;
+    }
 </style>
+
+<div layout="column" style="color:white;">
+    <div layout="row">
+        <span flex="10"></span>
+			<span flex="80">
+			</span>
+        <span flex="10"></span>
+    </div>
+    <div layout="row">
+        <span flex="10"></span>
+			<span flex="80">
+			</span>
+        <span flex="10"></span>
+    </div>
+    <div layout="row">
+        <span flex="10"></span>
+			<span flex="80">
+			</span>
+        <span flex="10"></span>
+    </div>
+    <div layout="row">
+        <span flex="10"></span>
+			<span flex="80">
+			</span>
+        <span flex="10"></span>
+    </div>
+</div>

@@ -68,22 +68,22 @@
                 switch (j + 1) {
                     // Mod Art
                     case 1:
-                        it.background = "md-primary-bg md-hue-3";
+                        it.background = "md-background-bg";
                         it.title = 'MAIN SCREEN';
                         it.img = "/static/lazarus_TA_menus/FrontendX.png";
                         break;
                     case 2:
-                        it.background = "md-primary-bg md-hue-3";
+                        it.background = "md-background-bg";
                         it.title = 'SINGLE PLAYER SCREEN';
                         it.img = "/static/lazarus_TA_menus/SINGLEBG.png";
                         break;
                     case 3:
-                        it.background = "md-primary-bg md-hue-3";
+                        it.background = "md-background-bg";
                         it.title = 'MULTIPLAYER LOBBY';
                         it.img = "/static/lazarus_TA_menus/battleroom2.png";
                         break;
                     case 4:
-                        it.background = "md-primary-bg md-hue-3";
+                        it.background = "md-primary-bg";
                         it.title = 'SKIRMISH SETUP';
                         it.img = "/static/lazarus_TA_menus/Skirmsetup4x.png";
                         break;
@@ -128,9 +128,9 @@
                         it.description = "Create your own tech levels here! Customize what all units are able to build here.";
                         break;
                     case 4:
-                        it.background = "md-background-bg md-hue-1";
+                        it.background = "md-background-bg md-hue-1 editor-assetdump";
                         it.url = 'app.LazarusAssetExplorerIndex';
-                        it.title = 'ASSET EXPLORER';
+                        it.title = 'ASSET & DEPENDENCY EXPLORER';
                         it.description = "View the raw dump of all units associated with this mod," +
                             " along with each unit's dependencies.";
                         break;

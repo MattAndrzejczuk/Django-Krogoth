@@ -13,13 +13,12 @@
 
     <title id="DjangularMetaText_01">{{ message }}</title>
     <meta id="DjangularMetaImage_01" name="twitter:image:src" content="/static/ArmLogoVector.svg">
-    <meta id="DjangularMetaImage_02" content="/static/CoreLogoVector.svg" />
+    <meta id="DjangularMetaImage_02" content="/static/CoreLogoVector.svg"/>
 
 
-    <meta name="twitter:image:alt" content="{{ splash_title }}" />
-    <meta property="og:site_name" content="Andrzejczuk" />
-    <meta property="og:locale" content="en_US" />
-
+    <meta name="twitter:image:alt" content="{{ splash_title }}"/>
+    <meta property="og:site_name" content="Andrzejczuk"/>
+    <meta property="og:locale" content="en_US"/>
 
 
     {% verbatim %}
@@ -61,10 +60,9 @@
     <!-- endbuild -->
 
     <meta name="google-site-verification" content="MF6sr36SRcMLLyvQra1-xXWDxWQSut4shwf-pCigTSg"/>
-    
+
     <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700italic,700,900,900italic'
           rel='stylesheet' type='text/css'>
-
 
 
 </head>
@@ -74,8 +72,11 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<body md-theme="{{vm.themes.active.name}}" md-theme-watch ng-controller="IndexController as vm"
-      class="{{state.current.bodyClass || ''}}">
+<body md-theme="{{vm.themes.active.name}}"
+      md-theme-watch
+      ng-controller="IndexController as vm"
+      style="background-color: rgba(0, 0, 0, 0) !important;"
+      class="{{state.current.bodyClass || ''}} multi_bg_example_opaque">
 
 <!-- SPLASH SCREEN -->
 
@@ -211,20 +212,20 @@
 
 
 <script type="text/javascript" src="/static/codemirror/angular/ui-codemirror.js"></script>
-            <script type="text/javascript" src="/static/codemirror/lib/codemirror.js"></script>
+<script type="text/javascript" src="/static/codemirror/lib/codemirror.js"></script>
 
-            <script type="text/javascript" src="/static/codemirror/mode/xml/xml.js"></script>
-            <script type="text/javascript" src="/static/codemirror/mode/htmlmixed/htmlmixed.js"></script>
-            <script type="text/javascript" src="/static/codemirror/mode/javascript/javascript.js"></script>
+<script type="text/javascript" src="/static/codemirror/mode/xml/xml.js"></script>
+<script type="text/javascript" src="/static/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script type="text/javascript" src="/static/codemirror/mode/javascript/javascript.js"></script>
 
-            <script type="text/javascript" src="/static/codemirror/addon/edit/matchtags.js"></script>
-            <script type="text/javascript" src="/static/codemirror/addon/edit/closebrackets.js"></script>
-            <script type="text/javascript" src="/static/codemirror/addon/edit/continuelist.js"></script>
-            <script type="text/javascript" src="/static/codemirror/addon/edit/matchbrackets.js"></script>
-            <script type="text/javascript" src="/static/codemirror/addon/edit/matchtags.js"></script>
-            <script type="text/javascript" src="/static/codemirror/addon/edit/trailingspace.js"></script>
+<script type="text/javascript" src="/static/codemirror/addon/edit/matchtags.js"></script>
+<script type="text/javascript" src="/static/codemirror/addon/edit/closebrackets.js"></script>
+<script type="text/javascript" src="/static/codemirror/addon/edit/continuelist.js"></script>
+<script type="text/javascript" src="/static/codemirror/addon/edit/matchbrackets.js"></script>
+<script type="text/javascript" src="/static/codemirror/addon/edit/matchtags.js"></script>
+<script type="text/javascript" src="/static/codemirror/addon/edit/trailingspace.js"></script>
 
-            <script type="text/javascript" src="/static/codemirror/addon/hint/javascript-hint.js"></script>
+<script type="text/javascript" src="/static/codemirror/addon/hint/javascript-hint.js"></script>
 
 <!--
 <script src="/static/app/main/components/material-docs/demo-partials/whiteframe/demoDirectiveInterpolation/script.js"></script>
@@ -578,11 +579,49 @@
 
 
 <style>
-	.md-tab.md-active {
-		color: rgb(41,98,255) !important;
-	}
-	.md-tab {
-		color: rgb(13,71,161) !important;
-	}
+    .md-tab.md-active {
+        color: rgb(41, 98, 255) !important;
+    }
+
+    .md-tab {
+        color: rgb(13, 71, 161) !important;
+    }
+
+    #main-container {
+        background-color: rgba(0, 0, 0, 0) !important;
+    }
+
+    .glass_bg {
+        background-image: url('/static/assets/ArmPrimeBg_b-02.jpg');
+        background-repeat: no-repeat;
+        background-position: top left;
+        background-size: 3096px 2352px;
+        background-attachment: fixed;
+        border-color: rgba(0, 0, 0, 0.70) !important;
+    }
+
+    .multi_bg_example_opaque {
+        background-image: url('/static/assets/ArmPrimeBg-02.jpg');
+        background-repeat: no-repeat;
+        background-position: top left;
+        background-size: 3096px 2352px;
+        background-color: rgba(0, 0, 0, 0) !important;
+    }
+
+    .multi_bg_example_glass {
+        background-image: url('/static/assets/ArmPrimeBg_b-02.jpg');
+        background-repeat: no-repeat;
+        background-position: top left;
+        background-size: 3096px 2352px;
+        background-attachment: fixed;
+    }
+
+    @font-face {
+        font-family: 'haettenschweilerregular';
+        src: url('/static/fonts/haettenschweiler-webfont.woff2') format('woff2'),
+        url('/static/fonts/haettenschweiler-webfont.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
 </style>
 

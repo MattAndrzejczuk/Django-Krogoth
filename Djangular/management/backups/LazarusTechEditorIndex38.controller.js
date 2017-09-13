@@ -114,20 +114,31 @@
                     } else {
                         dependencyItem.bgClass = 'md-primary-bg md-hue-3';
                     }
-                    /// i.e. 'HoveraTAck'
-                    var localPath = dependencyItem.system_path.replace('/usr/src/persistent/media/ta_data/', '');
-                    var index_end = localPath.indexOf("/");
-                    var origNameHPI = localPath.substring(0, index_end);
-                    /// i.e. 'speeder'
-                    var index_end_2 = dependencyItem.name.indexOf("_");
-                    var unitName = dependencyItem.name.substring(0, index_end_2);
-                    var picName = unitName.toLowerCase() + '.png';
-                    var previewPicUrl = '/media/ta_data/' + origNameHPI + '/unitpics/' + picName;
 
-                    if (vm.globalUnitPngDictionary[unitName.toUpperCase()]) {
+                    if (dependencyItem.model_schema === 'file.pcx') {
 
-                    } else {
-                        vm.globalUnitPngDictionary[unitName.toUpperCase()] = previewPicUrl;
+                    }
+
+                    if (dependencyItem.model_schema === 'DownloadTDF') {
+                        /// i.e. 'HoveraTAck'
+                        var localPath = dependencyItem.system_path.replace('/usr/src/persistent/media/ta_data/', '');
+                        var index_end = localPath.indexOf("/");
+                        var origNameHPI = localPath.substring(0, index_end);
+                        /// i.e. 'speeder'
+                        var index_end_2 = dependencyItem.name.indexOf("_");
+                        var unitName = dependencyItem.name.substring(0, index_end_2);
+                        var picName = unitName.toLowerCase() + '.png';
+
+                        // grab the unit's UnitName
+                        var builderToProduct = dependencyItem.type; // ARMASY -> ANAbel
+                        var unitNameNew = builderToProduct.split(' -> ')[1].toLowerCase();
+                        var previewPicUrl = '/media/ta_data/' + origNameHPI + '/unitpics/' + unitNameNew + '.png';
+
+                        if (vm.globalUnitPngDictionary[unitName.toUpperCase()]) {
+
+                        } else {
+                            vm.globalUnitPngDictionary[unitName.toUpperCase()] = previewPicUrl;
+                        }
                     }
 
                     dependencyItem.pngImg = previewPicUrl;
@@ -146,6 +157,17 @@
                         /// BUILDER -> [possible units BUILDER can produce]
                         dependencyItem.built_by = dependencyItem.type.split(' -> ')[0];
                         dependencyItem.snowflake = dependencyItem.type.split(' -> ')[1];
+
+                        var rawMetaData = dependencyItem.meta_data; /// "entry=MENUENTRY1|menu=4|button=4"
+                        var parse1 = rawMetaData.replace('entry=', '');
+                        var entriesSplit = parse1.split('|');
+                        var button_num = entriesSplit[2].replace('button=', '');
+                        var entry_num = entriesSplit[0];
+                        var menu_num = entriesSplit[1].replace('menu=', '');
+                        dependencyItem.button_png = '/static/editorTiles/MENUENTRY/DLTDF_' + button_num + '.png';
+                        dependencyItem.entry_id = entry_num;
+                        dependencyItem.menu_num = menu_num;
+
                         if (vm.workersWithBuildSchematic[dependencyItem.built_by.toUpperCase()]) {
                             //if (vm.workersWithBuildSchematic[dependencyItem.built_by.toUpperCase()][dependencyItem].includes(dependencyItem) === false)
                             vm.workersWithBuildSchematic[dependencyItem.built_by.toUpperCase()][dependencyItem.type] = (dependencyItem);

@@ -25,12 +25,15 @@
          layout-padding
 >
 	
-    <md-content class="md-background-bg" layout="row" style="min-height: 880px" md-whiteframe="3">
-        <div flex="60" class="md-accent" layout="column" layout-margin layout-padding>
+    <div class="glass_bg" 
+				layout-md="column"
+				layout="row" style="min-height: 880px" md-whiteframe="3">
+        <div flex="50" class="md-accent" layout="column" 
+			 layout-margin layout-padding>
             <h1 class="md-background-fg md-hue-3">MOD ART</h1>
 			<p>Customize the menu UI of your mod.</p>
             <!-- GRID LIST -->
-            <md-grid-list md-cols="2"
+            <md-grid-list md-cols="3"
                           md-cols-sm="1"
                           md-cols-md="2"
                           md-cols-gt-md="4"
@@ -47,9 +50,29 @@
                               md-colspan-sm="1"
                               md-colspan-xs="1"
                               ng-class="tile.background"
+							  class="gui-art-parent md-background-bg"
+							  
                 >
-                    <img src="{{tile.img}}" style="height: 100%; width: 700px">
-                    </img>
+					<p flex="20"> &nbsp; </p>
+					<div style="background-image: url('{{tile.img}}')" class="bg-image-art "></div>				
+						<md-button aria-label="back"
+								   class="md-icon-button md-accent md-hover-button gui-art-child"
+								   ui-sref="app.General"
+								   >
+							<md-icon class="iconhover" md-font-icon="icon-cloud-download"></md-icon>
+							<md-tooltip md-direction="bottom">Download: {{tile.title}} BMP</md-tooltip>
+						</md-button>
+					<p flex="20"> &nbsp; </p>
+						<md-button aria-label="back"
+								   class="md-icon-button md-accent md-hover-button gui-art-child"
+								   ui-sref="app.General"
+								   >
+							<md-icon class="iconhover" md-font-icon="icon-cloud-upload"></md-icon>
+							<md-tooltip md-direction="bottom">Upload Custom BMP For: {{tile.title}}</md-tooltip>
+						</md-button>
+					<p flex="20"> &nbsp; </p>
+				
+				
                     <md-grid-tile-footer layout-padding style="background: rgba(0, 0, 0, 0.55);">
                         <h2 style="font-size: 19px; color: #FFECB3; line-height: 18px;">{{tile.title}}</h2>
                     </md-grid-tile-footer>
@@ -57,7 +80,11 @@
             </md-grid-list>
             <!-- /END GRID LIST -->
         </div>
-        <div flex="40" class="md-background md-hue-2" layout="column" layout-margin layout-padding>
+        <div flex="50" 
+			 class="glass_bg" 
+			 layout="column" 
+			 layout-margin 
+			 layout-padding>
             <h1 class="md-background-fg md-hue-3">LAZARUS APPS</h1>
 			<p>The core features of Lazarus.</p>
             <!-- GRID LIST -->
@@ -108,9 +135,12 @@
             </md-grid-list>
             <!-- /END GRID LIST -->
         </div>
-    </md-content>
+    </div>
 
-    <md-card class="md-primary" layout="column" layout-align="space-between stretch" style="min-height: 400px">
+    <md-card class="glass_bg" 
+			 layout="column" 
+			 layout-align="space-between stretch" 
+			 style="min-height: 400px">
         <section flex="10">
             <h1 class="md-background-fg md-hue-3">COMPILE, BUILD &amp; PUBLISH MOD</h1>
 			<p class="md-background-fg md-hue-3">
@@ -201,7 +231,7 @@
 
     </md-card>
 
-    <md-card class="md-primary" layout="column">
+    <md-card class="glass_bg" layout="column">
         <h1 class="md-background-fg md-hue-3">BUILDS</h1>
 		<!-- GRID LIST -->
 		<md-grid-list md-cols="1"
@@ -270,6 +300,14 @@
 		<img src="/static/editorTiles/missile-pod.svg" width="200" style="opacity:0.75">
 	</li>
 </ul>
+
+  <div class="bg">
+    <img src="https://unsplash.it/400/200" alt="">
+    <div class="overlay">
+      <h2>Check This Out!</h2>
+      <p>this is some text.</p>
+    </div>
+  </div>
 
 <style>
     h1 {
@@ -520,5 +558,51 @@
 		background-image: url('/static/editorTiles/editor-TechTree.png') !important;
 		background-size: cover;
 	}
+	.editor-assetdump {
+		background-image: url('/static/editorTiles/editor-AssetDump.jpg') !important;
+		background-size: cover;
+		background-position: center;
+	}
 	
+	
+	
+	.gui-art-child 
+	{ 
+		opacity:0.25; 
+	}
+	.gui-art-parent:hover div
+	{ 	
+		transition: .3s all;
+		-webkit-filter: blur(10px);
+		filter: blur(10px);		
+		opacity:0.8;
+	}
+	.gui-art-parent:hover .gui-art-child
+	{ 
+		transition: .3s all;
+		opacity:1.0; 
+	}
+
+	.bg-image-art {
+		
+		background-size: cover;
+		left:0px;
+		padding:0px;
+		margin:0px;
+		position: absolute; 
+		width:100%;
+		height:100%;
+	}
+    .glass_bg {
+      	background-image: url('/static/assets/ArmPrimeBg_b-01.jpg');
+      	background-repeat: no-repeat;
+		background-position: top left;
+		background-size: 3096px 2352px;
+		background-attachment:fixed;
+		border-color: rgba(0,0,0, 0.70) !important;
+    }	
+	.md-off {
+		border-color: white;
+	}
+
 </style>

@@ -1,5 +1,4 @@
-
-<md-content class="md-background-bg md-hue-2" layout-padding layout-margin>
+<div layout-padding layout-margin>
  
 	
     <section layout="row">
@@ -62,7 +61,7 @@
 	</md-divider>
 
     <section>
-        <md-card ng-repeat="thread in vm.listData.posts">
+        <md-card ng-repeat="thread in vm.listData.posts" class="glass_bg">
             <md-card-header>
                 <md-card-avatar>
                     <img class="md-user-avatar" src="/static/ArmLogoVectorWhite.svg">
@@ -87,6 +86,21 @@
 				<div id="threadBody{{ thread['id'] }}" class="md-background-fg md-hue-3">
 					Thread Content:
 				</div>
+				<p>
+					Here we'll add lots of bg content.
+				</p>
+				<p>
+					Here we'll add lots of bg content.
+				</p>
+				<p>
+					Here we'll add lots of bg content.
+				</p>
+				<p>
+					Here we'll add lots of bg content.
+				</p>
+				<p>
+					Here we'll add lots of bg content.
+				</p>
                 <!--<p>{{ thread['body'] }}</p>-->
             </md-card-content>
             <md-card-actions layout="row" layout-align="end center">
@@ -97,8 +111,26 @@
                 -->
             </md-card-actions>
         </md-card>
+		<br>
+		<md-card class="glass_bg">
+
+<p>Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing. </p>
+
+<p>Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass. </p>
+
+<p>Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'? </p>
+
+<p>Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit.  </p>
+
+<p>The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother's keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who would attempt to poison and destroy My brothers. And you will know My name is the Lord when I lay My vengeance upon thee. </p>
+
+<p>Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends. </p>
+
+<p>Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass. </p>
+
+		</md-card>
     </section>
-</md-content>
+</div>
 
 
 <style>
@@ -166,5 +198,20 @@
 	.bg-pattern-diagnal {
 	  background-image: url('/static/bg-patterns/rough-diagonal.png');
 	  background-repeat: repeat; 	
+	}
+	
+    .glass_bg {
+      	background-image: url('/static/assets/ArmPrimeBg_b-01.jpg');
+      	background-repeat: no-repeat;
+		background-position: top left;
+		background-size: 3096px 2352px;
+		background-attachment:fixed;
+		border-color: rgba(0,0,0, 0.70) !important;
+    }
+	
+	p 
+	{
+		transition: .8s all;
+		color: white;
 	}
 </style>

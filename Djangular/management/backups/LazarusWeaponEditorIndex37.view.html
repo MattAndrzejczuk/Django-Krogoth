@@ -28,7 +28,31 @@
 		</div>
 </div>
 
-<h1>{{ vm.viewName }}</h1>
+
+<h2>{{vm.modName}}</h2>
+<section layout="row">
+	<div flex layout="column" layout-md="row" class="glass_bg">
+		<h1>Unit FBI Viewset</h1>
+		<pre style="color:lightgreen">
+			{{ vm.fbiData | json }}
+		</pre>
+	</div>
+	<div flex layout="column" class="glass_bg">
+		<h1>FBI Dependencies</h1>
+		<pre style="color:lightgreen">
+			{{ vm.fbiDependencies | json }}
+		</pre>
+	</div>
+	<div flex layout="column" class="glass_bg">
+		
+	</div>
+	<div flex layout="column" class="glass_bg">
+		
+	</div>
+	<div flex layout="column" class="glass_bg">
+		
+	</div>
+</section>
 
 
 <style>

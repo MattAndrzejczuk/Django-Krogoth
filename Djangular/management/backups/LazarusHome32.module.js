@@ -15,11 +15,17 @@
             })
         _DJANGULAR_SLAVE_VC_INJECTION_POINT_; /* Djangular Slave VCs automatically injected here. */
         _DJANGULAR_SLAVE_MSAPI_INJECTION_POINT_
+        msNavigationServiceProvider.saveItem('Lazarus', {
+            title: 'Lazarus',
+            icon: 'icon-hexagon-outline',
+            /*state: 'app.FUSE_APP_NAME',*/
+            weight: 3
+        });
         msNavigationServiceProvider.saveItem('NAV_HEADER.FUSE_APP_NAME', {
-            title: 'FUSE_APP_TITLE',
-            icon: 'FUSE_APP_ICON',
+            title: 'Mod Editor',
+            icon: 'icon-source-fork',
             state: 'app.FUSE_APP_NAME',
-            weight: 1
+            weight: 2
         });
         _DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_
     }

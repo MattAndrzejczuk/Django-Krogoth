@@ -15,6 +15,7 @@
             })
         _DJANGULAR_SLAVE_VC_INJECTION_POINT_; /* Djangular Slave VCs automatically injected here. */
         _DJANGULAR_SLAVE_MSAPI_INJECTION_POINT_
+        /*
         msNavigationServiceProvider.saveItem('NAV_HEADER.FUSE_APP_NAME', {
             title: 'FUSE_APP_TITLE',
             icon: 'FUSE_APP_ICON',
@@ -22,5 +23,6 @@
             weight: 3
         });
         _DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_
+		*/
     }
 })();

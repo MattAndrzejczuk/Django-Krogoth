@@ -6,6 +6,10 @@
         var vm = this;
         vm.viewName = 'FUSE_APP_NAME';
 
+        vm.modName = 'loading mod data...';
+        vm.fbiData = [];
+        vm.fbiDependencies = [];
+
         /// 
         vm.totalUnits = 0;
         vm.modName = 'X';
@@ -13,15 +17,11 @@
             method: 'GET',
             url: '/LazarusDatabase/UnitFBIFromSQLView/'
         }).then(function successCallback(response) {
-            vm.totalUnits = response.data['list_response'].length;
+            vm.fbiData = response.data['list_response'];
             vm.modName = response.data['mod'];
-
             $log.info('response.data');
             $log.debug(response.data);
-
-        }, function errorCallback(response) {
-
-        });
-        /// 
+        }, function errorCallback(response) {});
+        ///
     }
 })();
