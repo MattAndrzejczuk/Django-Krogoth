@@ -49,6 +49,10 @@
     <link rel="stylesheet" href="/static/codemirror.css">
     <link rel="stylesheet" href="/static/colorforth.css">
     <link rel="stylesheet" href="/static/dracula.css">
+
+    <link rel="stylesheet" href="/static/codemirror/theme/ambiance.css">
+    <link rel="stylesheet" href="/static/codemirror/theme/erlang-dark.css">
+
     <link rel="stylesheet" href="/static/jkcarousel/jk-carousel.min.css">
     <!-- endbower -->
     <!-- endbuild -->
@@ -216,7 +220,9 @@
 
 <script type="text/javascript" src="/static/codemirror/mode/xml/xml.js"></script>
 <script type="text/javascript" src="/static/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script type="text/javascript" src="/static/codemirror/mode/htmlembedded/htmlembedded.js"></script>
 <script type="text/javascript" src="/static/codemirror/mode/javascript/javascript.js"></script>
+<script type="text/javascript" src="/static/codemirror/mode/css/css.js"></script>
 
 <script type="text/javascript" src="/static/codemirror/addon/edit/matchtags.js"></script>
 <script type="text/javascript" src="/static/codemirror/addon/edit/closebrackets.js"></script>
@@ -570,6 +576,8 @@
 <script src="/static/app/main/ui/ui.module.js"></script>
 <script src="/static/app/main/pages/pages.module.js"></script>
 <script src="/static/app/main/components/components.module.js"></script>
+<link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
+
 
 <p id="DjangularVersion" style="opacity: 0">{{ message }}</p>
 
@@ -622,6 +630,24 @@
         url('/static/fonts/haettenschweiler-webfont.woff') format('woff');
         font-weight: normal;
         font-style: normal;
+    }
+    
+    .icon-ta-arm {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-image: url('/static/ArmLogoVectorWhite.svg');
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    .icon-ta-core {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-image: url('/static/CoreLogoVectorWhite.svg');
+      background-repeat: no-repeat;
+      background-position: center center;
     }
 </style>
 

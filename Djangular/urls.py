@@ -21,15 +21,19 @@ urlpatterns = [
     url(r'^DynamicHTMLSlaveInjector/(?P<id>[0-9]+)/', views.DynamicHTMLSlaveInjector.as_view(), name='Dynamic HTML Slave Injector'),
     url(r'^CRUD/', include(router.urls)),
 
-
-
     url(r'^MasterViewControllerEditorList/',
         viewseditor.MasterViewControllerEditorListView.as_view(),
-        name='MasterViewControllerEditorList'),
-
+        name='Master View Controller Editor List'),
     url(r'^MasterViewControllerEditorDetail/',
         viewseditor.MasterViewControllerEditorDetailView.as_view(),
-        name='MasterViewControllerEditorDetail'),
+        name='Master View Controller Editor Detail'),
+
+    url(r'^SlaveViewControllerEditorList/',
+        viewseditor.SlaveViewControllerEditorListView.as_view(),
+        name='Slave View Controller Editor List'),
+    url(r'^SlaveViewControllerEditorDetail/',
+        viewseditor.SlaveViewControllerEditorDetailView.as_view(),
+        name='Slave View Controller Editor Detail'),
 
     url(r'^DjangularModelForm/',
         views.DjangularModelForm.as_view(),

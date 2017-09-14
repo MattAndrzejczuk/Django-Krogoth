@@ -17,6 +17,7 @@
             }
             vm.uploadMiniControllerDidLoad = true;
         }
+
         /*
                 vm.dtUploaderInstance = {};
                 vm.dtUploaderOptions = {

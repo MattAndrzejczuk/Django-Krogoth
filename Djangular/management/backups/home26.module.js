@@ -20,7 +20,7 @@
 
         msNavigationServiceProvider.saveItem('Home', {
             title: 'Home',
-            icon: 'icon-home',
+            icon: 'mdi mdi-bell',
             weight: 1
         });
         msNavigationServiceProvider.saveItem('Home.FUSE_APP_NAME', {
@@ -28,6 +28,16 @@
             icon: 'icon-newspaper',
             state: 'app.FUSE_APP_NAME',
             weight: 1
+        });
+        msNavigationServiceProvider.saveItem('Home.upcomingFeats', {
+            title: 'Upcoming Features',
+            icon: 'mdi mdi-star-circle',
+            weight: 2
+        });
+        msNavigationServiceProvider.saveItem('Home.whatIsLazarus', {
+            title: 'What Is Lazarus',
+            icon: 'mdi mdi-information-variant',
+            weight: 3
         });
         /*
         _DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_

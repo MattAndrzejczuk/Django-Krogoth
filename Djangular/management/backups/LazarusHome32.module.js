@@ -17,13 +17,13 @@
         _DJANGULAR_SLAVE_MSAPI_INJECTION_POINT_
         msNavigationServiceProvider.saveItem('Lazarus', {
             title: 'Lazarus',
-            icon: 'icon-hexagon-outline',
+            icon: 'mdi mdi-react',
             /*state: 'app.FUSE_APP_NAME',*/
             weight: 3
         });
         msNavigationServiceProvider.saveItem('NAV_HEADER.FUSE_APP_NAME', {
             title: 'Mod Editor',
-            icon: 'icon-source-fork',
+            icon: 'mdi mdi-dna',
             state: 'app.FUSE_APP_NAME',
             weight: 2
         });

@@ -18,7 +18,7 @@
 
         msNavigationServiceProvider.saveItem('NAV_HEADER.FUSE_APP_NAME', {
             title: 'FUSE_APP_TITLE',
-            icon: 'icon-harddisk',
+            icon: 'mdi mdi-upload-network',
             state: 'app.FUSE_APP_NAME',
             weight: 3
         });

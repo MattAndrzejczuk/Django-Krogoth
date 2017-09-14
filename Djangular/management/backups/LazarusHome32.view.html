@@ -1,8 +1,5 @@
-<h1>{{ vm.viewName }}</h1>
-<p>{{ vm.lazarusVersion }}</p>
-
-<div layout="column" layout-align="space-around center">
-	<div layout="row">
+<div layout="column" layout-align="space-around center" style="height: 100%">
+	<div layout="row" flex="60" layout="column" layout-align="center center">
 		<article flex layout="column" layout-align="center center">
 			<span class="title-1 blue-50-fg">TOTAL</span>
 			<span class="title-5 blue-50-fg">
@@ -17,74 +14,80 @@
 		</article>
 	</div>
 	
-	<br>
 
-	<div layout="row" layout-align="space-between center">
-			<md-button flex="20" 
-					   ui-sref="app.LazarusSupport"
-					   style="width: 250px;"
-					   class="md-hover-button-amber-dark-bg">Help</md-button>
-			<div flex style="width: 200px;">&nbsp;</div>
-			<md-button flex="20" 
-					   ui-sref="app.LazarusPatchNotes"
-					   style="width: 250px;" 
-					   class="md-hover-button-amber-dark-bg">Patch Notes</md-button>
-	</div>
-	
-	<br><br>
-	<div layout="row" layout-align="space-between center">
-			<md-button flex="20" 
-					   ui-sref="app.MyModProjects"
-					   style="width: 250px;" 
-					   class="md-hover-button-amber-dark-bg">Mod Editor</md-button>
-			<div flex style="width: 200px;">&nbsp;</div>
-			<md-button flex="20" 
-					   ui-sref="app.uploadRepository"
-					   style="width: 250px;" 
-					   class="md-hover-button-amber-dark-bg">Asset Repository</md-button>
-	</div>
+	<section flex="40" layout="column" layout-align="center stretch">
+		<span flex="60" layout="column" layout-align="center stretch">
+			&nbsp;
+		</span>
+		<span flex="40" layout="column" layout-align="center stretch">
+			<div layout="row" layout-align="space-between center">
+					<md-button flex="20" 
+							   ui-sref="app.LazarusSupport"
+							   style="width: 250px;"
+							   class="md-hover-button-amber-dark-bg">Help</md-button>
+					<div flex style="width: 200px;">&nbsp;</div>
+					<md-button flex="20" 
+							   ui-sref="app.LazarusPatchNotes"
+							   style="width: 250px;" 
+							   class="md-hover-button-amber-dark-bg">Patch Notes</md-button>
+			</div>
+			<div layout="row" layout-align="space-between center" flex="40">
+					<md-button flex="20" 
+							   ui-sref="app.MyModProjects"
+							   style="width: 250px;" 
+							   class="md-hover-button-amber-dark-bg">Mod Editor</md-button>
+					<div flex style="width: 200px;">&nbsp;</div>
+					<md-button flex="20" 
+							   ui-sref="app.uploadRepository"
+							   style="width: 250px;" 
+							   class="md-hover-button-amber-dark-bg">Asset Repository</md-button>
+			</div>
+		</span>
+
+	</section>
 </div>
 
 <style>
 .title-1 {
         font-family: Haettenschweiler;
-        font-size: 160px;
+        font-size: 120px;
         font-style: normal;
         font-variant: normal;
         font-weight: 400;
-        line-height: 40px;
+        line-height: 20px;
         letter-spacing: 3px;	
 }
 .title-3 {
 	        font-family: Haettenschweiler;
-        font-size: 180px;
+        font-size: 140px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 130px;
+        letter-spacing: 3px;
+}
+.title-5 {
+	        font-family: Haettenschweiler;
+        font-size: 200px;
         font-style: normal;
         font-variant: normal;
         font-weight: 400;
         line-height: 170px;
         letter-spacing: 3px;
 }
-.title-5 {
-	        font-family: Haettenschweiler;
-        font-size: 240px;
-        font-style: normal;
-        font-variant: normal;
-        font-weight: 400;
-        line-height: 210px;
-        letter-spacing: 3px;
-}
 .logoH {
-	font-size: 310px !important;
+	font-size: 270px !important;
 }
 .title-7 {
-	        font-family: Haettenschweiler;
-        font-size: 34px;
+	    font-family: Haettenschweiler;
+        font-size: 28px;
         font-style: normal;
         font-variant: normal;
         font-weight: 200;
-        line-height: 105px;
+        line-height: 65px;
         letter-spacing: 3px;
 }
+
 
     .md-hover-button-amber-dark-bg:hover {
         background-color: rgb(255,171,0) !important;

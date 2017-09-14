@@ -8,7 +8,7 @@
         vm.createThreadMode = false;
         vm.createReplyMode = false;
         vm.form = {};
-
+        vm.currentState = $stateParams;
         vm.addReply = addReply;
         vm.newThreadHttpPOSTRequest = newThreadHttpPOSTRequest;
         vm.newReplyHttpPOSTRequest = newReplyHttpPOSTRequest;
@@ -23,8 +23,6 @@
             vm.viewName = 'Create New _SLAVE_NAME_';
             vm.createThreadMode = true;
         }
-
-
 
         function addReply() {
             vm.createReplyMode = !vm.createReplyMode;

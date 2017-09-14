@@ -158,46 +158,8 @@
         </section>
 		<br><br>
         <section flex="70" layout="row" style="min-height: 300px">
-            <div flex="25" layout="row" >
-                <!-- WIDGET UnitCount -->
-                <ms-widget class="h-300" layout="column" flex="100" flex-gt-xs="50"
-                           flex-gt-md="100">
-                    <!-- Front -->
-                    <ms-widget-front class="p-16 green-bg white-fg" layout="row" flex>
-                        <div layout="column" layout-align="center center" flex>
-                            <div class="md-display-3 pb-8">{{vm.widgetUnitCount.value}}</div>
-                            <div class="h3 font-weight-500">{{vm.widgetUnitCount.title}}</div>
-                        </div>
-                        <div class="background-image-center">
-                            <img src="/static/editorTiles/megabot.svg" width="200" style="opacity:0.25">
-                        </div>
-                    </ms-widget-front>
-                    <!-- / Front -->
-                </ms-widget>
-                <!-- / WIDGET UnitCount -->
-            </div>
-            <div flex="25" layout="row">
-                <!-- WIDGET WeaponCount -->
-                <ms-widget class="h-300" layout="column" flex="100" flex-gt-xs="50"
-                           flex-gt-md="100">
-                    <!-- Front -->
-                    <ms-widget-front class="p-16 deep-orange-bg white-fg" layout="row" flex>
-                        <div layout="column" layout-align="center center" flex>
-                            <div class="md-display-3 pb-8">{{vm.widgetWeaponCount.value}}</div>
-                            <div class="h3 font-weight-500">{{vm.widgetWeaponCount.title}}</div>
-                        </div>
-                        <div class="background-image-center">
-							<img src="/static/editorTiles/missile-pod.svg" width="200" style="opacity:0.25">
-                        </div>
-                    </ms-widget-front>
-                    <!-- / Front -->
-                </ms-widget>
-                <!-- / WIDGET WeaponCount -->
-            </div>
-
-            <div flex="50" layout="column" class="md-background-fg md-hue-3">
-                <h3 style="color: #FFECB3;">TOTAL ANNIHILATION GAME CLIENT</h3>
-				
+            <div flex layout="column" class="md-background-fg md-hue-3">
+                <h3 style="color: #FFECB3;">TOTAL ANNIHILATION COMPATIBILITY</h3>				
                 <md-radio-group ng-model="vm.publish.compatibility" class="md-background-fg md-hue-3">
                     <md-radio-button value="cavedog" class="md-green-fg"> Cavedog v3.1
 						<md-tooltip md-direction="top">
@@ -292,22 +254,7 @@
     </md-card>
 </section>
 
-<ul rn-carousel class="image">
-  	<li>
-	  	<img src="/static/editorTiles/megabot.svg" width="200" style="opacity:0.75">
-	</li>
-  	<li>
-		<img src="/static/editorTiles/missile-pod.svg" width="200" style="opacity:0.75">
-	</li>
-</ul>
 
-  <div class="bg">
-    <img src="https://unsplash.it/400/200" alt="">
-    <div class="overlay">
-      <h2>Check This Out!</h2>
-      <p>this is some text.</p>
-    </div>
-  </div>
 
 <style>
     h1 {
@@ -353,7 +300,7 @@
     }
 
 	/* 
-	      ICON BUTTON 
+	      ICON BUTTON BLUE
 	*/
     .md-hover-button:hover {
         background-color: rgb(41,98,255) !important;
@@ -374,7 +321,7 @@
 	      /ICON BUTTON 
 	*/
 	/* 
-	      ICON BUTTON 
+	      ICON BUTTON ORANGE
 	*/
     .md-hover-button-2:hover {
         background-color: #FF6F00 !important;

@@ -1,59 +1,244 @@
 <div layout="row" layout="start start">
-		<span> &nbsp;&nbsp; </span>
-		<div style="margin-top:10px;">
-			<md-button aria-label="back" class="md-icon-button md-accent md-hover-button-2" ui-sref="app.LazarusMainMenu">
-				<md-icon class="iconhover-2" md-font-icon="icon-arrow-left"></md-icon>
-				<md-tooltip md-direction="bottom">Back to {{ vm.modName }} Project Manager.</md-tooltip>
-			</md-button>
-		</div>
-		<span> &nbsp;&nbsp; </span>
-		<div>
-			<h1 class="breadcrubs taFont-large">LAZARUS MODS</h1>
-		</div>
-		<span> &nbsp;&nbsp; </span>
-		<div style="margin-top:12px;">
-			<md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
-		</div>
-		<span> &nbsp;&nbsp; </span>
-		<div>
-			<h1 class="breadcrubs taFont-large">{{ vm.modName | uppercase }}</h1>
-		</div>
-		<span> &nbsp;&nbsp; </span>
-		<div style="margin-top:12px;">
-			<md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
-		</div>
-		<span> &nbsp;&nbsp; </span>
-		<div>
-			<h1 class="breadcrubs taFont-large">WEAPON EDITOR</h1>
-		</div>
+    <span> &nbsp;&nbsp; </span>
+    <div style="margin-top:10px;">
+        <md-button aria-label="back" class="md-icon-button md-accent md-hover-button-2" ui-sref="app.LazarusMainMenu">
+            <md-icon class="iconhover-2" md-font-icon="icon-arrow-left"></md-icon>
+            <md-tooltip md-direction="bottom">Back to {{ vm.modName }} Project Manager.</md-tooltip>
+        </md-button>
+    </div>
+    <span> &nbsp;&nbsp; </span>
+    <div>
+        <h1 class="breadcrubs taFont-large">LAZARUS MODS</h1>
+    </div>
+    <span> &nbsp;&nbsp; </span>
+    <div style="margin-top:12px;">
+        <md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
+    </div>
+    <span> &nbsp;&nbsp; </span>
+    <div>
+        <h1 class="breadcrubs taFont-large">{{ vm.modName | uppercase }}</h1>
+    </div>
+    <span> &nbsp;&nbsp; </span>
+    <div style="margin-top:12px;">
+        <md-icon md-font-icon="icon-chevron-right" class="s32 md-background-fg md-hue-3 breadcrubs"></md-icon>
+    </div>
+    <span> &nbsp;&nbsp; </span>
+    <div>
+        <h1 class="breadcrubs taFont-large">WEAPON EDITOR</h1>
+    </div>
 </div>
 
 
+<div layout="column" style="color:white;">
+    <div layout="row">
+        <span flex="10"></span>
+			<span flex="80">
+				A weapon must fit into one of these basic categories:
+			</span>
+        <span flex="10"></span>
+    </div>
+    <div layout="row">
+        <span flex="10"></span>
+			<span flex="20">
+				1) ballistic
+			</span>
+			<span flex="60">
+				Weapon is fired according to a ballistic path using gravity.
+			</span>
+        <span flex="10"></span>
+    </div>
+    <div layout="row">
+        <span flex="10"></span>
+			<span flex="20">
+				2) lineofsight
+			</span>
+			<span flex="60">
+				Weapon is fired in a straight line, gravity does not effect path.
+			</span>
+        <span flex="10"></span>
+    </div>
+    <div layout="row">
+        <span flex="10"></span>
+			<span flex="20">
+				3) dropped
+			</span>
+			<span flex="60">
+				Weapon is dropped in order to use it, typically a bomb but could be a chemical.
+			</span>
+        <span flex="10"></span>
+    </div>
+</div>
+
 <h2>{{vm.modName}}</h2>
+
 <section layout="row">
-	<div flex layout="column" layout-md="row" class="glass_bg">
-		<h1>Unit FBI Viewset</h1>
-		<pre style="color:lightgreen">
-			{{ vm.fbiData | json }}
-		</pre>
-	</div>
-	<div flex layout="column" class="glass_bg">
-		<h1>FBI Dependencies</h1>
-		<pre style="color:lightgreen">
-			{{ vm.fbiDependencies | json }}
-		</pre>
-	</div>
-	<div flex layout="column" class="glass_bg">
-		
-	</div>
-	<div flex layout="column" class="glass_bg">
-		
-	</div>
-	<div flex layout="column" class="glass_bg">
-		
-	</div>
+    <div flex layout="column" class="glass_bg" layout-margin>
+        <h1>Selected Mod Project</h1>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">id: </span>
+            <span class="lazarus-value">{{vm.selectedModProject[0].id}}</span>
+        </div>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">created: </span>
+            <span class="lazarus-value">{{vm.selectedModProject[0].created}}</span>
+        </div>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">description: </span>
+            <span class="lazarus-value">{{vm.selectedModProject[0].description}}</span>
+        </div>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">name: </span>
+            <span class="lazarus-value">{{vm.selectedModProject[0].name}}</span>
+        </div>
+    </div>
+    <div flex layout="column" class="glass_bg" layout-margin>
+		<h1>{{vm.selectedModProject.name}} Assets</h1>
+		<div ng-repeat="asset in vm.allModAssets">
+			<div layout="row">
+				<md-icon class="mdi mdi-label-outline"></md-icon>
+				<span class="lazarus-key">id: </span>
+				<span class="lazarus-value">{{asset.id}}</span>
+				<md-button ng-click="vm.didClickRequestAssetDependencies(asset.id)"
+						   class="md-hover-button md-primary">
+					Load Dependencies
+				</md-button>
+			</div>
+			<div layout="row">
+				<md-icon class="mdi mdi-label-outline"></md-icon>
+				<span class="lazarus-key">name: </span>
+				<span class="lazarus-value">{{asset.name}}</span>
+			</div>
+			<div layout="row">
+				<md-icon class="mdi mdi-label-outline"></md-icon>
+				<span class="lazarus-key">type: </span>
+				<span class="lazarus-value">{{asset.type}}</span>
+			</div>
+			<div layout="row">
+				<md-icon class="mdi mdi-label-outline"></md-icon>
+				<span class="lazarus-key">project_id: </span>
+				<span class="lazarus-value">{{asset.project_id}}</span>
+			</div>
+			<div layout="row">
+				<md-icon class="mdi mdi-label-outline"></md-icon>
+				<span class="lazarus-key">uploader: </span>
+				<span class="lazarus-value">{{asset.uploader}}</span>
+			</div>
+		</div>
+    </div>
 </section>
 
+<section layout="column">
+    <h1>Dependencies</h1>
+    <div layout="column"
+         class="glass_bg"
+         layout-margin 
+         ng-repeat="dependency in vm.selectedAssetDependencies">
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">id: </span>
+            <span class="lazarus-value">{{dependency.id}}</span>
+        </div>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">name: </span>
+            <span class="lazarus-value">{{dependency.name}}</span>
+        </div>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">type: </span>
+            <span class="lazarus-value">{{dependency.type}}</span>
+        </div>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">system_path: </span>
+            <span class="lazarus-value">{{dependency.system_path}}</span>
+        </div>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">raw_string_url: </span>
+            <span class="lazarus-value">{{dependency.raw_string_url}}</span>
+        </div>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">asset_id: </span>
+            <span class="lazarus-value">{{dependency.asset_id}}</span>
+        </div>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">is_deleted: </span>
+            <span class="lazarus-value">{{dependency.is_deleted}}</span>
+        </div>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">model_schema: </span>
+            <span class="lazarus-value">{{dependency.model_schema}}</span>
+        </div>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">model_id: </span>
+            <span class="lazarus-value">{{dependency.model_id}}</span>
+        </div>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">meta_data: </span>
+            <span class="lazarus-value">{{dependency.meta_data}}</span>
+        </div>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key">created: </span>
+            <span class="lazarus-value">{{dependency.created}}</span>
+        </div>
+    </div>
+</section>
+
+<!--
+<section layout="row">
+    <div flex layout="column" layout-md="row" class="glass_bg">
+        <h1>vm.fbiData</h1>
+		<pre style="color:lightgreen; font-size:2px">
+			{{ vm.fbiData | json }}
+		</pre>
+    </div>
+    <div flex layout="column" class="glass_bg">
+        <h1>vm.selectedModProject</h1>
+		<pre style="color:lightgreen">
+			{{ vm.selectedModProject | json }}
+		</pre>
+    </div>
+</section>
+<section layout="row">
+    <div flex layout="column" layout-md="row" class="glass_bg">
+        <h1>vm.allModAssets</h1>
+		<pre style="color:lightgreen">
+			{{ vm.allModAssets | json }}
+		</pre>
+    </div>
+    <div flex layout="column" class="glass_bg">
+        <h1>vm.selectedAssetDependencies</h1>
+		<pre style="color:lightgreen">
+			{{ vm.selectedAssetDependencies | json }}
+		</pre>
+    </div>
+</section>
+-->
+<section layout="row">
+    <div flex layout="column" layout-md="row" class="glass_bg">
+        <h1>vm.selectedWeaponTdfDetail</h1>
+		<pre style="color:lightgreen">
+			{{ vm.selectedWeaponTdfDetail | json }}
+		</pre>
+    </div>
+    <div flex layout="column" class="glass_bg">
+        <h1>vm.selectedUnitFbiDetail</h1>
+		<pre style="color:lightgreen">
+			{{ vm.selectedUnitFbiDetail | json }}
+		</pre>
+    </div>
+</section>
 
 <style>
     h1 {
@@ -65,10 +250,11 @@
         line-height: 26px;
         letter-spacing: 3px;
     }
+
     .breadcrubs {
         line-height: 0px !important;
     }
-	
+
     h2 {
         font-family: Haettenschweiler;
         font-size: 40px;
@@ -88,6 +274,7 @@
         line-height: 15px;
         letter-spacing: 3px;
     }
+
     .publishedModTitle {
         font-family: "Courier New", Courier, monospace !important;
         font-size: 15px !important;
@@ -98,47 +285,96 @@
         letter-spacing: 2px !important;
     }
 
-	/* 
-	      ICON BUTTON 
-	*/
-    .md-hover-button:hover {
-        background-color: rgb(41,98,255) !important;
-        border-color: rgb(41,98,255) !important;
+    .md-hover-button-white:hover {
+        background-color: white !important;
+        border-color: white !important;
+        color: rgb(60, 66, 82) !important;
+        font-size: 10px;
+        line-height: 10px;
     }
+
+    .md-hover-button-white {
+        border-style: solid !important;
+        border-width: 1px !important;
+        color: white !important;
+        border-color: white !important;
+    }
+
+    .md-hover-button-red:hover {
+        background-color: red !important;
+        border-color: red !important;
+        color: rgb(60, 66, 82) !important;
+    }
+
+    .md-hover-button-red {
+        border-style: solid !important;
+        border-width: 1px !important;
+        color: red !important;
+        border-color: red !important;
+    }
+
+    .md-hover-button-green:hover {
+        background-color: lightgreen !important;
+        border-color: lightgreen !important;
+        color: rgb(60, 66, 82) !important;
+    }
+
+    .md-hover-button-green {
+        border-style: solid !important;
+        border-width: 1px !important;
+        color: lightgreen !important;
+        border-color: lightgreen !important;
+    }
+
+    /*
+          ICON BUTTON
+    */
+    .md-hover-button:hover {
+        background-color: rgb(41, 98, 255) !important;
+        border-color: rgb(41, 98, 255) !important;
+    }
+
     .md-hover-button {
         border-style: solid !important;
         border-width: 1px !important;
-        border-color: rgb(41,98,255) !important;
+        border-color: rgb(41, 98, 255) !important;
     }
+
     .md-hover-button:hover > .iconhover {
         color: black !important;
     }
+
     .md-icon-button > .iconhover {
-        color: rgb(41,98,255) !important;
+        color: rgb(41, 98, 255) !important;
     }
-	/* 
-	      /ICON BUTTON 
-	*/
-	/* 
-	      ICON BUTTON 
-	*/
+
+    /*
+          /ICON BUTTON
+    */
+    /*
+          ICON BUTTON
+    */
     .md-hover-button-2:hover {
         background-color: #FF6F00 !important;
         border-color: #FF6F00 !important;
     }
+
     .md-hover-button-2 {
         border-style: solid !important;
         border-width: 1px !important;
         border-color: #FF6F00 !important;
-		color: #FF6F00 !important;
+        color: #FF6F00 !important;
     }
+
     .md-hover-button-2:hover > .iconhover-2 {
-        color: rgb(60,66,82) !important;
+        color: rgb(60, 66, 82) !important;
     }
+
     .md-icon-button-2 > .iconhover-2 {
         color: #FF6F00 !important;
     }
-	/* 
-	      /ICON BUTTON 
-	*/
+
+    /*
+          /ICON BUTTON
+    */
 </style>
