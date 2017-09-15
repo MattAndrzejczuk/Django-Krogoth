@@ -38,8 +38,6 @@ router.register(r'link-messages', LinkMessageViewSet)
 router.register(r'youtube-messages', YouTubeMessageViewSet)
 router.register(r'youtube', YouTubeMessageViewSet)
 
-
-
 # LEGACY SUPPORT OF iOS 8 VERSION, THE iOS 8 CLIENT MUST BE UPDATED SO WE CAN REMOVE THIS LINE LATER
 
 urlpatterns = [
@@ -70,4 +68,11 @@ urlpatterns = [
     url(r'^djangular_dashboard/', include('djangular_dashboard.urls')),
 
     url(r'^docs/', include('rest_framework_docs.urls')),
+
+    # THIS IS FOR SEO:
+    url(r'^news/', rest_auth.views.index),
+    url(r'^features/', rest_auth.views.index),
+    url(r'^whatIsLazarus/', rest_auth.views.index),
+    url(r'^status/', rest_auth.views.index),
+    url(r'^forums/', rest_auth.views.index),
 ]

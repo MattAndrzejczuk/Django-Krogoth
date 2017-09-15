@@ -20,7 +20,7 @@
 
         msNavigationServiceProvider.saveItem('Home', {
             title: 'Home',
-            icon: 'mdi mdi-bell',
+            icon: 'mdi mdi-home',
             weight: 1
         });
         msNavigationServiceProvider.saveItem('Home.FUSE_APP_NAME', {
@@ -32,11 +32,13 @@
         msNavigationServiceProvider.saveItem('Home.upcomingFeats', {
             title: 'Upcoming Features',
             icon: 'mdi mdi-star-circle',
+            state: 'app.upcomingFeatures',
             weight: 2
         });
         msNavigationServiceProvider.saveItem('Home.whatIsLazarus', {
             title: 'What Is Lazarus',
             icon: 'mdi mdi-information-variant',
+            state: 'app.whatIsLaz',
             weight: 3
         });
         /*

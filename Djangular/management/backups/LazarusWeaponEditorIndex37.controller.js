@@ -2,7 +2,7 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
-    function FUSE_APP_NAMEController($http, $log, LazarusRESTfulCRUD) {
+    function FUSE_APP_NAMEController($http, $log, LazarusRESTfulCRUD, $mdMenu, $mdToast) {
         var vm = this;
         vm.viewName = 'FUSE_APP_NAME';
 
@@ -14,9 +14,12 @@
         vm.requestModAssetsRESTful = requestModAssetsRESTful;
         vm.didClickRequestUnitFbiRESTful = didClickRequestUnitFbiRESTful;
         vm.didClickRequestWeaponTdfRESTful = didClickRequestWeaponTdfRESTful;
-
         vm.didClickRequestAssetDependencies = didClickRequestAssetDependencies;
+        vm.didClickPatchWeaponRequest = didClickPatchWeaponRequest;
 
+        vm.weaponTdfPatchForm = {};
+
+        vm.openMenu = openMenu;
         /// 
         vm.totalUnits = 0;
         vm.modName = '';
@@ -74,16 +77,37 @@
         }
 
         function didClickRequestUnitFbiRESTful(id) {
+            $log.log("☢ ☢ ☢");
+            $log.info("Did Click Request Unit FBI RESTful: " + id);
             LazarusRESTfulCRUD.getUnitFbiDetail(id).then(function(data) {
-                vm.selectedUnitFbiDetail = data.results;
+                $log.log(' Server Returned: ');
+                vm.selectedUnitFbiDetail = data;
             });
         }
 
         function didClickRequestWeaponTdfRESTful(id) {
-            LazarusRESTfulCRUD.selectedWeaponTdfDetail(id).then(function(data) {
-                vm.selectedWeaponTdfDetail = data.results;
+            $log.log('   Requesting Weapon TDF from REST: ' + id);
+            $log.info('- - - - - -');
+            LazarusRESTfulCRUD.getWeaponTdfDetail(id).then(function(data) {
+                $log.log('');
+                $log.debug(data);
+                vm.selectedWeaponTdfDetail = data;
             });
         }
+
+        function didClickPatchWeaponRequest() {
+            var testString = 'property: ' + vm.weaponTdfPatchForm.property +
+                ' value: ' + vm.weaponTdfPatchForm.value + ' key: ' + vm.selectedWeaponTdfDetail.id;
+            $mdToast.show($mdToast.simple()
+                .textContent(testString));
+            /// patchWeaponTdf(id, key, value)
+        }
+
+        function openMenu($mdMenu, ev) {
+            $mdMenu.open(ev);
+        }
+
+
 
     }
 })();

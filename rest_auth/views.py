@@ -138,7 +138,6 @@ def index(request):
 
     print('SOMEONE IS REQUESTING THE INDEX HTML PAGE ! ! !')
     check_if_default_vc_exists = DjangularMasterViewController.objects.all()
-    print(len(check_if_default_vc_exists))
     if len(check_if_default_vc_exists) == 0:
 
         defaultIcon = DjangularIcon(name='home, house', code='icon-home')
@@ -169,11 +168,19 @@ def index(request):
     for application in all_applications:
         DjangularMasterViewControllers.append(application.name)
 
-    _1 = str(request.META['REMOTE_ADDR'])
-    _2 = str(request.META['HTTP_USER_AGENT'])
-    _3 = str(request.META['HTTP_ACCEPT_LANGUAGE'])
-    newRecord = VisitorLogSB(remote_addr=_1, http_usr=_2, http_accept=_3, other_misc_notes='index.html requested.')
-    newRecord.save()
+    try:
+        _url = request.get_full_path()
+        _1 = str(request.META['REMOTE_ADDR'])
+        _2 = str(request.META['HTTP_USER_AGENT'])
+        _3 = str(request.META['HTTP_ACCEPT_LANGUAGE'])
+        newRecord = VisitorLogSB(remote_addr=_1, http_usr=_2, http_accept=_3, other_misc_notes= _url + ' requested.')
+        newRecord.save()
+    except:
+        try:
+            newRecord = VisitorLogSB(remote_addr='fail', http_usr='fail', http_accept='fail', other_misc_notes='index.html requested but failed to gather and save visitor data: ' + str(request.get_full_path()))
+            newRecord.save()
+        except:
+            pass
 
     # GET LAZARUS BUILD VERSION:
     bash_cmd = ['git', 'rev-list', '--count', 'master']
@@ -190,9 +197,7 @@ def index(request):
     try:
         mainHtmlLayout = NgIncludedJs.objects.get(name='mainHtmlLayout')
         index_route_js = mainHtmlLayout.url_helper
-        print('_ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ _')
-        print(index_route_js)
-        print('_ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ _')
+
     except:
         _main_ = " '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar-2.html' "
         _toolbar_ = " '/static/app/toolbar/layouts/vertical-navigation-fullwidth-toolbar-2/toolbar.html' "
@@ -209,17 +214,66 @@ def index(request):
         newLayout = NgIncludedJs(name='mainHtmlLayout', contents=jsbeautifier.beautify(js_raw))
         newLayout.save()
         index_route_js = newLayout.url_helper
-        print(' ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
-        print(index_route_js)
-        print(' ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
+
 
     if current_build_2 == '00':
         current_build_2 = '0'
     else:
         current_build_2 = current_build_2.replace('0', '')
 
+    print('\n\n\n\nRequest URI:\n')
+    ###print(request.GET['MAINS'])
+    print(request.META)
+    print('\n\n\n\n\n')
+
+    version_build = 'Djangular ' + current_build_1[:3] + "." + current_build_2
+    seo_title = "ArmPrime " + current_build_1[:3] + "." + current_build_2 + ' - Home of Total Annihilation Lazarus'
+    seo_description = 'The ultimate resource for developing Total Annihilation mods using our web base mod editor.'
+    seo_description += ' Upload units, edit and publish your TA content with the community.'
+
+    try:
+        if request.META['PATH_INFO'] == '/features/':
+            seo_title = 'ArmPrime - Upcoming features for TA mod development'
+            seo_description = 'Features and web based tools ArmPrime will have in the future for Total Annihilation.'
+            seo_description += ' Random Map Generator, Enhanced Skirmish Mode, and more Lazarus updates'
+    except:
+        pass
+
+    try:
+        if request.META['PATH_INFO'] == '/news/':
+            seo_title = 'ArmPrime - Latest News and Updates'
+            seo_description = 'Lazarus is almost ready for building and playing Total Annihilation mods.'
+            seo_description += ' - Posted by Matt on September 14, 2017'
+    except:
+        pass
+
+    try:
+        if request.META['PATH_INFO'] == '/whatIsLazarus/':
+            seo_title = 'ArmPrime - What is Total Annihilation: Lazarus?'
+            seo_description = 'Total Annihilation Lazarus is a new web based mod builder and conflict crusher '
+            seo_description += 'for the 1997 classic Total Annihilation released by Cavedog entertainment.'
+    except:
+        pass
+
+    try:
+        if request.META['PATH_INFO'] == '/status/':
+            seo_title = 'ArmPrime Lazarus - Current Project Status'
+            seo_description = 'There are currently 3 major components of Lazarus that will need to be completed before the public beta test.'
+            seo_description += ' Mod Nanolather, Download TDF Editor, and Weapon TDF Editor'
+    except:
+        pass
+
+    try:
+        if request.META['PATH_INFO'] == '/forums/':
+            seo_title = 'ArmPrime - Community Forums'
+            seo_description = 'Discuss anything related to Cavedog\'s 1997 Real Time Strategy game Total Annihilation.'
+    except:
+        pass
+
     context = {
-        "message": "Djangular " + current_build_1[:3] + "." + current_build_2,
+        "version_build": version_build,
+        "message": seo_title,
+        "description": seo_description,
         "DjangularMasterViewControllers": DjangularMasterViewControllers,
         "splash_title": splash_title,
         "font_size": font_size,

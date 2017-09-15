@@ -159,7 +159,7 @@
 		<br><br>
         <section flex="70" layout="row" style="min-height: 300px">
             <div flex layout="column" class="md-background-fg md-hue-3">
-                <h3 style="color: #FFECB3;">TOTAL ANNIHILATION COMPATIBILITY</h3>				
+                <h3 style="color: #FFECB3; font-size: 21px">TOTAL ANNIHILATION COMPATIBILITY</h3>				
                 <md-radio-group ng-model="vm.publish.compatibility" class="md-background-fg md-hue-3">
                     <md-radio-button value="cavedog" class="md-green-fg"> Cavedog v3.1
 						<md-tooltip md-direction="top">
@@ -343,7 +343,23 @@
 	      /ICON BUTTON 
 	*/
 	
-	
+        .glass_bg {
+		    -webkit-transition-duration: 0.8s; /* Safari */
+    transition-duration: 0.8s;
+      	background-image: url('/static/assets/ArmPrimeBg_b-01.jpg') !important;
+    }
+
+    .multi_bg_example_opaque {
+			    -webkit-transition-duration: 0.8s; /* Safari */
+    transition-duration: 0.8s;
+        background-image: url('/static/assets/ArmPrimeBg-01.jpg') !important;
+    }
+
+    .multi_bg_example_glass {
+			    -webkit-transition-duration: 0.8s; /* Safari */
+    transition-duration: 0.8s;
+        background-image: url('/static/assets/ArmPrimeBg_b-01.jpg') !important;
+    }
 	
 	
 

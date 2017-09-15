@@ -1,4 +1,4 @@
-<div layout-padding layout-margin>
+<div>
  
 	
     <section layout="row">
@@ -25,7 +25,7 @@
 			<span>&nbsp;</span>
 			<span>&nbsp;</span>
 			<span>&nbsp;</span>
-			<span class="title-8 blue-50-fg">PUBLIC BETA NOW LIVE</span>
+			<!--<span class="title-8 blue-50-fg">PUBLIC BETA TEST</span>-->
 			<span>&nbsp;</span>
 		</article>
 	</div>
@@ -47,18 +47,57 @@
 		The chance to make kick ass Total Annihilation mods is yours. None shall interfere, do as you please!
 	</p>
 -->
-    <section layout="row" layout-align="center center">
-        <span flex="30"></span>
-		<span class="md-background-fg md-hue-3 md-display-1 flex="40"">
-			<i class="material-icons">alarm_on</i>
-		</span>
-        <span flex="30"></span>
-    </section>
-	
-	<md-divider class="md-accent-fg md-hue-3 ">
-	</md-divider>
 
-    <section>
+    <section>	
+        <md-card ng-repeat="thread in vm.listData.posts" class="glass_bg">
+            <md-card-header>
+                <md-card-avatar>
+                    <img class="md-user-avatar" src="/static/ArmLogoVectorWhite.svg">
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title md-accent-fg">
+						Lazarus is almost ready for building and playing Total Annihilation mods.
+					</span>
+                    <span class="md-subhead md-accent-fg md-hue-1">
+						Posted by Matt on September 14, 2017
+					</span>
+                </md-card-header-text>
+            </md-card-header>
+            <md-card-title>
+                <md-card-title-text>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+				<div class="md-background-fg md-hue-3">
+					<p>
+					    The project is nearly ready to be tested alongside Total Annihilation. Just today I managed to complete the weapon editor API controllers on the frontend. Although obviously, it will need an overhaul on the user experience side of things since currently it will not display relevent information to help users navigate the weapons which are installed on their mod project. I'll be focusing more right now on making sure the tech tree editor is fully functional before I jump to polishing up the weapon editor.
+					</p>
+					
+					<p>
+						The unit FBI editor is in a good enough state for the public beta test. During the public data test of Lazarus, I'll be allowing users to stress test all Lazarus apps from uploading HPI data to building and publishing their mods to test on their copies of Total Annihilation. When the public beta test ends, I'll most likely be wiping the database for a fresh clean slate and added improvements to the apps based on user test feedback. You can read more about the <a>project status here</a>. 
+					</p>
+				</div>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+            </md-card-actions>
+        </md-card>
+		
+		
+
+		<div>
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<ins class="adsbygoogle"
+				 style="display:block; text-align:center;"
+				 data-ad-layout="in-article"
+				 data-ad-format="fluid"
+				 data-ad-client="ca-pub-4528534804347182"
+				 data-ad-slot="3472871345"></ins>
+			<script>
+				 (adsbygoogle = window.adsbygoogle || []).push({});
+			</script>		
+		</div>
+		
+		
         <md-card ng-repeat="thread in vm.listData.posts" class="glass_bg">
             <md-card-header>
                 <md-card-avatar>
@@ -73,86 +112,25 @@
 					</span>
                 </md-card-header-text>
             </md-card-header>
-            <!-- <img src="card-image.png" class="md-card-image" alt="image caption">-->
             <md-card-title>
                 <md-card-title-text>
-                    <!--<span class="md-headline">Card headline</span>-->
-                    <!--<span class="md-subhead">{{ thread['pub_date'] }}</span>-->
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
 				<div id="threadBody{{ thread['id'] }}" class="md-background-fg md-hue-3">
 					Thread Content:
 				</div>
-				<p>
-					Here we'll add lots of bg content.
-				</p>
-				<p>
-					Here we'll add lots of bg content.
-				</p>
-				<p>
-					Here we'll add lots of bg content.
-				</p>
-				<p>
-					Here we'll add lots of bg content.
-				</p>
-				<p>
-					Here we'll add lots of bg content.
-				</p>
-                <!--<p>{{ thread['body'] }}</p>-->
             </md-card-content>
             <md-card-actions layout="row" layout-align="end center">
-                <!--
-                <md-button ui-sref="app.General.Thread({ id: thread['id'] })" class="md-hover-button-blue">
-                    Open
-                </md-button>
-                -->
             </md-card-actions>
         </md-card>
-		<br>
-		<md-card class="glass_bg">
-
-<p>Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing. </p>
-
-<p>Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass. </p>
-
-<p>Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'? </p>
-
-<p>Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit.  </p>
-
-<p>The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother's keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who would attempt to poison and destroy My brothers. And you will know My name is the Lord when I lay My vengeance upon thee. </p>
-
-<p>Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends. </p>
-
-<p>Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass. </p>
-
-		</md-card>
-		
-		<br>
-		<md-card class="glass_bg">
-
-<p>Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing. </p>
-
-<p>Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass. </p>
-
-<p>Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'? </p>
-
-<p>Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit.  </p>
-
-<p>The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother's keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who would attempt to poison and destroy My brothers. And you will know My name is the Lord when I lay My vengeance upon thee. </p>
-
-<p>Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends. </p>
-
-<p>Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass. </p>
-
-		</md-card>
     </section>
 </div>
 
 
 <style>
 .title-1 {
-        font-family: Haettenschweiler;
+        font-family: haettenschweilerregular;
         font-size: 120px;
         font-style: normal;
         font-variant: normal;
@@ -161,7 +139,7 @@
         letter-spacing: 3px;	
 }
 .title-3 {
-	        font-family: Haettenschweiler;
+	        font-family: haettenschweilerregular;
         font-size: 140px;
         font-style: normal;
         font-variant: normal;
@@ -170,7 +148,7 @@
         letter-spacing: 3px;
 }
 .title-5 {
-	        font-family: Haettenschweiler;
+	        font-family: haettenschweilerregular;
         font-size: 200px;
         font-style: normal;
         font-variant: normal;
@@ -182,7 +160,7 @@
 	font-size: 270px !important;
 }
 .title-7 {
-	    font-family: Haettenschweiler;
+	    font-family: haettenschweilerregular;
         font-size: 28px;
         font-style: normal;
         font-variant: normal;
@@ -191,7 +169,7 @@
         letter-spacing: 3px;
 }
 .title-8 {
-	    font-family: Haettenschweiler;
+	    font-family: haettenschweilerregular;
         font-size: 15px;
         font-style: normal;
         font-variant: normal;

@@ -27,12 +27,19 @@
                 </md-tab-label>
                 <md-tab-body>
                     <md-content class="timeline-tab"> <!-- ng-include="'/static/app/main/pages/profile/tabs/timeline/timeline.html'" -->
+						
+						
 						<div ng-if="vm.user.username === 'root'" layout="column" style="color:white">
 							<h1 class="md-primary-fg md-hue-2">Administrator</h1>
 							<div layout="row">
 								<span flex="30" class="md-background-fg md-hue-3">Launch Editor</span>
 								<md-button class="md-hover-button-amber-dark-bg" 
 										   ui-sref="app.AngularEditor">Angular Editor</md-button>
+							</div>
+							<div layout="row">
+								<span flex="30" class="md-background-fg md-hue-3">Mobile Editor</span>
+								<md-button class="md-hover-button-amber-dark-bg" 
+										   ui-sref="app.AngularMobileEditor">Angular Mobile Editor</md-button>
 							</div>
 							<div layout="row">
 								<span flex="30" class="md-background-fg md-hue-3">Code Sample</span>

@@ -2,23 +2,27 @@
 <html ng-app="fuse">
 
 <head>
-    <base href="/">
-    <meta charset="utf-8">
+    <base href="/"/>
+    <meta charset="utf-8"/>
 
 
     <meta name="description"
-          content="This website is powered by Djangular, a new web framework developed by Matt Andrzejczuk">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+          content="{{ description }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
-    <title id="DjangularMetaText_01">{{ message }}</title>
-    <meta id="DjangularMetaImage_01" name="twitter:image:src" content="/static/ArmLogoVector.svg">
+    <title>{{ message }}</title>
+    <meta id="DjangularMetaImage_01" name="twitter:image:src" content="/static/ArmLogoVector.svg"/>
     <meta id="DjangularMetaImage_02" content="/static/CoreLogoVector.svg"/>
 
 
-    <meta name="twitter:image:alt" content="{{ splash_title }}"/>
-    <meta property="og:site_name" content="Andrzejczuk"/>
+    <!--<meta name="twitter:image:alt" content="{{ splash_title }}"/>-->
+    <meta name="twitter:image:alt" content="/static/ArmLogoVector.svg"/>
+    <meta property="og:site_name" content="Arm Prime: The home of Total Annihilation Lazarus"/>
     <meta property="og:locale" content="en_US"/>
+
+    <meta name="msvalidate.01" content="886E5F10D7612105B6C98936B33E1D24"/>
+    <meta name="google-site-verification" content="MF6sr36SRcMLLyvQra1-xXWDxWQSut4shwf-pCigTSg"/>
 
 
     {% verbatim %}
@@ -44,36 +48,38 @@
     <link rel='stylesheet' href='/static/bower_components/textAngular/dist/textAngular.css'/>
     <link rel='stylesheet' href='/static/bower_components/wip-image-zoom/dist/wip-image-zoom.css'/>
     <link rel='stylesheet' href='/static/angular-ui-tree/angular-ui-tree.min.css'/>
-    <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.min.css"/>
 
-    <link rel="stylesheet" href="/static/codemirror.css">
-    <link rel="stylesheet" href="/static/colorforth.css">
-    <link rel="stylesheet" href="/static/dracula.css">
+    <link rel="stylesheet" href="/static/codemirror.css"/>
+    <link rel="stylesheet" href="/static/colorforth.css"/>
+    <link rel="stylesheet" href="/static/dracula.css"/>
 
-    <link rel="stylesheet" href="/static/codemirror/theme/ambiance.css">
-    <link rel="stylesheet" href="/static/codemirror/theme/erlang-dark.css">
+    <link rel="stylesheet" href="/static/codemirror/theme/ambiance.css"/>
+    <link rel="stylesheet" href="/static/codemirror/theme/erlang-dark.css"/>
 
-    <link rel="stylesheet" href="/static/jkcarousel/jk-carousel.min.css">
+    <link rel="stylesheet" href="/static/jkcarousel/jk-carousel.min.css"/>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:css({.tmp/serve,src}) styles/app.css -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="/static/app/index.css">
+    <link rel="stylesheet" href="/static/app/index.css"/>
     <!-- endinject -->
     <!-- endbuild -->
 
-    <meta name="google-site-verification" content="MF6sr36SRcMLLyvQra1-xXWDxWQSut4shwf-pCigTSg"/>
 
     <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700italic,700,900,900italic'
-          rel='stylesheet' type='text/css'>
+          rel='stylesheet' type='text/css'/>
 
 
 </head>
 
 <!--[if lt IE 10]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
+<p class="browsehappy">
+    You are using an <strong>outdated</strong> browser. Please
+    <a href="http://browsehappy.com/">upgradeyour browser</a>
+    to improve your experience.
+</p>
 <![endif]-->
 
 <body md-theme="{{vm.themes.active.name}}"
@@ -81,6 +87,7 @@
       ng-controller="IndexController as vm"
       style="background-color: rgba(0, 0, 0, 0) !important;"
       class="{{state.current.bodyClass || ''}} multi_bg_example_opaque">
+
 
 <!-- SPLASH SCREEN -->
 
@@ -108,10 +115,23 @@
         </div>
         <!-- / Material Design Spinner -->
     </div>
+    <a style="display: none" href="http://armprime.co/#!/home">
+        Arm Prime News, home of Total Annihilation Lazarus
+    </a>
+    <a style="display: none" href="http://armprime.co/#!/upcomingFeatures">
+        Creating Total Annihilation maps can take awhile. That's why we want to add a random map generator app within
+        Arm Prime.
+    </a>
+    <a style="display: none" href="http://armprime.co/#!/whatIsLaz">Total Annihilation Lazarus is a new web based mod
+        builder and conflict crusher for the 1997 classic Total Annihilation released by Cavedog entertainment.</a>
+    <a style="display: none" href="http://armprime.co/#!/projectStatus">Status of Total Annihilation mod editor</a>
+    <a style="display: none" href="http://armprime.co/#!/home">Latest news and updates</a>
+    <a style="display: none" href="http://armprime.co/#!/ArmPrimeAbout">About ArmPrime (for Total Annihilation)</a>
+    <a style="display: none" href="/static/sitemap.xml">sitemap</a>
 </ms-splash-screen>
 
 <!-- / SPLASH SCREEN -->
-
+<span style="display: none" id="DjangularMetaText_01">{{ version_build }}</span>
 <div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>
 
 <!--
@@ -579,7 +599,7 @@
 <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
 
 
-<p id="DjangularVersion" style="opacity: 0">{{ message }}</p>
+<p id="DjangularVersion" style="display: none">{{ version_build }}</p>
 
 </body>
 
@@ -589,7 +609,7 @@
 <style>
 
     body {
-        color:white;
+        color: white;
     }
 
     .md-tab.md-active {
@@ -636,23 +656,23 @@
         font-weight: normal;
         font-style: normal;
     }
-    
+
     .icon-ta-arm {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      background-image: url('/static/ArmLogoVectorWhite.svg');
-      background-repeat: no-repeat;
-      background-position: center center;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-image: url('/static/ArmLogoVectorWhite.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
     }
 
     .icon-ta-core {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      background-image: url('/static/CoreLogoVectorWhite.svg');
-      background-repeat: no-repeat;
-      background-position: center center;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-image: url('/static/CoreLogoVectorWhite.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
     }
 </style>
 

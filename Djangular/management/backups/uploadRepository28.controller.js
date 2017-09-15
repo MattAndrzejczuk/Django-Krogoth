@@ -364,7 +364,8 @@
             $mdDialog.show({
                 targetEvent: $event,
                 template: '<md-dialog>' +
-                    '  <md-dialog-content class="md-background-fg md-hue-3"> Raw unit FBI, add it to your {{ repositoryFromOutside }} repository ' +
+                    '  <md-dialog-content class="md-background-fg md-hue-3"> Raw unit FBI, import it to your currently ' +
+                    'selected mod project by clicking "Begin Reclaimation Process". ' +
                     'so that Arm Prime can process the unit dependencies. ' +
                     '<br>' +
                     /// '<iframe width="600" height="500" src="{{ RESTfulFBIiFrame }}"></iframe>' +
@@ -379,7 +380,7 @@
                     '        <md-progress-circular md-mode="indeterminate"></md-progress-circular>' +
                     '    </div>' +
                     '    <md-button ng-click="addModAsset()" class="md-accent">' +
-                    '      Add To Project' +
+                    '      Begin Reclaimation Process' +
                     '    </md-button>' +
                     '    <md-button ng-click="closeDialog()" class="md-warn">' +
                     '      cancel' +

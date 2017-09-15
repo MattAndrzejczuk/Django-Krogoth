@@ -13,7 +13,6 @@ from rest_framework import status
 from rest_framework import viewsets
 import re
 import codecs
-import emoji
 import os
 from lazarus.views import WeaponTDFFetch, FeatureTDFFetch, DownloadTDFFetch, SoundTDFFetch
 # Create your views here.
@@ -32,21 +31,21 @@ emoj3 = ''  # emoji.emojize(':yellow_heart:')
 emoj4 = ''  # ('❤️️')
 emoj5 = ''  # emoji.emojize(':purple_heart:')
 
-ej_info1 = emoji.emojize(':zap:')
+ej_info1 = '' #emoji.emojize(':zap:')
 
-ej_warn1 = emoji.emojize(':fire:')
-ej_warn3 = emoji.emojize(':warning:')
-ej_warn2 = emoji.emojize(':boom:')
+ej_warn1 = '' #emoji.emojize(':fire:')
+ej_warn3 = '' #emoji.emojize(':warning:')
+ej_warn2 = '' #emoji.emojize(':boom:')
 
-ej_fbi = emoji.emojize('::package::')
-ej_weapon = emoji.emojize(':bomb:')
-ej_corpse = emoji.emojize(':skull:')
-ej_download = emoji.emojize(':clipboard:')
+ej_fbi = '' #emoji.emojize('::package::')
+ej_weapon = '' #emoji.emojize(':bomb:')
+ej_corpse = '' #emoji.emojize(':skull:')
+ej_download = '' #emoji.emojize(':clipboard:')
 
-ej_success1 = emoji.emojize(':white_check_mark:')
-ej_success2 = emoji.emojize(':large_blue_circle:')
-ej_notfound1 = emoji.emojize('❌')
-ej_notfound2 = emoji.emojize('🚫')
+ej_success1 = '' #emoji.emojize(':white_check_mark:')
+ej_success2 = '' #emoji.emojize(':large_blue_circle:')
+ej_notfound1 = '' #emoji.emojize('❌')
+ej_notfound2 = '' #emoji.emojize('🚫')
 
 ej_none = '⭕️'
 

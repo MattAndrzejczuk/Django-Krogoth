@@ -27,7 +27,7 @@
             lineWrapping: true,
             lineNumbers: true,
             mode: 'htmlmixed',
-            theme: "ambiance",
+            theme: "colorforth",
             indentUnit: 4,
             indentWithTabs: true
         };
@@ -152,7 +152,7 @@
         ///vm.getSlaveViewControllerDetail = getSlaveViewControllerDetail;
         ///vm.putSlaveViewControllerDetail = putSlaveViewControllerDetail;
         ///getDjangularSlaveViewControllers: getDjangularSlaveViewControllers,
-        ///getDjangularSlaveViewControllerDetail: getDjangularSlaveViewControllerDetail,
+        ///getDjangularSlaveViewControllerDetail: getDjangularSlaveViewControllerDeta
         ///putDjangularSlaveViewController: putDjangularSlaveViewController,
 
         function getSlaveViewControllers(master_id) {
@@ -168,7 +168,7 @@
 
         function getSlaveViewControllerDetail(slave_id) {
             DjangularEditorRESTful.getDjangularSlaveViewControllerDetail(slave_id).then(function(data) {
-                vm.editorContentMaster = data;
+                vm.editorContentSlave = data;
                 $log.info('SLAVES LOADED!\n\n\n\n\n');
                 $log.log(data.controller_js);
                 $log.debug(data.view_html);

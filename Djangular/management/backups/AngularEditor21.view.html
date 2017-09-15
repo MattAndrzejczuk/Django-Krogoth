@@ -64,9 +64,9 @@ max-height: 1440px;
 </style>
 
 <section layout="column" class="MasterWrapper glass_bg">
-<div layout="row" 
+<div layout="row"  
+	 layout-padding
 	 layout-margin
-	 layout-padding  
 	 layout-align="space-around center"
 	 style="border-color: rgb(41,98,255); border-style: solid; border-width: 1px;">
 	<md-icon class="icon s32 icon-ta-arm"></md-icon>
@@ -106,17 +106,34 @@ max-height: 1440px;
 	<div ng-if=" vm.slaves.length > 0">
 		Total Slaves: {{vm.toolbarInfo.slaveCount}}
 	</div>
+	<div>
+		<md-button ng-click="vm.putMasterViewControllerDetail();" 
+				   class="md-hover-button-green"
+				   ng-show="vm.docWasModified === true">
+			Save
+		</md-button>
+		<md-button class="md-hover-button-purple"
+				   ng-click="vm.putMasterViewControllerDetail();" 
+				   ng-show="vm.docWasModified === false">
+			Save
+        </md-button>
+	</div>
 	<div >
 		<md-button class="md-hover-button-white" ng-click="vm.mvcSideBarOpen = !vm.mvcSideBarOpen">
 			Toggle MVC Sidenav
 		</md-button>
 	</div>
+
 </div>
 <div layout="row" flex>
-	<md-card flex="100" ms-scroll class="scrollable" style="background-color: rgba(0, 0, 0, 0) !important;" >
-		<md-tabs md-dynamic-height md-border-bottom>
+	<!--
+	<md-card flex="100" 
+			 ms-scroll class="scrollable" 
+			 style="background-color: rgba(0, 0, 0, 0) !important;" >
+	-->
+		<md-tabs flex layout="column" layout-fill >
 			<!-- Master -->
-			  <md-tab label="{{vm.editorContent['name']}} View">
+			  <md-tab label="{{vm.editorContent['name']}} View" flex layout="column">
 				<md-content class="md-padding " style="background-color: rgba(0, 0, 0, 0) !important;">
 					<p>vm.editorContent['name']</p>
 					  <ui-codemirror ui-codemirror-opts="vm.editorOptions2" 
@@ -124,7 +141,7 @@ max-height: 1440px;
 					  </ui-codemirror>
 				</md-content>
 			  </md-tab>
-			  <md-tab label="{{vm.editorContent['name']}} Controller">
+			  <md-tab label="{{vm.editorContent['name']}} Controller" flex layout="column">
 				<md-content class="md-padding">
 					<p>vm.editorContent['name']</p>
 					<ui-codemirror ui-codemirror-opts="vm.editorOptions" 
@@ -132,7 +149,7 @@ max-height: 1440px;
 					</ui-codemirror>
 				</md-content>
 			  </md-tab>
-			  <md-tab label="{{vm.editorContent['name']}} Module">
+			  <md-tab label="{{vm.editorContent['name']}} Module" flex layout="column">
 				<md-content class="md-padding">
 					<p>vm.editorContent['name']</p>
 				    <ui-codemirror ui-codemirror-opts="vm.editorOptions3" 
@@ -141,7 +158,7 @@ max-height: 1440px;
 				</md-content>
 			  </md-tab>
 			<!-- SLAVE -->
-			  <md-tab label="{{vm.editorContent['name']}} Slave Ctrl">
+			  <md-tab label="{{vm.editorContent['name']}} Slave Ctrl" flex layout="column">
 				<md-content >
 					<p>vm.editorContent['name']</p>
 				    <ui-codemirror ui-codemirror-opts="vm.editorOptionsSlaveCtrl" 
@@ -149,7 +166,7 @@ max-height: 1440px;
 					</ui-codemirror>
 				</md-content>
 			  </md-tab>
-			  <md-tab  label="{{vm.editorContent['name']}} Slave View">
+			  <md-tab  label="{{vm.editorContent['name']}} Slave View" flex layout="column">
 				<md-content class="md-padding">
 					<p>vm.editorContent['name']</p>
 				    <ui-codemirror ui-codemirror-opts="vm.editorOptionsSlaveView" 
@@ -158,12 +175,15 @@ max-height: 1440px;
 				</md-content>
 			  </md-tab>
 		</md-tabs>
+	<!--
 	</md-card>
-
-	<md-content flex="20" 
+-->
+	<div flex="20" 
 				ng-if="vm.mvcSideBarOpen === true"
 				class="scrollable" 
 				ms-scroll
+		 		layout-padding
+	 			layout-margin
 				style="background-color: rgba(0, 0, 0, 0) !important;" 
 				layout="column">		
 		<md-button ng-click="vm.getMasterViewControllers()" 
@@ -229,7 +249,7 @@ max-height: 1440px;
 		</md-button>
 
 		<pre class="color: white; font-weight:bold">{{vm.vmVarNames | json}}</pre>
-	</md-content>
+	</div>
 </div>
 
 

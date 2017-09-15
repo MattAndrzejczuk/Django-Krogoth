@@ -96,101 +96,130 @@
         </div>
     </div>
     <div flex layout="column" class="glass_bg" layout-margin>
-		<h1>{{vm.selectedModProject.name}} Assets</h1>
-		<div ng-repeat="asset in vm.allModAssets">
-			<div layout="row">
-				<md-icon class="mdi mdi-label-outline"></md-icon>
-				<span class="lazarus-key">id: </span>
-				<span class="lazarus-value">{{asset.id}}</span>
-				<md-button ng-click="vm.didClickRequestAssetDependencies(asset.id)"
-						   class="md-hover-button md-primary">
-					Load Dependencies
-				</md-button>
-			</div>
-			<div layout="row">
-				<md-icon class="mdi mdi-label-outline"></md-icon>
-				<span class="lazarus-key">name: </span>
-				<span class="lazarus-value">{{asset.name}}</span>
-			</div>
-			<div layout="row">
-				<md-icon class="mdi mdi-label-outline"></md-icon>
-				<span class="lazarus-key">type: </span>
-				<span class="lazarus-value">{{asset.type}}</span>
-			</div>
-			<div layout="row">
-				<md-icon class="mdi mdi-label-outline"></md-icon>
-				<span class="lazarus-key">project_id: </span>
-				<span class="lazarus-value">{{asset.project_id}}</span>
-			</div>
-			<div layout="row">
-				<md-icon class="mdi mdi-label-outline"></md-icon>
-				<span class="lazarus-key">uploader: </span>
-				<span class="lazarus-value">{{asset.uploader}}</span>
-			</div>
-		</div>
+        <h1>{{vm.selectedModProject.name}} Assets</h1>
+        <div ng-repeat="asset in vm.allModAssets">
+            <div layout="row">
+                <md-icon class="mdi mdi-label-outline"></md-icon>
+                <span class="lazarus-key">id: </span>
+                <span class="lazarus-value">{{asset.id}}</span>
+                <md-button ng-click="vm.didClickRequestAssetDependencies(asset.id)"
+                           class="md-hover-button md-primary">
+                    Load Dependencies
+                </md-button>
+            </div>
+            <div layout="row">
+                <md-icon class="mdi mdi-label-outline"></md-icon>
+                <span class="lazarus-key">name: </span>
+                <span class="lazarus-value">{{asset.name}}</span>
+            </div>
+            <div layout="row">
+                <md-icon class="mdi mdi-label-outline"></md-icon>
+                <span class="lazarus-key">type: </span>
+                <span class="lazarus-value">{{asset.type}}</span>
+            </div>
+            <div layout="row">
+                <md-icon class="mdi mdi-label-outline"></md-icon>
+                <span class="lazarus-key">project_id: </span>
+                <span class="lazarus-value">{{asset.project_id}}</span>
+            </div>
+            <div layout="row">
+                <md-icon class="mdi mdi-label-outline"></md-icon>
+                <span class="lazarus-key">uploader: </span>
+                <span class="lazarus-value">{{asset.uploader}}</span>
+            </div>
+        </div>
     </div>
 </section>
 
 <section layout="column">
-    <h1>Dependencies</h1>
-    <div layout="column"
+    <h1>WeaponTDF Dependencies</h1>
+    <div layout="column" layout-align="space-around stretch"
          class="glass_bg"
-         layout-margin 
-         ng-repeat="dependency in vm.selectedAssetDependencies">
+         layout-margin
+         ng-repeat="dependency in vm.selectedAssetDependencies"
+         ng-if="dependency.model_schema === 'WeaponTDF' || dependency.model_schema === 'UnitFbiData'"
+    >
+
         <div layout="row">
             <md-icon class="mdi mdi-label-outline"></md-icon>
             <span class="lazarus-key">id: </span>
-            <span class="lazarus-value">{{dependency.id}}</span>
+            <span flex="10"> : </span>
+            <span class="lazarus-value" flex>{{dependency.id}}</span>
         </div>
         <div layout="row">
             <md-icon class="mdi mdi-label-outline"></md-icon>
             <span class="lazarus-key">name: </span>
-            <span class="lazarus-value">{{dependency.name}}</span>
+            <span flex="10"> : </span>
+            <span class="lazarus-value" flex>{{dependency.name}}</span>
         </div>
         <div layout="row">
             <md-icon class="mdi mdi-label-outline"></md-icon>
             <span class="lazarus-key">type: </span>
-            <span class="lazarus-value">{{dependency.type}}</span>
+            <span flex="10"> : </span>
+            <span class="lazarus-value" flex>{{dependency.type}}</span>
         </div>
         <div layout="row">
             <md-icon class="mdi mdi-label-outline"></md-icon>
             <span class="lazarus-key">system_path: </span>
-            <span class="lazarus-value">{{dependency.system_path}}</span>
+            <span flex="10"> : </span>
+            <span class="lazarus-value" flex>{{dependency.system_path}}</span>
         </div>
         <div layout="row">
             <md-icon class="mdi mdi-label-outline"></md-icon>
             <span class="lazarus-key">raw_string_url: </span>
-            <span class="lazarus-value">{{dependency.raw_string_url}}</span>
+            <span flex="10"> : </span>
+            <span class="lazarus-value" flex>{{dependency.raw_string_url}}</span>
         </div>
         <div layout="row">
             <md-icon class="mdi mdi-label-outline"></md-icon>
             <span class="lazarus-key">asset_id: </span>
-            <span class="lazarus-value">{{dependency.asset_id}}</span>
+            <span flex="10"> : </span>
+            <span class="lazarus-value" flex>{{dependency.asset_id}}</span>
         </div>
         <div layout="row">
             <md-icon class="mdi mdi-label-outline"></md-icon>
             <span class="lazarus-key">is_deleted: </span>
-            <span class="lazarus-value">{{dependency.is_deleted}}</span>
+            <span flex="10"> : </span>
+            <span class="lazarus-value" flex>{{dependency.is_deleted}}</span>
         </div>
         <div layout="row">
             <md-icon class="mdi mdi-label-outline"></md-icon>
             <span class="lazarus-key">model_schema: </span>
-            <span class="lazarus-value">{{dependency.model_schema}}</span>
+            <span flex="10"> : </span>
+            <span class="lazarus-value" flex>{{dependency.model_schema}}</span>
         </div>
         <div layout="row">
             <md-icon class="mdi mdi-label-outline"></md-icon>
             <span class="lazarus-key">model_id: </span>
-            <span class="lazarus-value">{{dependency.model_id}}</span>
+            <span flex="10"> : </span>
+            <span class="lazarus-value" flex>{{dependency.model_id}}</span>
         </div>
         <div layout="row">
             <md-icon class="mdi mdi-label-outline"></md-icon>
             <span class="lazarus-key">meta_data: </span>
-            <span class="lazarus-value">{{dependency.meta_data}}</span>
+            <span flex="10"> : </span>
+            <span class="lazarus-value" flex>{{dependency.meta_data}}</span>
         </div>
         <div layout="row">
             <md-icon class="mdi mdi-label-outline"></md-icon>
             <span class="lazarus-key">created: </span>
-            <span class="lazarus-value">{{dependency.created}}</span>
+            <span flex="10"> : </span>
+            <span class="lazarus-value" flex>{{dependency.created}}</span>
+        </div>
+        <div layout="row">
+            <md-icon class="mdi mdi-label-outline"></md-icon>
+            <span class="lazarus-key" flex> </span>
+			<span flex="20"> 
+				<md-button ng-if="dependency.model_schema === 'UnitFbiData'"
+                           ng-click="vm.didClickRequestUnitFbiRESTful(dependency.model_id)"
+                           class="md-primary">
+					Load FBI</md-button>
+				<md-button ng-if="dependency.model_schema === 'WeaponTDF'"
+                           ng-click="vm.didClickRequestWeaponTdfRESTful(dependency.model_id)"
+                           class="md-accent">
+					Load TDF</md-button>
+			</span>
+            <span class="lazarus-value" flex></span>
         </div>
     </div>
 </section>
@@ -226,8 +255,56 @@
 </section>
 -->
 <section layout="row">
-    <div flex layout="column" layout-md="row" class="glass_bg">
+    <div flex layout="column" layout-padding layout-margin layout-md="row" class="glass_bg" style="border-style: solid !important;
+																								   background-color: rgba(0,0,0,0.7)
+        																border-width: 1px !important;
+																		border-color: orange !important;">
         <h1>vm.selectedWeaponTdfDetail</h1>
+                <md-input-container class="md-block" md-no-float>
+					<!--<input type="email" name="email" ng-model="vm.form.email" placeholder="Email"
+                           translate translate-attr-placeholder="LOGIN_V2.EMAIL"
+                           ng-pattern="/^.+@.+\..+$/" required>-->
+								<label class="md-primary-fg md-hue-2">
+									{{vm.weaponTdfPatchForm.property}}
+								</label>
+								<input type="text" 
+									   name="username" 
+									   ng-model="vm.weaponTdfPatchForm.value"                      
+									   ng-pattern="/^[a-zA-Z0-9]*$/"  
+									   class="md-accent-fg">
+								<div ng-messages="loginForm.username.$error" role="alert" multiple>
+									<div ng-message="required">
+										<span>Username field is required</span>
+									</div>
+									<div ng-message="pattern">
+										<span>Weapons cannot contain special characters.</span>
+									</div>
+								</div>
+							</md-input-container>
+
+					<md-input-container>
+            <label>Description</label>
+            <md-menu>
+                <md-button aria-label="Select Weapon TDF Property To Edit"	
+						   class="md-hover-button-red"
+                           ng-click="vm.openMenu($mdMenu, $event)">
+                    Select Weapon Property
+                </md-button>
+                <md-menu-content width="4" style="background-color: black">
+                    <md-menu-item ng-repeat="(key, value) in vm.selectedWeaponTdfDetail">
+                        <md-button ng-click="vm.weaponTdfPatchForm.property = key; vm.weaponTdfPatchForm.value = value">
+                            {{ key }}
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-input-container>
+                <md-button aria-label="Select Weapon TDF Property To Edit"	
+						   class="md-hover-button-green"
+						   style="width: 140px"
+                           ng-click="vm.didClickPatchWeaponRequest()">
+                    Save {{ key }} value
+                </md-button>		
 		<pre style="color:lightgreen">
 			{{ vm.selectedWeaponTdfDetail | json }}
 		</pre>
@@ -241,6 +318,22 @@
 </section>
 
 <style>
+    .md-hover-button-white-menu:hover {
+        background-color: white !important;
+        border-color: white !important;
+		color: rgb(60,66,82) !important;
+		font-size: 19px;
+		line-height: 19px;
+    }
+    .md-hover-button-white-menu {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: white !important;
+        border-color: white !important;
+		font-size: 19px;
+		line-height: 19px;
+    }
+	
     h1 {
         font-family: Haettenschweiler;
         font-size: 44px;
@@ -275,6 +368,14 @@
         letter-spacing: 3px;
     }
 
+    .lazarus-key {
+        font-size: 20px;
+    }
+
+    .lazarus-value {
+        font-size: 18px;
+    }
+
     .publishedModTitle {
         font-family: "Courier New", Courier, monospace !important;
         font-size: 15px !important;
@@ -284,7 +385,7 @@
         line-height: 15px;
         letter-spacing: 2px !important;
     }
-
+	
     .md-hover-button-white:hover {
         background-color: white !important;
         border-color: white !important;
@@ -322,8 +423,9 @@
     .md-hover-button-green {
         border-style: solid !important;
         border-width: 1px !important;
+		border-color: lightgreen !important;
         color: lightgreen !important;
-        border-color: lightgreen !important;
+        
     }
 
     /*
@@ -372,6 +474,10 @@
 
     .md-icon-button-2 > .iconhover-2 {
         color: #FF6F00 !important;
+    }
+
+    md-icon {
+        color: white
     }
 
     /*
