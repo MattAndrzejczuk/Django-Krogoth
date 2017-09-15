@@ -389,6 +389,7 @@ class DependenciesForUnitFBI(APIView):
         newLazarusModAsset = LazarusModAsset(name=uid, type='UnitFBI', project_id=mod_id, uploader=jawn_user)
 
         # Get unit with UnitName from database.
+        print('Attempting to query FbiData from SQL with filter: ' + uid)
         sampleunit = UnitFbiData.objects.filter(_SNOWFLAKE=(uid))
         newSnowflake = sampleunit[0]._SNOWFLAKE + '|' + str(jawn_user.id)
         self.printbluekeypurplevalue('Preparing To Clone: ', sampleunit[0]._SNOWFLAKE)
@@ -398,7 +399,7 @@ class DependenciesForUnitFBI(APIView):
         fbiUnitClone._SNOWFLAKE = newSnowflake
         print(sampleunit[0].id)
         print(sampleunit[0])
-        fbiUnitClone.id = sampleunit[0].id + 1
+        fbiUnitClone.id = sampleunit[0].id + 3000000
         print(fbiUnitClone.id)
         print(fbiUnitClone)
         self.printbluekeygreenvalue('Clone Successful!!! ', fbiUnitClone._SNOWFLAKE)
@@ -672,13 +673,13 @@ class DependenciesForUnitFBI(APIView):
             sfx4_key = ' N/A '
 
             if weapon1FromSQL[0].soundhit != None:
-                sfx1_key = weapon1FromSQL[0].soundhit.replace('.wav', '')
+                sfx1_key = str(weapon1FromSQL[0].soundhit).replace('.wav', '')
             if weapon1FromSQL[0].soundstart != None:
-                sfx2_key = weapon1FromSQL[0].soundstart.replace('.wav', '')
+                sfx2_key = str(weapon1FromSQL[0].soundstart).replace('.wav', '')
             if weapon1FromSQL[0].soundtrigger != None:
-                sfx3_key = weapon1FromSQL[0].soundtrigger.replace('.wav', '')
+                sfx3_key = str(weapon1FromSQL[0].soundtrigger).replace('.wav', '')
             if weapon1FromSQL[0].soundwater != None:
-                sfx4_key = weapon1FromSQL[0].soundwater.replace('.wav', '')
+                sfx4_key = str(weapon1FromSQL[0].soundwater).replace('.wav', '')
             sfx1 = SoundSetTDF.objects.filter(_OBJECT_KEY_NAME=sfx1_key)
             sfx2 = SoundSetTDF.objects.filter(_OBJECT_KEY_NAME=sfx2_key)
             sfx3 = SoundSetTDF.objects.filter(_OBJECT_KEY_NAME=sfx3_key)
