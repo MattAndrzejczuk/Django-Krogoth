@@ -1,0 +1,131 @@
+<section style="height: 200px;">
+    <div layout="row" md-padding>
+        <div flex="10"></div>
+        <div flex="80" class="glass_bg" md-padding layout="column">
+            <div layout="column">
+                <span class="md-display-1">Upcoming Features for ArmPrime and Lazarus</span>
+                <span class="md-headline"></span>
+            </div>
+        </div>
+        <div flex="10"></div>
+    </div>
+</section>
+
+<div layout="row" layout-padding>
+    <div flex="10"></div>
+    <div flex="80" class="glass_bg" layout-padding layout="column">
+		<span class="md-display-3">Random Map Generator</span>
+        <span class="md-subhead">Generate content within seconds</span>
+        <p style="color:white;">
+            Creating Total Annihilation maps can take awhile. That's why we want to add a random map generator app
+            within Arm Prime. Users will be able to select their desired map tileset they'd like to play on and generate
+            it within seconds. It would be very interesting to see randomly generated maps with a massive map size as a
+            parameter.
+			
+            The random map generator will begin development as soon as Lazarus is polished and in satisfactoy shape. The
+            biggest challenge of this feature will be figuring out how to read the .TNT file extensions created by
+            Cavedog Entertainment.
+        </p>
+
+        <p style="color:white;">
+        </p>
+    </div>
+    <div flex="10"></div>
+</div>
+
+<div layout="row" layout-padding>
+    <div flex="10"></div>
+    <div flex="80" class="glass_bg" layout-padding layout="column">
+        
+            <span class="md-display-3">Enhanced Skirmish Mode</span>
+            <span class="md-subhead">Push AI custimization to a new level</span>
+        <p>
+            There is a way to tap into the Total Annihilation game engine that gives you more control to make very heavy
+            and specific modifications to AI behavior. This can be done by playing a "Skirmish" game through the
+            campaign mode, and taking advantage of "Initial Mission Commands". Thanks to the documentation hosted on TA Universe, we can see that making modifications to the OTA file will
+            give us the ability to greatly improve the AI players: 
+        </p>
+		
+            <hljs lang="cpp" theme="dracula">
+    [units]
+        {
+
+        .....
+
+        [unit13]
+            {
+            Unitname=CORCS;
+            Ident=;
+            XPos=3216;
+            YPos=0;
+            ZPos=1184;
+            Player=2;
+            HealthPercentage=100;
+            Angle=0;
+            Kills=0;
+            InitialMission=w 900,p 1416 852,;
+            }
+
+        .....
+
+        [unit18]
+            {
+            Unitname=CORPLAT;
+            Ident=;
+            XPos=4192;
+            YPos=0;
+            ZPos=1040;
+            Player=2;
+            HealthPercentage=100;
+            Angle=180;
+            Kills=0;
+            InitialMission=w 920,b CORSEAP 1,w 300,b CORSEAP 1, ....;
+            }
+
+        .....
+
+        }
+            </hljs>
+		
+		<blockquote>
+			<p>
+Most missions created do not rely on the AI to handle the battle, rather, everything is carefully planned
+            ahead. Having units wait until they are attacked, having groups of units attack at the same time, having
+            them target specific units, even roving patrols, are all commands that are set here. Giving all (or most) of
+            your enemy units a series of commands that interact and mesh to make an appropriate defense (and offense) is
+            what mission creation is all about. If a Unit is given no initial commands, or runs out of commands, the AI
+            will take over, if it is a Computer controlled Unit (anything other than Player 1). If it is a Player
+            controlled Unit and you want the Player to be able to interrupt the initial commands, insert a "s" (to make
+            it selectable) in the initial command list.Most missions created do not rely on the AI to handle the battle, rather, everything is carefully planned
+            ahead. Having units wait until they are attacked, having groups of units attack at the same time, having
+            them target specific units, even roving patrols, are all commands that are set here. Giving all (or most) of
+            your enemy units a series of commands that interact and mesh to make an appropriate defense (and offense) is
+            what mission creation is all about. If a Unit is given no initial commands, or runs out of commands, the AI
+            will take over, if it is a Computer controlled Unit (anything other than Player 1). If it is a Player
+            controlled Unit and you want the Player to be able to interrupt the initial commands, insert a "s" (to make
+            it selectable) in the initial command list.
+			</p>
+			<footer>
+			TA Universe Design Guide - November 7th, 1998
+			</footer>
+		</blockquote>
+
+        <p>
+            Arm Prime will scan/analyze your desired map, and can either automatically generate initial commands or
+            allow you to customize the AI initial conditions manually. This AI generator will most likely be written in Python
+			and be an open source project.
+        </p>
+        
+    </div>
+    <div flex="10"></div>
+</div>
+
+<div layout="row" layout-padding>
+    <div flex="10"></div>
+    <div flex="80" class="glass_bg" layout-padding layout="column">
+        <p>
+
+        </p>
+    </div>
+    <div flex="10"></div>
+</div>

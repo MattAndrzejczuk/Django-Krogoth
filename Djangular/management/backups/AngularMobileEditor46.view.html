@@ -1,0 +1,424 @@
+<style>
+
+.fix-to-bottom {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    border: 3px solid #73AD21;
+}
+
+/*
+.CodeMirror {
+height: auto;
+}
+.CodeMirror-scroll {
+max-height: 1440px;
+}
+*/
+
+	.CodeMirror-code {
+		font-size: 14px !important;
+		line-height: 19px !important;
+	}
+	
+.MasterWrapper {
+    width: 100%;
+    height: 100%;
+}
+	
+	
+
+    .md-hover-button-white-menu:hover {
+        background-color: white !important;
+        border-color: white !important;
+		color: rgb(60,66,82) !important;
+		font-size: 19px;
+		line-height: 19px;
+    }
+    .md-hover-button-white-menu {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: white !important;
+        border-color: white !important;
+		font-size: 19px;
+		line-height: 19px;
+    }
+    .md-hover-button-green-menu:hover {
+        background-color: green !important;
+        border-color: green !important;
+		color: rgb(60,66,82) !important;
+		font-size: 19px;
+		line-height: 19px;
+    }
+    .md-hover-button-green-menu {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: green !important;
+        border-color: green !important;
+		font-size: 19px;
+		line-height: 19px;
+    }
+	
+	
+</style>
+
+<section layout="column" class="MasterWrapper glass_bg">
+<div layout="row"  
+	 layout-padding
+	 layout-margin
+	 layout-align="space-around center"
+	 style="border-color: rgb(41,98,255); border-style: solid; border-width: 1px;">
+	<md-icon class="icon s32 icon-ta-arm"></md-icon>
+	<div>
+		<span class="md-subhead">{{vm.toolbarInfo.id}}</span>
+	</div>
+	<div>
+		<span class="md-headline">{{vm.toolbarInfo.name}}</span>
+	</div>
+	<div>
+		<span class="md-title">{{vm.toolbarInfo.title}}</span>
+	</div>
+	<div flex-grow>&nbsp;</div>
+    <md-menu 
+			 ng-if=" vm.slaves.length > 0">
+      <md-button aria-label="Open phone interactions menu" 
+				 class="md-hover-button-red" 
+				 ng-click="vm.openSlaveMenu($mdMenu, $event)">
+        	Slave View Controllers
+      </md-button>
+      <md-menu-content width="4" 
+					   style="border-color: rgb(41,98,255); border-style: solid; border-width: 1px; background-color:black; font-size: 10px;">
+        <md-menu-item ng-repeat="svc in vm.slaves">
+          <md-button ng-click="vm.getSlaveViewControllerDetail(svc['id'])" 
+					 class="md-hover-button-white-menu">
+            Open {{svc['name']}}
+          </md-button>
+        </md-menu-item>
+		<md-menu-divider></md-menu-divider>
+        <md-menu-item ng-if="vm.slaveWasOpened === true">
+          <md-button ng-click="vm.putSlaveViewControllerDetail()" 
+					 class="md-hover-button-green-menu">
+            Save {{svc['name']}}
+          </md-button>
+        </md-menu-item>
+    </md-menu>
+	<div ng-if=" vm.slaves.length > 0">
+		Total Slaves: {{vm.toolbarInfo.slaveCount}}
+	</div>
+	<div>
+		<md-button ng-click="vm.putMasterViewControllerDetail();" 
+				   class="md-hover-button-green"
+				   ng-show="vm.docWasModified === true">
+			Save
+		</md-button>
+		<md-button class="md-hover-button-purple"
+				   ng-click="vm.putMasterViewControllerDetail();" 
+				   ng-show="vm.docWasModified === false">
+			Save
+        </md-button>
+	</div>
+	<div >
+		<md-button class="md-hover-button-white" ng-click="vm.mvcSideBarOpen = !vm.mvcSideBarOpen">
+			Toggle MVC Sidenav
+		</md-button>
+	</div>
+
+</div>
+<div layout="row" flex>
+	<!--
+	<md-card flex="100" 
+			 ms-scroll class="scrollable" 
+			 style="background-color: rgba(0, 0, 0, 0) !important;" >
+	-->
+		<md-tabs layout="column" flex style="height:2000px;">
+			<!-- Master -->
+			  <md-tab label="{{vm.editorContent['name']}} View" flex layout="column" >
+				<md-tab-body style="background-color: rgba(0, 0, 0, 0) !important;">
+					  <ui-codemirror ui-codemirror-opts="vm.editorOptions2" 
+									 ui-codemirror="{onLoad:vm.codemirrorLoadedView}">
+					  </ui-codemirror>
+				</md-tab-body>
+			  </md-tab>
+			  <md-tab label="{{vm.editorContent['name']}} Controller" flex layout="column">
+				<md-tab-body>
+					<ui-codemirror ui-codemirror-opts="vm.editorOptions" 
+								   ui-codemirror="{onLoad:vm.codemirrorLoaded}">
+					</ui-codemirror>
+				</md-tab-body>
+			  </md-tab>
+			  <md-tab label="{{vm.editorContent['name']}} Module" flex layout="column">
+				<md-tab-body>
+				    <ui-codemirror ui-codemirror-opts="vm.editorOptions3" 
+								   ui-codemirror="{onLoad:vm.codemirrorLoadedModule}">
+					</ui-codemirror>
+				</md-tab-body>
+			  </md-tab>
+			<!-- SLAVE -->
+			  <md-tab label="{{vm.editorContent['name']}} Slave Ctrl" flex layout="column">
+				<md-tab-body>
+				    <ui-codemirror ui-codemirror-opts="vm.editorOptionsSlaveCtrl" 
+								   ui-codemirror="{onLoad:vm.codemirrorLoadedSlaveController}">
+					</ui-codemirror>
+				</md-tab-body>
+			  </md-tab>
+			  <md-tab  label="{{vm.editorContent['name']}} Slave View" flex layout="column">
+				<md-tab-body>
+				    <ui-codemirror ui-codemirror-opts="vm.editorOptionsSlaveView" 
+								   ui-codemirror="{onLoad:vm.codemirrorLoadedSlaveView}">
+					</ui-codemirror>
+				</md-tab-body>
+			  </md-tab>
+		</md-tabs>
+	<!--
+	</md-card>
+-->
+	<div flex="20" 
+				ng-if="vm.mvcSideBarOpen === true"
+				class="scrollable" 
+				ms-scroll
+		 		layout-padding
+	 			layout-margin
+				style="background-color: rgba(0, 0, 0, 0) !important;" 
+				layout="column">		
+		<md-button ng-click="vm.getMasterViewControllers()" 
+				   class="md-hover-button-amber">
+			Get Master Views
+		</md-button>
+		<md-button ng-click="vm.highlightKeyword('$http'); vm.highlightVm()" 
+				   class="md-hover-button-amber">
+			Highlight VM
+		</md-button>
+		<md-button ng-click="vm.collectStaticGET()" 
+				   class="md-hover-button-blue">
+			Collect Static
+		</md-button>
+		<md-button ng-click="vm.putMasterViewControllerDetail();" 
+				   class="md-hover-button-purple"
+				   ng-show="vm.docWasModified === true">
+			Save
+		</md-button>
+		<md-button class="md-hover-button-gray"
+				   ng-click="vm.putMasterViewControllerDetail();" 
+				   ng-show="vm.docWasModified === false">
+			Save
+		</md-button>
+		<br>
+		<md-button
+				   class="md-hover-button-red"
+				   flex
+				   ng-repeat="mvc in vm.data"
+				   ng-if="mvc['title'].toLowerCase().startsWith('lazarus') && !vm.primaryDocs.includes(mvc['name']);"
+				   ng-click="vm.getMasterViewControllerDetail(mvc['id'])">
+				{{ mvc['title'] }}
+		</md-button>
+		<br>
+		<md-button 
+				   class="md-hover-button-green"
+				   flex
+				   ng-repeat="mvc in vm.data"
+				   ng-if="vm.primaryDocs.includes(mvc['name']);"
+				   ng-click="vm.getMasterViewControllerDetail(mvc['id'])">
+				{{ mvc['title'] }}
+		</md-button>
+		<br>
+		<md-button 
+				   class="md-hover-button-white"
+				   flex
+				   ng-repeat="mvc in vm.data"
+				   ng-if="!mvc['title'].toLowerCase().startsWith('lazarus') && !vm.primaryDocs.includes(mvc['name']);"
+				   ng-click="vm.getMasterViewControllerDetail(mvc['id'])">
+				{{ mvc['title'] }}
+		</md-button>
+		
+			<span>&nbsp;</span>
+			<span>&nbsp;</span>
+			<span>&nbsp;</span>
+		
+		<md-button 
+				   class="md-hover-button-white"
+				   flex
+				   ng-repeat="svc in vm.slaves"
+				   ng-click="vm.getSlaveViewControllerDetail(svc['id'])">
+				{{ svc['title'] }}
+		</md-button>
+
+		<pre class="color: white; font-weight:bold">{{vm.vmVarNames | json}}</pre>
+	</div>
+</div>
+
+
+</section>
+
+<style>
+
+    .md-hover-button-purple:hover {
+        background-color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+		color: rgb(60,66,82) !important;
+		font-size: 12px;
+		line-height: 10px;
+    }
+    .md-hover-button-purple {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(124,77,255) !important;
+        border-color: rgb(124,77,255) !important;
+		font-size: 12px;
+		line-height: 10px;
+    }
+
+    .md-hover-button-amber:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+		font-size: 12px;
+		line-height: 10px;
+    }
+    .md-hover-button-amber {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		font-size: 12px;
+		line-height: 10px;
+    }
+	
+    .md-hover-button-gray:hover {
+        background-color: gray !important;
+        border-color: gray !important;
+		color: rgb(60,66,82) !important;
+		font-size: 12px;
+		line-height: 10px;
+    }
+    .md-hover-button-gray {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: gray !important;
+        border-color: gray !important;
+		font-size: 12px;
+		line-height: 10px;
+    }
+	
+    .md-hover-button-blue:hover {
+        background-color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+		color: rgb(60,66,82) !important;
+		font-size: 12px;
+		line-height: 10px;
+    }
+    .md-hover-button-blue {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(41,98,255) !important;
+        border-color: rgb(41,98,255) !important;
+		font-size: 12px;
+		line-height: 10px;
+    }
+
+    .md-hover-button-blue:hover > .iconhover {
+        color: white !important;
+    }
+
+    .md-icon-button-blue > .iconhover {
+        color: rgb(41,98,255) !important;
+    }
+	
+
+	button {
+		height: 25px;
+		width: 100%;
+	}
+	
+    .md-hover-button-white:hover {
+        background-color: white !important;
+        border-color: white !important;
+		color: rgb(60,66,82) !important;
+		font-size: 10px;
+		line-height: 10px;
+    }
+    .md-hover-button-white {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: white !important;
+        border-color: white !important;
+		font-size: 10px;
+		line-height: 10px;
+    }
+	
+    .md-hover-button-red:hover {
+        background-color: red !important;
+        border-color: red !important;
+		color: rgb(60,66,82) !important;
+		font-size: 12px;
+		line-height: 10px;
+    }
+    .md-hover-button-red {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: red !important;
+        border-color: red !important;
+		font-size: 12px;
+		line-height: 10px;
+    }
+	
+    .md-hover-button-green:hover {
+        background-color: lightgreen !important;
+        border-color: lightgreen !important;
+		color: rgb(60,66,82) !important;
+		font-size: 10px;
+		line-height: 10px;
+    }
+    .md-hover-button-green {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: lightgreen !important;
+        border-color: lightgreen !important;
+		font-size: 10px;
+		line-height: 10px;
+    }	
+    .md-hover-button-blue:hover {
+        background-color: blue !important;
+        border-color: blue !important;
+		color: rgb(60,66,82) !important;
+		font-size: 10px;
+		line-height: 10px;
+    }
+    .md-hover-button-blue {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: blue !important;
+        border-color: blue !important;
+		font-size: 10px;
+		line-height: 10px;
+    }	
+	
+    /*
+          ICON BUTTON
+    */
+    .md-hover-button:hover {
+        background-color: rgb(41, 98, 255) !important;
+        border-color: rgb(41, 98, 255) !important;
+    }
+
+    .md-hover-button {
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: rgb(41, 98, 255) !important;
+		color: rgb(41, 98, 255) !important;
+    }
+
+    .md-hover-button:hover > .iconhover {
+        color: black !important;
+    }
+    .md-hover-button > .iconhover {
+        color: rgb(41, 98, 255) !important;
+    }
+    .md-icon-button > .iconhover {
+
+    }
+
+    /*
+          /ICON BUTTON
+    */
+</style>
