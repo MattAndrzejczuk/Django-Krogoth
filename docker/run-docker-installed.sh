@@ -16,6 +16,10 @@ echo "Create a Super User"
 docker exec -it jawn ./manage.py createsuperuser
 echo "Select Yes to Continue Install"
 docker exec -it jawn ./manage.py collectstatic
+echo "Installing Djangular... "
+docker exec -it jawn ./manage.py makemigrations dynamic_lazarus_page Djangular djangular_dashboard
+docker exec -it jawn ./manage.py migrate
+docker exec -it jawn ./manage.py make_default_layout
 ##############
 # On Mac or Windows with docker-machine installed, remove if Linux ####
 # download at: https://docs.docker.com/machine/install-machine/
