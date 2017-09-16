@@ -90,6 +90,9 @@ class DjangularMasterViewController(models.Model):
     controller_js = models.TextField(default=DEFAULT_CONTROLLER)
     view_html = models.TextField(default=DEFAULT_MASTERVIEW)
 
+    is_enabled = models.BooleanField(default=True,
+                                     help_text='When disabled, this javascript code and html code will not be loaded.')
+
     djangular_service = models.ManyToManyField(DjangularService, null=True, blank=True)
     djangular_directive = models.ManyToManyField(DjangularDirective, null=True, blank=True)
     djangular_slave_vc = models.ManyToManyField(DjangularSlaveViewController, null=True, blank=True)

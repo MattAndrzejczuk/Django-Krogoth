@@ -164,7 +164,7 @@ def index(request):
 
 
     DjangularMasterViewControllers = []
-    all_applications = DjangularMasterViewController.objects.all()
+    all_applications = DjangularMasterViewController.objects.filter(is_enabled=True)
     for application in all_applications:
         DjangularMasterViewControllers.append(application.name)
 

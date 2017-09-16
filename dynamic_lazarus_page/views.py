@@ -182,7 +182,7 @@ class DynamicIndexModule(APIView):
         #     my_apps += ("'app." + application.name + "',")
 
 
-        all_djangular = DjangularMasterViewController.objects.all()
+        all_djangular = DjangularMasterViewController.objects.filter(is_enabled=True)
         for application in all_djangular:
             my_apps += ("'app." + application.name + "',")
 
