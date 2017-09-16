@@ -1,8 +1,8 @@
-<div id="login-v2" layout="row" layout-align="start" class=" md-background-bg">
+<div id="login-v2" layout="row" layout-align="start" class="glass_bg">
     <div id="login-v2-intro" flex hide show-gt-sm>
 		<div class="logo">
 			<span>
-				<img src="/static/ArmLogoVectorWhite.svg" style="color:white;">
+				<img src="/static/CoreLogoVectorWhite.svg" style="color:white;">
 			</span>
 		</div>
         <div class="title" class="md-background-fg" style="color:white;">
@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div id="login-v2-form-wrapper" class="flex-scrollable md-background-bg" ms-scroll>
+    <div id="login-v2-form-wrapper" class="flex-scrollable glass_bg" ms-scroll>
         <div id="login-v2-form" class="md-background-bg" style="height:100%;">
             <div class="logo" hide-gt-sm>
 			<span>
@@ -62,14 +62,17 @@
 
                 <div class="remember-forgot-password" layout="row" layout-sm="column"
                      layout-align="space-between center">
-                    <md-checkbox class="remember-me" ng-model="data.cb1" aria-label="Remember Me">
+                    <md-checkbox class="remember-me"
+								 style="border-color: rgb(255,255,255); border-color: rgb(255,255,255);"
+								 ng-model="data.cb1"
+								 aria-label="Remember Me">
                         <span class="md-background-fg md-hue-3">Remember Me</span>
                     </md-checkbox>
 
                     <a ui-sref="app.pages_auth_forgot-password" class="forgot-password">Forgot Password?</a>
                 </div>
 
-                <md-button class="md-raised md-accent submit-button" aria-label="LOG IN"
+                <md-button class="md-hover-button-amber-dark-bg" aria-label="LOG IN"
 						   ng-click="vm.clickLogin(loginForm.$invalid || loginForm.$pristine)"
                            ng-disabled="loginForm.$invalid || loginForm.$pristine">
                     LOG IN
@@ -108,3 +111,66 @@
         </div>
     </div>
 </div>
+
+
+<style>
+	#login-v2 #login-v2-form-wrapper {
+        background-image: url('/static/assets/ArmPrimeBg_b-login.jpg');
+        background-repeat: no-repeat;
+        background-position: top left;
+        background-size: 3096px 2352px;
+        background-attachment: fixed;
+        border-color: rgba(0, 0, 0, 0.70) !important;
+	}
+
+    .md-background-bg {
+		background-color: rgba(0, 0, 0, 0.0) !important;
+	}
+
+    .glass_bg {
+        background-image: url('/static/assets/ArmPrimeBg_b-login.jpg');
+        background-repeat: no-repeat;
+        background-position: top left;
+        background-size: 3096px 2352px;
+        background-attachment: fixed;
+        border-color: rgba(0, 0, 0, 0.70) !important;
+    }
+#login-v2 {
+    height: 100%;
+    overflow: hidden;
+        background-image: url('/static/assets/ArmPrimeBg-login.jpg');
+        background-repeat: no-repeat;
+        background-position: top left;
+        background-size: 3096px 2352px;
+        background-color: rgba(0, 0, 0, 0) !important;
+}
+
+    .multi_bg_example_opaque {
+        background-image: url('/static/assets/ArmPrimeBg-login.jpg');
+        background-repeat: no-repeat;
+        background-position: top left;
+        background-size: 3096px 2352px;
+        background-color: rgba(0, 0, 0, 0) !important;
+    }
+
+    .multi_bg_example_glass {
+        background-image: url('/static/assets/ArmPrimeBg_b-login.jpg');
+        background-repeat: no-repeat;
+        background-position: top left;
+        background-size: 3096px 2352px;
+        background-attachment: fixed;
+    }
+    .md-hover-button-amber-dark-bg:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber-dark-bg {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+
+
+</style>
