@@ -67,6 +67,12 @@
         vm.search = search;
         vm.searchResultClick = searchResultClick;
         vm.loadUser = loadUser;
+        vm.webApplicationBuild = document.getElementById("DjangularVersion").innerHTML.replace('Djangular ', '');
+        $timeout(function() {
+            if (document.getElementById("showBuildVersion"))
+                (document.getElementById("showBuildVersion").innerHTML) = 'ArmPrime v' + vm.webApplicationBuild;
+        }, 3000);
+
         //////////
 
         vm.user = {
@@ -86,25 +92,26 @@
             // Get the selected language directly from angular-translate module setting
             vm.selectedLanguage = vm.languages[$translate.preferredLanguage()];
             vm.loadUser();
+
         }
 
 
         function loadUser() {
-            if ($cookies.get('token')) {
-                $http({
-                    method: 'GET',
-                    headers: {
-                        'Authorization': 'Token ' + $cookies.get('token')
-                    },
-                    url: '/rest-auth/user/'
-                }).then(function successCallback(response) {
-                    vm.user = response.data;
-                }, function errorCallback(response) {
-                    $mdToast.show($mdToast.simple().textContent('Unexpected server error: /rest-auth/user/'));
-                });
-            } else {
-                $state.go('app.LoginDjangular');
-            }
+            //            if ($cookies.get('token')) {
+            $http({
+                method: 'GET',
+                //headers: {
+                //    'Authorization': 'Token ' + $cookies.get('token')
+                //},
+                url: '/rest-auth/user/'
+            }).then(function successCallback(response) {
+                vm.user = response.data;
+            }, function errorCallback(response) {
+                $mdToast.show($mdToast.simple().textContent('Login is required.'));
+            });
+            //            } else {
+            //                $state.go('app.LoginDjangular');
+            //            }
         }
 
         /**
@@ -137,6 +144,7 @@
                     },
                     url: '/rest-auth/logout/'
                 }).then(function successCallback(response) {
+                    $cookies.remove('token');
                     $state.go('app.LoginDjangular');
                 }, function errorCallback(response) {
                     $mdToast.show($mdToast.simple().textContent('Unexpected server error: /rest-auth/logout/'));

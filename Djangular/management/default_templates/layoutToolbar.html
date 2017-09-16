@@ -1,39 +1,50 @@
-<div layout="row" layout-align="start center">
+<div layout="row" layout-align="start center" class="md-background-bg">
     <div layout="row" layout-align="start center" flex>
 
         <div class="logo" layout="row" layout-align="start center">
-            <span class="logo-image">D</span>
-            <span class="logo-text">DJANGULAR</span>
+            <img src="/static/CoreLogoVectorWhite.svg" width="40">
+            <span class="logo-text md-background-fg md-hue-3 armprime-title-1"
+				  style="font-family: haettenschweilerregular; letter-spacing: 3px; color: white">
+				DJANGULAR
+			</span>
+			<!--
+            <span class="logo-text md-background-fg md-hue-3" style="font-size:10px;">
+				v{{ vm.webApplicationBuild }}
+			</span>
+			-->
         </div>
 
         <div class="toolbar-separator"></div>
 
-        <md-button id="navigation-toggle" class="md-icon-button" ng-click="vm.toggleSidenav('navigation')"
-                   hide-gt-sm aria-label="Toggle navigation" translate
-                   translate-attr-aria-label="TOOLBAR.TOGGLE_NAVIGATION">
-            <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+        <md-button id="navigation-toggle" class="md-icon-button md-background-fg md-hue-3" ng-click="vm.toggleSidenav('navigation')"
+                   hide-gt-sm aria-label="Toggle navigation">
+            <md-icon md-font-icon="icon-menu" class="icon md-background-fg md-hue-3"></md-icon>
         </md-button>
 
-        <md-button class="md-icon-button navigation-fold-toggle"
+        <md-button class="md-icon-button navigation-fold-toggle md-background-fg md-hue-3"
                    hide show-gt-sm aria-label="Toggle navigation fold"
-                   translate translate-attr-aria-label="TOOLBAR.TOGGLE_NAVIGATION_FOLD"
                    ng-click="vm.toggleMsNavigationFolded()">
-            <md-icon class="s18" md-font-icon="icon-backburger"></md-icon>
+            <md-icon class="s18" md-font-icon="icon-backburger md-background-fg md-hue-3"></md-icon>
         </md-button>
 <!--
 SHORTCUTS FOR THE FAVORITES THINGY:
         <ms-shortcuts></ms-shortcuts>
 -->
         <div class="toolbar-separator"></div>
+
+		<div id="globalStatusBar">
+
+		</div>
     </div>
 
     <div layout="row" layout-align="start center">
-        <md-progress-circular id="toolbar-progress" ng-if="$root.loadingProgress" class="md-accent"
+        <md-progress-circular id="toolbar-progress" ng-if="$root.loadingProgress" class="md-background-fg md-hue-3"
                               md-mode="indeterminate" md-diameter="32">
         </md-progress-circular>
 
 <!--
 USER ACCOUNT DROP DOWN THINGY:
+-->
         <md-menu-bar id="user-menu">
             <md-menu md-position-mode="left bottom">
                 <md-button class="user-button" ng-click="$mdOpenMenu()"
@@ -47,28 +58,31 @@ USER ACCOUNT DROP DOWN THINGY:
                                      class="icon status s16">
                             </md-icon>
                         </div>
-                        <span class="username" hide-sm>John Doe</span>
+                        <span class="username" hide-sm>{{ vm.user['username'] }}</span>
                         <md-icon md-font-icon="icon-chevron-down"
                                  class="icon s16" hide-sm></md-icon>
                     </div>
                 </md-button>
 
                 <md-menu-content width="3">
-                    <md-menu-item class="md-indent" ui-sref="app.pages_profile">
+                    <md-menu-item class="md-indent" ui-sref="app.userprofile">
                         <md-icon md-font-icon="icon-account" class="icon"></md-icon>
-                        <md-button>My Profile</md-button>
+                        <md-button style="color: black">My Profile</md-button>
                     </md-menu-item>
 
+					<!--
                     <md-menu-item class="md-indent" ui-sref="app.mail">
                         <md-icon md-font-icon="icon-email" class="icon"></md-icon>
-                        <md-button>Inbox</md-button>
+                        <md-button style="color: black">Inbox</md-button>
                     </md-menu-item>
-
                     <md-menu-item class="md-indent">
                         <md-icon md-font-icon ng-class="vm.userStatus.icon"
                                  ng-style="{'color': vm.userStatus.color }" class="icon"></md-icon>
                         <md-menu id="user-status-menu">
-                            <md-button ng-click="$mdOpenMenu()" class="status" ng-class="vm.userStatus.class">
+                            <md-button ng-click="$mdOpenMenu()"
+									   class="status"
+									   ng-class="vm.userStatus.class"
+									   style="color: black">
                                 {{vm.userStatus.title}}
                             </md-button>
                             <md-menu-content width="2">
@@ -77,24 +91,26 @@ USER ACCOUNT DROP DOWN THINGY:
                                               ng-repeat="status in vm.userStatusOptions">
                                     <md-icon md-font-icon="{{status.icon}}" ng-style="{'color': status.color }"
                                              class="icon"></md-icon>
-                                    <md-button ng-click="vm.setUserStatus(status)">
+                                    <md-button ng-click="vm.setUserStatus(status)"
+											   style="color: black">
                                         {{status.title}}
                                     </md-button>
                                 </md-menu-item>
                             </md-menu-content>
                         </md-menu>
                     </md-menu-item>
+					-->
 
                     <md-menu-divider></md-menu-divider>
 
                     <md-menu-item class="md-indent">
                         <md-icon md-font-icon="icon-logout" class="icon"></md-icon>
-                        <md-button ng-click="vm.logout()">Logout</md-button>
+                        <md-button ng-click="vm.logout()" style="color: black">Logout</md-button>
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>
         </md-menu-bar>
--->
+
 
 
 
@@ -140,3 +156,16 @@ LANGUAGE CHANGER THINGY:
 -->
     </div>
 </div>
+
+<style>
+.armprime-title-1 {
+        font-family: haettenschweilerregular !important;
+        font-size: 21px !important;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 100 !important;
+        line-height: 18px;
+        letter-spacing: 2px;
+		color:white !important;
+}
+</style>

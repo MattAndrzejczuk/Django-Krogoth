@@ -6,34 +6,40 @@
 
     var fuseThemes = {
         default: {
-            primary: {
-                name: 'fuse-paleblue',
-                hues: {
-                    'default': '700',
-                    'hue-1': '500',
-                    'hue-2': '600',
-                    'hue-3': '400'
+            "primary": {
+                "name": "blue",
+                "hues": {
+                    "default": "900",
+                    "hue-1": "A700",
+                    "hue-2": "600",
+                    "hue-3": "A200"
                 }
             },
-            accent: {
-                name: 'light-blue',
-                hues: {
-                    'default': '600',
-                    'hue-1': '400',
-                    'hue-2': '700',
-                    'hue-3': 'A100'
+            "accent": {
+                "name": "amber",
+                "hues": {
+                    "default": "A700",
+                    "hue-1": "A400",
+                    "hue-2": "A200",
+                    "hue-3": "A100"
                 }
             },
-            warn: {
-                name: 'red'
+            "warn": {
+                "name": "deep-purple",
+                "hues": {
+                    "default": "A400",
+                    "hue-1": "A700",
+                    "hue-2": "A200",
+                    "hue-3": "900"
+                }
             },
-            background: {
-                name: 'grey',
-                hues: {
-                    'default': 'A100',
-                    'hue-1': 'A100',
-                    'hue-2': '100',
-                    'hue-3': '300'
+            "background": {
+                "name": "fuse-paleblue",
+                "hues": {
+                    "default": "900",
+                    "hue-1": "800",
+                    "hue-2": "A700",
+                    "hue-3": "50"
                 }
             }
         },
