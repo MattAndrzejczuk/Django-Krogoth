@@ -39,10 +39,13 @@
                 <md-input-container class="md-block" md-no-float>
 					<label class="md-primary-fg md-hue-2">Username</label>
                     <input name="username" ng-model="vm.form.username" class="md-accent-fg"
-                           required>
+                           required ng-pattern="/^[a-zA-Z0-9]*$/">
                     <div ng-messages="registerForm.username.$error" role="alert">
                         <div ng-message="required">
                             <span >Username field is required</span>
+                        </div>
+                        <div ng-message="pattern">
+                            <span>Usernames cannot contain whitespaces or special characters.</span>
                         </div>
                     </div>
                 </md-input-container>
