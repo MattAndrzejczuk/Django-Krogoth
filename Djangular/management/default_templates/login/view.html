@@ -1,20 +1,19 @@
 <div id="login-v2" layout="row" layout-align="start" class="glass_bg">
     <div id="login-v2-intro" flex hide show-gt-sm>
-		<div class="logo">
+        <div class="logo">
 			<span>
 				<img src="/static/CoreLogoVectorWhite.svg" style="color:white;">
 			</span>
-		</div>
+        </div>
         <div class="title" class="md-background-fg" style="color:white;">
             Welcome to {{ vm.name }}
         </div>
         <div class="description" class="md-primary-fg" style="color:white;">
-            The most powerful Total Annihilation mod development tool in the galaxy. Browse a collection of thousands of
-			Total Annihilation units, and assemble them together quickly into a new mod project. This web-based mod builder will
-			destory all TA game data conflicts in seconds for Unit IDs, Weapon IDs, and 'download' command card buttons.
-
-			Join our discussions in the community forum, or send private messages to our members. You must have an Arm Prime
-			account in order to use any services provided on this site.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
         </div>
     </div>
 
@@ -22,22 +21,22 @@
         <div id="login-v2-form" class="md-background-bg" style="height:100%;">
             <div class="logo" hide-gt-sm>
 			<span>
-				<img src="/static/ArmLogoVector.svg">
+				<img src="/static/CoreLogoVector.svg">
 			</span>
             </div>
 
             <div class="title md-background-fg md-hue-3">Log in to {{ vm.name }}</div>
             <div class="description md-background-fg md-hue-3">
-				Please sign in to access our large collection of Total Annihilation game assets, mod builder, HPI/UFO uploader and 					more.
-			</div>
+                Djangular requires login by default.
+            </div>
 
             <form name="loginForm" novalidate>
                 <md-input-container class="md-block" md-no-float>
-					<!--<input type="email" name="email" ng-model="vm.form.email" placeholder="Email"
+                    <!--<input type="email" name="email" ng-model="vm.form.email" placeholder="Email"
                            translate translate-attr-placeholder="LOGIN_V2.EMAIL"
                            ng-pattern="/^.+@.+\..+$/" required>-->
-					<label class="md-primary-fg md-hue-2">Username</label>
-					<input type="text" name="username" ng-model="vm.form.username"
+                    <label class="md-primary-fg md-hue-2">Username</label>
+                    <input type="text" name="username" ng-model="vm.form.username"
                            ng-pattern="/^[a-zA-Z0-9]*$/" required class="md-accent-fg">
                     <div ng-messages="loginForm.username.$error" role="alert" multiple>
                         <div ng-message="required">
@@ -50,7 +49,7 @@
                 </md-input-container>
 
                 <md-input-container class="md-block" md-no-float>
-					<label class="md-primary-fg md-hue-2">Password</label>
+                    <label class="md-primary-fg md-hue-2">Password</label>
                     <input type="password" name="password" ng-model="vm.form.password"
                            required class="md-accent-fg">
                     <div ng-messages="loginForm.password.$error" role="alert">
@@ -63,9 +62,9 @@
                 <div class="remember-forgot-password" layout="row" layout-sm="column"
                      layout-align="space-between center">
                     <md-checkbox class="remember-me"
-								 style="border-color: rgb(255,255,255); border-color: rgb(255,255,255);"
-								 ng-model="data.cb1"
-								 aria-label="Remember Me">
+                                 style="border-color: rgb(255,255,255); border-color: rgb(255,255,255);"
+                                 ng-model="data.cb1"
+                                 aria-label="Remember Me">
                         <span class="md-background-fg md-hue-3">Remember Me</span>
                     </md-checkbox>
 
@@ -73,7 +72,7 @@
                 </div>
 
                 <md-button class="md-hover-button-amber-dark-bg" aria-label="LOG IN"
-						   ng-click="vm.clickLogin(loginForm.$invalid || loginForm.$pristine)"
+                           ng-click="vm.clickLogin(loginForm.$invalid || loginForm.$pristine)"
                            ng-disabled="loginForm.$invalid || loginForm.$pristine">
                     LOG IN
                 </md-button>
@@ -114,18 +113,18 @@
 
 
 <style>
-	#login-v2 #login-v2-form-wrapper {
+    #login-v2 #login-v2-form-wrapper {
         background-image: url('/static/assets/ArmPrimeBg_b-login.jpg');
         background-repeat: no-repeat;
         background-position: top left;
         background-size: 3096px 2352px;
         background-attachment: fixed;
         border-color: rgba(0, 0, 0, 0.70) !important;
-	}
+    }
 
     .md-background-bg {
-		background-color: rgba(0, 0, 0, 0.0) !important;
-	}
+        background-color: rgba(0, 0, 0, 0.0) !important;
+    }
 
     .glass_bg {
         background-image: url('/static/assets/ArmPrimeBg_b-login.jpg');
@@ -135,15 +134,16 @@
         background-attachment: fixed;
         border-color: rgba(0, 0, 0, 0.70) !important;
     }
-#login-v2 {
-    height: 100%;
-    overflow: hidden;
+
+    #login-v2 {
+        height: 100%;
+        overflow: hidden;
         background-image: url('/static/assets/ArmPrimeBg-login.jpg');
         background-repeat: no-repeat;
         background-position: top left;
         background-size: 3096px 2352px;
         background-color: rgba(0, 0, 0, 0) !important;
-}
+    }
 
     .multi_bg_example_opaque {
         background-image: url('/static/assets/ArmPrimeBg-login.jpg');
@@ -160,16 +160,18 @@
         background-size: 3096px 2352px;
         background-attachment: fixed;
     }
+
     .md-hover-button-amber-dark-bg:hover {
-        background-color: rgb(255,171,0) !important;
-        border-color: rgb(255,171,0) !important;
-		color: rgb(60,66,82) !important;
+        background-color: rgb(255, 171, 0) !important;
+        border-color: rgb(255, 171, 0) !important;
+        color: rgb(60, 66, 82) !important;
     }
+
     .md-hover-button-amber-dark-bg {
         border-style: solid !important;
         border-width: 1px !important;
-		color: rgb(255,171,0) !important;
-        border-color: rgb(255,171,0) !important;
+        color: rgb(255, 171, 0) !important;
+        border-color: rgb(255, 171, 0) !important;
     }
 
 
