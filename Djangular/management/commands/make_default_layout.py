@@ -5,9 +5,6 @@ from Djangular.models import DjangularMasterViewController, DjangularIcon, Djang
 import codecs
 
 
-
-
-
 #  READ JS & HTML FILES AS A STRING LIKE SO:
 #     f = open('static/app/toolbar/toolbar.controller.js', 'r')
 #     f = open('static/app/toolbar/toolbar.module.js', 'r')
@@ -41,6 +38,7 @@ class Command(BaseCommand):
 
         str_jsColorThemesConstants = jsColorThemesConstants.read()
         str_jsLayout = jsLayout.read()
+
         str_htmlMain = htmlMain.read()
         str_htmlNav = htmlNav.read()
         str_htmlToolbar = htmlToolbar.read()
@@ -63,10 +61,6 @@ class Command(BaseCommand):
         except:
             cat = DjangularCategory.objects.get(name='Administration')
 
-
-
-
-
         # loginMasterViewController---------------------------------------------------------
         try:
             mvc = DjangularMasterViewController(name='LoginDjangular', title='Login')
@@ -77,10 +71,10 @@ class Command(BaseCommand):
             mvc.category = cat
             mvc.icon = icon
             mvc.save()
-            self.stdout.write(self.style.SUCCESS( 'ADDED... loginMasterViewController' ))
+            self.stdout.write(self.style.SUCCESS('ADDED... loginMasterViewController'))
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... loginMasterViewController'))
-        #-------------------------------------------------------------------------
+        # -------------------------------------------------------------------------
 
 
         # registerMasterViewController---------------------------------------------------------
@@ -97,10 +91,10 @@ class Command(BaseCommand):
             mvc.category = cat
             mvc.icon = icon
             mvc.save()
-            self.stdout.write(self.style.SUCCESS( 'ADDED... registerMasterViewController' ))
+            self.stdout.write(self.style.SUCCESS('ADDED... registerMasterViewController'))
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... registerMasterViewController'))
-        #-------------------------------------------------------------------------
+        # -------------------------------------------------------------------------
 
         # userprofileMasterViewController---------------------------------------------------------
         try:
@@ -116,10 +110,10 @@ class Command(BaseCommand):
             mvc.category = cat
             mvc.icon = icon
             mvc.save()
-            self.stdout.write(self.style.SUCCESS( 'ADDED... userprofileMasterViewController' ))
+            self.stdout.write(self.style.SUCCESS('ADDED... userprofileMasterViewController'))
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... userprofileMasterViewController'))
-        #-------------------------------------------------------------------------
+        # -------------------------------------------------------------------------
 
         # mvc_editorMasterViewController---------------------------------------------------------
         try:
@@ -127,7 +121,7 @@ class Command(BaseCommand):
             str_Module = codecs.open('Djangular/management/default_templates/mvc_editor/module.js', 'r').read()
             str_Controller = codecs.open('Djangular/management/default_templates/mvc_editor/controller.js', 'r').read()
 
-            mvc = DjangularMasterViewController(name='mvc_editor', title='mvc editor')
+            mvc = DjangularMasterViewController(name='AngularEditor', title='Angular Editor')
             mvc.view_html = str_View
             mvc.controller_js = str_Controller
             mvc.module_js = str_Module
@@ -135,10 +129,26 @@ class Command(BaseCommand):
             mvc.category = cat
             mvc.icon = icon
             mvc.save()
-            self.stdout.write(self.style.SUCCESS( 'ADDED... mvc_editorMasterViewController' ))
+            self.stdout.write(self.style.SUCCESS('ADDED... AngularEditorMasterViewController'))
+
+            str_Service = codecs.open('Djangular/management/default_templates/mvc_editor/DjangularEditorRESTful.js',
+                                      'r').read()
+            try:
+                service = DjangularService(name='DjangularEditorRESTful', title='Community Forum Service RESTful CRUD')
+                service.service_js = str_Service
+                service.save()
+                try:
+                    mvc.djangular_service.add(service)
+                    mvc.save()
+                except:
+                    self.stdout.write(self.style.SUCCESS('FAIL... AngularEditor.add -> DjangularEditorRESTful'))
+            except:
+                mvc.delete()
+                self.stdout.write(self.style.SUCCESS('FAIL... DjangularEditorRESTful.save()'))
+
         except:
-            self.stdout.write(self.style.WARNING('SKIPPING... mvc_editorMasterViewController'))
-        #-------------------------------------------------------------------------
+            self.stdout.write(self.style.WARNING('SKIPPING... AngularEditorMasterViewController'))
+        # -------------------------------------------------------------------------
 
         # dashboardMasterViewController---------------------------------------------------------
         try:
@@ -154,10 +164,10 @@ class Command(BaseCommand):
             mvc.category = cat
             mvc.icon = icon
             mvc.save()
-            self.stdout.write(self.style.SUCCESS( 'ADDED... dashboardMasterViewController' ))
+            self.stdout.write(self.style.SUCCESS('ADDED... dashboardMasterViewController'))
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... dashboardMasterViewController'))
-        #-------------------------------------------------------------------------
+        # -------------------------------------------------------------------------
 
 
         # forumsMasterViewController---------------------------------------------------------
@@ -174,25 +184,41 @@ class Command(BaseCommand):
             mvc.module_js = str_Module
 
             svc = DjangularSlaveViewController(name='Thread', title='Thread')
-            svc.view_html = str_slaveView
-            svc.controller_js = str_slaveController
-            svc.save()
+            try:
+                svc.view_html = str_slaveView
+                svc.controller_js = str_slaveController
+                svc.save()
+            except:
+                self.stdout.write(self.style.SUCCESS('FAIL... DjangularSlaveViewController.save()'))
 
-            str_Service = codecs.open('Djangular/management/default_templates/forums/CommunityForumService.js', 'r').read()
+            str_Service = codecs.open('Djangular/management/default_templates/forums/CommunityForumService.js',
+                                      'r').read()
             service = DjangularService(name='CommunityForumService', title='Community Forum Service RESTful CRUD')
-            service.service_js = str_Service
-            service.save()
+            try:
+                service.service_js = str_Service
+                service.save()
+            except:
+                self.stdout.write(self.style.SUCCESS('FAIL... DjangularService.save()'))
 
             mvc.category = cat
             mvc.icon = icon
             mvc.save()
-            mvc.djangular_service.add(service)
-            mvc.djangular_slave_vc.add(svc)
-            mvc.save()
+            try:
+                mvc.djangular_service.add(service)
+            except:
+                self.stdout.write(self.style.SUCCESS('FAIL... forums.add -> DjangularService'))
+            try:
+                mvc.djangular_slave_vc.add(svc)
+                mvc.save()
+            except:
+                self.stdout.write(self.style.SUCCESS('FAIL... forums.add -> DjangularSlaveViewController'))
+                mvc.delete()
+
+
             self.stdout.write(self.style.SUCCESS('ADDED... forumsMasterViewController'))
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... forumsMasterViewController'))
-        #-------------------------------------------------------------------------
+        # -------------------------------------------------------------------------
 
 
 
@@ -201,7 +227,7 @@ class Command(BaseCommand):
             sqlCtrl = NgIncludedJs(name='toolbarController')
             sqlCtrl.contents = str_ctrl
             sqlCtrl.save()
-            self.stdout.write(self.style.SUCCESS( 'ADDED... toolbarController' ))
+            self.stdout.write(self.style.SUCCESS('ADDED... toolbarController'))
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... toolbarController'))
 
@@ -258,5 +284,3 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS('ADDED... htmlToolbarLayout'))
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... htmlToolbarLayout'))
-
-
