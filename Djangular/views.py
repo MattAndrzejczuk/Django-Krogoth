@@ -227,7 +227,7 @@ class DynamicJavaScriptInjector(APIView):
 
         raw_js_services_and_directives = ''
         djangular_services = application.djangular_service.all()
-        print('SHITTING...')
+
         # raw_js_services_and_directives += '\n\n'
         djangular_directives = application.djangular_directive.all()
 
@@ -280,7 +280,7 @@ class DynamicJavaScriptInjector(APIView):
             print(newMsNavSrv)
 
         module_with_injected_navigation = module_with_injected_msApi_2.replace('_DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_', newMsNavSrv)
-        print('WHAT')
+        # print('WHAT')
         clean_js_slate = ''
 
         clean_js_slate += module_with_injected_navigation + \
@@ -295,14 +295,14 @@ class DynamicJavaScriptInjector(APIView):
             raw_js_services_and_directives += service.service_js.replace('_DJANGULAR_SERVICE_NAME_', service.name).replace('_DJANGULAR_SERVICE_TITLE_', service.title)
             # raw_js_services_and_directives = raw_js_services_and_directives.replace('_DJANGULAR_SERVICE_TITLE_', service.title)
 
-        print('THE')
+        # print('THE')
         for directive in djangular_directives:
             raw_js_services_and_directives += directive.directive_js.replace('_DJANGULAR_DIRECTIVE_NAME_', directive.name).replace("_DJANGULAR_DIRECTIVE_TITLE_", directive.title)
             # raw_js_services_and_directives = raw_js_services_and_directives
 
 
         clean_js_slate += raw_js_services_and_directives
-        print('FUCK')
+        # print('FUCK')
         parsed1 = clean_js_slate.replace('FUSE_APP_NAME', application.name.replace(' ','_'))
         parsed2 = parsed1.replace('FUSE_APP_TITLE', application.title)
         parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon.code)
