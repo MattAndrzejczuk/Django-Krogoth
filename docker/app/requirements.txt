@@ -19,4 +19,5 @@ coreapi
 pygments
 markdown
 django-angular
-
+gevent
+psycogreen

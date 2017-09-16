@@ -7,7 +7,7 @@
 
     function routeConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
         $locationProvider.hashPrefix('!');
-        $urlRouterProvider.otherwise('/LoginDjangular');
+        $urlRouterProvider.otherwise('/General');
         var $cookies;
         angular.injector(['ngCookies']).invoke(['$cookies', function(_$cookies) {
             $cookies = _$cookies;

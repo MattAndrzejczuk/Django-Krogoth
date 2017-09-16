@@ -178,7 +178,7 @@ class Command(BaseCommand):
             str_slaveView = codecs.open('Djangular/management/default_templates/forums/slaveview.html', 'r').read()
             str_slaveController = codecs.open('Djangular/management/default_templates/forums/slavecontroller.js',
                                               'r').read()
-            mvc = DjangularMasterViewController(name='forums', title='forums')
+            mvc = DjangularMasterViewController(name='General', title='Forums')
             mvc.view_html = str_View
             mvc.controller_js = str_Controller
             mvc.module_js = str_Module
