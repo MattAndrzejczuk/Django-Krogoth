@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+
+from rest_framework import serializers, exceptions
 # Create your models here.
 
 
@@ -82,3 +84,15 @@ class TotalAnnihilationUploadedFile(models.Model):
 
     def __str__(self):              # __unicode__ on Python 2
         return "%s" % self.file_name
+
+
+class ContactWebAdminForm(models.Model):
+    sender_email = models.CharField(max_length=100)
+    subject = models.CharField(max_length=255)
+    body = models.TextField()
+    date_created = models.DateTimeField(auto_now_add=True)
+
+class ContactWebAdminFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContactWebAdminForm
+        fields = ('sender_email','subject','body',)

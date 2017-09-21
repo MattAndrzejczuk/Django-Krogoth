@@ -13,6 +13,7 @@ router.register(r'SelectedAssetUploadRepository', views.SelectedAssetUploadRepos
 router.register(r'Upload', views.HPIUploadViewset)
 
 
+
 urlpatterns = [
     url(r'^TotalAnnihilation/', include(router.urls)),
 
@@ -25,4 +26,7 @@ urlpatterns = [
     url(r'^DownloadTDFFromSQLView/', views.DownloadTDFFromSQLView.as_view(), name='DownloadTDFFromSQLView'),
     url(r'^FeatureTDFFromSQLView/', views.FeatureTDFFromSQLView.as_view(), name='FeatureTDFFromSQLView'),
     url(r'^rawDependencyAsTextView/', views.rawDependencyAsTextView.as_view(), name='rawDependencyAsTextView'),
+
 ]
+
+
