@@ -266,6 +266,9 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         data_ball['download'] = new_download_tdf_document
         return data_ball
 
+    def copyFilesToPublishModBuildDestination(self, pathToModPublish):
+        print('Building Mod: ' + pathToModPublish)
+
     def get(self, request, format=None):
         # Process Files For Individual Assets:
         # self.processFiles(233)
@@ -279,15 +282,20 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         artist_name = 'CiniCraft'
         artists_selected_mod_name = 'Very First Mod!'
         artists_output_path_for_all_mods = '/usr/src/persistent/media/published_mods_v1/' + artist_name + '_' + artist_id
+
         if not os.path.exists(artists_output_path_for_all_mods):
             os.makedirs(artists_output_path_for_all_mods)
             total_builds = 0
             new_mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
             os.makedirs(new_mod_build_path)
+            # TODO: Now, copy all files to this directory!
+            self.copyFilesToPublishModBuildDestination(new_mod_build_path)
         else:
             total_builds = len(os.listdir(artists_output_path_for_all_mods + artists_selected_mod_name))
             new_mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
             os.makedirs(new_mod_build_path)
+            # TODO: Now, copy all files to this directory!
+            self.copyFilesToPublishModBuildDestination(new_mod_build_path)
         return Response('')
 
 
