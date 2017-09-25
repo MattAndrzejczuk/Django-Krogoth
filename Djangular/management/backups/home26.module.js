@@ -30,10 +30,10 @@
             weight: 1
         });
         msNavigationServiceProvider.saveItem('Home.upcomingFeats', {
-            title: 'Upcoming Features',
+            title: 'Future Plans',
             icon: 'mdi mdi-star-circle',
             state: 'app.upcomingFeatures',
-            weight: 2
+            weight: 6
         });
         msNavigationServiceProvider.saveItem('Home.whatIsLazarus', {
             title: 'What Is Lazarus',

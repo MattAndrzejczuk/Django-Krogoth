@@ -45,6 +45,9 @@
                 CommunityForumService.getDetailThread(newThreadToLoad).then(function(data) {
                     vm.viewName = '';
                     vm.listData = data;
+                    $state.go('app.General', {
+                        id: data.id
+                    });
                 });
             });
         }
@@ -64,6 +67,9 @@
                 CommunityForumService.getDetailThread($stateParams.id).then(function(data) {
                     vm.listData = data;
                     vm.viewName = '';
+                    $state.go('app.General', {
+                        id: data.id
+                    });
                 });
             });
         }

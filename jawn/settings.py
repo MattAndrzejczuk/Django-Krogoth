@@ -91,6 +91,7 @@ INSTALLED_APPS = (
     'djangular_dashboard',
     'django_filters',
     'LazarusPublicAssets',
+    'LazarusPublisherTest',
 )
 #   'dbbackup',
 

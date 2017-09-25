@@ -20,12 +20,14 @@
             icon: 'mdi mdi-medical-bag',
             weight: 9
         });
+        /*
         msNavigationServiceProvider.saveItem('TechSupport.FUSE_APP_NAME', {
             title: 'Total Annihilation',
             icon: 'icon-ta-core',
             state: 'app.FUSE_APP_NAME',
             weight: 9
         });
+		*/
         _DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_
     }
 })();

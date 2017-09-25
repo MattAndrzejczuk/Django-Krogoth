@@ -315,7 +315,7 @@ class UnitFbiData(models.Model):
     MovementClass = models.CharField(max_length=117)
     Name = models.CharField(max_length=100)
     NoAutoFire = models.PositiveSmallIntegerField(null=True, blank=True)
-    NoChaseCategory = models.CharField(max_length=118)
+    NoChaseCategory = models.CharField(max_length=118, null=True, blank=True)
     norestrict = models.PositiveSmallIntegerField(null=True, blank=True)
     NoShadow = models.PositiveSmallIntegerField(null=True, blank=True)
     # TODO: PK below
@@ -341,8 +341,8 @@ class UnitFbiData(models.Model):
     sortbias = models.IntegerField(null=True, blank=True)
     # TODO: List of string choices will go below
     SoundCategory = models.CharField(max_length=125)
-    SpanishDescription = models.CharField(max_length=126)
-    SpanishName = models.CharField(max_length=127)
+    SpanishDescription = models.CharField(max_length=126, null=True, blank=True)
+    SpanishName = models.CharField(max_length=127, null=True, blank=True)
     StandingFireOrder = models.IntegerField(null=True, blank=True)
     StandingMoveOrder = models.IntegerField(null=True, blank=True)
     Stealth = models.PositiveSmallIntegerField(null=True, blank=True)
@@ -393,3 +393,185 @@ class DownloadTDF(models.Model):
     MENU = models.PositiveSmallIntegerField(default=2)  # first menu in TA is actually '2' for some reason
     UNITMENU = models.CharField(max_length=35, null=True, blank=True)  # short name for the construction unit that builds this unit
     UNITNAME = models.CharField(max_length=35, null=True, blank=True)  # short name of the unit this button builds
+
+
+
+class UnitFbiData_v2(models.Model):
+    _raw_json_dump = models.CharField(max_length=100)
+    _DEV_root_data_path = models.CharField(max_length=100, default='nan')
+    _UPLOAD_DESIGNATION = models.CharField(max_length=150, default='nan')
+    _REPOSITORY = models.CharField(max_length=150, default='nan')
+    _SNOWFLAKE = models.CharField(max_length=150, default='nan')
+
+    Acceleration = models.CharField(max_length=150, null=True, blank=True)
+    ActiveWhenBuild = models.CharField(max_length=150, null=True, blank=True)
+    ai_limit = models.CharField(max_length=101, null=True, blank=True)
+    ai_weight = models.CharField(max_length=102, null=True, blank=True)
+    altfromsealevel = models.CharField(max_length=150, null=True, blank=True)
+    amphibious = models.CharField(max_length=150, null=True, blank=True)
+    antiweapons = models.CharField(max_length=150, null=True, blank=True)
+    attackrunlength = models.CharField(max_length=150, null=True, blank=True)
+    BMcode = models.CharField(max_length=150, null=True, blank=True)
+    BadTargetCategory = models.CharField(max_length=103, null=True, blank=True)
+    BankScale = models.CharField(max_length=150, null=True, blank=True)
+    BrakeRate = models.CharField(max_length=150, null=True, blank=True)
+    BuildAngle = models.CharField(max_length=150, null=True, blank=True)
+    BuildCostEnergy = models.CharField(max_length=150, null=True, blank=True)
+    BuildCostMetal = models.CharField(max_length=150, null=True, blank=True)
+    BuildTime = models.CharField(max_length=150, null=True, blank=True)
+    Builddistance = models.CharField(max_length=150, null=True, blank=True)
+    Builder = models.CharField(max_length=150, null=True, blank=True)
+    canattack = models.CharField(max_length=150, null=True, blank=True)
+    CanCapture = models.CharField(max_length=150, null=True, blank=True)
+    CanDgun = models.CharField(max_length=150, null=True, blank=True)
+    Canfly = models.CharField(max_length=150, null=True, blank=True)
+    canguard = models.CharField(max_length=150, null=True, blank=True)
+    canhover = models.CharField(max_length=150, null=True, blank=True)
+    canload = models.CharField(max_length=150, null=True, blank=True)
+    canmove = models.CharField(max_length=150, null=True, blank=True)
+    canpatrol = models.CharField(max_length=150, null=True, blank=True)
+    CanReclamate = models.CharField(max_length=150, null=True, blank=True)
+    canstop = models.BooleanField(default=True)
+    cantbetransported = models.CharField(max_length=150, null=True, blank=True)
+    Category = models.CharField(max_length=104)
+    CloakCost = models.CharField(max_length=150, null=True, blank=True)
+    CloakCostMoving = models.CharField(max_length=150, null=True, blank=True)
+    Commander = models.CharField(max_length=150, null=True, blank=True)
+    Copyright = models.CharField(max_length=105, default='Copyright 1997 Humongous Entertainment. All rights reserved.')
+    #TODO: PK below
+    Corpse = models.CharField(max_length=106, null=True, blank=True)
+    cruisealt = models.CharField(max_length=150, null=True, blank=True)
+    DamageModifier = models.CharField(max_length=150, null=True, blank=True)
+    DefaultMissionType = models.CharField(max_length=107, null=True, blank=True)
+    Description = models.CharField(max_length=255, null=True, blank=True)
+    Designation = models.CharField(max_length=250, null=True, blank=True)
+    digger = models.CharField(max_length=150, null=True, blank=True)
+    Downloadable = models.CharField(max_length=150, null=True, blank=True)
+    EnergyMake = models.CharField(max_length=150, null=True, blank=True)
+    EnergyStorage = models.CharField(max_length=150, null=True, blank=True)
+    EnergyUse = models.CharField(max_length=150, null=True, blank=True)
+    # TODO: Many-To-One
+    ExplodeAs = models.CharField(max_length=108, null=True, blank=True)
+    ExtractsMetal = models.CharField(max_length=150, null=True, blank=True)
+    firestandorders = models.CharField(max_length=150, null=True, blank=True) # 50
+    Floater = models.CharField(max_length=150, null=True, blank=True)
+    FootprintX = models.CharField(max_length=150, null=True, blank=True)
+    FootprintZ = models.CharField(max_length=150, null=True, blank=True)
+    FrenchDescription = models.CharField(max_length=109, null=True, blank=True)
+    FrenchName = models.CharField(max_length=110, null=True, blank=True)
+    GermanDescription = models.CharField(max_length=111, null=True, blank=True)
+    GermanName = models.CharField(max_length=112, null=True, blank=True)
+    HealTime = models.CharField(max_length=150, null=True, blank=True)
+    HideDamage = models.CharField(max_length=150, null=True, blank=True)
+    HoverAttack = models.CharField(max_length=150, null=True, blank=True) #60
+    ImmuneToParalyzer = models.CharField(max_length=150, null=True, blank=True)
+    init_cloaked = models.CharField(max_length=150, null=True, blank=True)
+    IsAirBase = models.CharField(max_length=150, null=True, blank=True)
+    IsFeature = models.CharField(max_length=150, null=True, blank=True)
+    istargetingupgrade = models.CharField(max_length=150, null=True, blank=True)
+    ItalianDescription = models.CharField(max_length=113, null=True, blank=True)
+    ItalianName = models.CharField(max_length=114, null=True, blank=True)
+    JapanesDescription = models.CharField(max_length=115, null=True, blank=True)
+    JapaneseName = models.CharField(max_length=116, null=True, blank=True)
+    kamikaze = models.CharField(max_length=150, null=True, blank=True) # 70
+    kamikazedistance = models.CharField(max_length=150, null=True, blank=True)
+    MakesMetal = models.CharField(max_length=150, null=True, blank=True)
+    maneuverleashlength = models.CharField(max_length=150, null=True, blank=True)
+    MaxDamage = models.CharField(max_length=150, null=True, blank=True)
+    MaxSlope = models.CharField(max_length=150, null=True, blank=True)
+    MaxVelocity = models.CharField(max_length=150, null=True, blank=True)
+    MaxWaterDepth = models.CharField(max_length=150, null=True, blank=True)
+    MetalMake = models.CharField(max_length=150, null=True, blank=True)
+    MetalStorage = models.CharField(max_length=150, null=True, blank=True)
+    mincloakdistance = models.CharField(max_length=150, null=True, blank=True)
+    MinWaterDepth = models.CharField(max_length=150, null=True, blank=True)
+    MobileStandOrders = models.CharField(max_length=150, null=True, blank=True)
+    MoveRate1 = models.CharField(max_length=150, null=True, blank=True)
+    # TODO: PK below:
+    # MOVEMENT_CLASSES = (
+    #     ('Tank1', 'TANKSH1'),
+    #     ('Tank SH2 (example: Arm Fark)', 'TANKSH2'),
+    #     ('Tank SH3 (example: Arm Podger)', 'TANKSH3'),
+    #     ('Tank DS2 (example: Core Necro)', 'TANKSH2'),
+    #     ('Tank (example: core sumo)', 'TANKBH3'),
+    #     ('', ''),
+    #     ('', ''),
+    #     ('Kbot S1', 'KBOTSS1'),
+    #     ('Kbot S2', 'KBOTSS2'),
+    #     ('Kbot S3', 'KBOTSS3'),
+    #     ('', ''),
+    #     ('', ''),
+    #     ('Spider', 'SPID3'),
+    #     ('', ''),
+    #     ('', ''),
+    #     ('', ''),
+    #     ('Boats S4 (used by small boats?)', 'BOATS4'),
+    #     ('', ''),
+    # )
+    MovementClass = models.CharField(max_length=117, null=True, blank=True)
+    Name = models.CharField(max_length=100, null=True, blank=True)
+    NoAutoFire = models.CharField(max_length=150, null=True, blank=True)
+    NoChaseCategory = models.CharField(max_length=118, null=True, blank=True)
+    norestrict = models.CharField(max_length=150, null=True, blank=True)
+    NoShadow = models.CharField(max_length=150, null=True, blank=True)
+    # TODO: PK below
+    Objectname = models.CharField(max_length=119)
+    onoffable = models.CharField(max_length=150, null=True, blank=True)
+    Ovradjust = models.CharField(max_length=150, null=True, blank=True)
+    PigLatinDescription = models.CharField(max_length=120, null=True, blank=True)
+    PigLatinName = models.CharField(max_length=121, null=True, blank=True)
+    PitchScale = models.CharField(max_length=150, null=True, blank=True)
+    RadarDistance = models.CharField(max_length=150, null=True, blank=True)
+    RadarDistanceJam = models.CharField(max_length=150, null=True, blank=True)
+    Scale = models.CharField(max_length=150, null=True, blank=True)
+    # TODO: List of string choices will go below
+    SelfDestructAs = models.CharField(max_length=123) # ✦ ✦ ✦
+    selfdestructcountdown = models.CharField(max_length=150, null=True, blank=True) # 100
+    ShootMe = models.CharField(max_length=150, null=True, blank=True)
+    ShowPlayerName = models.CharField(max_length=150, null=True, blank=True)
+    # TODO: List of string choices will go below
+    Side = models.CharField(max_length=124) # ✦ ✦ ✦
+    SightDistance = models.CharField(max_length=150, null=True, blank=True)
+    SonarDistance = models.CharField(max_length=150, null=True, blank=True)
+    SonarDistanceJam = models.CharField(max_length=150, null=True, blank=True)
+    sortbias = models.CharField(max_length=150, null=True, blank=True)
+    # TODO: List of string choices will go below
+    SoundCategory = models.CharField(max_length=125)
+    SpanishDescription = models.CharField(max_length=126, null=True, blank=True)
+    SpanishName = models.CharField(max_length=127, null=True, blank=True)
+    StandingFireOrder = models.CharField(max_length=150, null=True, blank=True)
+    StandingMoveOrder = models.CharField(max_length=150, null=True, blank=True)
+    Stealth = models.CharField(max_length=150, null=True, blank=True)
+    SteeringMode = models.CharField(max_length=150, null=True, blank=True)
+    # TODO: List of string choices will go below
+    TEDClass = models.CharField(max_length=128)
+    teleporter = models.CharField(max_length=150, null=True, blank=True)
+    ThreeD = models.CharField(max_length=150, null=True, blank=True)
+    TidalGenerator = models.CharField(max_length=150, null=True, blank=True)
+    TransMaxUnits = models.CharField(max_length=150, null=True, blank=True)
+    transportcapacity = models.CharField(max_length=150, null=True, blank=True)
+    transportsize = models.CharField(max_length=150, null=True, blank=True)
+    TurnRate = models.CharField(max_length=150, null=True, blank=True)
+    # TODO: unique? ID?
+    UnitName = models.CharField(max_length=129, null=True, blank=True) # ✦ ✦ ✦
+    # TODO: must be unique, PK?
+    UnitNumber = models.CharField(max_length=150, null=True, blank=True) # ✦ ✦ ✦
+    Upright = models.CharField(max_length=150, null=True, blank=True)
+    Version = models.CharField(max_length=150, null=True, blank=True) # ✦ ✦ ✦
+    WaterLine = models.CharField(max_length=150, null=True, blank=True)
+    # TODO: PK below
+    Weapon1 = models.CharField(max_length=127, null=True, blank=True) ##models.ForeignKey(WeaponTDF, on_delete=models.CASCADE, related_name='Weapon1', null=True, blank=True)
+    # TODO: PK below
+    Weapon2 = models.CharField(max_length=127, null=True, blank=True) ##models.ForeignKey(WeaponTDF, on_delete=models.CASCADE, related_name='Weapon2', null=True, blank=True)
+    # TODO: PK below
+    Weapon3 = models.CharField(max_length=127, null=True, blank=True) ##models.ForeignKey(WeaponTDF, on_delete=models.CASCADE, related_name='Weapon3', null=True, blank=True)
+    WindGenerator = models.CharField(max_length=150, null=True, blank=True)
+    WorkerTime = models.CharField(max_length=150, null=True, blank=True)
+    # TODO: PK below
+    wpri_badTargetCategory = models.CharField(max_length=130, null=True, blank=True)
+    # TODO: ManyToMany below
+    wsec_badTargetCategory = models.CharField(max_length=131, null=True, blank=True)
+    YardMap = models.CharField(max_length=132, null=True, blank=True) #135
+    ZBuffer = models.CharField(max_length=150, default=1, null=True, blank=False)
+    def __str__(self):  # __unicode__ on Python 2
+        return self.Objectname + '_'
