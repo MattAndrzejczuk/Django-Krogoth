@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from LazarusDatabase.models import LazarusModProject, LazarusModAsset, LazarusModDependency
 
 import json
+import os
 
 from LazarusII.serializers import *
 from LazarusII.models import *
