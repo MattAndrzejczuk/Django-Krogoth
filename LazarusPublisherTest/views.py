@@ -92,7 +92,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         parse_4 = pretty.replace('": ', '=').replace('\n}', ';\n}').replace(',', ';').replace('ID_weapon', 'ID')
         parse_5 = parse_4.replace('"damage', '[DAMAGE]').replace('_range', 'range')
         parse_7 = parse_5.replace('];', '}').replace('=[', '{').replace('', '').replace('"', '')
-        return className + parse_7.replace('[DAMAGE]=', '[DAMAGE] {').replace(';;', '\n    }\n').replace('=true', '=1').replace('=false', '=0')
+        return className + parse_7.replace('[DAMAGE]=', '[DAMAGE] {').replace(';;', ';\n    }\n').replace('=true', '=1').replace('=false', '=0')
     def convertJsonToFeatureTDF(self, _json_str):
         weapon_tdf_json = json.loads(_json_str)
         ### REMOVE NON CAVEDOG KEY-VALUE PAIRS:
