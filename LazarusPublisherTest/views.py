@@ -150,7 +150,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             no_null_keys['damage'] = dmg_str_val
 
             asJSON = json.dumps(no_null_keys, indent=4, sort_keys=True)
-            asTDF = self.weaponJsonToTDF(asJSON)
+            asTDF = self.convertJsonToWeaponTDF(asJSON)
 
             print('WeaponTDF: \033[34m')
             print(json.dumps(no_null_keys, indent=4, sort_keys=True))
