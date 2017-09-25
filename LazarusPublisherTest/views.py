@@ -79,29 +79,29 @@ class SerializeFBIFileInPathNoSave(APIView):
 # abel asset id is: 233
 class GatherDependenciesForModAssetTestAbel(APIView):
 
-    def weaponJsonToTDF(self, json_str):
-        weapon_tdf_json = json.loads(json_str)
+    def convertJsonToWeaponTDF(self, _json_str):
+        weapon_tdf_json = json.loads(_json_str)
         ### REMOVE NON CAVEDOG KEY-VALUE PAIRS:
         weapon_tdf_json.pop('_SNOWFLAKE', None)
         weapon_tdf_json.pop('id', None)
         weapon_tdf_json.pop('_Lazarus_Identifier', None)
         weapon_tdf_json.pop('_DEV_root_data_path', None)
-
         className = '[' + weapon_tdf_json.pop('_OBJECT_KEY_NAME', None) + ']'
-
-        print(className)
+        # print(className)
         pretty = json.dumps(weapon_tdf_json, indent=4, sort_keys=True)
-
-        parse_1 = pretty.replace('": ', '=')
-        parse_2 = parse_1.replace('\n}', ';\n}')
-        parse_3 = parse_2.replace(',', ';')
-        parse_4 = parse_3.replace('ID_weapon', 'ID')
+        parse_4 = pretty.replace('": ', '=').replace('\n}', ';\n}').replace(',', ';').replace('ID_weapon', 'ID')
         parse_5 = parse_4.replace('"damage', '[DAMAGE]').replace('_range', 'range')
-        parse_6 = parse_5.replace('];', '}').replace('=[', '{').replace('[DAMAGE]=', '[DAMAGE]\n    {\n')
-        parse_7 = parse_6.replace('"', '').replace(';;', ';}')
-
-        return className + '\n' + parse_7
-
+        parse_7 = parse_5.replace('];', '}').replace('=[', '{').replace('', '').replace('"', '')
+        return parse_7
+    def convertJsonToFeatureTDF(self, _json_str):
+        parse_7 = ''
+        return parse_7
+    def convertJsonToDownloadTDF(self, _json_str):
+        parse_7 = ''
+        return parse_7
+    def convertJsonToUnitFBI(self, _json_str):
+        parse_7 = ''
+        return parse_7
     def processFiles(self, ass_id):
         hd = ' ══════════════════════════ '
         print('\n\n\033[91m' + '\033[4m' + '\033[44m' + '\033[1m' + hd + ' ASSET: ' +
@@ -199,18 +199,13 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         print('\033[0m')
 
     def get(self, request, format=None):
-
-
-
-
+        # Process Files For Individual Assets:
         self.processFiles(233)
         self.processFiles(234)
         self.processFiles(235)
         self.processFiles(236)
         self.processFiles(237)
         self.processFiles(238)
-
-
 
         return Response('')
 
