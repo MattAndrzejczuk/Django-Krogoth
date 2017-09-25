@@ -258,14 +258,24 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         print(new_unit_fbi_document)
         print(bcolors.ENDC)
 
+        data_ball = {}
+
+        data_ball['weapon'] = new_weapon_tdf_document
+        data_ball['unit'] = new_unit_fbi_document
+        data_ball['feature'] = new_feature_tdf_document
+        data_ball['download'] = new_download_tdf_document
+        return data_ball
+
     def get(self, request, format=None):
         # Process Files For Individual Assets:
-        self.processFiles(233)
-        self.processFiles(234)
-        self.processFiles(235)
-        self.processFiles(236)
-        self.processFiles(237)
-        self.processFiles(238)
+        # self.processFiles(233)
+        # self.processFiles(234)
+        # self.processFiles(235)
+        # self.processFiles(236)
+        # self.processFiles(237)
+        unit_data = self.processFiles(238)
+
+        
 
         return Response('')
 
