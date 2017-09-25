@@ -78,6 +78,30 @@ class SerializeFBIFileInPathNoSave(APIView):
 
 # abel asset id is: 233
 class GatherDependenciesForModAssetTestAbel(APIView):
+
+    def weaponJsonToTDF(self, json_str):
+        weapon_tdf_json = json.loads(json_str)
+        ### REMOVE NON CAVEDOG KEY-VALUE PAIRS:
+        weapon_tdf_json.pop('_SNOWFLAKE', None)
+        weapon_tdf_json.pop('id', None)
+        weapon_tdf_json.pop('_Lazarus_Identifier', None)
+        weapon_tdf_json.pop('_DEV_root_data_path', None)
+
+        className = '[' + weapon_tdf_json.pop('_OBJECT_KEY_NAME', None) + ']'
+
+        print(className)
+        pretty = json.dumps(weapon_tdf_json, indent=4, sort_keys=True)
+
+        parse_1 = pretty.replace('": ', '=')
+        parse_2 = parse_1.replace('\n}', ';\n}')
+        parse_3 = parse_2.replace(',', ';')
+        parse_4 = parse_3.replace('ID_weapon', 'ID')
+        parse_5 = parse_4.replace('"damage', '[DAMAGE]').replace('_range', 'range')
+        parse_6 = parse_5.replace('];', '}').replace('=[', '{').replace('[DAMAGE]=', '[DAMAGE]\n    {\n')
+        parse_7 = parse_6.replace('"', '').replace(';;', ';}')
+
+        return className + '\n' + parse_7
+
     def processFiles(self, ass_id):
         hd = ' ══════════════════════════ '
         print('\n\n\033[91m' + '\033[4m' + '\033[44m' + '\033[1m' + hd + ' ASSET: ' +
@@ -113,12 +137,25 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             # print('\033[31m')
             # print(serializer.data)
             # print('\033[0m')
-            print('WeaponTDF: \033[34m')
+
             no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
-            print(no_null_keys)
-            print('\033[0m')
+            no_null_keys.pop('damage')
+
+            dmg_str_val = ''
+
             for dmg in queryset.damage.all():
-                print('\033[33m' + dmg.name + ' : ' + str(dmg.damage_amount) + '\033[0m \n')
+                print('\033[33m' + dmg.name + '=' + str(dmg.damage_amount) + '\033[0m; \n')
+                dmg_str_val += ('        ' + dmg.name + '=' + str(dmg.damage_amount) + ';')
+
+            no_null_keys['damage'] = dmg_str_val
+
+            asJSON = json.dumps(no_null_keys, indent=4, sort_keys=True)
+            asTDF = self.weaponJsonToTDF(asJSON)
+
+            print('WeaponTDF: \033[34m')
+            print(json.dumps(no_null_keys, indent=4, sort_keys=True))
+            print('\033[0m\n')
+            print(asTDF)
 
         for download in downloadTDF_ids:
             queryset = DownloadTDF.objects.get(id=download)
@@ -128,7 +165,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             # print('\033[0m')
             print('DownloadTDF: \033[32m')
             no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
-            print(no_null_keys)
+            print(json.dumps(no_null_keys, indent=4, sort_keys=True))
             print('\033[0m')
 
         for feature in featureTDF_ids:
@@ -140,7 +177,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
                 # print('\033[0m')
                 print('FeatureTDF: \033[36m')
                 no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
-                print(no_null_keys)
+                print(json.dumps(no_null_keys, indent=4, sort_keys=True))
                 print('\033[0m')
             except:
                 print('\033[31m')
@@ -154,7 +191,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         # print('\033[0m')
         print('UnitFBI: \033[30m')
         no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
-        print(no_null_keys)
+        print(json.dumps(no_null_keys, indent=4, sort_keys=True))
         print('\033[0m')
 
         print('\033[92m')

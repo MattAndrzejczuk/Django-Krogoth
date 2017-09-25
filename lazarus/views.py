@@ -482,7 +482,7 @@ class WeaponTDFFetch():
 
 
 class FeatureTDFFetch():
-    def get(self, file_path):
+    def get(self, file_path, _object_key_name):
         f3 = open(file_path, 'r', errors='replace')
 
         # print("OPENING DOWNLOAD TDF... ")
@@ -696,6 +696,7 @@ class FeatureTDFFetch():
                 pass
             try:
                 arrayOfNewFeatures.append(new_feature)
+                new_feature._OBJECT_KEY_NAME = _object_key_name
                 new_feature.save()
                 status_code = status.HTTP_201_CREATED
             except:

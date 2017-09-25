@@ -155,6 +155,7 @@ class WeaponTDF(models.Model):
 class FeatureTDF(models.Model):
     _DEV_root_data_path = models.CharField(max_length=100, default='nan')
     _SNOWFLAKE = models.CharField(max_length=150, default='nan')
+    _OBJECT_KEY_NAME = models.CharField(max_length=150, default='DragonsTeeth')
 
     animating = models.PositiveSmallIntegerField(null=True, blank=True)
     animtrans = models.PositiveSmallIntegerField(null=True, blank=True)

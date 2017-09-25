@@ -932,7 +932,7 @@ class DependenciesForUnitFBI(APIView):
             newDependency5.save()
             self.printyellow_orange_teal('Saved: ', 'objects3d.corpse', fbiUnitClone.Name)
             if os.path.isfile(SYSPATH_TDCrpse):
-                corpse = FeatureTDFFetch().get(SYSPATH_TDCrpse)
+                corpse = FeatureTDFFetch().get(SYSPATH_TDCrpse, fbiUnitClone.Corpse)
                 newDependency6 = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                       type='corpse_TDF',
                                                       system_path=SYSPATH_TDCrpse,
