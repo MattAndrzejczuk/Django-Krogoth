@@ -290,7 +290,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         artist_id = -8080
         artist_name = 'CiniCraft'
         artists_selected_mod_name = 'Very First Mod!'
-        artists_output_path_for_all_mods = '/usr/src/persistent/media/published_mods_v1/' + artist_name + '_' + artist_id
+        artists_output_path_for_all_mods = '/usr/src/persistent/media/published_mods_v1/' + artist_name + '_' + str(artist_id)
 
         if not os.path.exists(artists_output_path_for_all_mods):
             os.makedirs(artists_output_path_for_all_mods)
