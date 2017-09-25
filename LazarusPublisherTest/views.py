@@ -197,11 +197,11 @@ class GatherDependenciesForModAssetTestAbel(APIView):
 
             no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
             asJSON = json.dumps(no_null_keys, indent=4, sort_keys=True)
-            asTDF = self.convertJsonToWeaponTDF(asJSON)
+            asTDF = self.convertJsonToDownloadTDF(asJSON)
             print('DownloadTDF: \033[32m')
-            
             print(json.dumps(no_null_keys, indent=4, sort_keys=True))
             print('\033[0m')
+            print(asTDF)
 
         for feature in featureTDF_ids:
             try:
