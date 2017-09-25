@@ -288,7 +288,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         unit_data = self.processFiles(238)
         data_of_units.append(unit_data)
 
-        artist_id = -8080
+        artist_id = ''
         artist_name = 'CiniCraft'
         artists_selected_mod_name = 'Very First Mod!'
         artists_output_path_for_all_mods = '/usr/src/persistent/media/published_mods_v1/' + artist_name + '_' + str(artist_id)
@@ -297,13 +297,17 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             os.makedirs(artists_output_path_for_all_mods)
             total_builds = 0
             new_mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
-            os.makedirs(new_mod_build_path)
+            safe_mod_build_path = new_mod_build_path.replace(' ', '_').replace('#', '_').replace('!', '_')
+            os.makedirs(safe_mod_build_path)
+            print('\nPath for new mod build created: ' + new_mod_build_path)
             # TODO: Now, copy all files to this directory!
             self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
         else:
             total_builds = len(os.listdir(artists_output_path_for_all_mods + artists_selected_mod_name))
             new_mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
-            os.makedirs(new_mod_build_path)
+            safe_mod_build_path = new_mod_build_path.replace(' ', '_').replace('#', '_').replace('!', '_')
+            os.makedirs(safe_mod_build_path)
+            print('\nPath for new mod build created: ' + new_mod_build_path)
             # TODO: Now, copy all files to this directory!
             self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
         return Response('')
