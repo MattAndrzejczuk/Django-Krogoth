@@ -92,7 +92,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         parse_4 = pretty.replace('": ', '=').replace('\n}', ';\n}').replace(',', ';').replace('ID_weapon', 'ID')
         parse_5 = parse_4.replace('"damage', '[DAMAGE]').replace('_range', 'range')
         parse_7 = parse_5.replace('];', '}').replace('=[', '{').replace('', '').replace('"', '')
-        return parse_7.replace('[DAMAGE]=', '[DAMAGE] {').replace(';;', '\n    }\n')
+        return parse_7.replace('[DAMAGE]=', '[DAMAGE] {').replace(';;', '\n    }\n').replace('=true', '=1').replace('=false', '=0')
     def convertJsonToFeatureTDF(self, _json_str):
         weapon_tdf_json = json.loads(_json_str)
         ### REMOVE NON CAVEDOG KEY-VALUE PAIRS:
@@ -105,7 +105,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         parse_2 = pretty.replace('": ', '=').replace('\n}', ';\n}')
         parse_6 = parse_2.replace(',', ';').replace('];', '}').replace('=[', '{')
         parse_7 = parse_6.replace('"', '').replace('_object=', 'object=')
-        return parse_7
+        return parse_7.replace('=true', '=1').replace('=false', '=0')
     def convertJsonToDownloadTDF(self, _json_str):
         weapon_tdf_json = json.loads(_json_str)
         ### REMOVE NON CAVEDOG KEY-VALUE PAIRS:
@@ -131,7 +131,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         parse_4 = parse_3.replace('ID_weapon', 'ID')
         parse_5 = parse_4.replace('"damage', '[DAMAGE]').replace('_range', 'range')
         parse_6 = parse_5.replace('];', '}').replace('=[', '{').replace('', '')
-        parse_7 = parse_6.replace('"', '')
+        parse_7 = parse_6.replace('"', '').replace('=true', '=1').replace('=false', '=0')
         return parse_7
     def processFiles(self, ass_id):
         hd = ' ══════════════════════════ '
