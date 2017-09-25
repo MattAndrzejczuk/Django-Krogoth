@@ -171,9 +171,6 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         for weapon in weaponTDF_ids:
             queryset = WeaponTDF.objects.get(id=weapon)
             serializer = WeaponTDFDataSerializer(queryset)
-            # print('\033[31m')
-            # print(serializer.data)
-            # print('\033[0m')
 
             no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
             no_null_keys.pop('damage')
@@ -189,10 +186,10 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             asJSON = json.dumps(no_null_keys, indent=4, sort_keys=True)
             asTDF = self.convertJsonToWeaponTDF(asJSON)
 
-            print('WeaponTDF: \033[34m')
-            print(json.dumps(no_null_keys, indent=4, sort_keys=True))
-            print('\033[0m\n')
-            print(asTDF)
+            # print('WeaponTDF: \033[34m')
+            # print(json.dumps(no_null_keys, indent=4, sort_keys=True))
+            # print('\033[0m\n')
+            # print(asTDF)
             new_weapon_tdf_document += asTDF + '\n'
 
 
@@ -200,17 +197,14 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         for download in downloadTDF_ids:
             queryset = DownloadTDF.objects.get(id=download)
             serializer = DownloadTDFDataSerializer(queryset)
-            # print('\033[31m')
-            # print(serializer.data)
-            # print('\033[0m')
 
             no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
             asJSON = json.dumps(no_null_keys, indent=4, sort_keys=True)
             asTDF = self.convertJsonToDownloadTDF(asJSON)
-            print('DownloadTDF: \033[32m')
-            print(json.dumps(no_null_keys, indent=4, sort_keys=True))
-            print('\033[0m')
-            print(asTDF)
+            # print('DownloadTDF: \033[32m')
+            # print(json.dumps(no_null_keys, indent=4, sort_keys=True))
+            # print('\033[0m')
+            # print(asTDF)
             new_download_tdf_document += asTDF + '\n'
 
         
@@ -218,16 +212,13 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             try:
                 queryset = FeatureTDF.objects.get(id=feature)
                 serializer = FeatureTDFDataSerializer(queryset)
-                # print('\033[31m')
-                # print(serializer.data)
-                # print('\033[0m')
                 no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
                 asJSON = json.dumps(no_null_keys, indent=4, sort_keys=True)
                 asTDF = self.convertJsonToFeatureTDF(asJSON)
-                print('FeatureTDF: \033[36m')
-                print(json.dumps(no_null_keys, indent=4, sort_keys=True))
-                print('\033[0m')
-                print(asTDF)
+                # print('FeatureTDF: \033[36m')
+                # print(json.dumps(no_null_keys, indent=4, sort_keys=True))
+                # print('\033[0m')
+                # print(asTDF)
                 new_feature_tdf_document += asTDF + '\n'
             except:
                 print('\033[31m')
@@ -237,18 +228,15 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         
         queryset = UnitFbiData.objects.get(id=unitFBI_id)
         serializer = UnitFbiDataSerializer_v2(queryset)
-        # print('\033[31m')
-        # print(serializer.data)
-        # print('\033[0m')
         
         no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
         asJSON = json.dumps(no_null_keys, indent=4, sort_keys=True)
         asTDF = self.convertJsonToUnitFBI(asJSON)
         new_unit_fbi_document = asTDF
-        print('UnitFBI: \033[30m')
-        print(json.dumps(no_null_keys, indent=4, sort_keys=True))
-        print('\033[0m')
-        print(asTDF)
+        # print('UnitFBI: \033[30m')
+        # print(json.dumps(no_null_keys, indent=4, sort_keys=True))
+        # print('\033[0m')
+        # print(asTDF)
 
         print('\033[92m')
         print(log_nonedit)
