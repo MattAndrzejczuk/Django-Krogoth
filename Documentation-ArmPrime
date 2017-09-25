@@ -1,0 +1,29 @@
+
+# ArmPrime & Lazarus RESTful Documentation
+
+
+
+## RESTful Endpoints Required For Unit & Weapon Editor
+
+* Load user selected mod:
+`/LazarusDatabase/SelectedModProject/`
+
+`/LazarusDatabase/TotalAnnihilation/LazarusModAsset/?project_id=20`
+
+`/LazarusDatabase/TotalAnnihilation/LazarusModDependency/?asset_id=234`
+
+
+## new assets can be created here:
+`/LazarusII/UnitFBIViewset/?encoded_path=media_SLSH_ta_data_SLSH_mattsAbel_SLSH_units_SLSH_anabel&repo_name=Fresh Repo`
+
+## Total Annihilation Game Data:
+
+`/LazarusII/serialized/WeaponTDF/2359/`
+
+* This one is going to be deprecated:
+`/LazarusII/serialized/FBISerialized/2359/`
+* Here's the replacement.
+* Convert Total Annihilation FBI File Into JSON, Save To SQL.
+`GET`
+`/LazarusPublisherTest/SerializeFBIFileInPathNoSave`
+
