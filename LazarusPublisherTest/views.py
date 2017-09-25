@@ -92,7 +92,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         parse_4 = pretty.replace('": ', '=').replace('\n}', ';\n}').replace(',', ';').replace('ID_weapon', 'ID')
         parse_5 = parse_4.replace('"damage', '[DAMAGE]').replace('_range', 'range')
         parse_7 = parse_5.replace('];', '}').replace('=[', '{').replace('', '').replace('"', '')
-        return parse_7
+        return parse_7.replace('[DAMAGE]=', '[DAMAGE] {').replace(';;', '\n}\n    ')
     def convertJsonToFeatureTDF(self, _json_str):
         parse_7 = ''
         return parse_7
