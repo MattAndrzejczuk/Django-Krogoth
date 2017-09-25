@@ -94,7 +94,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         parse_7 = parse_5.replace('];', '}').replace('=[', '{').replace('', '').replace('"', '')
         return parse_7.replace('[DAMAGE]=', '[DAMAGE] {').replace(';;', '\n    }\n')
     def convertJsonToFeatureTDF(self, _json_str):
-        weapon_tdf_json = json.loads(weapon_tdf_str)
+        weapon_tdf_json = json.loads(_json_str)
         ### REMOVE NON CAVEDOG KEY-VALUE PAIRS:
         weapon_tdf_json.pop('_SNOWFLAKE', None)
         weapon_tdf_json.pop('id', None)
@@ -107,7 +107,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         parse_7 = parse_6.replace('"', '').replace('_object=', 'object=')
         return parse_7
     def convertJsonToDownloadTDF(self, _json_str):
-        weapon_tdf_json = json.loads(weapon_tdf_str)
+        weapon_tdf_json = json.loads(_json_str)
         ### REMOVE NON CAVEDOG KEY-VALUE PAIRS:
         weapon_tdf_json.pop('_SNOWFLAKE', None)
         weapon_tdf_json.pop('id', None)
