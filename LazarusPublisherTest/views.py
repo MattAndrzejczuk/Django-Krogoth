@@ -100,7 +100,18 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         parse_7 = ''
         return parse_7
     def convertJsonToUnitFBI(self, _json_str):
-        parse_7 = ''
+        weapon_tdf_json = json.loads(weapon_tdf_str)
+        ### REMOVE NON CAVEDOG KEY-VALUE PAIRS:
+        weapon_tdf_json.pop('id', None)
+        className = '[UNITINFO]'
+        pretty = json.dumps(weapon_tdf_json, indent=4, sort_keys=True)
+        parse_1 = pretty.replace('": ', '=')
+        parse_2 = parse_1.replace('\n}', ';\n}')
+        parse_3 = parse_2.replace(',', ';')
+        parse_4 = parse_3.replace('ID_weapon', 'ID')
+        parse_5 = parse_4.replace('"damage', '[DAMAGE]').replace('_range', 'range')
+        parse_6 = parse_5.replace('];', '}').replace('=[', '{').replace('', '')
+        parse_7 = parse_6.replace('"', '')
         return parse_7
     def processFiles(self, ass_id):
         hd = ' ══════════════════════════ '
