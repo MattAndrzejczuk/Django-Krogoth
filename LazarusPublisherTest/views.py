@@ -149,6 +149,11 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         weaponTDF_ids = []
         featureTDF_ids = []
 
+        new_weapon_tdf_document = ''
+        new_download_tdf_document = ''
+        new_feature_tdf_document = ''
+        new_unit_fbi_document = ''
+
         for dep in asset:
             if (dep.model_schema in filter_nonedit) == True:
                 not_editable_deps.append(dep)
@@ -162,6 +167,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             if dep.model_schema == 'UnitFbiData':
                 unitFBI_id = dep.model_id
 
+        
         for weapon in weaponTDF_ids:
             queryset = WeaponTDF.objects.get(id=weapon)
             serializer = WeaponTDFDataSerializer(queryset)
@@ -187,7 +193,10 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             print(json.dumps(no_null_keys, indent=4, sort_keys=True))
             print('\033[0m\n')
             print(asTDF)
+            new_weapon_tdf_document += asTDF + '\n'
 
+
+        
         for download in downloadTDF_ids:
             queryset = DownloadTDF.objects.get(id=download)
             serializer = DownloadTDFDataSerializer(queryset)
@@ -202,7 +211,9 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             print(json.dumps(no_null_keys, indent=4, sort_keys=True))
             print('\033[0m')
             print(asTDF)
+            new_download_tdf_document += asTDF + '\n'
 
+        
         for feature in featureTDF_ids:
             try:
                 queryset = FeatureTDF.objects.get(id=feature)
@@ -217,11 +228,13 @@ class GatherDependenciesForModAssetTestAbel(APIView):
                 print(json.dumps(no_null_keys, indent=4, sort_keys=True))
                 print('\033[0m')
                 print(asTDF)
+                new_feature_tdf_document += asTDF + '\n'
             except:
                 print('\033[31m')
                 print('FEATURE TDF FAILED ! ! !')
                 print('\033[0m')
 
+        
         queryset = UnitFbiData.objects.get(id=unitFBI_id)
         serializer = UnitFbiDataSerializer_v2(queryset)
         # print('\033[31m')
@@ -231,7 +244,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
         asJSON = json.dumps(no_null_keys, indent=4, sort_keys=True)
         asTDF = self.convertJsonToUnitFBI(asJSON)
-        
+        new_unit_fbi_document = asTDF
         print('UnitFBI: \033[30m')
         print(json.dumps(no_null_keys, indent=4, sort_keys=True))
         print('\033[0m')
@@ -240,6 +253,22 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         print('\033[92m')
         print(log_nonedit)
         print('\033[0m')
+
+        print(bcolors.lightgreen)
+        print(new_download_tdf_document)
+        print(bcolors.ENDC)
+
+        print(bcolors.purple)
+        print(new_weapon_tdf_document)
+        print(bcolors.ENDC)
+        
+        print(bcolors.TEAL)
+        print(new_feature_tdf_document)
+        print(bcolors.ENDC)
+        
+        print(bcolors.OKBLUE)
+        print(new_unit_fbi_document)
+        print(bcolors.ENDC)
 
     def get(self, request, format=None):
         # Process Files For Individual Assets:
