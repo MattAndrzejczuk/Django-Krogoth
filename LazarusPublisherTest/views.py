@@ -229,11 +229,13 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         # print('\033[0m')
         
         no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
-
+        asJSON = json.dumps(no_null_keys, indent=4, sort_keys=True)
+        asTDF = self.convertJsonToUnitFBI(asJSON)
         
         print('UnitFBI: \033[30m')
         print(json.dumps(no_null_keys, indent=4, sort_keys=True))
         print('\033[0m')
+        print(asTDF)
 
         print('\033[92m')
         print(log_nonedit)
