@@ -194,8 +194,12 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             # print('\033[31m')
             # print(serializer.data)
             # print('\033[0m')
-            print('DownloadTDF: \033[32m')
+
             no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
+            asJSON = json.dumps(no_null_keys, indent=4, sort_keys=True)
+            asTDF = self.convertJsonToWeaponTDF(asJSON)
+            print('DownloadTDF: \033[32m')
+            
             print(json.dumps(no_null_keys, indent=4, sort_keys=True))
             print('\033[0m')
 
@@ -206,10 +210,13 @@ class GatherDependenciesForModAssetTestAbel(APIView):
                 # print('\033[31m')
                 # print(serializer.data)
                 # print('\033[0m')
-                print('FeatureTDF: \033[36m')
                 no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
+                asJSON = json.dumps(no_null_keys, indent=4, sort_keys=True)
+                asTDF = self.convertJsonToFeatureTDF(asJSON)
+                print('FeatureTDF: \033[36m')
                 print(json.dumps(no_null_keys, indent=4, sort_keys=True))
                 print('\033[0m')
+                print(asTDF)
             except:
                 print('\033[31m')
                 print('FEATURE TDF FAILED ! ! !')
@@ -220,8 +227,11 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         # print('\033[31m')
         # print(serializer.data)
         # print('\033[0m')
-        print('UnitFBI: \033[30m')
+        
         no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
+
+        
+        print('UnitFBI: \033[30m')
         print(json.dumps(no_null_keys, indent=4, sort_keys=True))
         print('\033[0m')
 
