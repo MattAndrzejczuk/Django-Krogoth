@@ -266,8 +266,14 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         data_ball['download'] = new_download_tdf_document
         return data_ball
 
-    def copyFilesToPublishModBuildDestination(self, pathToModPublish):
+    def copyFilesToPublishModBuildDestination(self, pathToModPublish, modData):
         print('Building Mod: ' + pathToModPublish)
+        fOut = pathToModPublish + '/test.txt'
+        fileoutput_fbi = open(fOut, 'r', errors='replace')
+        fileoutput_fbi.write(str(modData))
+        fileoutput_fbi.close()
+        print('Saved File: ' + fOut)
+        
 
     def get(self, request, format=None):
         # Process Files For Individual Assets:
@@ -276,7 +282,10 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         # self.processFiles(235)
         # self.processFiles(236)
         # self.processFiles(237)
+
+        data_of_units = []
         unit_data = self.processFiles(238)
+        data_of_units.append(unit_data)
 
         artist_id = -8080
         artist_name = 'CiniCraft'
@@ -289,13 +298,13 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             new_mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
             os.makedirs(new_mod_build_path)
             # TODO: Now, copy all files to this directory!
-            self.copyFilesToPublishModBuildDestination(new_mod_build_path)
+            self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
         else:
             total_builds = len(os.listdir(artists_output_path_for_all_mods + artists_selected_mod_name))
             new_mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
             os.makedirs(new_mod_build_path)
             # TODO: Now, copy all files to this directory!
-            self.copyFilesToPublishModBuildDestination(new_mod_build_path)
+            self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
         return Response('')
 
 
