@@ -97,10 +97,20 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         parse_7 = ''
         return parse_7
     def convertJsonToDownloadTDF(self, _json_str):
-        parse_7 = ''
+        weapon_tdf_json = json.loads(weapon_tdf_str)
+        ### REMOVE NON CAVEDOG KEY-VALUE PAIRS:
+        weapon_tdf_json.pop('_SNOWFLAKE', None)
+        weapon_tdf_json.pop('id', None)
+        weapon_tdf_json.pop('_Lazarus_Identifier', None)
+        weapon_tdf_json.pop('_DEV_root_data_path', None)
+        weapon_tdf_json.pop('parent_unit', None)
+        className = '[' + weapon_tdf_json.pop('MENUENTRY', None) + ']'
+        pretty = json.dumps(weapon_tdf_json, indent=4, sort_keys=True)
+        parse_4 = pretty.replace('": ', '=').replace('\n}', ';\n}').replace(',', ';')
+        parse_7 = parse_4.replace('];', '}').replace('=[', '{').replace('', '').replace('"', '')
         return parse_7
     def convertJsonToUnitFBI(self, _json_str):
-        weapon_tdf_json = json.loads(weapon_tdf_str)
+        weapon_tdf_json = json.loads(_json_str)
         ### REMOVE NON CAVEDOG KEY-VALUE PAIRS:
         weapon_tdf_json.pop('id', None)
         className = '[UNITINFO]'
