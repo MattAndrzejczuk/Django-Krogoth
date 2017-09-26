@@ -273,6 +273,9 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         fileoutput_fbi = open(fOut, 'w', errors='replace')
         fileoutput_fbi.write(str(modData))
         fileoutput_fbi.close()
+
+        
+
         print('Saved File: ' + fOut)
         
 
@@ -288,9 +291,9 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         unit_data = self.processFiles(238)
         data_of_units.append(unit_data)
 
-        artist_id = ''
+        artist_id = '0'
         artist_name = 'CiniCraft'
-        artists_selected_mod_name = 'Very First Mod!'.replace(' ', '_').replace('#', '_').replace('!', '_')
+        artists_selected_mod_name = 'Might work for TA'.replace(' ', '_').replace('#', '_').replace('!', '_')
         artists_output_path_for_all_mods = '/usr/src/persistent/media/published_mods_v1/' + artist_name + '_' + str(artist_id)
         mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name
 
