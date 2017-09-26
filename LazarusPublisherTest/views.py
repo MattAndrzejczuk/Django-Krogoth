@@ -478,8 +478,8 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         # cmd_compress = "bash compressTA_Mod.sh " + pathToModPublish + " " + pathToModPublish + '/lazarus_mod.ufo'
         # os.system(cmd_compress)
         os.system('zip -r ' + pathToModPublish + '/lazarus_mod.zip ' + pathToModPublish)
-        print('zip -r ' + pathToModPublish + 'lazarus_mod ' + pathToModPublish)
-        return pathToModPublish + 'lazarus_mod.ufo'
+        print('zip -r ' + pathToModPublish + '/lazarus_mod.zip ' + pathToModPublish)
+        return pathToModPublish + '/lazarus_mod.zip'
 
     def get(self, request, format=None):
         # Process Files For Individual Assets:
