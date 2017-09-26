@@ -499,8 +499,9 @@ class GatherDependenciesForModAssetTestAbel(APIView):
 
         data_of_units = []
         assetsForProject = LazarusModAsset.objects.filter(project_id=selectedModId)
-        unit_data = self.processFiles(280)
-        data_of_units.append(unit_data)
+        for asset in assetsForProject:
+            unit_data = self.processFiles(asset.id)
+            data_of_units.append(unit_data)
 
 
         artists_selected_mod_name = selectedModName.replace(' ', '_').replace('#', '_').replace('!', '_')
