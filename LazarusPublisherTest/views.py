@@ -155,6 +155,8 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         new_feature_tdf_document = ''
         new_unit_fbi_document = ''
 
+        data_ball = {}
+
         data_ball['weapons'] = ''
         data_ball['units'] = ''
         data_ball['features'] = ''
@@ -280,8 +282,6 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         print(new_unit_fbi_document)
         print(bcolors.ENDC)
 
-
-        data_ball = {}
         data_ball['weapons'] = new_weapon_tdf_document
         data_ball['units'] = new_unit_fbi_document
         data_ball['features'] = new_feature_tdf_document
