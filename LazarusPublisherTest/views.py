@@ -479,7 +479,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         # os.system(cmd_compress)
         os.system('zip -r ' + pathToModPublish + '/lazarus_mod.zip ' + pathToModPublish)
         print('zip -r ' + pathToModPublish + '/lazarus_mod.zip ' + pathToModPublish)
-        return pathToModPublish + '/lazarus_mod.zip'
+        return pathToModPublish.replace('/usr/src/persistent', '') + '/lazarus_mod.zip'
 
     def get(self, request, format=None):
         # Process Files For Individual Assets:
