@@ -301,19 +301,17 @@ class GatherDependenciesForModAssetTestAbel(APIView):
 
     def copyFilesToPublishModBuildDestination(self, pathToModPublish, modData):
         print('Building Mod: ' + pathToModPublish)
-        pathToModPublish = '/usr/src/app/static/PublishedModsDebug'
-        print('DEBUG OVVERRIDE, PUBLISHING TO: ' + pathToModPublish)
+        #pathToModPublish = '/usr/src/app/static/PublishedModsDebug'
+        #print('DEBUG OVVERRIDE, PUBLISHING TO: ' + pathToModPublish)
         fOut = pathToModPublish + '/test.txt'
         fileoutput_fbi = open(fOut, 'w', errors='replace')
         fileoutput_fbi.write(str(modData))
         fileoutput_fbi.close()
 
-        for asset in modData:
-                
+        for asset in modData:               
             print(bcolors.cyan)
             print('building assets...')
             print(bcolors.ENDC)
-
             print(bcolors.green)
             print('weapons')
             print(bcolors.ENDC)
@@ -345,6 +343,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             # data_ball['scripts'] = []
             # data_ball['sounds'] = []
             # data_ball['unitpics'] = []
+
             print(bcolors.red)
             print('anims')
             print(bcolors.ENDC)
@@ -439,6 +438,10 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             os.system(cmd_)
         print('Saved File: ' + fOut)
         
+        fOut = pathToModPublish + '/test.txt'
+        fileoutput_fbi = open(fOut, 'w', errors='replace')
+        fileoutput_fbi.write(str(modData))
+        fileoutput_fbi.close()
 
     def get(self, request, format=None):
         # Process Files For Individual Assets:
@@ -534,7 +537,4 @@ class GatherDependenciesForModAssetTestAbel(APIView):
 False
 >>> fbi_serialized_from_file.validated_data
 {}
-
-
 """
-
