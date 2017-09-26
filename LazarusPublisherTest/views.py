@@ -473,11 +473,10 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         exe = '/usr/src/app/static/HPI_Tools/HPIPack.exe'
         cmd_compress = "DISPLAY=:0 wine " + exe + " -d '" + pathToModPublish + "' -f '" + pathToModPublish + "/lazarus_mod.ufo' auto"
         # cmd_compress = "bash compressTA_Mod.sh " + pathToModPublish + " " + pathToModPublish + '/lazarus_mod.ufo'
-        print(cmd_compress)
-        # going to run a bash file that does this:
-        # wine '/usr/src/app/static/HPI_Tools/HPIPack.exe' -d $1 -f $2 auto
-        os.system(cmd_compress)
-
+        # os.system(cmd_compress)
+        os.system('zip -r ' + pathToModPublish + 'lazarus_mod.ufo ' + pathToModPublish)
+        print('zip -r ' + pathToModPublish + 'lazarus_mod ' + pathToModPublish)
+        return pathToModPublish + 'lazarus_mod.ufo'
 
     def get(self, request, format=None):
         # Process Files For Individual Assets:
@@ -487,18 +486,34 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         # self.processFiles(236)
         # self.processFiles(237)
 
+        artist_id = request.user.id
+        artist_name = request.user.username
+        all_mods = LazarusModProject.objects.filter(uploader=request.user.id)
+
+        selectedModName = ''
+        selectedModId = -1
+        for mod in all_mods:
+            if mod.is_selected == True:
+                selectedModName = mod.name
+                selectedModId = mod.id
+
         data_of_units = []
+        assetsForProject = LazarusModAsset.objects.filter(project_id=selectedModId)
         unit_data = self.processFiles(280)
         data_of_units.append(unit_data)
 
-        artist_id = '0'
-        artist_name = 'CiniCraft'
-        artists_selected_mod_name = 'Might work for TA'.replace(' ', '_').replace('#', '_').replace('!', '_')
+
+        artists_selected_mod_name = selectedModName.replace(' ', '_').replace('#', '_').replace('!', '_')
         artists_output_path_for_all_mods = '/usr/src/persistent/media/published_mods_v1/' + artist_name + '_' + str(artist_id)
         mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name
 
         print('checking if artists mod collection exists: ')
         print(artists_output_path_for_all_mods)
+
+        # rare case it fails to get mod id
+        if selectedModId == -1:
+            return Response('Critical Error, couldn\'t find the selected mod for user making this request.')
+
         if not os.path.exists(artists_output_path_for_all_mods):
             print("Creating Root Mod Build Directory:")
             print(mod_build_path)
@@ -509,7 +524,8 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             os.makedirs(safe_mod_build_path)
             print('\nPath for new mod build created: ' + new_mod_build_path)
             # TODO: Now, copy all files to this directory!
-            self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
+            link = self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
+            return Response(link)
         else:
             print(mod_build_path + " already exists, \nTotal Builds For:")
             print(mod_build_path)
@@ -520,7 +536,8 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             os.makedirs(safe_mod_build_path)
             print('\nPath for new mod build created: ' + new_mod_build_path)
             # TODO: Now, copy all files to this directory!
-            self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
+            link = self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
+            return Response(link)
         return Response(data_of_units)
 
 
