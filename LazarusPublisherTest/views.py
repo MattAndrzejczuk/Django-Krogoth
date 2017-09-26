@@ -261,10 +261,11 @@ class GatherDependenciesForModAssetTestAbel(APIView):
 
         data_ball = {}
 
-        data_ball['weapon'] = new_weapon_tdf_document
-        data_ball['unit'] = new_unit_fbi_document
-        data_ball['feature'] = new_feature_tdf_document
-        data_ball['download'] = new_download_tdf_document
+        data_ball['weapons'] = new_weapon_tdf_document
+        data_ball['units'] = new_unit_fbi_document
+        data_ball['features'] = new_feature_tdf_document
+        data_ball['downloads'] = new_download_tdf_document
+
         return data_ball
 
     def copyFilesToPublishModBuildDestination(self, pathToModPublish, modData):
@@ -274,7 +275,17 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         fileoutput_fbi.write(str(modData))
         fileoutput_fbi.close()
 
-        
+        # We need to create all the root HPI directories
+        path_bitmaps = '/bitmaps'
+        path_anims = '/anims'
+        path_download = '/download'
+        path_features = '/features/corpses'
+        path_objects3d = '/objects3d'
+        path_scripts = '/scripts'
+        path_sounds = '/sounds'
+        path_unitpics = '/unitpics'
+        path_units = '/units'
+        path_weapons = '/weapons'
 
         print('Saved File: ' + fOut)
         
@@ -321,7 +332,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             print('\nPath for new mod build created: ' + new_mod_build_path)
             # TODO: Now, copy all files to this directory!
             self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
-        return Response('')
+        return Response(data_of_units)
 
 
 
