@@ -143,7 +143,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         log_nonedit = 'Non editable dependencies: '
         not_editable_deps = []
 
-        filter_nonedit = ['file.cob', 'file.gaf', 'file.3do', 'file.pcx', 'n/a']
+        filter_nonedit = ['file.cob', 'file.gaf', 'file.3do', 'file.pcx', 'n/a', 'file.wav']
 
         downloadTDF_ids = []
         unitFBI_id = -1
@@ -155,10 +155,31 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         new_feature_tdf_document = ''
         new_unit_fbi_document = ''
 
+        data_ball['weapons'] = ''
+        data_ball['units'] = ''
+        data_ball['features'] = ''
+        data_ball['downloads'] = ''
+        # These hold arrays of string system paths
+        data_ball['bitmaps'] = []
+        data_ball['anims'] = []
+        data_ball['objects3d'] = []
+        data_ball['scripts'] = []
+        data_ball['sounds'] = []
+        data_ball['unitpics'] = []
+
         for dep in asset:
             if (dep.model_schema in filter_nonedit) == True:
                 not_editable_deps.append(dep)
                 log_nonedit += dep.model_schema + ' '
+                if dep.model_schema == 'file.pcx':
+                    data_ball['unitpics'].append(dep.system_path)
+                elif dep.model_schema == 'file.cob':
+                    data_ball['scripts'].append(dep.system_path)
+                elif dep.model_schema == 'file.gaf':
+                    data_ball['anims'].append(dep.system_path)
+                elif dep.model_schema == 'file.wav' || dep.model_schema == 'n/a':
+                    print(bcolors.WARNING + 'Warning - Lazarus still defines .wav dependencies as n/a. This might break things.' + bcolors.ENDC)
+                    data_ball['sounds'].append(dep.system_path)
             if dep.model_schema == 'DownloadTDF':
                 downloadTDF_ids.append(dep.model_id)
             if dep.model_schema == 'FeatureTDF':
@@ -259,12 +280,13 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         print(new_unit_fbi_document)
         print(bcolors.ENDC)
 
-        data_ball = {}
 
+        data_ball = {}
         data_ball['weapons'] = new_weapon_tdf_document
         data_ball['units'] = new_unit_fbi_document
         data_ball['features'] = new_feature_tdf_document
         data_ball['downloads'] = new_download_tdf_document
+        
 
         return data_ball
 
@@ -304,6 +326,47 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             print(bcolors.ENDC)
             print(bcolors.orange)
             print(asset['downloads'])
+            print(bcolors.ENDC)
+
+            # data_ball['bitmaps'] = []
+            # data_ball['anims'] = []
+            # data_ball['objects3d'] = []
+            # data_ball['scripts'] = []
+            # data_ball['sounds'] = []
+            # data_ball['unitpics'] = []
+            print(bcolors.red)
+            print('anims')
+            print(bcolors.ENDC)
+            print(bcolors.OKBLUE)
+            print(asset['anims'])
+            print(bcolors.ENDC)
+            print(bcolors.red)
+            print('objects3d')
+            print(bcolors.ENDC)
+            print(bcolors.OKBLUE)
+            print(asset['objects3d'])
+            print(bcolors.ENDC)
+            print(bcolors.red)
+            print('scripts')
+            print(bcolors.ENDC)
+            print(bcolors.OKBLUE)
+            print(asset['scripts'])
+            print(bcolors.ENDC)
+            print(bcolors.red)
+            print('sounds')
+            print(bcolors.ENDC)
+            print(bcolors.OKBLUE)
+            print(asset['sounds'])
+            print(bcolors.ENDC)
+            print('unitpics')
+            print(bcolors.ENDC)
+            print(bcolors.OKBLUE)
+            print(asset['unitpics'])
+            print(bcolors.ENDC)
+            print('bitmaps')
+            print(bcolors.ENDC)
+            print(bcolors.OKBLUE)
+            print(asset['bitmaps'])
             print(bcolors.ENDC)
 
         # We need to create all the root HPI directories
