@@ -177,7 +177,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
                     data_ball['scripts'].append(dep.system_path)
                 elif dep.model_schema == 'file.gaf':
                     data_ball['anims'].append(dep.system_path)
-                elif dep.model_schema == 'file.wav' || dep.model_schema == 'n/a':
+                elif dep.model_schema == 'file.wav' or dep.model_schema == 'n/a':
                     print(bcolors.WARNING + 'Warning - Lazarus still defines .wav dependencies as n/a. This might break things.' + bcolors.ENDC)
                     data_ball['sounds'].append(dep.system_path)
             if dep.model_schema == 'DownloadTDF':
