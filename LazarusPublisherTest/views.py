@@ -275,17 +275,51 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         fileoutput_fbi.write(str(modData))
         fileoutput_fbi.close()
 
+        print(bcolors.cyan)
+        print('building assets...')
+        print(bcolors.ENDC)
+
+        print(bcolors.green)
+        print('weapons')
+        print(bcolors.ENDC)
+        print(bcolors.orange)
+        print(modData['weapons'])
+        print(bcolors.ENDC)
+        print(bcolors.green)
+        print('units')
+        print(bcolors.ENDC)
+        print(bcolors.orange)
+        print(modData['units'])
+        print(bcolors.ENDC)
+        print(bcolors.green)
+        print('features')
+        print(bcolors.ENDC)
+        print(bcolors.orange)
+        print(modData['features'])
+        print(bcolors.ENDC)
+        print(bcolors.green)
+        print('downloads')
+        print(bcolors.ENDC)
+        print(bcolors.orange)
+        print(modData['downloads'])
+        print(bcolors.ENDC)
+        
         # We need to create all the root HPI directories
-        path_bitmaps = '/bitmaps'
-        path_anims = '/anims'
-        path_download = '/download'
-        path_features = '/features/corpses'
-        path_objects3d = '/objects3d'
-        path_scripts = '/scripts'
-        path_sounds = '/sounds'
-        path_unitpics = '/unitpics'
-        path_units = '/units'
-        path_weapons = '/weapons'
+        path_bitmaps = pathToModPublish + '/bitmaps'
+        path_anims = pathToModPublish + '/anims'
+        path_download = pathToModPublish + '/download'
+        path_features = pathToModPublish + '/features/corpses'
+        path_objects3d = pathToModPublish + '/objects3d'
+        path_scripts = pathToModPublish + '/scripts'
+        path_sounds = pathToModPublish + '/sounds'
+        path_unitpics = pathToModPublish + '/unitpics'
+        path_units = pathToModPublish + '/units'
+        path_weapons = pathToModPublish + '/weapons'
+
+        print('Moving custom mod art into position...')
+        print(path_bitmaps)
+
+
 
         print('Saved File: ' + fOut)
         
