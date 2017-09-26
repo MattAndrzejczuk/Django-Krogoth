@@ -471,8 +471,11 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         # HPIPack [-d DirectoryToPack] [-f HPIFileName] [auto]
         # /usr/src/app/static/HPI_Tools/HPIPack.exe
         exe = '/usr/src/app/static/HPI_Tools/HPIPack.exe'
-        cmd_compress = "wine -d " + exe + " -f " + pathToModPublish + '/lazarus_mod.ufo auto'
+        # cmd_compress = "wine -d " + exe + " -f " + pathToModPublish + '/lazarus_mod.ufo auto'
+        cmd_compress = "bash compressTA_Mod.sh " + pathToModPublish + " " + pathToModPublish + '/lazarus_mod.ufo'
         print(cmd_compress)
+        # going to run a bash file that does this:
+        # wine '/usr/src/app/static/HPI_Tools/HPIPack.exe' -d $1 -f $2 auto
         os.system(cmd_compress)
 
 
