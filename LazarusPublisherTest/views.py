@@ -259,7 +259,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
                 print('\033[0m')
 
         
-        serializer = UnitFbiDataSerializer_v2(queryset)
+        serializer = UnitFbiDataSerializer_v2(unit_fbi_queryset)
         
         no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
         asJSON = json.dumps(no_null_keys, indent=4, sort_keys=True)
