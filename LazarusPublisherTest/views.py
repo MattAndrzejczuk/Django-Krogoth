@@ -388,8 +388,15 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         print('Moving custom mod art into position...')
         print(path_bitmaps)
 
+        ## need to copy non-editable stuff first:
+        # cp model.3do /usr/src/persistent/media/ta_data/ArmPrime_1.0_Arm_GorGant/objects3d/
 
-
+        print('Copying uneditable dependencies... ')
+        
+        for model in asset['objects3d']:
+            cmd_ = 'cp ' + model + ' ' + path_objects3d
+            print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
+            os.system(cmd_)
         print('Saved File: ' + fOut)
         
 
