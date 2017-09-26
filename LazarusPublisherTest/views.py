@@ -296,14 +296,14 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         if not os.path.exists(artists_output_path_for_all_mods):
             os.makedirs(artists_output_path_for_all_mods)
             total_builds = 0
-            new_mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name + '_BuildNo_' + str(total_builds)
+            new_mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
             safe_mod_build_path = new_mod_build_path.replace(' ', '_').replace('#', '_').replace('!', '_')
             os.makedirs(safe_mod_build_path)
             print('\nPath for new mod build created: ' + new_mod_build_path)
             # TODO: Now, copy all files to this directory!
             self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
         else:
-            total_builds = len(os.listdir(artists_output_path_for_all_mods + artists_selected_mod_name))
+            total_builds = len(os.listdir(artists_output_path_for_all_mods + '/' + artists_selected_mod_name))
             new_mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
             safe_mod_build_path = new_mod_build_path.replace(' ', '_').replace('#', '_').replace('!', '_')
             os.makedirs(safe_mod_build_path)
