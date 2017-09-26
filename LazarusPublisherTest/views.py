@@ -407,26 +407,29 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             print(bcolors.ENDC)
             
             # generate unit fbi:
-            ufbiOut = pathToModPublish + '/units/' + asset['units']['name'] + '.fbi'
-            fileoutput_fbi = open(ufbiOut, 'w', errors='replace')
-            fileoutput_fbi.write(asset['units']['text_body'])
-            fileoutput_fbi.close()
-
+            if asset['units']['name'] not None:
+                ufbiOut = pathToModPublish + '/units/' + asset['units']['name'] + '.fbi'
+                fileoutput_fbi = open(ufbiOut, 'w', errors='replace')
+                fileoutput_fbi.write(asset['units']['text_body'])
+                fileoutput_fbi.close()
             # generate weapon tdf:
-            wtdfOut = pathToModPublish + '/weapons/' + asset['weapons']['name'] + '.tdf'
-            fileoutput_tdf1 = open(wtdfOut, 'w', errors='replace')
-            fileoutput_tdf1.write(asset['weapons']['text_body'])
-            fileoutput_tdf1.close()
+            if asset['weapons']['name'] not None:
+                wtdfOut = pathToModPublish + '/weapons/' + asset['weapons']['name'] + '.tdf'
+                fileoutput_tdf1 = open(wtdfOut, 'w', errors='replace')
+                fileoutput_tdf1.write(asset['weapons']['text_body'])
+                fileoutput_tdf1.close()
             # generate download tdf:
-            dtdfOut = pathToModPublish + '/download/' + asset['downloads']['name'] + '.tdf'
-            fileoutput_tdf2 = open(dtdfOut, 'w', errors='replace')
-            fileoutput_tdf2.write(asset['downloads']['text_body'])
-            fileoutput_tdf2.close()
+            if asset['downloads']['name'] not None:
+                dtdfOut = pathToModPublish + '/download/' + asset['downloads']['name'] + '.tdf'
+                fileoutput_tdf2 = open(dtdfOut, 'w', errors='replace')
+                fileoutput_tdf2.write(asset['downloads']['text_body'])
+                fileoutput_tdf2.close()
             # generate feature tdf:
-            ftdfOut = pathToModPublish + '/features/' + asset['features']['name'] + '.tdf'
-            fileoutput_tdf3 = open(ftdfOut, 'w', errors='replace')
-            fileoutput_tdf3.write(asset['features']['text_body'])
-            fileoutput_tdf3.close()
+            if asset['features']['name'] not None:
+                ftdfOut = pathToModPublish + '/features/' + asset['features']['name'] + '.tdf'
+                fileoutput_tdf3 = open(ftdfOut, 'w', errors='replace')
+                fileoutput_tdf3.write(asset['features']['text_body'])
+                fileoutput_tdf3.close()
 
 
 
