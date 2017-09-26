@@ -436,34 +436,34 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         ## need to copy non-editable stuff first:
         # cp model.3do /usr/src/persistent/media/ta_data/ArmPrime_1.0_Arm_GorGant/objects3d/
 
-        print('Copying uneditable dependencies... ')
-        # I have no clue how in the hell this isnt crashing...
-        # asset here is undefined...
-        for model in asset['objects3d']:
-            file_name = model.split('/')[len(model.split('/')) - 1]
-            cmd_ = 'cp ' + model + ' ' + path_objects3d + '/' + file_name
-            print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
-            os.system(cmd_)
-        for model in asset['scripts']:
-            file_name = model.split('/')[len(model.split('/')) - 1]
-            cmd_ = 'cp ' + model + ' ' + path_scripts + '/' + file_name
-            print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
-            os.system(cmd_)
-        for model in asset['sounds']:
-            file_name = model.split('/')[len(model.split('/')) - 1]
-            cmd_ = 'cp ' + model + ' ' + path_sounds + '/' + file_name
-            print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
-            os.system(cmd_)
-        for model in asset['unitpics']:
-            file_name = model.split('/')[len(model.split('/')) - 1]
-            cmd_ = 'cp ' + model + ' ' + path_unitpics + '/' + file_name
-            print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
-            os.system(cmd_)
-        for model in asset['anims']:
-            file_name = model.split('/')[len(model.split('/')) - 1]
-            cmd_ = 'cp ' + model + ' ' + path_anims + '/' + file_name
-            print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
-            os.system(cmd_)
+            print('Copying uneditable dependencies... ')
+            # I have no clue how in the hell this isnt crashing...
+            # asset here is undefined...
+            for model in asset['objects3d']:
+                file_name = model.split('/')[len(model.split('/')) - 1]
+                cmd_ = 'cp ' + model + ' ' + path_objects3d + '/' + file_name
+                print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
+                os.system(cmd_)
+            for model in asset['scripts']:
+                file_name = model.split('/')[len(model.split('/')) - 1]
+                cmd_ = 'cp ' + model + ' ' + path_scripts + '/' + file_name
+                print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
+                os.system(cmd_)
+            for model in asset['sounds']:
+                file_name = model.split('/')[len(model.split('/')) - 1]
+                cmd_ = 'cp ' + model + ' ' + path_sounds + '/' + file_name
+                print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
+                os.system(cmd_)
+            for model in asset['unitpics']:
+                file_name = model.split('/')[len(model.split('/')) - 1]
+                cmd_ = 'cp ' + model + ' ' + path_unitpics + '/' + file_name
+                print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
+                os.system(cmd_)
+            for model in asset['anims']:
+                file_name = model.split('/')[len(model.split('/')) - 1]
+                cmd_ = 'cp ' + model + ' ' + path_anims + '/' + file_name
+                print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
+                os.system(cmd_)
         #print('Saved File: ' + fOut)
         
         # weapon.tdf file:
