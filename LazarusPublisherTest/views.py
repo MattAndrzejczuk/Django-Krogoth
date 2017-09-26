@@ -490,7 +490,10 @@ class GatherDependenciesForModAssetTestAbel(APIView):
 
         artist_id = request.user.id
         artist_name = request.user.username
-        all_mods = LazarusModProject.objects.filter(created_by=request.user)
+        # all_mods = LazarusModProject.objects.filter(created_by=request.user.id)
+
+        jawn_user = JawnUser.objects.get(base_user=request.user)
+        all_mods = LazarusModProject.objects.filter(created_by=jawn_user)
 
         selectedModName = ''
         selectedModId = -1
