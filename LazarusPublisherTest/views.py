@@ -270,7 +270,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
     def copyFilesToPublishModBuildDestination(self, pathToModPublish, modData):
         print('Building Mod: ' + pathToModPublish)
         fOut = pathToModPublish + '/test.txt'
-        fileoutput_fbi = open(fOut, 'r', errors='replace')
+        fileoutput_fbi = open(fOut, 'w', errors='replace')
         fileoutput_fbi.write(str(modData))
         fileoutput_fbi.close()
         print('Saved File: ' + fOut)
