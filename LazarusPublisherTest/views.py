@@ -220,7 +220,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             # print(json.dumps(no_null_keys, indent=4, sort_keys=True))
             # print('\033[0m\n')
             # print(asTDF)
-            new_weapon_tdf_document['name'] = queryset.UnitName
+            new_weapon_tdf_document['name'] = unit_fbi_queryset.UnitName
             new_weapon_tdf_document['text_body'] += asTDF + '\n'
 
 
