@@ -466,6 +466,14 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         # weapon.tdf file:
         # text_body
 
+        print('\n\n\nOKAY, NOW THE MOD WILL BE PACKED INTO A UFO: ')
+        # pathToModPublish
+        # HPIPack [-d DirectoryToPack] [-f HPIFileName] [auto]
+        # /usr/src/app/static/HPI_Tools/HPIPack.exe
+        exe = '/usr/src/app/static/HPI_Tools/HPIPack.exe'
+        cmd_compress = "wine -d " + exe + " -f " + pathToModPublish + '/lazarus_mod.ufo auto'
+        print(cmd_compress)
+        os.system(cmd_compress)
 
 
     def get(self, request, format=None):
