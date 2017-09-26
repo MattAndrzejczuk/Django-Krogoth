@@ -494,7 +494,9 @@ class GatherDependenciesForModAssetTestAbel(APIView):
 
         selectedModName = ''
         selectedModId = -1
+        print('looping through all mods: ')
         for mod in all_mods:
+            print(mod)
             if mod.is_selected == True:
                 selectedModName = mod.name
                 selectedModId = mod.id
