@@ -388,6 +388,17 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         print('Moving custom mod art into position...')
         print(path_bitmaps)
 
+        os.makedirs(path_bitmaps)
+        os.makedirs(path_anims)
+        os.makedirs(path_download)
+        os.makedirs(path_features)
+        os.makedirs(path_objects3d)
+        os.makedirs(path_scripts)
+        os.makedirs(path_sounds)
+        os.makedirs(path_unitpics)
+        os.makedirs(path_units)
+        os.makedirs(path_weapons)
+
         ## need to copy non-editable stuff first:
         # cp model.3do /usr/src/persistent/media/ta_data/ArmPrime_1.0_Arm_GorGant/objects3d/
 
