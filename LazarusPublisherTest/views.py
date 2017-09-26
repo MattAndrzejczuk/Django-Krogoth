@@ -394,7 +394,8 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         print('Copying uneditable dependencies... ')
         
         for model in asset['objects3d']:
-            cmd_ = 'cp ' + model + ' ' + path_objects3d
+            file_name = model.split('/')[len(model.split('/')) - 1]
+            cmd_ = 'cp ' + model + ' ' + path_objects3d + '/' + file_name
             print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
             os.system(cmd_)
         print('Saved File: ' + fOut)
