@@ -477,7 +477,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         cmd_compress = "DISPLAY=:0 wine " + exe + " -d '" + pathToModPublish + "' -f '" + pathToModPublish + "/lazarus_mod.ufo' auto"
         # cmd_compress = "bash compressTA_Mod.sh " + pathToModPublish + " " + pathToModPublish + '/lazarus_mod.ufo'
         # os.system(cmd_compress)
-        os.system('zip -r ' + pathToModPublish + 'lazarus_mod.ufo ' + pathToModPublish)
+        os.system('zip -r ' + pathToModPublish + '/lazarus_mod.zip ' + pathToModPublish)
         print('zip -r ' + pathToModPublish + 'lazarus_mod ' + pathToModPublish)
         return pathToModPublish + 'lazarus_mod.ufo'
 
