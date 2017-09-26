@@ -320,7 +320,20 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         path_unitpics = pathToModPublish + '/unitpics'
         path_units = pathToModPublish + '/units'
         path_weapons = pathToModPublish + '/weapons'
+        
+        print('Moving custom mod art into position...')
+        print(path_bitmaps)
 
+        os.makedirs(path_bitmaps)
+        os.makedirs(path_anims)
+        os.makedirs(path_download)
+        os.makedirs(path_features)
+        os.makedirs(path_objects3d)
+        os.makedirs(path_scripts)
+        os.makedirs(path_sounds)
+        os.makedirs(path_unitpics)
+        os.makedirs(path_units)
+        os.makedirs(path_weapons)
 
         for asset in modData:               
             print(bcolors.cyan)
@@ -415,19 +428,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             fileoutput_tdf3.write(asset['features']['text_body'])
             fileoutput_tdf3.close()
 
-        print('Moving custom mod art into position...')
-        print(path_bitmaps)
 
-        os.makedirs(path_bitmaps)
-        os.makedirs(path_anims)
-        os.makedirs(path_download)
-        os.makedirs(path_features)
-        os.makedirs(path_objects3d)
-        os.makedirs(path_scripts)
-        os.makedirs(path_sounds)
-        os.makedirs(path_unitpics)
-        os.makedirs(path_units)
-        os.makedirs(path_weapons)
 
         ## need to copy non-editable stuff first:
         # cp model.3do /usr/src/persistent/media/ta_data/ArmPrime_1.0_Arm_GorGant/objects3d/
