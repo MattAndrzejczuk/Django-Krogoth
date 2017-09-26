@@ -168,13 +168,15 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         data_ball['scripts'] = []
         data_ball['sounds'] = []
         data_ball['unitpics'] = []
-
+#file.3do
         for dep in asset:
             if (dep.model_schema in filter_nonedit) == True:
                 not_editable_deps.append(dep)
                 log_nonedit += dep.model_schema + ' '
                 if dep.model_schema == 'file.pcx':
                     data_ball['unitpics'].append(dep.system_path)
+                elif dep.model_schema == 'file.3do':
+                    data_ball['objects3d'].append(dep.system_path)
                 elif dep.model_schema == 'file.cob':
                     data_ball['scripts'].append(dep.system_path)
                 elif dep.model_schema == 'file.gaf':
