@@ -296,6 +296,8 @@ class GatherDependenciesForModAssetTestAbel(APIView):
 
     def copyFilesToPublishModBuildDestination(self, pathToModPublish, modData):
         print('Building Mod: ' + pathToModPublish)
+        pathToModPublish = '/usr/src/app/static/PublishedModsDebug'
+        print('DEBUG OVVERRIDE, PUBLISHING TO: ' + pathToModPublish)
         fOut = pathToModPublish + '/test.txt'
         fileoutput_fbi = open(fOut, 'w', errors='replace')
         fileoutput_fbi.write(str(modData))
@@ -378,6 +380,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         path_anims = pathToModPublish + '/anims'
         path_download = pathToModPublish + '/download'
         path_features = pathToModPublish + '/features/corpses'
+
         path_objects3d = pathToModPublish + '/objects3d'
         path_scripts = pathToModPublish + '/scripts'
         path_sounds = pathToModPublish + '/sounds'
@@ -407,6 +410,26 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         for model in asset['objects3d']:
             file_name = model.split('/')[len(model.split('/')) - 1]
             cmd_ = 'cp ' + model + ' ' + path_objects3d + '/' + file_name
+            print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
+            os.system(cmd_)
+        for model in asset['scripts']:
+            file_name = model.split('/')[len(model.split('/')) - 1]
+            cmd_ = 'cp ' + model + ' ' + path_scripts + '/' + file_name
+            print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
+            os.system(cmd_)
+        for model in asset['sounds']:
+            file_name = model.split('/')[len(model.split('/')) - 1]
+            cmd_ = 'cp ' + model + ' ' + path_sounds + '/' + file_name
+            print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
+            os.system(cmd_)
+        for model in asset['unitpics']:
+            file_name = model.split('/')[len(model.split('/')) - 1]
+            cmd_ = 'cp ' + model + ' ' + path_unitpics + '/' + file_name
+            print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
+            os.system(cmd_)
+        for model in asset['anims']:
+            file_name = model.split('/')[len(model.split('/')) - 1]
+            cmd_ = 'cp ' + model + ' ' + path_anims + '/' + file_name
             print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
             os.system(cmd_)
         print('Saved File: ' + fOut)
