@@ -320,7 +320,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         path_unitpics = pathToModPublish + '/unitpics'
         path_units = pathToModPublish + '/units'
         path_weapons = pathToModPublish + '/weapons'
-        
+
         print('Moving custom mod art into position...')
         print(path_bitmaps)
 
@@ -413,17 +413,17 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             fileoutput_fbi.close()
 
             # generate weapon tdf:
-            wtdfOut = pathToModPublish + '//' + asset['weapons']['name'] + '.tdf'
+            wtdfOut = pathToModPublish + '/weapons/' + asset['weapons']['name'] + '.tdf'
             fileoutput_tdf1 = open(wtdfOut, 'w', errors='replace')
             fileoutput_tdf1.write(asset['weapons']['text_body'])
             fileoutput_tdf1.close()
             # generate download tdf:
-            dtdfOut = pathToModPublish + '//' + asset['download']['name'] + '.tdf'
+            dtdfOut = pathToModPublish + '/download/' + asset['download']['name'] + '.tdf'
             fileoutput_tdf2 = open(dtdfOut, 'w', errors='replace')
             fileoutput_tdf2.write(asset['download']['text_body'])
             fileoutput_tdf2.close()
             # generate feature tdf:
-            ftdfOut = pathToModPublish + '//' + asset['features']['name'] + '.tdf'
+            ftdfOut = pathToModPublish + '/features/' + asset['features']['name'] + '.tdf'
             fileoutput_tdf3 = open(ftdfOut, 'w', errors='replace')
             fileoutput_tdf3.write(asset['features']['text_body'])
             fileoutput_tdf3.close()
