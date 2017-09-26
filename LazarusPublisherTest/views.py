@@ -461,7 +461,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             cmd_ = 'cp ' + model + ' ' + path_anims + '/' + file_name
             print(bcolors.OKGREEN + cmd_ + bcolors.ENDC)
             os.system(cmd_)
-        print('Saved File: ' + fOut)
+        #print('Saved File: ' + fOut)
         
         # weapon.tdf file:
         # text_body
