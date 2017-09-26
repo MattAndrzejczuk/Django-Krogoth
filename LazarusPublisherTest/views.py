@@ -303,10 +303,24 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         print('Building Mod: ' + pathToModPublish)
         #pathToModPublish = '/usr/src/app/static/PublishedModsDebug'
         #print('DEBUG OVVERRIDE, PUBLISHING TO: ' + pathToModPublish)
-        fOut = pathToModPublish + '/test.txt'
-        fileoutput_fbi = open(fOut, 'w', errors='replace')
-        fileoutput_fbi.write(str(modData))
-        fileoutput_fbi.close()
+        # fOut = pathToModPublish + '/test.txt'
+        # fileoutput_fbi = open(fOut, 'w', errors='replace')
+        # fileoutput_fbi.write(str(modData))
+        # fileoutput_fbi.close()
+
+        # We need to create all the root HPI directories
+        path_bitmaps = pathToModPublish + '/bitmaps'
+        path_anims = pathToModPublish + '/anims'
+        path_download = pathToModPublish + '/download'
+        path_features = pathToModPublish + '/features/corpses'
+
+        path_objects3d = pathToModPublish + '/objects3d'
+        path_scripts = pathToModPublish + '/scripts'
+        path_sounds = pathToModPublish + '/sounds'
+        path_unitpics = pathToModPublish + '/unitpics'
+        path_units = pathToModPublish + '/units'
+        path_weapons = pathToModPublish + '/weapons'
+
 
         for asset in modData:               
             print(bcolors.cyan)
@@ -378,19 +392,28 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             print(bcolors.OKBLUE)
             print(asset['bitmaps'])
             print(bcolors.ENDC)
+            
+            # generate unit fbi:
+            ufbiOut = pathToModPublish + '/units/' + asset['units']['name'] + '.fbi'
+            fileoutput_fbi = open(ufbiOut, 'w', errors='replace')
+            fileoutput_fbi.write(asset['units']['text_body'])
+            fileoutput_fbi.close()
 
-        # We need to create all the root HPI directories
-        path_bitmaps = pathToModPublish + '/bitmaps'
-        path_anims = pathToModPublish + '/anims'
-        path_download = pathToModPublish + '/download'
-        path_features = pathToModPublish + '/features/corpses'
-
-        path_objects3d = pathToModPublish + '/objects3d'
-        path_scripts = pathToModPublish + '/scripts'
-        path_sounds = pathToModPublish + '/sounds'
-        path_unitpics = pathToModPublish + '/unitpics'
-        path_units = pathToModPublish + '/units'
-        path_weapons = pathToModPublish + '/weapons'
+            # generate weapon tdf:
+            wtdfOut = pathToModPublish + '//' + asset['weapons']['name'] + '.tdf'
+            fileoutput_tdf1 = open(wtdfOut, 'w', errors='replace')
+            fileoutput_tdf1.write(asset['weapons']['text_body'])
+            fileoutput_tdf1.close()
+            # generate download tdf:
+            dtdfOut = pathToModPublish + '//' + asset['download']['name'] + '.tdf'
+            fileoutput_tdf2 = open(dtdfOut, 'w', errors='replace')
+            fileoutput_tdf2.write(asset['download']['text_body'])
+            fileoutput_tdf2.close()
+            # generate feature tdf:
+            ftdfOut = pathToModPublish + '//' + asset['features']['name'] + '.tdf'
+            fileoutput_tdf3 = open(ftdfOut, 'w', errors='replace')
+            fileoutput_tdf3.write(asset['features']['text_body'])
+            fileoutput_tdf3.close()
 
         print('Moving custom mod art into position...')
         print(path_bitmaps)
@@ -410,7 +433,8 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         # cp model.3do /usr/src/persistent/media/ta_data/ArmPrime_1.0_Arm_GorGant/objects3d/
 
         print('Copying uneditable dependencies... ')
-        
+        # I have no clue how in the hell this isnt crashing...
+        # asset here is undefined...
         for model in asset['objects3d']:
             file_name = model.split('/')[len(model.split('/')) - 1]
             cmd_ = 'cp ' + model + ' ' + path_objects3d + '/' + file_name
@@ -438,10 +462,10 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             os.system(cmd_)
         print('Saved File: ' + fOut)
         
-        fOut = pathToModPublish + '/test.txt'
-        fileoutput_fbi = open(fOut, 'w', errors='replace')
-        fileoutput_fbi.write(str(modData))
-        fileoutput_fbi.close()
+        # weapon.tdf file:
+        # text_body
+
+
 
     def get(self, request, format=None):
         # Process Files For Individual Assets:
