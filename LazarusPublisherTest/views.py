@@ -80,6 +80,8 @@ class SerializeFBIFileInPathNoSave(APIView):
 # abel asset id is: 233
 class GatherDependenciesForModAssetTestAbel(APIView):
 
+    permission_classes = (IsAuthenticated,)
+
     def convertJsonToWeaponTDF(self, _json_str):
         weapon_tdf_json = json.loads(_json_str)
         ### REMOVE NON CAVEDOG KEY-VALUE PAIRS:
