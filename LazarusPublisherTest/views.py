@@ -290,13 +290,13 @@ class GatherDependenciesForModAssetTestAbel(APIView):
 
         artist_id = ''
         artist_name = 'CiniCraft'
-        artists_selected_mod_name = 'Very First Mod!'
+        artists_selected_mod_name = 'Very First Mod!'.replace(' ', '_').replace('#', '_').replace('!', '_')
         artists_output_path_for_all_mods = '/usr/src/persistent/media/published_mods_v1/' + artist_name + '_' + str(artist_id)
 
         if not os.path.exists(artists_output_path_for_all_mods):
             os.makedirs(artists_output_path_for_all_mods)
             total_builds = 0
-            new_mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
+            new_mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name + '_BuildNo_' + str(total_builds)
             safe_mod_build_path = new_mod_build_path.replace(' ', '_').replace('#', '_').replace('!', '_')
             os.makedirs(safe_mod_build_path)
             print('\nPath for new mod build created: ' + new_mod_build_path)
