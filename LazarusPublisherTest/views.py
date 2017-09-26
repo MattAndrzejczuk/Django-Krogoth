@@ -139,7 +139,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         print('\n\n\033[91m' + '\033[4m' + '\033[44m' + '\033[1m' + hd + ' ASSET: ' +
               str(ass_id) + hd + '\033[0m' + '\033[0m' + '\033[0m' + '\033[0m')
         asset = LazarusModDependency.objects.filter(asset_id=ass_id)
-        unit_fbi_queryset = UnitFbiData.objects.get(id=unitFBI_id)
+        
 
         log_nonedit = 'Non editable dependencies: '
         not_editable_deps = []
@@ -196,6 +196,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             if dep.model_schema == 'UnitFbiData':
                 unitFBI_id = dep.model_id
 
+        unit_fbi_queryset = UnitFbiData.objects.get(id=unitFBI_id)
         
         for weapon in weaponTDF_ids:
             queryset = WeaponTDF.objects.get(id=weapon)
