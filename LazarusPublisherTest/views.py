@@ -139,6 +139,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         print('\n\n\033[91m' + '\033[4m' + '\033[44m' + '\033[1m' + hd + ' ASSET: ' +
               str(ass_id) + hd + '\033[0m' + '\033[0m' + '\033[0m' + '\033[0m')
         asset = LazarusModDependency.objects.filter(asset_id=ass_id)
+        unit_fbi_queryset = UnitFbiData.objects.get(id=unitFBI_id)
 
         log_nonedit = 'Non editable dependencies: '
         not_editable_deps = []
@@ -150,17 +151,17 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         weaponTDF_ids = []
         featureTDF_ids = []
 
-        new_weapon_tdf_document = ''
-        new_download_tdf_document = ''
-        new_feature_tdf_document = ''
-        new_unit_fbi_document = ''
+        new_weapon_tdf_document = {"text_body":""}
+        new_download_tdf_document = {"text_body":""}
+        new_feature_tdf_document = {"text_body":""}
+        new_unit_fbi_document = {"text_body":""}
 
         data_ball = {}
 
-        data_ball['weapons'] = ''
-        data_ball['units'] = ''
-        data_ball['features'] = ''
-        data_ball['downloads'] = ''
+        data_ball['weapons'] = {}
+        data_ball['units'] = {}
+        data_ball['features'] = {}
+        data_ball['downloads'] = {}
         # These hold arrays of string system paths
         data_ball['bitmaps'] = []
         data_ball['anims'] = []
@@ -218,7 +219,8 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             # print(json.dumps(no_null_keys, indent=4, sort_keys=True))
             # print('\033[0m\n')
             # print(asTDF)
-            new_weapon_tdf_document += asTDF + '\n'
+            new_weapon_tdf_document['name'] = queryset.UnitName
+            new_weapon_tdf_document['text_body'] += asTDF + '\n'
 
 
         
@@ -233,7 +235,8 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             # print(json.dumps(no_null_keys, indent=4, sort_keys=True))
             # print('\033[0m')
             # print(asTDF)
-            new_download_tdf_document += asTDF + '\n'
+            new_download_tdf_document['name'] = unit_fbi_queryset.UnitName
+            new_download_tdf_document['text_body'] += asTDF + '\n'
 
         
         for feature in featureTDF_ids:
@@ -247,20 +250,21 @@ class GatherDependenciesForModAssetTestAbel(APIView):
                 # print(json.dumps(no_null_keys, indent=4, sort_keys=True))
                 # print('\033[0m')
                 # print(asTDF)
-                new_feature_tdf_document += asTDF + '\n'
+                new_feature_tdf_document['name'] = unit_fbi_queryset.corpse
+                new_feature_tdf_document['text_body'] += asTDF + '\n'
             except:
                 print('\033[31m')
                 print('FEATURE TDF FAILED ! ! !')
                 print('\033[0m')
 
         
-        queryset = UnitFbiData.objects.get(id=unitFBI_id)
         serializer = UnitFbiDataSerializer_v2(queryset)
         
         no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
         asJSON = json.dumps(no_null_keys, indent=4, sort_keys=True)
         asTDF = self.convertJsonToUnitFBI(asJSON)
-        new_unit_fbi_document = asTDF
+        new_unit_fbi_document['name'] = unit_fbi_queryset.UnitName
+        new_unit_fbi_document['text_body'] = asTDF
         # print('UnitFBI: \033[30m')
         # print(json.dumps(no_null_keys, indent=4, sort_keys=True))
         # print('\033[0m')
@@ -271,19 +275,19 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         print('\033[0m')
 
         print(bcolors.lightgreen)
-        print(new_download_tdf_document)
+        print(new_download_tdf_document['text_body'])
         print(bcolors.ENDC)
 
         print(bcolors.purple)
-        print(new_weapon_tdf_document)
+        print(new_weapon_tdf_document['text_body'])
         print(bcolors.ENDC)
         
         print(bcolors.TEAL)
-        print(new_feature_tdf_document)
+        print(new_feature_tdf_document['text_body'])
         print(bcolors.ENDC)
         
         print(bcolors.OKBLUE)
-        print(new_unit_fbi_document)
+        print(new_unit_fbi_document['text_body'])
         print(bcolors.ENDC)
 
         data_ball['weapons'] = new_weapon_tdf_document
