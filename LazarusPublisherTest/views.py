@@ -418,7 +418,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             fileoutput_tdf1.write(asset['weapons']['text_body'])
             fileoutput_tdf1.close()
             # generate download tdf:
-            dtdfOut = pathToModPublish + '/download/' + asset['download']['name'] + '.tdf'
+            dtdfOut = pathToModPublish + '/download/' + asset['downloads']['name'] + '.tdf'
             fileoutput_tdf2 = open(dtdfOut, 'w', errors='replace')
             fileoutput_tdf2.write(asset['download']['text_body'])
             fileoutput_tdf2.close()
