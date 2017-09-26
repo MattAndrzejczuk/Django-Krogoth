@@ -293,6 +293,8 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         artists_selected_mod_name = 'Very First Mod!'.replace(' ', '_').replace('#', '_').replace('!', '_')
         artists_output_path_for_all_mods = '/usr/src/persistent/media/published_mods_v1/' + artist_name + '_' + str(artist_id)
 
+        print('checking if artists mod collection exists: ')
+        print(artists_output_path_for_all_mods)
         if not os.path.exists(artists_output_path_for_all_mods):
             print("Creating Root Mod Build Directory:")
             print(artists_output_path_for_all_mods)
@@ -305,7 +307,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             # TODO: Now, copy all files to this directory!
             self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
         else:
-            print("Total Builds For:")
+            print(artists_output_path_for_all_mods + " already exists, \nTotal Builds For:")
             print(artists_output_path_for_all_mods)
             total_builds = len(os.listdir(artists_output_path_for_all_mods))
             print(total_builds)
