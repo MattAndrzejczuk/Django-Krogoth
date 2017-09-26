@@ -292,26 +292,27 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         artist_name = 'CiniCraft'
         artists_selected_mod_name = 'Very First Mod!'.replace(' ', '_').replace('#', '_').replace('!', '_')
         artists_output_path_for_all_mods = '/usr/src/persistent/media/published_mods_v1/' + artist_name + '_' + str(artist_id)
+        mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name
 
         print('checking if artists mod collection exists: ')
         print(artists_output_path_for_all_mods)
         if not os.path.exists(artists_output_path_for_all_mods):
             print("Creating Root Mod Build Directory:")
-            print(artists_output_path_for_all_mods)
-            os.makedirs(artists_output_path_for_all_mods)
+            print(mod_build_path)
+            os.makedirs(mod_build_path)
             total_builds = 0
-            new_mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
+            new_mod_build_path = mod_build_path + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
             safe_mod_build_path = new_mod_build_path.replace(' ', '_').replace('#', '_').replace('!', '_')
             os.makedirs(safe_mod_build_path)
             print('\nPath for new mod build created: ' + new_mod_build_path)
             # TODO: Now, copy all files to this directory!
             self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
         else:
-            print(artists_output_path_for_all_mods + " already exists, \nTotal Builds For:")
-            print(artists_output_path_for_all_mods)
-            total_builds = len(os.listdir(artists_output_path_for_all_mods))
+            print(mod_build_path + " already exists, \nTotal Builds For:")
+            print(mod_build_path)
+            total_builds = len(os.listdir(mod_build_path))
             print(total_builds)
-            new_mod_build_path = artists_output_path_for_all_mods + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
+            new_mod_build_path = mod_build_path + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
             safe_mod_build_path = new_mod_build_path.replace(' ', '_').replace('#', '_').replace('!', '_')
             os.makedirs(safe_mod_build_path)
             print('\nPath for new mod build created: ' + new_mod_build_path)
