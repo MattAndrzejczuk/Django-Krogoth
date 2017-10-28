@@ -250,16 +250,18 @@ class GatherDependenciesForModAssetTestAbel(APIView):
                 no_null_keys = dict((k, v) for k, v in serializer.data.items() if v)
                 asJSON = json.dumps(no_null_keys, indent=4, sort_keys=True)
                 asTDF = self.convertJsonToFeatureTDF(asJSON)
-                # print('FeatureTDF: \033[36m')
-                # print(json.dumps(no_null_keys, indent=4, sort_keys=True))
-                # print('\033[0m')
-                # print(asTDF)
-                new_feature_tdf_document['name'] = unit_fbi_queryset.corpse
+                print('FeatureTDF: \033[36m')
+                print(json.dumps(no_null_keys, indent=4, sort_keys=True))
+                print('\033[0m')
+                print(asTDF)
+                new_feature_tdf_document['name'] = unit_fbi_queryset.Corpse
                 new_feature_tdf_document['text_body'] += asTDF + '\n'
-            except:
+            except Exception as inst:
                 print('\033[31m')
                 print('FEATURE TDF FAILED ! ! !\n')
                 print(feature)
+                print('')
+                print(inst)
                 print('\033[0m\n')
 
         
@@ -358,9 +360,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             print(bcolors.green)
             print('features')
             print(bcolors.ENDC)
-            print(bcolors.orange)
-            print(asset['features'])
-            print(bcolors.ENDC)
+
             print(bcolors.green)
             print('downloads')
             print(bcolors.ENDC)
@@ -412,25 +412,56 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             
             # generate unit fbi:
             ufbiOut = pathToModPublish + '/units/' + asset['units']['name'] + '.fbi'
+            print(bcolors.orange)
+            print('SAVING FBI...')
+            print(bcolors.ENDC)
             fileoutput_fbi = open(ufbiOut, 'w', errors='replace')
             fileoutput_fbi.write(asset['units']['text_body'])
             fileoutput_fbi.close()
+            print(bcolors.green)
+            print('FBI SAVED SUCCESSFULLY')
+            print(ufbiOut)
+            print(bcolors.ENDC)
 
             # generate weapon tdf:
             wtdfOut = pathToModPublish + '/weapons/' + asset['weapons']['name'] + '.tdf'
+            print(bcolors.orange)
+            print('SAVING WEAPON TDF...')
+            print(bcolors.ENDC)
             fileoutput_tdf1 = open(wtdfOut, 'w', errors='replace')
             fileoutput_tdf1.write(asset['weapons']['text_body'])
             fileoutput_tdf1.close()
+            print(bcolors.green)
+            print('WEAPON TDF SAVED SUCCESSFULLY')
+            print(wtdfOut)
+            print(bcolors.ENDC)
             # generate download tdf:
             dtdfOut = pathToModPublish + '/download/' + asset['downloads']['name'] + '.tdf'
+            print(bcolors.orange)
+            print('SAVING DOWNLOAD TDF...')
+            print(bcolors.ENDC)
             fileoutput_tdf2 = open(dtdfOut, 'w', errors='replace')
             fileoutput_tdf2.write(asset['downloads']['text_body'])
             fileoutput_tdf2.close()
+            print(bcolors.green)
+            print('DOWNLOAD TDF SAVED SUCCESSFULLY')
+            print(dtdfOut)
+            print(bcolors.ENDC)
             # generate feature tdf:
-            ftdfOut = pathToModPublish + '/features/' + asset['features']['name'] + '.tdf'
+            ftdfOut = pathToModPublish + '/features/corpses/' + asset['features']['name'] + '.tdf'
+            print(bcolors.orange)
+            print('SAVING FEATURE TDF...')
+            print(bcolors.ENDC)
+            print(bcolors.OKBLUE)
+            print(asset['features'])
+            print(bcolors.ENDC)
             fileoutput_tdf3 = open(ftdfOut, 'w', errors='replace')
             fileoutput_tdf3.write(asset['features']['text_body'])
             fileoutput_tdf3.close()
+            print(bcolors.green)
+            print('FEATURE TDF SAVED SUCCESSFULLY')
+            print(ftdfOut)
+            print(bcolors.ENDC)
 
 
 
