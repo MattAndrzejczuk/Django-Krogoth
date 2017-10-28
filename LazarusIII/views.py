@@ -258,6 +258,28 @@ class DependenciesForUnitFBI(APIView):
         self.txtOutput += self.ENDPRINT
         print(bcolors.red + key + bcolors.ENDC + bcolors.lightgreen + str(val) + bcolors.ENDC)
 
+    def printredkeyyellowvalue(self, key, val):
+        self.txtOutput += '<span class="' + self.HTML_RED + '">'
+        self.txtOutput += str(key)
+        self.txtOutput += '</span>'
+
+        self.txtOutput += '<span class="' + self.HTML_ORANGE + '">'
+        self.txtOutput += str(val)
+        self.txtOutput += '</span>'
+        self.txtOutput += self.ENDPRINT
+        print(bcolors.red + key + bcolors.ENDC + bcolors.lightgreen + str(val) + bcolors.ENDC)
+
+    def printredkeypurplevalue(self, key, val):
+        self.txtOutput += '<span class="' + self.HTML_RED + '">'
+        self.txtOutput += str(key)
+        self.txtOutput += '</span>'
+
+        self.txtOutput += '<span class="' + self.HTML_PURPLE + '">'
+        self.txtOutput += str(val)
+        self.txtOutput += '</span>'
+        self.txtOutput += self.ENDPRINT
+        print(bcolors.red + key + bcolors.ENDC + bcolors.lightgreen + str(val) + bcolors.ENDC)
+
     def printyellowkeybluevalue(self, key, val):
         self.txtOutput += '<span class="' + self.HTML_YELLOW + '">'
         self.txtOutput += str(key)
@@ -452,6 +474,9 @@ class DependenciesForUnitFBI(APIView):
         weapon2FromSQL = []
         weapon3FromSQL = []
 
+        # Weapon 3DO File Paths:
+        weapon3DOFilePaths = []
+
         # All sound data related to TA unit with uid
         sound_assets_evaluation = []
 
@@ -617,8 +642,37 @@ class DependenciesForUnitFBI(APIView):
             if os.path.exists(pathToWeaponsDir):
                 allWeaponTDFFiles = os.listdir(pathToWeaponsDir)
             self.printkeywithvalue('║ allWeaponTDFFiles ', str(allWeaponTDFFiles))
+
+            self.printred('║ Gathering 3rd party weapon models, if they exist.')
+            self.printred('║ missing weapon models result in a crash.')
+            self.printred('║ This portion of the dependency scanner is incomplete,')
+            self.printred('║ it can only verify 3rd party models, it will not check yet for Cavedog models.')
             for tdfFile in allWeaponTDFFiles:
-                weaponTDF = WeaponTDFFetch().get(path_without_fbi + '/weapons/' + tdfFile)
+                try:
+                    weaponTDF = WeaponTDFFetch().get(path_without_fbi + '/weapons/' + tdfFile)
+                    self.printredkeybluevalue('║ Converting TDF to JSON... ', '/weapons/' + tdfFile)
+                    weapon3doPath = path_without_fbi + '/objects3d/' + weaponTDF[0]['model'] + '.3do'
+                    self.printredkeyyellowvalue('║ Weapon Model Expected by TDF: ', weaponTDF[0]['model'])
+                    self.printredkeybluevalue('║ Weapon Model Path: ', weapon3doPath)
+                    self.printred('║ ')
+                    modelExists = False
+                    if os.path.exists(weapon3doPath) == True:
+                        modelExists = True
+                        weapon3doWrapper = {}
+                        weapon3doWrapper['path'] = weapon3doPath
+                        weapon3DOFilePaths.append(weapon3doWrapper)
+                        self.printredkeygreenvalue('║ Model File Detected: ', ' SUCCESS ' + weaponTDF[0]['name'] + ' verified.')
+                    else:
+                        self.printredkeyyellowvalue('║ Model File Detected: ', ' NOT FOUND: ' + weapon3doPath)
+
+                    if modelExists == True:
+                        self.printredkeybluevalue('║ ', weapon3doPath + ' Saved Successfully.')
+                    else:
+                        self.printredkeypurplevalue('║ Warning: ', ' 3do file not found: ' + weaponTDF[0]['model'])
+                        self.printredkeypurplevalue('║ ', 'If this is a CaveDog model, this warning can be ignored.')
+                except:
+                    self.printredkeyyellowvalue('║ FATAL ERROR: ', ' Failed to fetch WeaponTDF from SQL.')
+
             weapon1FromSQL = WeaponTDF.objects.filter(_OBJECT_KEY_NAME__icontains=FBIKey_Weapon1)
             weapon2FromSQL = WeaponTDF.objects.filter(_OBJECT_KEY_NAME__icontains=FBIKey_Weapon2)
             weapon3FromSQL = WeaponTDF.objects.filter(_OBJECT_KEY_NAME__icontains=FBIKey_Weapon3)
@@ -906,7 +960,8 @@ class DependenciesForUnitFBI(APIView):
                                                   model_schema='file.3do',
                                                   asset_id=newLazarusModAsset.id)
             newDependency2.save()
-            self.printyellow_orange_teal('Saved: ', 'objects3d', fbiUnitClone.Name)
+
+            self.printyellow_orange_teal('Saved: ', 'objects3d (unit)', fbiUnitClone.Name)
             newDependency3 = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                   type='anims',
                                                   system_path=SYSPATH_animGAF,
@@ -914,6 +969,18 @@ class DependenciesForUnitFBI(APIView):
                                                   model_schema='file.gaf',
                                                   asset_id=newLazarusModAsset.id)
             newDependency3.save()
+            self.printyellow_orange_teal('Saved: ', 'unitpic', fbiUnitClone.Name)
+
+            for weapon3DO in weapon3DOFilePaths:
+                newDependencyWeapon = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id) + '-Weapon',
+                                                           type='objects3d',
+                                                           system_path=weapon3DO['path'],
+                                                           model_id=fbiUnitClone.id,
+                                                           model_schema='file.3do',
+                                                           asset_id=newLazarusModAsset.id)
+                newDependencyWeapon.save()
+                self.printyellow_orange_teal('Saved: ', 'objects3d (weapon)', fbiUnitClone.Name)
+
             self.printyellow_orange_teal('Saved: ', 'anims', fbiUnitClone.Name)
             newDependency4 = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                   type='scripts',
