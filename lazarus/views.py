@@ -518,9 +518,9 @@ class FeatureTDFFetch():
         rmv_tabs_n_spaces1 = rmv_tabs_n_spaces0.replace('\n', '').strip()
         _tdf_prep = rmv_tabs_n_spaces1.replace(' ', '').replace('} [', '}|[').replace('}[', '}|[')
 
-        print('TDF PREPPED AND READY FOR JSONIFYING: ')
-        print(_tdf_prep)
-        print('______________________________________')
+        # print('TDF PREPPED AND READY FOR JSONIFYING: ')
+        # print(_tdf_prep)
+        # print('______________________________________')
 
         split_tdf = _tdf_prep.split('|')
 
@@ -537,8 +537,8 @@ class FeatureTDFFetch():
             dictionary['Object_Name'] = nested_type
             dict_list.append(dictionary)
 
-        print('JSON DUMPS: ')
-        print(json.dumps(dict_list))
+        # print('JSON DUMPS: ')
+        # print(json.dumps(dict_list))
 
         arrayOfNewFeatures = []
         ##### SAVE TO SQL:
@@ -699,7 +699,7 @@ class FeatureTDFFetch():
                 new_feature._OBJECT_KEY_NAME = _object_key_name
                 new_feature.save()
                 status_code = status.HTTP_201_CREATED
-                print('NEW FEATURE TDF SAVED SUCCESSFULLY !')
+                # print('NEW FEATURE TDF SAVED SUCCESSFULLY !')
             except Exception as inst:
                 print('FATAL ERROR: TDF FAILED TO SAVE.')
                 print(inst)

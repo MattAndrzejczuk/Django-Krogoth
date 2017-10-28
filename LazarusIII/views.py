@@ -1009,11 +1009,6 @@ class DependenciesForUnitFBI(APIView):
                                                       model_schema='FeatureTDF',
                                                       asset_id=newLazarusModAsset.id)
                 newDependency6.save()
-                print('fbiUnitClone.Corpse: ' + fbiUnitClone.Corpse)
-                print('fetched corpse: ')
-                print(corpse)
-                print('corpse[0]: ')
-                print(corpse[0])
                 self.printyellow_orange_teal('Saved: ', 'corpse_TDF', corpse[0].id)
             try:
                 ## NOT VERY EFFICIENT HACK FOR GRABING THE DOWNLOAD TDF FROM SQL:
