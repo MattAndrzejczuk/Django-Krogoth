@@ -180,7 +180,7 @@ class FeatureTDF(models.Model):
     indestructible = models.PositiveSmallIntegerField(null=True, blank=True)
     metal = models.IntegerField(default=250, null=True, blank=True)
     nodisplayinfo = models.PositiveSmallIntegerField(null=True, blank=True)
-    _object = models.CharField(max_length=135, null=True, blank=True, unique=True)
+    _object = models.CharField(max_length=135, null=True, blank=True)
     permanent = models.PositiveSmallIntegerField(null=True, blank=True)
     reclaimable = models.BooleanField(default=True)
     reproduce = models.PositiveSmallIntegerField(null=True, blank=True)

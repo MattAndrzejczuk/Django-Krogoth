@@ -999,6 +999,8 @@ class DependenciesForUnitFBI(APIView):
             newDependency5.save()
             self.printyellow_orange_teal('Saved: ', 'objects3d.corpse', fbiUnitClone.Name)
             if os.path.isfile(SYSPATH_TDCrpse):
+                print('SYSPATH_TDCrpse: ' + SYSPATH_TDCrpse)
+
                 corpse = FeatureTDFFetch().get(SYSPATH_TDCrpse, fbiUnitClone.Corpse)
                 newDependency6 = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
                                                       type='corpse_TDF',
@@ -1007,7 +1009,12 @@ class DependenciesForUnitFBI(APIView):
                                                       model_schema='FeatureTDF',
                                                       asset_id=newLazarusModAsset.id)
                 newDependency6.save()
-                self.printyellow_orange_teal('Saved: ', 'corpse_TDF', fbiUnitClone.Name)
+                print('fbiUnitClone.Corpse: ' + fbiUnitClone.Corpse)
+                print('fetched corpse: ')
+                print(corpse)
+                print('corpse[0]: ')
+                print(corpse[0])
+                self.printyellow_orange_teal('Saved: ', 'corpse_TDF', corpse[0].id)
             try:
                 ## NOT VERY EFFICIENT HACK FOR GRABING THE DOWNLOAD TDF FROM SQL:
                 tdfs = DownloadTDF.objects.filter(_DEV_root_data_path=unit_download_path)

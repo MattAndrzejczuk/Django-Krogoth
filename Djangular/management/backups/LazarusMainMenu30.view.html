@@ -192,7 +192,17 @@
         </section>
 
     </md-card>
-
+	<br><br><br><br>
+	<md-card class="glass_bg" layout="column" style="color:white;">
+		Mod Publisher Download Will Go Here.
+		
+		<md-button class="md-hover-button-amber-dark-bg" ng-click="vm.requestModDownloadUrl()">
+					Request Download Url
+		</md-button>
+		
+		<b>{{ vm.modDownloadUrl }}</b>
+	</md-card>
+	<br><br><br><br>
     <md-card class="glass_bg" layout="column">
         <h1 class="md-background-fg md-hue-3">BUILDS</h1>
 		<!-- GRID LIST -->
@@ -252,6 +262,7 @@
 		</md-grid-list>
 		<!-- /END GRID LIST -->
     </md-card>
+
 </section>
 
 

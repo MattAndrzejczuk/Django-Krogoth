@@ -36,7 +36,8 @@
             info: "Release"
         };
 
-
+        vm.modDownloadUrl = 'MUST PUBLISH FIRST';
+        vm.requestModDownloadUrl = requestModDownloadUrl;
 
         /// 
         vm.totalUnits = 0;
@@ -52,6 +53,18 @@
         });
         /// 
 
+        function requestModDownloadUrl() {
+
+            $http({
+                method: 'GET',
+                url: '/LazarusPublisherTest/GatherDependenciesForModAssetTestAbel/'
+            }).then(function successCallback(response) {
+                vm.modDownloadUrl = response.data;
+            }, function errorCallback(response) {
+
+            });
+
+        }
 
 
         function buildGridModel_ModArt(tileTmpl, totalTiles) {

@@ -258,8 +258,9 @@ class GatherDependenciesForModAssetTestAbel(APIView):
                 new_feature_tdf_document['text_body'] += asTDF + '\n'
             except:
                 print('\033[31m')
-                print('FEATURE TDF FAILED ! ! !')
-                print('\033[0m')
+                print('FEATURE TDF FAILED ! ! !\n')
+                print(feature)
+                print('\033[0m\n')
 
         
         serializer = UnitFbiDataSerializer_v2(unit_fbi_queryset)
@@ -437,6 +438,7 @@ class GatherDependenciesForModAssetTestAbel(APIView):
         # cp model.3do /usr/src/persistent/media/ta_data/ArmPrime_1.0_Arm_GorGant/objects3d/
 
             print('Copying uneditable dependencies... ')
+            print(asset)
             # I have no clue how in the hell this isnt crashing...
             # asset here is undefined...
             for model in asset['objects3d']:
@@ -524,29 +526,55 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             return Response('Critical Error, couldn\'t find the selected mod for user making this request.')
 
         if not os.path.exists(artists_output_path_for_all_mods):
-            print("Creating Root Mod Build Directory:")
-            print(mod_build_path)
-            os.makedirs(mod_build_path)
-            total_builds = 0
-            new_mod_build_path = mod_build_path + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
-            safe_mod_build_path = new_mod_build_path.replace(' ', '_').replace('#', '_').replace('!', '_')
-            os.makedirs(safe_mod_build_path)
-            print('\nPath for new mod build created: ' + new_mod_build_path)
-            # TODO: Now, copy all files to this directory!
-            link = self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
-            return Response(link)
+            if not os.path.exists(mod_build_path):
+                print("Creating Root Mod Build Directory:")
+                print(mod_build_path)
+                os.makedirs(mod_build_path)
+                total_builds = 0
+                new_mod_build_path = mod_build_path + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
+                safe_mod_build_path = new_mod_build_path.replace(' ', '_').replace('#', '_').replace('!', '_')
+                os.makedirs(safe_mod_build_path)
+                print('\nPath for new mod build created: ' + new_mod_build_path)
+                # TODO: Now, copy all files to this directory!
+                link = self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
+                return Response(link)
+            else:
+                print(mod_build_path + " already exists, \nTotal Builds For:")
+                print(mod_build_path)
+                total_builds = len(os.listdir(mod_build_path))
+                print(total_builds)
+                new_mod_build_path = mod_build_path + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
+                safe_mod_build_path = new_mod_build_path.replace(' ', '_').replace('#', '_').replace('!', '_')
+                os.makedirs(safe_mod_build_path)
+                print('\nPath for new mod build created: ' + new_mod_build_path)
+                # TODO: Now, copy all files to this directory!
+                link = self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
+                return Response(link)
         else:
-            print(mod_build_path + " already exists, \nTotal Builds For:")
-            print(mod_build_path)
-            total_builds = len(os.listdir(mod_build_path))
-            print(total_builds)
-            new_mod_build_path = mod_build_path + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
-            safe_mod_build_path = new_mod_build_path.replace(' ', '_').replace('#', '_').replace('!', '_')
-            os.makedirs(safe_mod_build_path)
-            print('\nPath for new mod build created: ' + new_mod_build_path)
-            # TODO: Now, copy all files to this directory!
-            link = self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
-            return Response(link)
+            if not os.path.exists(mod_build_path):
+                print("Creating Root Mod Build Directory:")
+                print(mod_build_path)
+                os.makedirs(mod_build_path)
+                total_builds = 0
+                new_mod_build_path = mod_build_path + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
+                safe_mod_build_path = new_mod_build_path.replace(' ', '_').replace('#', '_').replace('!', '_')
+                os.makedirs(safe_mod_build_path)
+                print('\nPath for new mod build created: ' + new_mod_build_path)
+                # TODO: Now, copy all files to this directory!
+                link = self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
+                return Response(link)
+            else:
+                print(artists_output_path_for_all_mods + " for artist already exists, \nTotal Builds For:")
+                print(mod_build_path)
+                total_builds = len(os.listdir(mod_build_path))
+                print(total_builds)
+                new_mod_build_path = mod_build_path + '/' + artists_selected_mod_name + '_v1.' + str(total_builds)
+                safe_mod_build_path = new_mod_build_path.replace(' ', '_').replace('#', '_').replace('!', '_')
+                os.makedirs(safe_mod_build_path)
+                print('\nPath for new mod build created: ' + new_mod_build_path)
+                # TODO: Now, copy all files to this directory!
+                link = self.copyFilesToPublishModBuildDestination(new_mod_build_path, data_of_units)
+                return Response(link)
         return Response(data_of_units)
 
 

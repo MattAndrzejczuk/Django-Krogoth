@@ -310,9 +310,22 @@
         }
 
         function showAdvancedDialog(ev, title, file_type, mod_path) {
+
+            var fbiSpawner = '/dynamic_lazarus_page/OpenTADataFile/?type=' +
+                file_type +
+                '&title=' +
+                title +
+                '&encoded_path=' +
+                mod_path.replace('/LazarusII/UnitFBIViewset/?encoded_path=', '');
+
+            $log.info('- - - - - - - - - - - - - - - - - - - - - - - - - -');
+            $log.log('Generate Unit FBI in SQL using GET: ');
+            $log.debug(fbiSpawner);
+            $log.info('- - - - - - - - - - - - - - - - - - - - - - - - - -');
+
             $mdDialog.show({
                     controller: DialogController,
-                    templateUrl: '/dynamic_lazarus_page/OpenTADataFile/?type=' + file_type + '&title=' + title + '&encoded_path=' + mod_path.replace('/LazarusII/UnitFBIViewset/?encoded_path=', ''),
+                    templateUrl: fbiSpawner,
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose: true,
