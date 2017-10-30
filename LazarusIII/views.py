@@ -476,6 +476,7 @@ class DependenciesForUnitFBI(APIView):
 
         # Weapon 3DO File Paths:
         weapon3DOFilePaths = []
+        weaponGafs = []
 
         # All sound data related to TA unit with uid
         sound_assets_evaluation = []
@@ -643,18 +644,42 @@ class DependenciesForUnitFBI(APIView):
                 allWeaponTDFFiles = os.listdir(pathToWeaponsDir)
             self.printkeywithvalue('║ allWeaponTDFFiles ', str(allWeaponTDFFiles))
 
+            self.printred('║ ')
             self.printred('║ Gathering 3rd party weapon models, if they exist.')
-            self.printred('║ missing weapon models result in a crash.')
-            self.printred('║ This portion of the dependency scanner is incomplete,')
-            self.printred('║ it can only verify 3rd party models, it will not check yet for Cavedog models.')
+            # self.printred('║ missing weapon models result in a crash.')
+            # self.printred('║ This portion of the dependency scanner is incomplete,')
+            # self.printred('║ it can only verify 3rd party models, it will not check yet for Cavedog models.')
             for tdfFile in allWeaponTDFFiles:
                 try:
                     weaponTDF = WeaponTDFFetch().get(path_without_fbi + '/weapons/' + tdfFile)
                     self.printredkeybluevalue('║ Converting TDF to JSON... ', '/weapons/' + tdfFile)
+
+
                     weapon3doPath = path_without_fbi + '/objects3d/' + weaponTDF[0]['model'] + '.3do'
                     self.printredkeyyellowvalue('║ Weapon Model Expected by TDF: ', weaponTDF[0]['model'])
                     self.printredkeybluevalue('║ Weapon Model Path: ', weapon3doPath)
-                    self.printred('║ ')
+
+                    self.printredkeyyellowvalue('║ Explosion GAF: ', weaponTDF[0]['explosiongaf'])
+                    self.printredkeyyellowvalue('║ Lava GAF: ', weaponTDF[0]['lavaexplosiongaf'])
+                    self.printredkeyyellowvalue('║ Water GAF: ', weaponTDF[0]['waterexplosiongaf'])
+
+                    # CHECK FOR 3RD PARTY GAFs:
+                    xplosion_ = path_without_fbi + '/anims/' + weaponTDF[0]['explosiongaf'] + '.gaf'
+                    xplosion_water = path_without_fbi + '/anims/' + weaponTDF[0]['waterexplosiongaf'] + '.gaf'
+                    xplosion_lava = path_without_fbi + '/anims/' + weaponTDF[0]['lavaexplosiongaf'] + '.gaf'
+
+                    if os.path.exists(xplosion_):
+                        weaponGafs.append(xplosion_)
+                        self.printredkeygreenvalue('║ 3rd Party GAF detected: ', xplosion_)
+
+                    if os.path.exists(xplosion_water):
+                        weaponGafs.append(xplosion_water)
+                        self.printredkeygreenvalue('║ 3rd Party GAF detected: ', xplosion_water)
+
+                    if os.path.exists(xplosion_lava):
+                        weaponGafs.append(xplosion_lava)
+                        self.printredkeygreenvalue('║ 3rd Party GAF detected: ', xplosion_lava)
+
                     modelExists = False
                     if os.path.exists(weapon3doPath) == True:
                         modelExists = True
@@ -971,6 +996,16 @@ class DependenciesForUnitFBI(APIView):
             newDependency3.save()
             self.printyellow_orange_teal('Saved: ', 'unitpic', fbiUnitClone.Name)
 
+            for gaf in weaponGafs:
+                newDependencyGaf = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id),
+                                                        type='anims',
+                                                        system_path=gaf,
+                                                        model_id=fbiUnitClone.id,
+                                                        model_schema='file.gaf',
+                                                        asset_id=newLazarusModAsset.id)
+                newDependencyGaf.save()
+                self.printyellow_orange_teal('Saved: ', 'GAF (weapon): ', gaf)
+
             for weapon3DO in weapon3DOFilePaths:
                 newDependencyWeapon = LazarusModDependency(name=uid + '_' + str(fbiUnitClone.id) + '-Weapon',
                                                            type='objects3d',
@@ -1082,6 +1117,8 @@ class DependenciesForUnitFBI(APIView):
                                                   asset_id=newLazarusModAsset.id)
                 newSoundDp.save()
                 self.printredkeygreenvalue('Saved .WAV File: ', sound)
+
+
 
 
 
