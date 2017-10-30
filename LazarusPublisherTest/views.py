@@ -415,6 +415,9 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             print(bcolors.orange)
             print('SAVING FBI...')
             print(bcolors.ENDC)
+            print(bcolors.OKBLUE)
+            print(asset['units'])
+            print(bcolors.ENDC)
             fileoutput_fbi = open(ufbiOut, 'w', errors='replace')
             fileoutput_fbi.write(asset['units']['text_body'])
             fileoutput_fbi.close()
@@ -424,9 +427,12 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             print(bcolors.ENDC)
 
             # generate weapon tdf:
-            wtdfOut = pathToModPublish + '/weapons/' + asset['weapons']['name'] + '.tdf'
+            wtdfOut = pathToModPublish + '/weapons/' + asset['weapons']['name'] + '_weapons.tdf'
             print(bcolors.orange)
             print('SAVING WEAPON TDF...')
+            print(bcolors.ENDC)
+            print(bcolors.OKBLUE)
+            print(asset['weapons'])
             print(bcolors.ENDC)
             fileoutput_tdf1 = open(wtdfOut, 'w', errors='replace')
             fileoutput_tdf1.write(asset['weapons']['text_body'])
@@ -439,6 +445,9 @@ class GatherDependenciesForModAssetTestAbel(APIView):
             dtdfOut = pathToModPublish + '/download/' + asset['downloads']['name'] + '.tdf'
             print(bcolors.orange)
             print('SAVING DOWNLOAD TDF...')
+            print(bcolors.ENDC)
+            print(bcolors.OKBLUE)
+            print(asset['downloads'])
             print(bcolors.ENDC)
             fileoutput_tdf2 = open(dtdfOut, 'w', errors='replace')
             fileoutput_tdf2.write(asset['downloads']['text_body'])
