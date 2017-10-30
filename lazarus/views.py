@@ -153,12 +153,17 @@ class WeaponTDFFetch():
             dictionary[getNestedType(tdf_without_comments1)] = json.loads(
                 parseBase(nested_obj, getNestedType(tdf_without_comments1)).replace('", "   }', '"}'))
             dictionary['_REFERENCE_POINTER'] = baseobjectkeyname
+            weaponSnowflake = str(uuid.uuid4()).upper()
+            dictionary['_SNOWFLAKE'] = weaponSnowflake
             dict_list.append(dictionary)
             new_weapon_tdf = WeaponTDF()
+            new_weapon_tdf._SNOWFLAKE = weaponSnowflake
+            print('\n\n\n\nNEW WEAPON WITH SNOWFLAKE SAVED: ' + weaponSnowflake + ' \n\n\n\n')
+
             new_weapon_tdf._DEV_root_data_path = file_path
             try:
                 new_weapon_tdf._OBJECT_KEY_NAME = baseobjectkeyname
-                new_weapon_tdf._Lazarus_Identifier = baseobjectkeyname + '_' + dictionary['ID']
+                new_weapon_tdf._Lazarus_Identifier = weaponSnowflake
             except:
                 pass
             try:
@@ -455,7 +460,7 @@ class WeaponTDFFetch():
                 pass
 
             try:
-                new_weapon_tdf._SNOWFLAKE = str(uuid.uuid4())
+
                 new_weapon_tdf.save()
                 list_dmg = []
                 for key, value in dictionary['DAMAGE'].items():
@@ -466,8 +471,16 @@ class WeaponTDFFetch():
                 for dmg in list_dmg:
                     new_weapon_tdf.damage.add(dmg)
                 new_weapon_tdf.save()
-            except:
-                pass
+                print('\n\n\n\n\nWeaponTDF Saved Successfully: ')
+                print(new_weapon_tdf)
+            except Exception as inst:
+                print(bcolors.red + 'FATAL ERROR' + bcolors.ENDC)
+                print(bcolors.lightred + 'Could not save WeaponTDF to SQL: ' + bcolors.ENDC)
+                print(bcolors.orange + weaponSnowflake + bcolors.ENDC)
+                print(bcolors.purple)
+                print(inst)
+                print(bcolors.ENDC)
+                # pass
                 # print(bcolors.darkgrey + 'Skipping Add TDF Weapon To SQL' + bcolors.ENDC)
                 # return (dict_list)
 

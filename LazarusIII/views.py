@@ -659,14 +659,17 @@ class DependenciesForUnitFBI(APIView):
                     self.printred('║ Total weapons detected in this TDF file: ' + str(len(weaponTDF)))
                     print(json.dumps(weaponTDF, indent=2, sort_keys=True))
 
+                    print('FBIKey_Weapon1                      :  ' + FBIKey_Weapon1.upper())
+                    print("weaponTDF[0]['_REFERENCE_POINTER']  :  " + weaponTDF[0]['_REFERENCE_POINTER'].upper())
+
                     # IDENTIFY WEAPONS BY USING SNOWFLAKES:
-                    if weaponTDF[0]['_OBJECT_KEY_NAME'] == FBIKey_Weapon1:
+                    if weaponTDF[0]['_REFERENCE_POINTER'].upper() == FBIKey_Weapon1.upper():
                         weapon1Snowflake = weaponTDF[0]['_SNOWFLAKE']
                         self.printredkeypurplevalue('║ Detected Weapon1 Snowflake: ', weapon1Snowflake)
-                    elif weaponTDF[0]['_OBJECT_KEY_NAME'] == FBIKey_Weapon2:
+                    elif weaponTDF[0]['_REFERENCE_POINTER'].upper() == FBIKey_Weapon2.upper():
                         weapon1Snowflake = weaponTDF[0]['_SNOWFLAKE']
                         self.printredkeypurplevalue('║ Detected Weapon2 Snowflake: ', weapon1Snowflake)
-                    elif weaponTDF[0]['_OBJECT_KEY_NAME'] == FBIKey_Weapon3:
+                    elif weaponTDF[0]['_REFERENCE_POINTER'].upper() == FBIKey_Weapon3.upper():
                         weapon1Snowflake = weaponTDF[0]['_SNOWFLAKE']
                         self.printredkeypurplevalue('║ Detected Weapon2 Snowflake: ', weapon1Snowflake)
 
@@ -714,9 +717,9 @@ class DependenciesForUnitFBI(APIView):
                     self.printredkeyyellowvalue('║ FATAL ERROR: ', ' Failed to fetch WeaponTDF from SQL.')
                     self.printorange(inst)
 
-            weapon1FromSQL = WeaponTDF.objects.filter(_OBJECT_KEY_NAME__icontains=FBIKey_Weapon1)
-            weapon2FromSQL = WeaponTDF.objects.filter(_OBJECT_KEY_NAME__icontains=FBIKey_Weapon2)
-            weapon3FromSQL = WeaponTDF.objects.filter(_OBJECT_KEY_NAME__icontains=FBIKey_Weapon3)
+            weapon1FromSQL = WeaponTDF.objects.filter(_SNOWFLAKE=weapon1Snowflake)
+            weapon2FromSQL = WeaponTDF.objects.filter(_SNOWFLAKE=weapon2Snowflake)
+            weapon3FromSQL = WeaponTDF.objects.filter(_SNOWFLAKE=weapon3Snowflake)
             self.printBOOL('║ Is Weapon1 in SQL? ', (len(weapon1FromSQL) > 0))
             # Grab all sound effect keys from Weapon1:
             # self.printredkeygreenvalue('║ soundhit \t-> \t', weapon1FromSQL[0].soundhit)
