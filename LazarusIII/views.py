@@ -470,6 +470,9 @@ class DependenciesForUnitFBI(APIView):
         SYSPATH_scriCOB = ''
 
         # Global Weapons In RAM:
+        weapon1Snowflake = ''
+        weapon2Snowflake = ''
+        weapon3Snowflake = ''
         weapon1FromSQL = []
         weapon2FromSQL = []
         weapon3FromSQL = []
@@ -653,7 +656,19 @@ class DependenciesForUnitFBI(APIView):
                 try:
                     weaponTDF = WeaponTDFFetch().get(path_without_fbi + '/weapons/' + tdfFile)
                     self.printredkeybluevalue('║ Converting TDF to JSON... ', '/weapons/' + tdfFile)
+                    self.printred('║ Total weapons detected in this TDF file: ' + str(len(weaponTDF)))
+                    print(json.dumps(weaponTDF, indent=2, sort_keys=True))
 
+                    # IDENTIFY WEAPONS BY USING SNOWFLAKES:
+                    if weaponTDF[0]['_OBJECT_KEY_NAME'] == FBIKey_Weapon1:
+                        weapon1Snowflake = weaponTDF[0]['_SNOWFLAKE']
+                        self.printredkeypurplevalue('║ Detected Weapon1 Snowflake: ', weapon1Snowflake)
+                    elif weaponTDF[0]['_OBJECT_KEY_NAME'] == FBIKey_Weapon2:
+                        weapon1Snowflake = weaponTDF[0]['_SNOWFLAKE']
+                        self.printredkeypurplevalue('║ Detected Weapon2 Snowflake: ', weapon1Snowflake)
+                    elif weaponTDF[0]['_OBJECT_KEY_NAME'] == FBIKey_Weapon3:
+                        weapon1Snowflake = weaponTDF[0]['_SNOWFLAKE']
+                        self.printredkeypurplevalue('║ Detected Weapon2 Snowflake: ', weapon1Snowflake)
 
                     weapon3doPath = path_without_fbi + '/objects3d/' + weaponTDF[0]['model'] + '.3do'
                     self.printredkeyyellowvalue('║ Weapon Model Expected by TDF: ', weaponTDF[0]['model'])
@@ -695,8 +710,9 @@ class DependenciesForUnitFBI(APIView):
                     else:
                         self.printredkeypurplevalue('║ Warning: ', ' 3do file not found: ' + weaponTDF[0]['model'])
                         self.printredkeypurplevalue('║ ', 'If this is a CaveDog model, this warning can be ignored.')
-                except:
+                except Exception as inst:
                     self.printredkeyyellowvalue('║ FATAL ERROR: ', ' Failed to fetch WeaponTDF from SQL.')
+                    self.printorange(inst)
 
             weapon1FromSQL = WeaponTDF.objects.filter(_OBJECT_KEY_NAME__icontains=FBIKey_Weapon1)
             weapon2FromSQL = WeaponTDF.objects.filter(_OBJECT_KEY_NAME__icontains=FBIKey_Weapon2)

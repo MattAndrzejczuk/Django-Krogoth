@@ -31,7 +31,7 @@ from django.core import serializers
 from LazarusII.FbiData import remove_comments
 from rest_framework import status
 import codecs
-
+import uuid
 # from lazarus.dependency_data_extractor import WeaponTDFFetch, FeatureTDFFetch, DownloadTDFFetch, SoundTDFFetch
 
 
@@ -455,6 +455,7 @@ class WeaponTDFFetch():
                 pass
 
             try:
+                new_weapon_tdf._SNOWFLAKE = str(uuid.uuid4())
                 new_weapon_tdf.save()
                 list_dmg = []
                 for key, value in dictionary['DAMAGE'].items():
