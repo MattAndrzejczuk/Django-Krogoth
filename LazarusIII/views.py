@@ -786,7 +786,6 @@ class DependenciesForUnitFBI(APIView):
             sfx2_key = ' N/A '
             sfx3_key = ' N/A '
             sfx4_key = ' N/A '
-
             if weapon1FromSQL[0].soundhit != None:
                 sfx1_key = str(weapon1FromSQL[0].soundhit).replace('.wav', '')
             if weapon1FromSQL[0].soundstart != None:
@@ -799,7 +798,6 @@ class DependenciesForUnitFBI(APIView):
             sfx2 = SoundSetTDF.objects.filter(_OBJECT_KEY_NAME=sfx2_key)
             sfx3 = SoundSetTDF.objects.filter(_OBJECT_KEY_NAME=sfx3_key)
             sfx4 = SoundSetTDF.objects.filter(_OBJECT_KEY_NAME=sfx4_key)
-
             if sfx1_key != None and sfx1_key != ' N/A ':
                 if os.path.isfile(cavedogsoundspath + sfx1_key + '.wav') > 0:
                     self.print_yellow_purple_green('║ soundhit -> ', sfx1_key, ' Cavedog Asset')
@@ -809,7 +807,6 @@ class DependenciesForUnitFBI(APIView):
                         finalizedSoundPaths.append(sounds_path + sfx1_key.lower() + '.wav')
                     else:
                         self.print_yellow_purple_red('║ soundhit -> ', sfx1_key, '  WARNING : .wav file not found')
-
             if sfx2_key != None and sfx2_key != ' N/A ':
                 if os.path.isfile(cavedogsoundspath + sfx2_key + '.wav') > 0:
                     self.print_yellow_purple_green('║ soundstart -> ', sfx2_key, ' Cavedog Asset')
@@ -819,7 +816,6 @@ class DependenciesForUnitFBI(APIView):
                         finalizedSoundPaths.append(sounds_path + sfx2_key.lower() + '.wav')
                     else:
                         self.print_yellow_purple_red('║ soundhit -> ', sfx2_key, '  WARNING : .wav file not found')
-
             if sfx3_key != None and sfx3_key != ' N/A ':
                 if os.path.isfile(cavedogsoundspath + sfx3_key + '.wav') > 0:
                     self.print_yellow_purple_green('║ soundtrigger -> ', sfx3_key, ' Cavedog Asset')
@@ -829,7 +825,6 @@ class DependenciesForUnitFBI(APIView):
                         finalizedSoundPaths.append(sounds_path + sfx3_key.lower() + '.wav')
                     else:
                         self.print_yellow_purple_red('║ soundhit -> ', sfx3_key, '  WARNING : .wav file not found')
-
             if sfx4_key != None and sfx4_key != ' N/A ':
                 if os.path.isfile(cavedogsoundspath + sfx4_key + '.wav') > 0:
                     self.print_yellow_purple_green('║ soundwater -> ', sfx4_key, ' Cavedog Asset')
@@ -847,6 +842,58 @@ class DependenciesForUnitFBI(APIView):
             self.printyellowkeybluevalue('║  soundstart \t-> \t', weapon2FromSQL[0].soundstart)
             self.printyellowkeybluevalue('║  soundtrigger \t-> \t', weapon2FromSQL[0].soundtrigger)
             self.printyellowkeybluevalue('║  soundwater \t-> \t', weapon2FromSQL[0].soundwater)
+            sfx1_key = ' N/A '
+            sfx2_key = ' N/A '
+            sfx3_key = ' N/A '
+            sfx4_key = ' N/A '
+            if weapon2FromSQL[0].soundhit != None:
+                sfx1_key = str(weapon2FromSQL[0].soundhit).replace('.wav', '')
+            if weapon2FromSQL[0].soundstart != None:
+                sfx2_key = str(weapon2FromSQL[0].soundstart).replace('.wav', '')
+            if weapon2FromSQL[0].soundtrigger != None:
+                sfx3_key = str(weapon2FromSQL[0].soundtrigger).replace('.wav', '')
+            if weapon2FromSQL[0].soundwater != None:
+                sfx4_key = str(weapon2FromSQL[0].soundwater).replace('.wav', '')
+            sfx1 = SoundSetTDF.objects.filter(_OBJECT_KEY_NAME=sfx1_key)
+            sfx2 = SoundSetTDF.objects.filter(_OBJECT_KEY_NAME=sfx2_key)
+            sfx3 = SoundSetTDF.objects.filter(_OBJECT_KEY_NAME=sfx3_key)
+            sfx4 = SoundSetTDF.objects.filter(_OBJECT_KEY_NAME=sfx4_key)
+            if sfx1_key != None and sfx1_key != ' N/A ':
+                if os.path.isfile(cavedogsoundspath + sfx1_key + '.wav') > 0:
+                    self.print_yellow_purple_green('║ soundhit -> ', sfx1_key, ' Cavedog Asset')
+                else:
+                    if (sfx1_key.lower() + '.wav') in allsoundfiles:
+                        self.print_yellow_purple_teal('║ soundhit -> ', sfx1_key, ' Third Party')
+                        finalizedSoundPaths.append(sounds_path + sfx1_key.lower() + '.wav')
+                    else:
+                        self.print_yellow_purple_red('║ soundhit -> ', sfx1_key, '  WARNING : .wav file not found')
+            if sfx2_key != None and sfx2_key != ' N/A ':
+                if os.path.isfile(cavedogsoundspath + sfx2_key + '.wav') > 0:
+                    self.print_yellow_purple_green('║ soundstart -> ', sfx2_key, ' Cavedog Asset')
+                else:
+                    if (sfx2_key.lower() + '.wav') in allsoundfiles:
+                        self.print_yellow_purple_teal('║ soundhit -> ', sfx2_key, ' Third Party')
+                        finalizedSoundPaths.append(sounds_path + sfx2_key.lower() + '.wav')
+                    else:
+                        self.print_yellow_purple_red('║ soundhit -> ', sfx2_key, '  WARNING : .wav file not found')
+            if sfx3_key != None and sfx3_key != ' N/A ':
+                if os.path.isfile(cavedogsoundspath + sfx3_key + '.wav') > 0:
+                    self.print_yellow_purple_green('║ soundtrigger -> ', sfx3_key, ' Cavedog Asset')
+                else:
+                    if (sfx3_key.lower() + '.wav') in allsoundfiles:
+                        self.print_yellow_purple_teal('║ soundhit -> ', sfx3_key, ' Third Party')
+                        finalizedSoundPaths.append(sounds_path + sfx3_key.lower() + '.wav')
+                    else:
+                        self.print_yellow_purple_red('║ soundhit -> ', sfx3_key, '  WARNING : .wav file not found')
+            if sfx4_key != None and sfx4_key != ' N/A ':
+                if os.path.isfile(cavedogsoundspath + sfx4_key + '.wav') > 0:
+                    self.print_yellow_purple_green('║ soundwater -> ', sfx4_key, ' Cavedog Asset')
+                else:
+                    if (sfx4_key.lower() + '.wav') in allsoundfiles:
+                        self.print_yellow_purple_teal('║ soundhit -> ', sfx4_key, ' Third Party')
+                        finalizedSoundPaths.append(sounds_path + sfx4_key.lower() + '.wav')
+                    else:
+                        self.print_yellow_purple_red('║ soundhit -> ', sfx4_key, '  WARNING : .wav file not found')
 
         if len(weapon3FromSQL) > 0:
             # Grab all sound effect keys from Weapon3:
@@ -855,6 +902,58 @@ class DependenciesForUnitFBI(APIView):
             self.printyellowkeybluevalue('║  soundstart \t-> \t', weapon3FromSQL[0].soundstart)
             self.printyellowkeybluevalue('║  soundtrigger \t-> \t', weapon3FromSQL[0].soundtrigger)
             self.printyellowkeybluevalue('║  soundwater \t-> \t', weapon3FromSQL[0].soundwater)
+            sfx1_key = ' N/A '
+            sfx2_key = ' N/A '
+            sfx3_key = ' N/A '
+            sfx4_key = ' N/A '
+            if weapon3FromSQL[0].soundhit != None:
+                sfx1_key = str(weapon3FromSQL[0].soundhit).replace('.wav', '')
+            if weapon3FromSQL[0].soundstart != None:
+                sfx2_key = str(weapon3FromSQL[0].soundstart).replace('.wav', '')
+            if weapon3FromSQL[0].soundtrigger != None:
+                sfx3_key = str(weapon3FromSQL[0].soundtrigger).replace('.wav', '')
+            if weapon3FromSQL[0].soundwater != None:
+                sfx4_key = str(weapon3FromSQL[0].soundwater).replace('.wav', '')
+            sfx1 = SoundSetTDF.objects.filter(_OBJECT_KEY_NAME=sfx1_key)
+            sfx2 = SoundSetTDF.objects.filter(_OBJECT_KEY_NAME=sfx2_key)
+            sfx3 = SoundSetTDF.objects.filter(_OBJECT_KEY_NAME=sfx3_key)
+            sfx4 = SoundSetTDF.objects.filter(_OBJECT_KEY_NAME=sfx4_key)
+            if sfx1_key != None and sfx1_key != ' N/A ':
+                if os.path.isfile(cavedogsoundspath + sfx1_key + '.wav') > 0:
+                    self.print_yellow_purple_green('║ soundhit -> ', sfx1_key, ' Cavedog Asset')
+                else:
+                    if (sfx1_key.lower() + '.wav') in allsoundfiles:
+                        self.print_yellow_purple_teal('║ soundhit -> ', sfx1_key, ' Third Party')
+                        finalizedSoundPaths.append(sounds_path + sfx1_key.lower() + '.wav')
+                    else:
+                        self.print_yellow_purple_red('║ soundhit -> ', sfx1_key, '  WARNING : .wav file not found')
+            if sfx2_key != None and sfx2_key != ' N/A ':
+                if os.path.isfile(cavedogsoundspath + sfx2_key + '.wav') > 0:
+                    self.print_yellow_purple_green('║ soundstart -> ', sfx2_key, ' Cavedog Asset')
+                else:
+                    if (sfx2_key.lower() + '.wav') in allsoundfiles:
+                        self.print_yellow_purple_teal('║ soundhit -> ', sfx2_key, ' Third Party')
+                        finalizedSoundPaths.append(sounds_path + sfx2_key.lower() + '.wav')
+                    else:
+                        self.print_yellow_purple_red('║ soundhit -> ', sfx2_key, '  WARNING : .wav file not found')
+            if sfx3_key != None and sfx3_key != ' N/A ':
+                if os.path.isfile(cavedogsoundspath + sfx3_key + '.wav') > 0:
+                    self.print_yellow_purple_green('║ soundtrigger -> ', sfx3_key, ' Cavedog Asset')
+                else:
+                    if (sfx3_key.lower() + '.wav') in allsoundfiles:
+                        self.print_yellow_purple_teal('║ soundhit -> ', sfx3_key, ' Third Party')
+                        finalizedSoundPaths.append(sounds_path + sfx3_key.lower() + '.wav')
+                    else:
+                        self.print_yellow_purple_red('║ soundhit -> ', sfx3_key, '  WARNING : .wav file not found')
+            if sfx4_key != None and sfx4_key != ' N/A ':
+                if os.path.isfile(cavedogsoundspath + sfx4_key + '.wav') > 0:
+                    self.print_yellow_purple_green('║ soundwater -> ', sfx4_key, ' Cavedog Asset')
+                else:
+                    if (sfx4_key.lower() + '.wav') in allsoundfiles:
+                        self.print_yellow_purple_teal('║ soundhit -> ', sfx4_key, ' Third Party')
+                        finalizedSoundPaths.append(sounds_path + sfx4_key.lower() + '.wav')
+                    else:
+                        self.print_yellow_purple_red('║ soundhit -> ', sfx4_key, '  WARNING : .wav file not found')
 
         self.printyellow_orange_teal('║ all sound files', ' -> ', allsoundfiles)
         self.printorange('╚════════════════════════════════════════════════════════════════')
