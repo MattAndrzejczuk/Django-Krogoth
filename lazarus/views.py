@@ -241,10 +241,18 @@ class WeaponTDFFetch():
             try:
                 new_weapon_tdf.explosionart = int(dictionary['explosionart'])
             except:
+                try:
+                    new_weapon_tdf.explosionart = int(dictionary['Explosionart'])
+                except:
+                    pass
                 pass
             try:
                 new_weapon_tdf.explosiongaf = int(dictionary['explosiongaf'])
             except:
+                try:
+                    new_weapon_tdf.explosionart = int(dictionary['Explosiongaf'])
+                except:
+                    pass
                 pass
             try:
                 new_weapon_tdf.firestarter = int(dictionary['firestarter'])

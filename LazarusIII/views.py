@@ -659,60 +659,78 @@ class DependenciesForUnitFBI(APIView):
                     self.printred('║ Total weapons detected in this TDF file: ' + str(len(weaponTDF)))
                     print(json.dumps(weaponTDF, indent=2, sort_keys=True))
 
-                    print('FBIKey_Weapon1                      :  ' + FBIKey_Weapon1.upper())
-                    print("weaponTDF[0]['_REFERENCE_POINTER']  :  " + weaponTDF[0]['_REFERENCE_POINTER'].upper())
+                    z = 0
 
-                    # IDENTIFY WEAPONS BY USING SNOWFLAKES:
-                    if weaponTDF[0]['_REFERENCE_POINTER'].upper() == FBIKey_Weapon1.upper():
-                        weapon1Snowflake = weaponTDF[0]['_SNOWFLAKE']
-                        self.printredkeypurplevalue('║ Detected Weapon1 Snowflake: ', weapon1Snowflake)
-                    elif weaponTDF[0]['_REFERENCE_POINTER'].upper() == FBIKey_Weapon2.upper():
-                        weapon1Snowflake = weaponTDF[0]['_SNOWFLAKE']
-                        self.printredkeypurplevalue('║ Detected Weapon2 Snowflake: ', weapon1Snowflake)
-                    elif weaponTDF[0]['_REFERENCE_POINTER'].upper() == FBIKey_Weapon3.upper():
-                        weapon1Snowflake = weaponTDF[0]['_SNOWFLAKE']
-                        self.printredkeypurplevalue('║ Detected Weapon2 Snowflake: ', weapon1Snowflake)
+                    while z < len(weaponTDF):
+                        # IDENTIFY WEAPONS BY USING SNOWFLAKES:
+                        print('FBIKey_Weapon' + str(z + 1) + '                      :  ' + FBIKey_Weapon1.upper())
+                        print("weaponTDF[" + str(z) + "]['_REFERENCE_POINTER']  :  " + weaponTDF[z][
+                            '_REFERENCE_POINTER'].upper())
+                        if weaponTDF[z]['_REFERENCE_POINTER'].upper() == FBIKey_Weapon1.upper():
+                            weapon1Snowflake = weaponTDF[z]['_SNOWFLAKE']
+                            self.printredkeypurplevalue('║ Detected Weapon1 Snowflake: ', weapon1Snowflake)
+                        elif weaponTDF[z]['_REFERENCE_POINTER'].upper() == FBIKey_Weapon2.upper():
+                            weapon2Snowflake = weaponTDF[z]['_SNOWFLAKE']
+                            self.printredkeypurplevalue('║ Detected Weapon2 Snowflake: ', weapon2Snowflake)
+                        elif weaponTDF[z]['_REFERENCE_POINTER'].upper() == FBIKey_Weapon3.upper():
+                            weapon3Snowflake = weaponTDF[z]['_SNOWFLAKE']
+                            self.printredkeypurplevalue('║ Detected Weapon3 Snowflake: ', weapon3Snowflake)
 
-                    weapon3doPath = path_without_fbi + '/objects3d/' + weaponTDF[0]['model'] + '.3do'
-                    self.printredkeyyellowvalue('║ Weapon Model Expected by TDF: ', weaponTDF[0]['model'])
-                    self.printredkeybluevalue('║ Weapon Model Path: ', weapon3doPath)
+                        weapon3doPath = 'NOT_FOUND_YET'
+                        try:
+                            weapon3doPath = path_without_fbi + '/objects3d/' + weaponTDF[z]['model'] + '.3do'
+                            self.printredkeyyellowvalue('║ Weapon Model Expected by TDF: ', weaponTDF[z]['model'])
+                            self.printredkeybluevalue('║ Weapon Model Path: ', weapon3doPath)
+                        except:
+                            self.printred('║ Skipping weapon3dopath, no model for this weapon.')
 
-                    self.printredkeyyellowvalue('║ Explosion GAF: ', weaponTDF[0]['explosiongaf'])
-                    self.printredkeyyellowvalue('║ Lava GAF: ', weaponTDF[0]['lavaexplosiongaf'])
-                    self.printredkeyyellowvalue('║ Water GAF: ', weaponTDF[0]['waterexplosiongaf'])
+                        gaf_xplo = 'explosiongaf'
+                        if gaf_xplo not in weaponTDF[z]:
+                            gaf_xplo = 'Explosiongaf'
+                        gaf_water = 'waterexplosiongaf'
+                        if gaf_water not in weaponTDF[z]:
+                            gaf_water = 'Waterexplosiongaf'
+                        gaf_lava = 'lavaexplosiongaf'
+                        if gaf_lava not in weaponTDF[z]:
+                            gaf_lava = 'Lavaexplosiongaf'
 
-                    # CHECK FOR 3RD PARTY GAFs:
-                    xplosion_ = path_without_fbi + '/anims/' + weaponTDF[0]['explosiongaf'] + '.gaf'
-                    xplosion_water = path_without_fbi + '/anims/' + weaponTDF[0]['waterexplosiongaf'] + '.gaf'
-                    xplosion_lava = path_without_fbi + '/anims/' + weaponTDF[0]['lavaexplosiongaf'] + '.gaf'
+                        self.printredkeyyellowvalue('║ Explosion GAF: ', weaponTDF[z][gaf_xplo])
+                        self.printredkeyyellowvalue('║ Lava GAF: ', weaponTDF[z][gaf_lava])
+                        self.printredkeyyellowvalue('║ Water GAF: ', weaponTDF[z][gaf_water])
 
-                    if os.path.exists(xplosion_):
-                        weaponGafs.append(xplosion_)
-                        self.printredkeygreenvalue('║ 3rd Party GAF detected: ', xplosion_)
+                        # CHECK FOR 3RD PARTY GAFs:
+                        xplosion_ = path_without_fbi + '/anims/' + weaponTDF[z][gaf_xplo].lower() + '.gaf'
+                        xplosion_water = path_without_fbi + '/anims/' + weaponTDF[z][gaf_water].lower() + '.gaf'
+                        xplosion_lava = path_without_fbi + '/anims/' + weaponTDF[z][gaf_lava].lower() + '.gaf'
 
-                    if os.path.exists(xplosion_water):
-                        weaponGafs.append(xplosion_water)
-                        self.printredkeygreenvalue('║ 3rd Party GAF detected: ', xplosion_water)
+                        if os.path.exists(xplosion_):
+                            weaponGafs.append(xplosion_)
+                            self.printredkeygreenvalue('║ 3rd Party GAF detected: ', xplosion_)
 
-                    if os.path.exists(xplosion_lava):
-                        weaponGafs.append(xplosion_lava)
-                        self.printredkeygreenvalue('║ 3rd Party GAF detected: ', xplosion_lava)
+                        if os.path.exists(xplosion_water):
+                            weaponGafs.append(xplosion_water)
+                            self.printredkeygreenvalue('║ 3rd Party GAF detected: ', xplosion_water)
 
-                    modelExists = False
-                    if os.path.exists(weapon3doPath) == True:
-                        modelExists = True
-                        weapon3doWrapper = {}
-                        weapon3doWrapper['path'] = weapon3doPath
-                        weapon3DOFilePaths.append(weapon3doWrapper)
-                        self.printredkeygreenvalue('║ Model File Detected: ', ' SUCCESS ' + weaponTDF[0]['name'] + ' verified.')
-                    else:
-                        self.printredkeyyellowvalue('║ Model File Detected: ', ' NOT FOUND: ' + weapon3doPath)
+                        if os.path.exists(xplosion_lava):
+                            weaponGafs.append(xplosion_lava)
+                            self.printredkeygreenvalue('║ 3rd Party GAF detected: ', xplosion_lava)
 
-                    if modelExists == True:
-                        self.printredkeybluevalue('║ ', weapon3doPath + ' Saved Successfully.')
-                    else:
-                        self.printredkeypurplevalue('║ Warning: ', ' 3do file not found: ' + weaponTDF[0]['model'])
-                        self.printredkeypurplevalue('║ ', 'If this is a CaveDog model, this warning can be ignored.')
+                        modelExists = False
+                        if os.path.exists(weapon3doPath) == True:
+                            modelExists = True
+                            weapon3doWrapper = {}
+                            weapon3doWrapper['path'] = weapon3doPath
+                            weapon3DOFilePaths.append(weapon3doWrapper)
+                            self.printredkeygreenvalue('║ Model File Detected: ', ' SUCCESS ' + weaponTDF[z]['name'] + ' verified.')
+                        else:
+                            self.printredkeyyellowvalue('║ Model File Detected: ', ' NOT FOUND: ' + weapon3doPath)
+
+                        if modelExists == True:
+                            self.printredkeybluevalue('║ ', weapon3doPath + ' Saved Successfully.')
+                        z += 1
+                    # else:
+                    #     self.printredkeypurplevalue('║ Warning: ', ' 3do file not found: ')
+                    #     self.printredkeypurplevalue('║ ', 'If this is a CaveDog model, this warning can be ignored.')
                 except Exception as inst:
                     self.printredkeyyellowvalue('║ FATAL ERROR: ', ' Failed to fetch WeaponTDF from SQL.')
                     self.printorange(inst)
