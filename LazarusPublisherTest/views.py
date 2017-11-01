@@ -9,6 +9,7 @@ from chat.models import JawnUser
 
 import json
 import os
+import re
 
 from LazarusII.serializers import *
 from LazarusII.models import *
@@ -52,6 +53,141 @@ class ListDependenciesForAsset(APIView):
         print('\n\nListDependenciesForAsset\n')
 
 
+
+class PhaseOneReclaim(APIView):
+    def remove_comments(self, string):
+        pattern = r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)"
+        # first group captures quoted strings (double or single)
+        # second group captures comments (//single-line or /* multi-line */)
+        regex = re.compile(pattern, re.MULTILINE | re.DOTALL)
+
+        def _replacer(match):
+            # if the 2nd group (capturing comments) is not None,
+            # it means we have captured a non-quoted (real) comment string.
+            if match.group(2) is not None:
+                return ""  # so we will return empty to remove the comment
+            else:  # otherwise, we will return the 1st group
+                return match.group(1)  # captured quoted-string
+
+        return regex.sub(_replacer, string)
+
+
+    def cleanTdf(self, tdfPath):
+        # print(bcolors.OKBLUE)
+        file_contents = open(tdfPath, 'r', errors='replace')
+        rawFbi = file_contents.read()
+        # print(rawFbi)
+        fbi_dump = self.remove_comments(rawFbi)
+        # print('- - - - - - - - -')
+        parse_01 = fbi_dump.replace('\n', '')
+        parse_02 = parse_01.replace('\t', '').replace('  ','').replace('; ',';')
+        # print(parse_02)
+        # print(bcolors.ENDC)
+        return parse_02
+
+    def parseWeaponTDFsSquareBracks(self, rawTdf):
+        pat = r'(?<=\[).+?(?=\])'
+        s = rawTdf
+        match = re.findall(pat, s)
+        return match
+
+    def parseWeaponTDFs(self, rawTdf):
+        pat = r'(?<=\{).+?(?=\})'
+        s = rawTdf
+        match = re.findall(pat, s)
+        return match
+
+    def processTdfBatch(self, rawTDFs):
+        tdfKeyList = self.parseWeaponTDFsSquareBracks(rawTDFs)
+        tdfList = self.parseWeaponTDFs(rawTDFs)
+        i = 0
+        for innerTdf in tdfList:
+            if tdfKeyList[i] == 'DAMAGE':
+                i += 1
+            print(tdfKeyList[i])
+            print(innerTdf)
+            print()
+            i += 1
+
+    def get(self, request, format=None):
+        parse_path1 = str(request.GET['encoded_path']).replace('_SLSH_', '/')
+        path_to_fbi = '/usr/src/persistent/' + parse_path1 + '.fbi'
+        print('Opening .FBI file at: ')
+        print(path_to_fbi)
+        file_contents = open(path_to_fbi, 'r', errors='replace')
+        rawFbi = file_contents.read()
+        print(rawFbi)
+        fbi_dump = self.remove_comments(rawFbi)
+        print('- - - - - - - - -')
+
+        parse_01 = fbi_dump.replace('\n', '')
+        parse_02 = parse_01.replace('\t', '').replace('  ','').replace('; ',';')
+        print(parse_02)
+        parse_03 = parse_02.replace(';', '",')
+        parse_04 = parse_03.replace('=', ':"')
+        parse_05 = parse_04.replace('",}', '"}')
+        parse_06 = parse_05.replace('",', '","')
+        parse_07 = parse_06.replace(':"', '":"')
+        parse_08 = parse_07.replace('[UNITINFO]{', '[UNITINFO]{"')
+        parse_09 = parse_08.replace('[UNITINFO]', '')
+        abel_dict = json.loads(parse_09)
+        abel_json = JSONRenderer().render(abel_dict)
+        stream = BytesIO(abel_json)
+        data = JSONParser().parse(stream)
+        new_data = {}
+        for (key, value) in data.items():
+            print(key)
+            better_key = key.replace(' ', '')
+            print(better_key)
+            new_data[better_key] = value
+        fbi_serialized_from_file = UnitFbiDataSerializer_v2(data=new_data)
+        print("FBI was serialized successfully: ")
+        print(fbi_serialized_from_file.is_valid())
+        print(json.dumps(new_data, indent=4, sort_keys=True))
+        print('Properties expected: ' + str(fbi_dump.count('=')))
+        print('Total properties: ' + str(json.dumps(new_data, indent=4, sort_keys=True).count(':')))
+        print(path_to_fbi)
+        print(path_to_fbi.split('/'))
+
+        weaponsPath = path_to_fbi.replace('units/' + path_to_fbi.split('/')[8],'') + 'weapons/'
+        print(weaponsPath)
+        weaponfiles = os.listdir(weaponsPath)
+
+        allAppendedWeaponTDFs = ""
+        for fileName in weaponfiles:
+            allAppendedWeaponTDFs += self.cleanTdf(weaponsPath + fileName)
+
+        # print(bcolors.red)
+        # print(allAppendedWeaponTDFs)
+        # print(bcolors.ENDC)
+
+        # print('\n\nAll FBI files to analyze: ')
+        allFbiFilesPath = path_to_fbi.replace(path_to_fbi.split('/')[8], '')
+        # print(allFbiFilesPath)
+
+        unitFiles = os.listdir(allFbiFilesPath)
+        allAppendedUnitFBIs = ""
+        for fileName in unitFiles:
+            allAppendedUnitFBIs += self.cleanTdf(allFbiFilesPath + fileName)
+
+        # print(bcolors.purple)
+        # print(allAppendedUnitFBIs)
+        # print(bcolors.ENDC)
+
+        print('\n\n\n')
+        print('Total TDF files harvested: ' + str(len(weaponfiles)))
+        print('Total FBI files harvested: ' + str(len(unitFiles)))
+
+        print(' - - TDF - - ')
+        self.processTdfBatch(allAppendedWeaponTDFs)
+        print(' - - FBI - - ')
+        self.processTdfBatch(allAppendedUnitFBIs)
+
+
+        return Response(new_data)
+
+
+
 class SerializeFBIFileInPathNoSave(APIView):
     def get(self, request, format=None):
         path_to_fbi = '/usr/src/persistent/media/ta_data/mattsAbel_PMkKp5N/units/anabel.fbi'
@@ -77,6 +213,9 @@ class SerializeFBIFileInPathNoSave(APIView):
         print(fbi_serialized_from_file.is_valid())
 
         return Response(data)
+
+
+
 
 # abel asset id is: 233
 class GatherDependenciesForModAssetTestAbel(APIView):
