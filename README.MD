@@ -32,7 +32,23 @@
 
 
 
+# WebSocket Configuration
 
+* Get a rest-auth token from: `POST` `/rest-auth/login/` `{'username': 'root', 'password': '123123'}`
+
+### Test in Swift and Starscream:
+
+```
+
+        socket = WebSocket(url: NSURL(string: "ws://" + HOST + "/ws/Santa%7CClara%7CCounty%23General?subscribe-broadcast&publish-broadcast&echo&subscribe-typing")! as URL)
+        socket.delegate = self
+        socket.connect()
+        self.socket.headers = ["Authorization":"Token 1f46e2ab7e91bc7bf00ce28862d89c862dd97a3e"]
+        socket.onConnect = {
+            self.socket.write(string: "iOS thing connected.")
+        }
+
+```
 
 
 # Djangular

@@ -9,6 +9,7 @@ docker run -d -p 80:80 -v $parentdir:/usr/src/app/ --link jawn-postgres:postgres
 echo "Running Containers...."
 docker exec -it jawn pip3 install jsbeautifier
 docker exec -it jawn pip3 install django-dbbackup
+docker exec -it jawn pip3 install django-websocket-redis
 sleep 3
 docker exec -it jawn ./manage.py migrate
 docker exec jawn-redis redis-cli config set notify-keyspace-events KEA
