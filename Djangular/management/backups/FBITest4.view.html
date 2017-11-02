@@ -75,33 +75,15 @@
         <md-content class="content" flex ms-scroll>
 			<br>
 			<span>&nbsp</span>
-			
+
             <md-input-container layout-padding>
                 <label>Filter Units in {{ vm.selectedMod }}</label>
                 <input type="text" ng-model="color" ng-model="searchText" md-maxlength="25" id="search_params">
             </md-input-container>
-			
+
             <md-input-container layout-padding>
                 <md-button class="md-hover-button-purple" ng-click="vm.showCustomToast()">
 					search
-				</md-button>
-            </md-input-container>
-			
-            <md-input-container layout-padding>
-				<label>Import My Units From</label>
-				<br>
-                <md-button class="md-hover-button-blue" ng-click="vm.showCustomToast()">
-					custom repository 
-					<md-tooltip md-direction="top">Personal units you have uploaded to your ArmPrime account.</md-tooltip>
-				</md-button>
-            </md-input-container>
-			
-            <md-input-container layout-padding>
-				<label>Import Public Units From</label>
-				<br>
-                <md-button class="md-hover-button-blue" ng-click="vm.showCustomToast()">
-					lazarus community
-					<md-tooltip md-direction="top">All units created by members of the ArmPrime community.</md-tooltip>
 				</md-button>
             </md-input-container>
 
@@ -139,7 +121,7 @@
             </table>
 
             <br>
-			
+
 
 
         </md-content>
@@ -173,8 +155,8 @@
     .breadcrubs {
         line-height: 0px !important;
     }
-	
-	
+
+
 	.md-hover-button-purple:hover {
         background-color: rgb(124,77,255) !important;
         border-color: rgb(124,77,255) !important;
@@ -213,10 +195,10 @@
         color: rgb(41, 98, 255) !important;
         border-color: rgb(41, 98, 255) !important;
     }
-	
-	
-	/* 
-	      ICON BUTTON 
+
+
+	/*
+	      ICON BUTTON
 	*/
     .md-hover-button-2:hover {
         background-color: #FF6F00 !important;
@@ -233,8 +215,8 @@
     .md-icon-button-2 > .iconhover-2 {
         color: #FF6F00 !important;
     }
-	/* 
-	      /ICON BUTTON 
+	/*
+	      /ICON BUTTON
 	*/
-	
+
 </style>

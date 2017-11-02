@@ -39,11 +39,6 @@
         vm.toggleSidenav = toggleSidenav;
         vm.toggleView = toggleView;
 
-        vm.dialogShowRawFbi = dialogShowRawFbi;
-
-        vm.isDlgOpen = false;
-        vm.closeToast = closeToast;
-        vm.showCustomToast = showCustomToast;
 
         vm.selectedMod = '';
 
@@ -115,7 +110,6 @@
                 });
             }, function errorCallback(response) {
                 console.log(response.data);
-                vm.showCustomToast('Failed to load FBI data.');
                 vm.playSoundError();
             });
 
@@ -169,21 +163,16 @@
         function select(item) {
             console.log("YOU SELECTED A UNIT SON! ! !");
             console.log(item);
-            var txtMsg = item["_DEV_root_data_path"];
-            txtMsg = txtMsg.replace('/usr/src/persistent/', '');
-            var path_raw_root = txtMsg.replace('/', '_SLSH_').replace('/', '_SLSH_').replace('/', '_SLSH_').replace('/', '_SLSH_').replace('.fbi', '');
-            $mdToast.show($mdToast.simple().textContent(path_raw_root));
-            var fbiViewSetEndpoint = '/LazarusII/UnitFBIViewset/?encoded_path=';
+            var fbiViewSetEndpoint = '/LazarusII/serialized/FBISerialized/' + item.ID + '/';
             $http({
                 method: 'GET',
-                url: fbiViewSetEndpoint + path_raw_root
+                url: fbiViewSetEndpoint
             }).then(function successCallback(response) {
                 vm.playSoundClickUnit();
                 vm.selected = response.data[0];
                 console.log(response.data[0]);
             }, function errorCallback(response) {
                 console.log(response.data);
-                showCustomToast('Failed to load unit, we will resolve this issue soon!');
                 vm.playSoundError();
             });
         }
@@ -203,7 +192,6 @@
             vm.playSoundModFinishedLoading();
         }, function errorCallback(response) {
             console.log(response.data);
-            showCustomToast('Failed to load mod, we will resolve this issue soon!');
             vm.playSoundError();
             vm.isLoadingMod = false;
         });
@@ -276,49 +264,8 @@
             vm.currentView = vm.currentView === 'list' ? 'grid' : 'list';
         }
 
-        function DialogController($scope, $mdDialog) {
-            $scope.hide = function() {
-                $mdDialog.hide();
-            };
-            $scope.cancel = function() {
-                $mdDialog.cancel();
-            };
-            $scope.answer = function(answer) {
-                $mdDialog.hide(answer);
-            };
-        }
 
-        function dialogShowRawFbi(ev) {
-            $mdDialog.show({
-                    controller: DialogController,
-                    templateUrl: 'http://52.27.28.55/LazarusII/UnitFbiData/?mod_name=totala_files2&will_show_raw_fbi=pretty&unit_id=' + vm.selected['UnitName'],
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: $scope.customFullscreen
-                })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
-        };
 
-        function showCustomToast() {
-            var msg = document.getElementById('search_params').value;
-            $log.log(msg);
-            vm.searchTextCustom = msg;
-        }
-
-        function closeToast() {
-            if (vm.isDlgOpen) return;
-            $mdToast
-                .hide()
-                .then(function() {
-                    vm.isDlgOpen = false;
-                    $log.info('TODO: add close sound effect here.');
-                });
-        }
 
 
 

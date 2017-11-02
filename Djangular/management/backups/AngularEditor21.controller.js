@@ -50,7 +50,7 @@
         vm.editorOptionsSlaveView = {
             lineWrapping: true,
             lineNumbers: true,
-            mode: 'html',
+            mode: 'htmlmixed',
             theme: "erlang-dark",
             indentUnit: 4,
             indentWithTabs: true

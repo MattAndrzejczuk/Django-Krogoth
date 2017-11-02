@@ -124,7 +124,7 @@
                     case 1:
                         it.background = "md-accent-bg md-hue-3 editor-units";
                         it.title = 'UNIT EDITOR';
-                        it.url = 'app.LazarusUnitEditorIndex';
+                        it.url = 'app.FBITest';
                         it.description = "Customize unit hitpoints, resource cost, and many other properties.";
                         break;
                     case 2:
