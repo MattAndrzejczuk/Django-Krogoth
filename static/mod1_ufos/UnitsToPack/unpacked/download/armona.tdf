@@ -1,8 +1,0 @@
-[MENUENTRY1]
-	{
-	UNITMENU=ARMVP;
-	MENU=6;
-       	 BUTTON=4;
-	UNITNAME=ARMONA;
-	}
-	

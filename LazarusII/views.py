@@ -6,7 +6,6 @@ from django.core import serializers
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import detail_route, list_route
 from rest_framework import status
-from rest_framework import viewsets
 import json
 
 
@@ -31,8 +30,7 @@ import subprocess
 from DatabaseSandbox.models import TotalAnnihilationUploadedFile, LazarusModProjectSB
 from LazarusDatabase.models import SelectedAssetUploadRepository
 
-from LazarusII.serializers import UnitFbiDataSerializer, WeaponTDFDataSerializer, \
-    FeatureTDFDataSerializer, DownloadTDFDataSerializer, SoundTDFDataSerializer
+
 
 
 from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF, FeatureTDF, SoundSetTDF
@@ -1014,26 +1012,7 @@ class FeatureTDFViewset(APIView):
 
 
 
-class UnitFBIViewSerialized(viewsets.ModelViewSet):
-    serializer_class = UnitFbiDataSerializer
-    queryset = UnitFbiData.objects.all()
 
-
-class WeaponTDFViewSerialized(viewsets.ModelViewSet):
-    serializer_class = WeaponTDFDataSerializer
-    queryset = WeaponTDF.objects.all()
-
-class FeatureTDFViewSerialized(viewsets.ModelViewSet):
-    serializer_class = FeatureTDFDataSerializer
-    queryset = FeatureTDF.objects.all()
-
-class DownloadTDFViewSerialized(viewsets.ModelViewSet):
-    serializer_class = DownloadTDFDataSerializer
-    queryset = DownloadTDF.objects.all()
-
-class SoundTDFViewSerialized(viewsets.ModelViewSet):
-    serializer_class = SoundTDFDataSerializer
-    queryset = SoundSetTDF.objects.all()
 
 
 class UnitFBIViewset(APIView):
@@ -2884,7 +2863,7 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
 
                     mod_item_path = data_file.system_path + '/' + mod_item
                     if os.path.isdir(mod_item_path):
-                        print("mod_item : %s" % mod_item)
+                        # print("mod_item : %s" % mod_item)
                         ls_current_submodpath = str(subprocess.check_output(['ls', mod_item_path]))
                         sub_parsed_1 = ls_current_submodpath.replace("\\n'", "")
                         sub_parsed_2 = sub_parsed_1.replace("b'", "")
@@ -2898,37 +2877,6 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
                                 parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
                                 parse_moditempath2 = parse_moditempath1.replace('/', '_SLSH_') + '_SLSH_' + raw_data_tdf[:-4]
                                 parse_moditempath3 = '/LazarusII/UnitFBIViewset/?encoded_path=' + parse_moditempath2
-                            # elif raw_data_tdf[-4:] == '.tdf':
-                            #     parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
-                            #     parse_moditempath2 = parse_moditempath1.replace('/',
-                            #                                                     '_SLSH_') + '_SLSH_' + raw_data_tdf[:-4]
-                            #     if mod_item == 'weapons':
-                            #         parse_moditempath3 = '/LazarusII/WeaponTDFViewset/?encoded_path=' + parse_moditempath2
-                            #     elif mod_item == 'download':
-                            #         parse_moditempath3 = '/LazarusII/DownloadTDFViewset/?encoded_path=' + parse_moditempath2
-                            #     elif mod_item == 'units':
-                            #         parse_moditempath3 = '/LazarusII/UnitFBIViewset/?encoded_path=' + parse_moditempath2
-                            #     else:
-                            #         parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
-                            #         parse_moditempath2 = parse_moditempath1.replace('/',
-                            #                                                         '_SLSH_') + '_SLSH_' + raw_data_tdf[
-                            #                                                                                :-4]
-                            #         parse_moditempath3 = 'nan'
-                            #         does_contain_json = False
-                            # elif raw_data_tdf[-4:] == 'pses': # CORPSE FEATURE DETECTED! #      7/14/2017
-                            #     # subdirectory_components = mod_item_path  #'THIS IS A CORPSE ! ! !'
-                            #     corpses_dir = mod_item_path + '/corpses'
-                            #     ls_cmd_features_dir = str(subprocess.check_output(['ls', corpses_dir]))
-                            #     corpses_parsed_1 = ls_cmd_features_dir.replace("\\n'", "")
-                            #     corpses_parsed_2 = corpses_parsed_1.replace("b'", "")
-                            #     replace_me_str = '\\' + 'n'
-                            #     replace_regex1 = corpses_parsed_2.replace(replace_me_str, '_NL_')
-                            #     subdirectory_components = replace_regex1.split('_NL_')
-                            #     for feat in subdirectory_components:
-                            #         parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
-                            #         parse_moditempath2 = parse_moditempath1.replace('/',
-                            #                                                     '_SLSH_') + '_SLSH_' + raw_data_tdf + '_SLSH_'
-                            #     raw_data_tdf = 'CORPSES_dir'
                             elif raw_data_tdf[-4:].lower() == '.pcx':
                                 # LETS MAKE SOME PNGs
                                 pcx_path = mod_item_path  #+ raw_data_tdf[-4:]
@@ -2953,15 +2901,15 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
                                 does_contain_json = False
 
                             _type = raw_data_tdf[-4:]
-                            if _type == '.tdf' or _type == '.fbi':
-                                try:
-                                    logTheAsolutePath = StoredFiles()
-                                    logTheAsolutePath.absolute_path = '/usr/src/persistent/' + raw_data_tdf
-                                    logTheAsolutePath.file_type = raw_data_tdf[-3:]
-                                    logTheAsolutePath.file_name = raw_data_tdf[:-4] + '_' + raw_data_tdf[-3:]
-                                    logTheAsolutePath.save()
-                                except:
-                                    print('skipping StoredFiles log, file already exists.')
+                            # if _type == '.tdf' or _type == '.fbi':
+                            #     try:
+                            #         logTheAsolutePath = StoredFiles()
+                            #         logTheAsolutePath.absolute_path = '/usr/src/persistent/' + raw_data_tdf
+                            #         logTheAsolutePath.file_type = raw_data_tdf[-3:]
+                            #         logTheAsolutePath.file_name = raw_data_tdf[:-4] + '_' + raw_data_tdf[-3:]
+                            #         logTheAsolutePath.save()
+                            #     except:
+                            #         print('skipping StoredFiles log, file already exists.')
 
                             if raw_data_tdf[-4:] == ".fbi":
                                 pic_url = mod_item_path.replace('/usr/src/persistent', '')\

@@ -1,8 +1,0 @@
-[MENUENTRY1]
-	{
-	UNITMENU=ARMAP; //arm adv Aircraft Plant (Produces Aircraft)
-	MENU=4;
-	BUTTON=3;
-	UNITNAME=ARMDART; 
-	}
-

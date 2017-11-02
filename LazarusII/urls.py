@@ -6,18 +6,17 @@ from LazarusII.views import UnitFbiData, ApiNavigationUrls, LazarusListUnits, \
     UserAgentTracker, ExecuteBash_LS_AllCustomModFiles, UnitFBIViewset, \
     WeaponTDFViewset, OpenTotalAnnihilationFBIFileII, DownloadTDFViewset, FeatureTDFViewset, \
      ReadVanillaTAData, ReadVanillaTASoundData, \
-    ReadCoreContingencySoundData, ReadCoreContingencyWeaponData, UnitFBIViewSerialized, WeaponTDFViewSerialized, \
+    ReadCoreContingencySoundData, ReadCoreContingencyWeaponData
+
+from LazarusII.viewsets import UnitFBIViewSerialized, WeaponTDFViewSerialized, \
     FeatureTDFViewSerialized, DownloadTDFViewSerialized, SoundTDFViewSerialized
+
 
 # Pure Python Stuff:
 from LazarusII.DataReaderTA import readFile
 from LazarusII.FbiData import LazarusUnit
 from LazarusII.PyColors import bcolors, printKeyValuePair
-
-
 from rest_framework.routers import DefaultRouter
-
-
 
 
 

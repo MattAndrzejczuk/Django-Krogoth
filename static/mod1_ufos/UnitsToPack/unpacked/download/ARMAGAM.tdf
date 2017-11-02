@@ -1,9 +1,0 @@
-//ARM "Agamemnon" Adv. Battle Mech
-
-[MENUENTRY1]
-	{
-	UNITMENU=ARMALAB;
-	MENU=3;
-	BUTTON=1;
-	UNITNAME=ARMAGAM;
-	}

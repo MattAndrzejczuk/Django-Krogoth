@@ -92,6 +92,7 @@ INSTALLED_APPS = (
     'django_filters',
     'LazarusPublicAssets',
     'LazarusPublisherTest',
+    
 )
 #   'dbbackup',
 
@@ -256,6 +257,12 @@ try:
     print('')
 except:
     print('Django initialized, but the version is unknown... wtf?')
+
+print("POSTGRES: ")
+print(os.environ["POSTGRES_ENV_POSTGRES_USER"])
+print(os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"])
+print(os.environ["POSTGRES_PORT_5432_TCP_ADDR"])
+print(os.environ["POSTGRES_PORT_5432_TCP_PORT"])
 
 
 
