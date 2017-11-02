@@ -21,3 +21,6 @@ markdown
 django-angular
 gevent
 psycogreen
+django-grappelli==2.9.1
+django-filebrowser
+
