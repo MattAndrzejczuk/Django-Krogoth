@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from ws4redis.redis_store import RedisStore, SELF
+from jawn.settings import JAVASCRIPT_MODE
 
 
 class RedisSubscriber(RedisStore):
@@ -70,9 +71,9 @@ class RedisSubscriber(RedisStore):
 
         chat_room = facility.split('#')[1]
 
-        print(region)
-
-        print(str(str(request.user['base_user']['username'])) + " has entered " + str(facility))
+        if JAVASCRIPT_MODE == False:
+            print(region)
+            print(str(str(request.user['base_user']['username'])) + " has entered " + str(facility))
 
         # initialize publishers
         audience = {
@@ -127,7 +128,8 @@ class RedisSubscriber(RedisStore):
         New implementation to free up Redis subscriptions when websockets close. This prevents
         memory sap when Redis Output Buffer and Output Lists build when websockets are abandoned.
         """
-        print(str(str(request.user['base_user']['username'])) + " has left the channel " + request.path_info.replace(settings.WEBSOCKET_URL, '', 1))
+        if JAVASCRIPT_MODE == False:
+            print(str(str(request.user['base_user']['username'])) + " has left the channel " + request.path_info.replace(settings.WEBSOCKET_URL, '', 1))
         if self._subscription and self._subscription.subscribed:
             self._subscription.unsubscribe()
             self._subscription.reset()

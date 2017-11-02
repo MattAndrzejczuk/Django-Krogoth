@@ -199,6 +199,11 @@ CACHES = {
 }
 
 WEBSOCKET_URL = '/ws/'
+
+# Set to true if you want to use WebSockets for JavaScript
+# If false, you will not be able to connect to WebSocket with Auth Token in the headers
+JAVASCRIPT_MODE = True
+
 # Set the number of seconds each message shall persited
 WS4REDIS_EXPIRE = 2
 WS4REDIS_HEARTBEAT = '--heartbeat--'
@@ -236,6 +241,12 @@ REST_AUTH_SERIALIZERS = {
 
 APPEND_SLASH = True
 
+
+if JAVASCRIPT_MODE == True:
+    print('\n\033[34mWebSockets are in JavaScript Mode.\033[0m')
+else:
+    print('\n\033[35mWebSockets are in native mode, Auth headers required for a connection.\033[0m')
+
 import django
 import rest_framework
 try:
@@ -245,6 +256,7 @@ try:
     print('')
 except:
     print('Django initialized, but the version is unknown... wtf?')
+
 
 
 

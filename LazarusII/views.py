@@ -2862,20 +2862,17 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
         uploaded_data_files = TotalAnnihilationUploadedFile.objects.all()
         if ModFileDesignation != '':
             uploaded_data_files = TotalAnnihilationUploadedFile.objects.filter(designation=ModFileDesignation)
-            print('\n\n\n\n\n\n\n\nMOD DESIGNATION FILTER IS WORKING ! ! ! !\n\n\n\n\n')
+            # print('\n\n\n\n\n\n\n\nMOD DESIGNATION FILTER IS WORKING ! ! ! !\n\n\n\n\n')
         else:
             print('\n\n\n\n\n FAIL ! ! ! ' + str(request.GET['mod_repo']) + ' \n\n\n\n\n\n\n')
         for data_file in uploaded_data_files:
-            print("data_file %s" % data_file)
             if os.path.isdir(data_file.system_path):
                 ls_current_modpath = str(subprocess.check_output(['ls', data_file.system_path]))
 
                 parsed_1 = ls_current_modpath.replace("\\n'","")
                 dirs_in_mod = parsed_1.replace("b'","").split('\\n')
 
-                print(' ✪ ✪ ✪ ✪ ✪ ✪ ✪ ✪ ')
-                print("parsed_1 %s" % parsed_1)
-                print("dirs_in_mod : ")
+
                 listed_data_files = {
                     'name': data_file.file_name[:-4],
                     'type': data_file.file_name[-4:]
@@ -2948,18 +2945,18 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
                                 except:
                                     print('skipping StoredFiles log, file already exists.')
 
-                            data_file_json = {
-                                'file_type': raw_data_tdf[-4:],
-                                'file_name': raw_data_tdf[:-4],
-                                'mod_path': parse_moditempath3,
-                                'mod_path_slug': parse_moditempath2,
-                                'dir_type': mod_item,
-                                'raw_data_tdf': raw_data_tdf,
-                                'does_contain_json': does_contain_json,
-                                'subdirectory_components': subdirectory_components
-                            }
-
-                            listed_data_files['directories'].append(data_file_json)
+                            if raw_data_tdf[-4:] == ".fbi":
+                                data_file_json = {
+                                    'file_type': raw_data_tdf[-4:],
+                                    'file_name': raw_data_tdf[:-4],
+                                    'mod_path': parse_moditempath3,
+                                    'mod_path_slug': parse_moditempath2,
+                                    'dir_type': mod_item,
+                                    'raw_data_tdf': raw_data_tdf,
+                                    'does_contain_json': does_contain_json,
+                                    'subdirectory_components': subdirectory_components
+                                }
+                                listed_data_files['directories'].append(data_file_json)
                         # mod_paths[data_file.file_name] = (listed_data_files)
                 mod_paths.append(listed_data_files)
 

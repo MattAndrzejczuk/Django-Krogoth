@@ -22,6 +22,7 @@ from rest_framework.authtoken.models import Token
 import datetime
 import json
 import time
+from jawn.settings import JAVASCRIPT_MODE
 
 try:
     # django >= 1.8 && python >= 2.7
@@ -73,17 +74,19 @@ class WebsocketWSGIServer(object):
         #     token = request.META['REQUEST_URI'].split('Token', 1)[1]
         #     request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
         #     print(request.user)
-        if request.META['HTTP_AUTHORIZATION']:
-            print(request.META['HTTP_AUTHORIZATION'])
-            a = request.META['HTTP_AUTHORIZATION']
-            array = a.split()
-            token = array[1]
-            print(token)
-            print(self._redis_connection)
-            request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
-            # request.user = User.objects.get(id=Token.objects.get(key=token).user_id)
-            print(request.user)
-            # print(request.user)
+
+        if JAVASCRIPT_MODE == False:
+            if request.META['HTTP_AUTHORIZATION']:
+                print(request.META['HTTP_AUTHORIZATION'])
+                a = request.META['HTTP_AUTHORIZATION']
+                array = a.split()
+                token = array[1]
+                print(token)
+                print(self._redis_connection)
+                request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
+                # request.user = User.objects.get(id=Token.objects.get(key=token).user_id)
+                print(request.user)
+                # print(request.user)
 
 
     def process_subscriptions(self, request):
@@ -298,6 +301,7 @@ class WebsocketWSGIServer(object):
                 websocket.close(code=1001, message='Websocket Closed')
             else:
                 print('Starting late response on websocket')
+                response = http.HttpResponseBadRequest(status=426, content=excpt)
                 status_text = http_client.responses.get(response.status_code, 'UNKNOWN STATUS CODE')
                 status = '{0} {1}'.format(response.status_code, status_text)
                 headers = response._headers.values()

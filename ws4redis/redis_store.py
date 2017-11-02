@@ -3,7 +3,7 @@ import six
 import warnings
 import json
 from ws4redis import settings
-
+from jawn.settings import JAVASCRIPT_MODE
 
 """
 A type instance to handle the special case, when a request shall refer to itself, or as a user,
@@ -12,17 +12,23 @@ or as a group.
 SELF = type('SELF_TYPE', (object,), {})()
 
 
+
+
+
+
 def _wrap_users(users, request):
     """
     Returns a list with the given list of users and/or the currently logged in user, if the list
     contains the magic item SELF.
     """
     result = set()
-    for u in users:
-        if u is SELF and request and request.user and request.user.is_authenticated():
-            result.add(request.user.get_username())
-        else:
-            result.add(u)
+    if JAVASCRIPT_MODE == False:
+        for u in users:
+            if u is SELF and request and request.user and request.user.is_authenticated():
+                result.add(request.user.get_username())
+            else:
+                result.add(u)
+
     return result
 
 
@@ -36,11 +42,14 @@ def _wrap_groups(groups, request):
     while the users logs in.
     """
     result = set()
-    for g in groups:
-        if g is SELF and request and request.user and request.user.is_authenticated():
-            result.update(request.session.get('ws4redis:memberof', []))
-        else:
-            result.add(g)
+
+    if JAVASCRIPT_MODE == False:
+        for g in groups:
+            if g is SELF and request and request.user and request.user.is_authenticated():
+                result.update(request.session.get('ws4redis:memberof', []))
+            else:
+                result.add(g)
+
     return result
 
 
@@ -133,16 +142,17 @@ class RedisStore(object):
         :param write_user:
         :return:
         """
-        print(request)
-        facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
-        prefix = self.get_prefix()
-        channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
-        print(channel)
-        if write_user:
-            self._connection.set(channel, json.dumps(request.user))
-        else:
-            self._connection.set(channel, "")
-        self.broadcast_users_in_chatroom(prefix=prefix, facility=facility)
+        if JAVASCRIPT_MODE == False:
+            print(request)
+            facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
+            prefix = self.get_prefix()
+            channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
+            print(channel)
+            if write_user:
+                self._connection.set(channel, json.dumps(request.user))
+            else:
+                self._connection.set(channel, "")
+            self.broadcast_users_in_chatroom(prefix=prefix, facility=facility)
 
     def broadcast_users_in_chatroom(self, prefix, facility):
         """
@@ -183,11 +193,18 @@ class RedisStore(object):
         :param request:
         :return:
         """
-        facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
-        prefix = self.get_prefix()
-        channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
-        self._connection.delete(channel)
-        self.broadcast_users_in_chatroom(prefix=prefix, facility=facility)
+
+
+
+        if JAVASCRIPT_MODE == False:
+            facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
+            prefix = self.get_prefix()
+
+            channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
+            self._connection.delete(channel)
+            self.broadcast_users_in_chatroom(prefix=prefix, facility=facility)
+        else:
+            print('\033[90mremove_user_from_chatroom is disabled in JavaScript mode.\033[0m')
         # Broadcast the list of users in the chatroom to the {prefix}broadcast:{facility}:chatroom key
 
 
@@ -200,9 +217,10 @@ class RedisStore(object):
         :param expiration:
         :return:
         """
-        facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
-        prefix = self.get_prefix()
-        channel = '{prefix}broadcast:{facility}:typing:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
+        if JAVASCRIPT_MODE == False:
+            facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
+            prefix = self.get_prefix()
+            channel = '{prefix}broadcast:{facility}:typing:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
         self._connection.setex(channel, expiration, "")
 
 
@@ -213,9 +231,10 @@ class RedisStore(object):
         :param request:
         :return:
         """
-        facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
-        prefix = self.get_prefix()
-        channel = '{prefix}broadcast:{facility}:typing:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
+        if JAVASCRIPT_MODE == False:
+            facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
+            prefix = self.get_prefix()
+            channel = '{prefix}broadcast:{facility}:typing:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
         self._connection.delete(channel)
 
 
@@ -227,56 +246,57 @@ class RedisStore(object):
                               groups=(), users=(), sessions=(),):
         prefix = self.get_prefix()
         channels = []
-        if broadcast is True:
-            # broadcast message to each subscriber listening on the named facility
-            channels.append('{prefix}broadcast:{facility}'.format(prefix=prefix, facility=facility))
+        if JAVASCRIPT_MODE == False:
+            if broadcast is True:
+                # broadcast message to each subscriber listening on the named facility
+                channels.append('{prefix}broadcast:{facility}'.format(prefix=prefix, facility=facility))
 
-        # handle group messaging
-        if isinstance(groups, (list, tuple)):
-            # message is delivered to all listed groups
-            channels.extend('{prefix}group:{0}:{facility}'.format(g, prefix=prefix, facility=facility)
-                            for g in _wrap_groups(groups, request))
-        elif groups is True and request and request.user and request.user.is_authenticated():
-            # message is delivered to all groups the currently logged in user belongs to
-            warnings.warn('Wrap groups=True into a list or tuple using SELF', DeprecationWarning)
-            channels.extend('{prefix}group:{0}:{facility}'.format(g, prefix=prefix, facility=facility)
-                            for g in request.session.get('ws4redis:memberof', []))
-        elif isinstance(groups, basestring):
-            # message is delivered to the named group
-            warnings.warn('Wrap a single group into a list or tuple', DeprecationWarning)
-            channels.append('{prefix}group:{0}:{facility}'.format(groups, prefix=prefix, facility=facility))
-        elif not isinstance(groups, bool):
-            raise ValueError('Argument `groups` must be a list or tuple')
+            # handle group messaging
+            if isinstance(groups, (list, tuple)):
+                # message is delivered to all listed groups
+                channels.extend('{prefix}group:{0}:{facility}'.format(g, prefix=prefix, facility=facility)
+                                for g in _wrap_groups(groups, request))
+            elif groups is True and request and request.user and request.user.is_authenticated():
+                # message is delivered to all groups the currently logged in user belongs to
+                warnings.warn('Wrap groups=True into a list or tuple using SELF', DeprecationWarning)
+                channels.extend('{prefix}group:{0}:{facility}'.format(g, prefix=prefix, facility=facility)
+                                for g in request.session.get('ws4redis:memberof', []))
+            elif isinstance(groups, basestring):
+                # message is delivered to the named group
+                warnings.warn('Wrap a single group into a list or tuple', DeprecationWarning)
+                channels.append('{prefix}group:{0}:{facility}'.format(groups, prefix=prefix, facility=facility))
+            elif not isinstance(groups, bool):
+                raise ValueError('Argument `groups` must be a list or tuple')
 
-        # handle user messaging
-        if isinstance(users, (list, tuple)):
-            # message is delivered to all listed users
-            channels.extend('{prefix}user:{0}:{facility}'.format(u, prefix=prefix, facility=facility)
-                            for u in _wrap_users(users, request))
-        elif users is True and request and request.user and request.user.is_authenticated():
-            # message is delivered to browser instances of the currently logged in user
-            warnings.warn('Wrap users=True into a list or tuple using SELF', DeprecationWarning)
-            channels.append('{prefix}user:{0}:{facility}'.format(request.user.get_username(), prefix=prefix, facility=facility))
-        elif isinstance(users, basestring):
-            # message is delivered to the named user
-            warnings.warn('Wrap a single user into a list or tuple', DeprecationWarning)
-            channels.append('{prefix}user:{0}:{facility}'.format(users, prefix=prefix, facility=facility))
-        elif not isinstance(users, bool):
-            raise ValueError('Argument `users` must be a list or tuple')
+            # handle user messaging
+            if isinstance(users, (list, tuple)):
+                # message is delivered to all listed users
+                channels.extend('{prefix}user:{0}:{facility}'.format(u, prefix=prefix, facility=facility)
+                                for u in _wrap_users(users, request))
+            elif users is True and request and request.user and request.user.is_authenticated():
+                # message is delivered to browser instances of the currently logged in user
+                warnings.warn('Wrap users=True into a list or tuple using SELF', DeprecationWarning)
+                channels.append('{prefix}user:{0}:{facility}'.format(request.user.get_username(), prefix=prefix, facility=facility))
+            elif isinstance(users, basestring):
+                # message is delivered to the named user
+                warnings.warn('Wrap a single user into a list or tuple', DeprecationWarning)
+                channels.append('{prefix}user:{0}:{facility}'.format(users, prefix=prefix, facility=facility))
+            elif not isinstance(users, bool):
+                raise ValueError('Argument `users` must be a list or tuple')
 
-        # handle session messaging
-        if isinstance(sessions, (list, tuple)):
-            # message is delivered to all browsers instances listed in sessions
-            channels.extend('{prefix}session:{0}:{facility}'.format(s, prefix=prefix, facility=facility)
-                            for s in _wrap_sessions(sessions, request))
-        elif sessions is True and request and request.session:
-            # message is delivered to browser instances owning the current session
-            warnings.warn('Wrap a single session key into a list or tuple using SELF', DeprecationWarning)
-            channels.append('{prefix}session:{0}:{facility}'.format(request.session.session_key, prefix=prefix, facility=facility))
-        elif isinstance(sessions, basestring):
-            # message is delivered to the named user
-            warnings.warn('Wrap a single session key into a list or tuple', DeprecationWarning)
-            channels.append('{prefix}session:{0}:{facility}'.format(sessions, prefix=prefix, facility=facility))
-        elif not isinstance(sessions, bool):
-            raise ValueError('Argument `sessions` must be a list or tuple')
+            # handle session messaging
+            if isinstance(sessions, (list, tuple)):
+                # message is delivered to all browsers instances listed in sessions
+                channels.extend('{prefix}session:{0}:{facility}'.format(s, prefix=prefix, facility=facility)
+                                for s in _wrap_sessions(sessions, request))
+            elif sessions is True and request and request.session:
+                # message is delivered to browser instances owning the current session
+                warnings.warn('Wrap a single session key into a list or tuple using SELF', DeprecationWarning)
+                channels.append('{prefix}session:{0}:{facility}'.format(request.session.session_key, prefix=prefix, facility=facility))
+            elif isinstance(sessions, basestring):
+                # message is delivered to the named user
+                warnings.warn('Wrap a single session key into a list or tuple', DeprecationWarning)
+                channels.append('{prefix}session:{0}:{facility}'.format(sessions, prefix=prefix, facility=facility))
+            elif not isinstance(sessions, bool):
+                raise ValueError('Argument `sessions` must be a list or tuple')
         return channels
