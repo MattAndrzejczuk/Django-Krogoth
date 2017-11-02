@@ -16,6 +16,7 @@ Including another URLconf
 
 
 """
+from filebrowser.sites import site
 from django.conf.urls import url, include
 # from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework import renderers
@@ -24,6 +25,11 @@ from chat.views import *
 from django.contrib import admin
 # from rest_auth.views import LazarusListUnits
 import rest_auth
+
+
+
+
+
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet, 'User')
@@ -65,8 +71,10 @@ urlpatterns = [
     url(r'^Djangular/', include('Djangular.urls')),
     url(r'^Forum/', include('CommunityForum.urls')),
 
+    # Admin stuff
     url(r'^djangular_dashboard/', include('djangular_dashboard.urls')),
-
+    url(r'^admin/filebrowser/', include(site.urls)),
+    url(r'^grappelli/', include('grappelli.urls')),
     url(r'^docs/', include('rest_framework_docs.urls')),
 
     # THIS IS FOR SEO:

@@ -20,6 +20,10 @@ DJANGULAR_STATIC = 'DjangularStaticFiles'
 
 
 
+FILEBROWSER_DIRECTORY = ''
+DIRECTORY = ''
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -92,7 +96,8 @@ INSTALLED_APPS = (
     'django_filters',
     'LazarusPublicAssets',
     'LazarusPublisherTest',
-    
+    'filebrowser',
+    'grappelli',
 )
 #   'dbbackup',
 
