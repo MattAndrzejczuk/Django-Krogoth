@@ -298,13 +298,13 @@ class WeaponTDFViewset(APIView):
                 # print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
                 # print(item)
                 # print('☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ☭ ')
+
                 tdf_without_comments1 = remove_comments(item)
                 nested_obj = parseNested(tdf_without_comments1.replace('\t', ''), getNestedType(tdf_without_comments1))
                 base_obj = parseBase(tdf_without_comments1.replace(nested_obj, ''), getBaseType(tdf_without_comments1))
                 dictionary = json.loads(base_obj)
                 dictionary[getNestedType(tdf_without_comments1)] = json.loads(
                     parseBase(nested_obj, getNestedType(tdf_without_comments1)))
-
                 baseobjectkeyname = getBaseType(tdf_without_comments1)
 
                 # getBaseType(item)
@@ -2894,41 +2894,59 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
                             does_contain_json = True
                             subdirectory_components = 'NIL'
                             parse_moditempath2 = ''
-                            if raw_data_tdf[-4:] == '.fbi':
+                            if raw_data_tdf[-4:].lower() == '.fbi':
                                 parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
                                 parse_moditempath2 = parse_moditempath1.replace('/', '_SLSH_') + '_SLSH_' + raw_data_tdf[:-4]
                                 parse_moditempath3 = '/LazarusII/UnitFBIViewset/?encoded_path=' + parse_moditempath2
-                            elif raw_data_tdf[-4:] == '.tdf':
-                                parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
-                                parse_moditempath2 = parse_moditempath1.replace('/',
-                                                                                '_SLSH_') + '_SLSH_' + raw_data_tdf[:-4]
-                                if mod_item == 'weapons':
-                                    parse_moditempath3 = '/LazarusII/WeaponTDFViewset/?encoded_path=' + parse_moditempath2
-                                elif mod_item == 'download':
-                                    parse_moditempath3 = '/LazarusII/DownloadTDFViewset/?encoded_path=' + parse_moditempath2
-                                elif mod_item == 'units':
-                                    parse_moditempath3 = '/LazarusII/UnitFBIViewset/?encoded_path=' + parse_moditempath2
-                                else:
-                                    parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
-                                    parse_moditempath2 = parse_moditempath1.replace('/',
-                                                                                    '_SLSH_') + '_SLSH_' + raw_data_tdf[
-                                                                                                           :-4]
-                                    parse_moditempath3 = 'nan'
-                                    does_contain_json = False
-                            elif raw_data_tdf[-4:] == 'pses': # CORPSE FEATURE DETECTED! #      7/14/2017
-                                # subdirectory_components = mod_item_path  #'THIS IS A CORPSE ! ! !'
-                                corpses_dir = mod_item_path + '/corpses'
-                                ls_cmd_features_dir = str(subprocess.check_output(['ls', corpses_dir]))
-                                corpses_parsed_1 = ls_cmd_features_dir.replace("\\n'", "")
-                                corpses_parsed_2 = corpses_parsed_1.replace("b'", "")
-                                replace_me_str = '\\' + 'n'
-                                replace_regex1 = corpses_parsed_2.replace(replace_me_str, '_NL_')
-                                subdirectory_components = replace_regex1.split('_NL_')
-                                for feat in subdirectory_components:
-                                    parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
-                                    parse_moditempath2 = parse_moditempath1.replace('/',
-                                                                                '_SLSH_') + '_SLSH_' + raw_data_tdf + '_SLSH_'
-                                raw_data_tdf = 'CORPSES_dir'
+                            # elif raw_data_tdf[-4:] == '.tdf':
+                            #     parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
+                            #     parse_moditempath2 = parse_moditempath1.replace('/',
+                            #                                                     '_SLSH_') + '_SLSH_' + raw_data_tdf[:-4]
+                            #     if mod_item == 'weapons':
+                            #         parse_moditempath3 = '/LazarusII/WeaponTDFViewset/?encoded_path=' + parse_moditempath2
+                            #     elif mod_item == 'download':
+                            #         parse_moditempath3 = '/LazarusII/DownloadTDFViewset/?encoded_path=' + parse_moditempath2
+                            #     elif mod_item == 'units':
+                            #         parse_moditempath3 = '/LazarusII/UnitFBIViewset/?encoded_path=' + parse_moditempath2
+                            #     else:
+                            #         parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
+                            #         parse_moditempath2 = parse_moditempath1.replace('/',
+                            #                                                         '_SLSH_') + '_SLSH_' + raw_data_tdf[
+                            #                                                                                :-4]
+                            #         parse_moditempath3 = 'nan'
+                            #         does_contain_json = False
+                            # elif raw_data_tdf[-4:] == 'pses': # CORPSE FEATURE DETECTED! #      7/14/2017
+                            #     # subdirectory_components = mod_item_path  #'THIS IS A CORPSE ! ! !'
+                            #     corpses_dir = mod_item_path + '/corpses'
+                            #     ls_cmd_features_dir = str(subprocess.check_output(['ls', corpses_dir]))
+                            #     corpses_parsed_1 = ls_cmd_features_dir.replace("\\n'", "")
+                            #     corpses_parsed_2 = corpses_parsed_1.replace("b'", "")
+                            #     replace_me_str = '\\' + 'n'
+                            #     replace_regex1 = corpses_parsed_2.replace(replace_me_str, '_NL_')
+                            #     subdirectory_components = replace_regex1.split('_NL_')
+                            #     for feat in subdirectory_components:
+                            #         parse_moditempath1 = mod_item_path.replace('/usr/src/persistent/', '')
+                            #         parse_moditempath2 = parse_moditempath1.replace('/',
+                            #                                                     '_SLSH_') + '_SLSH_' + raw_data_tdf + '_SLSH_'
+                            #     raw_data_tdf = 'CORPSES_dir'
+                            elif raw_data_tdf[-4:].lower() == '.pcx':
+                                # LETS MAKE SOME PNGs
+                                pcx_path = mod_item_path  #+ raw_data_tdf[-4:]
+                                pcxFiles = os.listdir(pcx_path)
+                                for pic in pcxFiles:
+                                    if pic[-4:] == '.pcx':
+                                        try:
+                                            # print('reading... ' + pcx_path + '/' + pic)
+                                            img = Image.open(pcx_path + '/' + pic)
+                                            png = pcx_path + '/' + pic.replace('.pcx', '') + '.png'
+                                            if not os.path.isfile(png):
+                                                img.save(png, format='png')
+                                                print(' saved ✪ %s ' % png)
+                                            # else:
+                                            #     print('skipping... ' + png)
+                                        except Exception as ex:
+                                            print(ex)
+                                            pass
 
                             else:
                                 parse_moditempath3 = 'nan'
@@ -2946,6 +2964,8 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
                                     print('skipping StoredFiles log, file already exists.')
 
                             if raw_data_tdf[-4:] == ".fbi":
+                                pic_url = mod_item_path.replace('/usr/src/persistent', '')\
+                                          + '/' + raw_data_tdf[:-4] + '.png'
                                 data_file_json = {
                                     'file_type': raw_data_tdf[-4:],
                                     'file_name': raw_data_tdf[:-4],
@@ -2954,7 +2974,7 @@ class ExecuteBash_LS_AllCustomModFiles(APIView):
                                     'dir_type': mod_item,
                                     'raw_data_tdf': raw_data_tdf,
                                     'does_contain_json': does_contain_json,
-                                    'subdirectory_components': subdirectory_components
+                                    'unit_pic': pic_url.replace('/units/', '/unitpics/')
                                 }
                                 listed_data_files['directories'].append(data_file_json)
                         # mod_paths[data_file.file_name] = (listed_data_files)
