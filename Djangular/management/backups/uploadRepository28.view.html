@@ -114,7 +114,9 @@
                             <section ng-repeat="mod in vm.selectedDirItems" layout="row"
                                      layout-align="start center"
                                      layout-padding>
-                                <div style="color:white" flex="20">{{ mod['file_name'] }}</div>
+                                <div style="color:white" flex="20">
+									<img src="{{ mod['unit_pic'] }}" width="96" height="96" />
+								</div>
                                 <div flex="20">
                                         <span ng-if="mod['file_type'] === '.tdf'"
                                               class="text-boxed m-0 green-bg white-fg">{{ mod['file_type'] | uppercase }}</span>
