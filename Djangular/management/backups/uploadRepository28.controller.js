@@ -10,6 +10,7 @@
         vm.uploadMiniControllerDidLoad = false;
         vm.newRepositoryEditorMode = false;
         vm.loadingDirectoryExplorer = true;
+        vm.isUploadingFile = false;
 
 
         vm.selectedDirItems = [];
@@ -105,10 +106,10 @@
                 onComplete: afterShowAnimation,
                 locals: {
                     repositorySelectedSQL: vm.selectedRepo['name'],
-                    iframeUrl: iframeUrlParam + '&repo_name=' + vm.selectedRepo['name']
+                    iframeUrl: iframeUrlParam.replace('LazarusII/UnitFBIViewset', 'LazarusPublisherTest/PhaseOneReclaim') + '&repo_name=' + vm.selectedRepo['name']
                 }
             });
-
+            //iframeUrl: iframeUrlParam + '&repo_name=' + vm.selectedRepo['name']
             ///iframeUrl: iframeUrlParam.replace('LazarusII/UnitFBIViewset', 'LazarusPublisherTest/PhaseOneReclaim') + '&repo_name=' + vm.selectedRepo['name']
             function afterShowAnimation(scope, element, options) {}
         }
@@ -152,6 +153,7 @@
 
 
         function startUpload() {
+            vm.isUploadingFile = true;
             var fileInputField = document.getElementById('file_input');
             var file = fileInputField.files[0];
             var data = new FormData();
@@ -166,6 +168,7 @@
                 if (this.readyState === 4) {
                     console.log(this.responseText);
                     vm.popToastRepository(this.responseText);
+                    vm.isUploadingFile = false;
                 }
             });
             xhr.open("POST", "/LazarusDatabase/TotalAnnihilation/Upload/");
@@ -241,7 +244,7 @@
 
         function initDirectoryExplorerTabMiniCtrl() {
             $log.log('/LazarusII/ExecuteBash_LS_AllCustomModFiles/?mod_repo=' + vm.selectedRepo['name']);
-            vm.loadingDirectoryExplorer = false;
+            vm.loadingDirectoryExplorer = true;
             if (vm.selectedRepo) {
                 $http({
                     method: 'GET',

@@ -77,14 +77,15 @@
                                 </div>
                             </section>
                         </div>
-                        <md-button ng-click="vm.showUploadDialog($event)" class="md-hover-button-amber">
+						<md-progress-linear md-mode="indeterminate" ng-show="vm.isUploadingFile === true"></md-progress-linear>
+                        <md-button onclick="document.getElementById('file_input').click()" class="md-hover-button-amber" ng-hide="vm.isUploadingFile === true">
                             <span>Upload file to {{ vm.selectedRepo['name'] }}</span>
                         </md-button>
                     </div>
                 </div>
 
-                <input id="file_input" name="file" type="file">
-                <md-button 
+                <input id="file_input" name="file" type="file" style="opacity:0.0">
+                <md-button ng-hide="vm.isUploadingFile === true"
                            class="md-icon-button-blue md-hover-button-blue"
                            ng-click="vm.startUpload()"
                            aria-label="Add file">
@@ -93,8 +94,9 @@
 
             </md-content>
         </md-tab>
-        <md-tab label="Upload HPI Data" ng-click="vm.initDirectoryExplorerTabMiniCtrl()">
-            <md-content class="md-padding">
+        <md-tab label="{{ vm.selectedRepo['name'] }} File Explorer" ng-click="vm.initDirectoryExplorerTabMiniCtrl()">
+            <md-content class="md-padding container">
+				<md-progress-linear md-mode="query" ng-disabled="vm.loadingDirectoryExplorer === false"></md-progress-linear>
                 <h1 class="md-display-2 md-background-fg md-hue-3">Directory Explorer</h1>
                 <span class="md-headline md-background-fg md-hue-3">Showing Uploaded Files in {{ vm.selectedRepo['name'] }}</span>
                 <div class="slide-animate">
