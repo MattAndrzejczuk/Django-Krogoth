@@ -30,13 +30,8 @@ router.register(r'SoundTDF', SoundTDFViewSerialized)
 urlpatterns = [
 
     url(r'^serialized/', include(router.urls)),
-
-    # userAgentTracker
     url(r'^UserAgentTracker', UserAgentTracker.as_view()),
-
     url(r'^AutoCollectStatic/', AutoCollectStatic.as_view(), name='AutoCollectStatic'),
-
-
     # url(r'^UnitFBIViewset/', include(router.urls)),
 
     url(r'^ExecuteBash_LS_AllCustomModFiles/', ExecuteBash_LS_AllCustomModFiles.as_view(), name='ExecuteBash_LS_AllCustomModFiles'),

@@ -54,35 +54,171 @@ class ListDependenciesForAsset(APIView):
 
 
 
+class SuperHPI():
+    def __init__(self, usingFbi):
+        self.path_to_fbi = usingFbi
+        self.allAppendedWeaponTDFs = ""
+        self.allAppendedUnitFBIs = ""
+
+        self.logFbiUnitsProcessed = 0
+
+        subdir_count = len(self.path_to_fbi.split('/'))
+        weaponsPath = self.path_to_fbi.replace('units/' + self.path_to_fbi.split('/')[subdir_count - 1], '') + 'weapons/'
+        weaponfiles = os.listdir(weaponsPath)
+
+        for fileName in weaponfiles:
+            self.allAppendedWeaponTDFs += self.cleanTdf(weaponsPath + fileName)
+        allFbiFilesPath = self.path_to_fbi.replace(self.path_to_fbi.split('/')[subdir_count - 1], '')
+        unitFiles = os.listdir(allFbiFilesPath)
+
+        for fileName in unitFiles:
+            cleanFBI = self.cleanFbi(allFbiFilesPath + fileName)
+            self.allAppendedUnitFBIs += cleanFBI
+
+        self.warnings = []
+        self.errors = []
+
+    def parseManyUnitFBIs(self, rawTdf):
+        # comments need to already have been removed at this point.
+        pat = r'(?<=\{).+?(?=\})'
+        s = rawTdf
+        match = re.findall(pat, s)
+        return match
+
+    def parseWeaponTDFsSquareBracks(self, rawTdf):
+        pat = r'(?<=\[).+?(?=\])'
+        s = rawTdf
+        match = re.findall(pat, s)
+        return match
+
+    def parseWeaponTDFs(self, rawTdf):
+        pat = r'(?<=\{).+?(?=\})'
+        s = rawTdf
+        match = re.findall(pat, s)
+        return match
+
+    def parseSingleWeaponTdf(self, rawTdf):
+        pat = r'.*\{(.*{.*}.*)}.*'  # See Note at the bottom of the answer
+        match = re.search(pat, rawTdf)
+        return match
+
+    def parseManyWeaponTDFs(self, rawTdf):
+        pat = r'.*\{(.*{.*}.*)}.*'  # See Note at the bottom of the answer
+        match = re.findall(pat, rawTdf)
+        return match
+
+    def toJson(self, named, arr):
+        _json = {}
+        _inner = {}
+        for kv in arr:
+            arr2 = kv.split('=')
+            _inner[arr2[0]] = arr2[1]
+        _json[named] = _inner
+        return _json
+
+    # arr[0] : Properties
+    # arr[1] : Damage
+    def takeWeaponPropertiesAndDamage(self, tdf):
+        arr = tdf.split('[DAMAGE]{')
+        return arr
+
+    def remove_comments(self, string):
+        pattern = r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)"
+        regex = re.compile(pattern, re.MULTILINE | re.DOTALL)
+        def _replacer(match):
+            if match.group(2) is not None:
+                return ""
+            else:
+                return match.group(1)
+        return regex.sub(_replacer, string)
+
+    def cleanTdf(self, tdfPath):
+        file_contents = open(tdfPath, 'r', errors='replace')
+        rawFbi = file_contents.read()
+        fbi_dump = self.remove_comments(rawFbi)
+        parse_01 = fbi_dump.replace('\n', '')
+        parse_02 = parse_01.replace('\t', '').replace('  ','').replace('; ',';')
+        # print('\n\n')
+        # print(parse_02)
+        # print('\n\n')
+        return parse_02
+
+
+    def cleanFbi(self, tdfPath):
+        file_contents = open(tdfPath, 'r', errors='replace')
+        rawFbi = file_contents.read()
+        fbi_dump = self.remove_comments(rawFbi)
+        parse_01 = fbi_dump.replace('\n', '')
+        parse_02 = parse_01.replace('\t', '').replace('  ','').replace('; ',';')
+        return parse_02
+
+    def splitWeaponClusterTDF(self, clusterTDF):
+        tdfKeyList = self.parseWeaponTDFsSquareBracks(clusterTDF)
+        tdfList = self.parseWeaponTDFs(clusterTDF)
+        count = []
+        results = {}
+        i = 0
+        for innerTdf in tdfList:
+            if tdfKeyList[i] == 'DAMAGE':
+                i += 1
+            pnd = self.takeWeaponPropertiesAndDamage(innerTdf)
+            _dmg = pnd[1].split(';')[:-1]
+            _weapon = pnd[0].split(';')[:-1]
+            asJson = self.toJson(tdfKeyList[i], _weapon)
+            asJson[tdfKeyList[i]]['DAMAGE'] = self.toJson('DAMAGE', _dmg)['DAMAGE']
+            count.append(asJson[tdfKeyList[i]])
+            results[tdfKeyList[i]] = asJson[tdfKeyList[i]]
+            i += 1
+        # print(json.dumps(results, indent=2))
+        # print('\n\nTotal Weapon Objects Analyzed: ' + str(len(count)))
+        # print('Unique Weapon Objects Detected: ' + str(len(results)))
+        return results
+
+    def splitUnitClusterFBI(self, clusterFBI):
+        # print(clusterFBI.replace('=', '\033[0m\033[91m=\033[0m\033[34m').replace('[UNITINFO]', '\n\n').replace(';','\033[0m;\n\t\033[35m').replace('{','\t{\n\t'))
+        tdfList = clusterFBI.split('[UNITINFO]')[:-1]
+        count = []
+        # results = {}
+        suc_errors = []
+        for innerTdf in tdfList:
+            unit = {}
+            arr1 = innerTdf.replace('/', ' ').replace(',', ' ').replace('{', '').replace(';}', ';').split(';')[:-1]
+            for kv in arr1:
+                if '=' in kv:
+                    prop = kv.split('=')
+                    key = prop[0]
+                    value = prop[1]
+                    if key.upper() == 'OBJECTNAME':
+                        key = 'Objectname'
+                    unit[key] = value
+                else:
+                    self.errors.append('unknown unit FBI ' + str(kv))
+            count.append(unit)
+        # print('\nFBI processed: ' + str(len(count)) + ' total units,')
+        # print('with about: ' + str(len(suc_errors)) + ' errors:')
+        self.logFbiUnitsProcessed = len(count)
+        # for error in suc_errors:
+        #     print(error)
+        return count
+
+
 class PhaseOneReclaim(APIView):
     def remove_comments(self, string):
         pattern = r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)"
-        # first group captures quoted strings (double or single)
-        # second group captures comments (//single-line or /* multi-line */)
         regex = re.compile(pattern, re.MULTILINE | re.DOTALL)
-
         def _replacer(match):
-            # if the 2nd group (capturing comments) is not None,
-            # it means we have captured a non-quoted (real) comment string.
             if match.group(2) is not None:
-                return ""  # so we will return empty to remove the comment
-            else:  # otherwise, we will return the 1st group
-                return match.group(1)  # captured quoted-string
-
+                return ""  
+            else:  
+                return match.group(1)  
         return regex.sub(_replacer, string)
 
-
     def cleanTdf(self, tdfPath):
-        # print(bcolors.OKBLUE)
         file_contents = open(tdfPath, 'r', errors='replace')
         rawFbi = file_contents.read()
-        # print(rawFbi)
         fbi_dump = self.remove_comments(rawFbi)
-        # print('- - - - - - - - -')
         parse_01 = fbi_dump.replace('\n', '')
         parse_02 = parse_01.replace('\t', '').replace('  ','').replace('; ',';')
-        # print(parse_02)
-        # print(bcolors.ENDC)
         return parse_02
 
     def parseWeaponTDFsSquareBracks(self, rawTdf):
@@ -104,25 +240,56 @@ class PhaseOneReclaim(APIView):
         for innerTdf in tdfList:
             if tdfKeyList[i] == 'DAMAGE':
                 i += 1
-            print(tdfKeyList[i])
-            print(innerTdf)
-            print()
+            # print(tdfKeyList[i])
+            # print(innerTdf)
+            # print()
             i += 1
+
+    # def convertToJson(self, giantBatchOfData):
+
 
     def get(self, request, format=None):
         parse_path1 = str(request.GET['encoded_path']).replace('_SLSH_', '/')
         path_to_fbi = '/usr/src/persistent/' + parse_path1 + '.fbi'
-        print('Opening .FBI file at: ')
-        print(path_to_fbi)
+        allFbiFilesPath = path_to_fbi.replace(path_to_fbi.split('/')[8], '')
+
+        dir_extract_request = SuperHPI(allFbiFilesPath)
+        allFBIs = dir_extract_request.splitUnitClusterFBI(dir_extract_request.allAppendedUnitFBIs)
+
+        # abel_dict = json.loads(parse_09)
+        for fbiUnit in allFBIs:
+            if 'Side' in fbiUnit and 'Name' in fbiUnit:
+                # print(fbiUnit)
+                _json = JSONRenderer().render(fbiUnit)
+                stream = BytesIO(_json)
+                data = JSONParser().parse(stream)
+                fbi_serialized_from_file = UnitFbiDataSerializer_v2(data=data)
+                if fbi_serialized_from_file.is_valid() == False:
+                    # print('WARNING: ' + fbiUnit['Side'] + ' ' + fbiUnit['Name'] + ' is invalid.')
+                    dir_extract_request.warnings.append(fbi_serialized_from_file.errors)
+                    dir_extract_request.warnings.append('unable to parse: ' + fbiUnit['Side'] + ' ' + fbiUnit['Name'])
+
+                # else:
+                #     print(fbiUnit['Side'] + ' ' + fbiUnit['Name'] + ' serialized successfully.')
+
+
+        info = {}
+        allFBIs[0] = {}
+        allFBIs[0][str(len(dir_extract_request.warnings)) + " warnings: "] = dir_extract_request.warnings
+        allFBIs[0][str(len(dir_extract_request.errors)) + " errors: "] = dir_extract_request.errors
+        allFBIs[0]["Total FBI units processed successfully: "] = dir_extract_request.logFbiUnitsProcessed
+
+        return Response(allFBIs)
+
+""" 
+        parse_path1 = str(request.GET['encoded_path']).replace('_SLSH_', '/')
+        path_to_fbi = '/usr/src/persistent/' + parse_path1 + '.fbi'
         file_contents = open(path_to_fbi, 'r', errors='replace')
         rawFbi = file_contents.read()
-        print(rawFbi)
         fbi_dump = self.remove_comments(rawFbi)
         print('- - - - - - - - -')
-
         parse_01 = fbi_dump.replace('\n', '')
         parse_02 = parse_01.replace('\t', '').replace('  ','').replace('; ',';')
-        print(parse_02)
         parse_03 = parse_02.replace(';', '",')
         parse_04 = parse_03.replace('=', ':"')
         parse_05 = parse_04.replace('",}', '"}')
@@ -136,9 +303,7 @@ class PhaseOneReclaim(APIView):
         data = JSONParser().parse(stream)
         new_data = {}
         for (key, value) in data.items():
-            print(key)
             better_key = key.replace(' ', '')
-            print(better_key)
             new_data[better_key] = value
         fbi_serialized_from_file = UnitFbiDataSerializer_v2(data=new_data)
         print("FBI was serialized successfully: ")
@@ -146,46 +311,25 @@ class PhaseOneReclaim(APIView):
         print(json.dumps(new_data, indent=4, sort_keys=True))
         print('Properties expected: ' + str(fbi_dump.count('=')))
         print('Total properties: ' + str(json.dumps(new_data, indent=4, sort_keys=True).count(':')))
-        print(path_to_fbi)
-        print(path_to_fbi.split('/'))
-
+        
         weaponsPath = path_to_fbi.replace('units/' + path_to_fbi.split('/')[8],'') + 'weapons/'
-        print(weaponsPath)
         weaponfiles = os.listdir(weaponsPath)
-
         allAppendedWeaponTDFs = ""
         for fileName in weaponfiles:
             allAppendedWeaponTDFs += self.cleanTdf(weaponsPath + fileName)
 
-        # print(bcolors.red)
-        # print(allAppendedWeaponTDFs)
-        # print(bcolors.ENDC)
-
-        # print('\n\nAll FBI files to analyze: ')
         allFbiFilesPath = path_to_fbi.replace(path_to_fbi.split('/')[8], '')
-        # print(allFbiFilesPath)
-
         unitFiles = os.listdir(allFbiFilesPath)
         allAppendedUnitFBIs = ""
         for fileName in unitFiles:
             allAppendedUnitFBIs += self.cleanTdf(allFbiFilesPath + fileName)
 
-        # print(bcolors.purple)
-        # print(allAppendedUnitFBIs)
-        # print(bcolors.ENDC)
-
+        print(allAppendedWeaponTDFs)
         print('\n\n\n')
         print('Total TDF files harvested: ' + str(len(weaponfiles)))
-        print('Total FBI files harvested: ' + str(len(unitFiles)))
-
-        print(' - - TDF - - ')
-        self.processTdfBatch(allAppendedWeaponTDFs)
-        print(' - - FBI - - ')
-        self.processTdfBatch(allAppendedUnitFBIs)
-
-
+        print('Total FBI files harvested: ' + str(len(unitFiles)) + '\n')
         return Response(new_data)
-
+"""
 
 
 class SerializeFBIFileInPathNoSave(APIView):
