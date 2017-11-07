@@ -59,21 +59,47 @@ class SuperHPI():
         self.path_to_fbi = usingFbi
         self.allAppendedWeaponTDFs = ""
         self.allAppendedUnitFBIs = ""
+        self.allAppendedFeatureTDFs = ""
+        self.allAppendedDownloadTDFs = ""
 
         self.logFbiUnitsProcessed = 0
 
         subdir_count = len(self.path_to_fbi.split('/'))
-        weaponsPath = self.path_to_fbi.replace('units/' + self.path_to_fbi.split('/')[subdir_count - 1], '') + 'weapons/'
-        weaponfiles = os.listdir(weaponsPath)
+        self.base_dir = self.path_to_fbi.replace('units/' + self.path_to_fbi.split('/')[subdir_count - 1], '')
 
+        print('initializing SuperHPI...')
+
+        weaponsPath = self.base_dir + 'weapons/'
+        weaponfiles = os.listdir(weaponsPath)
         for fileName in weaponfiles:
             self.allAppendedWeaponTDFs += self.cleanTdf(weaponsPath + fileName)
         allFbiFilesPath = self.path_to_fbi.replace(self.path_to_fbi.split('/')[subdir_count - 1], '')
         unitFiles = os.listdir(allFbiFilesPath)
 
+        print('finished loading weapons...')
+
         for fileName in unitFiles:
             cleanFBI = self.cleanFbi(allFbiFilesPath + fileName)
             self.allAppendedUnitFBIs += cleanFBI
+
+        print('finished loading units...')
+
+        featuresPath = self.base_dir + 'features/corpses/'
+        featureFiles = os.listdir(featuresPath)
+        for fileName in featureFiles:
+            cleanTDF = self.cleanTdf(featuresPath + fileName)
+            self.allAppendedFeatureTDFs += cleanTDF
+
+        print('finished loading features...')
+
+        downloadPath = self.base_dir + 'download/'
+        downloadFiles = os.listdir(downloadPath)
+        for fileName in downloadFiles:
+            cleanTDF = self.cleanTdf(downloadPath + fileName)
+            self.allAppendedDownloadTDFs += cleanTDF
+
+        print('finished loading downloads...')
+
 
         self.warnings = []
         self.errors = []
@@ -201,6 +227,17 @@ class SuperHPI():
         #     print(error)
         return count
 
+    def splitGenericClusterTDF(self, clusterTDF):
+        corpseValuesJSON = self.parseWeaponTDFs(clusterTDF)
+        corpseKeysJSON = self.parseWeaponTDFsSquareBracks(clusterTDF)
+        returnArr = []
+        n = 0
+        for _json in corpseValuesJSON:
+            _tojson = self.toJson(corpseKeysJSON[n], _json.split(';')[:-1])
+            returnArr.append(_tojson)
+            n += 1
+        return returnArr
+
 
 class PhaseOneReclaim(APIView):
     def remove_comments(self, string):
@@ -253,7 +290,12 @@ class PhaseOneReclaim(APIView):
         path_to_fbi = '/usr/src/persistent/' + parse_path1 + '.fbi'
         allFbiFilesPath = path_to_fbi.replace(path_to_fbi.split('/')[8], '')
 
+        print('\033[92m')
+        print('Starting...')
+        print('\033[0m\n')
+
         dir_extract_request = SuperHPI(allFbiFilesPath)
+        """
         allFBIs = dir_extract_request.splitUnitClusterFBI(dir_extract_request.allAppendedUnitFBIs)
 
         # abel_dict = json.loads(parse_09)
@@ -268,6 +310,9 @@ class PhaseOneReclaim(APIView):
                     # print('WARNING: ' + fbiUnit['Side'] + ' ' + fbiUnit['Name'] + ' is invalid.')
                     dir_extract_request.warnings.append(fbi_serialized_from_file.errors)
                     dir_extract_request.warnings.append('unable to parse: ' + fbiUnit['Side'] + ' ' + fbiUnit['Name'])
+                else:
+                    # fbi_serialized_from_file.save()
+                    print('SKIPPING: Unit Saved as UnitFbiData_v2')
 
                 # else:
                 #     print(fbiUnit['Side'] + ' ' + fbiUnit['Name'] + ' serialized successfully.')
@@ -278,6 +323,31 @@ class PhaseOneReclaim(APIView):
         allFBIs[0][str(len(dir_extract_request.warnings)) + " warnings: "] = dir_extract_request.warnings
         allFBIs[0][str(len(dir_extract_request.errors)) + " errors: "] = dir_extract_request.errors
         allFBIs[0]["Total FBI units processed successfully: "] = dir_extract_request.logFbiUnitsProcessed
+        """
+
+        print('\033[92m')
+        print('Starting...')
+        print('\033[0m\n')
+
+        allTDFs = dir_extract_request.splitWeaponClusterTDF(dir_extract_request.allAppendedWeaponTDFs)
+        print('\033[95m')
+        print(json.dumps(allTDFs, indent=2))
+        print('\033[0m')
+
+        allFBIs = dir_extract_request.splitUnitClusterFBI(dir_extract_request.allAppendedUnitFBIs)
+        print('\033[92m')
+        print(json.dumps(allFBIs, indent=2))
+        print('\033[0m\n\nFINISHED!')
+
+        allFeatures = dir_extract_request.splitGenericClusterTDF(dir_extract_request.allAppendedFeatureTDFs)
+        print('\033[94m')
+        print(json.dumps(allFeatures, indent=2))
+        print('\033[0m\n\nFINISHED!')
+
+        allDownloads = dir_extract_request.splitGenericClusterTDF(dir_extract_request.allAppendedDownloadTDFs)
+        print('\033[91m')
+        print(json.dumps(allDownloads, indent=2))
+        print('\033[0m\n\nFINISHED!')
 
         return Response(allFBIs)
 

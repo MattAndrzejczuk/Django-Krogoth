@@ -22,4 +22,3 @@ urlpatterns = [
 # 3.] Convert JSON Weapon, Unit & Download back into naitive TA data file.
 # 4.] Save conversion to new directory.
 
-\
