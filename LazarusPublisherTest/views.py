@@ -53,7 +53,6 @@ class ListDependenciesForAsset(APIView):
         print('\n\nListDependenciesForAsset\n')
 
 
-
 class SuperHPI():
     def __init__(self, usingFbi):
         self.path_to_fbi = usingFbi
@@ -62,43 +61,54 @@ class SuperHPI():
         self.allAppendedFeatureTDFs = ""
         self.allAppendedDownloadTDFs = ""
 
+        self.VANILLA_PATH = 'hpi_vanilla/'
+
         self.logFbiUnitsProcessed = 0
+
+        self._3d_model_dependencies = {}
+        self._3d_model_dependencies_cavedog = {}
+        self._3d_model_dependencies_error = {}
+        self._gaf_dependencies = {}
+        self._gaf_dependencies_cavedog = {}
+        self._gaf_dependencies_error = {}
+        self._wav_dependencies = {}
+        self._wav_dependencies_cavedog = {}
+        self._wav_dependencies_error = {}
+
+        self.debug_specific_object_mode = False
 
         subdir_count = len(self.path_to_fbi.split('/'))
         self.base_dir = self.path_to_fbi.replace('units/' + self.path_to_fbi.split('/')[subdir_count - 1], '')
 
-        print('initializing SuperHPI...')
-
         weaponsPath = self.base_dir + 'weapons/'
-        weaponfiles = os.listdir(weaponsPath)
-        for fileName in weaponfiles:
-            self.allAppendedWeaponTDFs += self.cleanTdf(weaponsPath + fileName)
+        if os.path.exists(weaponsPath):
+            weaponfiles = os.listdir(weaponsPath)
+            for fileName in weaponfiles:
+                self.allAppendedWeaponTDFs += self.cleanTdf(weaponsPath + fileName)
+
+
         allFbiFilesPath = self.path_to_fbi.replace(self.path_to_fbi.split('/')[subdir_count - 1], '')
-        unitFiles = os.listdir(allFbiFilesPath)
+        if os.path.exists(allFbiFilesPath):
+            unitFiles = os.listdir(allFbiFilesPath)
+            for fileName in unitFiles:
+                cleanFBI = self.cleanFbi(allFbiFilesPath + fileName)
+                self.allAppendedUnitFBIs += cleanFBI
 
-        print('finished loading weapons...')
-
-        for fileName in unitFiles:
-            cleanFBI = self.cleanFbi(allFbiFilesPath + fileName)
-            self.allAppendedUnitFBIs += cleanFBI
-
-        print('finished loading units...')
 
         featuresPath = self.base_dir + 'features/corpses/'
-        featureFiles = os.listdir(featuresPath)
-        for fileName in featureFiles:
-            cleanTDF = self.cleanTdf(featuresPath + fileName)
-            self.allAppendedFeatureTDFs += cleanTDF
+        if os.path.exists(featuresPath):
+            featureFiles = os.listdir(featuresPath)
+            for fileName in featureFiles:
+                cleanTDF = self.cleanTdf(featuresPath + fileName)
+                self.allAppendedFeatureTDFs += cleanTDF
 
-        print('finished loading features...')
 
         downloadPath = self.base_dir + 'download/'
-        downloadFiles = os.listdir(downloadPath)
-        for fileName in downloadFiles:
-            cleanTDF = self.cleanTdf(downloadPath + fileName)
-            self.allAppendedDownloadTDFs += cleanTDF
-
-        print('finished loading downloads...')
+        if os.path.exists(downloadPath):
+            downloadFiles = os.listdir(downloadPath)
+            for fileName in downloadFiles:
+                cleanTDF = self.cleanTdf(downloadPath + fileName)
+                self.allAppendedDownloadTDFs += cleanTDF
 
 
         self.warnings = []
@@ -115,7 +125,11 @@ class SuperHPI():
         pat = r'(?<=\[).+?(?=\])'
         s = rawTdf
         match = re.findall(pat, s)
-        return match
+        new_match = []
+        for m in match:
+            new_match.append(m.upper())
+        # print(new_match)
+        return new_match
 
     def parseWeaponTDFs(self, rawTdf):
         pat = r'(?<=\{).+?(?=\})'
@@ -164,10 +178,17 @@ class SuperHPI():
         fbi_dump = self.remove_comments(rawFbi)
         parse_01 = fbi_dump.replace('\n', '')
         parse_02 = parse_01.replace('\t', '').replace('  ','').replace('; ',';')
-        # print('\n\n')
+        # print('\n')
         # print(parse_02)
-        # print('\n\n')
-        return parse_02
+        # print('\n')
+        parse_03 = parse_02.replace(';ExplosionGaf=', ';explosiongaf=').replace(';Explosiongaf=', ';explosiongaf=')
+        parse_04 = parse_03.replace(';Lavaexplosiongaf=', ';lavaexplosiongaf=').replace(';LavaExplosiongaf=', ';lavaexplosiongaf=')
+        parse_05 = parse_04.replace(';WaterExplosiongaf=', ';waterexplosiongaf=').replace(';WaterExplosionGaf=', ';waterexplosiongaf=')
+        parse_06 = parse_05.replace(';LavaExplosionGaf=', ';lavaexplosiongaf=')
+        parse_07 = parse_06.replace(';Soundhit=', ';soundhit=').replace(';SoundHit=', ';soundhit=')
+        parse_08 = parse_07.replace(';Soundstart=', ';soundstart=').replace(';SoundStart=', ';soundstart=')
+        parse_09 = parse_08.replace(';Soundwater=', ';soundwater=').replace(';SoundWater=', ';soundwater=')
+        return parse_09.replace(';Object=', ';object=').replace(';model=', ';Model=')
 
 
     def cleanFbi(self, tdfPath):
@@ -175,8 +196,77 @@ class SuperHPI():
         rawFbi = file_contents.read()
         fbi_dump = self.remove_comments(rawFbi)
         parse_01 = fbi_dump.replace('\n', '')
-        parse_02 = parse_01.replace('\t', '').replace('  ','').replace('; ',';')
-        return parse_02
+        parse_02 = parse_01.replace('\t', '').replace('  ','').replace('; ',';').replace(';corpse=', ';Corpse=')
+        # print('- - - - - - -')
+        # print(parse_02)
+        parse_03 = parse_02.replace('objectname=', 'Objectname=').replace('ObjectName=', 'Objectname=')
+        return parse_03
+
+    def addModelDependency(self, path, name):
+        if os.path.isfile(path):
+            self._3d_model_dependencies[name] = path
+        else:
+            if os.path.isfile(self.VANILLA_PATH + 'objects3d/' + path + '.3do'):
+                self._3d_model_dependencies_cavedog[name] = path
+            else:
+                self._3d_model_dependencies_error[name] = path
+
+    def findGafDependencies(self, unitObj):
+        if 'explosiongaf' in unitObj:
+            file_path = self.base_dir + 'anims/' + unitObj['explosiongaf'] + '.gaf'
+            if os.path.isfile(file_path):
+                self._gaf_dependencies[unitObj['explosiongaf']] = file_path
+            else:
+                if os.path.isfile(self.VANILLA_PATH + 'anims/' + unitObj['explosiongaf'] + '.gaf'):
+                    self._gaf_dependencies_cavedog[unitObj['explosiongaf']] = file_path
+                else:
+                    self._gaf_dependencies_error[unitObj['explosiongaf']] = file_path
+        elif 'Explosiongaf' in unitObj:
+            file_path = self.base_dir + 'anims/' + unitObj['Explosiongaf'] + '.gaf'
+            if os.path.isfile(file_path):
+                self._gaf_dependencies[unitObj['Explosiongaf']] = file_path
+            else:
+                if os.path.isfile(self.VANILLA_PATH + 'anims/' + unitObj['Explosiongaf'] + '.gaf'):
+                    self._gaf_dependencies_cavedog[unitObj['Explosiongaf']] = file_path
+                else:
+                    self._gaf_dependencies_error[unitObj['Explosiongaf']] = file_path
+        if 'waterexplosiongaf' in unitObj:
+            file_path = self.base_dir + 'anims/' + unitObj['waterexplosiongaf'] + '.gaf'
+            # self._gaf_dependencies[unitObj['waterexplosiongaf']] = file_path
+            if os.path.isfile(file_path):
+                self._gaf_dependencies[unitObj['waterexplosiongaf']] = file_path
+            else:
+                if os.path.isfile(self.VANILLA_PATH + 'anims/' + unitObj['waterexplosiongaf'] + '.gaf'):
+                    self._gaf_dependencies_cavedog[unitObj['waterexplosiongaf']] = file_path
+                else:
+                    self._gaf_dependencies_error[unitObj['waterexplosiongaf']] = file_path
+        if 'lavaexplosiongaf' in unitObj:
+            file_path = self.base_dir + 'anims/' + unitObj['lavaexplosiongaf'] + '.gaf'
+            # self._gaf_dependencies[unitObj['lavaexplosiongaf']] = file_path
+            if os.path.isfile(file_path):
+                self._gaf_dependencies[unitObj['lavaexplosiongaf']] = file_path
+            else:
+                if os.path.isfile(self.VANILLA_PATH + 'anims/' + unitObj['lavaexplosiongaf'] + '.gaf'):
+                    self._gaf_dependencies_cavedog[unitObj['lavaexplosiongaf']] = file_path
+                else:
+                    self._gaf_dependencies_error[unitObj['lavaexplosiongaf']] = file_path
+
+    def findWeaponWavDependencies(self, weap_obj):
+        key1 = 'soundhit'
+        key2 = 'soundstart'
+        key3 = 'soundwater'
+        keys = [key1, key2, key3]
+        for k in keys:
+            if k in weap_obj:
+                file_path = self.base_dir + 'sounds/' + weap_obj[k] + '.wav'
+                if os.path.isfile(file_path):
+                    self._wav_dependencies[weap_obj[k]] = file_path
+                else:
+                    if os.path.isfile(self.VANILLA_PATH + 'sounds/' + weap_obj[k] + '.wav'):
+                        self._wav_dependencies_cavedog[weap_obj[k]] = file_path
+                    else:
+                        self._wav_dependencies_error[weap_obj[k]] = file_path
+
 
     def splitWeaponClusterTDF(self, clusterTDF):
         tdfKeyList = self.parseWeaponTDFsSquareBracks(clusterTDF)
@@ -187,26 +277,59 @@ class SuperHPI():
         for innerTdf in tdfList:
             if tdfKeyList[i] == 'DAMAGE':
                 i += 1
+            unique_key = tdfKeyList[i] #.upper()
             pnd = self.takeWeaponPropertiesAndDamage(innerTdf)
             _dmg = pnd[1].split(';')[:-1]
             _weapon = pnd[0].split(';')[:-1]
-            asJson = self.toJson(tdfKeyList[i], _weapon)
-            asJson[tdfKeyList[i]]['DAMAGE'] = self.toJson('DAMAGE', _dmg)['DAMAGE']
-            count.append(asJson[tdfKeyList[i]])
-            results[tdfKeyList[i]] = asJson[tdfKeyList[i]]
+            asJson = self.toJson(unique_key, _weapon)
+            asJson[unique_key]['DAMAGE'] = self.toJson('DAMAGE', _dmg)['DAMAGE']
+            count.append(asJson[unique_key])
+            results[unique_key] = asJson[unique_key]
+
+
+            if 'model' in asJson[unique_key]:
+                name = asJson[unique_key]['model']
+                file_path = self.base_dir + 'objects3d/' + asJson[unique_key]['model'] + '.3do'
+                self.addModelDependency(file_path, name)
+                # print(asJson[unique_key]['model'])
+            elif 'Model' in asJson[unique_key]:
+                name = asJson[unique_key]['Model']
+                file_path = self.base_dir + 'objects3d/' + asJson[unique_key]['Model'] + '.3do'
+                self.addModelDependency(file_path, name)
+                # print(asJson[unique_key]['Model'])
+
+            self.findGafDependencies(asJson[unique_key])
+            self.findWeaponWavDependencies(asJson[unique_key])
+
             i += 1
-        # print(json.dumps(results, indent=2))
-        # print('\n\nTotal Weapon Objects Analyzed: ' + str(len(count)))
-        # print('Unique Weapon Objects Detected: ' + str(len(results)))
         return results
+
+    def evaluateUnit3DFiles(self, list_items):
+        for unit in list_items:
+            model_key = 'Objectname'
+            file_path = self.base_dir + 'objects3d/' + unit[model_key] + '.3do'
+
+            if os.path.isfile(file_path):
+                self._3d_model_dependencies[unit[model_key]] = file_path
+            else:
+                if os.path.isfile(self.VANILLA_PATH + 'objects3d/' + model_key + '.3do'):
+                    self._3d_model_dependencies_cavedog[unit[model_key]] = file_path
+                else:
+                    self._3d_model_dependencies_error[unit[model_key]] = file_path
+
+
 
     def splitUnitClusterFBI(self, clusterFBI):
         # print(clusterFBI.replace('=', '\033[0m\033[91m=\033[0m\033[34m').replace('[UNITINFO]', '\n\n').replace(';','\033[0m;\n\t\033[35m').replace('{','\t{\n\t'))
-        tdfList = clusterFBI.split('[UNITINFO]')[:-1]
+        tdfList = clusterFBI.split('[UNITINFO]')
+        fbiList = []
+        if tdfList[0] == '':
+            print("FIRST ELEMENT IS BLANK!")
+            fbiList = tdfList[1:]
         count = []
         # results = {}
         suc_errors = []
-        for innerTdf in tdfList:
+        for innerTdf in fbiList:
             unit = {}
             arr1 = innerTdf.replace('/', ' ').replace(',', ' ').replace('{', '').replace(';}', ';').split(';')[:-1]
             for kv in arr1:
@@ -216,6 +339,12 @@ class SuperHPI():
                     value = prop[1]
                     if key.upper() == 'OBJECTNAME':
                         key = 'Objectname'
+                    elif key.upper() == 'WEAPON1':
+                        value = value.upper()
+                    elif key.upper() == 'WEAPON2':
+                        value = value.upper()
+                    elif key.upper() == 'WEAPON3':
+                        value = value.upper()
                     unit[key] = value
                 else:
                     self.errors.append('unknown unit FBI ' + str(kv))
@@ -225,18 +354,288 @@ class SuperHPI():
         self.logFbiUnitsProcessed = len(count)
         # for error in suc_errors:
         #     print(error)
+        self.evaluateUnit3DFiles(count)
+
         return count
 
-    def splitGenericClusterTDF(self, clusterTDF):
-        corpseValuesJSON = self.parseWeaponTDFs(clusterTDF)
-        corpseKeysJSON = self.parseWeaponTDFsSquareBracks(clusterTDF)
+    def processDownloadTDF(self, in_obj, _tojson):
+        out_obj = in_obj
+        for key, val in _tojson.items():
+            if 'UNITMENU' in val and 'UNITNAME' in val:
+                out_obj[val['UNITMENU'] + ' -> ' + val['UNITNAME']] = val
+                out_obj[val['UNITMENU'] + ' -> ' + val['UNITNAME']]['menuentry'] = key
+                meta_data = 'entry=' + key + '|menu=' + val['MENU'] + '|button=' + val['BUTTON']
+                out_obj[val['UNITMENU'] + ' -> ' + val['UNITNAME']]['meta'] = meta_data
+        return out_obj
+
+    def evaluateFeature3DFiles(self, in_obj, _toJson):
+        out_obj = in_obj
+        for key, val in _toJson.items():
+            file_path = ''
+            model_key = 'object'
+            if model_key in val:
+                file_path = self.base_dir + 'objects3d/' + val[model_key] + '.3do'
+            else:
+                model_key = "Object"
+                if 'Object' in val:
+                    file_path = self.base_dir + 'objects3d/' + val[model_key] + '.3do'
+
+            if os.path.isfile(file_path):
+                self._3d_model_dependencies[val[model_key]] = file_path
+            else:
+                if model_key in val:
+                    if os.path.isfile(self.VANILLA_PATH + 'objects3d/' + val[model_key] + '.3do'):
+                        self._3d_model_dependencies_cavedog[val[model_key]] = file_path
+                    else:
+                        self._3d_model_dependencies_error[val[model_key]] = file_path
+            out_obj[key] = val
+        return out_obj
+
+
+    def splitGenericClusterTDF(self, clusterTDF, type):
+        bug_fix_1 = clusterTDF.replace('[MENUENTRY0]{}', '')
+        corpseValuesJSON = self.parseWeaponTDFs(bug_fix_1)
+        corpseKeysJSON = self.parseWeaponTDFsSquareBracks(bug_fix_1)
         returnArr = []
+        returnObj = {}
         n = 0
         for _json in corpseValuesJSON:
+            _tojson = []
             _tojson = self.toJson(corpseKeysJSON[n], _json.split(';')[:-1])
-            returnArr.append(_tojson)
+            if type == 'download':
+                returnObj = self.processDownloadTDF(returnObj, _tojson)
+            else:
+                returnObj = self.evaluateFeature3DFiles(returnObj, _tojson)
+            # try:
+            #     _tojson = self.toJson(corpseKeysJSON[n], _json.split(';')[:-1])
+            #     if type == 'download':
+            #         returnObj = self.processDownloadTDF(returnObj, _tojson)
+            #     else:
+            #         returnObj = self.evaluateFeature3DFiles(returnObj, _tojson)
+            # except:
+            #     print('Something failed... ' + type)
+            #     print(clusterTDF)
+                # _tojson = self.toJson(corpseKeysJSON[n], _json.split(';'))
             n += 1
-        return returnArr
+        return returnObj
+
+
+    def printSpecificUnitAssets(self, ids, allModFbis):
+        print(ids)
+        mod_fbis = []
+        i = 0
+        while i < len(ids):
+            mod_fbis.append(allModFbis[ids[i]])
+            i += 1
+
+        # print(mod_fbis)
+        return mod_fbis
+
+
+    def printAllUnitAssets(self, allModFbis, allWeapTdfs, allModFeatures):
+        i = 0
+        while i < len(allModFbis):
+            # print(json.dumps(allModFbis[i], indent=2))
+            fbi_unit_name = ''
+            if 'UnitName' in allModFbis[i]:
+                fbi_unit_name = allModFbis[i]['UnitName']
+            elif 'Unitname' in allModFbis[i]:
+                fbi_unit_name = allModFbis[i]['Unitname']
+            elif 'unitname' in allModFbis[i]:
+                fbi_unit_name = allModFbis[i]['unitname']
+            else:
+                print('\033[93mTHIS UNIT HAS NO NAME!!!\n')
+                print(json.dumps(allModFbis[i], indent=2) + '\033[0m')
+                continue
+            weap_key_1 = ''
+            weap_key_2 = ''
+            weap_key_3 = ''
+            corpse_key = ''
+            Objectname = ''
+            print('─────────────────────────────────────────────────────────')
+            print(self.base_dir)
+            print('\033[35m' + fbi_unit_name + '\033[0m index : ' + str(i))
+            logpath = '\033[34m' + self.base_dir + '\033[0m'
+            # print(logpath + '\033[31m' + fbi_unit_name + '_gadget' + '\033[0m.gaf')
+            if 'Objectname' in allModFbis[i]:
+                Objectname = allModFbis[i]['Objectname']
+            elif 'objectname' in allModFbis[i]:
+                Objectname = allModFbis[i]['objectname']
+
+
+            possible_pcx_files = os.listdir(self.base_dir + 'unitpics')
+            for pcx in possible_pcx_files:
+                if fbi_unit_name.lower() in pcx.lower():
+                    print(logpath + 'unitpics/\033[31m' + pcx)
+                    break
+
+            possible_gaf_files = os.listdir(self.base_dir + 'anims')
+            for gaf in possible_gaf_files:
+                if fbi_unit_name.lower() in gaf.lower():
+                    print(logpath + 'anims/\033[31m' + gaf)
+                    break
+
+            possible_cob_files = os.listdir(self.base_dir + 'scripts')
+            for cob in possible_cob_files:
+                if fbi_unit_name.lower() in cob.lower():
+                    print(logpath + 'scripts/\033[31m' + cob)
+                    break
+
+            print(logpath + '\033[31mobjects3d/' + Objectname + '\033[0m.3do')
+            inner_k1 = 'soundstart'
+            inner_k2 = 'soundhit'
+            inner_k3 = 'explosiongaf'
+            inner_k4 = 'waterexplosiongaf'
+            inner_k5 = 'lavaexplosiongaf'
+            inner_k7 = 'Model'
+            inner_k13 = 'soundwater'
+            inner_weap_keys = [inner_k1, inner_k2, inner_k13, inner_k3, inner_k4, inner_k5, inner_k7]
+
+            inner_c1 = 'object'
+            inner_c2 = 'Object'
+            inner_corpse_keys = [inner_c1, inner_c2]
+
+
+
+            print('  ╔═══════════════════════════════════════════════════════╗')
+            if 'Weapon1' in allModFbis[i] or 'weapon1' in allModFbis[i]:
+                main_key = 'Weapon1'
+                if 'Weapon1' not in allModFbis[i]:
+                    main_key = 'weapon1'
+                weap_key_1 = allModFbis[i][main_key]
+                log = '  ║\033[33mWeapon1 : \033[0m \033[32m' + weap_key_1 + '\033[0m'
+                print(log)
+                if weap_key_1 in CAVEDOG_WEAPONS:
+                    print('  ║ \033[36mCavedog Asset\033[0m')
+
+                for k in inner_weap_keys:
+                    if weap_key_1 in allWeapTdfs:
+                        # print('\033[036' + json.dumps(allWeapTdfs[weap_key_1], indent=2) + '\033[0m')
+                        if k in allWeapTdfs[weap_key_1]:
+                            ext = '.gaf'
+                            if 'ound' in k:
+                                ext = '.wav'
+                            elif 'odel' in k:
+                                ext = '.3do'
+                            log = '  ║\033[37m' + k + '\033[0m \033[94m -> \033[0m\033[31m' + \
+                                  allWeapTdfs[weap_key_1][k] + '\033[0m' + ext
+                            print(log)
+                # print(json.dumps(allWeapTdfs[weap_key_1], indent=2))
+                print('  ╠═══════════════════════════════════════════════════════╣')
+            if 'Weapon2' in allModFbis[i] or 'weapon2' in allModFbis[i]:
+                main_key = 'Weapon2'
+                if 'Weapon2' not in allModFbis[i]:
+                    main_key = 'weapon2'
+                weap_key_2 = allModFbis[i][main_key]
+
+                log = '  ║\033[33mWeapon2 :\033[0m \033[32m' + weap_key_2 + '\033[0m'
+                print(log)
+                if weap_key_2 in CAVEDOG_WEAPONS:
+                    print('  ║ \033[36mCavedog Asset\033[0m')
+
+                for k in inner_weap_keys:
+                    if weap_key_2 in allWeapTdfs:
+                        # print('\033[036' + json.dumps(allWeapTdfs[weap_key_2], indent=2) + '\033[0m')
+                        if k in allWeapTdfs[weap_key_2]:
+                            ext = '.gaf'
+                            if 'ound' in k:
+                                ext = '.wav'
+                            elif 'odel' in k:
+                                ext = '.3do'
+                            log = '  ║\033[37m' + k + '\033[0m \033[94m -> \033[0m\033[31m' + \
+                                  allWeapTdfs[weap_key_2][k] + '\033[0m' + ext
+                            print(log)
+                # print(json.dumps(allWeapTdfs[weap_key_2], indent=2))
+                print('  ╠═══════════════════════════════════════════════════════╣')
+            if 'Weapon3' in allModFbis[i] or 'weapon3' in allModFbis[i]:
+                main_key = 'Weapon3'
+                if 'Weapon3' not in allModFbis[i]:
+                    main_key = 'weapon3'
+                weap_key_3 = allModFbis[i][main_key]
+                log = '  ║\033[33mWeapon3 : \033[0m \033[32m' + weap_key_3 + '\033[0m'
+                print(log)
+                if weap_key_3 in CAVEDOG_WEAPONS:
+                    print('  ║ \033[36mCavedog Asset\033[0m')
+
+                for k in inner_weap_keys:
+                    if weap_key_3 in allWeapTdfs:
+                        # print('\033[036' + json.dumps(allWeapTdfs[weap_key_3], indent=2) + '\033[0m')
+                        if k in allWeapTdfs[weap_key_3]:
+                            ext = '.gaf'
+                            if 'ound' in k:
+                                ext = '.wav'
+                            elif 'odel' in k:
+                                ext = '.3do'
+                            log = '  ║\033[37m' + k + '\033[0m \033[94m -> \033[0m\033[31m' + \
+                                  allWeapTdfs[weap_key_3][k] + '\033[0m' + ext
+                            print(log)
+
+                print('  ╠═══════════════════════════════════════════════════════╣')
+
+            if "Corpse" in allModFbis[i] or "corpse" in allModFbis[i]:
+                title = 'Corpse'
+                if title not in allModFbis[i]:
+                    title = 'corpse'
+                corpse_key = allModFbis[i][title]
+
+                log = '  ║\033[33mCorpse : \033[0m \033[32m' + allModFbis[i][title] + '\033[0m'
+                print(log)
+
+                if corpse_key in CAVEDOG_FEATURES:
+                    print('  ║ \033[36mCavedog Feature Asset\033[0m')
+
+                if corpse_key not in allModFeatures:
+                    corpse_key = corpse_key.lower()
+                    if corpse_key not in allModFeatures:
+                        corpse_key = corpse_key.upper()
+
+                if corpse_key in allModFeatures:
+                    for k in inner_corpse_keys:
+                        if k in allModFeatures[corpse_key]:
+                            ext = '.3do'
+                            log = '  ║\033[37m' + k + '\033[0m \033[94m -> \033[0m\033[31m' + \
+                                allModFeatures[corpse_key][k] + '\033[0m' + ext
+                            print(log)
+
+                print('  ╚═══════════════════════════════════════════════════════╝')
+
+            if self.debug_specific_object_mode == True:
+                print('\033[94m')
+                try:
+                    print(json.dumps(allModFeatures[corpse_key], indent=2))
+                except:
+                    pass
+
+
+                print('\033[95m')
+                try:
+                    print('\033[91m' + weap_key_1 + '\033[0m')
+                    print(json.dumps(allWeapTdfs[weap_key_1], indent=2))
+                except:
+                    pass
+                try:
+                    print('\033[91m' + weap_key_2 + '\033[0m')
+                    print(json.dumps(allWeapTdfs[weap_key_2], indent=2))
+                except:
+                    pass
+                try:
+                    print('\033[91m' + weap_key_3 + '\033[0m')
+                    print(json.dumps(allWeapTdfs[weap_key_3], indent=2))
+                except:
+                    pass
+                    print('\033[0m')
+
+
+
+
+                # print('╚══╝ ╔══╗ ║ ║ ╠ ╣')
+                # print(json.dumps(allWeapTdfs[weap_key_3], indent=2))
+
+            print()
+
+
+            i += 1
+
 
 
 class PhaseOneReclaim(APIView):
