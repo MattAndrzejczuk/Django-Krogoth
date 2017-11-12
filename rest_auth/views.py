@@ -219,7 +219,8 @@ def index(request):
     if current_build_2 == '00':
         current_build_2 = '0'
     else:
-        current_build_2 = current_build_2.replace('0', '')
+        rm_0s = current_build_2.replace('01', '1').replace('02', '2').replace('03', '3').replace('04', '4')
+        current_build_2 = rm_0s.replace('05', '5').replace('06', '6').replace('07', '7').replace('08', '8').replace('09', '9')
 
     print('\n\n\n\nRequest URI:\n')
     ###print(request.GET['MAINS'])
