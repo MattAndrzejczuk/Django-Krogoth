@@ -1,5 +1,5 @@
-django
-djangorestframework
+django==1.11.3
+djangorestframework==3.6.3
 markdown
 django-filter
 django-rest-auth
@@ -10,17 +10,17 @@ django-cors-headers
 django-suit
 django-polymorphic
 django-rest-swagger
-redis
+redis==2.10.5
 Pillow
 django-redis-sessions
 jsbeautifier
 drfdocs
 coreapi
-pygments
-markdown
+pygments==2.2.0
 django-angular
-gevent
-psycogreen
+gevent==1.2.2
+psycogreen==1.0
 django-grappelli==2.9.1
 django-filebrowser
+django-websocket-redis
 
