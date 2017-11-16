@@ -73,7 +73,7 @@ urlpatterns = [
 
     # Admin stuff
     url(r'^djangular_dashboard/', include('djangular_dashboard.urls')),
-    url(r'^admin/filebrowser/', include(site.urls)),
+    url(r'^admin_a9k/filebrowser/', include(site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^docs/', include('rest_framework_docs.urls')),
 

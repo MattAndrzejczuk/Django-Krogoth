@@ -8,7 +8,7 @@ from Djangular.models import DjangularMasterViewController, DjangularService, Dj
 
 
 class DjangularMasterViewControllerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'name', )
+    list_display = ('id', 'is_enabled', 'title', 'name', )
     class Media:
         js = (
             '/static/codemirror/lib/codemirror.js',
