@@ -1,4 +1,4 @@
-
+import json
 
 
 CAVEDOG_UNITS = {'CORMMKR':'Cavedog','CORSY':'Cavedog','ARMSNIPE':'Cavedog','ARMAP':'Cavedog','CORFIELD':'Cavedog','ALL_OMNI':'Cavedog','ARMAAS':'Cavedog','CORPUN_UPGRADE':'Cavedog','ARMFRT':'Cavedog','ARMCOM':'Cavedog','ARMMCV':'Cavedog','ARMSUBK':'Cavedog','CORUWMS':'Cavedog','CORHJAM':'Cavedog','ALL_HACK':'Cavedog','ARMSES':'Cavedog','ARMSEER':'Cavedog','ARMUWMFUS':'Cavedog','CORSFIG':'Cavedog','CORFAB':'Cavedog','ARMTIDE':'Cavedog','ARMBULL':'Cavedog','ARMLGTNK':'Cavedog','CORBEAC':'Cavedog','ARMVERMIN':'Cavedog','CORNOVA':'Cavedog','CORPT':'Cavedog','ARMCKFUS':'Cavedog','CORSEAL':'Cavedog','ARMECK':'Cavedog','CORSENT':'Cavedog','ARMHCAR':'Cavedog','CORHP':'Cavedog','CORVAMP':'Cavedog','CORCSA':'Cavedog','ARMAMD':'Cavedog','ARMELAB':'Cavedog','ARMAAP':'Cavedog','CORBATS':'Cavedog','CORFUS':'Cavedog','CORFAV':'Cavedog','ARMNOMAD':'Cavedog','CORJAMMER':'Cavedog','ARMHAWK':'Cavedog','CORMORT':'Cavedog','CORTECH':'Cavedog','CORBURN':'Cavedog','ARMOMNI':'Cavedog','CORRL':'Cavedog','CORGANT':'Cavedog','CORSH':'Cavedog','ARMUWFUS':'Cavedog','ARMSSUB':'Cavedog','ARMMBT':'Cavedog','ARMNSUB_SURFACE':'Cavedog','CORVROC':'Cavedog','CORASON':'Cavedog','CORMUAT':'Cavedog','CORASP':'Cavedog','ARMACK':'Cavedog','ARMCH':'Cavedog','CORAMPH':'Cavedog','CORFH':'Cavedog','CORFRIG':'Cavedog','ARMHSTUN':'Cavedog','ARMMANNI':'Cavedog','ARMTARG':'Cavedog','ARMTSHIP':'Cavedog','ARMCRUS':'Cavedog','CORAWAC':'Cavedog','CORHCRUS':'Cavedog','CORGEN':'Cavedog','CORVAULT':'Cavedog','CORSHARK':'Cavedog','ARMAMB':'Cavedog','CORVIND':'Cavedog','ALL_INTEL':'Cavedog','ARMFLEA':'Cavedog','CORHART':'Cavedog','ARMARAD':'Cavedog','CORFAST':'Cavedog','CORMIST':'Cavedog','ARMACH':'Cavedog','ARMCK':'Cavedog','CORFMD':'Cavedog','CORGEO':'Cavedog','CORMOHO':'Cavedog','CORALAB':'Cavedog','CORFLAK':'Cavedog','CORHUNT':'Cavedog','CORTHOVR':'Cavedog','ARMEMP':'Cavedog','ARMUWMS':'Cavedog','CORSHOCK':'Cavedog','CORAH':'Cavedog','CORROACH':'Cavedog','CORSNAP':'Cavedog','ARMFAV':'Cavedog','ARMFUS':'Cavedog','CORMAK':'Cavedog','ARMCARRY':'Cavedog','CORMINE3':'Cavedog','ARMMMKR':'Cavedog','CORMINE2':'Cavedog','CORRANCOR':'Cavedog','ARMJAM':'Cavedog','CORVIPE':'Cavedog','ARMMARK':'Cavedog','ARMBEAC':'Cavedog','CORAAP':'Cavedog','ARMNOVA':'Cavedog','ARMCSA':'Cavedog','ARMUWCHEAT':'Cavedog','ARMUWMMM':'Cavedog','CORTIDE':'Cavedog','CORCA':'Cavedog','ARMSFIG':'Cavedog','CORCV':'Cavedog','CORPOUND':'Cavedog','ARMJAMMER':'Cavedog','CORFPUN':'Cavedog','CORECK':'Cavedog','CORESTOR':'Cavedog','ARMHJAM':'Cavedog','CORARCH':'Cavedog','CORUWMEX':'Cavedog','ARMATLAS':'Cavedog','CORACSUB':'Cavedog','ARMBATS':'Cavedog','CORAK':'Cavedog','CORBUILD':'Cavedog','CORINT':'Cavedog','CORMH':'Cavedog','CORREAP':'Cavedog','CORMSHIP':'Cavedog','ARMHAM':'Cavedog','ARMFAB':'Cavedog','CORHCAR':'Cavedog','ARMSAM':'Cavedog','CORSES':'Cavedog','ARMLATNK':'Cavedog','CORINT_UPGRADE':'Cavedog','CORMINE1':'Cavedog','ARMSR71':'Cavedog','CORFDRAG':'Cavedog','CORFRT':'Cavedog','CORCOM':'Cavedog','CORMCV':'Cavedog','CORUWMFUS':'Cavedog','ARMANNI':'Cavedog','ARMBRTHA_UPGRADE':'Cavedog','ARMZEUS':'Cavedog','ARMHLT_UPGRADE':'Cavedog','ARMFORGE':'Cavedog','CORAABOT':'Cavedog','ARMMERL':'Cavedog','CORHLT_UPGRADE':'Cavedog','CORPUN':'Cavedog','CORVP':'Cavedog','ARMDREAD':'Cavedog','CORHTANK':'Cavedog','CORBULK':'Cavedog','ARMGUARD_UPGRADE':'Cavedog','ARMGEO':'Cavedog','CORACH':'Cavedog','CORSSUB':'Cavedog','CORSKYNET':'Cavedog','ARMGANT':'Cavedog','COROMNI':'Cavedog','CORCHEAT':'Cavedog','CORMINE5':'Cavedog','ARMTECH':'Cavedog','ARMSOLAR':'Cavedog','CORMSTOR':'Cavedog','CORMINE4':'Cavedog','CORTARG':'Cavedog','ARMFRIG':'Cavedog','ARMSCORP':'Cavedog','CORMPAD':'Cavedog','ARMSHGEN':'Cavedog','ARMANAC':'Cavedog','CORAMIST':'Cavedog','ARMAMPH':'Cavedog','ARMGEN':'Cavedog','ARMASPID':'Cavedog','CORGOL':'Cavedog','ARMMUAT':'Cavedog','ARMASON':'Cavedog','ARMHART':'Cavedog','CORARAD':'Cavedog','CORDECOM':'Cavedog','CORTL':'Cavedog','CORSHAD':'Cavedog','CORACK':'Cavedog','ARMAWAC':'Cavedog','CORCRUS':'Cavedog','ARMASP':'Cavedog','CORMINE6':'Cavedog','CORHRK':'Cavedog','ARMSS':'Cavedog','ARMNOMAD_FACT':'Cavedog','CORHFLAK':'Cavedog','CORMINE7':'Cavedog','ARMFLAK':'Cavedog','ARMALAB':'Cavedog','ARMSONAR':'Cavedog','ARMMOHO':'Cavedog','CORGATOR':'Cavedog','CORMANT':'Cavedog','CORCS':'Cavedog','CORBEH':'Cavedog','ARMFAST':'Cavedog','ARMFMKR':'Cavedog','ARMCERB':'Cavedog','CORPYRO':'Cavedog','CORMABM':'Cavedog','CORHURC':'Cavedog','ARMSUB':'Cavedog','CORTHUD':'Cavedog','ARMSMS':'Cavedog','ARMMART':'Cavedog','CORJUGG':'Cavedog','ARMSH':'Cavedog','ARMRL':'Cavedog','ARMSEAP':'Cavedog','CORUWES':'Cavedog','CORAVP':'Cavedog','ARMFIELD':'Cavedog','ARMSFUS_UPGRADE':'Cavedog','ARMASP_UPGRADE':'Cavedog','CORLEVLR':'Cavedog','CORLSTNK':'Cavedog','CORFHP':'Cavedog','ARMFIDO':'Cavedog','CORSPY':'Cavedog','ARMPLAT':'Cavedog','ARMSPOT':'Cavedog','CORASP_UPGRADE':'Cavedog','ARMESY':'Cavedog','CORSPEC':'Cavedog','CORCH':'Cavedog','CORECLIPSE':'Cavedog','ARMLAB':'Cavedog','ARMFARK':'Cavedog','CORROY':'Cavedog','ARMFAHP':'Cavedog','ARMSFOIL':'Cavedog','ARMGUARD':'Cavedog','CORSTORM':'Cavedog','ARMBRTHA':'Cavedog','ARMNOMAD_SD':'Cavedog','ARMSILO':'Cavedog','ARMHLT':'Cavedog','ARMARL':'Cavedog','CORDRAG':'Cavedog','CORUWMOHO':'Cavedog','CORTAC':'Cavedog','CORCAN':'Cavedog','CORTALOS':'Cavedog','ARMFLLT':'Cavedog','CORBSUB':'Cavedog','CORATL':'Cavedog','ARMSBOMBER':'Cavedog','CORCK':'Cavedog','CORCKFUS':'Cavedog','CORSUMO':'Cavedog','ARMSCAB':'Cavedog','CORECV':'Cavedog','CORRAD':'Cavedog','CORECA':'Cavedog','CORTOAST':'Cavedog','ARMASAM':'Cavedog','ARMFORT':'Cavedog','CORAP':'Cavedog','ARMSTUN':'Cavedog','ARMFHLT':'Cavedog','ARMWAR':'Cavedog','ARMYORK':'Cavedog','ARMAHP':'Cavedog','CORACV':'Cavedog','CORACA':'Cavedog','ARMSMB':'Cavedog','CORMAS':'Cavedog','CORSFUS':'Cavedog','CORSFUS_UPGRADE':'Cavedog','ARMSY':'Cavedog','ALL_LOS':'Cavedog','CORSJAM':'Cavedog','ARMPT':'Cavedog','ARMSBERTHA':'Cavedog','CORDEV1':'Cavedog','ARMGATE':'Cavedog','CORETER':'Cavedog','ARMFGUARD':'Cavedog','CORWIN':'Cavedog','ARMLLT':'Cavedog','CORECS':'Cavedog','CORUWFUS':'Cavedog','CORNECRO':'Cavedog','ARMSCAR':'Cavedog','COREVP':'Cavedog','CORFINK':'Cavedog','ARMAFAV':'Cavedog','ARMTHOVR':'Cavedog','CORSPID':'Cavedog','CORTRUCK':'Cavedog','ARMHP':'Cavedog','ARMASY':'Cavedog','CORMLV':'Cavedog','ARMPW':'Cavedog','ARMMEX':'Cavedog','ARMJAV':'Cavedog','ARMPEEP':'Cavedog','CORTITAN':'Cavedog','ARMMAKR':'Cavedog','CORTSHIP':'Cavedog','CORDOOM':'Cavedog','ARMHCRUS':'Cavedog','CORBUZZ':'Cavedog','ARMSCRAM':'Cavedog','ARMECV':'Cavedog','CORUWMMM':'Cavedog','ARMECA':'Cavedog','ARMRAD':'Cavedog','CORMART':'Cavedog','ARMESTOR':'Cavedog','ARMLANCE':'Cavedog','ARMBRAWL':'Cavedog','ARMUWMOHO':'Cavedog','ARMMINE2':'Cavedog','CORFMKR':'Cavedog','ARMATL':'Cavedog','CORAPE':'Cavedog','ARMVP':'Cavedog','ARMMAV':'Cavedog','ARMMINE3':'Cavedog','ARMLH':'Cavedog','CORHLT':'Cavedog','ARMTHUND':'Cavedog','CORCARRY':'Cavedog','CORPLAT':'Cavedog','CORUWCHEAT':'Cavedog','CORSSUB_SURFACE':'Cavedog','ARMUWES':'Cavedog','CORSEAP':'Cavedog','ARMROY':'Cavedog','CORLAB':'Cavedog','CORSS':'Cavedog','ARMDRAG':'Cavedog','ARMAABOT':'Cavedog','CORSILO':'Cavedog','CORESY':'Cavedog','ARMFHP':'Cavedog','ARMSPY':'Cavedog','ARMMINE1':'Cavedog','CORFAHP':'Cavedog','ARMFDRAG':'Cavedog','ARMAVP':'Cavedog','CORVRAD':'Cavedog','ARMTL':'Cavedog','ARMSTUMP':'Cavedog','CORVENG':'Cavedog','ARMMSHIP':'Cavedog','CORSMS':'Cavedog','ARMNSUB':'Cavedog','CORCRASH':'Cavedog','CORSUB':'Cavedog','ARMCS':'Cavedog','CORBULK_TELE':'Cavedog','ARMACSUB':'Cavedog','CORVALK':'Cavedog','ARMUWMEX':'Cavedog','CORVOYR':'Cavedog','CORSPUN':'Cavedog','ARMBSUB':'Cavedog','CORFLLT':'Cavedog','ARMVULC':'Cavedog','CORFUS_UPGRADE':'Cavedog','ARMSFUS':'Cavedog','ARMORION':'Cavedog','ARMTSUB':'Cavedog','CORPLAS':'Cavedog','CORKROG':'Cavedog','CORSCORP':'Cavedog','CORFHLT':'Cavedog','ARMAH':'Cavedog','ARMMINE4':'Cavedog','ARMFUS_UPGRADE':'Cavedog','ARMMSTOR':'Cavedog','CORMEX':'Cavedog','CORSHGEN':'Cavedog','CORFORT':'Cavedog','ARMMLV':'Cavedog','ARMPNIX':'Cavedog','CORASY':'Cavedog','CORSOLAR':'Cavedog','ARMCHEAT':'Cavedog','ARMMINE5':'Cavedog','ARMCV':'Cavedog','ARMCA':'Cavedog','ARMFIG':'Cavedog','CORGATE':'Cavedog','ARMDEV1':'Cavedog','CORTRON':'Cavedog','CORHLAS':'Cavedog','ARMHTANK':'Cavedog','ARMSEHAK':'Cavedog','CORDREAD':'Cavedog','CORBULK_SD':'Cavedog','ARMSJAM':'Cavedog','ARMCROC':'Cavedog','CORRAID':'Cavedog','ARMASER':'Cavedog','ARMMECH':'Cavedog','ARMECS':'Cavedog','CORLLT':'Cavedog','ARMJETH':'Cavedog','ARMWIN':'Cavedog','CORGEO_UPGRADE':'Cavedog','ARMSPID':'Cavedog','CORAFAV':'Cavedog','ARMHFLAK':'Cavedog','ARMMINE7':'Cavedog','ARMMH':'Cavedog','CORSCAR':'Cavedog','ARMVADER':'Cavedog','ARMROCK':'Cavedog','ARMGEO_UPGRADE':'Cavedog','CORSONAR':'Cavedog','ARMWING':'Cavedog','CORSMB':'Cavedog','ARMMAS':'Cavedog','ARMFLASH':'Cavedog','ARMACV':'Cavedog','ARMACA':'Cavedog','ARMMINE6':'Cavedog','CORAHP':'Cavedog','CORMAKR':'Cavedog','ARMDECOM':'Cavedog','ARMSIEGE':'Cavedog','CORSC':'Cavedog'}
@@ -20,5 +20,129 @@ CAVEDOG_GAF = {'fx':'Cavedog','commboom':'Cavedog'}
 
 
 
+class cavedog_data_generator():
+
+    def __init__(self, strict_mode):
+        self.enabled = False
+        self.weapons = {}
+        self.features = {}
+        self.download = {}
+        self.units = {}
+        self.strict_mode = strict_mode
+        self.is_valid = True
+
+    def convertJsonToWeaponTDF(self, weapon_tdf_json, jkey):
+        newtdf = '\n\n[' + jkey + ']\n{\n'
+        for k,v in weapon_tdf_json.items():
+            if k != 'DAMAGE':
+                newtdf += '    ' + k + '=' + v + ';\n'
+            elif k == 'DAMAGE':
+                newtdf += '    [DAMAGE] {\n'
+                for dk, dv in v.items():
+                    newtdf += '        ' + dk + '=' + dv + ';\n'
+                newtdf += '    }\n'
+            else:
+                print(k)
+        newtdf += '}'
+        if self.is_valid == True or self.strict_mode == False:
+            self.weapons[jkey] = newtdf
+
+    def convertJsonToFeatureTDF(self, _json, jkey):
+        # print('  ⚡️ ⚡️ ⚡️ ⚡️ ⚡️ ⚡️ ⚡️ ⚡️ ⚡️  ')
+        # print(jkey)
+        # print(_json)
+        newtdf = '\n\n[' + jkey + ']\n{\n'
+        for k,v in _json.items():
+            if k != 'DAMAGE':
+                newtdf += '    ' + k + '=' + v + ';\n'
+        newtdf += '}'
+        if self.is_valid == True or self.strict_mode == False:
+            self.features[jkey] = newtdf
+
+    def convertJsonToDownloadTDF(self, _json, u1, u2):
+        tdfHeader = ''
+        newtdf = ''
+        entry = ''
+        for k, v in _json.items():
+            if k == "menuentry":
+                tdfHeader = '\n\n[' + v + ']\n{\n'
+            elif k != "meta":
+                newtdf += '    ' + k + '=' + v + ';\n'
+        newtdf += '}'
+
+        if self.is_valid == True or self.strict_mode == False:
+            if u2 not in self.download:
+                self.download[u2] = []
+            self.download[u2].append(tdfHeader + newtdf)
+
+    def convertJsonToUnitFBI(self, _json, unit_name):
+        newtdf = '\n\n[UNITINFO]\n{\n'
+        for k,v in _json.items():
+            newtdf += '    ' + k + '=' + v + ';\n'
+        newtdf += '}'
+        if self.is_valid == True or self.strict_mode == False:
+            self.units[unit_name] = newtdf
+class cavedog_data_generator():
+
+    def __init__(self, strict_mode):
+        self.enabled = False
+        self.weapons = {}
+        self.features = {}
+        self.download = {}
+        self.units = {}
+        self.strict_mode = strict_mode
+        self.is_valid = True
+
+    def convertJsonToWeaponTDF(self, weapon_tdf_json, jkey):
+        newtdf = '\n\n[' + jkey + ']\n{\n'
+        for k,v in weapon_tdf_json.items():
+            if k != 'DAMAGE':
+                newtdf += '    ' + k + '=' + v + ';\n'
+            elif k == 'DAMAGE':
+                newtdf += '    [DAMAGE] {\n'
+                for dk, dv in v.items():
+                    newtdf += '        ' + dk + '=' + dv + ';\n'
+                newtdf += '    }\n'
+            else:
+                print(k)
+        newtdf += '}'
+        if self.is_valid == True or self.strict_mode == False:
+            self.weapons[jkey] = newtdf
+
+    def convertJsonToFeatureTDF(self, _json, jkey):
+        # print('  ⚡️ ⚡️ ⚡️ ⚡️ ⚡️ ⚡️ ⚡️ ⚡️ ⚡️  ')
+        # print(jkey)
+        # print(_json)
+        newtdf = '\n\n[' + jkey + ']\n{\n'
+        for k,v in _json.items():
+            if k != 'DAMAGE':
+                newtdf += '    ' + k + '=' + v + ';\n'
+        newtdf += '}'
+        if self.is_valid == True or self.strict_mode == False:
+            self.features[jkey] = newtdf
+
+    def convertJsonToDownloadTDF(self, _json, u1, u2):
+        tdfHeader = ''
+        newtdf = ''
+        entry = ''
+        for k, v in _json.items():
+            if k == "menuentry":
+                tdfHeader = '\n\n[' + v + ']\n{\n'
+            elif k != "meta":
+                newtdf += '    ' + k + '=' + v + ';\n'
+        newtdf += '}'
+
+        if self.is_valid == True or self.strict_mode == False:
+            if u2 not in self.download:
+                self.download[u2] = []
+            self.download[u2].append(tdfHeader + newtdf)
+
+    def convertJsonToUnitFBI(self, _json, unit_name):
+        newtdf = '\n\n[UNITINFO]\n{\n'
+        for k,v in _json.items():
+            newtdf += '    ' + k + '=' + v + ';\n'
+        newtdf += '}'
+        if self.is_valid == True or self.strict_mode == False:
+            self.units[unit_name] = newtdf
 
 
