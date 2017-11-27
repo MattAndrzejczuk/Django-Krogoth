@@ -39,42 +39,42 @@ class NotificationItemViewSet(viewsets.ModelViewSet):
 
 
 
-class ModProject(viewsets.ModelViewSet):
+class ModProjectViewSet(viewsets.ModelViewSet):
     queryset = ModProject.objects.all()
     serializer_class = ModProjectSerializer
     permission_classes = (permissions.AllowAny,)
 
-class CavedogBase(viewsets.ModelViewSet):
+class CavedogBaseViewSet(viewsets.ModelViewSet):
     queryset = CavedogBase.objects.all()
     serializer_class = CavedogBaseSerializer
     permission_classes = (permissions.AllowAny,)
 
-class LazarusBase(viewsets.ModelViewSet):
+class LazarusBaseViewSet(viewsets.ModelViewSet):
     queryset = LazarusBase.objects.all()
     serializer_class = LazarusBaseSerializer
     permission_classes = (permissions.AllowAny,)
 
-class Damage(viewsets.ModelViewSet):
+class DamageViewSet(viewsets.ModelViewSet):
     queryset = Damage.objects.all()
     serializer_class = DamageSerializer
     permission_classes = (permissions.AllowAny,)
 
-class LazarusWeaponTDF(viewsets.ModelViewSet):
+class LazarusWeaponTDFViewSet(viewsets.ModelViewSet):
     queryset = LazarusWeaponTDF.objects.all()
     serializer_class = LazarusWeaponTDFSerializer
     permission_classes = (permissions.AllowAny,)
 
-class LazarusFeatureTDF(viewsets.ModelViewSet):
+class LazarusFeatureTDFViewSet(viewsets.ModelViewSet):
     queryset = LazarusFeatureTDF.objects.all()
     serializer_class = LazarusFeatureTDFSerializer
     permission_classes = (permissions.AllowAny,)
 
-class LazarusDownloadTDF(viewsets.ModelViewSet):
+class LazarusDownloadTDFViewSet(viewsets.ModelViewSet):
     queryset = LazarusDownloadTDF.objects.all()
     serializer_class = LazarusDownloadTDFSerializer
     permission_classes = (permissions.AllowAny,)
 
-class LazarusUnitFBI(viewsets.ModelViewSet):
+class LazarusUnitFBIViewSet(viewsets.ModelViewSet):
     queryset = LazarusUnitFBI.objects.all()
     serializer_class = LazarusUnitFBISerializer
     permission_classes = (permissions.AllowAny,)
