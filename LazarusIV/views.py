@@ -39,10 +39,6 @@ class NotificationItemViewSet(viewsets.ModelViewSet):
 
 
 
-class ModProjectViewSet(viewsets.ModelViewSet):
-    queryset = ModProject.objects.all()
-    serializer_class = ModProjectSerializer
-    permission_classes = (permissions.AllowAny,)
 
 class CavedogBaseViewSet(viewsets.ModelViewSet):
     queryset = CavedogBase.objects.all()

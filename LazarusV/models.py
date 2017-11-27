@@ -8,7 +8,10 @@ from LazarusIV.models import JawnUser
 
 #    V  -  5
 
-
+class ModProject(models.Model):
+    author = models.ForeignKey(JawnUser, related_name='mod_developer', )
+    is_public = models.BooleanField(default=True)
+    
 class ModPublication(models.Model):
     title = models.CharField(max_length=50, default='Untitled Mod Publication')
     description = models.TextField(max_length=1000)

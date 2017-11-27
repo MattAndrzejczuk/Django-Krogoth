@@ -8,6 +8,11 @@ from LazarusV.serializers import *
 from chat.models import JawnUser
 # Create your views here.
 
+class ModProjectViewSet(viewsets.ModelViewSet):
+    queryset = ModProject.objects.all()
+    serializer_class = ModProjectSerializer
+    permission_classes = (permissions.AllowAny,)
+    
 class ModPublicationViewSet(viewsets.ModelViewSet):
     queryset = ModPublication.objects.all()
     serializer_class = ModPublicationSerializer

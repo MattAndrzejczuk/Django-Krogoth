@@ -33,11 +33,6 @@ class NotificationItemSerializer(serializers.ModelSerializer):
         fields = ('id', )
 
 # models_tdf:
-class ModProjectSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ModProject
-        fields = ('id', )
-
 class CavedogBaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = CavedogBase

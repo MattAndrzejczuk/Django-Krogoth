@@ -3,6 +3,12 @@ from chat.models import JawnUser
 from LazarusV.models import *
 #    V  -  5
 
+
+class ModProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ModProject
+        fields = ('id', )
+        
 class ModPublicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = ModPublication

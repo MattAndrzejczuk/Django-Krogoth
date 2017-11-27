@@ -6,9 +6,7 @@ from django.contrib.postgres.fields import HStoreField
 
 
 
-class ModProject(models.Model):
-    author = models.ForeignKey(JawnUser, related_name='mod_developer', )
-    is_public = models.BooleanField(default=True)
+
 
 class CavedogBase(PolymorphicModel):
     keyname = models.CharField(max_length=250)
