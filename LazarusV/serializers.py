@@ -1,7 +1,6 @@
 from rest_framework import serializers, exceptions
 from chat.models import JawnUser
-from LazarusV.models import ModPublication, ModBuild, WargamePackage, WargameFile, WargameData, \
-    UserRating, RatingCavedogBase, RatingModPublication
+from LazarusV.models import *
 #    V  -  5
 
 class ModPublicationSerializer(serializers.ModelSerializer):

@@ -1,7 +1,6 @@
 from rest_framework import serializers, exceptions
 from chat.models import JawnUser
-from LazarusIV.models import UploadRepository, RepositoryDirectory, RepositoryFile, BackgroundWorkerJob, \
-    NotificationCenter, NotificationItem
+from LazarusIV.models import *
 
 class UploadRepositorySerializer(serializers.ModelSerializer):
     class Meta:
