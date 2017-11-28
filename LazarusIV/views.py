@@ -8,6 +8,8 @@ from LazarusIV.models_tdf import LazarusDamageDataTA, LazarusWeaponDataTA, Lazar
 from LazarusIV.models import UploadRepository, RepositoryFile, BackgroundWorkerJob, NotificationCenter, \
     RepositoryDirectory, NotificationItem
 
+from LazarusV.models import CavedogBase, LazarusBase
+
 from LazarusIV.serializers import UploadRepositorySerializer, RepositoryDirectorySerializer, \
     RepositoryFileSerializer, BackgroundWorkerJobSerializer, NotificationCenterSerializer, \
     NotificationItemSerializer, CavedogBaseSerializer, LazarusBaseSerializer, DamageSerializer, \
