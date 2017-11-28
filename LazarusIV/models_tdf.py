@@ -5,22 +5,11 @@ from django.contrib.postgres.fields import HStoreField
 
 
 
+from LazarusV.models import LazarusBase
 
 
 
-class CavedogBase(PolymorphicModel):
-    keyname = models.CharField(max_length=250)
-    snowflake = models.CharField(max_length=50)
-    thumbnail_url = models.CharField(max_length=250)
-    raw_tdf = models.CharField(max_length=1550)
-    data_dict = HStoreField()
-
-class LazarusBase(CavedogBase):
-    is_deleted = models.BooleanField(default=False)
-    mod_proj = models.ForeignKey(ModProject, on_delete=models.CASCADE)
-
-
-class Damage(models.Model):
+class LazarusDamageDataTA(models.Model):
     name = models.CharField(max_length=100, default='default')
     damage_amount = models.IntegerField(default=1230)
     weapon_id = models.IntegerField(default=0)
@@ -28,7 +17,7 @@ class Damage(models.Model):
         return self.name + '_'
 
 
-class LazarusWeaponTDF(LazarusBase):
+class LazarusWeaponDataTA(LazarusBase):
     accuracy = models.IntegerField(null=True, blank=True)   # int()
     aimrate = models.IntegerField(null=True, blank=True)   # int()
     areaofeffect = models.IntegerField(null=True, blank=True)   # int()
@@ -108,13 +97,12 @@ class LazarusWeaponTDF(LazarusBase):
 
     weapontype2 = models.CharField(max_length=100, blank=True)
     weaponvelocity = models.IntegerField(null=True, blank=True)   # int()
-    damage = models.ManyToManyField(Damage)   # 73
+    damage = models.ManyToManyField(LazarusDamageDataTA)   # 73
     def __str__(self):  # __unicode__ on Python 2
         return self.name + '_'
 
 
-
-class LazarusFeatureTDF(LazarusBase):
+class LazarusFeatureDataTA(LazarusBase):
     animating = models.PositiveSmallIntegerField(null=True, blank=True)
     animtrans = models.PositiveSmallIntegerField(null=True, blank=True)
     autoreclaimable = models.IntegerField(null=True, blank=True)
@@ -156,8 +144,7 @@ class LazarusFeatureTDF(LazarusBase):
         return self._object + '_'
 
 
-
-class LazarusDownloadTDF(LazarusBase):
+class LazarusDownloadDataTA(LazarusBase):
     MENUENTRY = models.CharField(max_length=20, default='MENUENTRY1')  # [MENUENTRY1] [MENUENTRY2] [MENUENTRY3] etc...
     BUTTON = models.PositiveSmallIntegerField(default=0)  # See 'TA Button' below
     MENU = models.PositiveSmallIntegerField(default=2)  # first menu in TA is actually '2' for some reason
@@ -165,8 +152,7 @@ class LazarusDownloadTDF(LazarusBase):
     UNITNAME = models.CharField(max_length=35, null=True, blank=True)  # short name of the unit this button builds
 
 
-
-class LazarusUnitFBI(LazarusBase):
+class LazarusUnitDataTA(LazarusBase):
     Acceleration = models.CharField(max_length=150, null=True, blank=True)
     ActiveWhenBuild = models.CharField(max_length=150, null=True, blank=True)
     ai_limit = models.CharField(max_length=101, null=True, blank=True)

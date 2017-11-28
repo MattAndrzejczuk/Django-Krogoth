@@ -1,11 +1,25 @@
 from django.shortcuts import render
 from rest_framework import viewsets, filters, renderers, status, permissions
 
-from LazarusIV.models_tdf import *
-from LazarusIV.models import *
-from LazarusIV.serializers import *
-from chat.models import JawnUser
-# Create your views here.
+
+from LazarusIV.models_tdf import CavedogBase, LazarusBase, LazarusDamageDataTA, LazarusWeaponDataTA, LazarusFeatureDataTA, \
+    LazarusDownloadDataTA, LazarusUnitDataTA
+
+from LazarusIV.models import UploadRepository, RepositoryFile, BackgroundWorkerJob, NotificationCenter, \
+    RepositoryDirectory, NotificationItem
+
+from LazarusIV.serializers import UploadRepositorySerializer, RepositoryDirectorySerializer, \
+    RepositoryFileSerializer, BackgroundWorkerJobSerializer, NotificationCenterSerializer, \
+    NotificationItemSerializer, CavedogBaseSerializer, LazarusBaseSerializer, DamageSerializer, \
+    LazarusWeaponTDFSerializer, LazarusFeatureTDFSerializer, LazarusDownloadTDFSerializer, LazarusUnitFBISerializer
+
+#    IV  -  4
+# class JawnUserViewSet(viewsets.ModelViewSet):
+#     queryset = JawnUser.objects.all()
+#     serializer_class = JawnUserSerializer
+#     permission_classes = (permissions.IsAuthenticated, )
+#     filter_backends = (filters.DjangoFilterBackend,)
+#     filter_fields = ('base_user', )
 
 class UploadRepositoryViewSet(viewsets.ModelViewSet):
     queryset = UploadRepository.objects.all()
@@ -51,26 +65,26 @@ class LazarusBaseViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny,)
 
 class DamageViewSet(viewsets.ModelViewSet):
-    queryset = Damage.objects.all()
+    queryset = LazarusDamageDataTA.objects.all()
     serializer_class = DamageSerializer
     permission_classes = (permissions.AllowAny,)
 
 class LazarusWeaponTDFViewSet(viewsets.ModelViewSet):
-    queryset = LazarusWeaponTDF.objects.all()
+    queryset = LazarusWeaponDataTA.objects.all()
     serializer_class = LazarusWeaponTDFSerializer
     permission_classes = (permissions.AllowAny,)
 
 class LazarusFeatureTDFViewSet(viewsets.ModelViewSet):
-    queryset = LazarusFeatureTDF.objects.all()
+    queryset = LazarusFeatureDataTA.objects.all()
     serializer_class = LazarusFeatureTDFSerializer
     permission_classes = (permissions.AllowAny,)
 
 class LazarusDownloadTDFViewSet(viewsets.ModelViewSet):
-    queryset = LazarusDownloadTDF.objects.all()
+    queryset = LazarusDownloadDataTA.objects.all()
     serializer_class = LazarusDownloadTDFSerializer
     permission_classes = (permissions.AllowAny,)
 
 class LazarusUnitFBIViewSet(viewsets.ModelViewSet):
-    queryset = LazarusUnitFBI.objects.all()
+    queryset = LazarusUnitDataTA.objects.all()
     serializer_class = LazarusUnitFBISerializer
     permission_classes = (permissions.AllowAny,)

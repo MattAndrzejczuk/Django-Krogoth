@@ -1,11 +1,31 @@
 from django.conf.urls import url, include
-# from LazarusIV.views import *
 from rest_framework.routers import DefaultRouter
-#    IV  -  4
 
+from LazarusIV.views import UploadRepositoryViewSet, RepositoryDirectoryViewSet, RepositoryFileViewSet, \
+    BackgroundWorkerJobViewSet, NotificationCenterViewSet, NotificationItemViewSet, CavedogBaseViewSet, \
+    LazarusBaseViewSet, DamageViewSet, LazarusWeaponTDFViewSet, LazarusFeatureTDFViewSet, LazarusDownloadTDFViewSet, \
+    LazarusUnitFBIViewSet
+
+
+#    IV  -  4
 router = DefaultRouter()
-# router.register(r'Mods', views.TotalAnnihilationModViewset)
+router.register(r'UploadRepository', UploadRepositoryViewSet)
+router.register(r'RepositoryDirectory', RepositoryDirectoryViewSet)
+router.register(r'RepositoryFileViewSet', RepositoryFileViewSet)
+router.register(r'BackgroundWorkerJobViewSet', BackgroundWorkerJobViewSet)
+router.register(r'NotificationCenterViewSet', NotificationCenterViewSet)
+router.register(r'NotificationItemViewSet', NotificationItemViewSet)
+# models_tdf:
+router.register(r'CavedogBaseViewSet', CavedogBaseViewSet)
+router.register(r'LazarusBaseViewSet', LazarusBaseViewSet)
+router.register(r'DamageViewSet', DamageViewSet)
+router.register(r'LazarusWeaponTDFViewSet', LazarusWeaponTDFViewSet)
+router.register(r'LazarusFeatureTDFViewSet', LazarusFeatureTDFViewSet)
+router.register(r'LazarusDownloadTDFViewSet', LazarusDownloadTDFViewSet)
+router.register(r'LazarusUnitFBIViewSet', LazarusUnitFBIViewSet)
+
+
 
 urlpatterns = [
-    url(r'^LazarusIV/', include(router.urls)),
+    url(r'^ContentSubmission/', include(router.urls)),
 ]

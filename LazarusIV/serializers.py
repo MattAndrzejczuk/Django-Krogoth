@@ -1,69 +1,62 @@
 from rest_framework import serializers, exceptions
 from chat.models import JawnUser
-from LazarusIV.models import *
+
+from LazarusIV.models_tdf import CavedogBase, LazarusBase, LazarusDamageDataTA, LazarusWeaponDataTA, LazarusFeatureDataTA, \
+    LazarusDownloadDataTA, LazarusUnitDataTA
+from LazarusIV.models import NotificationItem, NotificationCenter, BackgroundWorkerJob, RepositoryFile, \
+    UploadRepository, RepositoryDirectory
 
 class UploadRepositorySerializer(serializers.ModelSerializer):
     class Meta:
         model = UploadRepository
         fields = ('id', )
-
 class RepositoryDirectorySerializer(serializers.ModelSerializer):
     class Meta:
         model = RepositoryDirectory
         fields = ('id', )
-
 class RepositoryFileSerializer(serializers.ModelSerializer):
     class Meta:
         model = RepositoryFile
         fields = ('id', )
-
 class BackgroundWorkerJobSerializer(serializers.ModelSerializer):
     class Meta:
         model = BackgroundWorkerJob
         fields = ('id', )
-
 class NotificationCenterSerializer(serializers.ModelSerializer):
     class Meta:
         model = NotificationCenter
         fields = ('id', )
-
 class NotificationItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = NotificationItem
         fields = ('id', )
 
-# models_tdf:
+
 class CavedogBaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = CavedogBase
-        fields = ('id', )
-
+        fields = '__all__'
 class LazarusBaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = LazarusBase
-        fields = ('id', )
-
+        fields = '__all__'
 class DamageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Damage
+        model = LazarusDamageDataTA
         fields = ('id', )
-
 class LazarusWeaponTDFSerializer(serializers.ModelSerializer):
     class Meta:
-        model = LazarusWeaponTDF
-        fields = ('id', )
-
+        model = LazarusWeaponDataTA
+        fields = '__all__'
 class LazarusFeatureTDFSerializer(serializers.ModelSerializer):
     class Meta:
-        model = LazarusFeatureTDF
-        fields = ('id', )
-
+        model = LazarusFeatureDataTA
+        fields = '__all__'
 class LazarusDownloadTDFSerializer(serializers.ModelSerializer):
     class Meta:
-        model = LazarusDownloadTDF
+        model = LazarusDownloadDataTA
         fields = ('id', )
-
 class LazarusUnitFBISerializer(serializers.ModelSerializer):
     class Meta:
-        model = LazarusUnitFBI
-        fields = ('id', )
+        model = LazarusUnitDataTA
+        fields = '__all__'

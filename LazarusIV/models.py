@@ -1,24 +1,8 @@
 from django.db import models
 from polymorphic.models import PolymorphicModel
 
-# Create your models here.
+from chat.models import JawnUser
 
-
-
-class NotificationCenter(models.Model):
-    parent_user = models.OneToOneField(JawnUser, related_name='armprime_user', )
-    unread_private = models.IntegerField(default=0)
-
-class NotificationItem(models.Model):
-    center = models.ForeignKey(NotificationCenter, on_delete=models.CASCADE, related_name='notifier')
-    is_private = models.BooleanField(default=True)
-    kind = models.CharField(max_length=250)
-    image_url = models.CharField(max_length=250)
-    sfx_chime = models.CharField(max_length=250)
-    title = models.CharField(max_length=50)
-    body = models.CharField(max_length=250)
-    date = models.DateTimeField(auto_now_add=True)
-    unread = models.CharField(max_length=250)
 
 
 
@@ -48,3 +32,19 @@ class BackgroundWorkerJob(models.Model):
     dispatched_by_repo = models.ForeignKey(UploadRepository, on_delete=models.CASCADE, related_name='the_repo_selector')
     is_finished = models.BooleanField(default=False)
     is_working = models.BooleanField(default=False)
+
+
+class NotificationCenter(models.Model):
+    parent_user = models.OneToOneField(JawnUser, related_name='armprime_user', )
+    unread_private = models.IntegerField(default=0)
+
+class NotificationItem(models.Model):
+    center = models.ForeignKey(NotificationCenter, on_delete=models.CASCADE, related_name='notifier')
+    is_private = models.BooleanField(default=True)
+    kind = models.CharField(max_length=250)
+    image_url = models.CharField(max_length=250)
+    sfx_chime = models.CharField(max_length=250)
+    title = models.CharField(max_length=50)
+    body = models.CharField(max_length=250)
+    date = models.DateTimeField(auto_now_add=True)
+    unread = models.CharField(max_length=250)
