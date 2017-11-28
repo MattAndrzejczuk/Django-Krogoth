@@ -47,6 +47,11 @@ router.register(r'youtube', YouTubeMessageViewSet)
 # LEGACY SUPPORT OF iOS 8 VERSION, THE iOS 8 CLIENT MUST BE UPDATED SO WE CAN REMOVE THIS LINE LATER
 
 urlpatterns = [
+
+    # NEW REFACTORED ARM PRIME:
+    # url(r'^LazarusIV/', include('LazarusIV.urls')),
+    # url(r'^LazarusV/', include('LazarusV.urls')),
+
     url(r'^api/', include(router.urls)),
     url(r'^api/channel-list/', ChannelList.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
@@ -55,6 +60,7 @@ urlpatterns = [
     url(r'^admin_a9k/', admin.site.urls),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^$', rest_auth.views.index),
+
     url(r'^GooglePlusOAuthCallback', rest_auth.views.GooglePlusOAuthCallbackView.as_view()),
     url(r'^armprime/', rest_auth.views.index),
     # url(r'^lazarus/', LazarusListUnits.as_view()),
