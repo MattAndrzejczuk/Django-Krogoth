@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 from django.contrib.postgres.fields import HStoreField
 from LazarusIV.models_tdf import CavedogBase, ModProject, LazarusBase
 # Create your models here.
-from LazarusIV.models import JawnUser
+from chat.models import JawnUser
 
 #    V  -  5
 
 class ModProject(models.Model):
     author = models.ForeignKey(JawnUser, related_name='mod_developer', )
     is_public = models.BooleanField(default=True)
-    
+
 class ModPublication(models.Model):
     title = models.CharField(max_length=50, default='Untitled Mod Publication')
     description = models.TextField(max_length=1000)
@@ -34,6 +34,22 @@ class ModBuild(models.Model):
     v_major = models.IntegerField(default=0)
     v_minor = models.IntegerField(default=1)
     download_url = models.CharField(max_length=150)
+
+
+
+
+
+class CavedogBase(PolymorphicModel):
+    keyname = models.CharField(max_length=250)
+    snowflake = models.CharField(max_length=50)
+    thumbnail_url = models.CharField(max_length=250)
+    raw_tdf = models.CharField(max_length=1550)
+    data_dict = HStoreField()
+
+class LazarusBase(CavedogBase):
+    is_deleted = models.BooleanField(default=False)
+    mod_proj = models.ForeignKey(ModProject, on_delete=models.CASCADE)
+
 
 
 
@@ -67,6 +83,3 @@ class RatingCavedogBase(UserRating):
 class RatingModPublication(UserRating):
     lazarus_published_mod = models.ForeignKey(ModPublication, on_delete=models.CASCADE, related_name='lazarus_mod_distribution')
     vote_value = models.IntegerField(default=1)
-
-# RatingCavedogBase
-# RatingModPublication

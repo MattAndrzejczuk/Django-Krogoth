@@ -1,50 +1,50 @@
 from rest_framework import serializers, exceptions
-from chat.models import JawnUser
-from LazarusV.models import *
+from LazarusV import models
 #    V  -  5
+
 
 
 class ModProjectSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ModProject
+        model = models.ModProject
         fields = ('id', )
-        
+
 class ModPublicationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ModPublication
+        model = models.ModPublication
         fields = ('id', )
 
 class ModBuildSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ModBuild
+        model = models.ModBuild
         fields = ('id', )
 
 class WargamePackageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = WargamePackage
+        model = models.WargamePackage
         fields = ('id', )
 
 class WargameFileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = WargameFile
+        model = models.WargameFile
         fields = ('id', )
 
 class WargameDataSerializer(serializers.ModelSerializer):
     class Meta:
-        model = WargameData
+        model = models.WargameData
         fields = ('id', )
 
 class UserRatingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserRating
+        model = models.UserRating
         fields = ('id', )
 
 class RatingCavedogBaseSerializer(serializers.ModelSerializer):
     class Meta:
-        model = RatingCavedogBase
+        model = models.RatingCavedogBase
         fields = ('id', )
 
 class RatingModPublicationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = RatingModPublication
+        model = models.RatingModPublication
         fields = ('id', )

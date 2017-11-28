@@ -2,17 +2,25 @@ from django.shortcuts import render
 from rest_framework import viewsets, filters, renderers, status, permissions
 
 
-from LazarusIV.models_tdf import *
-from LazarusV.models import *
-from LazarusV.serializers import *
+
 from chat.models import JawnUser
+
+
+from LazarusV.models import ModProject, ModPublication, WargamePackage, WargameFile, WargameData, UserRating,\
+    ModBuild, RatingCavedogBase, RatingModPublication
+from LazarusV.serializers import ModProjectSerializer, ModPublicationSerializer, ModBuildSerializer, \
+    WargamePackageSerializer, WargameFileSerializer, WargameDataSerializer, UserRatingSerializer,\
+    RatingCavedogBaseSerializer, RatingModPublicationSerializer
+
+
 # Create your views here.
+#    V  -  5
 
 class ModProjectViewSet(viewsets.ModelViewSet):
     queryset = ModProject.objects.all()
     serializer_class = ModProjectSerializer
     permission_classes = (permissions.AllowAny,)
-    
+
 class ModPublicationViewSet(viewsets.ModelViewSet):
     queryset = ModPublication.objects.all()
     serializer_class = ModPublicationSerializer
