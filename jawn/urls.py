@@ -63,7 +63,7 @@ urlpatterns = [
 
     url(r'^GooglePlusOAuthCallback', rest_auth.views.GooglePlusOAuthCallbackView.as_view()),
     url(r'^armprime/', rest_auth.views.index),
-    # url(r'^lazarus/', LazarusListUnits.as_view()),
+
     url(r'^api.lazarus/', include('lazarus.urls')),
     url(r'^LazarusII/', include('LazarusII.urls')),
     url(r'^LazarusIII/', include('LazarusIII.urls')),

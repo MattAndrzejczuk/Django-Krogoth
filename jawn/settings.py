@@ -84,6 +84,8 @@ INSTALLED_APPS = (
     'chat',
     'lazarus',
     'LazarusII',
+    # 'LazarusIV',
+    # 'LazarusV',
     'dynamic_lazarus_page',
     'DatabaseSandbox',
     'PhotoGalleryManager',
