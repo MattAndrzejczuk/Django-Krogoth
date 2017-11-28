@@ -1,10 +1,11 @@
 from rest_framework import serializers, exceptions
 from chat.models import JawnUser
 
-from LazarusIV.models_tdf import CavedogBase, LazarusBase, LazarusDamageDataTA, LazarusWeaponDataTA, LazarusFeatureDataTA, \
+from LazarusIV.models_tdf import LazarusDamageDataTA, LazarusWeaponDataTA, LazarusFeatureDataTA, \
     LazarusDownloadDataTA, LazarusUnitDataTA
 from LazarusIV.models import NotificationItem, NotificationCenter, BackgroundWorkerJob, RepositoryFile, \
     UploadRepository, RepositoryDirectory
+from LazarusV.models import CavedogBase, LazarusBase
 
 class UploadRepositorySerializer(serializers.ModelSerializer):
     class Meta:
