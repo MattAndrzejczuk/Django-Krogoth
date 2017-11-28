@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets, filters, renderers, status, permissions
 
 
-from LazarusIV.models_tdf import CavedogBase, LazarusBase, LazarusDamageDataTA, LazarusWeaponDataTA, LazarusFeatureDataTA, \
+from LazarusIV.models_tdf import LazarusDamageDataTA, LazarusWeaponDataTA, LazarusFeatureDataTA, \
     LazarusDownloadDataTA, LazarusUnitDataTA
 
 from LazarusIV.models import UploadRepository, RepositoryFile, BackgroundWorkerJob, NotificationCenter, \
