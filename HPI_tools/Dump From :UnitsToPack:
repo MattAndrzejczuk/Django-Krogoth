@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo Total Annihilation Game Data Consolidator
+sleep 1s
+echo Developed By CiniCraft Copyright 2017 All Rights Reserved
+sleep 1s
+echo
+echo Feel free to edit this bash script!
+sleep 1s
+echo
+
+for f in ~/.wine/drive_c/HPI_tools/UnitsToPack/*;
+echo expanding $f...
+do wine ~/.wine/drive_c/HPI_tools/HPIDump.exe $f;
+done
+
+echo
+echo Work Completed!
