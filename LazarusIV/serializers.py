@@ -10,27 +10,27 @@ from LazarusV.models import CavedogBase, LazarusBase
 class UploadRepositorySerializer(serializers.ModelSerializer):
     class Meta:
         model = UploadRepository
-        fields = ('id', )
+        fields = ('uploader', 'title', 'total_units', 'current_worker_job', 'root_path', 'original_hpi_path', )
 class RepositoryDirectorySerializer(serializers.ModelSerializer):
     class Meta:
         model = RepositoryDirectory
-        fields = ('id', )
+        fields = ('dir_repository', 'dir_name', 'dir_path', 'dir_total_files', )
 class RepositoryFileSerializer(serializers.ModelSerializer):
     class Meta:
         model = RepositoryFile
-        fields = ('id', )
+        fields = ('repo_dir', 'file_name', 'file_path', 'file_kind', 'file_thumbnail', )
 class BackgroundWorkerJobSerializer(serializers.ModelSerializer):
     class Meta:
         model = BackgroundWorkerJob
-        fields = ('id', )
+        fields = ('job_name', 'dispatched_by_repo', 'is_finished', 'is_working', )
 class NotificationCenterSerializer(serializers.ModelSerializer):
     class Meta:
         model = NotificationCenter
-        fields = ('id', )
+        fields = ('parent_user', 'unread_private', )
 class NotificationItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = NotificationItem
-        fields = ('id', )
+        fields = ('center', 'is_private', 'kind', 'image_url', 'sfx_chime', 'title', 'body', 'date', 'unread', )
 
 
 class CavedogBaseSerializer(serializers.ModelSerializer):
@@ -44,7 +44,7 @@ class LazarusBaseSerializer(serializers.ModelSerializer):
 class DamageSerializer(serializers.ModelSerializer):
     class Meta:
         model = LazarusDamageDataTA
-        fields = ('id', )
+        fields = '__all__'
 class LazarusWeaponTDFSerializer(serializers.ModelSerializer):
     class Meta:
         model = LazarusWeaponDataTA
@@ -56,7 +56,7 @@ class LazarusFeatureTDFSerializer(serializers.ModelSerializer):
 class LazarusDownloadTDFSerializer(serializers.ModelSerializer):
     class Meta:
         model = LazarusDownloadDataTA
-        fields = ('id', )
+        fields = '__all__'
 class LazarusUnitFBISerializer(serializers.ModelSerializer):
     class Meta:
         model = LazarusUnitDataTA
