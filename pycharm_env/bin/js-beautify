@@ -1,0 +1,7 @@
+#!/home/ubuntu/arm-prime/pycharm_env/bin/python3
+#
+# Stub script to run jsbeautifier
+#
+import sys
+from jsbeautifier import main
+sys.exit(main())
