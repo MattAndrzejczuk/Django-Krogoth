@@ -29,6 +29,22 @@ docker exec -it armprime ./manage.py make_default_layout
 #echo 'export DOCKER_CERT_PATH="/Users/dominik/.docker/machine/machines/default"' >> ~/.bashrc
 #echo 'export DOCKER_MACHINE_NAME="default"' >> ~/.bashrc
 
+sleep 1
+echo ""
+echo "Installing Wine for Microsoft Windows applications compatibility."
+sleep 3
+docker exec -it armprime bash -c "add-apt-repository -y ppa:ubuntu-wine/ppa"
+docker exec -it armprime bash -c "apt-get update"
+docker exec -it armprime bash -c "apt-get install -y wine"
+docker exec -it armprime bash -c "dpkg --add-architecture i386"
+docker exec -it armprime bash -c "apt-get update"
+docker exec -it armprime bash -c "apt-get install wine32"
+sleep 1
+echo ""
+echo "Wine Installation: "
+docker exec -it armprime bash -c "wine --version"
+sleep 2
+
 echo ""
 echo "DONT FORGET TO RUN THIS IN POSTGRESQL ! ! ! ! "
 echo "psql jawn4 -c 'create extension hstore;'"

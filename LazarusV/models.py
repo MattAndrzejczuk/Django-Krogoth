@@ -35,10 +35,6 @@ class ModBuild(models.Model):
     v_minor = models.IntegerField(default=1)
     download_url = models.CharField(max_length=150)
 
-
-
-
-
 class CavedogBase(PolymorphicModel):
     keyname = models.CharField(max_length=250)
     snowflake = models.CharField(max_length=50)
