@@ -49,8 +49,8 @@ router.register(r'youtube', YouTubeMessageViewSet)
 urlpatterns = [
 
     # NEW REFACTORED ARM PRIME:
-    # url(r'^LazarusIV/', include('LazarusIV.urls')),
-    # url(r'^LazarusV/', include('LazarusV.urls')),
+    url(r'^LazarusIV/', include('LazarusIV.urls')),
+    url(r'^LazarusV/', include('LazarusV.urls')),
 
     url(r'^api/', include(router.urls)),
     url(r'^api/channel-list/', ChannelList.as_view()),
