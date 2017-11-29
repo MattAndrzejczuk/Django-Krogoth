@@ -23,6 +23,10 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN pip install --upgrade pip
+RUN pip install wheel
+RUN pip install setuptools==36.6.0
+
 RUN pip install uwsgi
 RUN apt-get update
 RUN apt-get install -y software-properties-common python3-software-properties
@@ -36,6 +40,7 @@ RUN export DJANGO_SETTINGS_MODULE="rcrfbackend.settings"
 RUN rm /etc/nginx/sites-enabled/default
 RUN ln -s /usr/src/nginx-app.conf /etc/nginx/sites-enabled/
 RUN ln -s /usr/src/supervisor-app.conf /etc/supervisor/conf.d/
+
 RUN pip install -r /usr/src/app/requirements.txt
 
 EXPOSE 80 443
