@@ -1,6 +1,4 @@
 from django.db import models
-from polymorphic.models import PolymorphicModel
-
 from chat.models import JawnUser
 
 
@@ -8,6 +6,7 @@ from chat.models import JawnUser
 
 class UploadRepository(models.Model):
     uploader = models.ForeignKey(JawnUser, on_delete=models.CASCADE, related_name='uploaded_by')
+    hpi_file = models.FileField(upload_to='uploaded_hpi_files/', help_text='Total Annihilation HPI, UFO or CCX file.')
     title = models.CharField(max_length=100)
     total_units = models.IntegerField(default=0)
     current_worker_job = models.IntegerField(default=0)
