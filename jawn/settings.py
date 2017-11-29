@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import subprocess
 from django.core.mail import *
+import socket
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DJANGULAR_STATIC = 'DjangularStaticFiles'
