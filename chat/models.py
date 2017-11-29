@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 import json
 from urllib.request import urlopen
 from django.contrib.postgres.fields import JSONField
+
 # Create your models here.
 class JawnUser(models.Model):
     base_user = models.OneToOneField(User, related_name='jawn_user', )

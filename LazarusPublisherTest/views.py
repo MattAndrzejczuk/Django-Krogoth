@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
-from LazarusDatabase.models import LazarusModProject, LazarusModAsset, LazarusModDependency
+# from LazarusDatabase.models import LazarusModProject, LazarusModAsset, LazarusModDependency
 from chat.models import JawnUser
 
 import json

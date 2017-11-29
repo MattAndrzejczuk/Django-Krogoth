@@ -17,7 +17,7 @@ import time
 
 from LazarusII.FbiData import remove_comments
 from DatabaseSandbox.models import TotalAnnihilationUploadedFile
-from LazarusDatabase.models import SelectedAssetUploadRepository
+# from LazarusDatabase.models import SelectedAssetUploadRepository
 from lazarus.views import WeaponTDFFetch, SoundTDFFetch
 
 

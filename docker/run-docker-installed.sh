@@ -18,7 +18,7 @@ docker exec -it armprime ./manage.py createsuperuser
 echo "Select Yes to Continue Install"
 docker exec -it armprime ./manage.py collectstatic
 echo "Installing Djangular... "
-docker exec -it armprime ./manage.py makemigrations dynamic_lazarus_page Djangular djangular_dashboard
+docker exec -it armprime ./manage.py makemigrations dynamic_lazarus_page Djangular djangular_dashboard LazarusIV LazarusV chat
 docker exec -it armprime ./manage.py migrate
 docker exec -it armprime ./manage.py make_default_layout
 ##############
@@ -28,3 +28,8 @@ docker exec -it armprime ./manage.py make_default_layout
 #echo 'export DOCKER_HOST="tcp://192.168.99.100:2376"' >> ~/.bashrc
 #echo 'export DOCKER_CERT_PATH="/Users/dominik/.docker/machine/machines/default"' >> ~/.bashrc
 #echo 'export DOCKER_MACHINE_NAME="default"' >> ~/.bashrc
+
+echo ""
+echo "DONT FORGET TO RUN THIS IN POSTGRESQL ! ! ! ! "
+echo "psql jawn4 -c 'create extension hstore;'"
+echo " "

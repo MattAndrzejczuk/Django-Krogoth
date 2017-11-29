@@ -18,7 +18,7 @@ from lazarus.views import WeaponTDFFetch, FeatureTDFFetch, DownloadTDFFetch, Sou
 # Create your views here.
 
 from LazarusII.models import UnitFbiData, WeaponTDF, Damage, DownloadTDF, FeatureTDF, SoundSetTDF
-from LazarusDatabase.models import LazarusModProject, LazarusModAsset, LazarusModDependency, LazarusPublicAsset
+# from LazarusDatabase.models import LazarusModProject, LazarusModAsset, LazarusModDependency, LazarusPublicAsset
 from chat.models import JawnUser
 import copy
 

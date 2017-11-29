@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from LazarusDatabase import views
+# from LazarusDatabase import views
 from LazarusII.models import UnitFbiData, WeaponTDF, Damage, FeatureTDF
 from rest_framework.routers import DefaultRouter
 

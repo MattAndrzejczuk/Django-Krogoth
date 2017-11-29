@@ -5,7 +5,7 @@ from chat.models import JawnUser
 
 
 class UploadRepository(models.Model):
-    uploader = models.ForeignKey(JawnUser, on_delete=models.CASCADE, related_name='uploaded_by')
+    uploader = models.ForeignKey(JawnUser, on_delete=models.CASCADE, related_name='created_by')
     hpi_file = models.FileField(upload_to='uploaded_hpi_files/', help_text='Total Annihilation HPI, UFO or CCX file.')
     title = models.CharField(max_length=100)
     total_units = models.IntegerField(default=0)
@@ -14,13 +14,13 @@ class UploadRepository(models.Model):
     original_hpi_path = models.CharField(max_length=100)
 
 class RepositoryDirectory(models.Model):
-    dir_repository = models.ForeignKey(UploadRepository, on_delete=models.CASCADE, related_name='location')
+    dir_repository = models.ForeignKey(UploadRepository, on_delete=models.CASCADE, related_name='location', null=True)
     dir_name = models.CharField(max_length=100)
     dir_path = models.CharField(max_length=100)
     dir_total_files = models.IntegerField(default=0)
 
 class RepositoryFile(models.Model):
-    repo_dir = models.ForeignKey(RepositoryDirectory, on_delete=models.CASCADE, related_name='parent_folder')
+    repo_dir = models.ForeignKey(RepositoryDirectory, on_delete=models.CASCADE, related_name='parent_folder', null=True)
     file_name = models.CharField(max_length=100)
     file_path = models.CharField(max_length=100)
     file_kind = models.CharField(max_length=100)
@@ -28,7 +28,7 @@ class RepositoryFile(models.Model):
 
 class BackgroundWorkerJob(models.Model):
     job_name = models.CharField(max_length=100)
-    dispatched_by_repo = models.ForeignKey(UploadRepository, on_delete=models.CASCADE, related_name='the_repo_selector')
+    dispatched_by_repo = models.ForeignKey(UploadRepository, on_delete=models.CASCADE, related_name='the_repo_selector', null=True)
     is_finished = models.BooleanField(default=False)
     is_working = models.BooleanField(default=False)
 

@@ -77,6 +77,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
     'ws4redis',
     'rest_framework_docs',
     'rest_framework',
@@ -141,7 +142,7 @@ WSGI_APPLICATION = 'jawn.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-db_name = 'jawn'
+db_name = 'jawn4'
 if os.path.exists('/usr/src/app/LazarusIII/GAFDump_EXE_Cavedog_Assets'):
     db_name = 'jawn5'
 

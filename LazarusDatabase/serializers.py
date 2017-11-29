@@ -1,5 +1,5 @@
-from LazarusDatabase.models import TotalAnnihilationMod, LazarusModProject, LazarusModAsset, \
-    LazarusModDependency, SelectedAssetUploadRepository, HPIUpload, LazarusPublicAsset
+# from LazarusDatabase.models import TotalAnnihilationMod, LazarusModProject, LazarusModAsset, \
+#     LazarusModDependency, SelectedAssetUploadRepository, HPIUpload, LazarusPublicAsset
 from rest_framework import serializers, exceptions
 from chat.models import JawnUser
 from DatabaseSandbox.models import TotalAnnihilationUploadedFile

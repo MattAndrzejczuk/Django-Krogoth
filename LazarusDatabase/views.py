@@ -12,12 +12,12 @@ from rest_framework import viewsets, filters
 import django_filters
 from rest_framework import permissions
 
-from LazarusDatabase.serializers import TotalAnnihilationModSerializer, SelectedAssetUploadRepositorySerializer, \
-    LazarusModProjectSerializer, LazarusModAssetSerializer, LazarusModDependencySerializer, \
-    HPIUploadSerializer, LazarusPublicAssetSerializer
-
-from LazarusDatabase.models import TotalAnnihilationMod, LazarusModProject, LazarusModAsset, \
-    LazarusModDependency, SelectedAssetUploadRepository, HPIUpload, LazarusPublicAsset
+# from LazarusDatabase.serializers import TotalAnnihilationModSerializer, SelectedAssetUploadRepositorySerializer, \
+#     LazarusModProjectSerializer, LazarusModAssetSerializer, LazarusModDependencySerializer, \
+#     HPIUploadSerializer, LazarusPublicAssetSerializer
+#
+# from LazarusDatabase.models import TotalAnnihilationMod, LazarusModProject, LazarusModAsset, \
+#     LazarusModDependency, SelectedAssetUploadRepository, HPIUpload, LazarusPublicAsset
 
 from rest_framework.decorators import detail_route, list_route
 from rest_framework import status

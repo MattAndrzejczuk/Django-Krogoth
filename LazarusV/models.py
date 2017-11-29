@@ -2,6 +2,7 @@ from django.db import models
 from polymorphic.models import PolymorphicModel
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import HStoreField
+
 # Create your models here.
 from chat.models import JawnUser
 

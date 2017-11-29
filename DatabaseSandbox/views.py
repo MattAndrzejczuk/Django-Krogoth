@@ -22,7 +22,7 @@ from DatabaseSandbox.models import VisitorLogSB, LazarusCommanderAccountSB, \
 from django.template import loader
 import subprocess
 from chat.models import JawnUser
-from LazarusDatabase.models import SelectedAssetUploadRepository
+# from LazarusDatabase.models import SelectedAssetUploadRepository
 
 
 # Create your views here.
