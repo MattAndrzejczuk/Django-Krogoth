@@ -140,10 +140,16 @@ WSGI_APPLICATION = 'jawn.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+db_name = 'jawn5'
+if socket.gethostname() == 'armprime.co':
+    db_name = 'jawn5'
+else:
+    db_name = 'jawn'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'jawn',
+        'NAME': db_name,
         'USER': os.environ["POSTGRES_ENV_POSTGRES_USER"],
         'PASSWORD': os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"],
         'HOST': os.environ["POSTGRES_PORT_5432_TCP_ADDR"],
