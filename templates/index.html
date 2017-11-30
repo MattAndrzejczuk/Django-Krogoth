@@ -613,15 +613,15 @@
 <script>
     const messaging = firebase.messaging();
       // Initialize Firebase
-      var fbconfig = {
-        apiKey: "AIzaSyCyXeTRl8pUdr1jlolwWsv2eQg4MuSsij4",
-        authDomain: "armprime-178101.firebaseapp.com",
-        databaseURL: "https://armprime-178101.firebaseio.com",
-        projectId: "armprime-178101",
-        storageBucket: "",
-        messagingSenderId: "487214059831"
-      };
-      firebase.initializeApp(fbconfig);
+  var config = {
+    apiKey: "AIzaSyCyXeTRl8pUdr1jlolwWsv2eQg4MuSsij4",
+    authDomain: "armprime-178101.firebaseapp.com",
+    databaseURL: "https://armprime-178101.firebaseio.com",
+    projectId: "armprime-178101",
+    storageBucket: "armprime-178101.appspot.com",
+    messagingSenderId: "487214059831"
+  };
+  firebase.initializeApp(config);
 
       messaging.requestPermission()
     .then(function() {
