@@ -1,6 +1,6 @@
 from django.db import models
 from chat.models import JawnUser
-
+import os
 
 
 
@@ -10,8 +10,16 @@ class UploadRepository(models.Model):
     title = models.CharField(max_length=100)
     total_units = models.IntegerField(default=0)
     current_worker_job = models.IntegerField(default=0)
-    root_path = models.CharField(max_length=100)
+    root_path = models.CharField(max_length=100, help_text='The destination path this HPI file will be extracted to.')
     original_hpi_path = models.CharField(max_length=100)
+
+    @property
+    def filename(self) -> str:
+        return os.path.basename(self.hpi_file.name)
+
+    @property
+    def filepath(self) -> str:
+        return self.hpi_file.path
 
 class RepositoryDirectory(models.Model):
     dir_repository = models.ForeignKey(UploadRepository, on_delete=models.CASCADE, related_name='location', null=True)
@@ -27,10 +35,21 @@ class RepositoryFile(models.Model):
     file_thumbnail = models.CharField(max_length=100)
 
 class BackgroundWorkerJob(models.Model):
-    job_name = models.CharField(max_length=100)
+    JOB_TYPES = (
+        ('I', 'I. Dump HPI Contents'),
+        ('II', 'II. Rename Files To Lowercase'),
+        ('III', 'III. Convert PCX Files To PNG'),
+        ('IV', 'IV. Process Dump Using SuperHPI'),
+    )
+    job_name = models.CharField(max_length=100, choices=JOB_TYPES)
     dispatched_by_repo = models.ForeignKey(UploadRepository, on_delete=models.CASCADE, related_name='the_repo_selector', null=True)
     is_finished = models.BooleanField(default=False)
     is_working = models.BooleanField(default=False)
+
+    def append_new_repo(self, repo: UploadRepository):
+        self.dispatched_by_repo = repo
+        self.job_name = 'I'
+        self.save()
 
 
 class NotificationCenter(models.Model):
