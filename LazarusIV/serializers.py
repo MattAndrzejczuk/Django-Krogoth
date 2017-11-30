@@ -6,11 +6,31 @@ from LazarusIV.models_tdf import LazarusDamageDataTA, LazarusWeaponDataTA, Lazar
 from LazarusIV.models import NotificationItem, NotificationCenter, BackgroundWorkerJob, RepositoryFile, \
     UploadRepository, RepositoryDirectory
 from LazarusV.models import CavedogBase, LazarusBase
+import os
 
 class UploadRepositorySerializer(serializers.ModelSerializer):
     class Meta:
         model = UploadRepository
-        fields = ('uploader', 'title', 'total_units', 'current_worker_job', 'root_path', 'original_hpi_path', )
+        fields = ('uploader', 'hpi_file', 'title', 'total_units', 'current_worker_job', 'root_path', 'original_hpi_path', )
+
+        def create(self, validated_data):
+            jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
+
+            c = UploadRepository.objects.create(uploader=jawn_user,
+                                                hpi_file=validated_data['hpi_file'],
+                                                title=validated_data['hpi_file'].name,
+                                                total_units=0,
+                                                current_worker_job=0,
+                                                root_path='',
+                                                original_hpi_path='')
+            c.original_hpi_path = c.filepath
+            c.root_path = c.filename
+
+            worker = BackgroundWorkerJob()
+            worker.append_new_repo(c)
+
+            return c
+
 class RepositoryDirectorySerializer(serializers.ModelSerializer):
     class Meta:
         model = RepositoryDirectory
