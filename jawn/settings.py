@@ -83,6 +83,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
+    'fcm_django',
     'chat',
     'lazarus',
     'LazarusII',
@@ -142,7 +143,7 @@ WSGI_APPLICATION = 'jawn.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-db_name = 'jawn4'
+db_name = 'jawn6'
 if os.path.exists('/usr/src/app/LazarusIII/GAFDump_EXE_Cavedog_Assets'):
     db_name = 'jawn5'
 
@@ -279,6 +280,10 @@ print(os.environ["POSTGRES_PORT_5432_TCP_ADDR"])
 print(os.environ["POSTGRES_PORT_5432_TCP_PORT"])
 
 
+# PUSH NOTIFICATIONS:
+FCM_DJANGO_SETTINGS = {
+        "FCM_SERVER_KEY": "AAAAcXA4kTc:APA91bGhguFF3Q28Mm8mJWB-iiXWaMQRxUWsLT8b0ZFspZ66MPOXnrWqzwqx2ek3MCG0WoPxWtgXJvc_qwtIz2glpCRN_rRSMr-AHRfty0f1sppcp1ehRgkEfel6uoqo-28JzKJ_Q-lG"
+}
 
 
 

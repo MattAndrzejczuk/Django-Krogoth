@@ -609,6 +609,33 @@
 <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
 
 
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script>
+    const messaging = firebase.messaging();
+      // Initialize Firebase
+      var fbconfig = {
+        apiKey: "AIzaSyCyXeTRl8pUdr1jlolwWsv2eQg4MuSsij4",
+        authDomain: "armprime-178101.firebaseapp.com",
+        databaseURL: "https://armprime-178101.firebaseio.com",
+        projectId: "armprime-178101",
+        storageBucket: "",
+        messagingSenderId: "487214059831"
+      };
+      firebase.initializeApp(fbconfig);
+
+      messaging.requestPermission()
+    .then(function() {
+      // [START_EXCLUDE]
+      // In many cases once an app has been granted notification permission, it
+      // should update its UI reflecting this.
+      // [END_EXCLUDE]
+    })
+    .catch(function(err) {
+      console.log('Unable to get permission to notify.', err);
+    });
+</script>
+
+
 <p id="DjangularVersion" style="display: none">{{ version_build }}</p>
 
 </body>
