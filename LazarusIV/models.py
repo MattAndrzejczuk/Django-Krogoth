@@ -3,6 +3,27 @@ from chat.models import JawnUser
 import os
 
 
+class BackgroundWorkerJob(models.Model):
+    JOB_TYPES = (
+        ('I', 'I. Dump HPI Contents'),
+        ('II', 'II. Rename Files To Lowercase'),
+        ('III', 'III. Convert PCX Files To PNG'),
+        ('IV', 'IV. Process Dump Using SuperHPI'),
+    )
+    job_name = models.CharField(max_length=100, choices=JOB_TYPES)
+    dispatched_by_repo = models.ForeignKey(UploadRepository,
+                                           on_delete=models.CASCADE,
+                                           related_name='the_repo_selector',
+                                           null=True)
+    is_finished = models.BooleanField(default=False)
+    is_working = models.BooleanField(default=False)
+
+    def append_new_repo(self, repo: UploadRepository):
+        self.dispatched_by_repo = repo
+        self.job_name = 'I'
+        self.save()
+
+
 
 class UploadRepository(models.Model):
     uploader = models.ForeignKey(JawnUser, on_delete=models.CASCADE, related_name='created_by')
@@ -33,23 +54,6 @@ class RepositoryFile(models.Model):
     file_path = models.CharField(max_length=100)
     file_kind = models.CharField(max_length=100)
     file_thumbnail = models.CharField(max_length=100)
-
-class BackgroundWorkerJob(models.Model):
-    JOB_TYPES = (
-        ('I', 'I. Dump HPI Contents'),
-        ('II', 'II. Rename Files To Lowercase'),
-        ('III', 'III. Convert PCX Files To PNG'),
-        ('IV', 'IV. Process Dump Using SuperHPI'),
-    )
-    job_name = models.CharField(max_length=100, choices=JOB_TYPES)
-    dispatched_by_repo = models.ForeignKey(UploadRepository, on_delete=models.CASCADE, related_name='the_repo_selector', null=True)
-    is_finished = models.BooleanField(default=False)
-    is_working = models.BooleanField(default=False)
-
-    def append_new_repo(self, repo: UploadRepository):
-        self.dispatched_by_repo = repo
-        self.job_name = 'I'
-        self.save()
 
 
 class NotificationCenter(models.Model):
