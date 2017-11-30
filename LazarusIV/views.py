@@ -16,12 +16,6 @@ from LazarusIV.serializers import UploadRepositorySerializer, RepositoryDirector
     LazarusWeaponTDFSerializer, LazarusFeatureTDFSerializer, LazarusDownloadTDFSerializer, LazarusUnitFBISerializer
 
 #    IV  -  4
-# class JawnUserViewSet(viewsets.ModelViewSet):
-#     queryset = JawnUser.objects.all()
-#     serializer_class = JawnUserSerializer
-#     permission_classes = (permissions.IsAuthenticated, )
-#     filter_backends = (filters.DjangoFilterBackend,)
-#     filter_fields = ('base_user', )
 
 class UploadRepositoryViewSet(viewsets.ModelViewSet):
     queryset = UploadRepository.objects.all()
@@ -42,6 +36,15 @@ class BackgroundWorkerJobViewSet(viewsets.ModelViewSet):
     queryset = BackgroundWorkerJob.objects.all()
     serializer_class = BackgroundWorkerJobSerializer
     permission_classes = (permissions.AllowAny,)
+
+class KickThatMuleLee(viewsets.ModelViewSet):
+    """
+    list:
+    Dispatches the next worker to begin job, if available and worker limit not reached.
+    """
+    queryset = BackgroundWorkerJob.objects.filter(is_working=True)
+    serializer_class = BackgroundWorkerJobSerializer
+    permission_classes = (permissions.IsAdminUser,)
 
 class NotificationCenterViewSet(viewsets.ModelViewSet):
     queryset = NotificationCenter.objects.all()

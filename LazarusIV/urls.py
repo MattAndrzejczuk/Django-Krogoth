@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from LazarusIV.views import UploadRepositoryViewSet, RepositoryDirectoryViewSet, RepositoryFileViewSet, \
     BackgroundWorkerJobViewSet, NotificationCenterViewSet, NotificationItemViewSet, CavedogBaseViewSet, \
     LazarusBaseViewSet, DamageViewSet, LazarusWeaponTDFViewSet, LazarusFeatureTDFViewSet, LazarusDownloadTDFViewSet, \
-    LazarusUnitFBIViewSet
+    LazarusUnitFBIViewSet, KickThatMuleLee
 
 from fcm_django.api.rest_framework import FCMDeviceAuthorizedViewSet
 
@@ -15,6 +15,7 @@ router.register(r'UploadRepository', UploadRepositoryViewSet)
 router.register(r'RepositoryDirectory', RepositoryDirectoryViewSet)
 router.register(r'RepositoryFileViewSet', RepositoryFileViewSet)
 router.register(r'BackgroundWorkerJobViewSet', BackgroundWorkerJobViewSet)
+router.register(r'KickThatMuleLee', KickThatMuleLee)
 router.register(r'NotificationCenterViewSet', NotificationCenterViewSet)
 router.register(r'NotificationItemViewSet', NotificationItemViewSet)
 

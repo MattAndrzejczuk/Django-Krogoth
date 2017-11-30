@@ -3,25 +3,7 @@ from chat.models import JawnUser
 import os
 
 
-class BackgroundWorkerJob(models.Model):
-    JOB_TYPES = (
-        ('I', 'I. Dump HPI Contents'),
-        ('II', 'II. Rename Files To Lowercase'),
-        ('III', 'III. Convert PCX Files To PNG'),
-        ('IV', 'IV. Process Dump Using SuperHPI'),
-    )
-    job_name = models.CharField(max_length=100, choices=JOB_TYPES)
-    dispatched_by_repo = models.ForeignKey(UploadRepository,
-                                           on_delete=models.CASCADE,
-                                           related_name='the_repo_selector',
-                                           null=True)
-    is_finished = models.BooleanField(default=False)
-    is_working = models.BooleanField(default=False)
 
-    def append_new_repo(self, repo: UploadRepository):
-        self.dispatched_by_repo = repo
-        self.job_name = 'I'
-        self.save()
 
 
 
@@ -41,6 +23,33 @@ class UploadRepository(models.Model):
     @property
     def filepath(self) -> str:
         return self.hpi_file.path
+
+    def set_file_paths(self):
+        self.original_hpi_path = self.filepath
+        self.root_path = self.filepath.replace(self.filename, '')
+        self.save()
+
+
+class BackgroundWorkerJob(models.Model):
+    JOB_TYPES = (
+        ('I', 'I. Dump HPI Contents'),
+        ('II', 'II. Rename Files To Lowercase'),
+        ('III', 'III. Convert PCX Files To PNG'),
+        ('IV', 'IV. Process Dump Using SuperHPI'),
+    )
+    job_name = models.CharField(max_length=100, choices=JOB_TYPES)
+    dispatched_by_repo = models.ForeignKey(UploadRepository,
+                                           on_delete=models.CASCADE,
+                                           related_name='the_repo_selector',
+                                           null=True)
+    is_finished = models.BooleanField(default=False)
+    is_working = models.BooleanField(default=False)
+
+    def enqueue_hpi_dump_job(self, on_repo: UploadRepository):
+        self.dispatched_by_repo = on_repo
+        self.job_name = 'I'
+        self.save()
+
 
 class RepositoryDirectory(models.Model):
     dir_repository = models.ForeignKey(UploadRepository, on_delete=models.CASCADE, related_name='location', null=True)
