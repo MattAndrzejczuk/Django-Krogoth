@@ -41,8 +41,7 @@ class UploadRepository(models.Model):
 JOB_TYPES = (
         ('I', 'I. Dump HPI Contents'),
         ('II', 'II. Rename Files To Lowercase'),
-        ('III', 'III. Convert PCX Files To PNG'),
-        ('IV', 'IV. Process Dump Using SuperHPI'),
+        ('III', 'III. Process Dump Using SuperHPI'),
     )
 class BackgroundWorkerJob(models.Model):
 
@@ -54,15 +53,15 @@ class BackgroundWorkerJob(models.Model):
     is_finished = models.BooleanField(default=False)
     is_working = models.BooleanField(default=False)
 
+    @property
+    def parent_user(self):
+        return self.dispatched_by_repo.uploader
+
     def enqueue_job(self, on_repo: UploadRepository, to_do: str):
         self.dispatched_by_repo = on_repo
         self.job_name = to_do
         self.save()
 
-    # def enqueue_rename_path_job(self, on_repo: UploadRepository):
-    #     self.dispatched_by_repo = on_repo
-    #     self.job_name = 'II'
-    #     self.save()
 # Some large job starts being executed:
     def set_as_busy(self):
         self.is_working = True
@@ -82,7 +81,11 @@ class BackgroundWorkerJob(models.Model):
         self.save()
         replace_with_next_job = BackgroundWorkerJob()
         replace_with_next_job.enqueue_job(on_repo=self.dispatched_by_repo, to_do='III')
-
+# III. FINISHED:
+    def super_hpi_did_complete(self):
+        self.is_working = False
+        self.is_finished = True
+        self.save()
 
 
 class RepositoryDirectory(models.Model):
@@ -112,4 +115,8 @@ class NotificationItem(models.Model):
     title = models.CharField(max_length=50)
     body = models.CharField(max_length=250)
     date = models.DateTimeField(auto_now_add=True)
-    unread = models.CharField(max_length=250)
+    unread = models.CharField(max_length=250) #TODO: should be a Bool?
+
+    def save(self, *args, **kwargs):
+        # TODO: WebSocket or FireBase is called here.
+        super(NotificationItem, self).save(*args, **kwargs)

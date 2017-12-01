@@ -1,6 +1,7 @@
 import threading
 import os
 from LazarusIV.models import UploadRepository, BackgroundWorkerJob
+from LazarusIV.armprime_dispatcher.notifications import Notifier
 
 EXTRACTION_ROOT = '/usr/src/persistent/media/user_uploads/'
 DEFAULT_EXTRACTION_DESTINATION = 'FilesWithNoAuthor'
@@ -53,13 +54,17 @@ class Worker():
             worker.rename_did_complete()
 
         # JOB III
-        def dispatch_first_super_hpi_scan(self):
+        def dispatch_first_super_hpi_scan(self, worker: BackgroundWorkerJob):
             # TODO: SuperHPI - Menu Option 3
+            ## SuperHPI should generate png thumbnails
             ## should load all unit assets into RAM as Dict and Array
             ## RETURNS:
-            ## -> cavedog_data_base  AS
-            ## -> all_readonly_assets
-            pass
+            ## -> cavedog_data_base  AS  RepositoryFile>-<CavedogBase
+            ## -> all_readonly_assets  AS  RepositoryFile
+            # TODO: SuperHPI - Menu Option [9, 2, 11] is for the publisher.
+            ping = Notifier(for_user=worker.parent_user)
+            ping.ping_basic_alert(msg='JOB III completed!')
+
 
         # JOB IV
         def dispatch_generate_png_thumbnails(self, worker: BackgroundWorkerJob):
@@ -76,7 +81,7 @@ class Worker():
             threading.Thread(target=dispatch_rename_files_lower, args=(worker,))
         elif worker.job_name == 'III':
             worker.set_as_busy()
-            threading.Thread(target=dispatch_convert_png_thumbnails, args=(worker,))
+            threading.Thread(target=dispatch_first_super_hpi_scan, args=(worker,))
         elif worker.job_name == 'IV':
             worker.set_as_busy()
             threading.Thread(target=dispatch_first_super_hpi_scan, args=(worker,))
