@@ -5,7 +5,7 @@ from django.contrib.postgres.fields import HStoreField
 
 # Create your models here.
 from chat.models import JawnUser
-
+from LazarusIV.models import RepositoryFile
 #    V  -  5
 
 class ModProject(models.Model):
@@ -36,6 +36,7 @@ class ModBuild(models.Model):
     download_url = models.CharField(max_length=150)
 
 class CavedogBase(PolymorphicModel):
+    file_of_origin = models.ForeignKey(RepositoryFile, on_delete=models.CASCADE, related_name='ta_cavedog_root')
     keyname = models.CharField(max_length=250)
     snowflake = models.CharField(max_length=50)
     thumbnail_url = models.CharField(max_length=250)

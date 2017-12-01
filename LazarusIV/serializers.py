@@ -17,7 +17,7 @@ class UploadRepositorySerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
-        c = UploadRepository.objects.create(uploader=jawn_user,
+        new_repo = UploadRepository.objects.create(uploader=jawn_user,
                                                 hpi_file=validated_data['hpi_file'],
                                                 title=validated_data['hpi_file'].name,
                                                 total_units=0,
@@ -25,10 +25,10 @@ class UploadRepositorySerializer(serializers.ModelSerializer):
                                                 root_path='',
                                                 original_hpi_path='')
         print(' 📦 ', end='')
-        c.set_file_paths()
+        new_repo.set_file_paths()
         worker = BackgroundWorkerJob()
-        worker.enqueue_hpi_dump_job(on_repo=c)
-        return c
+        worker.enqueue_job(on_repo=new_repo, to_do='I')
+        return new_repo
 
 class RepositoryDirectorySerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets, filters, renderers, status, permissions
 
+from LazarusIV.armprime_dispatcher.jobs import Worker
 
 from LazarusIV.models_tdf import LazarusDamageDataTA, LazarusWeaponDataTA, LazarusFeatureDataTA, \
     LazarusDownloadDataTA, LazarusUnitDataTA
@@ -45,6 +46,8 @@ class KickThatMuleLee(viewsets.ModelViewSet):
     queryset = BackgroundWorkerJob.objects.filter(is_working=True)
     serializer_class = BackgroundWorkerJobSerializer
     permission_classes = (permissions.IsAdminUser,)
+    Worker().kickThatMuleLee()
+
 
 class NotificationCenterViewSet(viewsets.ModelViewSet):
     queryset = NotificationCenter.objects.all()

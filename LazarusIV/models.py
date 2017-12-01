@@ -29,14 +29,23 @@ class UploadRepository(models.Model):
         self.root_path = self.filepath.replace(self.filename, '')
         self.save()
 
+    def hpi_extraction_did_finish(self):
+        username = self.uploader.base_user.username
+        self.root_path = self.root_path.replace('uploaded_hpi_files/',
+                                                'Processed_HPI_Archive/' + username
+                                                + '/'
+                                                + self.filename
+                                                + '/')
+        self.save()
 
-class BackgroundWorkerJob(models.Model):
-    JOB_TYPES = (
+JOB_TYPES = (
         ('I', 'I. Dump HPI Contents'),
         ('II', 'II. Rename Files To Lowercase'),
         ('III', 'III. Convert PCX Files To PNG'),
         ('IV', 'IV. Process Dump Using SuperHPI'),
     )
+class BackgroundWorkerJob(models.Model):
+
     job_name = models.CharField(max_length=100, choices=JOB_TYPES)
     dispatched_by_repo = models.ForeignKey(UploadRepository,
                                            on_delete=models.CASCADE,
@@ -45,10 +54,35 @@ class BackgroundWorkerJob(models.Model):
     is_finished = models.BooleanField(default=False)
     is_working = models.BooleanField(default=False)
 
-    def enqueue_hpi_dump_job(self, on_repo: UploadRepository):
+    def enqueue_job(self, on_repo: UploadRepository, to_do: str):
         self.dispatched_by_repo = on_repo
-        self.job_name = 'I'
+        self.job_name = to_do
         self.save()
+
+    # def enqueue_rename_path_job(self, on_repo: UploadRepository):
+    #     self.dispatched_by_repo = on_repo
+    #     self.job_name = 'II'
+    #     self.save()
+# Some large job starts being executed:
+    def set_as_busy(self):
+        self.is_working = True
+        self.save()
+# I. FINISHED:
+    def extraction_did_complete(self):
+        self.is_working = False
+        self.is_finished = True
+        self.dispatched_by_repo.hpi_extraction_did_finish()
+        self.save()
+        replace_with_next_job = BackgroundWorkerJob()
+        replace_with_next_job.enqueue_job(on_repo=self.dispatched_by_repo, to_do='II')
+# II. FINISHED:
+    def rename_did_complete(self):
+        self.is_working = False
+        self.is_finished = True
+        self.save()
+        replace_with_next_job = BackgroundWorkerJob()
+        replace_with_next_job.enqueue_job(on_repo=self.dispatched_by_repo, to_do='III')
+
 
 
 class RepositoryDirectory(models.Model):
