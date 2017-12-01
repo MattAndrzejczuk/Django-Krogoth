@@ -43,6 +43,8 @@ class Worker():
         # JOB I
         def dispatch_hpi_dump(self, worker: BackgroundWorkerJob):
             # TODO: extractTA_Mod.sh
+            cmd = 'extractTA_Mod.sh' + worker.dispatched_by_repo.original_hpi_path + worker.dispatched_by_repo.root_path
+            os.system(cmd)
             print(' 🔨 ', end='')
             worker.extraction_did_complete()
 
@@ -50,6 +52,8 @@ class Worker():
         # JOB II
         def dispatch_rename_files_lower(self, worker: BackgroundWorkerJob):
             # TODO: bashRenameStuffToLowerInDirectory_public.sh
+            cmd = "bash bashRenameStuffToLowerInDirectory_public.sh " + worker.dispatched_by_repo.root_path + "/."
+            os.system(cmd)
             print(' 🔧 ', end='')
             worker.rename_did_complete()
 

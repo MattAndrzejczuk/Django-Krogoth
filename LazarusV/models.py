@@ -47,9 +47,6 @@ class LazarusBase(CavedogBase):
     is_deleted = models.BooleanField(default=False)
     mod_proj = models.ForeignKey(ModProject, on_delete=models.CASCADE)
 
-
-
-
 class WargamePackage(models.Model):
     parent_proj = models.ForeignKey(ModProject, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)

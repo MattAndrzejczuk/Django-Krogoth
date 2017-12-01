@@ -26,17 +26,14 @@ class UploadRepository(models.Model):
 
     def set_file_paths(self):
         self.original_hpi_path = self.filepath
-        self.root_path = self.filepath.replace(self.filename, '')
+        username = self.uploader.base_user.username
+        self.root_path = self.filepath.replace(self.filename + 'uploaded_hpi_files/',
+                                               'Processed_HPI_Archive/' + username
+                                               + '/'
+                                               + self.filename
+                                               + '/')
         self.save()
 
-    def hpi_extraction_did_finish(self):
-        username = self.uploader.base_user.username
-        self.root_path = self.root_path.replace('uploaded_hpi_files/',
-                                                'Processed_HPI_Archive/' + username
-                                                + '/'
-                                                + self.filename
-                                                + '/')
-        self.save()
 
 JOB_TYPES = (
         ('I', 'I. Dump HPI Contents'),
@@ -100,7 +97,6 @@ class RepositoryFile(models.Model):
     file_path = models.CharField(max_length=100)
     file_kind = models.CharField(max_length=100)
     file_thumbnail = models.CharField(max_length=100)
-
 
 class NotificationCenter(models.Model):
     parent_user = models.OneToOneField(JawnUser, related_name='armprime_user', )
