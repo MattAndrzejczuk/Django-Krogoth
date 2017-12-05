@@ -5,7 +5,7 @@ from LazarusIV.models import UploadRepository, BackgroundWorkerJob, RepositoryDi
     NotificationCenter, NotificationItem
 
 class UploadRepositoryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'id', 'root_path', 'original_hpi_path' )
+    list_display = ('title', 'id', 'thumbnail_pic', )
 
 class BackgroundWorkerJobAdmin(admin.ModelAdmin):
     list_display = ('job_name', 'id', 'is_finished', 'is_working' )

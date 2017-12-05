@@ -1,20 +1,24 @@
 from django.db import models
+from django.core.validators import URLValidator
 from chat.models import JawnUser
 import os
 from jawn.settings import PUBLIC_EXTRACTED_HPIs
 from PIL import Image, ImageDraw, ImageFont
 
-
+import socket
 
 class UploadRepository(models.Model):
     uploader = models.ForeignKey(JawnUser, on_delete=models.CASCADE, related_name='created_by')
     hpi_file = models.FileField(upload_to='uploaded_hpi_files/', help_text='Total Annihilation HPI, UFO or CCX file.')
     title = models.CharField(max_length=100)
-    total_units = models.IntegerField(default=0)
+    total_files = models.IntegerField(default=0)
     current_worker_job = models.IntegerField(default=0)
     root_path = models.CharField(max_length=100, help_text='The destination path this HPI file will be extracted to.')
     original_hpi_path = models.CharField(max_length=100)
-    thumbnail_pic = models.CharField(max_length=100, default='NaN')
+    thumbnail_pic = models.CharField(max_length=100, default='NaN', validators=[URLValidator()])
+
+    def __str__(self):
+        return 'http://' + socket.gethostname() + self.thumbnail_pic.replace('/urs/src/persistent', '')
 
     @property
     def filename(self) -> str:
@@ -36,12 +40,41 @@ class UploadRepository(models.Model):
         print(' 💾 🗄 ')
         super(UploadRepository, self).save(*args, **kwargs)
 
+    def make_first_thumbnail(self):
+        output_save_path = '/usr/src/persistent/media/Generated_Thumbnails/'
+        bgimg = Image.open('./png_generator/background.png')
+        txt = Image.new('RGBA', bgimg.size, (255, 255, 255, 0))
+        fnt = ImageFont.truetype('./static/fonts/Haettenschweiler.ttf', 40)
+        d = ImageDraw.Draw(txt)
+        d.text((10, 10), 'REPOSITORY', font=fnt, fill=(155, 155, 155, 178))
+        out = Image.alpha_composite(bgimg, txt)
+        out.save(output_save_path + self.title + '.png')
+        self.thumbnail_pic = output_save_path + self.title + '.png'
+        self.save()
+
+    def make_second_thumbnail(self):
+        total_files = len(os.listdir(self.root_path))
+        self.total_files = total_files
+        output_save_path = '/usr/src/persistent/media/Generated_Thumbnails/'
+        bgimg = Image.open('./png_generator/background.png')
+        txt = Image.new('RGBA', bgimg.size, (255, 255, 255, 0))
+        fnt = ImageFont.truetype('./static/fonts/Haettenschweiler.ttf', 40)
+        d = ImageDraw.Draw(txt)
+        d.text((10, 10), 'REPOSITORY', font=fnt, fill=(155, 215, 155, 218))
+        d.text((10, 60), str(total_files) + ' files', font=fnt, fill=(155, 55, 55, 235))
+        out = Image.alpha_composite(bgimg, txt)
+        out.save(output_save_path + self.title + '.png')
+        self.thumbnail_pic = output_save_path + self.title + '.png'
+        self.save()
+
     def set_file_paths(self):
         self.original_hpi_path = self.filepath
         username = self.uploader.base_user.username
         self.root_path = PUBLIC_EXTRACTED_HPIs + username + '/' + self.filename_no_ext + '/'
         if not os.path.exists(self.root_path):
             os.makedirs(self.root_path)
+
+
         self.save()
 
 
@@ -152,18 +185,21 @@ class RepositoryFile(models.Model):
         output_save_path = '/usr/src/persistent/media/Generated_Thumbnails/'
         bgimg = Image.open('./png_generator/background.png')
         txt = Image.new('RGBA', bgimg.size, (255, 255, 255, 0))
-        fnt = ImageFont.truetype('./static/fonts/Haettenschweiler.ttf', 30)
+        fnt = ImageFont.truetype('./static/fonts/Haettenschweiler.ttf', 40)
         d = ImageDraw.Draw(txt)
         d.text((10, 10), self.file_kind, font=fnt, fill=(155, 155, 155, 178))
         file_contents = open(self.file_path, 'r', errors='replace')
         raw = '{...}'
 
+        fnt_sml = ImageFont.truetype('./static/fonts/Haettenschweiler.ttf', 12)
         if self.file_kind == '.fbi':
             raw = file_contents.read()
-            d.text((10, 60), raw[0:39], font=fnt, fill=(55, 55, 55, 235))
+            d.text((10, 60), raw, font=fnt_sml, fill=(55, 55, 155, 235))
         elif self.file_kind == '.tdf':
             raw = file_contents.read()
-            d.text((10, 60), raw[0:39], font=fnt, fill=(55, 55, 55, 235))
+            d.text((10, 60), raw, font=fnt_sml, fill=(155, 55, 55, 235))
+        else:
+            d.text((10, 60), raw, font=fnt, fill=(55, 95, 55, 235))
 
         out = Image.alpha_composite(bgimg, txt)
         out.save(output_save_path + self.file_name + self.file_kind + '|' + str(self.repo_dir.id) + '.png')

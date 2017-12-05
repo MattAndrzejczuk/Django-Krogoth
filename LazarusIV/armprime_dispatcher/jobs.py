@@ -158,10 +158,12 @@ class Worker():
             run_thread.start()
         elif worker.job_name == 'III':
             worker.set_as_busy()
+            worker.dispatched_by_repo.make_first_thumbnail()
             run_thread = threading.Thread(target=dispatch_scan_repository_directories, args=(worker.id,))
             run_thread.start()
         elif worker.job_name == 'IV':
             worker.set_as_busy()
+            worker.dispatched_by_repo.make_second_thumbnail()
             run_thread = threading.Thread(target=dispatch_scan_repository_files, args=(worker.id,))
             run_thread.start()
 
