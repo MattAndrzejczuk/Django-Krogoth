@@ -36,7 +36,7 @@ class ModBuild(models.Model):
     download_url = models.CharField(max_length=150)
 
 class CavedogBase(PolymorphicModel):
-    file_of_origin = models.ForeignKey(RepositoryFile, on_delete=models.CASCADE, related_name='ta_cavedog_root')
+    file_of_origin = models.ForeignKey(RepositoryFile, on_delete=models.CASCADE, related_name='ta_cavedog_root', null=True, blank=True)
     keyname = models.CharField(max_length=250)
     snowflake = models.CharField(max_length=50)
     thumbnail_url = models.CharField(max_length=250)

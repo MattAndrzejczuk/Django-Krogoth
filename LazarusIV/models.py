@@ -14,7 +14,7 @@ class UploadRepository(models.Model):
     current_worker_job = models.IntegerField(default=0)
     root_path = models.CharField(max_length=100, help_text='The destination path this HPI file will be extracted to.')
     original_hpi_path = models.CharField(max_length=100)
-    thumbnail_pic = models.CharField(max_length=100)
+    thumbnail_pic = models.CharField(max_length=100, default='NaN')
 
     @property
     def filename(self) -> str:
