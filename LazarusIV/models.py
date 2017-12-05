@@ -148,6 +148,8 @@ class RepositoryFile(models.Model):
         self.repo_dir = RepositoryDirectory.objects.get(id=repodir_id)
         self.file_thumbnail = 'NaN'
         # self.save()
+
+        output_save_path = '/usr/src/persistent/media/Generated_Thumbnails/'
         bgimg = Image.open('./png_generator/background.png')
         txt = Image.new('RGBA', bgimg.size, (255, 255, 255, 0))
         fnt = ImageFont.truetype('./static/fonts/Haettenschweiler.ttf', 40)
@@ -159,15 +161,15 @@ class RepositoryFile(models.Model):
             raw = file_contents.read()
             d.text((10, 60), raw[0:15], font=fnt, fill=(255, 255, 255, 235))
             out = Image.alpha_composite(bgimg, txt)
-            out.save('Generated_Thumbnails/' + self.file_name + self.file_kind + str(self.id))
-            self.file_thumbnail = 'Generated_Thumbnails/' + self.file_name + self.file_kind + str(self.id)
+            out.save(output_save_path + self.file_name + self.file_kind + '|' + str(self.repo_dir.id) + '.png')
+            self.file_thumbnail = output_save_path + self.file_name + self.file_kind + '|' + str(self.repo_dir.id) + '.png'
         elif self.file_kind == '.tdf':
             file_contents = open(self.file_path, 'r', errors='replace')
             raw = file_contents.read()
             d.text((10, 60), raw[0:15], font=fnt, fill=(255, 255, 255, 235))
             out = Image.alpha_composite(bgimg, txt)
-            out.save('Generated_Thumbnails/' + self.file_name + self.file_kind + str(self.id))
-            self.file_thumbnail = 'Generated_Thumbnails/' + self.file_name + self.file_kind + str(self.id)
+            out.save(output_save_path + self.file_name + self.file_kind + '|' + str(self.repo_dir.id) + '.png')
+            self.file_thumbnail = output_save_path + self.file_name + self.file_kind + '|' + str(self.repo_dir.id) + '.png'
         # self.save()
 
     def save_junk_file(self, filename: str, path: str, repodir_id: int):
