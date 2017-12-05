@@ -152,24 +152,23 @@ class RepositoryFile(models.Model):
         output_save_path = '/usr/src/persistent/media/Generated_Thumbnails/'
         bgimg = Image.open('./png_generator/background.png')
         txt = Image.new('RGBA', bgimg.size, (255, 255, 255, 0))
-        fnt = ImageFont.truetype('./static/fonts/Haettenschweiler.ttf', 40)
+        fnt = ImageFont.truetype('./static/fonts/Haettenschweiler.ttf', 30)
         d = ImageDraw.Draw(txt)
-        d.text((10, 10), self.file_kind, font=fnt, fill=(255, 255, 255, 178))
+        d.text((10, 10), self.file_kind, font=fnt, fill=(155, 155, 155, 178))
+        file_contents = open(self.file_path, 'r', errors='replace')
+        raw = '{...}'
 
         if self.file_kind == '.fbi':
-            file_contents = open(self.file_path, 'r', errors='replace')
             raw = file_contents.read()
-            d.text((10, 60), raw[0:15], font=fnt, fill=(255, 255, 255, 235))
-            out = Image.alpha_composite(bgimg, txt)
-            out.save(output_save_path + self.file_name + self.file_kind + '|' + str(self.repo_dir.id) + '.png')
-            self.file_thumbnail = output_save_path + self.file_name + self.file_kind + '|' + str(self.repo_dir.id) + '.png'
+            d.text((10, 60), raw[0:39], font=fnt, fill=(55, 55, 55, 235))
         elif self.file_kind == '.tdf':
-            file_contents = open(self.file_path, 'r', errors='replace')
             raw = file_contents.read()
-            d.text((10, 60), raw[0:15], font=fnt, fill=(255, 255, 255, 235))
-            out = Image.alpha_composite(bgimg, txt)
-            out.save(output_save_path + self.file_name + self.file_kind + '|' + str(self.repo_dir.id) + '.png')
-            self.file_thumbnail = output_save_path + self.file_name + self.file_kind + '|' + str(self.repo_dir.id) + '.png'
+            d.text((10, 60), raw[0:39], font=fnt, fill=(55, 55, 55, 235))
+
+        out = Image.alpha_composite(bgimg, txt)
+        out.save(output_save_path + self.file_name + self.file_kind + '|' + str(self.repo_dir.id) + '.png')
+        self.file_thumbnail = '/media/Generated_Thumbnails/' + self.file_name + self.file_kind + '|' + str(
+                self.repo_dir.id) + '.png'
         # self.save()
 
     def save_junk_file(self, filename: str, path: str, repodir_id: int):
