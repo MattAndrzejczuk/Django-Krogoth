@@ -288,3 +288,6 @@ FCM_DJANGO_SETTINGS = {
 
 
 
+PUBLIC_EXTRACTED_HPIs = '/usr/src/persistent/media/Processed_HPI_Archives/'
+if not os.path.exists(PUBLIC_EXTRACTED_HPIs):
+    os.makedirs(PUBLIC_EXTRACTED_HPIs)

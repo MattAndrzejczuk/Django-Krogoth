@@ -1,7 +1,7 @@
 from django.db import models
 from chat.models import JawnUser
 import os
-
+from jawn.settings import PUBLIC_EXTRACTED_HPIs
 
 
 
@@ -19,17 +19,23 @@ class UploadRepository(models.Model):
         return os.path.basename(self.hpi_file.name)
 
     @property
+    def filename_no_ext(self) -> str:
+        return os.path.basename(self.hpi_file.name)[:-4]
+
+    @property
+    def file_ext(self) -> str:
+        return os.path.basename(self.hpi_file.name)[-4:]
+
+    @property
     def filepath(self) -> str:
         return self.hpi_file.path
 
     def set_file_paths(self):
         self.original_hpi_path = self.filepath
         username = self.uploader.base_user.username
-        self.root_path = self.filepath.replace(self.filename + 'uploaded_hpi_files/',
-                                               'Processed_HPI_Archive/' + username
-                                               + '/'
-                                               + self.filename
-                                               + '/')
+        self.root_path = PUBLIC_EXTRACTED_HPIs + username + '/' + self.filename_no_ext + '/'
+        if not os.path.exists(self.root_path):
+            os.makedirs(self.root_path)
         self.save()
 
 

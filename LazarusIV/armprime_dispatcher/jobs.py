@@ -1,4 +1,5 @@
 import threading
+import time
 import os
 from LazarusIV.models import UploadRepository, BackgroundWorkerJob
 from LazarusIV.armprime_dispatcher.notifications import Notifier
@@ -46,11 +47,12 @@ class Worker():
 
         # JOB I
         def dispatch_hpi_dump(worker_id: int):
-            # TODO: extractTA_Mod.sh
+            time.sleep(2)
             worker = BackgroundWorkerJob.objects.get(id=worker_id)
-            cmd = 'extractTA_Mod.sh' + worker.dispatched_by_repo.original_hpi_path + worker.dispatched_by_repo.root_path
+            cmd = 'extractTA_Mod.sh' + worker.dispatched_by_repo.original_hpi_path \
+                  + ' ' + worker.dispatched_by_repo.root_path
             print(cmd)
-            # os.system(cmd)
+            os.system(cmd)
             print(' 🔨 ', end='')
             worker.is_working = False
             worker.is_finished = True
@@ -60,7 +62,7 @@ class Worker():
 
         # JOB II
         def dispatch_rename_files_lower(worker_id: int):
-            # TODO: bashRenameStuffToLowerInDirectory_public.sh
+            time.sleep(2)
             worker = BackgroundWorkerJob.objects.get(id=worker_id)
             cmd = "bash bashRenameStuffToLowerInDirectory_public.sh " + worker.dispatched_by_repo.root_path + "/."
             print(cmd)
@@ -88,11 +90,14 @@ class Worker():
 
         worker.set_as_busy()
         if worker.job_name == 'I':
-            run_thread = threading.Thread(target=dispatch_hpi_dump, args=(worker,))
+            run_thread = threading.Thread(target=dispatch_hpi_dump, args=(worker.id,))
+            run_thread.start()
         elif worker.job_name == 'II':
-            run_thread = threading.Thread(target=dispatch_rename_files_lower, args=(worker,))
+            run_thread = threading.Thread(target=dispatch_rename_files_lower, args=(worker.id,))
+            run_thread.start()
         elif worker.job_name == 'III':
-            run_thread = threading.Thread(target=dispatch_first_super_hpi_scan, args=(worker,))
+            run_thread = threading.Thread(target=dispatch_first_super_hpi_scan, args=(worker.id,))
+            run_thread.start()
 
 
     def get_bash_system_os_cmd(self):
