@@ -267,7 +267,8 @@ import django
 import rest_framework
 try:
     print('')
-    print('\033[90mInitializing Django ' + str(django.VERSION[0]) + '.' + str(django.VERSION[1]) + '.' + str(django.VERSION[2]) + '\033[0m')
+    print('\033[90mInitializing Django ' +
+          str(django.VERSION[0]) + '.' + str(django.VERSION[1]) + '.' + str(django.VERSION[2]) + '\033[0m')
     print('\033[96mDjango REST Framework ' + str(rest_framework.VERSION) + '\033[0m')
     print('')
 except:

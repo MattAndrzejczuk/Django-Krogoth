@@ -5,7 +5,6 @@ from rest_framework.routers import DefaultRouter
 from LazarusV.views import ModProjectViewSet, ModPublicationViewSet, ModBuildViewSet, WargamePackageViewSet, \
     WargameFileViewSet, WargameDataViewSet, UserRatingViewSet, RatingCavedogBaseViewSet, RatingModPublicationViewSet
 #    V  -  5
-
 router = DefaultRouter()
 router.register(r'ModProject', ModProjectViewSet)
 router.register(r'ModPublication', ModPublicationViewSet)

@@ -26,11 +26,6 @@ from django.contrib import admin
 # from rest_auth.views import LazarusListUnits
 import rest_auth
 
-
-
-
-
-
 router = DefaultRouter()
 router.register(r'users', UserViewSet, 'User')
 router.register(r'jawn-users', JawnUserViewSet, 'Jawn User')

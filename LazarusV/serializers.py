@@ -2,8 +2,6 @@ from rest_framework import serializers, exceptions
 from LazarusV import models
 #    V  -  5
 
-
-
 class ModProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ModProject

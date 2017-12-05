@@ -43,10 +43,11 @@ class KickThatMuleLee(viewsets.ModelViewSet):
     list:
     Dispatches the next worker to begin job, if available and worker limit not reached.
     """
+    Worker().kickThatMuleLee()
     queryset = BackgroundWorkerJob.objects.filter(is_working=True)
     serializer_class = BackgroundWorkerJobSerializer
     permission_classes = (permissions.IsAdminUser,)
-    Worker().kickThatMuleLee()
+
 
 
 class NotificationCenterViewSet(viewsets.ModelViewSet):
@@ -58,9 +59,6 @@ class NotificationItemViewSet(viewsets.ModelViewSet):
     queryset = NotificationItem.objects.all()
     serializer_class = NotificationItemSerializer
     permission_classes = (permissions.AllowAny,)
-
-
-
 
 
 class CavedogBaseViewSet(viewsets.ModelViewSet):

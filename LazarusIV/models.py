@@ -5,8 +5,6 @@ import os
 
 
 
-
-
 class UploadRepository(models.Model):
     uploader = models.ForeignKey(JawnUser, on_delete=models.CASCADE, related_name='created_by')
     hpi_file = models.FileField(upload_to='uploaded_hpi_files/', help_text='Total Annihilation HPI, UFO or CCX file.')
@@ -65,17 +63,17 @@ class BackgroundWorkerJob(models.Model):
         self.save()
 # I. FINISHED:
     def extraction_did_complete(self):
-        self.is_working = False
-        self.is_finished = True
-        self.dispatched_by_repo.hpi_extraction_did_finish()
-        self.save()
+        # self.is_working = False
+        # self.is_finished = True
+        # self.dispatched_by_repo.hpi_extraction_did_finish()
+        # self.save()
         replace_with_next_job = BackgroundWorkerJob()
         replace_with_next_job.enqueue_job(on_repo=self.dispatched_by_repo, to_do='II')
 # II. FINISHED:
     def rename_did_complete(self):
-        self.is_working = False
-        self.is_finished = True
-        self.save()
+        # self.is_working = False
+        # self.is_finished = True
+        # self.save()
         replace_with_next_job = BackgroundWorkerJob()
         replace_with_next_job.enqueue_job(on_repo=self.dispatched_by_repo, to_do='III')
 # III. FINISHED:
