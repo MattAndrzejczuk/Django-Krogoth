@@ -89,11 +89,30 @@ class BackgroundWorkerJob(models.Model):
         self.save()
 
 
+REPO_DIR_TYPES = (
+        ('Master', 'Master Path'),
+        ('Data', 'Data Dependencies'),
+        ('File', 'File Dependencies'),
+        ('Misc', 'Non Dependencies, optional content like menu bitmaps'),
+    )
 class RepositoryDirectory(models.Model):
     dir_repository = models.ForeignKey(UploadRepository, on_delete=models.CASCADE, related_name='location', null=True)
     dir_name = models.CharField(max_length=100)
     dir_path = models.CharField(max_length=100)
     dir_total_files = models.IntegerField(default=0)
+    dir_kind = models.CharField(max_length=100, choices=REPO_DIR_TYPES)
+
+    def save_master_path(self, name: str, full_path: str):
+        self.name = name
+        self.dir_path = full_path
+        self.dir_total_files = len(os.listdir(full_path))
+        self.save()
+
+    def save_root_path(self, name: str, full_path: str):
+        self.name = name
+        self.dir_path = full_path
+        self.dir_total_files = len(os.listdir(full_path))
+        self.save()
 
 class RepositoryFile(models.Model):
     repo_dir = models.ForeignKey(RepositoryDirectory, on_delete=models.CASCADE, related_name='parent_folder', null=True)
@@ -101,6 +120,21 @@ class RepositoryFile(models.Model):
     file_path = models.CharField(max_length=100)
     file_kind = models.CharField(max_length=100)
     file_thumbnail = models.CharField(max_length=100)
+
+    def save_as_file(self, filename: str, path: str, repodir: RepositoryDirectory):
+        self.file_kind = filename[-4:]
+        self.file_name = filename[:-4]
+        self.file_path = path
+        self.repo_dir = repodir
+        self.file_thumbnail = 'NaN'
+        self.save()
+
+    def save_junk_file(self, filename: str, path: str, repodir: RepositoryDirectory):
+        self.save_as_file(filename=filename, path=path, repodir=repodir)
+        self.file_kind = 'Junk|' + filename[-4:]
+        self.save()
+
+
 
 class NotificationCenter(models.Model):
     parent_user = models.OneToOneField(JawnUser, related_name='armprime_user', )

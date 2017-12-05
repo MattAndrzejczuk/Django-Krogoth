@@ -1,7 +1,7 @@
 import threading
 import time
 import os
-from LazarusIV.models import UploadRepository, BackgroundWorkerJob
+from LazarusIV.models import UploadRepository, BackgroundWorkerJob, RepositoryDirectory, RepositoryFile
 from LazarusIV.armprime_dispatcher.notifications import Notifier
 
 EXTRACTION_ROOT = '/usr/src/persistent/media/user_uploads/'
@@ -71,8 +71,35 @@ class Worker():
             worker.is_working = False
             worker.is_finished = True
             worker.save()
+            replace_with_next_job = BackgroundWorkerJob()
+            replace_with_next_job.enqueue_job(on_repo=worker.dispatched_by_repo, to_do='III')
 
         # JOB III
+        def dispatch_save_extracted_contents(worker_id: int):
+            time.sleep(2)
+            worker = BackgroundWorkerJob.objects.get(id=worker_id)
+
+            repo_contents = os.listdir(worker.dispatched_by_repo.root_path)
+            master_repo_dir = RepositoryDirectory(dir_repository=worker.dispatched_by_repo)
+            master_repo_dir.save_master_path(full_path=worker.dispatched_by_repo.root_path + '/')
+            for path in repo_contents:
+                if os.path.isdir(worker.dispatched_by_repo.root_path + '/' + path):
+                    new_repo_dir = RepositoryDirectory(dir_repository=worker.dispatched_by_repo)
+                    new_repo_dir.save_root_path(name=path, full_path=worker.dispatched_by_repo.root_path + '/' + path)
+                elif os.path.isfile(worker.dispatched_by_repo.root_path + '/' + path):
+                    new_junk_file = RepositoryFile()
+                    new_junk_file.save_junk_file(path=worker.dispatched_by_repo.root_path + '/' + path,
+                                                 filename=path,
+                                                 repodir=worker.dispatched_by_repo)
+
+            print(' 🔧 ', end='')
+            worker.is_working = False
+            worker.is_finished = True
+            worker.save()
+            replace_with_next_job = BackgroundWorkerJob()
+            replace_with_next_job.enqueue_job(on_repo=worker.dispatched_by_repo, to_do='IV')
+
+        # JOB IV
         def dispatch_first_super_hpi_scan(worker_id: int):
             # TODO: SuperHPI - Menu Option 30.
             ## SuperHPI should generate png thumbnails
@@ -83,19 +110,22 @@ class Worker():
             # TODO: SuperHPI - Menu Option [9, 2, 11] is for the publisher.
             worker = BackgroundWorkerJob.objects.get(id=worker_id)
             ping = Notifier(for_user=worker.parent_user)
-            ping.ping_basic_alert(msg='JOB III completed!')
+            ping.ping_basic_alert(msg='JOB IV completed!')
             worker.is_working = False
             worker.is_finished = True
             worker.save()
 
-        worker.set_as_busy()
+
         if worker.job_name == 'I':
+            worker.set_as_busy()
             run_thread = threading.Thread(target=dispatch_hpi_dump, args=(worker.id,))
             run_thread.start()
         elif worker.job_name == 'II':
+            worker.set_as_busy()
             run_thread = threading.Thread(target=dispatch_rename_files_lower, args=(worker.id,))
             run_thread.start()
         elif worker.job_name == 'III':
+            worker.set_as_busy()
             run_thread = threading.Thread(target=dispatch_first_super_hpi_scan, args=(worker.id,))
             run_thread.start()
 
