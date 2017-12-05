@@ -49,7 +49,7 @@ class Worker():
         def dispatch_hpi_dump(worker_id: int):
             time.sleep(2)
             worker = BackgroundWorkerJob.objects.get(id=worker_id)
-            cmd = 'extractTA_Mod.sh' + worker.dispatched_by_repo.original_hpi_path \
+            cmd = 'bash extractTA_Mod.sh ' + worker.dispatched_by_repo.original_hpi_path \
                   + ' ' + worker.dispatched_by_repo.root_path
             print(cmd)
             os.system(cmd)
@@ -64,7 +64,7 @@ class Worker():
         def dispatch_rename_files_lower(worker_id: int):
             time.sleep(2)
             worker = BackgroundWorkerJob.objects.get(id=worker_id)
-            cmd = "bash bashRenameStuffToLowerInDirectory_public.sh " + worker.dispatched_by_repo.root_path + "/."
+            cmd = "bash bashRenameStuffToLowerInDirectory_public.sh " + worker.dispatched_by_repo.root_path + "."
             print(cmd)
             # os.system(cmd)
             print(' 🔧 ', end='')
