@@ -2,6 +2,7 @@ from django.db import models
 from chat.models import JawnUser
 import os
 from jawn.settings import PUBLIC_EXTRACTED_HPIs
+from PIL import Image, ImageDraw, ImageFont
 
 
 
@@ -13,6 +14,7 @@ class UploadRepository(models.Model):
     current_worker_job = models.IntegerField(default=0)
     root_path = models.CharField(max_length=100, help_text='The destination path this HPI file will be extracted to.')
     original_hpi_path = models.CharField(max_length=100)
+    thumbnail_pic = models.CharField(max_length=100)
 
     @property
     def filename(self) -> str:
@@ -100,18 +102,20 @@ class RepositoryDirectory(models.Model):
     dir_name = models.CharField(max_length=100)
     dir_path = models.CharField(max_length=100)
     dir_total_files = models.IntegerField(default=0)
-    dir_kind = models.CharField(max_length=100, choices=REPO_DIR_TYPES)
+    dir_kind = models.CharField(max_length=100, choices=REPO_DIR_TYPES, default='Misc')
 
     def save_master_path(self, name: str, full_path: str):
         self.name = name
         self.dir_path = full_path
         self.dir_total_files = len(os.listdir(full_path))
+        self.dir_kind = 'Master'
         self.save()
 
     def save_root_path(self, name: str, full_path: str):
         self.name = name
         self.dir_path = full_path
         self.dir_total_files = len(os.listdir(full_path))
+        self.dir_kind = 'Data'
         self.save()
 
 class RepositoryFile(models.Model):
@@ -127,6 +131,10 @@ class RepositoryFile(models.Model):
         self.file_path = path
         self.repo_dir = repodir
         self.file_thumbnail = 'NaN'
+        if self.file_kind == '.fbi':
+            pass
+        elif self.file_kind == '.tdf':
+            pass
         self.save()
 
     def save_junk_file(self, filename: str, path: str, repodir: RepositoryDirectory):

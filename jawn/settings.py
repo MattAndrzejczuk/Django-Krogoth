@@ -287,7 +287,9 @@ FCM_DJANGO_SETTINGS = {
 }
 
 
-
+PUBLIC_GENERATED_THUMBNAILS = '/usr/src/persistent/media/Generated_Thumbnails/'
 PUBLIC_EXTRACTED_HPIs = '/usr/src/persistent/media/Processed_HPI_Archives/'
 if not os.path.exists(PUBLIC_EXTRACTED_HPIs):
     os.makedirs(PUBLIC_EXTRACTED_HPIs)
+if not os.path.exists(PUBLIC_GENERATED_THUMBNAILS):
+    os.makedirs(PUBLIC_GENERATED_THUMBNAILS)
