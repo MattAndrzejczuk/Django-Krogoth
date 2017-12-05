@@ -36,7 +36,7 @@ class LazarusUnitDataTAAdmin(admin.ModelAdmin):
     list_display = ('Name', 'UnitName', 'id', 'MaxDamage',)
 
 class LazarusWeaponDataTAAdmin(admin.ModelAdmin):
-    list_display = ('_OBJECT_KEY_NAME', 'name', 'rendertype', 'explosionart', 'energypershot', 'id', )
+    list_display = ( 'name', 'rendertype', 'explosionart', 'energypershot', 'id', )
 
 class LazarusDamageDataTAAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'damage_amount',)
@@ -45,7 +45,7 @@ class LazarusFeatureDataTAAdmin(admin.ModelAdmin):
     list_display = ('category','description','footprintx','energy','metal')
 
 class LazarusDownloadDataTAAdmin(admin.ModelAdmin):
-    list_display = ('UNITNAME', 'parent_unit', 'UNITMENU',)
+    list_display = ('UNITNAME', 'UNITMENU',)
 
 admin.site.register(LazarusUnitDataTA, LazarusUnitDataTAAdmin)
 admin.site.register(LazarusWeaponDataTA, LazarusWeaponDataTAAdmin)
