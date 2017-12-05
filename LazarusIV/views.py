@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets, filters, renderers, status, permissions
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from LazarusIV.armprime_dispatcher.jobs import Worker
 
@@ -38,17 +40,16 @@ class BackgroundWorkerJobViewSet(viewsets.ModelViewSet):
     serializer_class = BackgroundWorkerJobSerializer
     permission_classes = (permissions.AllowAny,)
 
-class KickThatMuleLee(viewsets.ModelViewSet):
+
+class KickThatMuleLee(APIView):
     """
     list:
     Dispatches the next worker to begin job, if available and worker limit not reached.
     """
-    Worker().kickThatMuleLee()
-    queryset = BackgroundWorkerJob.objects.filter(is_working=True)
-    serializer_class = BackgroundWorkerJobSerializer
-    permission_classes = (permissions.IsAdminUser,)
-
-
+    def get(self, request, format=None):
+        workr = Worker()
+        workr.kickThatMuleLee()
+        return Response('Mule was kicked!')
 
 class NotificationCenterViewSet(viewsets.ModelViewSet):
     queryset = NotificationCenter.objects.all()

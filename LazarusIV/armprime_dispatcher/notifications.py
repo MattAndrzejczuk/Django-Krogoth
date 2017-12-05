@@ -9,7 +9,8 @@ class Notifier:
 
 
     def ping_basic_alert(self, msg: str):
-        ping = NotificationItem(center=self.nc,
+        centre = NotificationCenter.objects.get(id=self.nc.id)
+        ping = NotificationItem(center=centre,
                                 is_private=True,
                                 kind='RepositoryProcessor',
                                 image_url='',

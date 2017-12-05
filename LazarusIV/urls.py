@@ -11,7 +11,7 @@ router.register(r'UploadRepository', UploadRepositoryViewSet)
 router.register(r'RepositoryDirectory', RepositoryDirectoryViewSet)
 router.register(r'RepositoryFileViewSet', RepositoryFileViewSet)
 router.register(r'BackgroundWorkerJobViewSet', BackgroundWorkerJobViewSet)
-router.register(r'KickThatMuleLee', KickThatMuleLee)
+# router.register(r'KickThatMuleLee', KickThatMuleLee)
 router.register(r'NotificationCenterViewSet', NotificationCenterViewSet)
 router.register(r'NotificationItemViewSet', NotificationItemViewSet)
 # models_tdf:
@@ -27,4 +27,5 @@ router.register(r'devices', FCMDeviceAuthorizedViewSet)
 
 urlpatterns = [
     url(r'^ContentSubmission/', include(router.urls)),
+    url(r'^KickThatMuleLee/', KickThatMuleLee.as_view(), name='Kick That Mule Lee!'),
 ]

@@ -109,14 +109,14 @@ class RepositoryDirectory(models.Model):
         self.dir_path = full_path
         self.dir_total_files = len(os.listdir(full_path))
         self.dir_kind = 'Master'
-        self.save()
+
 
     def save_root_path(self, name: str, full_path: str):
         self.name = name
         self.dir_path = full_path
         self.dir_total_files = len(os.listdir(full_path))
         self.dir_kind = 'Data'
-        self.save()
+
 
 class RepositoryFile(models.Model):
     repo_dir = models.ForeignKey(RepositoryDirectory, on_delete=models.CASCADE, related_name='parent_folder', null=True)
@@ -125,13 +125,13 @@ class RepositoryFile(models.Model):
     file_kind = models.CharField(max_length=100)
     file_thumbnail = models.CharField(max_length=100)
 
-    def save_as_file(self, filename: str, path: str, repodir: RepositoryDirectory):
+    def save_as_file(self, filename: str, path: str, repodir_id: int):
         self.file_kind = filename[-4:]
         self.file_name = filename[:-4]
         self.file_path = path
-        self.repo_dir = repodir
+        self.repo_dir = RepositoryDirectory.objects.get(id=repodir_id)
         self.file_thumbnail = 'NaN'
-        self.save()
+        # self.save()
         bgimg = Image.open('../../app/png_generator/background.png')
         txt = Image.new('RGBA', bgimg.size, (255, 255, 255, 0))
         fnt = ImageFont.truetype('../../app/static/fonts/Haettenschweiler.ttf', 40)
@@ -152,12 +152,12 @@ class RepositoryFile(models.Model):
             out = Image.alpha_composite(bgimg, txt)
             out.save('Generated_Thumbnails/' + self.file_name + self.file_kind + str(self.id))
             self.file_thumbnail = 'Generated_Thumbnails/' + self.file_name + self.file_kind + str(self.id)
-        self.save()
+        # self.save()
 
-    def save_junk_file(self, filename: str, path: str, repodir: RepositoryDirectory):
-        self.save_as_file(filename=filename, path=path, repodir=repodir)
+    def save_junk_file(self, filename: str, path: str, repodir_id: int):
+        self.save_as_file(filename=filename, path=path, repodir_id=repodir_id)
         # self.file_kind = 'Junk|' + filename[-4:]
-        self.save()
+        # self.save()
 
 
 
