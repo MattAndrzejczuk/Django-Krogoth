@@ -32,6 +32,10 @@ class UploadRepository(models.Model):
     def filepath(self) -> str:
         return self.hpi_file.path
 
+    def save(self, *args, **kwargs):
+        print(' 💾 🗄 ')
+        super(UploadRepository, self).save(*args, **kwargs)
+
     def set_file_paths(self):
         self.original_hpi_path = self.filepath
         username = self.uploader.base_user.username
@@ -59,6 +63,10 @@ class BackgroundWorkerJob(models.Model):
     @property
     def parent_user(self):
         return self.dispatched_by_repo.uploader
+
+    def save(self, *args, **kwargs):
+        print(' 💾 🤖 ')
+        super(BackgroundWorkerJob, self).save(*args, **kwargs)
 
     def enqueue_job(self, on_repo: UploadRepository, to_do: str):
         self.dispatched_by_repo = on_repo
@@ -100,19 +108,23 @@ REPO_DIR_TYPES = (
 class RepositoryDirectory(models.Model):
     dir_repository = models.ForeignKey(UploadRepository, on_delete=models.CASCADE, related_name='location', null=True)
     dir_name = models.CharField(max_length=100)
-    dir_path = models.CharField(max_length=100)
+    dir_path = models.CharField(max_length=201)
     dir_total_files = models.IntegerField(default=0)
     dir_kind = models.CharField(max_length=100, choices=REPO_DIR_TYPES, default='Misc')
 
+    def save(self, *args, **kwargs):
+        print(' 💾 📁 ')
+        super(RepositoryDirectory, self).save(*args, **kwargs)
+
     def save_master_path(self, name: str, full_path: str):
-        self.name = name
+        self.dir_name = name
         self.dir_path = full_path
         self.dir_total_files = len(os.listdir(full_path))
         self.dir_kind = 'Master'
 
 
     def save_root_path(self, name: str, full_path: str):
-        self.name = name
+        self.dir_name = name
         self.dir_path = full_path
         self.dir_total_files = len(os.listdir(full_path))
         self.dir_kind = 'Data'
@@ -120,10 +132,14 @@ class RepositoryDirectory(models.Model):
 
 class RepositoryFile(models.Model):
     repo_dir = models.ForeignKey(RepositoryDirectory, on_delete=models.CASCADE, related_name='parent_folder', null=True)
-    file_name = models.CharField(max_length=100)
-    file_path = models.CharField(max_length=100)
-    file_kind = models.CharField(max_length=100)
-    file_thumbnail = models.CharField(max_length=100)
+    file_name = models.CharField(max_length=101)
+    file_path = models.CharField(max_length=202)
+    file_kind = models.CharField(max_length=103)
+    file_thumbnail = models.CharField(max_length=104)
+
+    def save(self, *args, **kwargs):
+        print(' 💾 📄 ')
+        super(RepositoryFile, self).save(*args, **kwargs)
 
     def save_as_file(self, filename: str, path: str, repodir_id: int):
         self.file_kind = filename[-4:]
@@ -132,9 +148,9 @@ class RepositoryFile(models.Model):
         self.repo_dir = RepositoryDirectory.objects.get(id=repodir_id)
         self.file_thumbnail = 'NaN'
         # self.save()
-        bgimg = Image.open('../../app/png_generator/background.png')
+        bgimg = Image.open('./png_generator/background.png')
         txt = Image.new('RGBA', bgimg.size, (255, 255, 255, 0))
-        fnt = ImageFont.truetype('../../app/static/fonts/Haettenschweiler.ttf', 40)
+        fnt = ImageFont.truetype('./static/fonts/Haettenschweiler.ttf', 40)
         d = ImageDraw.Draw(txt)
         d.text((10, 10), self.file_kind, font=fnt, fill=(255, 255, 255, 178))
 

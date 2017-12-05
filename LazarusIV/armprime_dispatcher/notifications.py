@@ -9,13 +9,16 @@ class Notifier:
 
 
     def ping_basic_alert(self, msg: str):
-        centre = NotificationCenter.objects.get(id=self.nc.id)
-        ping = NotificationItem(center=centre,
-                                is_private=True,
-                                kind='RepositoryProcessor',
-                                image_url='',
-                                sfx_chime='',
-                                title='Alert',
-                                body=msg,
-                                unread=0)
-        ping.save()
+        try:
+            centre = NotificationCenter.objects.get(id=self.nc.id)
+            ping = NotificationItem(center=centre,
+                                    is_private=True,
+                                    kind='RepositoryProcessor',
+                                    image_url='',
+                                    sfx_chime='',
+                                    title='Alert',
+                                    body=msg,
+                                    unread=0)
+            ping.save()
+        except:
+            print('  ⚠️ Notifications Centre has failed.', end='')
