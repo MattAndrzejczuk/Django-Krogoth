@@ -2,10 +2,7 @@ from django.db import models
 from polymorphic.models import PolymorphicModel
 from django.contrib.auth.models import User
 
-
-
-
-from LazarusV.models import LazarusBase
+from LazarusV.models import CavedogBase
 
 
 
@@ -17,7 +14,7 @@ class LazarusDamageDataTA(models.Model):
         return self.name + '_'
 
 
-class LazarusWeaponDataTA(LazarusBase):
+class LazarusWeaponDataTA(CavedogBase):
     accuracy = models.IntegerField(null=True, blank=True)   # int()
     aimrate = models.IntegerField(null=True, blank=True)   # int()
     areaofeffect = models.IntegerField(null=True, blank=True)   # int()
@@ -102,7 +99,7 @@ class LazarusWeaponDataTA(LazarusBase):
         return self.name + '_'
 
 
-class LazarusFeatureDataTA(LazarusBase):
+class LazarusFeatureDataTA(CavedogBase):
     animating = models.PositiveSmallIntegerField(null=True, blank=True)
     animtrans = models.PositiveSmallIntegerField(null=True, blank=True)
     autoreclaimable = models.IntegerField(null=True, blank=True)
@@ -144,7 +141,7 @@ class LazarusFeatureDataTA(LazarusBase):
         return self._object + '_'
 
 
-class LazarusDownloadDataTA(LazarusBase):
+class LazarusDownloadDataTA(CavedogBase):
     MENUENTRY = models.CharField(max_length=20, default='MENUENTRY1')  # [MENUENTRY1] [MENUENTRY2] [MENUENTRY3] etc...
     BUTTON = models.PositiveSmallIntegerField(default=0)  # See 'TA Button' below
     MENU = models.PositiveSmallIntegerField(default=2)  # first menu in TA is actually '2' for some reason
@@ -152,7 +149,7 @@ class LazarusDownloadDataTA(LazarusBase):
     UNITNAME = models.CharField(max_length=35, null=True, blank=True)  # short name of the unit this button builds
 
 
-class LazarusUnitDataTA(LazarusBase):
+class LazarusUnitDataTA(CavedogBase):
     Acceleration = models.CharField(max_length=150, null=True, blank=True)
     ActiveWhenBuild = models.CharField(max_length=150, null=True, blank=True)
     ai_limit = models.CharField(max_length=101, null=True, blank=True)

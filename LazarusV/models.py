@@ -36,7 +36,8 @@ class ModBuild(models.Model):
     download_url = models.CharField(max_length=150)
 
 class CavedogBase(PolymorphicModel):
-    file_of_origin = models.ForeignKey(RepositoryFile, on_delete=models.CASCADE, related_name='ta_cavedog_root', null=True, blank=True)
+    file_of_origin = models.ForeignKey(RepositoryFile,
+                                       on_delete=models.CASCADE, related_name='ta_cavedog_root', null=True, blank=True)
     keyname = models.CharField(max_length=250)
     snowflake = models.CharField(max_length=50)
     thumbnail_url = models.CharField(max_length=250)
@@ -75,5 +76,6 @@ class RatingCavedogBase(UserRating):
     vote_value = models.IntegerField(default=1)
 
 class RatingModPublication(UserRating):
-    lazarus_published_mod = models.ForeignKey(ModPublication, on_delete=models.CASCADE, related_name='lazarus_mod_distribution')
+    lazarus_published_mod = models.ForeignKey(ModPublication,
+                                              on_delete=models.CASCADE, related_name='lazarus_mod_distribution')
     vote_value = models.IntegerField(default=1)

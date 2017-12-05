@@ -19,3 +19,13 @@ router.register(r'RatingModPublication', RatingModPublicationViewSet)
 urlpatterns = [
     url(r'^ModEditor/', include(router.urls)),
 ]
+
+
+
+### NAMES FOR NEW FEATURES:
+# WorldGenerator:
+# Plasmatio
+# Orbis Terrae
+
+# EnhancedSkirmish:
+# Excolo Velitor
