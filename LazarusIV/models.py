@@ -131,15 +131,32 @@ class RepositoryFile(models.Model):
         self.file_path = path
         self.repo_dir = repodir
         self.file_thumbnail = 'NaN'
+        self.save()
+        bgimg = Image.open('../../app/png_generator/background.png')
+        txt = Image.new('RGBA', bgimg.size, (255, 255, 255, 0))
+        fnt = ImageFont.truetype('../../app/static/fonts/Haettenschweiler.ttf', 40)
+        d = ImageDraw.Draw(txt)
+        d.text((10, 10), self.file_kind, font=fnt, fill=(255, 255, 255, 178))
+
         if self.file_kind == '.fbi':
-            pass
+            file_contents = open(self.file_path, 'r', errors='replace')
+            raw = file_contents.read()
+            d.text((10, 60), raw[0:15], font=fnt, fill=(255, 255, 255, 235))
+            out = Image.alpha_composite(bgimg, txt)
+            out.save('Generated_Thumbnails/' + self.file_name + self.file_kind + str(self.id))
+            self.file_thumbnail = 'Generated_Thumbnails/' + self.file_name + self.file_kind + str(self.id)
         elif self.file_kind == '.tdf':
-            pass
+            file_contents = open(self.file_path, 'r', errors='replace')
+            raw = file_contents.read()
+            d.text((10, 60), raw[0:15], font=fnt, fill=(255, 255, 255, 235))
+            out = Image.alpha_composite(bgimg, txt)
+            out.save('Generated_Thumbnails/' + self.file_name + self.file_kind + str(self.id))
+            self.file_thumbnail = 'Generated_Thumbnails/' + self.file_name + self.file_kind + str(self.id)
         self.save()
 
     def save_junk_file(self, filename: str, path: str, repodir: RepositoryDirectory):
         self.save_as_file(filename=filename, path=path, repodir=repodir)
-        self.file_kind = 'Junk|' + filename[-4:]
+        # self.file_kind = 'Junk|' + filename[-4:]
         self.save()
 
 
