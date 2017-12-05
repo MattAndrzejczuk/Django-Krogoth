@@ -1,5 +1,5 @@
 
-class totala_assembler():
+class TotalAAssembler():
     def __init__(self, strict_mode: bool):
         self.enabled = False
         self.weapons = {}

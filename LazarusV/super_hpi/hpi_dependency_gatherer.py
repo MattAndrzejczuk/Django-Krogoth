@@ -1,12 +1,12 @@
 
-from LazarusV.super_hpi.hpi_analyzer import SuperHPI
+from LazarusV.super_hpi.hpi_analyzer import TotalASuperHPI
 
 
-class totala_compile_manager():
+class TotalACompileManager():
 
     def __init__(self, root_fbi_path: str):
         self.allModFBIs = []
         self.allModTDFs = {}
         self.allModFeatures = {}
         self.allModDownloads = {}
-        self.modHPI = SuperHPI(dump_path=root_fbi_path)
+        self.modHPI = TotalASuperHPI(dump_path=root_fbi_path)

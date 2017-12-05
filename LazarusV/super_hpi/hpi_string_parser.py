@@ -2,15 +2,17 @@ import os, re
 
 
 
-class totala_raw_string_to_python3():
+class TotalADisassembler():
     def __init__(self, dump_path: str):
         self.working_path = dump_path
         self.rawUnitText = ""
         self.rawWeaponText = ""
         self.rawFeatureText = ""
         self.rawDownloadText = ""
+        super().__init__()
+        self.begin_disassembly()
 
-    def loadRawTextIntoRAM(self):
+    def begin_disassembly(self):
         units_path = self.working_path + 'units/'
         weapons_path = self.working_path + 'weapons/'
         features_path = self.working_path + 'features/'
@@ -39,6 +41,22 @@ class totala_raw_string_to_python3():
                 _fpath = downloads_path + fileName
                 cleanTDF = self.cleanTdf(tdfPath=_fpath)
                 self.rawDownloadText += cleanTDF
+
+    @property
+    def unload_text_units(self) -> str:
+        return self.rawUnitText
+
+    @property
+    def unload_text_weapons(self) -> str:
+        return self.rawWeaponText
+
+    @property
+    def unload_text_features(self) -> str:
+        return self.rawFeatureText
+
+    @property
+    def unload_text_downloads(self) -> str:
+        return self.rawDownloadText
 
     def remove_comments(self, code: str) -> str:
         pattern = r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)"
@@ -73,3 +91,30 @@ class totala_raw_string_to_python3():
         parse_02 = parse_01.replace('\t', '').replace('  ','').replace('; ',';').replace(';corpse=', ';Corpse=')
         parse_03 = parse_02.replace('objectname=', 'Objectname=').replace('ObjectName=', 'Objectname=')
         return parse_03
+
+    def get_disassembled_units(self, units_as_raw_text: str) -> list:
+        tdfList = units_as_raw_text.split('[UNITINFO]')
+        fbiList = []
+        if tdfList[0] == '':
+            fbiList = tdfList[1:] # first element is blank.
+        processed_units = []
+        for innerTdf in fbiList:
+            unit = {}
+            arr1 = innerTdf.replace('/', ' ').replace(',', ' ').replace('{', '').replace(';}', ';').split(';')[:-1]
+            for kv in arr1:
+                if '=' in kv:
+                    prop = kv.split('=')
+                    key = prop[0]
+                    value = prop[1]
+                    if key.upper() == 'OBJECTNAME':
+                        key = 'Objectname'
+                    elif key.upper() == 'WEAPON1':
+                        value = value.upper()
+                    elif key.upper() == 'WEAPON2':
+                        value = value.upper()
+                    elif key.upper() == 'WEAPON3':
+                        value = value.upper()
+                    unit[key] = value
+            processed_units.append(unit)
+        # self.evaluateUnit3DFiles(count) TODO: do we need this?
+        return processed_units

@@ -2,20 +2,23 @@ import os
 from LazarusV.super_hpi.hpi_vanilla_cavedog import CAVEDOG_WEAPONS, CAVEDOG_FEATURES, CAVEDOG_SFX, CAVEDOG_3DO, \
     CAVEDOG_GAF, CAVEDOG_UNITS
 
-from LazarusV.super_hpi.hpi_build_assembly import totala_assembler
+from LazarusV.super_hpi.hpi_build_assembly import TotalAAssembler
+from LazarusV.super_hpi.hpi_string_parser import TotalADisassembler
 
 
-class SuperHPI():
+class TotalASuperHPI():
     def __init__(self, dump_path: str):
 
         self.base_dir = dump_path
-        self.rawWeaponFiles = ""
-        self.rawUnitFiles = ""
-        self.rawFeatureFiles = ""
-        self.rawDownloadFiles = ""
+        self._disassembler = TotalADisassembler(dump_path=dump_path)
+        self.cavedog_data_base = TotalAAssembler(strict_mode=True)
+
+        self.disassembled_units = []
+        self.disassembled_weapons = {}
+        self.disassembled_features = {}
+        self.disassembled_downloads = {}
 
         self.VANILLA_PATH = 'hpi_vanilla/'
-        self.logFbiUnitsProcessed = 0
 
         self._3d_model_dependencies = {}
         self._3d_model_dependencies_cavedog = {}
@@ -27,38 +30,19 @@ class SuperHPI():
         self._wav_dependencies_cavedog = {}
         self._wav_dependencies_error = {}
 
+
         self.debug_specific_object_mode = False
         self.strict_mode = True
         self.output_dir = '!!!'
 
-        self.cavedog_data_base = totala_assembler(strict_mode=self.strict_mode)
+
         self.all_readonly_assets = {}
         self.units_with_errors = []
 
 
 
-    def loadRawFilesToRAM(self):
-        units_path = self.base_dir + 'units/'
-        weapons_path = self.base_dir + 'weapons/'
-        features_path = self.base_dir + 'features/'
-        downloads_path = self.base_dir + 'downloads/'
-
-        if os.path.exists(allFbiFilesPath):
-            unitFiles = os.listdir(allFbiFilesPath)
-            for fileName in unitFiles:
-                cleanFBI = self.cleanFbi(allFbiFilesPath + fileName)
-                self.allAppendedUnitFBIs += cleanFBI
-        if os.path.exists(weaponsPath):
-            weaponfiles = os.listdir(weaponsPath)
-            for fileName in weaponfiles:
-                self.allAppendedWeaponTDFs += self.cleanTdf(weaponsPath + fileName)
-        if os.path.exists(featuresPath):
-            featureFiles = os.listdir(featuresPath)
-            for fileName in featureFiles:
-                cleanTDF = self.cleanTdf(featuresPath + fileName)
-                self.allAppendedFeatureTDFs += cleanTDF
-        if os.path.exists(downloads_path):
-            downloadFiles = os.listdir(downloads_path)
-            for fileName in downloadFiles:
-                cleanTDF = self.cleanTdf(downloads_path + fileName)
-                self.allAppendedDownloadTDFs += cleanTDF
+    def finalize_disassembly(self):
+        self.disassembled_units = self._disassembler.get_disassembled_units(self._disassembler.unload_text_units)
+        self.allModTDFs = self.modHPI.splitWeaponClusterTDF(self.modHPI.allAppendedWeaponTDFs)
+        self.allModFeatures = self.modHPI.splitGenericClusterTDF(self.modHPI.allAppendedFeatureTDFs, 'feature')
+        self.allModDownloads = self.modHPI.splitGenericClusterTDF(self.modHPI.allAppendedDownloadTDFs, 'download')
