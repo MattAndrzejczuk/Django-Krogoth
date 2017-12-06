@@ -18,7 +18,7 @@ class TotalASuperHPI():
         self.disassembled_features = {}
         self.disassembled_downloads = {}
 
-        self.VANILLA_PATH = 'hpi_vanilla/'
+
 
         self._3d_model_dependencies = {}
         self._3d_model_dependencies_cavedog = {}
