@@ -1,3 +1,7 @@
+
+from django.core.management.base import BaseCommand
+
+
 from Djangular.models import DjangularMasterViewController, DjangularIcon, DjangularService, \
     DjangularCategory, DjangularSlaveViewController, DjangularDirective
 import codecs
@@ -20,17 +24,15 @@ class Command(BaseCommand):
 
         icon = DjangularIcon()
         try:
-            icon = DjangularIcon(name='s16 icon-ta-arm', code='icon-ubuntu')
+            icon = DjangularIcon(name='s16 icon-ta-arm', code='s16 icon-ta-arm')
             icon.save()
         except:
             icon = DjangularIcon.objects.get(name='s16 icon-ta-arm')
 
-        cat = DjangularCategory()
-        try:
-            cat = DjangularCategory(name='DVC', code='nan')
-            cat.save()
-        except:
-            cat = DjangularCategory.objects.get(name='Administration')
+
+        cat = DjangularCategory.objects.get_or_create(name='DVC')
+        cat.code = 'DVC'
+        cat.save()
 
         djangular_dvcs = os.listdir('Djangular/DVCManager')
         for dvc in djangular_dvcs:
