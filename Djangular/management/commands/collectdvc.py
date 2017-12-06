@@ -63,8 +63,8 @@ class Command(BaseCommand):
                 _mvc = DjangularMasterViewController.objects.get_or_create(name=dvc, title=title, view_html=str_View, controller_js=str_Controller, module_js=str_Module, category=cat[0], icon=icon)
                 mvc = DjangularMasterViewController.objects.get(id=_mvc[0].id)
 
-                svc = DjangularSlaveViewController.objects.get_or_create(name=dvc+'slave')
-                svc[0].title = 'Thread'
+                svc = DjangularSlaveViewController.objects.get_or_create(name=dvc+'Slave')
+                svc[0].title = dvc+' Slave'
                 if has_slave == True:
                     str_slaveV = codecs.open('Djangular/DVCManager/' + dvc + '/MasterVC/view.html','r').read()
                     str_slaveC = codecs.open('Djangular/DVCManager/' + dvc + '/MasterVC/controller.js','r').read()
