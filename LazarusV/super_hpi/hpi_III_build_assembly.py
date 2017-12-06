@@ -26,9 +26,6 @@ class TotalAAssembler():
             self.weapons[jkey] = newtdf
 
     def compileToFeatureTDF(self, _json, jkey):
-        # print('  ⚡️ ⚡️ ⚡️ ⚡️ ⚡️ ⚡️ ⚡️ ⚡️ ⚡️  ')
-        # print(jkey)
-        # print(_json)
         newtdf = '\n\n[' + jkey + ']\n{\n'
         for k,v in _json.items():
             if k != 'DAMAGE':

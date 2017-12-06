@@ -46,8 +46,9 @@ class TotalADisassembler():
             featureFiles = os.listdir(features_path)
             for fileName in featureFiles:
                 _fpath = features_path + fileName
-                cleanTDF = self.cleanTdf(tdfPath=_fpath)
-                self.rawFeatureText += cleanTDF
+                if os.path.isfile(_fpath):
+                    cleanTDF = self.cleanTdf(tdfPath=_fpath)
+                    self.rawFeatureText += cleanTDF
         if os.path.exists(downloads_path):
             downloadFiles = os.listdir(downloads_path)
             for fileName in downloadFiles:
@@ -110,11 +111,11 @@ class TotalADisassembler():
             if tdfKeyList[i] == 'DAMAGE':
                 i += 1
             unique_key = tdfKeyList[i] #.upper()
-            pnd = self.takeWeaponPropertiesAndDamage(innerTdf)
+            pnd = self.takeWeaponPropertiesAndDamage(tdf=innerTdf)
             _dmg = pnd[1].split(';')[:-1]
             _weapon = pnd[0].split(';')[:-1]
-            asJson = self.toJson(unique_key, _weapon)
-            asJson[unique_key]['DAMAGE'] = self.toJson('DAMAGE', _dmg)['DAMAGE']
+            asJson = self.toJson(named=unique_key, arr=_weapon)
+            asJson[unique_key]['DAMAGE'] = self.toJson(named='DAMAGE', arr=_dmg)['DAMAGE']
             count.append(asJson[unique_key])
             results[unique_key] = asJson[unique_key]
             if 'model' in asJson[unique_key]:
@@ -139,11 +140,11 @@ class TotalADisassembler():
         n = 0
         for _json in corpseValuesJSON:
             _tojson = []
-            _tojson = self.toJson(corpseKeysJSON[n], _json.split(';')[:-1])
+            _tojson = self.toJson(named=corpseKeysJSON[n], arr=_json.split(';')[:-1])
             if kind == 'download':
-                returnObj = self.processDownloadTDF(returnObj, _tojson)
+                returnObj = self.processDownloadTDF(in_obj=returnObj, _tojson=_tojson)
             else:
-                returnObj = self.evaluateFeature3DFiles(returnObj, _tojson)
+                returnObj = self.evaluateFeature3DFiles(in_obj=returnObj, _toJson=_tojson)
             n += 1
         return returnObj
 
@@ -163,11 +164,11 @@ class TotalADisassembler():
             file_path = ''
             model_key = 'object'
             if model_key in val:
-                file_path = self.base_dir + 'objects3d/' + val[model_key] + '.3do'
+                file_path = self.working_path + 'objects3d/' + val[model_key] + '.3do'
             else:
                 model_key = "Object"
                 if 'Object' in val:
-                    file_path = self.base_dir + 'objects3d/' + val[model_key] + '.3do'
+                    file_path = self.working_path + 'objects3d/' + val[model_key] + '.3do'
 
             if os.path.isfile(file_path):
                 self._3d_model_dependencies[val[model_key]] = file_path
@@ -302,12 +303,12 @@ class TotalADisassembler():
                 self._3d_model_dependencies_error[name] = path
 
     @staticmethod
-    def takeWeaponPropertiesAndDamage(self, tdf: str):
+    def takeWeaponPropertiesAndDamage(tdf: str):
         arr = tdf.split('[DAMAGE]{')
         return arr
 
     @staticmethod
-    def toJson(self, named: str, arr: list):
+    def toJson(named: str, arr: list):
         _json = {}
         _inner = {}
         for kv in arr:

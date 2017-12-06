@@ -29,3 +29,4 @@ urlpatterns = [
     url(r'^ContentSubmission/', include(router.urls)),
     url(r'^KickThatMuleLee/', KickThatMuleLee.as_view(), name='Kick That Mule Lee!'),
 ]
+
