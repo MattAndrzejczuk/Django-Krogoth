@@ -1,6 +1,5 @@
 import re
 
-
 def remove_comments(code: str) -> str:
     pattern = r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)"
     regex = re.compile(pattern, re.MULTILINE | re.DOTALL)
@@ -10,7 +9,6 @@ def remove_comments(code: str) -> str:
         else:
             return match.group(1)
     return regex.sub(_replacer, code)
-
 def cleanTdf(tdfPath: str) -> str:
     file_contents = open(tdfPath, 'r', errors='replace')
     rawTdf = file_contents.read()
@@ -26,7 +24,6 @@ def cleanTdf(tdfPath: str) -> str:
     p_08 = p_07.replace(';Soundstart=', ';soundstart=').replace(';SoundStart=', ';soundstart=')
     p_09 = p_08.replace(';Soundwater=', ';soundwater=').replace(';SoundWater=', ';soundwater=')
     return p_09.replace(';object=', ';Object=').replace(';model=', ';Model=')
-
 def cleanFbi(fbiPath: str) -> str:
     file_contents = open(fbiPath, 'r', errors='replace')
     rawFbi = file_contents.read()
@@ -35,7 +32,6 @@ def cleanFbi(fbiPath: str) -> str:
     p_02 = p_01.replace('\t', '').replace('  ' ,'').replace('; ' ,';').replace(';corpse=', ';Corpse=')
     p_03 = p_02.replace('objectname=', 'Objectname=').replace('ObjectName=', 'Objectname=')
     return p_03
-
 def parseWeaponTDFsSquareBracks(rawTdf: str) -> list:
     pat = r'(?<=\[).+?(?=\])'
     s = rawTdf
@@ -44,17 +40,14 @@ def parseWeaponTDFsSquareBracks(rawTdf: str) -> list:
     for m in match:
         new_match.append(m.upper())
     return new_match
-
 def parseWeaponTDFs(rawTdf: str) -> list:
     pat = r'(?<=\{).+?(?=\})'
     s = rawTdf
     match = re.findall(pat, s)
     return match
-
 def takeWeaponPropertiesAndDamage(tdf: str) -> list:
     arr = tdf.split('[DAMAGE]{')
     return arr
-
 def toJson(named: str, arr: list) -> dict:
     _json = {}
     _inner = {}
@@ -63,7 +56,6 @@ def toJson(named: str, arr: list) -> dict:
         _inner[arr2[0]] = arr2[1]
     _json[named] = _inner
     return _json
-
 def processDownloadTDF(in_obj: dict, _tojson: dict) -> dict:
     out_obj = in_obj
     for key, val in _tojson.items():

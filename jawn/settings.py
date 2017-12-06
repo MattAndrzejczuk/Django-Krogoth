@@ -63,7 +63,6 @@ AUTHENTICATION_BACKENDS = (
 
 INSTALLED_APPS = (
     'suit',
-    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -78,6 +77,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
+    'django.contrib.sites',
     'ws4redis',
     'rest_framework_docs',
     'rest_framework',

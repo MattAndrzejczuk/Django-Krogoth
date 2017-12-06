@@ -18,7 +18,7 @@ class TotalASuperHPI(object):
         self._disassembled_downloads = {}
         super().__init__()
         self.finalize_disassembly()
-
+    
     @property 
     def disassembler(self) -> TotalADisassembler:
         return self._disassembler
@@ -34,7 +34,6 @@ class TotalASuperHPI(object):
     @property
     def disassembled_downloads(self) -> dict:
         return self._disassembled_downloads
-    
     
     def finalize_disassembly(self):
         str_units = self._disassembler.unload_text_units
