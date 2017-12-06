@@ -1,5 +1,7 @@
 import os, re
 
+from LazarusV.super_hpi.hpi_IV_text_parser import cleanFbi, cleanTdf, parseWeaponTDFs, \
+    parseWeaponTDFsSquareBracks, takeWeaponPropertiesAndDamage, toJson, processDownloadTDF
 
 
 class TotalADisassembler(object):
@@ -19,7 +21,6 @@ class TotalADisassembler(object):
         self._wav_dependencies = {}
         self._wav_dependencies_cavedog = {}
         self._wav_dependencies_error = {}
-
         self.VANILLA_PATH = 'hpi_vanilla/'
 
         super().__init__()
@@ -35,26 +36,27 @@ class TotalADisassembler(object):
             unitFiles = os.listdir(units_path)
             for fileName in unitFiles:
                 _fpath = units_path + fileName
-                cleanFBI = self.cleanFbi(fbiPath=_fpath)
+                cleanFBI = cleanFbi(fbiPath=_fpath)
                 self.rawUnitText += cleanFBI
         if os.path.exists(weapons_path):
             weaponfiles = os.listdir(weapons_path)
             for fileName in weaponfiles:
                 _fpath = weapons_path + fileName
-                self.rawWeaponText += self.cleanTdf(tdfPath=_fpath)
+                self.rawWeaponText += cleanTdf(tdfPath=_fpath)
         if os.path.exists(features_path):
             featureFiles = os.listdir(features_path)
             for fileName in featureFiles:
                 _fpath = features_path + fileName
                 if os.path.isfile(_fpath):
-                    cleanTDF = self.cleanTdf(tdfPath=_fpath)
+                    cleanTDF = cleanTdf(tdfPath=_fpath)
                     self.rawFeatureText += cleanTDF
         if os.path.exists(downloads_path):
             downloadFiles = os.listdir(downloads_path)
             for fileName in downloadFiles:
                 _fpath = downloads_path + fileName
-                cleanTDF = self.cleanTdf(tdfPath=_fpath)
+                cleanTDF = cleanTdf(tdfPath=_fpath)
                 self.rawDownloadText += cleanTDF
+
 
     @property
     def unload_text_units(self) -> str:
@@ -71,7 +73,6 @@ class TotalADisassembler(object):
     @property
     def unload_text_downloads(self) -> str:
         return self.rawDownloadText
-
 
 
     def get_disassembled_units(self, from_text: str) -> list:
@@ -102,8 +103,8 @@ class TotalADisassembler(object):
         return processed_units
 
     def get_disassembled_weapons(self, from_text: str) -> dict:
-        tdfKeyList = self.parseWeaponTDFsSquareBracks(rawTdf=from_text)
-        tdfList = self.parseWeaponTDFs(rawTdf=from_text)
+        tdfKeyList = parseWeaponTDFsSquareBracks(rawTdf=from_text)
+        tdfList = parseWeaponTDFs(rawTdf=from_text)
         count = []
         results = {}
         i = 0
@@ -111,11 +112,11 @@ class TotalADisassembler(object):
             if tdfKeyList[i] == 'DAMAGE':
                 i += 1
             unique_key = tdfKeyList[i] #.upper()
-            pnd = self.takeWeaponPropertiesAndDamage(tdf=innerTdf)
+            pnd = takeWeaponPropertiesAndDamage(tdf=innerTdf)
             _dmg = pnd[1].split(';')[:-1]
             _weapon = pnd[0].split(';')[:-1]
-            asJson = self.toJson(named=unique_key, arr=_weapon)
-            asJson[unique_key]['DAMAGE'] = self.toJson(named='DAMAGE', arr=_dmg)['DAMAGE']
+            asJson = toJson(named=unique_key, arr=_weapon)
+            asJson[unique_key]['DAMAGE'] = toJson(named='DAMAGE', arr=_dmg)['DAMAGE']
             count.append(asJson[unique_key])
             results[unique_key] = asJson[unique_key]
             if 'model' in asJson[unique_key]:
@@ -133,32 +134,22 @@ class TotalADisassembler(object):
 
     def get_disassembled_generic(self, from_text: str, kind: str) -> dict:
         bug_fix_1 = from_text.replace('[MENUENTRY0]{}', '')
-        corpseValuesJSON = self.parseWeaponTDFs(rawTdf=bug_fix_1)
-        corpseKeysJSON = self.parseWeaponTDFsSquareBracks(rawTdf=bug_fix_1)
-        returnArr = []
+        corpseValuesJSON = parseWeaponTDFs(rawTdf=bug_fix_1)
+        corpseKeysJSON = parseWeaponTDFsSquareBracks(rawTdf=bug_fix_1)
+        # returnArr = []
         returnObj = {}
         n = 0
         for _json in corpseValuesJSON:
-            _tojson = []
-            _tojson = self.toJson(named=corpseKeysJSON[n], arr=_json.split(';')[:-1])
+            # _tojson = []
+            _tojson = toJson(named=corpseKeysJSON[n], arr=_json.split(';')[:-1])
             if kind == 'download':
-                returnObj = self.processDownloadTDF(in_obj=returnObj, _tojson=_tojson)
+                returnObj = processDownloadTDF(in_obj=returnObj, _tojson=_tojson)
             else:
                 returnObj = self.evaluateFeature3DFiles(in_obj=returnObj, _toJson=_tojson)
             n += 1
         return returnObj
 
-
-    def processDownloadTDF(self, in_obj: dict, _tojson: dict):
-        out_obj = in_obj
-        for key, val in _tojson.items():
-            if 'UNITMENU' in val and 'UNITNAME' in val:
-                out_obj[val['UNITMENU'] + ' -> ' + val['UNITNAME']] = val
-                out_obj[val['UNITMENU'] + ' -> ' + val['UNITNAME']]['menuentry'] = key
-                meta_data = 'entry=' + key + '|menu=' + val['MENU'] + '|button=' + val['BUTTON']
-                out_obj[val['UNITMENU'] + ' -> ' + val['UNITNAME']]['meta'] = meta_data
-        return out_obj
-    def evaluateFeature3DFiles(self, in_obj: dict, _toJson: dict):
+    def evaluateFeature3DFiles(self, in_obj: dict, _toJson: dict) -> dict:
         out_obj = in_obj
         for key, val in _toJson.items():
             file_path = ''
@@ -180,53 +171,8 @@ class TotalADisassembler(object):
                         self._3d_model_dependencies_error[val[model_key]] = file_path
             out_obj[key] = val
         return out_obj
-    def remove_comments(self, code: str) -> str:
-        pattern = r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)"
-        regex = re.compile(pattern, re.MULTILINE | re.DOTALL)
-        def _replacer(match):
-            if match.group(2) is not None:
-                return ""
-            else:
-                return match.group(1)
-        return regex.sub(_replacer, code)
-    def cleanTdf(self, tdfPath: str) -> str:
-        file_contents = open(tdfPath, 'r', errors='replace')
-        rawTdf = file_contents.read()
-        fbi_dump = self.remove_comments(code=rawTdf)
-        parse_01 = fbi_dump.replace('\n', '')
-        parse_02 = parse_01.replace('\t', '').replace('  ','').replace('; ',';')
-        parse_03 = parse_02.replace(';ExplosionGaf=', ';explosiongaf=').replace(';Explosiongaf=', ';explosiongaf=')
-        parse_04 = parse_03.replace(';Lavaexplosiongaf=', ';lavaexplosiongaf=').replace(';LavaExplosiongaf=', ';lavaexplosiongaf=')
-        parse_05 = parse_04.replace(';WaterExplosiongaf=', ';waterexplosiongaf=').replace(';WaterExplosionGaf=', ';waterexplosiongaf=')
-        parse_06 = parse_05.replace(';LavaExplosionGaf=', ';lavaexplosiongaf=').replace(';FeatureDead=', ';Featuredead=').replace(';featuredead=', ';Featuredead=')
-        parse_07 = parse_06.replace(';Soundhit=', ';soundhit=').replace(';SoundHit=', ';soundhit=')
-        parse_08 = parse_07.replace(';Soundstart=', ';soundstart=').replace(';SoundStart=', ';soundstart=')
-        parse_09 = parse_08.replace(';Soundwater=', ';soundwater=').replace(';SoundWater=', ';soundwater=')
-        return parse_09.replace(';object=', ';Object=').replace(';model=', ';Model=')
-    def cleanFbi(self, fbiPath: str) -> str:
-        file_contents = open(fbiPath, 'r', errors='replace')
-        rawFbi = file_contents.read()
-        fbi_dump = self.remove_comments(code=rawFbi)
-        parse_01 = fbi_dump.replace('\n', '')
-        parse_02 = parse_01.replace('\t', '').replace('  ','').replace('; ',';').replace(';corpse=', ';Corpse=')
-        parse_03 = parse_02.replace('objectname=', 'Objectname=').replace('ObjectName=', 'Objectname=')
-        return parse_03
-    def parseWeaponTDFsSquareBracks(self, rawTdf: str):
-        pat = r'(?<=\[).+?(?=\])'
-        s = rawTdf
-        match = re.findall(pat, s)
-        new_match = []
-        for m in match:
-            new_match.append(m.upper())
-        # print(new_match)
-        return new_match
 
-    def parseWeaponTDFs(self, rawTdf: str):
-        pat = r'(?<=\{).+?(?=\})'
-        s = rawTdf
-        match = re.findall(pat, s)
-        return match
-    def evaluateUnit3DFiles(self, list_items):
+    def evaluateUnit3DFiles(self, list_items: list):
         for unit in list_items:
             model_key = 'Objectname'
             file_path = self.working_path + 'objects3d/' + unit[model_key] + '.3do'
@@ -259,7 +205,6 @@ class TotalADisassembler(object):
                     self._gaf_dependencies_error[unitObj['Explosiongaf']] = file_path
         if 'waterexplosiongaf' in unitObj:
             file_path = self.working_path + 'anims/' + unitObj['waterexplosiongaf'] + '.gaf'
-            # self._gaf_dependencies[unitObj['waterexplosiongaf']] = file_path
             if os.path.isfile(file_path):
                 self._gaf_dependencies[unitObj['waterexplosiongaf']] = file_path
             else:
@@ -269,7 +214,6 @@ class TotalADisassembler(object):
                     self._gaf_dependencies_error[unitObj['waterexplosiongaf']] = file_path
         if 'lavaexplosiongaf' in unitObj:
             file_path = self.working_path + 'anims/' + unitObj['lavaexplosiongaf'] + '.gaf'
-            # self._gaf_dependencies[unitObj['lavaexplosiongaf']] = file_path
             if os.path.isfile(file_path):
                 self._gaf_dependencies[unitObj['lavaexplosiongaf']] = file_path
             else:
@@ -292,7 +236,6 @@ class TotalADisassembler(object):
                         self._wav_dependencies_cavedog[weap_obj[k]] = file_path
                     else:
                         self._wav_dependencies_error[weap_obj[k]] = file_path
-
     def addModelDependency(self, path: str, name: str):
         if os.path.isfile(path):
             self._3d_model_dependencies[name] = path
@@ -302,17 +245,3 @@ class TotalADisassembler(object):
             else:
                 self._3d_model_dependencies_error[name] = path
 
-    @staticmethod
-    def takeWeaponPropertiesAndDamage(tdf: str):
-        arr = tdf.split('[DAMAGE]{')
-        return arr
-
-    @staticmethod
-    def toJson(named: str, arr: list):
-        _json = {}
-        _inner = {}
-        for kv in arr:
-            arr2 = kv.split('=')
-            _inner[arr2[0]] = arr2[1]
-        _json[named] = _inner
-        return _json
