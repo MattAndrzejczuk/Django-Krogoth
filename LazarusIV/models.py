@@ -110,26 +110,6 @@ class BackgroundWorkerJob(models.Model):
     def set_as_busy(self):
         self.is_working = True
         self.save()
-# I. FINISHED:
-    def extraction_did_complete(self):
-        # self.is_working = False
-        # self.is_finished = True
-        # self.dispatched_by_repo.hpi_extraction_did_finish()
-        # self.save()
-        replace_with_next_job = BackgroundWorkerJob()
-        replace_with_next_job.enqueue_job(on_repo=self.dispatched_by_repo, to_do='II')
-# II. FINISHED:
-    def rename_did_complete(self):
-        # self.is_working = False
-        # self.is_finished = True
-        # self.save()
-        replace_with_next_job = BackgroundWorkerJob()
-        replace_with_next_job.enqueue_job(on_repo=self.dispatched_by_repo, to_do='III')
-# III. FINISHED:
-    def super_hpi_did_complete(self):
-        self.is_working = False
-        self.is_finished = True
-        self.save()
 
 
 REPO_DIR_TYPES = (

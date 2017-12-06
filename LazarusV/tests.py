@@ -20,3 +20,8 @@ test_path = '/usr/src/persistent/media/Processed_HPI_Archives/root/ArmPrime_1.0_
 ta_compile_manager = TotalACompileManager(root_fbi_path=test_path)
 print(ta_compile_manager.superHPI.disassembled_units)
 """
+
+"""
+from LazarusV.super_hpi.hpi_Z_debug import logged_disassembler
+
+"""

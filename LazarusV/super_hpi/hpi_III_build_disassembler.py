@@ -29,8 +29,8 @@ class TotalADisassembler(object):
     def begin_disassembly(self):
         units_path = self.working_path + 'units/'
         weapons_path = self.working_path + 'weapons/'
-        features_path = self.working_path + 'features/'
-        downloads_path = self.working_path + 'downloads/'
+        features_path = self.working_path + 'features/corpses/'
+        downloads_path = self.working_path + 'download/'
 
         if os.path.exists(units_path):
             unitFiles = os.listdir(units_path)
