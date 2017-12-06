@@ -1,9 +1,9 @@
 import os
-from LazarusV.super_hpi.hpi_vanilla_cavedog import CAVEDOG_WEAPONS, CAVEDOG_FEATURES, CAVEDOG_SFX, CAVEDOG_3DO, \
+from LazarusV.super_hpi.hpi_V_vanilla_cavedog import CAVEDOG_WEAPONS, CAVEDOG_FEATURES, CAVEDOG_SFX, CAVEDOG_3DO, \
     CAVEDOG_GAF, CAVEDOG_UNITS
 
-from LazarusV.super_hpi.hpi_build_assembly import TotalAAssembler
-from LazarusV.super_hpi.hpi_string_parser import TotalADisassembler
+from LazarusV.super_hpi.hpi_III_build_assembly import TotalAAssembler
+from LazarusV.super_hpi.hpi_III_build_disassembler import TotalADisassembler
 
 
 class TotalASuperHPI(object):

@@ -1,5 +1,9 @@
 
-class TotalAAssembler():
+
+
+
+
+class TotalAAssembler(object):
     def __init__(self, strict_mode: bool):
         self.enabled = False
         self.weapons = {}
@@ -9,7 +13,7 @@ class TotalAAssembler():
         self.strict_mode = strict_mode
         self.is_valid = True
 
-    def compileToWeaponTDF(self, weapon_tdf_json, jkey):
+    def compileToWeaponTDF(self, weapon_tdf_json: str, jkey: str):
         newtdf = '\n\n[' + jkey + ']\n{\n'
         for k,v in weapon_tdf_json.items():
             if k != 'DAMAGE':
@@ -25,7 +29,7 @@ class TotalAAssembler():
         if self.is_valid == True or self.strict_mode == False:
             self.weapons[jkey] = newtdf
 
-    def compileToFeatureTDF(self, _json, jkey):
+    def compileToFeatureTDF(self, _json: str, jkey: str):
         newtdf = '\n\n[' + jkey + ']\n{\n'
         for k,v in _json.items():
             if k != 'DAMAGE':
@@ -34,7 +38,7 @@ class TotalAAssembler():
         if self.is_valid == True or self.strict_mode == False:
             self.features[jkey] = newtdf
 
-    def compileToDownloadTDF(self, _json, u1, u2):
+    def compileToDownloadTDF(self, _json: str, u1: str, u2: str):
         tdfHeader = ''
         newtdf = ''
         entry = ''
@@ -50,7 +54,7 @@ class TotalAAssembler():
                 self.download[u2] = []
             self.download[u2].append(tdfHeader + newtdf)
 
-    def compileToUnitFBI(self, _json, unit_name):
+    def compileToUnitFBI(self, _json: str, unit_name: str):
         newtdf = '\n\n[UNITINFO]\n{\n'
         for k,v in _json.items():
             newtdf += '    ' + k + '=' + v + ';\n'

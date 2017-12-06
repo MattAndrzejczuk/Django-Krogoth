@@ -1,5 +1,5 @@
 
-from LazarusV.super_hpi.hpi_analyzer import TotalASuperHPI
+from LazarusV.super_hpi.hpi_II_analyzer import TotalASuperHPI
 
 
 class TotalACompileManager(object):

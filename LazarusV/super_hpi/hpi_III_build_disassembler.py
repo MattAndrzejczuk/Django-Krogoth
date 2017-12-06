@@ -2,7 +2,7 @@ import os, re
 
 
 
-class TotalADisassembler():
+class TotalADisassembler(object):
     def __init__(self, dump_path: str):
         self.working_path = dump_path
         self.rawUnitText = ""
