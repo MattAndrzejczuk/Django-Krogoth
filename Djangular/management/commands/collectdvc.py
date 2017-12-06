@@ -31,8 +31,7 @@ class Command(BaseCommand):
 
 
         cat = DjangularCategory.objects.get_or_create(name='DVC')
-        cat.code = 'DVC'
-        cat.save()
+
 
         djangular_dvcs = os.listdir('Djangular/DVCManager')
         for dvc in djangular_dvcs:
@@ -61,44 +60,39 @@ class Command(BaseCommand):
                 str_View = codecs.open('Djangular/DVCManager/' + dvc + '/MasterVC/view.html', 'r').read()
                 str_Module = codecs.open('Djangular/DVCManager/' + dvc + '/MasterVC/module.js', 'r').read()
                 str_Controller = codecs.open('Djangular/DVCManager/' + dvc + '/MasterVC/controller.js', 'r').read()
-                mvc = DjangularMasterViewController.objects.get_or_create(name=dvc)
-                mvc.title = title
-                mvc.view_html = str_View
-                mvc.controller_js = str_Controller
-                mvc.module_js = str_Module
-                mvc.save()
+                _mvc = DjangularMasterViewController.objects.get_or_create(name=dvc, title=title, view_html=str_View, controller_js=str_Controller, module_js=str_Module, category=cat[0], icon=icon)
+                mvc = DjangularMasterViewController.objects.get(id=_mvc[0].id)
 
-                svc = DjangularSlaveViewController.objects.get_or_create(name='Thread')
-                svc.title = 'Thread'
+                svc = DjangularSlaveViewController.objects.get_or_create(name=dvc+'slave')
+                svc[0].title = 'Thread'
                 if has_slave == True:
                     str_slaveV = codecs.open('Djangular/DVCManager/' + dvc + '/MasterVC/view.html','r').read()
                     str_slaveC = codecs.open('Djangular/DVCManager/' + dvc + '/MasterVC/controller.js','r').read()
-                    svc.view_html = str_slaveV
-                    svc.controller_js = str_slaveC
-                    svc.save()
-                    mvc.djangular_slave_vc.add(svc)
+                    svc[0].view_html = str_slaveV
+                    svc[0].controller_js = str_slaveC
+                    svc[0].save()
+                    mvc.djangular_slave_vc.add(svc[0])
 
                 if has_services == True:
                     srv_files = os.listdir('Djangular/DVCManager/' + dvc + '/Services')
                     for srv in srv_files:
                         str_srv = codecs.open('Djangular/DVCManager/' + dvc + '/Services/' + srv,'r').read()
-                        service = DjangularService.objects.get_or_create(name=srv)
-                        service.title = srv + ' Service'
-                        service.service_js = str_srv
-                        service.save()
-                        mvc.djangular_service.add(service)
+                        service = DjangularService.objects.get_or_create(name=srv[:-3])
+                        service[0].title = srv + ' Service'
+                        service[0].service_js = str_srv
+                        service[0].save()
+                        mvc.djangular_service.add(service[0])
 
                 if has_directives == True:
                     drec_files = os.listdir('Djangular/DVCManager/' + dvc + '/Directives')
                     for drec in drec_files:
                         str_drec = codecs.open('Djangular/DVCManager/' + dvc + '/Directives/' + drec, 'r').read()
-                        directive = DjangularDirective.objects.get_or_create(name=srv)
-                        directive.title = srv + ' Directive'
-                        directive.directive_js = str_drec
-                        directive.save()
-                        mvc.djangular_directive.add(directive)
+                        directive = DjangularDirective.objects.get_or_create(name=drec[:-3])
+                        directive[0].title = drec + ' Directive'
+                        directive[0].directive_js = str_drec
+                        directive[0].save()
+                        mvc.djangular_directive.add(directive[0])
 
-                mvc.category = cat
                 mvc.icon = icon
                 mvc.save()
                 self.stdout.write(self.style.SUCCESS('DVC Manager Saved: ' + dvc))
