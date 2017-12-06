@@ -40,6 +40,8 @@ docker exec -it armprime bash -c "apt-get install -y wine"
 docker exec -it armprime bash -c "dpkg --add-architecture i386"
 docker exec -it armprime bash -c "apt-get update"
 docker exec -it armprime bash -c "apt-get install wine32"
+docker exec -it armprime bash -c "apt-get install Xvfb"
+docker exec -it armprime bash -c "Xvfb :0 -screen 0 640x480x8 &"
 sleep 1
 echo ""
 echo "Wine Installation: "
