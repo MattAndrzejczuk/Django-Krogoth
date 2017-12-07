@@ -72,7 +72,7 @@ class TotalADisassembler(object):
         self.filename_dictionary[at_location] = {}
         self.filename_dictionary[at_location]['kind'] = 'unit'
         self.filename_dictionary[at_location]['key_name'] = 'UNITINFO'
-        self.filename_dictionary[at_location]['zdata'] = self.get_disassembled_units(from_text=using_fbi)[0]
+        self.filename_dictionary[at_location]['zdata'] = self.get_disassembled_units(from_text=using_fbi)
 
     def prep_weapon_for_sql(self, with_data: dict, at_location: str):
         self.filename_dictionary[at_location] = {}
@@ -91,8 +91,6 @@ class TotalADisassembler(object):
         self.filename_dictionary[at_location]['kind'] = 'download'
         self.filename_dictionary[at_location]['key_name'] = '??'
         self.filename_dictionary[at_location]['zdata'] = with_data
-
-
 
     @property
     def unload_text_units(self) -> str:

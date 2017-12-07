@@ -44,3 +44,6 @@ class TotalASuperHPI(object):
         self._disassembled_weapons = self._disassembler.get_disassembled_weapons(from_text=str_weapons)
         self._disassembled_features = self._disassembler.get_disassembled_generic(from_text=str_features, kind='feature')
         self._disassembled_downloads = self._disassembler.get_disassembled_generic(from_text=str_downloads, kind='download')
+
+    def save_disassembly_to_sql(self):
+        pass

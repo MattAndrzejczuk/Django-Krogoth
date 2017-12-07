@@ -267,18 +267,34 @@ import django
 import rest_framework
 try:
     print('')
-    print('\033[90mInitializing Django ' +
+    print('\033[35mInitializing Django ' +
           str(django.VERSION[0]) + '.' + str(django.VERSION[1]) + '.' + str(django.VERSION[2]) + '\033[0m')
-    print('\033[96mDjango REST Framework ' + str(rest_framework.VERSION) + '\033[0m')
-    print('')
+    print('\033[95mDjango REST Framework ' + str(rest_framework.VERSION) + '\033[0m')
+
+    # GET LAZARUS BUILD VERSION:
+    bash_cmd = ['git', 'rev-list', '--count', 'master']
+    get_build_cmd = str(subprocess.check_output(bash_cmd))
+    current_build_1 = ''
+    current_build_2 = ''
+    try:
+        current_build_1 = ('0.' + str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", "")) + '.'
+        current_build_2 = (str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", ""))[1:]
+    except:
+        print('failed to check version!!!')
+    if current_build_2 == '00':
+        current_build_2 = '0'
+    else:
+        rm_0s = current_build_2.replace('01', '1').replace('02', '2').replace('03', '3').replace('04', '4')
+        current_build_2 = rm_0s.replace('05', '5').replace('06', '6').replace('07', '7').replace('08', '8').replace(
+            '09', '9')
+
+    APP_VERSION = current_build_1[:3] + "." + current_build_2
+    print('\033[31mArmPrime ' + APP_VERSION + ' \033[0m')
+    print()
 except:
     print('Django initialized, but the version is unknown... wtf?')
 
-print("POSTGRES: ")
-print(os.environ["POSTGRES_ENV_POSTGRES_USER"])
-print(os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"])
-print(os.environ["POSTGRES_PORT_5432_TCP_ADDR"])
-print(os.environ["POSTGRES_PORT_5432_TCP_PORT"])
+
 
 
 # PUSH NOTIFICATIONS:
@@ -293,3 +309,21 @@ if not os.path.exists(PUBLIC_EXTRACTED_HPIs):
     os.makedirs(PUBLIC_EXTRACTED_HPIs)
 if not os.path.exists(PUBLIC_GENERATED_THUMBNAILS):
     os.makedirs(PUBLIC_GENERATED_THUMBNAILS)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# print("POSTGRES: ")
+# print(os.environ["POSTGRES_ENV_POSTGRES_USER"])
+# print(os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"])
+# print(os.environ["POSTGRES_PORT_5432_TCP_ADDR"])
+# print(os.environ["POSTGRES_PORT_5432_TCP_PORT"])

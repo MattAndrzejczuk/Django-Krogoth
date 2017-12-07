@@ -222,11 +222,6 @@ def index(request):
         rm_0s = current_build_2.replace('01', '1').replace('02', '2').replace('03', '3').replace('04', '4')
         current_build_2 = rm_0s.replace('05', '5').replace('06', '6').replace('07', '7').replace('08', '8').replace('09', '9')
 
-    print('\n\n\n\nRequest URI:\n')
-    ###print(request.GET['MAINS'])
-    print(request.META)
-    print('\n\n\n\n\n')
-
     version_build = 'Djangular ' + current_build_1[:3] + "." + current_build_2
     seo_title = "ArmPrime " + current_build_1[:3] + "." + current_build_2 + ' - Home of Total Annihilation Lazarus'
     seo_description = 'The ultimate resource for developing Total Annihilation mods using our web base mod editor.'
