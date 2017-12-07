@@ -7,6 +7,9 @@ from LazarusV.super_hpi.hpi_IV_text_parser import cleanFbi, cleanTdf, parseWeapo
 class TotalADisassembler(object):
     def __init__(self, dump_path: str):
         self.working_path = dump_path
+
+        self.filename_dictionary = {}
+
         self.rawUnitText = ""
         self.rawWeaponText = ""
         self.rawFeatureText = ""
@@ -37,25 +40,58 @@ class TotalADisassembler(object):
             for fileName in unitFiles:
                 _fpath = units_path + fileName
                 cleanFBI = cleanFbi(fbiPath=_fpath)
+                self.prep_unit_for_sql(using_fbi=cleanFBI, at_location=_fpath)
                 self.rawUnitText += cleanFBI
         if os.path.exists(weapons_path):
             weaponfiles = os.listdir(weapons_path)
             for fileName in weaponfiles:
                 _fpath = weapons_path + fileName
-                self.rawWeaponText += cleanTdf(tdfPath=_fpath)
+                clean_tdf = cleanTdf(tdfPath=_fpath)
+                weapon_data = self.get_disassembled_weapons(from_text=clean_tdf)
+                self.prep_weapon_for_sql(with_data=weapon_data, at_location=_fpath)
+                self.rawWeaponText += clean_tdf
         if os.path.exists(features_path):
             featureFiles = os.listdir(features_path)
             for fileName in featureFiles:
                 _fpath = features_path + fileName
                 if os.path.isfile(_fpath):
                     cleanTDF = cleanTdf(tdfPath=_fpath)
+                    _data = self.get_disassembled_generic(from_text=cleanTDF, kind='feature')
+                    self.prep_feature_for_sql(with_data=_data, at_location=_fpath)
                     self.rawFeatureText += cleanTDF
         if os.path.exists(downloads_path):
             downloadFiles = os.listdir(downloads_path)
             for fileName in downloadFiles:
                 _fpath = downloads_path + fileName
                 cleanTDF = cleanTdf(tdfPath=_fpath)
+                _data = self.get_disassembled_generic(from_text=cleanTDF, kind='download')
+                self.prep_download_for_sql(with_data=_data, at_location=_fpath)
                 self.rawDownloadText += cleanTDF
+
+    def prep_unit_for_sql(self, using_fbi: str, at_location: str):
+        self.filename_dictionary[at_location] = {}
+        self.filename_dictionary[at_location]['kind'] = 'unit'
+        self.filename_dictionary[at_location]['key_name'] = 'UNITINFO'
+        self.filename_dictionary[at_location]['zdata'] = self.get_disassembled_units(from_text=using_fbi)[0]
+
+    def prep_weapon_for_sql(self, with_data: dict, at_location: str):
+        self.filename_dictionary[at_location] = {}
+        self.filename_dictionary[at_location]['kind'] = 'weapon'
+        self.filename_dictionary[at_location]['key_name'] = '??'
+        self.filename_dictionary[at_location]['zdata'] = with_data
+
+    def prep_feature_for_sql(self, with_data: dict, at_location: str):
+        self.filename_dictionary[at_location] = {}
+        self.filename_dictionary[at_location]['kind'] = 'feature'
+        self.filename_dictionary[at_location]['key_name'] = '??'
+        self.filename_dictionary[at_location]['zdata'] = with_data
+
+    def prep_download_for_sql(self, with_data: dict, at_location: str):
+        self.filename_dictionary[at_location] = {}
+        self.filename_dictionary[at_location]['kind'] = 'download'
+        self.filename_dictionary[at_location]['key_name'] = '??'
+        self.filename_dictionary[at_location]['zdata'] = with_data
+
 
 
     @property
@@ -82,25 +118,48 @@ class TotalADisassembler(object):
             fbiList = tdfList[1:] # first element is blank.
         processed_units = []
         for innerTdf in fbiList:
-            unit = {}
-            arr1 = innerTdf.replace('/', ' ').replace(',', ' ').replace('{', '').replace(';}', ';').split(';')[:-1]
-            for kv in arr1:
-                if '=' in kv:
-                    prop = kv.split('=')
-                    key = prop[0]
-                    value = prop[1]
-                    if key.upper() == 'OBJECTNAME':
-                        key = 'Objectname'
-                    elif key.upper() == 'WEAPON1':
-                        value = value.upper()
-                    elif key.upper() == 'WEAPON2':
-                        value = value.upper()
-                    elif key.upper() == 'WEAPON3':
-                        value = value.upper()
-                    unit[key] = value
+            unit = self.jsonize_fbi(using_text=innerTdf)
+
+            # arr1 = innerTdf.replace('/', ' ').replace(',', ' ').replace('{', '').replace(';}', ';').split(';')[:-1]
+            # for kv in arr1:
+            #     if '=' in kv:
+            #         prop = kv.split('=')
+            #         key = prop[0]
+            #         value = prop[1]
+            #         if key.upper() == 'OBJECTNAME':
+            #             key = 'Objectname'
+            #         elif key.upper() == 'WEAPON1':
+            #             value = value.upper()
+            #         elif key.upper() == 'WEAPON2':
+            #             value = value.upper()
+            #         elif key.upper() == 'WEAPON3':
+            #             value = value.upper()
+            #         unit[key] = value
+
             processed_units.append(unit)
         self.evaluateUnit3DFiles(processed_units)
         return processed_units
+
+    @staticmethod
+    def jsonize_fbi(using_text: str) -> dict:
+        unit = {}
+        arr1 = using_text.replace('/', ' ').replace(',', ' ').replace('{', '').replace(';}', ';').split(';')[:-1]
+        for kv in arr1:
+            if '=' in kv:
+                prop = kv.split('=')
+                key = prop[0]
+                value = prop[1]
+                if key.upper() == 'OBJECTNAME':
+                    key = 'Objectname'
+                elif key.upper() == 'WEAPON1':
+                    value = value.upper()
+                elif key.upper() == 'WEAPON2':
+                    value = value.upper()
+                elif key.upper() == 'WEAPON3':
+                    value = value.upper()
+                unit[key] = value
+        return unit
+
 
     def get_disassembled_weapons(self, from_text: str) -> dict:
         tdfKeyList = parseWeaponTDFsSquareBracks(rawTdf=from_text)

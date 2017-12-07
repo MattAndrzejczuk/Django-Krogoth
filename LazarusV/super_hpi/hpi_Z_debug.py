@@ -1,7 +1,7 @@
 import json
 from LazarusV.super_hpi.hpi_I_dependency_gatherer import TotalACompileManager
-
-
+from LazarusV.super_hpi.hpi_III_build_disassembler import TotalADisassembler
+from LazarusV.super_hpi.hpi_II_analyzer import TotalASuperHPI
 
 HEADER = '\033[95m'
 OKBLUE = '\033[94m'
@@ -36,8 +36,15 @@ class logged_disassembler(object):
         test_path = '/usr/src/persistent/media/Processed_HPI_Archives/root/ArmPrime_1.0_mattsAbel/'
         self._ta_compile_manager = TotalACompileManager(root_fbi_path=test_path)
 
-    def dump_(text: str):
-        print(text)
+    def dump_all(self):
+        units = self.get_units
+        weapons = self.get_weapons
+        features = self.get_features
+        downloads = self.get_downloads
+        print(units)
+        print(weapons)
+        print(features)
+        print(downloads)
 
     @property
     def get_units(self) -> str:
@@ -53,9 +60,20 @@ class logged_disassembler(object):
         return self.colored_green(self.json_pretty(self._ta_compile_manager.superHPI.disassembled_downloads))
 
 
+    @property
+    def core1_compiler(self) -> TotalACompileManager:
+        return self._ta_compile_manager
+    @property
+    def core2_super_hpi(self) -> TotalASuperHPI:
+        return self._ta_compile_manager.superHPI
+    @property
+    def core3_disassembler(self) -> TotalADisassembler:
+        return self._ta_compile_manager.superHPI.disassembler
+
+
     @staticmethod
     def colored_blue(text) -> str:
-        return blue + text + ENDC
+        return lightblue + text + ENDC
     @staticmethod
     def colored_green(text) -> str:
         return green + text + ENDC
@@ -80,5 +98,4 @@ units = test.get_units
 weapons = test.get_weapons
 features = test.get_features
 downloads = test.get_downloads
-
 """
