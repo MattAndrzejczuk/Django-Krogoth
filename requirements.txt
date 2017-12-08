@@ -1,6 +1,6 @@
 ## Ubuntu 16.04 recommended
 
-django==1.11.3
+django==2.0rc1
 djangorestframework==3.6.3
 markdown==2.6.9
 django-filter==1.1.0
