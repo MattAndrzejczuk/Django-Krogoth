@@ -1,6 +1,7 @@
 
 from django.core.management.base import BaseCommand
 
+from LazarusIV.models import UploadRepository, RepositoryDirectory, RepositoryFile
 
 from Djangular.models import DjangularMasterViewController, DjangularIcon, DjangularService, \
     DjangularCategory, DjangularSlaveViewController, DjangularDirective
@@ -12,49 +13,92 @@ from jawn.settings import APP_VERSION
 class Command(BaseCommand):
     help = 'prints the toolbar module and controller.'
     def add_arguments(self, parser):
-        parser.add_argument('mvc_id', nargs="+", type=int)
+        parser.add_argument('mvc_id', nargs="+", type=str)
 
     def handle(self, *args, **options):
 
-        flake = 'ArmPrimeTest' + APP_VERSION
+        flake = 'ArmPrimeTest-0_v' + APP_VERSION
         test = logged_disassembler()
         print('ARGS: ')
         print(options)
-        if options['mvc_id'][0] == 1:
+        if options['mvc_id'][0] == "1":
             test.dump_all()
-        elif options['mvc_id'][0] == 2:
+        elif options['mvc_id'][0] == "2":
             disass = test.core3_disassembler.filename_dictionary
             _str = test.json_pretty(disass)
             print(_str)
             print('\nfinished printing file origin paths.')
-        elif options['mvc_id'][0] == 3:
+
+        elif options['mvc_id'][0] == "show_repo_1":
+            # I. PASSPORT PHASE
+            repo_1 = UploadRepository.objects.get(id=1)
+
+            rep0 = logged_disassembler.colored_orange('UploadRepository')
+            rep1 = logged_disassembler.colored_blue(repo_1.title)
+            rep2 = logged_disassembler.colored_green(repo_1.root_path)
+
+            print(rep0)
+            print('title: ' + rep1)
+            print('root_path: ' + rep2)
+
+            dirs = RepositoryDirectory.objects.filter(dir_repository=repo_1)
+            d0 = logged_disassembler.colored_orange('RepositoryDirectory')
+            print(d0)
+
+
+            for dir in dirs:
+                d1 = logged_disassembler.colored_purple(dir.dir_name)
+                d2 = logged_disassembler.colored_green(str(dir.dir_total_files))
+                print(' 📁 ' + d1 + ' ' + d2 + " total files.")
+                files = RepositoryFile.objects.filter(repo_dir=dir)
+                for file in files:
+                    f1 = logged_disassembler.colored_blue(file.file_name)
+                    f2 = logged_disassembler.colored_red(file.file_kind)
+                    print('  └─────📜 ' + f1 + f2)
+
+            pass
+        elif options['mvc_id'][0] == "diss_repo_1":
+            # II. CUSTOMS PHASE
             disass = test.core3_disassembler.filename_dictionary
+
             for key,val in disass.items():
+
+
                 print(' ')
                 print('', end=' 🔑 ')
                 print(key)
-                # print('┣━━━━━━━━━━━━━━━━━━━━┫')
-                # print('╻', end=' 💿 ')
                 if val['kind'] == 'unit':
                     for unit in val['zdata']:
+
+
+
                         print('  ', end=' 🗝 ')
                         print(val['key_name'])
                         print('    ', end=' 📀 ')
                         print(str(unit)[0:65])
                 elif val['kind'] == 'weapon':
                     for k,v in val['zdata'].items():
+
+
+
                         print('  ', end=' 🗝 ')
                         print(k)
                         print('    ', end=' 📀 ')
                         print(str(v)[0:65])
                 elif val['kind'] == 'feature':
                     for k,v in val['zdata'].items():
+
+
+
                         print('  ', end=' 🗝 ')
                         print(k)
                         print('    ', end=' 📀 ')
                         print(str(v)[0:65])
                 elif val['kind'] == 'download':
                     for k, v in val['zdata'].items():
+
+
+
                         print('  ', end=' 🗝 ')
                         print(k)
                         print('    ', end=' 📀 ')
@@ -63,12 +107,14 @@ class Command(BaseCommand):
                 # print(str(val)[0:35])
                 print(' ')
             print('\nfinished printing file origin paths.')
-        elif options['mvc_id'] == 4:
+        elif options['mvc_id'][0] == "repo_to_cavedog_sql":
             pass
-        elif options['mvc_id'] == 5:
+        elif options['mvc_id'][0] == "":
             pass
-        elif options['mvc_id'] == 6:
+        elif options['mvc_id'][0] == "help":
+            # print("show_repos")
+            # print("repo_to_cavedog_sql")
+            print("diss_repo_1")
+            print("show_repo_1")
+            # print("diss_repo_1")
             pass
-        elif options['mvc_id'] == 7:
-            pass
-

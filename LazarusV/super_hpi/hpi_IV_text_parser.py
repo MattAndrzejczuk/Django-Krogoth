@@ -1,5 +1,8 @@
 import re
 
+
+
+
 def remove_comments(code: str) -> str:
     pattern = r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)"
     regex = re.compile(pattern, re.MULTILINE | re.DOTALL)

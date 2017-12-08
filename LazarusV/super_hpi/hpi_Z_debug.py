@@ -32,9 +32,9 @@ lightcyan = '\033[96m'
 
 
 class logged_disassembler(object):
-    def __init__(self):
+    def __init__(self, repo_base: TotalACompileManager):
         test_path = '/usr/src/persistent/media/Processed_HPI_Archives/root/ArmPrime_1.0_mattsAbel/'
-        self._ta_compile_manager = TotalACompileManager(root_fbi_path=test_path)
+        self._ta_compile_manager = TotalACompileManager(repo_base=repo_base)
 
     def dump_all(self):
         units = self.get_units
@@ -59,7 +59,6 @@ class logged_disassembler(object):
     def get_downloads(self) -> str:
         return self.colored_green(self.json_pretty(self._ta_compile_manager.superHPI.disassembled_downloads))
 
-
     @property
     def core1_compiler(self) -> TotalACompileManager:
         return self._ta_compile_manager
@@ -69,7 +68,6 @@ class logged_disassembler(object):
     @property
     def core3_disassembler(self) -> TotalADisassembler:
         return self._ta_compile_manager.superHPI.disassembler
-
 
     @staticmethod
     def colored_blue(text) -> str:

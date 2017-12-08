@@ -104,6 +104,7 @@ class Worker():
 
         # JOB IV
         def dispatch_scan_repository_files(worker_id: int):
+            # TODO: move code below to a new class called: AssetTerminalArrivals.PhaseI_CheckPassport
             worker = BackgroundWorkerJob.objects.get(id=worker_id)
             repo_dirs = RepositoryDirectory.objects.filter(dir_repository=worker.dispatched_by_repo)
             for dir in repo_dirs:
@@ -130,6 +131,8 @@ class Worker():
             worker.is_finished = True
             worker.save()
             print(' IV ✅ ')
+            # AssetTerminalArrivals.PhaseII_Customs
+            # AssetTerminalArrivals.PhaseIII_Depart
 
         # JOB V
         def dispatch_first_super_hpi_scan(worker_id: int):

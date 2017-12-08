@@ -6,6 +6,7 @@ from jawn.settings import PUBLIC_EXTRACTED_HPIs
 from PIL import Image, ImageDraw, ImageFont
 
 import socket
+from polymorphic.models import PolymorphicModel
 
 class UploadRepository(models.Model):
     uploader = models.ForeignKey(JawnUser, on_delete=models.CASCADE, related_name='created_by')
@@ -19,6 +20,7 @@ class UploadRepository(models.Model):
 
     def __str__(self):
         return 'http://' + socket.gethostname() + self.thumbnail_pic.replace('/urs/src/persistent', '')
+
 
     @property
     def filename(self) -> str:
@@ -143,7 +145,7 @@ class RepositoryDirectory(models.Model):
         self.dir_kind = 'Data'
 
 
-class RepositoryFile(models.Model):
+class RepositoryFile(PolymorphicModel):
     repo_dir = models.ForeignKey(RepositoryDirectory, on_delete=models.CASCADE, related_name='parent_folder', null=True)
     file_name = models.CharField(max_length=101)
     file_path = models.CharField(max_length=202)
@@ -192,6 +194,10 @@ class RepositoryFile(models.Model):
         # self.file_kind = 'Junk|' + filename[-4:]
         # self.save()
 
+
+class RepositoryFileTAData(RepositoryFile):
+    is_approved = models.BooleanField(default=False)
+    status = models.CharField(default='awaiting customs response certificate...', max_length=202)
 
 
 class NotificationCenter(models.Model):

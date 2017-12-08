@@ -36,7 +36,7 @@ class RepositoryFileViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny,)
 
 class BackgroundWorkerJobViewSet(viewsets.ModelViewSet):
-    queryset = BackgroundWorkerJob.objects.all()
+    queryset = BackgroundWorkerJob.objects.filter(is_finished=False)
     serializer_class = BackgroundWorkerJobSerializer
     permission_classes = (permissions.AllowAny,)
 
