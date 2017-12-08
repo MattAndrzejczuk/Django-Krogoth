@@ -4,13 +4,14 @@ from LazarusV.super_hpi.hpi_V_vanilla_cavedog import CAVEDOG_WEAPONS, CAVEDOG_FE
 
 from LazarusV.super_hpi.hpi_III_build_assembly import TotalAAssembler
 from LazarusV.super_hpi.hpi_III_build_disassembler import TotalADisassembler
-
+from LazarusIV.models import UploadRepository
 
 class TotalASuperHPI(object):
 
-    def __init__(self, dump_path: str):
-        self.base_dir = dump_path
-        self._disassembler = TotalADisassembler(dump_path=dump_path)
+    def __init__(self, repo: UploadRepository):
+
+        self._repository = repo
+        self._disassembler = TotalADisassembler(dump_path=self._repository.root_path)
         self._assembler = TotalAAssembler(strict_mode=True)
         self._disassembled_units = []
         self._disassembled_weapons = {}
@@ -34,6 +35,10 @@ class TotalASuperHPI(object):
     @property
     def disassembled_downloads(self) -> dict:
         return self._disassembled_downloads
+
+    @property
+    def get_repo(self):
+        return self._repository
     
     def finalize_disassembly(self):
         str_units = self._disassembler.unload_text_units

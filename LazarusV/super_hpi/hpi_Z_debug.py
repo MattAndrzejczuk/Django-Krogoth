@@ -3,6 +3,8 @@ from LazarusV.super_hpi.hpi_I_dependency_gatherer import TotalACompileManager
 from LazarusV.super_hpi.hpi_III_build_disassembler import TotalADisassembler
 from LazarusV.super_hpi.hpi_II_analyzer import TotalASuperHPI
 
+from LazarusIV.models import UploadRepository
+
 HEADER = '\033[95m'
 OKBLUE = '\033[94m'
 OKGREEN = '\033[92m'
@@ -32,7 +34,7 @@ lightcyan = '\033[96m'
 
 
 class logged_disassembler(object):
-    def __init__(self, repo_base: TotalACompileManager):
+    def __init__(self, repo_base: UploadRepository):
         test_path = '/usr/src/persistent/media/Processed_HPI_Archives/root/ArmPrime_1.0_mattsAbel/'
         self._ta_compile_manager = TotalACompileManager(repo_base=repo_base)
 

@@ -3,8 +3,7 @@ from django.core.management.base import BaseCommand
 
 from LazarusIV.models import UploadRepository, RepositoryDirectory, RepositoryFile
 
-from Djangular.models import DjangularMasterViewController, DjangularIcon, DjangularService, \
-    DjangularCategory, DjangularSlaveViewController, DjangularDirective
+
 import codecs
 import os
 from LazarusV.super_hpi.hpi_Z_debug import logged_disassembler
@@ -18,7 +17,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         flake = 'ArmPrimeTest-0_v' + APP_VERSION
-        test = logged_disassembler()
+        repo_1 = UploadRepository.objects.get(id=1)
+        test = logged_disassembler(repo_base=repo_1)
         print('ARGS: ')
         print(options)
         if options['mvc_id'][0] == "1":
@@ -31,7 +31,6 @@ class Command(BaseCommand):
 
         elif options['mvc_id'][0] == "show_repo_1":
             # I. PASSPORT PHASE
-            repo_1 = UploadRepository.objects.get(id=1)
 
             rep0 = logged_disassembler.colored_orange('UploadRepository')
             rep1 = logged_disassembler.colored_blue(repo_1.title)
@@ -56,9 +55,11 @@ class Command(BaseCommand):
                     f2 = logged_disassembler.colored_red(file.file_kind)
                     print('  └─────📜 ' + f1 + f2)
 
-            pass
+
         elif options['mvc_id'][0] == "diss_repo_1":
             # II. CUSTOMS PHASE
+
+
             disass = test.core3_disassembler.filename_dictionary
 
             for key,val in disass.items():
