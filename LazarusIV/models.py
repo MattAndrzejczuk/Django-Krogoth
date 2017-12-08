@@ -2,7 +2,7 @@ from django.db import models
 from django.core.validators import URLValidator
 from chat.models import JawnUser
 import os
-from jawn.settings import PUBLIC_EXTRACTED_HPIs
+from jawn.settings import PUBLIC_EXTRACTED_HPIs, APP_VERSION
 from PIL import Image, ImageDraw, ImageFont
 
 import socket
@@ -17,6 +17,7 @@ class UploadRepository(models.Model):
     root_path = models.CharField(max_length=100, help_text='The destination path this HPI file will be extracted to.')
     original_hpi_path = models.CharField(max_length=100)
     thumbnail_pic = models.CharField(max_length=100, default='NaN', validators=[URLValidator()])
+    platform_version = models.CharField(max_length=90, default='Alpha v' + APP_VERSION)
 
     def __str__(self):
         return 'http://' + socket.gethostname() + self.thumbnail_pic.replace('/urs/src/persistent', '')
@@ -152,6 +153,9 @@ class RepositoryFile(PolymorphicModel):
     file_kind = models.CharField(max_length=103)
     file_thumbnail = models.CharField(max_length=104)
 
+    def __str__(self):
+        return self.file_name + ', ' + self.file_path + ', ' + self.file_kind + ', ' + self.file_thumbnail + ', '
+
     def save(self, *args, **kwargs):
         print(' 💾 📄 ')
         super(RepositoryFile, self).save(*args, **kwargs)
@@ -194,14 +198,21 @@ class RepositoryFile(PolymorphicModel):
         # self.file_kind = 'Junk|' + filename[-4:]
         # self.save()
 
+class RepositoryFileGeneric(RepositoryFile):
+    is_junk = models.BooleanField(default=True,
+                                  help_text='Junk will be deleted monthly by a daemon process. When verifying ' +
+                                            'dependencies, this must be set to True if it will be used for mods.')
 
 class RepositoryFileTAData(RepositoryFile):
-    is_approved = models.BooleanField(default=False)
+    is_approved = models.BooleanField(default=False,
+                                      help_text='Approved by Customs if this TDF or FBI file is not corrupted.')
     status = models.CharField(default='awaiting customs response certificate...', max_length=202)
 
+class RepositoryFileReadOnly(RepositoryFile):
+    file_size = models.IntegerField(default=-1, help_text='Size is -1 if it is unknown.')
 
 class NotificationCenter(models.Model):
-    parent_user = models.OneToOneField(JawnUser, related_name='armprime_user', )
+    parent_user = models.OneToOneField(JawnUser, related_name='armprime_user', on_delete=models.CASCADE)
     unread_private = models.IntegerField(default=0)
 
 class NotificationItem(models.Model):

@@ -44,16 +44,18 @@ class Command(BaseCommand):
             d0 = logged_disassembler.colored_orange('RepositoryDirectory')
             print(d0)
 
-
             for dir in dirs:
                 d1 = logged_disassembler.colored_purple(dir.dir_name)
                 d2 = logged_disassembler.colored_green(str(dir.dir_total_files))
-                print(' 📁 ' + d1 + ' ' + d2 + " total files.")
-                files = RepositoryFile.objects.filter(repo_dir=dir)
-                for file in files:
-                    f1 = logged_disassembler.colored_blue(file.file_name)
-                    f2 = logged_disassembler.colored_red(file.file_kind)
-                    print('  └─────📜 ' + f1 + f2)
+                print('[' + str(dir.id) + '] 📁 ' + d1 + ' ' + d2 + " total files.")
+                try:
+                    files = RepositoryFile.objects.filter(repo_dir=dir)
+                    for file in files:
+                        f1 = logged_disassembler.colored_blue(file.file_name)
+                        f2 = logged_disassembler.colored_red(file.file_kind)
+                        print('  └───────📜 ' + f1 + f2)
+                except:
+                    print('  └───────⚠️ ')
 
 
         elif options['mvc_id'][0] == "diss_repo_1":
