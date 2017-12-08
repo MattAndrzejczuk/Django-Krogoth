@@ -56,7 +56,7 @@ class Command(BaseCommand):
 
         cat = DjangularCategory()
         try:
-            cat = DjangularCategory(name='Administration', code='nan')
+            cat = DjangularCategory(name='Administration')
             cat.save()
         except:
             cat = DjangularCategory.objects.get(name='Administration')
