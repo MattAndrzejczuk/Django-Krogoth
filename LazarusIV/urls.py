@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 from LazarusIV.views import UploadRepositoryViewSet, RepositoryDirectoryViewSet, RepositoryFileViewSet, \
     BackgroundWorkerJobViewSet, NotificationCenterViewSet, NotificationItemViewSet, CavedogBaseViewSet, \
     LazarusBaseViewSet, DamageViewSet, LazarusWeaponTDFViewSet, LazarusFeatureTDFViewSet, LazarusDownloadTDFViewSet, \
-    LazarusUnitFBIViewSet, KickThatMuleLee
+    LazarusUnitFBIViewSet
 from fcm_django.api.rest_framework import FCMDeviceAuthorizedViewSet
 #    IV  -  4
 router = DefaultRouter()
@@ -27,6 +27,5 @@ router.register(r'devices', FCMDeviceAuthorizedViewSet)
 
 urlpatterns = [
     url(r'^ContentSubmission/', include(router.urls)),
-    url(r'^KickThatMuleLee/', KickThatMuleLee.as_view(), name='Kick That Mule Lee!'),
 ]
 
