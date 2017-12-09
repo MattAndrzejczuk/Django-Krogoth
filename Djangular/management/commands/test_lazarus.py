@@ -29,7 +29,7 @@ class Command(BaseCommand):
             print(_str)
             print('\nfinished printing file origin paths.')
 
-        elif options['mvc_id'][0] == "show_repo_1":
+        elif options['mvc_id'][0] == "terminal_1":
             # I. PASSPORT PHASE
 
             rep0 = logged_disassembler.colored_orange('UploadRepository')
@@ -54,11 +54,12 @@ class Command(BaseCommand):
                         f1 = logged_disassembler.colored_blue(file.file_name)
                         f2 = logged_disassembler.colored_red(file.file_kind)
                         print('  └───────📜 ' + f1 + f2)
-                except:
+                except Exception as e:
                     print('  └───────⚠️ ')
+                    print(e)
 
 
-        elif options['mvc_id'][0] == "diss_repo_1":
+        elif options['mvc_id'][0] == "terminal_2":
             # II. CUSTOMS PHASE
 
 

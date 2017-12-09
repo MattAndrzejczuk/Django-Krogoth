@@ -193,8 +193,7 @@ class RepositoryFile(PolymorphicModel):
                 self.repo_dir.id) + '.png'
         # self.save()
 
-    def save_junk_file(self, filename: str, path: str, repodir_id: int):
-        self.save_as_file(filename=filename, path=path, repodir_id=repodir_id)
+
         # self.file_kind = 'Junk|' + filename[-4:]
         # self.save()
 
@@ -202,13 +201,15 @@ class RepositoryFileGeneric(RepositoryFile):
     is_junk = models.BooleanField(default=True,
                                   help_text='Junk will be deleted monthly by a daemon process. When verifying ' +
                                             'dependencies, this must be set to True if it will be used for mods.')
+    def save_junk_file(self, filename: str, path: str, repodir_id: int):
+        self.save_as_file(filename=filename, path=path, repodir_id=repodir_id)
 
-class RepositoryFileTAData(RepositoryFile):
+class RepositoryFileTAData(RepositoryFileGeneric):
     is_approved = models.BooleanField(default=False,
-                                      help_text='Approved by Customs if this TDF or FBI file is not corrupted.')
+                                      help_text='Approved by AssetTerminalArrivals.Customs if this TDF or FBI file is not corrupted.')
     status = models.CharField(default='awaiting customs response certificate...', max_length=202)
 
-class RepositoryFileReadOnly(RepositoryFile):
+class RepositoryFileReadOnly(RepositoryFileGeneric):
     file_size = models.IntegerField(default=-1, help_text='Size is -1 if it is unknown.')
 
 class NotificationCenter(models.Model):
