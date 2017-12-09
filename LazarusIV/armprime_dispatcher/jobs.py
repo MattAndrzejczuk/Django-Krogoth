@@ -1,7 +1,8 @@
 import threading
 import time
 import os
-from LazarusIV.models import UploadRepository, BackgroundWorkerJob, RepositoryDirectory, RepositoryFile
+from LazarusIV.models import UploadRepository, BackgroundWorkerJob, RepositoryDirectory, RepositoryFile, \
+    RepositoryFileGeneric, RepositoryFileTAData, RepositoryFileReadOnly
 from LazarusIV.armprime_dispatcher.notifications import Notifier
 
 EXTRACTION_ROOT = '/usr/src/persistent/media/user_uploads/'
@@ -86,7 +87,7 @@ class Worker():
                     new_repo_dir.save_root_path(name=path, full_path=worker.dispatched_by_repo.root_path + path)
                     new_repo_dir.save()
                 elif os.path.isfile(worker.dispatched_by_repo.root_path + path):
-                    new_junk_file = RepositoryFile()
+                    new_junk_file = RepositoryFileGeneric()
                     new_junk_file.save_junk_file(path=worker.dispatched_by_repo.root_path + path,
                                                  filename=path,
                                                  repodir_id=master_repo_dir.id)
@@ -117,11 +118,15 @@ class Worker():
                         corpse_files = os.listdir(dir.dir_path + '/corpses/')
                         for tdf in corpse_files:
                             if os.path.isfile(dir.dir_path + '/corpses/' + tdf):
-                                new_file = RepositoryFile()
+                                new_file = RepositoryFileTAData()
                                 new_file.save_as_file(filename=tdf, path=dir.dir_path + '/corpses/' + tdf, repodir_id=new_repo_dir.id)
                                 new_file.save()
                     else:
-                        new_file = RepositoryFile()
+                        new_file = RepositoryFileGeneric()
+                        if dir.dir_name == 'units' or dir.dir_name == 'download' or dir.dir_name == 'weapons':
+                            new_file = RepositoryFileTAData()
+                        else:
+                            new_file = RepositoryFileReadOnly()
                         if os.path.isfile(dir.dir_path + '/' + content):
                             new_file.save_as_file(filename=content, path=dir.dir_path + '/' + content, repodir_id=dir.id)
                             new_file.save()
