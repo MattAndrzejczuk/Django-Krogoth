@@ -85,5 +85,4 @@ urlpatterns = [
     url(r'^status/', rest_auth.views.index),
     url(r'^forums/', rest_auth.views.index),
 
-    url(r'^LazarusPublisherTest/', include('LazarusPublisherTest.urls')),
 ]

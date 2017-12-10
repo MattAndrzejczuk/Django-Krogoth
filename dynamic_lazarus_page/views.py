@@ -20,7 +20,6 @@ from django.conf import settings
 
 from GeneralWebsiteInfo.models import WebsiteColorTheme, WebsiteLayout, NavigationBar, BootScreenLoader
 
-from LazarusII.FbiData import remove_comments
 
 CCD = {
     0: '\033[0m',  # end
