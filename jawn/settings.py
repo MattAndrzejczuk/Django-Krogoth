@@ -153,9 +153,6 @@ WSGI_APPLICATION = 'jawn.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 db_name = 'jawn'
-if os.path.exists('/usr/src/app/LazarusIII/GAFDump_EXE_Cavedog_Assets'):
-    db_name = 'jawn5'
-
 
 DATABASES = {
     'default': {

@@ -61,7 +61,7 @@ urlpatterns = [
 
     # url(r'^api.lazarus/', include('lazarus.urls')),
     # url(r'^LazarusII/', include('LazarusII.urls')),
-    url(r'^LazarusIII/', include('LazarusIII.urls')),
+    # url(r'^LazarusIII/', include('LazarusIII.urls')),
     url(r'^SandboxDB/', include('DatabaseSandbox.urls')),
 
     url(r'^dynamic_lazarus_page/', include('dynamic_lazarus_page.urls')),
