@@ -62,7 +62,6 @@ urlpatterns = [
 
     url(r'^GooglePlusOAuthCallback', rest_auth.views.GooglePlusOAuthCallbackView.as_view()),
     url(r'^armprime/', rest_auth.views.index),
-    url(r'^SandboxDB/', include('DatabaseSandbox.urls')),
 
 
     url(r'^dynamic_lazarus_page/', include('dynamic_lazarus_page.urls')),
