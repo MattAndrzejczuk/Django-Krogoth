@@ -57,8 +57,8 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.UserRateThrottle'
     ),
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '200/day',
-        'user': '3000/day'
+        'anon': '2100/day',
+        'user': '10010/day'
     }
 }
 
@@ -94,7 +94,7 @@ INSTALLED_APPS = (
     'rest_auth',
     'fcm_django',
     'chat',
-    'lazarus',
+    # 'lazarus',
     'LazarusII',
     'LazarusIV',
     'LazarusV',

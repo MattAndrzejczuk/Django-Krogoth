@@ -141,7 +141,11 @@
                         window.location = "#!/LoginDjangular";
                         return res;
                         ///return $q.reject(res);
-                    } else {
+                    }
+                    else if (res.status === 401) {
+                        alert('You have been throttled for making too many requests, try again later.');
+                    }
+                    else {
                         console.warn('$httpProvider Interceptor has detected a server error!!!');
                         return res;
                     }
