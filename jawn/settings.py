@@ -95,7 +95,7 @@ INSTALLED_APPS = (
     'fcm_django',
     'chat',
     # 'lazarus',
-    'LazarusII',
+    # 'LazarusII',
     'LazarusIV',
     'LazarusV',
     'dynamic_lazarus_page',
