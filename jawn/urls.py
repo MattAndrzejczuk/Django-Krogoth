@@ -43,46 +43,36 @@ router.register(r'youtube', YouTubeMessageViewSet)
 
 urlpatterns = [
 
+    url(r'^admin_a9k/', admin.site.urls),
+
+    url(r'^$', rest_auth.views.index),
+
     # NEW REFACTORED ARM PRIME:
     url(r'^LazarusIV/', include('LazarusIV.urls')),
     url(r'^LazarusV/', include('LazarusV.urls')),
+
 
     url(r'^api/', include(router.urls)),
     url(r'^api/channel-list/', ChannelList.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^rest-auth/', include('rest_auth.urls')),
-    url(r'^accounts/', include('allauth.urls')),
-    url(r'^admin_a9k/', admin.site.urls),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
-    url(r'^$', rest_auth.views.index),
+    url(r'^accounts/', include('allauth.urls')),
+
 
     url(r'^GooglePlusOAuthCallback', rest_auth.views.GooglePlusOAuthCallbackView.as_view()),
     url(r'^armprime/', rest_auth.views.index),
-
-    # url(r'^api.lazarus/', include('lazarus.urls')),
-    # url(r'^LazarusII/', include('LazarusII.urls')),
-    # url(r'^LazarusIII/', include('LazarusIII.urls')),
     url(r'^SandboxDB/', include('DatabaseSandbox.urls')),
 
-    url(r'^dynamic_lazarus_page/', include('dynamic_lazarus_page.urls')),
 
-    url(r'^GeneralWebsiteInfo/', include('GeneralWebsiteInfo.urls')),
-    url(r'^PhotoGalleryManager/', include('PhotoGalleryManager.urls')),
-    # url(r'^LazarusDatabase/', include('LazarusDatabase.urls')),
+    url(r'^dynamic_lazarus_page/', include('dynamic_lazarus_page.urls')),
     url(r'^Djangular/', include('Djangular.urls')),
     url(r'^Forum/', include('CommunityForum.urls')),
+
 
     # Admin stuff
     url(r'^djangular_dashboard/', include('djangular_dashboard.urls')),
     url(r'^admin_a9k/filebrowser/', include(site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
-    url(r'^docs/', include('rest_framework_docs.urls')),
-
-    # THIS IS FOR SEO:
-    url(r'^news/', rest_auth.views.index),
-    url(r'^features/', rest_auth.views.index),
-    url(r'^whatIsLazarus/', rest_auth.views.index),
-    url(r'^status/', rest_auth.views.index),
-    url(r'^forums/', rest_auth.views.index),
 
 ]
