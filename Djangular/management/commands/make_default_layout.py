@@ -50,14 +50,14 @@ class Command(BaseCommand):
 
         icon = DjangularIcon()
         try:
-            icon = DjangularIcon(name='icon-ubuntu', code='icon-ubuntu')
+            icon = DjangularIcon(name='icon-ubuntu')
             icon.save()
         except:
             icon = DjangularIcon.objects.get(name='icon-ubuntu')
 
         cat = DjangularCategory()
         try:
-            cat = DjangularCategory(name='Administration', code='nan')
+            cat = DjangularCategory(name='Administration')
             cat.save()
         except:
             cat = DjangularCategory.objects.get(name='Administration')
