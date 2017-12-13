@@ -19,12 +19,10 @@ from PIL import Image
 
 from django.contrib.auth.models import User
 from Djangular.models import DjangularMasterViewController, DjangularCategory, DjangularIcon
-from GeneralWebsiteInfo.models import BootScreenLoader
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
-from DatabaseSandbox.models import VisitorLogSB
 
 from Djangular.models import DjangularService, DjangularDirective, DjangularSlaveViewController, \
     DjangularIcon, DjangularCategory, DjangularMasterViewController, SampleModelOne
@@ -54,14 +52,16 @@ def index(request):
     font_color = 'black'
 
     try:
-        splash = BootScreenLoader.objects.filter(enabled=True)
-        splash_html = splash[0].html_code
-        splash_title = splash[0].title
-        font_size = splash[0].font_size
-        splash_logo_bg_color = splash[0].logo_background_color
-        width = splash[0].width
-        main_bg_color = splash[0].main_background_color
-        font_color = splash[0].font_color
+        # TODO: remimplement bootscreen loader.
+        # splash = BootScreenLoader.objects.filter(enabled=True)
+        # splash_html = splash[0].html_code
+        # splash_title = splash[0].title
+        # font_size = splash[0].font_size
+        # splash_logo_bg_color = splash[0].logo_background_color
+        # width = splash[0].width
+        # main_bg_color = splash[0].main_background_color
+        # font_color = splash[0].font_color
+        print('remimplement bootscreen loader')
     except:
         print('There is no splash screen in the Database!')
 
@@ -101,8 +101,9 @@ def index(request):
     _1 = str(request.META['REMOTE_ADDR'])
     _2 = str(request.META['HTTP_USER_AGENT'])
     _3 = str(request.META['HTTP_ACCEPT_LANGUAGE'])
-    newRecord = VisitorLogSB(remote_addr=_1, http_usr=_2, http_accept=_3, other_misc_notes='index.html requested.')
-    newRecord.save()
+    # TODO: Visitor Tracking reimplement.
+    # newRecord = VisitorLogSB(remote_addr=_1, http_usr=_2, http_accept=_3, other_misc_notes='index.html requested.')
+    # newRecord.save()
 
     # GET LAZARUS BUILD VERSION:
     bash_cmd = ['git', 'rev-list', '--count', 'master']
