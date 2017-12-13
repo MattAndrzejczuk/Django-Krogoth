@@ -25,8 +25,6 @@ from PIL import Image
 from django.contrib.auth.models import User
 from dynamic_lazarus_page.models import AngularFuseApplication, NgIncludedHtml, NgIncludedJs
 
-from DatabaseSandbox.models import VisitorLogSB, LazarusCommanderAccountSB, \
-    LazarusModProjectSB, BasicUploadTrackerSB
 
 from .app_settings import (
     TokenSerializer, UserDetailsSerializer, LoginSerializer,
@@ -34,7 +32,7 @@ from .app_settings import (
     PasswordChangeSerializer
 )
 
-from GeneralWebsiteInfo.models import BootScreenLoader
+
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from Djangular.models import DjangularService, DjangularDirective, DjangularSlaveViewController, \
