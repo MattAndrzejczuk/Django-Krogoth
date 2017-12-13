@@ -1,10 +1,8 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from rest_framework.generics import GenericAPIView
 
 from dynamic_lazarus_page.models import FuseAppComponent, AngularFuseApplication, NgIncludedHtml, NgIncludedJs
 from Djangular.models import DjangularMasterViewController
@@ -12,11 +10,6 @@ from Djangular.models import DjangularMasterViewController
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
-import os
-from django.core.files.storage import default_storage
-from django.core.files.base import ContentFile
-from django.core.files import File
-from django.conf import settings
 
 
 

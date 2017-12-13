@@ -13,7 +13,7 @@ echo "Running Containers...."
 docker exec -it armprime pip3 install fcm-django==0.2.12
 sleep 3
 docker exec -it armprime ./manage.py migrate
-docker exec jawn-redis redis-cli config set notify-keyspace-events KEA
+docker exec armprime-redis redis-cli config set notify-keyspace-events KEA
 echo "Create a Super User"
 docker exec -it armprime ./manage.py createsuperuser
 echo "Select Yes to Continue Install"
@@ -30,25 +30,24 @@ docker exec -it armprime ./manage.py make_default_layout
 #echo 'export DOCKER_CERT_PATH="/Users/dominik/.docker/machine/machines/default"' >> ~/.bashrc
 #echo 'export DOCKER_MACHINE_NAME="default"' >> ~/.bashrc
 
-sleep 1
-echo ""
-echo "Installing Wine for Microsoft Windows applications compatibility."
-sleep 3
-docker exec -it armprime bash -c "add-apt-repository -y ppa:ubuntu-wine/ppa"
-docker exec -it armprime bash -c "apt-get update"
-docker exec -it armprime bash -c "apt-get install -y wine"
-docker exec -it armprime bash -c "dpkg --add-architecture i386"
-docker exec -it armprime bash -c "apt-get update"
-docker exec -it armprime bash -c "apt-get install wine32"
-docker exec -it armprime bash -c "apt-get install Xvfb"
-docker exec -it armprime bash -c "Xvfb :0 -screen 0 640x480x8 &"
-sleep 1
-echo ""
-echo "Wine Installation: "
-docker exec -it armprime bash -c "wine --version"
-sleep 2
-
-echo ""
-echo "DONT FORGET TO RUN THIS IN POSTGRESQL ! ! ! ! "
-echo "psql jawn4 -c 'create extension hstore;'"
-echo " "
+#sleep 1
+#echo ""
+#echo "Installing Wine for Microsoft Windows applications compatibility."
+#sleep 3
+#docker exec -it armprime bash -c "add-apt-repository -y ppa:ubuntu-wine/ppa"
+#docker exec -it armprime bash -c "apt-get update"
+#docker exec -it armprime bash -c "apt-get install -y wine"
+#docker exec -it armprime bash -c "dpkg --add-architecture i386"
+#docker exec -it armprime bash -c "apt-get update"
+#docker exec -it armprime bash -c "apt-get install wine32"
+#docker exec -it armprime bash -c "apt-get install Xvfb"
+#docker exec -it armprime bash -c "Xvfb :0 -screen 0 640x480x8 &"
+#sleep 1
+#echo ""
+#echo "Wine Installation: "
+#docker exec -it armprime bash -c "wine --version"
+#sleep 2
+#echo ""
+#echo "DONT FORGET TO RUN THIS IN POSTGRESQL ! ! ! ! "
+#echo "psql jawn4 -c 'create extension hstore;'"
+#echo " "

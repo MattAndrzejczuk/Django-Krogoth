@@ -19,7 +19,6 @@ Including another URLconf
 from filebrowser.sites import site
 from django.conf.urls import url, include
 # from rest_framework.urlpatterns import format_suffix_patterns
-from rest_framework import renderers
 from rest_framework.routers import DefaultRouter
 from chat.views import UserViewSet, JawnUserViewSet, ImageMessageViewSet, TextMessageViewSet, ChannelViewSet, \
     MessageViewSet, PrivateMessageRelationshipSet, RegionViewSet, LinkMessageViewSet, YouTubeMessageViewSet

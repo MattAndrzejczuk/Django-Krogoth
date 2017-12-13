@@ -1,27 +1,7 @@
-from django.contrib.auth import login, logout
-from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
-from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.generics import GenericAPIView
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.renderers import JSONRenderer
-from django.template import loader
-from django.http import HttpResponse
-import json
-import os
-from os import walk
-from PIL import Image
-from django.contrib.auth.models import User
-from Djangular.models import DjangularMasterViewController, DjangularCategory, DjangularIcon
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from Djangular.models import DjangularService, DjangularDirective, DjangularSlaveViewController, \
-    DjangularIcon, DjangularCategory, DjangularMasterViewController, SampleModelOne
-from rest_framework import status
-from rest_framework import viewsets
-from Djangular.serializers import SampleModelOneSerializer
-import subprocess
+from Djangular.models import DjangularSlaveViewController, DjangularMasterViewController
+
 
 
 class MasterViewControllerEditorListView(APIView):
