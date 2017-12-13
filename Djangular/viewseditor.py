@@ -15,9 +15,7 @@ from os import walk
 from PIL import Image
 from django.contrib.auth.models import User
 from Djangular.models import DjangularMasterViewController, DjangularCategory, DjangularIcon
-from GeneralWebsiteInfo.models import BootScreenLoader
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from DatabaseSandbox.models import VisitorLogSB
 from Djangular.models import DjangularService, DjangularDirective, DjangularSlaveViewController, \
     DjangularIcon, DjangularCategory, DjangularMasterViewController, SampleModelOne
 from rest_framework import status
