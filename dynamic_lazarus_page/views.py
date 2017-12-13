@@ -18,7 +18,6 @@ from django.core.files.base import ContentFile
 from django.core.files import File
 from django.conf import settings
 
-from GeneralWebsiteInfo.models import WebsiteColorTheme, WebsiteLayout, NavigationBar, BootScreenLoader
 
 
 CCD = {
@@ -103,53 +102,53 @@ class NgIncludedHtmlView(APIView):
 
 
 #### 07/12/2017
-class OpenTADataFile(APIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (AllowAny,)
-    def get(self, request, format=None):
-        # msg = str(request.GET['msg'])
-        parse_path1 = str(request.GET['encoded_path']).replace('_SLSH_', '/')
-        file_type = str(request.GET['type'])
-        title = str(request.GET['title'])
-        file_path = '/usr/src/persistent/' + parse_path1 + file_type
-
-        try:
-            try:
-                print('opening file...')
-                print(file_path)
-                fbi_file = open(file_path, 'r', errors='replace')
-
-                print('file was opened successfully.')
-
-                html1 = '<md-dialog><form ng-cloak>'
-                html2_start = '<md-toolbar><div class="md-toolbar-tools"><h2>TITLE_DIALOG_HEADER</h2><span flex></span>'
-                html3 = '<md-button class="md-icon-button" ng-click="cancel()">' + \
-                        '<md-icon md-svg-src="icon-hexagon" aria-label="Close dialog"></md-icon></md-button>'
-                print('1...')
-                html4_end = '</div></md-toolbar><md-dialog-content><div class="md-dialog-content">'
-                html5 = '</div></md-dialog-content>'
-                dialog_actions = '<md-dialog-actions layout="row"><span flex></span>' + \
-                                 '<md-button ng-click="answer(\'not useful\')">Cancel</md-button>' + \
-                                 '<md-button ng-click="answer(\'useful\')">Add To Current Mod</md-button>' + \
-                                 '</md-dialog-actions></form></md-dialog>'
-                print('2...')
-                content_head = html1 + html2_start + html3 + html4_end
-                content_foot = html5 + dialog_actions
-
-                read_file_str = content_head.replace('TITLE_DIALOG_HEADER', title) + remove_comments(fbi_file.read())
-                print('3...')
-                # read_file_str = read_file_str.replace(';', '; <br>&emsp;')
-                # read_file_str = read_file_str.replace('{', '{<br>&emsp;')
-                read_file_str += content_foot
-                return HttpResponse(read_file_str)
-                # json_response = {'raw_data': fbi_file.read()}
-
-            except:
-                unitsArray = readFile(unit_path)
-                return Response(unitsArray)
-
-        except:
-            return Response('oh shit')
+# class OpenTADataFile(APIView):
+#     authentication_classes = (TokenAuthentication,)
+#     permission_classes = (AllowAny,)
+#     def get(self, request, format=None):
+#         # msg = str(request.GET['msg'])
+#         parse_path1 = str(request.GET['encoded_path']).replace('_SLSH_', '/')
+#         file_type = str(request.GET['type'])
+#         title = str(request.GET['title'])
+#         file_path = '/usr/src/persistent/' + parse_path1 + file_type
+#
+#         try:
+#             try:
+#                 print('opening file...')
+#                 print(file_path)
+#                 fbi_file = open(file_path, 'r', errors='replace')
+#
+#                 print('file was opened successfully.')
+#
+#                 html1 = '<md-dialog><form ng-cloak>'
+#                 html2_start = '<md-toolbar><div class="md-toolbar-tools"><h2>TITLE_DIALOG_HEADER</h2><span flex></span>'
+#                 html3 = '<md-button class="md-icon-button" ng-click="cancel()">' + \
+#                         '<md-icon md-svg-src="icon-hexagon" aria-label="Close dialog"></md-icon></md-button>'
+#                 print('1...')
+#                 html4_end = '</div></md-toolbar><md-dialog-content><div class="md-dialog-content">'
+#                 html5 = '</div></md-dialog-content>'
+#                 dialog_actions = '<md-dialog-actions layout="row"><span flex></span>' + \
+#                                  '<md-button ng-click="answer(\'not useful\')">Cancel</md-button>' + \
+#                                  '<md-button ng-click="answer(\'useful\')">Add To Current Mod</md-button>' + \
+#                                  '</md-dialog-actions></form></md-dialog>'
+#                 print('2...')
+#                 content_head = html1 + html2_start + html3 + html4_end
+#                 content_foot = html5 + dialog_actions
+#
+#                 read_file_str = content_head.replace('TITLE_DIALOG_HEADER', title) + remove_comments(fbi_file.read())
+#                 print('3...')
+#                 # read_file_str = read_file_str.replace(';', '; <br>&emsp;')
+#                 # read_file_str = read_file_str.replace('{', '{<br>&emsp;')
+#                 read_file_str += content_foot
+#                 return HttpResponse(read_file_str)
+#                 # json_response = {'raw_data': fbi_file.read()}
+#
+#             except:
+#                 unitsArray = readFile(unit_path)
+#                 return Response(unitsArray)
+#
+#         except:
+#             return Response('oh shit')
 
 
 class CustomHtmlGenerator(APIView):
@@ -226,8 +225,7 @@ class DynamicSplashScreenView(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
-        splash = BootScreenLoader.objects.filter(enabled=True)
-        final_html = splash[0]
+        final_html = 'todo 1624'
         return HttpResponse(final_html)
 
 
@@ -334,7 +332,7 @@ class FuseAppComponentView(APIView):
             component_id = request.GET['component_id']
             print('try will fail here.... so moving on.')
             component = FuseAppComponent.objects.get(name=component_id)
-            return HttpResponse(component.contents.replace('FUSE_APP_NAME', name))
+            return HttpResponse(component.contents.replace('FUSE_APP_NAME', 'no_name_9264'))
         except:
             print('DOING EXCEPTION SHIT NOW...')
             allmodels = FuseAppComponent.objects.all()
@@ -399,39 +397,3 @@ class FuseAppComponentView(APIView):
 
 
 
-
-
-
-
-
-class SuperBasicModelView(APIView):
-    # serializer_class = SuperBasicModelSerializer
-    permission_classes = (AllowAny,)  # IsAuthenticated
-
-    def get(self, request, format=None):
-        allmodels = Car.objects.all()
-        print(allmodels)
-        return Response(allmodels)
-
-    def post(self, request, *args, **kwargs):
-        file_obj = request.FILES['file']
-        f = open('/usr/src/app/static/uploaded_file', 'w')
-        print('preparing to write file to /usr/src/app/static/uploaded_file')
-        myfile = File(f)
-        # myfile.write(ContentFile(file_obj.read()))
-        path = default_storage.save('tmp/THE_FILE', ContentFile(file_obj.read()))
-        tmp_file = os.path.join(settings.MEDIA_ROOT, path)
-        print('writing completed ! ! !')
-        myfile.close()
-        print('closing files')
-        f.close()
-        print('PROCESS COMPLETED!!!')
-        response = {'result': 'everything is finished ! ! ! ' + str(tmp_file)}
-        return Response(response)
-
-
-class SampleAPI(APIView):
-    permission_classes = (AllowAny,)
-    def get(self, request, format=None):
-        sample_response = {'data': 'hello world'}
-        return Response(sample_response)
