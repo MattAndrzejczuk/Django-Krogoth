@@ -21,7 +21,8 @@ from django.conf.urls import url, include
 # from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework import renderers
 from rest_framework.routers import DefaultRouter
-from chat.views import *
+from chat.views import UserViewSet, JawnUserViewSet, ImageMessageViewSet, TextMessageViewSet, ChannelViewSet, \
+    MessageViewSet, PrivateMessageRelationshipSet, RegionViewSet, LinkMessageViewSet, YouTubeMessageViewSet
 from django.contrib import admin
 # from rest_auth.views import LazarusListUnits
 from rest_auth.views import index
@@ -46,7 +47,6 @@ urlpatterns = [
 
     url(r'^$', index),
 
-
     url(r'^LazarusIV/', include('LazarusIV.urls')),
     url(r'^LazarusV/', include('LazarusV.urls')),
 
@@ -59,7 +59,7 @@ urlpatterns = [
 
     # user auth, forgot_password, reset pass, etc..
     url(r'^api/', include(router.urls)),
-    url(r'^api/channel-list/', ChannelList.as_view()),
+    # url(r'^api/channel-list/', ChannelList.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^rest-auth/', include('rest_auth.urls')),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
