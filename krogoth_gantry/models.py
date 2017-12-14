@@ -82,9 +82,12 @@ class KrogothGantryMasterViewController(models.Model):
                              on_delete=models.CASCADE)
     category = models.ForeignKey(KrogothGantryCategory,
                                  on_delete=models.CASCADE)
+
     module_js = models.TextField(default=DEFAULT_MODULE)
     controller_js = models.TextField(default=DEFAULT_CONTROLLER)
     view_html = models.TextField(default=DEFAULT_MASTERVIEW)
+    style_css = models.TextField(default='')
+
     is_enabled = models.BooleanField(default=True,
                                      help_text='When disabled, this javascript code and html code will not be loaded.')
     djangular_service = models.ManyToManyField(KrogothGantryService, null=True, blank=True)

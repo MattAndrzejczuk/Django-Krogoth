@@ -16,6 +16,7 @@ class KrogothGantryMasterViewControllerAdmin(admin.ModelAdmin):
             '/static/codemirror/mode/xml/xml.js',
             '/static/codemirror/mode/htmlmixed/htmlmixed.js',
             '/static/codemirror/mode/javascript/javascript.js',
+            '/static/codemirror/mode/css/css.js',
 
             '/static/codemirror/addon/edit/matchtags.js',
             '/static/codemirror/addon/edit/closebrackets.js',

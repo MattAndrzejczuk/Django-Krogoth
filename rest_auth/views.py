@@ -44,7 +44,7 @@ def index(request):
 
     splash_html = '<ms-splash-screen id="splash-screen"> <div class="center"> <div class="logo" style="width:250px; font-size: 36px; background-color: darkorange;"> <span>Lazarus</span> </div> <!-- Material Design Spinner --> <div class="spinner-wrapper"> <div class="spinner"> <div class="inner"> <div class="gap"></div> <div class="left"> <div class="half-circle"></div> </div> <div class="right"> <div class="half-circle"></div> </div> </div> </div> </div> <!-- / Material Design Spinner --> </div></ms-splash-screen>'
 
-    splash_title = 'Lazarus'
+    splash_title = 'Krogoth'
     font_size = 36
     splash_logo_bg_color = 'antiquewhite'
     width = 250
@@ -62,11 +62,11 @@ def index(request):
 
         print('NO DEFAULT APP DETECTED!')
         print('creating a default krogoth_gantry application...')
-        defaultCategory = KrogothGantryCategory(name='krogoth_gantry', code='hello!!')
+        defaultCategory = KrogothGantryCategory(name='KG', code='hello!!')
         defaultCategory.save()
 
         default_html_header = '<h1>It works!</h1>'
-        default_html_body = "<h4>Congratulations, you've successfully installed a new krogoth_gantry Application.</h4>"
+        default_html_body = "<h4>Congratulations, you've successfully installed a new Krogoth Application.</h4>"
         default_html_pt1 = '<div flex="20"></div><div flex="60" layout="column">'
         default_html_pt2 = '</div><div flex="20"></div>'
 
@@ -87,15 +87,15 @@ def index(request):
 
 
     # GET LAZARUS BUILD VERSION:
-    bash_cmd = ['git', 'rev-list', '--count', 'master']
-    get_build_cmd = str(subprocess.check_output(bash_cmd))
-    current_build_1 = ''
-    current_build_2 = ''
-    try:
-        current_build_1 = ('0.' + str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", "")) + '.'
-        current_build_2 = (str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", ""))[1:]
-    except:
-        print('failed to check version!!!')
+    # bash_cmd = ['git', 'rev-list', '--count', 'master']
+    # get_build_cmd = str(subprocess.check_output(bash_cmd))
+    # current_build_1 = ''
+    # current_build_2 = ''
+    # try:
+    #     current_build_1 = ('0.' + str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", "")) + '.'
+    #     current_build_2 = (str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", ""))[1:]
+    # except:
+    #     print('failed to check version!!!')
 
     index_route_js = '/static/app/index.route.js'
     try:
@@ -120,16 +120,16 @@ def index(request):
         index_route_js = newLayout.url_helper
 
 
-    if current_build_2 == '00':
-        current_build_2 = '0'
-    else:
-        rm_0s = current_build_2.replace('01', '1').replace('02', '2').replace('03', '3').replace('04', '4')
-        current_build_2 = rm_0s.replace('05', '5').replace('06', '6').replace('07', '7').replace('08', '8').replace('09', '9')
+    # if current_build_2 == '00':
+    #     current_build_2 = '0'
+    # else:
+    #     rm_0s = current_build_2.replace('01', '1').replace('02', '2').replace('03', '3').replace('04', '4')
+    #     current_build_2 = rm_0s.replace('05', '5').replace('06', '6').replace('07', '7').replace('08', '8').replace('09', '9')
 
-    version_build = 'krogoth_gantry ' + current_build_1[:3] + "." + current_build_2
-    seo_title = "ArmPrime " + current_build_1[:3] + "." + current_build_2 + ' - Home of Total Annihilation Lazarus'
-    seo_description = 'The ultimate resource for developing Total Annihilation mods using our web base mod editor.'
-    seo_description += ' Upload units, edit and publish your TA content with the community.'
+    version_build = 'Krogoth ' + settings.APP_VERSION
+    seo_title = "Krogoth "
+    seo_description = 'description'
+    seo_description += ', description - 2'
 
     try:
         if request.META['PATH_INFO'] == '/features/':
@@ -169,6 +169,8 @@ def index(request):
             seo_description = 'Discuss anything related to Cavedog\'s 1997 Real Time Strategy game Total Annihilation.'
     except:
         pass
+
+
 
     context = {
         "version_build": version_build,

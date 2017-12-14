@@ -307,7 +307,9 @@ class DynamicHTMLInjector(APIView):
     def get(self, request, format=None):
         name = request.GET['name']
         application = KrogothGantryMasterViewController.objects.get(name=name)
+
         raw_html_response = application.view_html
+        raw_html_response += '<style>' + application.style_css + '</style>'
 
 
         if raw_html_response == '':
