@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from moho_extractor.models import NgIncludedJs, NgIncludedHtml
-from krogoth_gantry.models import krogoth_gantryMasterViewController, krogoth_gantryIcon, krogoth_gantryService, \
-    krogoth_gantryCategory, krogoth_gantrySlaveViewController
+from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryIcon, KrogothGantryService, \
+    KrogothGantryCategory, KrogothGantrySlaveViewController
 from CommunityForum.models import ForumCategory
 import codecs
 
@@ -48,19 +48,19 @@ class Command(BaseCommand):
         str_loginModule = codecs.open('krogoth_gantry/management/default_templates/login/module.js', 'r').read()
         str_loginController = codecs.open('krogoth_gantry/management/default_templates/login/controller.js', 'r').read()
 
-        icon = krogoth_gantryIcon()
+        icon = KrogothGantryIcon()
         try:
-            icon = krogoth_gantryIcon(name='icon-ubuntu')
+            icon = KrogothGantryIcon(name='icon-ubuntu')
             icon.save()
         except:
-            icon = krogoth_gantryIcon.objects.get(name='icon-ubuntu')
+            icon = KrogothGantryIcon.objects.get(name='icon-ubuntu')
 
-        cat = krogoth_gantryCategory()
+        cat = KrogothGantryCategory()
         try:
-            cat = krogoth_gantryCategory(name='Administration')
+            cat = KrogothGantryCategory(name='Administration')
             cat.save()
         except:
-            cat = krogoth_gantryCategory.objects.get(name='Administration')
+            cat = KrogothGantryCategory.objects.get(name='Administration')
 
 
         # homeLandingPage---------------------------------------------------------
@@ -69,7 +69,7 @@ class Command(BaseCommand):
             str_Module = codecs.open('krogoth_gantry/management/default_templates/base_module.js', 'r').read()
             str_Controller = codecs.open('krogoth_gantry/management/default_templates/base_controller.js', 'r').read()
 
-            mvc = krogoth_gantryMasterViewController(name='home', title='It Works!')
+            mvc = KrogothGantryMasterViewController(name='home', title='It Works!')
             mvc.view_html = str_View
             mvc.controller_js = str_Controller
             mvc.module_js = str_Module
@@ -85,7 +85,7 @@ class Command(BaseCommand):
 
         # loginMasterViewController---------------------------------------------------------
         try:
-            mvc = krogoth_gantryMasterViewController(name='Loginkrogoth_gantry', title='Login')
+            mvc = KrogothGantryMasterViewController(name='Loginkrogoth_gantry', title='Login')
             mvc.view_html = str_loginView
             mvc.controller_js = str_loginController
             mvc.module_js = str_loginModule
@@ -105,7 +105,7 @@ class Command(BaseCommand):
             str_Module = codecs.open('krogoth_gantry/management/default_templates/register/module.js', 'r').read()
             str_Controller = codecs.open('krogoth_gantry/management/default_templates/register/controller.js', 'r').read()
 
-            mvc = krogoth_gantryMasterViewController(name='Registerkrogoth_gantry', title='Register')
+            mvc = KrogothGantryMasterViewController(name='Registerkrogoth_gantry', title='Register')
             mvc.view_html = str_View
             mvc.controller_js = str_Controller
             mvc.module_js = str_Module
@@ -124,7 +124,7 @@ class Command(BaseCommand):
             str_Module = codecs.open('krogoth_gantry/management/default_templates/userprofile/module.js', 'r').read()
             str_Controller = codecs.open('krogoth_gantry/management/default_templates/userprofile/controller.js', 'r').read()
 
-            mvc = krogoth_gantryMasterViewController(name='userprofile', title='user profile')
+            mvc = KrogothGantryMasterViewController(name='userprofile', title='user profile')
             mvc.view_html = str_View
             mvc.controller_js = str_Controller
             mvc.module_js = str_Module
@@ -143,7 +143,7 @@ class Command(BaseCommand):
             str_Module = codecs.open('krogoth_gantry/management/default_templates/mvc_editor/module.js', 'r').read()
             str_Controller = codecs.open('krogoth_gantry/management/default_templates/mvc_editor/controller.js', 'r').read()
 
-            mvc = krogoth_gantryMasterViewController(name='AngularEditor', title='Angular Editor')
+            mvc = KrogothGantryMasterViewController(name='AngularEditor', title='Angular Editor')
             mvc.view_html = str_View
             mvc.controller_js = str_Controller
             mvc.module_js = str_Module
@@ -156,7 +156,7 @@ class Command(BaseCommand):
             str_Service = codecs.open('krogoth_gantry/management/default_templates/mvc_editor/krogoth_gantryEditorRESTful.js',
                                       'r').read()
             try:
-                service = krogoth_gantryService(name='krogoth_gantryEditorRESTful', title='Community Forum Service RESTful CRUD')
+                service = KrogothGantryService(name='krogoth_gantryEditorRESTful', title='Community Forum Service RESTful CRUD')
                 service.service_js = str_Service
                 service.save()
                 try:
@@ -178,7 +178,7 @@ class Command(BaseCommand):
             str_Module = codecs.open('krogoth_gantry/management/default_templates/dashboard/module.js', 'r').read()
             str_Controller = codecs.open('krogoth_gantry/management/default_templates/dashboard/controller.js', 'r').read()
 
-            mvc = krogoth_gantryMasterViewController(name='dashboard', title='dashboard')
+            mvc = KrogothGantryMasterViewController(name='dashboard', title='dashboard')
             mvc.view_html = str_View
             mvc.controller_js = str_Controller
             mvc.module_js = str_Module
@@ -200,27 +200,27 @@ class Command(BaseCommand):
             str_slaveView = codecs.open('krogoth_gantry/management/default_templates/forums/slaveview.html', 'r').read()
             str_slaveController = codecs.open('krogoth_gantry/management/default_templates/forums/slavecontroller.js',
                                               'r').read()
-            mvc = krogoth_gantryMasterViewController(name='General', title='Forums')
+            mvc = KrogothGantryMasterViewController(name='General', title='Forums')
             mvc.view_html = str_View
             mvc.controller_js = str_Controller
             mvc.module_js = str_Module
 
-            svc = krogoth_gantrySlaveViewController(name='Thread', title='Thread')
+            svc = KrogothGantrySlaveViewController(name='Thread', title='Thread')
             try:
                 svc.view_html = str_slaveView
                 svc.controller_js = str_slaveController
                 svc.save()
             except:
-                self.stdout.write(self.style.SUCCESS('FAIL... krogoth_gantrySlaveViewController.save()'))
+                self.stdout.write(self.style.SUCCESS('FAIL... KrogothGantrySlaveViewController.save()'))
 
             str_Service = codecs.open('krogoth_gantry/management/default_templates/forums/CommunityForumService.js',
                                       'r').read()
-            service = krogoth_gantryService(name='CommunityForumService', title='Community Forum Service RESTful CRUD')
+            service = KrogothGantryService(name='CommunityForumService', title='Community Forum Service RESTful CRUD')
             try:
                 service.service_js = str_Service
                 service.save()
             except:
-                self.stdout.write(self.style.SUCCESS('FAIL... krogoth_gantryService.save()'))
+                self.stdout.write(self.style.SUCCESS('FAIL... KrogothGantryService.save()'))
 
             mvc.category = cat
             mvc.icon = icon
@@ -228,12 +228,12 @@ class Command(BaseCommand):
             try:
                 mvc.djangular_service.add(service)
             except:
-                self.stdout.write(self.style.SUCCESS('FAIL... forums.add -> krogoth_gantryService'))
+                self.stdout.write(self.style.SUCCESS('FAIL... forums.add -> KrogothGantryService'))
             try:
                 mvc.djangular_slave_vc.add(svc)
                 mvc.save()
             except:
-                self.stdout.write(self.style.SUCCESS('FAIL... forums.add -> krogoth_gantrySlaveViewController'))
+                self.stdout.write(self.style.SUCCESS('FAIL... forums.add -> KrogothGantrySlaveViewController'))
                 mvc.delete()
 
             general_forum = ForumCategory.objects.get_or_create(title='General', is_deleted=False)

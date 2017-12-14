@@ -10,11 +10,10 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 
-from krogoth_gantry.models import krogoth_gantrySlaveViewController, \
-    krogoth_gantryIcon, krogoth_gantryCategory, krogoth_gantryMasterViewController, SampleModelOne
+from krogoth_gantry.models import KrogothGantrySlaveViewController, \
+    KrogothGantryIcon, KrogothGantryCategory, KrogothGantryMasterViewController
 
 from rest_framework import viewsets
-from krogoth_gantry.serializers import SampleModelOneSerializer
 
 import subprocess
 from django.core import serializers
@@ -53,16 +52,16 @@ def index(request):
 
 
     print('SOMEONE IS REQUESTING THE INDEX HTML PAGE ! ! !')
-    check_if_default_vc_exists = krogoth_gantryMasterViewController.objects.all()
+    check_if_default_vc_exists = KrogothGantryMasterViewController.objects.all()
     print(len(check_if_default_vc_exists))
     if len(check_if_default_vc_exists) == 0:
 
-        defaultIcon = krogoth_gantryIcon(name='home, house', code='icon-home')
+        defaultIcon = KrogothGantryIcon(name='home, house', code='icon-home')
         defaultIcon.save()
 
         print('NO DEFAULT APP DETECTED!')
         print('creating a default krogoth_gantry application...')
-        defaultCategory = krogoth_gantryCategory(name='krogoth_gantry', code='hello!!')
+        defaultCategory = KrogothGantryCategory(name='krogoth_gantry', code='hello!!')
         defaultCategory.save()
 
         default_html_header = '<h1>It works!</h1>'
@@ -70,7 +69,7 @@ def index(request):
         default_html_pt1 = '<div flex="20"></div><div flex="60" layout="column">'
         default_html_pt2 = '</div><div flex="20"></div>'
 
-        default = krogoth_gantryMasterViewController(name='home',
+        default = KrogothGantryMasterViewController(name='home',
                                                 title='It Works',
                                                 icon=defaultIcon,
                                                 category=defaultCategory,
@@ -79,10 +78,10 @@ def index(request):
 
 
 
-    krogoth_gantryMasterViewControllers = []
-    all_applications = krogoth_gantryMasterViewController.objects.all()
+    KrogothGantryMasterViewControllers = []
+    all_applications = KrogothGantryMasterViewController.objects.all()
     for application in all_applications:
-        krogoth_gantryMasterViewControllers.append(application.name)
+        KrogothGantryMasterViewControllers.append(application.name)
 
     _1 = str(request.META['REMOTE_ADDR'])
     _2 = str(request.META['HTTP_USER_AGENT'])
@@ -104,7 +103,7 @@ def index(request):
 
     context = {
         "message": "krogoth_gantry " + current_build_1[:3] + "." + current_build_2,
-        "krogoth_gantryMasterViewControllers": krogoth_gantryMasterViewControllers,
+        "KrogothGantryMasterViewControllers": KrogothGantryMasterViewControllers,
         "splash_title": splash_title,
         "font_size": font_size,
         "splash_logo_bg_color": splash_logo_bg_color,
@@ -210,7 +209,7 @@ class DynamicJavaScriptInjector(APIView):
     def get(self, request, format=None):
         name = request.GET['name']
 
-        application = krogoth_gantryMasterViewController.objects.get(name=name)
+        application = KrogothGantryMasterViewController.objects.get(name=name)
 
         raw_js_services_and_directives = ''
         djangular_services = application.djangular_service.all()
@@ -307,7 +306,7 @@ class DynamicHTMLInjector(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
         name = request.GET['name']
-        application = krogoth_gantryMasterViewController.objects.get(name=name)
+        application = KrogothGantryMasterViewController.objects.get(name=name)
         raw_html_response = application.view_html
 
 
@@ -326,7 +325,7 @@ class DynamicHTMLSlaveInjector(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
     def get(self, request, id, format=None):
-        slave_application = krogoth_gantrySlaveViewController.objects.get(id=id)
+        slave_application = KrogothGantrySlaveViewController.objects.get(id=id)
         return HttpResponse(slave_application.view_html.replace('FUSE_APP_NAME', slave_application.name).replace('_SLAVE_NAME_', slave_application.title))
 
 
@@ -334,10 +333,6 @@ class DynamicJavaScriptSlaveInjector(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
     def get(self, request, id, format=None):
-        slave_application = krogoth_gantrySlaveViewController.objects.get(id=id)
+        slave_application = KrogothGantrySlaveViewController.objects.get(id=id)
         return HttpResponse(slave_application.controller_js.replace('FUSE_APP_NAME', slave_application.name).replace('_SLAVE_NAME_', slave_application.title))
 
-
-class SampleModelOneView(viewsets.ModelViewSet):
-    serializer_class = SampleModelOneSerializer
-    queryset = SampleModelOne.objects.all()

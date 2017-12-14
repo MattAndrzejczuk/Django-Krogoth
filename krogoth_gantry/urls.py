@@ -3,12 +3,12 @@ from krogoth_gantry import views
 from krogoth_gantry import viewseditor
 
 
-from rest_framework.routers import DefaultRouter
+# from rest_framework.routers import DefaultRouter
 
 
 
-router = DefaultRouter()
-router.register(r'^SampleModelOneView', views.SampleModelOneView)
+# router = DefaultRouter()
+
 
 
 
@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^DynamicJavaScriptSlaveInjector/(?P<id>[0-9]+)/', views.DynamicJavaScriptSlaveInjector.as_view(),
         name='Dynamic JavaScript Slave Injector'),
     url(r'^DynamicHTMLSlaveInjector/(?P<id>[0-9]+)/', views.DynamicHTMLSlaveInjector.as_view(), name='Dynamic HTML Slave Injector'),
-    url(r'^CRUD/', include(router.urls)),
+    # url(r'^CRUD/', include(router.urls)),
 
     url(r'^MasterViewControllerEditorList/',
         viewseditor.MasterViewControllerEditorListView.as_view(),

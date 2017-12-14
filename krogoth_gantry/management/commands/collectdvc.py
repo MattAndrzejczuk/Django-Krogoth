@@ -1,9 +1,6 @@
-
 from django.core.management.base import BaseCommand
-
-
-from krogoth_gantry.models import krogoth_gantryMasterViewController, krogoth_gantryIcon, krogoth_gantryService, \
-    krogoth_gantryCategory, krogoth_gantrySlaveViewController, krogoth_gantryDirective
+from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryIcon, KrogothGantryService, \
+    KrogothGantryCategory, KrogothGantrySlaveViewController, KrogothGantryDirective
 import codecs
 import os
 
@@ -22,15 +19,15 @@ class Command(BaseCommand):
         has_services = False
         has_directives = False
 
-        icon = krogoth_gantryIcon()
+        icon = KrogothGantryIcon()
         try:
-            icon = krogoth_gantryIcon(name='s16 icon-ta-arm', code='s16 icon-ta-arm')
+            icon = KrogothGantryIcon(name='s16 icon-ta-arm', code='s16 icon-ta-arm')
             icon.save()
         except:
-            icon = krogoth_gantryIcon.objects.get(name='s16 icon-ta-arm')
+            icon = KrogothGantryIcon.objects.get(name='s16 icon-ta-arm')
 
 
-        cat = krogoth_gantryCategory.objects.get_or_create(name='DVC')
+        cat = KrogothGantryCategory.objects.get_or_create(name='DVC')
 
 
         djangular_dvcs = os.listdir('krogoth_gantry/DVCManager')
@@ -60,10 +57,10 @@ class Command(BaseCommand):
                 str_View = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/view.html', 'r').read()
                 str_Module = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/module.js', 'r').read()
                 str_Controller = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/controller.js', 'r').read()
-                _mvc = krogoth_gantryMasterViewController.objects.get_or_create(name=dvc, title=title, view_html=str_View, controller_js=str_Controller, module_js=str_Module, category=cat[0], icon=icon)
-                mvc = krogoth_gantryMasterViewController.objects.get(id=_mvc[0].id)
+                _mvc = KrogothGantryMasterViewController.objects.get_or_create(name=dvc, title=title, view_html=str_View, controller_js=str_Controller, module_js=str_Module, category=cat[0], icon=icon)
+                mvc = KrogothGantryMasterViewController.objects.get(id=_mvc[0].id)
 
-                svc = krogoth_gantrySlaveViewController.objects.get_or_create(name=dvc+'Slave')
+                svc = KrogothGantrySlaveViewController.objects.get_or_create(name=dvc+'Slave')
                 svc[0].title = dvc+' Slave'
                 if has_slave == True:
                     str_slaveV = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/view.html','r').read()
@@ -77,7 +74,7 @@ class Command(BaseCommand):
                     srv_files = os.listdir('krogoth_gantry/DVCManager/' + dvc + '/Services')
                     for srv in srv_files:
                         str_srv = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/Services/' + srv,'r').read()
-                        service = krogoth_gantryService.objects.get_or_create(name=srv[:-3])
+                        service = KrogothGantryService.objects.get_or_create(name=srv[:-3])
                         service[0].title = srv + ' Service'
                         service[0].service_js = str_srv
                         service[0].save()
@@ -87,7 +84,7 @@ class Command(BaseCommand):
                     drec_files = os.listdir('krogoth_gantry/DVCManager/' + dvc + '/Directives')
                     for drec in drec_files:
                         str_drec = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/Directives/' + drec, 'r').read()
-                        directive = krogoth_gantryDirective.objects.get_or_create(name=drec[:-3])
+                        directive = KrogothGantryDirective.objects.get_or_create(name=drec[:-3])
                         directive[0].title = drec + ' Directive'
                         directive[0].directive_js = str_drec
                         directive[0].save()

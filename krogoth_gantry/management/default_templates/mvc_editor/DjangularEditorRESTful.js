@@ -8,18 +8,18 @@
         $log.log('Hello. The service _DJANGULAR_SERVICE_NAME_ is online ! ! !');
 
         var service = {
-            getkrogoth_gantryMasterViewControllers: getkrogoth_gantryMasterViewControllers,
-            getkrogoth_gantryMasterViewControllerDetail: getkrogoth_gantryMasterViewControllerDetail,
-            putkrogoth_gantryMasterViewController: putkrogoth_gantryMasterViewController,
+            getKrogothGantryMasterViewControllers: getKrogothGantryMasterViewControllers,
+            getKrogothGantryMasterViewControllerDetail: getKrogothGantryMasterViewControllerDetail,
+            putKrogothGantryMasterViewController: putKrogothGantryMasterViewController,
 
-            getkrogoth_gantrySlaveViewControllers: getkrogoth_gantrySlaveViewControllers,
-            getkrogoth_gantrySlaveViewControllerDetail: getkrogoth_gantrySlaveViewControllerDetail,
-            putkrogoth_gantrySlaveViewController: putkrogoth_gantrySlaveViewController,
+            getKrogothGantrySlaveViewControllers: getKrogothGantrySlaveViewControllers,
+            getKrogothGantrySlaveViewControllerDetail: getKrogothGantrySlaveViewControllerDetail,
+            putKrogothGantrySlaveViewController: putKrogothGantrySlaveViewController,
 
             djangoManagePyCollectStatic: djangoManagePyCollectStatic
         };
 
-        function getkrogoth_gantryMasterViewControllers() {
+        function getKrogothGantryMasterViewControllers() {
             var deferred = $q.defer();
             $http({
                 method: 'GET',
@@ -34,7 +34,7 @@
             return deferred.promise;
         }
 
-        function getkrogoth_gantryMasterViewControllerDetail(id) {
+        function getKrogothGantryMasterViewControllerDetail(id) {
             var deferred = $q.defer();
             $http({
                 method: 'GET',
@@ -49,7 +49,7 @@
             return deferred.promise;
         }
 
-        function putkrogoth_gantryMasterViewController(id, content) {
+        function putKrogothGantryMasterViewController(id, content) {
             var deferred = $q.defer();
             $http({
                 method: 'PUT',
@@ -63,7 +63,7 @@
             return deferred.promise;
         }
 
-        function getkrogoth_gantrySlaveViewControllers(id) {
+        function getKrogothGantrySlaveViewControllers(id) {
             var deferred = $q.defer();
             $http({
                 method: 'GET',
@@ -78,7 +78,7 @@
             return deferred.promise;
         }
 
-        function getkrogoth_gantrySlaveViewControllerDetail(id) {
+        function getKrogothGantrySlaveViewControllerDetail(id) {
             var deferred = $q.defer();
             $http({
                 method: 'GET',
@@ -93,7 +93,7 @@
             return deferred.promise;
         }
 
-        function putkrogoth_gantrySlaveViewController(id, content) {
+        function putKrogothGantrySlaveViewController(id, content) {
             var deferred = $q.defer();
             $http({
                 method: 'PUT',

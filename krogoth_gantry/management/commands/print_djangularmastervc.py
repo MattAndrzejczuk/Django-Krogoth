@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
-from krogoth_gantry.models import krogoth_gantryMasterViewController, krogoth_gantrySlaveViewController, \
-    krogoth_gantryService, krogoth_gantryDirective
+from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantrySlaveViewController, \
+    KrogothGantryService, KrogothGantryDirective
 
 # python3 manage.py print_djangularmastervc 1
 # f = open('krogoth_gantry/management/default_templates/base_controller.js', 'r')
@@ -11,7 +11,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         for mvc_id in options['mvc_id']:
             if mvc_id == -1:
-                djangularApp = krogoth_gantryMasterViewController.objects.all()
+                djangularApp = KrogothGantryMasterViewController.objects.all()
                 for app in djangularApp:
                     self.stdout.write("Saving krogoth_gantry Master View Controllers", ending='\n')
 
@@ -36,7 +36,7 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.WARNING(
                         "krogoth_gantry/management/backups/" + app.name + str(app.id) + ".view" + ".html"))
 
-                djangularSlaves = krogoth_gantrySlaveViewController.objects.all()
+                djangularSlaves = KrogothGantrySlaveViewController.objects.all()
                 for app in djangularSlaves:
                     self.stdout.write("Saving krogoth_gantry Slave View Controllers", ending='\n')
                     text_file = open("krogoth_gantry/management/backups/" + app.name + str(app.id) + ".controller" + ".js", "w")
@@ -53,7 +53,7 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.WARNING(
                         "krogoth_gantry/management/backups/" + app.name + str(app.id) + ".view" + ".html"))
 
-                djangularServices = krogoth_gantryService.objects.all()
+                djangularServices = KrogothGantryService.objects.all()
                 for app in djangularServices:
                     self.stdout.write("Saving krogoth_gantry Services", ending='\n')
                     text_file = open("krogoth_gantry/management/backups/" + app.name + str(app.id) + ".service" + ".js", "w")
@@ -63,7 +63,7 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.WARNING(
                         "krogoth_gantry/management/backups/" + app.name + str(app.id) + ".service" + ".js"))
 
-                djangularDirectives = krogoth_gantryDirective.objects.all()
+                djangularDirectives = KrogothGantryDirective.objects.all()
                 for app in djangularDirectives:
                     self.stdout.write("Saving krogoth_gantry Directives", ending='\n')
                     text_file = open("krogoth_gantry/management/backups/" + app.name + str(app.id) + ".directive" + ".js", "w")
@@ -74,7 +74,7 @@ class Command(BaseCommand):
                         "krogoth_gantry/management/backups/" + app.name + str(app.id) + ".directive" + ".js"))
 
             else:
-                djangularApp = krogoth_gantryMasterViewController.objects.get(id=mvc_id)
+                djangularApp = KrogothGantryMasterViewController.objects.get(id=mvc_id)
                 self.stdout.write("", ending='\n\n')
                 self.stdout.write(self.style.SUCCESS(djangularApp.module_js))
                 self.stdout.write(self.style.SUCCESS(djangularApp.controller_js))

@@ -5,7 +5,7 @@ from rest_framework.response import Response
 
 
 from moho_extractor.models import NgIncludedHtml, NgIncludedJs
-from krogoth_gantry.models import krogoth_gantryMasterViewController
+from krogoth_gantry.models import KrogothGantryMasterViewController
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -123,7 +123,7 @@ class DynamicIndexModule(APIView):
         #     my_apps += ("'app." + application.name + "',")
 
 
-        all_djangular = krogoth_gantryMasterViewController.objects.filter(is_enabled=True)
+        all_djangular = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
         for application in all_djangular:
             my_apps += ("'app." + application.name + "',")
 
@@ -147,7 +147,7 @@ class DynamicIndexModule(APIView):
 #         default_url = 'Home'
 #         try:
 #             print('Getting krogoth_gantry app with id: 1')
-#             application = krogoth_gantryMasterViewController.objects.get(id=1)
+#             application = KrogothGantryMasterViewController.objects.get(id=1)
 #             print(application.title)
 #             default_url = application.name.replace(' ', '_')
 #             print(application.name)

@@ -2,8 +2,13 @@ from django.db import models
 from django.core.validators import URLValidator
 from chat.models import JawnUser
 import os
-from jawn.settings import PUBLIC_EXTRACTED_HPIs, APP_VERSION
+# from jawn.settings import PUBLIC_EXTRACTED_HPIs, APP_VERSION
 from PIL import Image, ImageDraw, ImageFont
+
+
+PUBLIC_EXTRACTED_HPIs = ''
+APP_VERSION = ''
+
 
 import socket
 from polymorphic.models import PolymorphicModel

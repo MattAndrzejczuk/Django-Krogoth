@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from moho_extractor.models import NgIncludedJs, NgIncludedHtml
-from krogoth_gantry.models import krogoth_gantryMasterViewController, krogoth_gantryIcon, krogoth_gantryCategory, krogoth_gantrySlaveViewController
+from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryIcon, KrogothGantryCategory, KrogothGantrySlaveViewController
 import codecs
 import subprocess
 
@@ -85,20 +85,20 @@ class Command(BaseCommand):
         str_htmlNav = htmlNav.read()
         str_htmlToolbar = htmlToolbar.read()
 
-        icon = krogoth_gantryIcon()
-        cat = krogoth_gantryCategory()
+        icon = KrogothGantryIcon()
+        cat = KrogothGantryCategory()
         # get or create a default icon
         try:
-            icon = krogoth_gantryIcon(name='icon-ubuntu', code='icon-ubuntu')
+            icon = KrogothGantryIcon(name='icon-ubuntu', code='icon-ubuntu')
             icon.save()
         except:
-            icon = krogoth_gantryIcon.objects.get(name='icon-ubuntu')
+            icon = KrogothGantryIcon.objects.get(name='icon-ubuntu')
 
         try:
-            cat = krogoth_gantryCategory(name='krogoth_gantry_Admin', code='icon-ubuntu')
+            cat = KrogothGantryCategory(name='krogoth_gantry_Admin', code='icon-ubuntu')
             cat.save()
         except:
-            cat = krogoth_gantryCategory.objects.get(name='krogoth_gantry_Admin')
+            cat = KrogothGantryCategory.objects.get(name='krogoth_gantry_Admin')
 
 
         # loginMasterViewController---------------------------------------------------------
@@ -106,7 +106,7 @@ class Command(BaseCommand):
             str_loginView = codecs.open('krogoth_gantry/management/default_templates/login/view.html', 'r').read()
             str_loginModule = codecs.open('krogoth_gantry/management/default_templates/login/module.js', 'r').read()
             str_loginController = codecs.open('krogoth_gantry/management/default_templates/login/controller.js', 'r').read()
-            mvc = krogoth_gantryMasterViewController(name='Loginkrogoth_gantry', title='Login')
+            mvc = KrogothGantryMasterViewController(name='Loginkrogoth_gantry', title='Login')
             mvc.view_html = str_loginView
             mvc.controller_js = str_loginController
             mvc.module_js = str_loginModule
@@ -124,7 +124,7 @@ class Command(BaseCommand):
             str_view = codecs.open('krogoth_gantry/management/default_templates/register/view.html', 'r').read()
             str_module_ = codecs.open('krogoth_gantry/management/default_templates/register/module.js', 'r').read()
             str_controller = codecs.open('krogoth_gantry/management/default_templates/register/controller.js', 'r').read()
-            mvc = krogoth_gantryMasterViewController(name='Registerkrogoth_gantry', title='Register krogoth_gantry Account')
+            mvc = KrogothGantryMasterViewController(name='Registerkrogoth_gantry', title='Register krogoth_gantry Account')
             mvc.view_html = str_view
             mvc.controller_js = str_controller
             mvc.module_js = str_module_
@@ -141,7 +141,7 @@ class Command(BaseCommand):
             str_view = codecs.open('krogoth_gantry/management/default_templates/userprofile/view.html', 'r').read()
             str_module_ = codecs.open('krogoth_gantry/management/default_templates/userprofile/module.js', 'r').read()
             str_controller = codecs.open('krogoth_gantry/management/default_templates/userprofile/controller.js', 'r').read()
-            mvc = krogoth_gantryMasterViewController(name='userprofile', title='krogoth_gantry User')
+            mvc = KrogothGantryMasterViewController(name='userprofile', title='krogoth_gantry User')
             mvc.view_html = str_view
             mvc.controller_js = str_controller
             mvc.module_js = str_module_
@@ -161,12 +161,12 @@ class Command(BaseCommand):
 
             str_ctrl_slave = codecs.open('krogoth_gantry/management/default_templates/forums/slavecontroller.js', 'r').read()
             str_view_slave = codecs.open('krogoth_gantry/management/default_templates/forums/slaveview.html', 'r').read()
-            slave = krogoth_gantrySlaveViewController(name='Thread', title="Thread")
+            slave = KrogothGantrySlaveViewController(name='Thread', title="Thread")
             slave.controller_js = str_ctrl_slave
             slave.view_html = str_view_slave
             slave.save()
 
-            mvc = krogoth_gantryMasterViewController(name='userprofile', title='krogoth_gantry User Profile')
+            mvc = KrogothGantryMasterViewController(name='userprofile', title='krogoth_gantry User Profile')
             mvc.view_html = str_view
             mvc.controller_js = str_controller
             mvc.module_js = str_module_
@@ -186,7 +186,7 @@ class Command(BaseCommand):
             str_module_ = codecs.open('krogoth_gantry/management/default_templates/mvc_editor/module.js', 'r').read()
             str_controller = codecs.open('krogoth_gantry/management/default_templates/mvc_editor/controller.js', 'r').read()
 
-            mvc = krogoth_gantryMasterViewController(name='mvceditor', title='Master View Controller Editor')
+            mvc = KrogothGantryMasterViewController(name='mvceditor', title='Master View Controller Editor')
             mvc.view_html = str_view
             mvc.controller_js = str_controller
             mvc.module_js = str_module_

@@ -6,7 +6,6 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
-from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.models import Token
 from rest_framework.generics import RetrieveUpdateAPIView
 from chat.models import JawnUser
@@ -16,15 +15,9 @@ from redis import ConnectionPool, StrictRedis
 from jawn import settings as redis_settings
 from django.template import loader
 from django.http import HttpResponse
-import json
-import os
-from os import walk
-from PIL import Image
-
 
 from django.contrib.auth.models import User
-from moho_extractor.models import AngularFuseApplication, NgIncludedHtml, NgIncludedJs
-
+from moho_extractor.models import NgIncludedJs
 
 from .app_settings import (
     TokenSerializer, UserDetailsSerializer, LoginSerializer,
@@ -32,12 +25,10 @@ from .app_settings import (
     PasswordChangeSerializer
 )
 
-
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from krogoth_gantry.models import KrogothGantryIcon, KrogothGantryCategory, KrogothGantryMasterViewController
 
-from krogoth_gantry.models import krogoth_gantryService, krogoth_gantryDirective, krogoth_gantrySlaveViewController, \
-    krogoth_gantryIcon, krogoth_gantryCategory, krogoth_gantryMasterViewController, SampleModelOne
-
+import jsbeautifier
 
 import subprocess
 
@@ -45,67 +36,7 @@ redis_connection_pool = ConnectionPool(**redis_settings.WS4REDIS_CONNECTION)
 
 
 
-# def index(request):
-#     permission_classes = (AllowAny,)
-#     template = loader.get_template('index.html')
-#
-#     splash_html = '<ms-splash-screen id="splash-screen"> <div class="center"> <div class="logo" style="width:250px; font-size: 36px; background-color: darkorange;"> <span>Lazarus</span> </div> <!-- Material Design Spinner --> <div class="spinner-wrapper"> <div class="spinner"> <div class="inner"> <div class="gap"></div> <div class="left"> <div class="half-circle"></div> </div> <div class="right"> <div class="half-circle"></div> </div> </div> </div> </div> <!-- / Material Design Spinner --> </div></ms-splash-screen>'
-#
-#     splash_title = 'Lazarus'
-#     font_size = 36
-#     splash_logo_bg_color = 'antiquewhite'
-#     width = 250
-#     main_bg_color = 'darkolive'
-#     font_color = 'black'
-#
-#     try:
-#         splash = BootScreenLoader.objects.filter(enabled=True)
-#         splash_html = splash[0].html_code
-#         splash_title = splash[0].title
-#         font_size = splash[0].font_size
-#         splash_logo_bg_color = splash[0].logo_background_color
-#         width = splash[0].width
-#         main_bg_color = splash[0].main_background_color
-#         font_color = splash[0].font_color
-#     except:
-#         print('There is no splash screen in the Database!')
-#
-#
-#     AngularFuseApplications = []
-#     all_applications = AngularFuseApplication.objects.all()
-#     for application in all_applications:
-#         AngularFuseApplications.append(application.name)
-#
-#     _1 = str(request.META['REMOTE_ADDR'])
-#     _2 = str(request.META['HTTP_USER_AGENT'])
-#     _3 = str(request.META['HTTP_ACCEPT_LANGUAGE'])
-#     newRecord = VisitorLogSB(remote_addr=_1, http_usr=_2, http_accept=_3, other_misc_notes='index.html requested.')
-#     newRecord.save()
-#
-#     # GET LAZARUS BUILD VERSION:
-#     bash_cmd = ['git', 'rev-list', '--count', 'master']
-#     get_build_cmd = str(subprocess.check_output(bash_cmd))
-#     current_build_1 = ''
-#     current_build_2 = ''
-#     try:
-#         current_build_1 = ('0.' + str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", "")) + '.'
-#         current_build_2 = (str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", ""))[1:]
-#     except:
-#         print('failed to check version!!!')
-#
-#     context = {
-#         "message": "TA Lazarus " + current_build_1[:3] + "." + current_build_2,
-#         "AngularFuseApplications": AngularFuseApplications,
-#         "splash_title": splash_title,
-#         "font_size": font_size,
-#         "splash_logo_bg_color": splash_logo_bg_color,
-#         "width": width,
-#         "main_bg_color": main_bg_color,
-#         "font_color": font_color,
-#     }
-#     return HttpResponse(template.render(context, request))
 
-import jsbeautifier
 
 def index(request):
     permission_classes = (AllowAny,)
@@ -120,30 +51,18 @@ def index(request):
     main_bg_color = 'darkolive'
     font_color = 'black'
 
-    try:
-        splash = BootScreenLoader.objects.filter(enabled=True)
-        splash_html = splash[0].html_code
-        splash_title = splash[0].title
-        font_size = splash[0].font_size
-        splash_logo_bg_color = splash[0].logo_background_color
-        width = splash[0].width
-        main_bg_color = splash[0].main_background_color
-        font_color = splash[0].font_color
-    except:
-        print('There is no splash screen in the Database!')
-
 
 
     print('SOMEONE IS REQUESTING THE INDEX HTML PAGE ! ! !')
-    check_if_default_vc_exists = krogoth_gantryMasterViewController.objects.all()
+    check_if_default_vc_exists = KrogothGantryMasterViewController.objects.all()
     if len(check_if_default_vc_exists) == 0:
 
-        defaultIcon = krogoth_gantryIcon(name='home, house', code='icon-home')
+        defaultIcon = KrogothGantryIcon(name='home, house', code='icon-home')
         defaultIcon.save()
 
         print('NO DEFAULT APP DETECTED!')
         print('creating a default krogoth_gantry application...')
-        defaultCategory = krogoth_gantryCategory(name='krogoth_gantry', code='hello!!')
+        defaultCategory = KrogothGantryCategory(name='krogoth_gantry', code='hello!!')
         defaultCategory.save()
 
         default_html_header = '<h1>It works!</h1>'
@@ -151,7 +70,7 @@ def index(request):
         default_html_pt1 = '<div flex="20"></div><div flex="60" layout="column">'
         default_html_pt2 = '</div><div flex="20"></div>'
 
-        default = krogoth_gantryMasterViewController(name='home',
+        default = KrogothGantryMasterViewController(name='home',
                                                 title='It Works',
                                                 icon=defaultIcon,
                                                 category=defaultCategory,
@@ -161,24 +80,11 @@ def index(request):
 
 
 
-    krogoth_gantryMasterViewControllers = []
-    all_applications = krogoth_gantryMasterViewController.objects.filter(is_enabled=True)
+    KrogothGantryMasterViewControllers = []
+    all_applications = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
     for application in all_applications:
-        krogoth_gantryMasterViewControllers.append(application.name)
+        KrogothGantryMasterViewControllers.append(application.name)
 
-    try:
-        _url = request.get_full_path()
-        _1 = str(request.META['REMOTE_ADDR'])
-        _2 = str(request.META['HTTP_USER_AGENT'])
-        _3 = str(request.META['HTTP_ACCEPT_LANGUAGE'])
-        newRecord = VisitorLogSB(remote_addr=_1, http_usr=_2, http_accept=_3, other_misc_notes= _url + ' requested.')
-        newRecord.save()
-    except:
-        try:
-            newRecord = VisitorLogSB(remote_addr='fail', http_usr='fail', http_accept='fail', other_misc_notes='index.html requested but failed to gather and save visitor data: ' + str(request.get_full_path()))
-            newRecord.save()
-        except:
-            pass
 
     # GET LAZARUS BUILD VERSION:
     bash_cmd = ['git', 'rev-list', '--count', 'master']
@@ -268,7 +174,7 @@ def index(request):
         "version_build": version_build,
         "message": seo_title,
         "description": seo_description,
-        "krogoth_gantryMasterViewControllers": krogoth_gantryMasterViewControllers,
+        "KrogothGantryMasterViewControllers": KrogothGantryMasterViewControllers,
         "splash_title": splash_title,
         "font_size": font_size,
         "splash_logo_bg_color": splash_logo_bg_color,
@@ -296,9 +202,6 @@ class GooglePlusOAuthCallbackView(APIView):
 
 class LoginView(GenericAPIView):
     """
-    Windows Server 2016 (English DVD)
-    Product Key: 2KNJJ-33Y9H-2GXGX-KMQWH-G6H67
-
     Check the credentials and return the REST Token
     if the credentials are valid and authenticated.
     Calls Django Auth login method to register User ID

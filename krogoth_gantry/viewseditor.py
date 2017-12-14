@@ -1,12 +1,12 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from krogoth_gantry.models import krogoth_gantrySlaveViewController, krogoth_gantryMasterViewController
+from krogoth_gantry.models import KrogothGantrySlaveViewController, KrogothGantryMasterViewController
 
 
 
 class MasterViewControllerEditorListView(APIView):
     def get(self, request, format=None):
-        query = krogoth_gantryMasterViewController.objects.all()
+        query = KrogothGantryMasterViewController.objects.all()
         list = []
 
         print('\n\nGET - MasterViewControllerEditorListView \n\n')
@@ -22,7 +22,7 @@ class MasterViewControllerEditorListView(APIView):
 
 class MasterViewControllerEditorDetailView(APIView):
     def get(self, request, format=None):
-        query = krogoth_gantryMasterViewController.objects.get(id=int(request.GET['id']))
+        query = KrogothGantryMasterViewController.objects.get(id=int(request.GET['id']))
         jsonobj = {}
         jsonobj['id'] = query.id
         jsonobj['name'] = query.name
@@ -33,7 +33,7 @@ class MasterViewControllerEditorDetailView(APIView):
         return Response(jsonobj)
 
     def put(self, request, *args, **kwargs):
-        query = krogoth_gantryMasterViewController.objects.get(id=int(request.GET['id']))
+        query = KrogothGantryMasterViewController.objects.get(id=int(request.GET['id']))
         query.name = request.data['name']
         query.title = request.data['title']
         query.controller_js = request.data['controller_js']
@@ -53,7 +53,7 @@ class MasterViewControllerEditorDetailView(APIView):
 
 class SlaveViewControllerEditorListView(APIView):
     def get(self, request, format=None):
-        query = krogoth_gantryMasterViewController.objects.get(id=int(request.GET['master_id'])).djangular_slave_vc.all()
+        query = KrogothGantryMasterViewController.objects.get(id=int(request.GET['master_id'])).djangular_slave_vc.all()
         list = []
         for svc in query:
             obj = {}
@@ -65,7 +65,7 @@ class SlaveViewControllerEditorListView(APIView):
 
 class SlaveViewControllerEditorDetailView(APIView):
     def get(self, request, format=None):
-        query = krogoth_gantrySlaveViewController.objects.get(id=int(request.GET['id']))
+        query = KrogothGantrySlaveViewController.objects.get(id=int(request.GET['id']))
         jsonobj = {}
         jsonobj['id'] = query.id
         jsonobj['name'] = query.name
@@ -76,7 +76,7 @@ class SlaveViewControllerEditorDetailView(APIView):
         return Response(jsonobj)
 
     def put(self, request, *args, **kwargs):
-        query = krogoth_gantrySlaveViewController.objects.get(id=int(request.GET['id']))
+        query = KrogothGantrySlaveViewController.objects.get(id=int(request.GET['id']))
         query.name = request.data['name']
         query.title = request.data['title']
         query.controller_js = request.data['controller_js']

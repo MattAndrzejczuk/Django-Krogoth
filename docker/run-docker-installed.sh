@@ -11,7 +11,9 @@ docker exec -it armprime pip3 install django-redis==4.8.0
 #docker exec -it armprime pip3 install django-dbbackup
 #docker exec -it armprime pip3 install django-websocket-redis
 docker exec -it armprime pip3 install fcm-django==0.2.12
-sleep 3
+sleep 1
+docker exec -it armprime ./manage.py makemigrations
+sleep 1
 docker exec -it armprime ./manage.py migrate
 docker exec armprime-redis redis-cli config set notify-keyspace-events KEA
 echo "Create a Super User"

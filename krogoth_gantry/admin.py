@@ -1,13 +1,13 @@
 from django.contrib import admin
-from krogoth_gantry.models import krogoth_gantryMasterViewController, krogoth_gantryService, krogoth_gantryDirective, \
-    krogoth_gantrySlaveViewController, krogoth_gantryIcon, krogoth_gantryCategory
+from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryService, KrogothGantryDirective, \
+    KrogothGantrySlaveViewController, KrogothGantryIcon, KrogothGantryCategory
 
 
 
 
 
 
-class krogoth_gantryMasterViewControllerAdmin(admin.ModelAdmin):
+class KrogothGantryMasterViewControllerAdmin(admin.ModelAdmin):
     list_display = ('id', 'is_enabled', 'title', 'name', )
     class Media:
         js = (
@@ -34,7 +34,7 @@ class krogoth_gantryMasterViewControllerAdmin(admin.ModelAdmin):
                     '/static/dracula.css',)
         }
 
-class krogoth_gantryServiceAdmin(admin.ModelAdmin):
+class KrogothGantryServiceAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'name', )
     class Media:
         js = (
@@ -61,7 +61,7 @@ class krogoth_gantryServiceAdmin(admin.ModelAdmin):
                     '/static/dracula.css',)
         }
 
-class krogoth_gantryDirectiveAdmin(admin.ModelAdmin):
+class KrogothGantryDirectiveAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'name', )
     class Media:
         js = (
@@ -88,7 +88,7 @@ class krogoth_gantryDirectiveAdmin(admin.ModelAdmin):
                     '/static/dracula.css',)
         }
 
-class krogoth_gantrySlaveViewControllerAdmin(admin.ModelAdmin):
+class KrogothGantrySlaveViewControllerAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'name', )
     class Media:
         js = (
@@ -116,18 +116,18 @@ class krogoth_gantrySlaveViewControllerAdmin(admin.ModelAdmin):
         }
 
 
-class krogoth_gantryIconAdmin(admin.ModelAdmin):
+class KrogothGantryIconAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', )
 
-class krogoth_gantryCategoryAdmin(admin.ModelAdmin):
+class KrogothGantryCategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', )
 
 
-admin.site.register(krogoth_gantryIcon, krogoth_gantryIconAdmin)
-admin.site.register(krogoth_gantryCategory, krogoth_gantryCategoryAdmin)
+admin.site.register(KrogothGantryIcon, KrogothGantryIconAdmin)
+admin.site.register(KrogothGantryCategory, KrogothGantryCategoryAdmin)
 
 
-admin.site.register(krogoth_gantryMasterViewController, krogoth_gantryMasterViewControllerAdmin)
-admin.site.register(krogoth_gantryService, krogoth_gantryServiceAdmin)
-admin.site.register(krogoth_gantryDirective, krogoth_gantryDirectiveAdmin)
-admin.site.register(krogoth_gantrySlaveViewController, krogoth_gantrySlaveViewControllerAdmin)
+admin.site.register(KrogothGantryMasterViewController, KrogothGantryMasterViewControllerAdmin)
+admin.site.register(KrogothGantryService, KrogothGantryServiceAdmin)
+admin.site.register(KrogothGantryDirective, KrogothGantryDirectiveAdmin)
+admin.site.register(KrogothGantrySlaveViewController, KrogothGantrySlaveViewControllerAdmin)

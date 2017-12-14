@@ -1,14 +1,7 @@
-from krogoth_gantry.models import SampleModelOne
-from rest_framework import serializers, exceptions
+from rest_framework import serializers
 
 
 
 
-
-class SampleModelOneSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = SampleModelOne
-        fields = '__all__'
 
 

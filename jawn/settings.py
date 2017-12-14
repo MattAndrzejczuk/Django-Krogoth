@@ -16,10 +16,16 @@ import subprocess
 from django.core.mail import *
 import socket
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DJANGULAR_STATIC = 'krogoth_gantryStaticFiles'
-
-
+APP_VERSION = '?.?.?'
+PUBLIC_GENERATED_THUMBNAILS = '/usr/src/persistent/media/Generated_Thumbnails/'
+PUBLIC_EXTRACTED_HPIs = '/usr/src/persistent/media/Processed_HPI_Archives/'
+if not os.path.exists(PUBLIC_EXTRACTED_HPIs):
+    os.makedirs(PUBLIC_EXTRACTED_HPIs)
+if not os.path.exists(PUBLIC_GENERATED_THUMBNAILS):
+    os.makedirs(PUBLIC_GENERATED_THUMBNAILS)
 
 FILEBROWSER_DIRECTORY = ''
 DIRECTORY = ''
@@ -38,7 +44,6 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-
 REST_FRAMEWORK = {
     'PAGE_SIZE': 20,
     'DEFAULT_PERMISSION_CLASSES': (
@@ -96,6 +101,7 @@ INSTALLED_APPS = (
     'chat',
     'LazarusIV',
     'LazarusV',
+    'krogoth_core',
     'moho_extractor',
     'krogoth_gantry',
     'CommunityForum',
@@ -104,8 +110,6 @@ INSTALLED_APPS = (
     'filebrowser',
     'grappelli',
 )
-#   'dbbackup',
-
 
 
 MIDDLEWARE_CLASSES = (
@@ -156,17 +160,6 @@ DATABASES = {
         'PORT': os.environ["POSTGRES_PORT_5432_TCP_PORT"],
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'jawn',
-#         'USER': 'ubuntu',
-#         'PASSWORD': 'sau4tgiudnf',
-#         'HOST': '12.226.201.62',
-#         'PORT': '32769',
-#     }
-# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -301,12 +294,7 @@ FCM_DJANGO_SETTINGS = {
 }
 
 
-PUBLIC_GENERATED_THUMBNAILS = '/usr/src/persistent/media/Generated_Thumbnails/'
-PUBLIC_EXTRACTED_HPIs = '/usr/src/persistent/media/Processed_HPI_Archives/'
-if not os.path.exists(PUBLIC_EXTRACTED_HPIs):
-    os.makedirs(PUBLIC_EXTRACTED_HPIs)
-if not os.path.exists(PUBLIC_GENERATED_THUMBNAILS):
-    os.makedirs(PUBLIC_GENERATED_THUMBNAILS)
+
 
 
 
