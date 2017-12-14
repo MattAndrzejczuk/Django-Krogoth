@@ -7,7 +7,7 @@ docker run --name armprime-postgres -e POSTGRES_PASSWORD=58bdf87d93a3f325574900a
 docker run -d -P --name=armprime-redis redis
 docker run -d -p 80:80 -v $parentdir:/usr/src/app/ --link armprime-postgres:postgres --link armprime-redis:redis --name=armprime mattjawn/armprime
 echo "Running Containers...."
-#docker exec -it armprime pip3 install jsbeautifier
+docker exec -it armprime pip3 install django-redis==4.8.0
 #docker exec -it armprime pip3 install django-dbbackup
 #docker exec -it armprime pip3 install django-websocket-redis
 docker exec -it armprime pip3 install fcm-django==0.2.12
@@ -18,8 +18,8 @@ echo "Create a Super User"
 docker exec -it armprime ./manage.py createsuperuser
 echo "Select Yes to Continue Install"
 docker exec -it armprime ./manage.py collectstatic
-echo "Installing Djangular... "
-docker exec -it armprime ./manage.py makemigrations dynamic_lazarus_page Djangular djangular_dashboard LazarusIV LazarusV chat
+echo "Installing krogoth_gantry... "
+docker exec -it armprime ./manage.py makemigrations moho_extractor krogoth_gantry djangular_dashboard LazarusIV LazarusV chat
 docker exec -it armprime ./manage.py migrate
 docker exec -it armprime ./manage.py make_default_layout
 ##############

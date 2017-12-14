@@ -23,7 +23,7 @@ from PIL import Image
 
 
 from django.contrib.auth.models import User
-from dynamic_lazarus_page.models import AngularFuseApplication, NgIncludedHtml, NgIncludedJs
+from moho_extractor.models import AngularFuseApplication, NgIncludedHtml, NgIncludedJs
 
 
 from .app_settings import (
@@ -35,8 +35,8 @@ from .app_settings import (
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
-from Djangular.models import DjangularService, DjangularDirective, DjangularSlaveViewController, \
-    DjangularIcon, DjangularCategory, DjangularMasterViewController, SampleModelOne
+from krogoth_gantry.models import krogoth_gantryService, krogoth_gantryDirective, krogoth_gantrySlaveViewController, \
+    krogoth_gantryIcon, krogoth_gantryCategory, krogoth_gantryMasterViewController, SampleModelOne
 
 
 import subprocess
@@ -135,23 +135,23 @@ def index(request):
 
 
     print('SOMEONE IS REQUESTING THE INDEX HTML PAGE ! ! !')
-    check_if_default_vc_exists = DjangularMasterViewController.objects.all()
+    check_if_default_vc_exists = krogoth_gantryMasterViewController.objects.all()
     if len(check_if_default_vc_exists) == 0:
 
-        defaultIcon = DjangularIcon(name='home, house', code='icon-home')
+        defaultIcon = krogoth_gantryIcon(name='home, house', code='icon-home')
         defaultIcon.save()
 
         print('NO DEFAULT APP DETECTED!')
-        print('creating a default Djangular application...')
-        defaultCategory = DjangularCategory(name='Djangular', code='hello!!')
+        print('creating a default krogoth_gantry application...')
+        defaultCategory = krogoth_gantryCategory(name='krogoth_gantry', code='hello!!')
         defaultCategory.save()
 
         default_html_header = '<h1>It works!</h1>'
-        default_html_body = "<h4>Congratulations, you've successfully installed a new Djangular Application.</h4>"
+        default_html_body = "<h4>Congratulations, you've successfully installed a new krogoth_gantry Application.</h4>"
         default_html_pt1 = '<div flex="20"></div><div flex="60" layout="column">'
         default_html_pt2 = '</div><div flex="20"></div>'
 
-        default = DjangularMasterViewController(name='home',
+        default = krogoth_gantryMasterViewController(name='home',
                                                 title='It Works',
                                                 icon=defaultIcon,
                                                 category=defaultCategory,
@@ -161,10 +161,10 @@ def index(request):
 
 
 
-    DjangularMasterViewControllers = []
-    all_applications = DjangularMasterViewController.objects.filter(is_enabled=True)
+    krogoth_gantryMasterViewControllers = []
+    all_applications = krogoth_gantryMasterViewController.objects.filter(is_enabled=True)
     for application in all_applications:
-        DjangularMasterViewControllers.append(application.name)
+        krogoth_gantryMasterViewControllers.append(application.name)
 
     try:
         _url = request.get_full_path()
@@ -220,7 +220,7 @@ def index(request):
         rm_0s = current_build_2.replace('01', '1').replace('02', '2').replace('03', '3').replace('04', '4')
         current_build_2 = rm_0s.replace('05', '5').replace('06', '6').replace('07', '7').replace('08', '8').replace('09', '9')
 
-    version_build = 'Djangular ' + current_build_1[:3] + "." + current_build_2
+    version_build = 'krogoth_gantry ' + current_build_1[:3] + "." + current_build_2
     seo_title = "ArmPrime " + current_build_1[:3] + "." + current_build_2 + ' - Home of Total Annihilation Lazarus'
     seo_description = 'The ultimate resource for developing Total Annihilation mods using our web base mod editor.'
     seo_description += ' Upload units, edit and publish your TA content with the community.'
@@ -268,7 +268,7 @@ def index(request):
         "version_build": version_build,
         "message": seo_title,
         "description": seo_description,
-        "DjangularMasterViewControllers": DjangularMasterViewControllers,
+        "krogoth_gantryMasterViewControllers": krogoth_gantryMasterViewControllers,
         "splash_title": splash_title,
         "font_size": font_size,
         "splash_logo_bg_color": splash_logo_bg_color,

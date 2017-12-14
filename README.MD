@@ -51,7 +51,7 @@
 ```
 
 
-# Djangular
+# krogoth_gantry
 
 
 # Django, uWSGI and Nginx in a container
@@ -108,7 +108,7 @@ clone to `/home/ubuntu/arm-prime` and run `run-docker-installed.sh`
 
 ### Django Administration Guide
 
-Create a new AngularFuseApplication under dynamic_lazarus_page.
+Create a new AngularFuseApplication under moho_extractor.
 Access it via http://127.0.0.1/#!/`FUSE APPLICATION NAME`
 
 

@@ -12,8 +12,8 @@
 
 
     <title>{{ message }}</title>
-    <meta id="DjangularMetaImage_01" name="twitter:image:src" content="/static/ArmLogoVector.svg"/>
-    <meta id="DjangularMetaImage_02" content="/static/CoreLogoVector.svg"/>
+    <meta id="krogoth_gantryMetaImage_01" name="twitter:image:src" content="/static/ArmLogoVector.svg"/>
+    <meta id="krogoth_gantryMetaImage_02" content="/static/CoreLogoVector.svg"/>
 
 
     <!--<meta name="twitter:image:alt" content="{{ splash_title }}"/>-->
@@ -23,16 +23,18 @@
 
     <meta name="msvalidate.01" content="886E5F10D7612105B6C98936B33E1D24"/>
     <meta name="google-site-verification" content="MF6sr36SRcMLLyvQra1-xXWDxWQSut4shwf-pCigTSg"/>
-<!-- Global Site Tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107036799-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments)};
-  gtag('js', new Date());
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107036799-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-107036799-1');
-</script>
+        function gtag() {
+            dataLayer.push(arguments)
+        };
+        gtag('js', new Date());
 
+        gtag('config', 'UA-107036799-1');
+    </script>
 
 
     {% verbatim %}
@@ -100,14 +102,15 @@
 
 
 <!-- SPLASH SCREEN -->
-
 <ms-splash-screen id="splash-screen" style="background-color: {% endverbatim %}{{ main_bg_color }}{% verbatim %}">
     <div class="center">
         <div class="logo"
              style="width:{% endverbatim %}{{ width }}{% verbatim %}px;
-             font-size: {% endverbatim %}{{ font_size }}{% verbatim %}px;
-             background-color: {% endverbatim %}{{ splash_logo_bg_color }}{% verbatim %};">
-            <span style="color: {% endverbatim %}{{ font_color }}{% verbatim %};">{% endverbatim %}{{ splash_title }}{% verbatim %}</span>
+                     font-size: {% endverbatim %}{{ font_size }}{% verbatim %}px;
+                     background-color: {% endverbatim %}{{ splash_logo_bg_color }}{% verbatim %};">
+            <span style="color: {% endverbatim %}{{ font_color }}{% verbatim %};">
+                {% endverbatim %}{{ splash_title }}{% verbatim %}
+            </span>
         </div>
         <!-- Material Design Spinner -->
         <div class="spinner-wrapper">
@@ -141,7 +144,7 @@
 </ms-splash-screen>
 
 <!-- / SPLASH SCREEN -->
-<span style="display: none" id="DjangularMetaText_01">{{ version_build }}</span>
+<span style="display: none" id="krogoth_gantryMetaText_01">{{ version_build }}</span>
 <div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>
 
 <!--
@@ -526,13 +529,26 @@
 
 {% endverbatim %}
 
-{% for fuse_app in AngularFuseApplications %}
-<script src="/dynamic_lazarus_page/DynamicJavaScriptInjector/?name={{fuse_app}}"></script>
-{% endfor %}
 
-{% for fuse_app in DjangularMasterViewControllers %}
-<script src="/Djangular/DynamicJavaScriptInjector/?name={{fuse_app}}"></script>
+
+
+<!--AngularFuseApplications-->
+{% for fuse_app in AngularFuseApplications %}
+    <script src="/moho_extractor/DynamicJavaScriptInjector/?name={{ fuse_app }}"></script>
 {% endfor %}
+<!--------------------------->
+
+
+
+<!--krogoth_gantryMasterViewControllers-->
+{% for fuse_app in krogoth_gantryMasterViewControllers %}
+    <script src="/krogoth_gantry/DynamicJavaScriptInjector/?name={{ fuse_app }}"></script>
+{% endfor %}
+<!---------------------------------->
+
+
+
+
 
 {% verbatim %}
 <script src="/static/app/core/core.module.js"></script>
@@ -559,7 +575,7 @@
 <script src="/static/app/core/theming/fuse-theming.config.js"></script>
 
 <!--<script src="/static/app/core/theming/fuse-themes.constant.js"></script>-->
-<script src="/dynamic_lazarus_page/NgIncludedJs/?name=colorThemesConstants"></script>
+<script src="/moho_extractor/NgIncludedJs/?name=colorThemesConstants"></script>
 
 <script src="/static/app/core/theming/fuse-palettes.constant.js"></script>
 <script src="/static/app/core/theming/fuse-generator.service.js"></script>
@@ -575,15 +591,15 @@
 <script src="/static/app/core/config/fuse-config.provider.js"></script>
 
 <!-- <script src="/static/app/toolbar/toolbar.module.js"></script> -->
-<script src="/dynamic_lazarus_page/NgIncludedJs/?name=toolbarModule"></script>
+<script src="/moho_extractor/NgIncludedJs/?name=toolbarModule"></script>
 <!-- <script src="/static/app/toolbar/toolbar.controller.js"></script> -->
-<script src="/dynamic_lazarus_page/NgIncludedJs/?name=toolbarController"></script>
+<script src="/moho_extractor/NgIncludedJs/?name=toolbarController"></script>
 
 <script src="/static/app/quick-panel/quick-panel.controller.js"></script>
 <script src="/static/app/navigation/navigation.module.js"></script>
 <script src="/static/app/navigation/navigation.controller.js"></script>
 
-<script src="/dynamic_lazarus_page/DynamicIndexModule/"></script>
+<script src="/moho_extractor/DynamicIndexModule/"></script>
 
 <script src="/static/app/main/main.controller.js"></script>
 <script src="/static/app/core/core.run.js"></script>
@@ -593,7 +609,7 @@
 
 <script src="{{ index_route_js }}"></script>
 <!-- THIS WILL LOAD DYNAMICALLY
-<script src="/dynamic_lazarus_page/DynamicIndexRoute/"></script>
+<script src="/moho_extractor/DynamicIndexRoute/"></script>
 <!-- -->
 
 <!--<script src="/static/app/index.route.js"></script>-->
@@ -612,31 +628,31 @@
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
 <script>
     const messaging = firebase.messaging();
-      // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCyXeTRl8pUdr1jlolwWsv2eQg4MuSsij4",
-    authDomain: "armprime-178101.firebaseapp.com",
-    databaseURL: "https://armprime-178101.firebaseio.com",
-    projectId: "armprime-178101",
-    storageBucket: "armprime-178101.appspot.com",
-    messagingSenderId: "487214059831"
-  };
-  firebase.initializeApp(config);
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyCyXeTRl8pUdr1jlolwWsv2eQg4MuSsij4",
+        authDomain: "armprime-178101.firebaseapp.com",
+        databaseURL: "https://armprime-178101.firebaseio.com",
+        projectId: "armprime-178101",
+        storageBucket: "armprime-178101.appspot.com",
+        messagingSenderId: "487214059831"
+    };
+    firebase.initializeApp(config);
 
-      messaging.requestPermission()
-    .then(function() {
-      // [START_EXCLUDE]
-      // In many cases once an app has been granted notification permission, it
-      // should update its UI reflecting this.
-      // [END_EXCLUDE]
-    })
-    .catch(function(err) {
-      console.log('Unable to get permission to notify.', err);
-    });
+    messaging.requestPermission()
+        .then(function () {
+            // [START_EXCLUDE]
+            // In many cases once an app has been granted notification permission, it
+            // should update its UI reflecting this.
+            // [END_EXCLUDE]
+        })
+        .catch(function (err) {
+            console.log('Unable to get permission to notify.', err);
+        });
 </script>
 
 
-<p id="DjangularVersion" style="display: none">{{ version_build }}</p>
+<p id="krogoth_gantryVersion" style="display: none">{{ version_build }}</p>
 
 </body>
 
@@ -662,28 +678,29 @@
     }
 
     .glass_bg {
-        background-image: url('/static/assets/ArmPrimeBg_b-02.jpg');
+        background-image: url('/static/coreInterface/AP-bg-01-blur.jpg') !important;
         background-repeat: no-repeat;
         background-position: top left;
-        background-size: 3096px 2352px;
+        background-size: 4182px 2352px;
         background-attachment: fixed;
         border-color: rgba(0, 0, 0, 0.70) !important;
     }
 
     .multi_bg_example_opaque {
-        background-image: url('/static/assets/ArmPrimeBg-02.jpg');
+        background-image: url('/static/coreInterface/AP-bg-01-opaque.jpg') !important;
         background-repeat: no-repeat;
-        background-position: top left;
-        background-size: 3096px 2352px;
+        background-position: center center;
+        background-size: 4182px 2352px;
         background-color: rgba(0, 0, 0, 0) !important;
     }
 
     .multi_bg_example_glass {
-        background-image: url('/static/assets/ArmPrimeBg_b-02.jpg');
+        background-image: url('/static/coreInterface/AP-bg-01-blur.jpg') !important;
         background-repeat: no-repeat;
-        background-position: top left;
-        background-size: 3096px 2352px;
+        background-position: center center;
+        background-size: 4182px 2352px;
         background-attachment: fixed;
+        border-color: rgba(0, 0, 0, 0.70) !important;
     }
 
     @font-face {

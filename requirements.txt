@@ -27,3 +27,4 @@ django-grappelli==2.9.1
 django-filebrowser==3.9.1
 django-websocket-redis==0.5.1
 django-redis==4.8.0
+

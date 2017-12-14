@@ -17,7 +17,7 @@ from django.core.mail import *
 import socket
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DJANGULAR_STATIC = 'DjangularStaticFiles'
+DJANGULAR_STATIC = 'krogoth_gantryStaticFiles'
 
 
 
@@ -96,8 +96,8 @@ INSTALLED_APPS = (
     'chat',
     'LazarusIV',
     'LazarusV',
-    'dynamic_lazarus_page',
-    'Djangular',
+    'moho_extractor',
+    'krogoth_gantry',
     'CommunityForum',
     'djangular_dashboard',
     'django_filters',
@@ -105,6 +105,7 @@ INSTALLED_APPS = (
     'grappelli',
 )
 #   'dbbackup',
+
 
 
 MIDDLEWARE_CLASSES = (

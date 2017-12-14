@@ -1,0 +1,181 @@
+<!-- when showing the picture -->
+<style>
+.ng-hide-remove { animation:0.5s flipInX ease; }
+@keyframes flipInX {
+  0% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    transition-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+  }
+
+  60% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  100% {
+    transform: perspective(400px);
+    transform: perspective(400px);
+    transform: perspective(400px);
+  }
+}
+</style>
+
+<!-- when hiding the picture -->
+<style>
+.ng-hide-add         { animation:0.5s lightSpeedOut ease; }
+@keyframes lightSpeedOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(100%, 0, 0) skewX(30deg);
+    transform: translate3d(100%, 0, 0) skewX(30deg);
+    opacity: 0;
+  }
+}
+@keyframes lightSpeedOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(100%, 0, 0) skewX(30deg);
+    transform: translate3d(100%, 0, 0) skewX(30deg);
+    transform: translate3d(100%, 0, 0) skewX(30deg);
+    opacity: 0;
+  }
+}
+</style>
+
+
+<div class="page-layout carded fullwidth single-scroll" layout="row">
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg">
+
+    </div>
+    <!-- / TOP BACKGROUND -->
+
+
+    <div class="center" flex>
+        <!-- CONTENT HEADER -->
+        <div class="header">
+
+        </div>
+        <!-- / CONTENT HEADER -->
+
+
+        <div class="content-card">
+            <!-- CONTENT TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="start center">
+                <h1 >Upload Total Annihilation Data Files</h1>
+            </div>
+            <!-- / CONTENT TOOLBAR -->
+			
+			
+			<div style="padding: 20px">
+				<p>Organize all your raw HPI, UFO and CCX uploaded content here.</p>
+				<p>Create repositories to organize all your uploaded content i.e. 
+					'Hovercraft Units' or 'Unofficial Patch Units'</p>
+				<p>Creating Arm Prime repositories simply allow you to organize your uploads if 
+				you are planning to upload hundreds of unique unit HPI packages. You may want to 
+				break them up into repositories to make the HPI Directory Explorer easier to navigate.</p>
+			</div>
+			
+			<div>
+				<md-button ng-click="vm.reloadDataREST()">Reload Data</md-button>
+			</div>
+			
+			<div ng-hide="vm.thisControllerDidFullyLoad === false || vm.controllerIsReloading === true">
+                    <table class="dataTable row-border hover" datatable="ng" dt-instance="vm.dtInstance" dt-options="vm.dtOptions" >
+                        <thead>
+                        <tr>
+                            <!--<th class="primary-text">
+                                <div class="table-header">
+                                    <span class="column-title">ID</span>
+                                </div>
+                            </th>-->
+                            <th class="primary-text">
+                                <div class="table-header">
+                                    <span class="column-title">Selected</span>
+                                </div>
+                            </th>
+                            <th class="secondary-text">
+                                <div class="table-header">
+                                    <span class="column-title">Name</span>
+                                </div>
+                            </th>
+                            <th class="secondary-text">
+                                <div class="table-header">
+                                    <span class="column-title">Description</span>
+                                </div>
+                            </th>
+                            <th class="secondary-text">
+                                <div class="table-header">
+                                    <span class="column-title">Created</span>
+                                </div>
+                            </th><!--
+                            <th class="secondary-text">
+                                <div class="table-header">
+                                    <span class="column-title">Author</span>
+                                </div>
+                            </th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="mod in ::vm.selectedDirItems ">
+                            <!--<td>{{ mod['id'] }}</td>-->
+                            <td>
+									<md-button disabled ng-if="mod['is_selected']" 
+											   class="md-grey-100-bg md-blue-grey-fg"> Selected </md-button>
+									<md-button ng-click="vm.selectDtRow(mod['id'])"
+											   ng-if="!mod['is_selected']" 
+											   class="md-accent-bg md-grey-50-fg"> Select </md-button>
+                            </td>
+                            <td>
+                                <span class="text-boxed m-0 indigo-bg white-fg">{{ mod['name'] }}</span>
+                            </td>
+                            <td>{{ mod['description'] }}</td>
+                            <!--<td>
+								{{ mod['author'] }}
+							</td>-->
+                            <td>
+                                    {{mod['created'] | date }}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+			</div>
+
+			<md-button ng-click="vm.showDialog($event)">
+				Upload file to {{ vm.selected['name'] }}
+			</md-button>
+
+            <!-- CONTENT 
+            <md-content class="content" ms-scroll>
+                <iframe width="600" height="500" src="/SandboxDB/UploadDataTA/"></iframe>
+            </md-content>
+            / CONTENT -->
+			
+
+			
+        </div>
+    </div>
+</div>

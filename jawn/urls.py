@@ -51,8 +51,8 @@ urlpatterns = [
 
 
 
-    url(r'^dynamic_lazarus_page/', include('dynamic_lazarus_page.urls')),
-    url(r'^Djangular/', include('Djangular.urls')),
+    url(r'^moho_extractor/', include('moho_extractor.urls')),
+    url(r'^krogoth_gantry/', include('krogoth_gantry.urls')),
     url(r'^Forum/', include('CommunityForum.urls')),
 
 

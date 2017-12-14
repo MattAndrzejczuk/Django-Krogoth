@@ -1,0 +1,18 @@
+<section layout="row" class="md-accent-bg">
+	<div flex="80" class="md-grey-900-bg" md-padding layout="column">
+		<div style="height:50px" class="md-grey-700-bg"> 
+			<md-button class="md-warn md-raised"> save </md-button>
+		</div>
+		<div id="responseLog" style="padding:25px; font-size: 10px">
+		</div>		
+	</div>
+	<div flex="20" layout="column" 
+		 ms-scroll class="scrollable" 
+		 style="height:{{ vm.heightFromButtons }}px;"> 
+			<md-button style="height:50px;"
+					   ng-repeat="fbiUnit in vm.list | orderBy:'ID'" 
+					   ng-click="vm.getDepen(fbiUnit['UnitName'])" >
+				{{ fbiUnit['ID'] }} {{ fbiUnit['Name'] }}
+			</md-button>
+	</div>
+</section>

@@ -1,0 +1,178 @@
+<style>
+    .md-hover-button-amber:hover {
+        background-color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+		color: rgb(60,66,82) !important;
+    }
+    .md-hover-button-amber {
+        border-style: solid !important;
+        border-width: 1px !important;
+		color: rgb(255,171,0) !important;
+        border-color: rgb(255,171,0) !important;
+    }
+
+    .md-hover-button:hover {
+        background-color: rgb(2, 136, 209) !important;
+        border-color: rgb(2, 136, 209, 0) !important;
+    }
+
+    .md-hover-button {
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: rgb(2, 136, 209) !important;
+    }
+
+    .md-hover-button:hover > .iconhover {
+        color: rgb(60,66,82) !important;
+    }
+
+    .md-icon-button > .iconhover {
+        color: rgb(2, 136, 209) !important;
+    }
+</style>
+
+<div layout="column">
+    <section layout="column" layout-align="start stretch" layout-padding>
+        <div layout="row" layout-align="start center">
+            <md-button aria-label="back"
+                       class="md-icon-button md-accent md-hover-button"
+                       ui-sref="app.General">
+                <md-icon class="iconhover" md-font-icon="icon-arrow-left"></md-icon>
+            </md-button>
+			<div>
+				&nbsp;
+			</div>
+			<div>
+				<h1> {{ vm.viewName }}</h1>
+			</div>
+        </div>
+    </section>
+
+    <div ng-show="vm.createThreadMode === false">
+        <md-card class="md-background-bg md-hue-2">
+            <md-card-header>
+                <md-card-avatar>
+                    <img class="md-user-avatar" src="/static/CoreLogoVector.svg">
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title">{{ vm.listData['title'] }}</span>
+                    <span class="md-subhead">Posted by {{ vm.listData['author']['username'] }} on {{ vm.listData['pub_date'] | date:'fullDate' }}</span>
+                </md-card-header-text>
+            </md-card-header>
+            <!-- <img src="card-image.png" class="md-card-image" alt="image caption">-->
+            <md-card-title>
+                <md-card-title-text>
+                    <!--<span class="md-headline">Card headline</span>-->
+                    <!--<span class="md-subhead">{{ thread['pub_date'] }}</span>-->
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <textarea readonly>{{ vm.listData['body'] }}</textarea>
+            </md-card-content>
+        </md-card>
+
+        <md-card class="md-background-bg md-hue-2" ng-repeat="reply in vm.listData['replies']">
+            <md-card-header>
+                <md-card-avatar>
+                    <img class="md-user-avatar" src="/static/CoreLogoVector.svg">
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-subhead">Posted by {{ vm.listData['author']['username'] }} on {{ vm.listData['pub_date'] | date:'fullDate' }}</span>
+                </md-card-header-text>
+            </md-card-header>
+            <!-- <img src="card-image.png" class="md-card-image" alt="image caption">-->
+            <md-card-title>
+                <md-card-title-text>
+                    <!--<span class="md-headline">Card headline</span>-->
+                    <!--<span class="md-subhead">{{ thread['pub_date'] }}</span>-->
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <p>{{ reply['body'] }}</p>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="center center">
+
+            </md-card-actions>
+        </md-card>
+        <div layout="row" layout-align="center center" ng-if="vm.createReplyMode === false">
+            <md-button ng-click="vm.addReply()"
+					   style="width: 30%"
+                       class="md-hover-button-amber">
+                Add Reply
+            </md-button>
+        </div>
+    </div>
+
+	
+	
+	
+    <div layout="row">
+    </div>
+</div>
+
+
+<md-content ng-if="vm.createThreadMode === true">
+            <md-input-container md-no-float class="md-block" flex style="width:89%;">
+				<label class="md-primary-fg md-hue-2">New Thread Name</label>
+                <input ng-model="vm.form.title" type="text" class="md-accent-fg">
+            </md-input-container>
+        <md-card layout="column" layout-align="start center">
+			<div class="form" flex style="width:100%; margin:10px">
+                <textarea placeholder="Write something.." 
+						  class="md-accent-fg"
+						  style="width:99%; margin:10px; height: 300px; background-color: transparent"
+						  ng-model="vm.form.body"></textarea>
+                <footer layout="row" layout-align="space-between center">
+                    <div layout="row" layout-align="start center">
+                        <md-button class="md-icon-button" aria-label="insert photo">
+                            <md-icon md-font-icon="icon-file-image-box"></md-icon>
+                            <md-tooltip><span>insert photo</span></md-tooltip>
+                        </md-button>
+                    </div>
+					<div layout="row" layout-align="end center">
+						<md-button ng-click="vm.newThreadHttpPOSTRequest()" 
+								   class="md-hover-button-amber" aria-label="POST">
+							Submit
+						</md-button>
+					</div>
+                </footer>
+            </div>
+        </md-card>	
+</md-content>
+
+<md-content ng-if="vm.createReplyMode === true">
+        <md-card>
+			<div class="form" flex>
+                <textarea placeholder="Write your reply.." 
+						  class="md-accent-fg"
+						  style="width:100%; margin:10px; height: 300px; background-color: transparent"
+						  ng-model="vm.form.body"></textarea>
+
+                <footer layout="row" layout-align="space-between center">
+                    <div layout="row" layout-align="start center">
+                        <md-button class="md-icon-button" aria-label="insert photo">
+                            <md-icon md-font-icon="icon-file-image-box"></md-icon>
+                            <md-tooltip><span>insert photo</span></md-tooltip>
+                        </md-button>
+                    </div>
+					<div layout="row" layout-align="end center">
+						<md-button class="md-hover-button-amber" 
+								   ng-click="vm.addReply()">
+							Cancel
+						</md-button>
+						<md-button ng-click="vm.newReplyHttpPOSTRequest()" 
+								   class="md-hover-button-primary"
+								   aria-label="POST">
+							Submit
+						</md-button>
+					</div>
+                </footer>
+            </div>
+        </md-card>
+</md-content>
+
+<!--
+<pre>
+	{{ vm.listData | json }}
+</pre>
+-->

@@ -1,0 +1,98 @@
+
+from django.core.management.base import BaseCommand
+
+
+from krogoth_gantry.models import krogoth_gantryMasterViewController, krogoth_gantryIcon, krogoth_gantryService, \
+    krogoth_gantryCategory, krogoth_gantrySlaveViewController, krogoth_gantryDirective
+import codecs
+import os
+
+
+class Command(BaseCommand):
+    help = 'prints the toolbar module and controller.'
+
+    # def add_arguments(self, parser):
+    #     parser.add_argument('mvc_id', nargs="+", type=int)
+
+    def handle(self, *args, **options):
+        self.stdout.write(self.style.SUCCESS(''))
+
+        has_master = False
+        has_slave = False
+        has_services = False
+        has_directives = False
+
+        icon = krogoth_gantryIcon()
+        try:
+            icon = krogoth_gantryIcon(name='s16 icon-ta-arm', code='s16 icon-ta-arm')
+            icon.save()
+        except:
+            icon = krogoth_gantryIcon.objects.get(name='s16 icon-ta-arm')
+
+
+        cat = krogoth_gantryCategory.objects.get_or_create(name='DVC')
+
+
+        djangular_dvcs = os.listdir('krogoth_gantry/DVCManager')
+        for dvc in djangular_dvcs:
+            components = os.listdir('krogoth_gantry/DVCManager/' + dvc)
+            serv_path = 'krogoth_gantry/DVCManager/' + dvc + '/Services'
+            if os.path.isdir(serv_path):
+                if len(os.listdir(serv_path)) >= 1:
+                    has_services = True
+            direc_path = 'krogoth_gantry/DVCManager/' + dvc + '/Directives'
+            if os.path.isdir(direc_path):
+                if len(os.listdir(direc_path)) >= 1:
+                    has_directives = True
+            slave_path = 'krogoth_gantry/DVCManager/' + dvc + '/SlaveVC'
+            if os.path.isdir(slave_path):
+                if len(os.listdir(slave_path)) >= 1:
+                    has_slave = True
+            master_path = 'krogoth_gantry/DVCManager/' + dvc + '/MasterVC'
+            if os.path.isdir(master_path):
+                if len(os.listdir(master_path)) >= 1:
+                    has_master = True
+
+            if has_master == True:
+                title = 'Untitled'
+                if os.path.exists('krogoth_gantry/DVCManager/' + dvc + '/Title.txt'):
+                    title = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/Title.txt', 'r').read()
+                str_View = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/view.html', 'r').read()
+                str_Module = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/module.js', 'r').read()
+                str_Controller = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/controller.js', 'r').read()
+                _mvc = krogoth_gantryMasterViewController.objects.get_or_create(name=dvc, title=title, view_html=str_View, controller_js=str_Controller, module_js=str_Module, category=cat[0], icon=icon)
+                mvc = krogoth_gantryMasterViewController.objects.get(id=_mvc[0].id)
+
+                svc = krogoth_gantrySlaveViewController.objects.get_or_create(name=dvc+'Slave')
+                svc[0].title = dvc+' Slave'
+                if has_slave == True:
+                    str_slaveV = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/view.html','r').read()
+                    str_slaveC = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/controller.js','r').read()
+                    svc[0].view_html = str_slaveV
+                    svc[0].controller_js = str_slaveC
+                    svc[0].save()
+                    mvc.djangular_slave_vc.add(svc[0])
+
+                if has_services == True:
+                    srv_files = os.listdir('krogoth_gantry/DVCManager/' + dvc + '/Services')
+                    for srv in srv_files:
+                        str_srv = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/Services/' + srv,'r').read()
+                        service = krogoth_gantryService.objects.get_or_create(name=srv[:-3])
+                        service[0].title = srv + ' Service'
+                        service[0].service_js = str_srv
+                        service[0].save()
+                        mvc.djangular_service.add(service[0])
+
+                if has_directives == True:
+                    drec_files = os.listdir('krogoth_gantry/DVCManager/' + dvc + '/Directives')
+                    for drec in drec_files:
+                        str_drec = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/Directives/' + drec, 'r').read()
+                        directive = krogoth_gantryDirective.objects.get_or_create(name=drec[:-3])
+                        directive[0].title = drec + ' Directive'
+                        directive[0].directive_js = str_drec
+                        directive[0].save()
+                        mvc.djangular_directive.add(directive[0])
+
+                mvc.icon = icon
+                mvc.save()
+                self.stdout.write(self.style.SUCCESS('DVC Manager Saved: ' + dvc))

@@ -1,10 +1,10 @@
-from dynamic_lazarus_page.models import AngularFuseApplication, NgIncludedHtml
+from moho_extractor.models import AngularFuseApplication, NgIncludedHtml
 
 
-DJANGULAR_ROOT = '/usr/src/app/DjangularStaticFiles'
+DJANGULAR_ROOT = '/usr/src/app/krogoth_gantryStaticFiles'
 
 
-# Djangular Initializer
+# krogoth_gantry Initializer
 
 # populates database with default js and html files.
 from jawn.default_sql_injector import populateDefaultSQL
@@ -19,9 +19,9 @@ populateDefaultSQL('')
 
 
 
-# Print status if Djangular is starting for the first time:
+# Print status if krogoth_gantry is starting for the first time:
 
-def printDjangularStatusOnLaunch(first_time_run):
+def printkrogoth_gantryStatusOnLaunch(first_time_run):
     # GET LAZARUS BUILD VERSION:
     bash_cmd = ['git', 'rev-list', '--count', 'master']
     get_build_cmd = str(subprocess.check_output(bash_cmd))
@@ -30,12 +30,12 @@ def printDjangularStatusOnLaunch(first_time_run):
     try:
         current_build_1 = ('0.' + str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", "")) + '.'
         current_build_2 = (str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", ""))[1:]
-        DjangularVersion = current_build_1[:3] + "." + current_build_2
-        print('\033[94mDjangular ' + DjangularVersion + '\033[0m')
+        krogoth_gantryVersion = current_build_1[:3] + "." + current_build_2
+        print('\033[94mkrogoth_gantry ' + krogoth_gantryVersion + '\033[0m')
         if first_time_run == True:
-            print('\033[97m Starting Djangular ' + DjangularVersion + ' for the first time.\033[0m')
+            print('\033[97m Starting krogoth_gantry ' + krogoth_gantryVersion + ' for the first time.\033[0m')
     except:
-        print('Djangular Initialized')
+        print('krogoth_gantry Initialized')
 
 
 
@@ -52,10 +52,10 @@ def printDjangularStatusOnLaunch(first_time_run):
 
 def populateDefaultSQL(base_dir):
 
-    # Configure Default Djangular View Controllers Here:
+    # Configure Default krogoth_gantry View Controllers Here:
 
 
-    # Default path for js and html files is /DjangularStaticFiles/
+    # Default path for js and html files is /krogoth_gantryStaticFiles/
 
     DEFAULT_APPS = [
 
@@ -101,7 +101,7 @@ def populateDefaultSQL(base_dir):
             newDVC.js_controller = controllerJs
             newDVC.js_module = moduleJs
             newDVC.icon = app['icon']
-    printDjangularStatusOnLaunch(first_time_run)
+    printkrogoth_gantryStatusOnLaunch(first_time_run)
 
 
 

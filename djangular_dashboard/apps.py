@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class DjangularDashboardConfig(AppConfig):
+class krogoth_gantryDashboardConfig(AppConfig):
     name = 'djangular_dashboard'

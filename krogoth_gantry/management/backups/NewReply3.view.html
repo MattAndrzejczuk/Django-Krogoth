@@ -1,0 +1,58 @@
+<style>
+    .md-hover-button:hover {
+        background-color: rgb(2, 136, 209) !important;
+        border-color: rgb(2, 136, 209, 0) !important;
+    }
+
+    .md-hover-button {
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: rgb(2, 136, 209) !important;
+    }
+
+    .md-hover-button:hover > .iconhover {
+        color: white !important;
+    }
+
+    .md-icon-button > .iconhover {
+        color: rgb(2, 136, 209) !important;
+    }
+</style>
+
+        <md-button
+                class="md-primary md-hue-2 md-raised">
+            Submit
+        </md-button>
+
+<div layout="column">
+    <section layout="row" layout-align="start center">
+        <div>
+            <md-button aria-label="back"
+                       class="md-icon-button md-accent md-hover-button"
+                       ui-sref="app.General.Thread({ id: vm.threadId })">
+                <md-icon class="iconhover" md-font-icon="icon-arrow-left"></md-icon>
+            </md-button>
+
+        </div>
+        <div>
+            &nbsp;
+        </div>
+        <div>
+            <h1> {{ vm.viewName }}</h1>
+        </div>
+    </section>
+	
+        <md-card >
+
+                <md-input-container class="md-block">
+				  <textarea ng-model="vm.form.body" type="text" placeholder="Enter your reply to the thread." ng-required="true">
+					</textarea>
+                </md-input-container>
+
+        </md-card>
+		
+</div>
+        <md-button
+                class="md-primary md-hue-2 md-raised">
+            Submit
+        </md-button>

@@ -1,10 +1,10 @@
 #!/bin/bash
 
-echo 'Djangular - Copyright Matt Andrzejczuk 2017'
+echo 'krogoth_gantry - Copyright Matt Andrzejczuk 2017'
 echo ''
 echo 'Initializing Database for the first time.'
 echo ''
 
-python3 manage.py makemigrations dynamic_lazarus_page GeneralWebsiteInfo DatabaseSandbox LazarusII LazarusDatabase Djangular rest_auth
+python3 manage.py makemigrations moho_extractor GeneralWebsiteInfo DatabaseSandbox LazarusII LazarusDatabase krogoth_gantry rest_auth
 python3 manage.py migrate
 

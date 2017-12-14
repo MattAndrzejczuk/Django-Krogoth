@@ -1,0 +1,58 @@
+<!--
+<pre>
+	{{ vm.listData | json }}
+</pre>
+-->
+
+<md-content layout="column">
+
+    <section layout="row">
+        <span flex="30"></span>
+        <span class="md-display-1" flex="40">Forum {{ vm.listData.title }}</span>
+        <span flex="30"></span>
+    </section>
+	
+    <section layout="row" layout-align="start center">
+        <div >
+                <md-button ui-sref="app.General.Thread" class="md-accent md-hue-2 md-raised">
+                    Create New Thread
+                </md-button>
+		</div>
+    </section>
+
+    <section>
+        <md-card ng-repeat="thread in vm.listData.posts" class="md-background-bg md-hue-3">
+            <md-card-header>
+                <md-card-avatar>
+                    <img class="md-user-avatar" src="/static/CoreLogoVector.svg">
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title">{{ thread['title'] }}</span>
+                    <span class="md-subhead">Posted by {{ thread['author']['username'] }} on {{ thread['pub_date'] | date:'fullDate' }}</span>
+                </md-card-header-text>
+            </md-card-header>
+            <!-- <img src="card-image.png" class="md-card-image" alt="image caption">-->
+            <md-card-title>
+                <md-card-title-text>
+                    <!--<span class="md-headline">Card headline</span>-->
+                    <!--<span class="md-subhead">{{ thread['pub_date'] }}</span>-->
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <p>{{ thread['body'] }}</p>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button ui-sref="app.General.Thread({ id: thread['id'] })" class="md-primary md-hue-2 md-raised">
+                    Open
+                </md-button>
+                <!--
+                    <md-card-icon-actions>
+                      <md-button class="md-icon-button" aria-label="icon">
+                        <md-icon md-svg-icon="/static/CoreLogoVector.svg"></md-icon>
+                      </md-button>
+                    </md-card-icon-actions>
+                -->
+            </md-card-actions>
+        </md-card>
+    </section>
+</md-content>

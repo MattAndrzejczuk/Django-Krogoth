@@ -1,0 +1,73 @@
+<md-content>
+	<h1>{{ vm.viewName }}</h1>
+
+	<md-button ng-click="vm.markTest()">
+		Mark Test
+	</md-button>
+	<md-button ng-click="vm.getMasterViewControllers()">
+		Get Master Views
+	</md-button>
+	<md-input-container>
+		<label>Load Master View Controller by ID</label>
+		<input type="text" ng-model="vm.input.mvcId"></input>
+	</md-input-container>
+	<md-button ng-click="vm.getMasterViewControllerDetail()">
+		Get Master View Detail
+	</md-button>
+	<md-button ng-click="vm.highlightKeyword('$http'); vm.highlightVm()">
+		Highlight VM
+	</md-button>
+	<md-button ng-click="vm.putMasterViewControllerDetail()">
+		putMasterViewControllerDetail
+	</md-button>
+
+<section layout="row">
+	<md-card flex-xl="50" flex-lg="100">
+	
+</md-card>
+		<md-card flex-xl="50" flex-lg="100">
+	
+</md-card>
+</section>
+<md-card>
+	
+</md-card>
+
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="one">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Tab One</h1>
+          <ui-codemirror ui-codemirror-opts="vm.editorOptions2" 
+						 ui-codemirror="{onLoad:vm.codemirrorLoadedView}">
+			</ui-codemirror>
+        </md-content>
+      </md-tab>
+      <md-tab label="two">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Tab Two</h1>
+			<ui-codemirror ui-codemirror-opts="vm.editorOptions" 
+						   ui-codemirror="{onLoad:vm.codemirrorLoaded}">
+			</ui-codemirror>
+        </md-content>
+      </md-tab>
+      <md-tab label="three">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Tab Three</h1>
+          <ui-codemirror ui-codemirror-opts="vm.editorOptions3" 
+						 ui-codemirror="{onLoad:vm.codemirrorLoadedModule}">
+			</ui-codemirror>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+	<br>
+	<md-card>
+		<md-button 
+				   ng-repeat="mvc in vm.data"
+				   ng-click="vm.getMasterViewControllerDetail(mvc['id'])">
+			{{ mvc['title'] }}
+		</md-button>
+	</md-card>
+	<pre>
+		{{ vm.data | json }}
+	</pre>
+</md-content>
