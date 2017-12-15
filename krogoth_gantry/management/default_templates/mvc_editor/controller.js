@@ -2,7 +2,7 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
-    function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu, krogoth_gantryEditorRESTful) {
+    function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu, DjangularEditorRESTful) {
         var vm = this;
 
 
@@ -106,7 +106,7 @@
 
 
         function getMasterViewControllers() {
-            krogoth_gantryEditorRESTful.getKrogothGantryMasterViewControllers().then(function(data) {
+            DjangularEditorRESTful.getDjangularMasterViewControllers().then(function(data) {
                 $log.info('/krogoth_gantry/MasterViewControllerEditorList/');
                 vm.data = data;
                 document.getElementById("krogoth_gantryMetaText_01").innerHTML = 'krogoth_gantry Editor ';
@@ -116,7 +116,7 @@
 
         function getMasterViewControllerDetail(id) {
             $log.debug(' ❎ LOADING MASTER VIEW CONTROLLER ! ! !');
-            krogoth_gantryEditorRESTful.getKrogothGantryMasterViewControllerDetail(id).then(function(data) {
+            DjangularEditorRESTful.getDjangularMasterViewControllerDetail(id).then(function(data) {
                 vm.editorContentMaster = data;
                 /// vm.editorModel.clearHistory();
                 $log.log('response.data');
@@ -151,13 +151,13 @@
         ///vm.getSlaveViewControllers = getSlaveViewControllers;
         ///vm.getSlaveViewControllerDetail = getSlaveViewControllerDetail;
         ///vm.putSlaveViewControllerDetail = putSlaveViewControllerDetail;
-        ///getKrogothGantrySlaveViewControllers: getKrogothGantrySlaveViewControllers,
-        ///getKrogothGantrySlaveViewControllerDetail: getKrogothGantrySlaveViewControllerDeta
-        ///putKrogothGantrySlaveViewController: putKrogothGantrySlaveViewController,
+        ///getDjangularSlaveViewControllers: getDjangularSlaveViewControllers,
+        ///getDjangularSlaveViewControllerDetail: getDjangularSlaveViewControllerDeta
+        ///putDjangularSlaveViewController: putDjangularSlaveViewController,
 
         function getSlaveViewControllers(master_id) {
             $log.debug(' ℹ️ LOADING SLAVE VIEW CONTROLLERS ! ! !');
-            krogoth_gantryEditorRESTful.getKrogothGantrySlaveViewControllers(master_id).then(function(data) {
+            DjangularEditorRESTful.getDjangularSlaveViewControllers(master_id).then(function(data) {
                 $mdToast.show($mdToast.simple()
                     .textContent('Slave VCs loaded: ' + data.length));
                 $log.info(data);
@@ -167,7 +167,7 @@
         }
 
         function getSlaveViewControllerDetail(slave_id) {
-            krogoth_gantryEditorRESTful.getKrogothGantrySlaveViewControllerDetail(slave_id).then(function(data) {
+            DjangularEditorRESTful.getDjangularSlaveViewControllerDetail(slave_id).then(function(data) {
                 vm.editorContentSlave = data;
                 $log.info('SLAVES LOADED!\n\n\n\n\n');
                 $log.log(data.controller_js);
@@ -184,7 +184,7 @@
         function putSlaveViewControllerDetail() {
             vm.editorContentSlave['controller_js'] = vm.slaveCtrlJS.doc.getValue();
             vm.editorContentSlave['view_html'] = vm.slaveViewHTML.doc.getValue();
-            krogoth_gantryEditorRESTful.putKrogothGantrySlaveViewController(vm.input.mvcId, vm.editorContentSlave).then(function(data) {
+            DjangularEditorRESTful.putDjangularSlaveViewController(vm.input.mvcId, vm.editorContentSlave).then(function(data) {
                 vm.slaveViewHTML.doc.setValue(data.view_html);
                 vm.slaveCtrlJS.doc.setValue(data.controller_js);
                 $mdToast.show($mdToast.simple()
@@ -193,7 +193,7 @@
         }
 
         function collectStaticGET() {
-            krogoth_gantryEditorRESTful.djangoManagePyCollectStatic().then(function(data) {
+            DjangularEditorRESTful.djangoManagePyCollectStatic().then(function(data) {
                 $mdToast.show($mdToast.simple()
                     .textContent('Django Finished Copying Static Files!'));
                 ///document.getElementById("krogoth_gantryMetaText_01").innerHTML = 'krogoth_gantry Editor ';
@@ -205,7 +205,7 @@
             vm.editorContentMaster['module_js'] = vm.editorModuleJS.doc.getValue();
             vm.editorContentMaster['controller_js'] = vm.editorModel.doc.getValue();
             vm.editorContentMaster['view_html'] = vm.editorViewHTML.doc.getValue();
-            krogoth_gantryEditorRESTful.putKrogothGantryMasterViewController(vm.input.mvcId, vm.editorContentMaster).then(function(data) {
+            DjangularEditorRESTful.putDjangularMasterViewController(vm.input.mvcId, vm.editorContentMaster).then(function(data) {
                 document.getElementById("krogoth_gantryMetaText_01").innerHTML = 'krogoth_gantry Editor ';
                 ///document.getElementById("globalStatusBar").innerHTML = 'krogoth_gantry Editor ';
                 vm.editorContentMaster = data;
