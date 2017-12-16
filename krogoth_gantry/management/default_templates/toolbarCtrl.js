@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -68,7 +68,7 @@
         vm.searchResultClick = searchResultClick;
         vm.loadUser = loadUser;
         vm.webApplicationBuild = document.getElementById("krogoth_gantryVersion").innerHTML.replace('krogoth_gantry ', '');
-        $timeout(function() {
+        $timeout(function () {
             if (document.getElementById("showBuildVersion"))
                 (document.getElementById("showBuildVersion").innerHTML) = 'ArmPrime v' + vm.webApplicationBuild;
         }, 3000);
@@ -176,7 +176,9 @@
                 var message = 'Fuse supports translations through angular-translate module, but currently we do not have any translations other than English language. If you want to help us, send us a message through ThemeForest profile page.';
 
                 $mdToast.show({
-                    template: '<md-toast id="language-message" layout="column" layout-align="center start"><div class="md-toast-content">' + message + '</div></md-toast>',
+                    template: '<md-toast id="language-message" layout="column" layout-align="center start"><div class="md-toast-content">'
+                    + message
+                    + '</div></md-toast>',
                     hideDelay: 7000,
                     position: 'top right',
                     parent: '#content'
@@ -228,7 +230,7 @@
             // list. Not exactly a good thing to do but it's
             // for demo purposes.
             if (query) {
-                navigation = navigation.filter(function(item) {
+                navigation = navigation.filter(function (item) {
                     if (angular.lowercase(item.title).search(angular.lowercase(query)) > -1) {
                         return true;
                     }
@@ -236,7 +238,7 @@
             }
 
             // Fake service delay
-            $timeout(function() {
+            $timeout(function () {
                 deferred.resolve(navigation);
             }, 1000);
 

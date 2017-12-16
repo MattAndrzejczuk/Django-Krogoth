@@ -1,3 +1,7 @@
+
+__version__ = '0.6.98'
+__author__ = 'Matt Andrzejczuk'
+
 from django.conf.urls import url, include
 from rest_framework.routers import DefaultRouter
 from LazarusIV.views import UploadRepositoryViewSet, RepositoryDirectoryViewSet, RepositoryFileViewSet, \

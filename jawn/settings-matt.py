@@ -308,8 +308,8 @@ FCM_DJANGO_SETTINGS = {
 
 
 
-# print("POSTGRES: ")
-# print(os.environ["POSTGRES_ENV_POSTGRES_USER"])
-# print(os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"])
-# print(os.environ["POSTGRES_PORT_5432_TCP_ADDR"])
-# print(os.environ["POSTGRES_PORT_5432_TCP_PORT"])
+print("POSTGRES: ")
+print(os.environ["POSTGRES_ENV_POSTGRES_USER"])
+print(os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"])
+print(os.environ["POSTGRES_PORT_5432_TCP_ADDR"])
+print(os.environ["POSTGRES_PORT_5432_TCP_PORT"])

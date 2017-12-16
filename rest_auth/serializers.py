@@ -1,3 +1,7 @@
+
+__version__ = '0.6.98'
+__author__ = 'Matt Andrzejczuk'
+
 from django.contrib.auth import get_user_model, authenticate
 from django.conf import settings
 from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm

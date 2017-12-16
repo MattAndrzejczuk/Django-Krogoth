@@ -1,3 +1,7 @@
+
+__version__ = '0.6.98'
+__author__ = 'Matt Andrzejczuk'
+
 from django.db import models
 from polymorphic.models import PolymorphicModel
 from django.contrib.auth.models import User

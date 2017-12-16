@@ -1,7 +1,7 @@
 /**
  * Created by mattmbp on 8/2/17.
  */
-(function() {
+(function () {
     'use strict';
     angular.module('fuse').config(routeConfig);
 
@@ -9,7 +9,7 @@
         $locationProvider.hashPrefix('!');
         $urlRouterProvider.otherwise('/General');
         var $cookies;
-        angular.injector(['ngCookies']).invoke(['$cookies', function(_$cookies) {
+        angular.injector(['ngCookies']).invoke(['$cookies', function (_$cookies) {
             $cookies = _$cookies;
         }]);
         var layoutStyle = $cookies.get('layoutStyle') || 'LAYOUT_STYLE';
@@ -111,10 +111,10 @@
 		*/
 
         /// $httpProvider.interceptors.push(interceptor);
-        var tokenDefaultSetter = function($q) {
+        var tokenDefaultSetter = function ($q) {
             return {
 
-                request: function(req) {
+                request: function (req) {
                     if ($cookies.get('token')) {
                         /// Using Access Token From Cookie
                         console.debug('Using Cookie Token: ' + $cookies.get('token'));
@@ -134,7 +134,7 @@
                 //                   console.debug('Got Some Kind of Response ! ! !');
                 //                  return res;
                 //              },
-                responseError: function(res) {
+                responseError: function (res) {
                     if (res.status === 401) {
                         /// Users without acess tokens will be properly redirected to login.
                         console.warn('Unauthorized Entry Detected.');
@@ -153,10 +153,6 @@
             };
         }
         $httpProvider.interceptors.push(tokenDefaultSetter);
-
-
-
-
 
 
     }

@@ -1,3 +1,7 @@
+
+__version__ = '0.6.98'
+__author__ = 'Matt Andrzejczuk'
+
 from django.db import models
 from django.core.validators import URLValidator
 from chat.models import JawnUser

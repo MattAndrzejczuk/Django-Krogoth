@@ -1,3 +1,7 @@
+
+__version__ = '0.6.98'
+__author__ = 'Matt Andrzejczuk'
+
 from rest_framework import serializers, exceptions
 from chat.models import JawnUser
 
