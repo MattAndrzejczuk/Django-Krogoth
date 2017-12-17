@@ -182,6 +182,11 @@ class KBNanolatheUploadAbstract(KBNanolatheAbstractBlueprint):
 
 
 class KBNanolatheThreadAbstract(KBNanolatheAbstractBlueprint):
+
+    class Meta:
+        abstract = True
+        proxy = True
+
     kb_parent = models.ForeignKey(KBNanolatheAbstractBlueprint,
                                   on_delete=models.CASCADE,
                                   blank=True,
