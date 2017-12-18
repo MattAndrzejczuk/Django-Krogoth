@@ -9,7 +9,7 @@ from LazarusIV.models import RepositoryFile
 #    V  -  5
 
 class ModProject(models.Model):
-    author = models.ForeignKey(JawnUser, related_name='mod_developer', )
+    author = models.ForeignKey(JawnUser, related_name='mod_developer', on_delete=models.CASCADE)
     is_public = models.BooleanField(default=True)
 
 class ModPublication(models.Model):

@@ -73,7 +73,6 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
-    'fcm_django',
     'chat',
     'LazarusIV',
     'LazarusV',
@@ -238,11 +237,4 @@ print()
 
 
 
-
-
-# PUSH NOTIFICATIONS:
-# not yet implemented, doesn't do anything yet
-FCM_DJANGO_SETTINGS = {
-        "FCM_SERVER_KEY": "AAAAcXA4kTc:APA91bGhguFF3Q28Mm8mJWB-iiXWaMQRxUWsLT8b0ZFspZ66MPOXnrWqzwqx2ek3MCG0WoPxWtgXJvc_qwtIz2glpCRN_rRSMr-AHRfty0f1sppcp1ehRgkEfel6uoqo-28JzKJ_Q-lG"
-}
 

@@ -7,7 +7,7 @@ from django.contrib.postgres.fields import JSONField
 
 # Create your models here.
 class JawnUser(models.Model):
-    base_user = models.OneToOneField(User, related_name='jawn_user', )
+    base_user = models.OneToOneField(User, related_name='jawn_user', on_delete=models.CASCADE)
     profile_pic = models.ImageField(upload_to="media/", blank=True, null=True)
     about_me = models.CharField(max_length=400, blank=True, null=True)
     follows = models.ManyToManyField('self', related_name='followers', symmetrical=False, null=True, blank=True)
@@ -25,7 +25,7 @@ class JawnUser(models.Model):
 class Channel(models.Model):
     name = models.CharField(max_length=400, unique=True)
     created = models.DateTimeField(auto_now_add=True)
-    creator = models.ForeignKey(JawnUser, related_name='creator', blank=True, null=True)
+    creator = models.ForeignKey(JawnUser, related_name='creator', blank=True, null=True, on_delete=models.CASCADE)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
     description = models.TextField(max_length=400, blank=True, null=True)
@@ -36,8 +36,8 @@ class Channel(models.Model):
 
 class Message(PolymorphicModel):
     date_posted = models.DateTimeField(auto_now_add=True)
-    jawn_user = models.ForeignKey(JawnUser, related_name='user', blank=True, null=True)
-    channel = models.ForeignKey(Channel, related_name='messages')
+    jawn_user = models.ForeignKey(JawnUser, related_name='user', blank=True, null=True, on_delete=models.CASCADE)
+    channel = models.ForeignKey(Channel, related_name='messages', on_delete=models.CASCADE)
 
 
 class ImageMessage(Message):
@@ -112,9 +112,9 @@ class Region(models.Model):
 
 
 class PrivateMessageRelationships(models.Model):
-    channel = models.OneToOneField(Channel, related_name='channel', )
-    user_recipient = models.ForeignKey(User, related_name='user_recipient', )
-    user_sender = models.ForeignKey(User, related_name='user_sender', )
+    channel = models.OneToOneField(Channel, related_name='channel', on_delete=models.CASCADE)
+    user_recipient = models.ForeignKey(User, related_name='user_recipient', on_delete=models.CASCADE)
+    user_sender = models.ForeignKey(User, related_name='user_sender', on_delete=models.CASCADE)
     channel_name = models.CharField(max_length=150) # may need to remove this later.
 
 

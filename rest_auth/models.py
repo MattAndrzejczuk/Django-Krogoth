@@ -12,7 +12,7 @@ FACTIONS = (
     ('CORE', 'Core'),
 )
 class LazarusCommanderAccount(models.Model):
-    user = models.ForeignKey(User, unique=True)
+    user = models.ForeignKey(User, unique=True, on_delete=models.CASCADE)
     is_suspended = models.BooleanField(default=False)
     is_terminated = models.BooleanField(default=False)
     faction = models.CharField(choices=FACTIONS, max_length=25)
@@ -23,9 +23,3 @@ class LazarusCommanderAccount(models.Model):
         return self.user.username
 
 
-class LazarusModProject(models.Model):
-    unique_name = models.CharField(max_length=100, unique=True, blank=False, null=False)
-    date_created = models.DateTimeField(auto_created=True)
-    date_modified = models.DateTimeField(blank=True, null=True)
-
-    author = models.ForeignKey(User, unique=True)
