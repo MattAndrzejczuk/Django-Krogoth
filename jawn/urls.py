@@ -42,6 +42,12 @@ router.register(r'youtube', YouTubeMessageViewSet)
 
 urlpatterns = [
 
+
+    url(r'^kbot_lab/', include('kbot_lab.urls')),
+
+
+
+
     url(r'^admin_a9k/', admin.site.urls),
 
     url(r'^$', index),
@@ -54,6 +60,7 @@ urlpatterns = [
     url(r'^moho_extractor/', include('moho_extractor.urls')),
     url(r'^krogoth_gantry/', include('krogoth_gantry.urls')),
     url(r'^Forum/', include('CommunityForum.urls')),
+
 
 
     # user auth, forgot_password, reset pass, etc..

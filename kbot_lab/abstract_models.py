@@ -36,8 +36,6 @@ class KBNanolatheUploadAbstract(KBNanolatheAbstractBlueprint):
         app_label = 'kbot_lab'
         verbose_name = "nanolathed upload"
         verbose_name_plural = 'nanolathed uploads'
-        abstract = True
-        #proxy = True
 
     kb_path_slug = models.SlugField(max_length=50,
                                     unique=True,
