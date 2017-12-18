@@ -86,6 +86,7 @@ INSTALLED_APPS = (
     'filebrowser',
     'grappelli',
     'kbot_lab',
+    'django_extensions',
 )
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

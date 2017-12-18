@@ -8,6 +8,7 @@ import os
 from jawn.settings import MEDIA_ROOT
 
 
+
 class KBNanolatheAbstractBlueprint(PolymorphicModel):
     """Generates dynamic ajax forms within the krogoth_gantry.
 
@@ -24,6 +25,7 @@ class KBNanolatheAbstractBlueprint(PolymorphicModel):
     doc_title = models.CharField(max_length=140,
                                  default='Untitled Nanolathe Construct',
                                  help_text=_HELPDOC_TITLE)
+    html_code = models.TextField(default='<div>Code has not been generated yet.</div>')
 
 class KBNanolatheUploadAbstract(KBNanolatheAbstractBlueprint):
     """Subclass this in order to make an easy uploader.
@@ -37,36 +39,9 @@ class KBNanolatheUploadAbstract(KBNanolatheAbstractBlueprint):
         verbose_name = "nanolathed upload"
         verbose_name_plural = 'nanolathed uploads'
 
-    kb_path_slug = models.SlugField(max_length=50,
-                                    unique=True,
-                                    help_text=_HELPDOC_UPLOADPATH)
-    kb_file = models.FileField()
+    kb_file = models.FileField(upload_to='AbstractUploads')
 
-    @classmethod
-    def nanolathe_upload(cls, named: str) -> KBNanolatheAbstractBlueprint:
-        """Any and all uploads need an upload destination.
 
-        When a new KBNanolatheUploadAbstract is created, an upload destination path must be
-        generated if it does not exist.
-
-        Args:
-            named: The upload destination, i.e. /usr/src/persistent/media/{named}
-
-        Returns:
-            The freshly initialized KBNanolatheUploadAbstract.
-        """
-        nano_construct = cls(kb_path_slug=named)
-        if not os.path.exists(nano_construct.destination_path):
-            os.makedirs(nano_construct.destination_path)
-            nano_construct.save()
-            return nano_construct
-        else:
-            return KBNanolatheUploadAbstract.objects.get(kb_path_slug=named)
-
-    @property
-    def destination_path(self) -> str:
-        """:str: full OS file system path to the upload destination."""
-        return MEDIA_ROOT + self.kb_path_slug
 
     @property
     def filename_full(self) -> str:

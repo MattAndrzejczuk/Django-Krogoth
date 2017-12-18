@@ -14,3 +14,6 @@ from kbot_lab.abstract_models import KBNanolatheAbstractBlueprint, KBNanolatheUp
 class KBNanolatheExampleUpload(KBNanolatheUploadAbstract):
     kbc_uploaded_by_user = models.ForeignKey(JawnUser, on_delete=models.CASCADE)
 
+class KBNanolatheExamplePlain(KBNanolatheAbstractBlueprint):
+    title = models.CharField(max_length=250)
+    num_value = models.IntegerField()

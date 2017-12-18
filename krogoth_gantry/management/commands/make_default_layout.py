@@ -1,3 +1,6 @@
+# coding=utf-8
+__version__ = '0.6.98'
+__author__ = 'Matt Andrzejczuk'
 from django.core.management.base import BaseCommand, CommandError
 from moho_extractor.models import NgIncludedJs, NgIncludedHtml
 from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryIcon, KrogothGantryService, \

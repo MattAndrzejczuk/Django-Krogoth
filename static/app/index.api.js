@@ -180,6 +180,10 @@
         // Base Url
         api.baseUrl = '/static/app/data/';
 
+
+                    api.getPlainExample = {
+                            list     : $resource('/kbot_lab/KBotLab/PlainExample'),
+                }
         /**
          * Here you can find all the definitions that the Demo Project requires
          *
