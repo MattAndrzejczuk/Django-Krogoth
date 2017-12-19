@@ -8,7 +8,6 @@ from LazarusIV.views import UploadRepositoryViewSet, RepositoryDirectoryViewSet,
     BackgroundWorkerJobViewSet, NotificationCenterViewSet, NotificationItemViewSet, CavedogBaseViewSet, \
     LazarusBaseViewSet, DamageViewSet, LazarusWeaponTDFViewSet, LazarusFeatureTDFViewSet, LazarusDownloadTDFViewSet, \
     LazarusUnitFBIViewSet
-from fcm_django.api.rest_framework import FCMDeviceAuthorizedViewSet
 #    IV  -  4
 router = DefaultRouter()
 router.register(r'UploadRepository', UploadRepositoryViewSet)
@@ -26,8 +25,6 @@ router.register(r'LazarusWeaponTDFViewSet', LazarusWeaponTDFViewSet)
 router.register(r'LazarusFeatureTDFViewSet', LazarusFeatureTDFViewSet)
 router.register(r'LazarusDownloadTDFViewSet', LazarusDownloadTDFViewSet)
 router.register(r'LazarusUnitFBIViewSet', LazarusUnitFBIViewSet)
-# PUSH NOTIFICATIONS:
-router.register(r'devices', FCMDeviceAuthorizedViewSet)
 
 urlpatterns = [
     url(r'^ContentSubmission/', include(router.urls)),

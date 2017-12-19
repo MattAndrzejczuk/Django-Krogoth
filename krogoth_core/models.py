@@ -5,24 +5,27 @@ from django.db import models
 from polymorphic.models import PolymorphicModel
 import codecs
 
+
 # Create your models here.
 
 class AKFoundationAbstract(PolymorphicModel):
     class Meta:
         abstract = True
 
-    name = models.CharField(max_length=140,
-                            help_text='EXAMPLES: index.controller index.route toolbar.module theming.service')
+    first_name = models.CharField(max_length=140,
+                                  help_text='EXAMPLES: index. index. toolbar. theming.')
+    last_name = models.CharField(max_length=140,
+                                 help_text='EXAMPLES: .controller .route .module .service')
     code = models.TextField(default='Not Yet Generated.')
     ext = models.CharField(max_length=24,
                            help_text='EXAMPLES: html css js ')
     theme = models.CharField(max_length=90,
-                                  default='krogoth_core/AKThemes/Pro/')
+                             default='krogoth_core/AKThemes/Pro/')
     is_selected_theme = models.BooleanField(default=False)
 
     @property
     def get_filename(self) -> str:
-        return self.name
+        return self.first_name + self.last_name
 
     @property
     def get_file_ext(self) -> str:
@@ -33,7 +36,6 @@ class AKFoundationAbstract(PolymorphicModel):
         return codecs.open('krogoth_core/AKThemes/Pro/' + self.get_filename + '.' + self.get_file_ext, 'r')
 
 
-
 def to_js(b: bool) -> str:
     if b == True:
         return 'true'
@@ -41,23 +43,26 @@ def to_js(b: bool) -> str:
         return 'false'
 
 
-
 # config.provider.js
-class AKFoundationCoreConfig(AKFoundationAbstract):
+class AKFoundationAngularCore(AKFoundationAbstract):
     disableCustomScrollbars = models.BooleanField(default=False)
     disableMdInkRippleOnMobile = models.BooleanField(default=True)
     disableCustomScrollbarsOnMobile = models.BooleanField(default=True)
 
     @property
     def as_frontend_response(self) -> str:
-        original = codecs.open('krogoth_core/AKThemes/Pro/' + self.get_filename + '.' + self.get_file_ext, 'r').read()
-        p1 = original.replace("'|#1#|'", to_js(self.disableCustomScrollbars))
-        p2 = p1.replace("'|#2#|'", to_js(self.disableMdInkRippleOnMobile))
-        p3 = p2.replace("'|#3#|'", to_js(self.disableCustomScrollbarsOnMobile))
-        return p3
+        if self.first_name == 'config':
+            original = codecs.open('krogoth_core/AKThemes/Pro/' + self.get_filename + '.' + self.get_file_ext, 'r').read()
+            p1 = original.replace("'|#1#|'", to_js(self.disableCustomScrollbars))
+            p2 = p1.replace("'|#2#|'", to_js(self.disableMdInkRippleOnMobile))
+            p3 = p2.replace("'|#3#|'", to_js(self.disableCustomScrollbarsOnMobile))
+            return p3
+        # elif self.first_name == 'core':
+        #     if self.last_name == '':
 
 
-class AKFoundationCoreDirectives(AKFoundationAbstract):
+
+class AKFoundationDirectives(AKFoundationAbstract):
     """ Files from /app/core/directives/
 
     """
@@ -65,7 +70,7 @@ class AKFoundationCoreDirectives(AKFoundationAbstract):
     val = models.CharField(max_length=250)
 
 
-class AKFoundationCoreFilters(AKFoundationAbstract):
+class AKFoundationFilters(AKFoundationAbstract):
     """ Files from /app/core/filters/
 
     """
@@ -73,19 +78,12 @@ class AKFoundationCoreFilters(AKFoundationAbstract):
     val = models.CharField(max_length=250)
 
 
-class AKFoundationCoreLayouts(AKFoundationAbstract):
-    val = models.CharField(max_length=250)
+class AKFoundationTheming(AKFoundationAbstract):
+    """ Files from /app/core/theming/
+    and from /app/core/theme-options/
 
+    """
 
-class AKFoundationCoreServices(AKFoundationAbstract):
-    val = models.CharField(max_length=250)
-
-
-class AKFoundationCoreThemeOptions(AKFoundationAbstract):
-    val = models.CharField(max_length=250)
-
-
-class AKFoundationCoreTheming(AKFoundationAbstract):
     val = models.CharField(max_length=250)
 
 
@@ -112,4 +110,10 @@ class AKFoundationMain(AKFoundationAbstract):
 class AKBowerComponent(models.Model):
     package_name = models.CharField(max_length=250)
     package_version = models.CharField(max_length=50)
-    index_header = models.CharField(max_length=251)
+    url = models.CharField(max_length=251)
+
+
+class AKCustomDependency(models.Model):
+    package_name = models.CharField(max_length=250)
+    package_version = models.CharField(max_length=50)
+    url = models.CharField(max_length=251)
