@@ -1,13 +1,14 @@
 from django.db import models
 import jsbeautifier
 import codecs
+from jawn.settings import BASE_DIR
 
-DEFAULT_CONTROLLER = codecs.open('krogoth_gantry/DVCManager/MiscDVC/MasterVC/controller.js', 'r').read()
-DEFAULT_MODULE = codecs.open('krogoth_gantry/DVCManager/MiscDVC/MasterVC/module.js', 'r').read()
-DEFAULT_MASTERVIEW = codecs.open('krogoth_gantry/DVCManager/MiscDVC/MasterVC/view.html', 'r').read()
-DEFAULT_SLAVE_CONTROLLER = codecs.open('krogoth_gantry/DVCManager/MiscDVC/SlaveVC/controller.js', 'r').read()
-DEFAULT_SERVICE = codecs.open('krogoth_gantry/DVCManager/MiscDVC/Services/dummyservice.js', 'r').read()
-DEFAULT_DIRECTIVE = codecs.open('krogoth_gantry/DVCManager/MiscDVC/Directives/dummydirective.js', 'r').read()
+DEFAULT_CONTROLLER = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/MasterVC/controller.js', 'r').read()
+DEFAULT_MODULE = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/MasterVC/module.js', 'r').read()
+DEFAULT_MASTERVIEW = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/MasterVC/view.html', 'r').read()
+DEFAULT_SLAVE_CONTROLLER = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/SlaveVC/controller.js', 'r').read()
+DEFAULT_SERVICE = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/Services/dummyservice.js', 'r').read()
+DEFAULT_DIRECTIVE = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/Directives/dummydirective.js', 'r').read()
 
 #     ___________________________________
 class KrogothGantryService(models.Model):
