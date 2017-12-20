@@ -17,7 +17,7 @@ echo "\033[1;36mRunning Containers....\033[0m"
 docker exec -it armprime pip3 install django-redis==4.8.0
 #docker exec -it armprime pip3 install django-dbbackup
 #docker exec -it armprime pip3 install django-websocket-redis
-docker exec -it armprime pip3 install fcm-django==0.2.12
+#docker exec -it armprime pip3 install fcm-django==0.2.12
 sleep 1
 docker exec -it armprime ./manage.py makemigrations
 sleep 1

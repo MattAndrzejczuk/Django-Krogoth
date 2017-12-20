@@ -12,6 +12,7 @@ class AKFoundationAbstract(PolymorphicModel):
     class Meta:
         abstract = True
 
+    unique_name = models.CharField(max_length=90, unique=True)
     first_name = models.CharField(max_length=140,
                                   help_text='EXAMPLES: index. index. toolbar. theming.')
     last_name = models.CharField(max_length=140,
