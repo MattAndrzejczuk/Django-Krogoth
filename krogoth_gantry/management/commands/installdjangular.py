@@ -1,11 +1,13 @@
 from django.core.management.base import BaseCommand, CommandError
 from moho_extractor.models import NgIncludedJs, NgIncludedHtml
-from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryIcon, KrogothGantryCategory, KrogothGantrySlaveViewController
+from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryIcon, KrogothGantryCategory, \
+    KrogothGantrySlaveViewController
 import codecs
 import subprocess
-
-
-
+from jawn.settings import BASE_DIR
+import os
+from krogoth_core.models import *
+import jsbeautifier
 
 
 #  READ JS & HTML FILES AS A STRING LIKE SO:
@@ -64,26 +66,128 @@ class Command(BaseCommand):
     #     parser.add_argument('mvc_id', nargs="+", type=int)
 
     def handle(self, *args, **options):
-        name = 'Pro'
-        self.stdout.write(self.style.SUCCESS('Installing AngularJS Frontend Theme: ' + name + '\n'))
-        path = '/opt/project/krogoth_core/AKThemes/' + name
-        files = os.listdir(theme_path)
 
         def output_console(msg: str):
             if os.path.isfile(msg) == True:
-                print('dependency loaded... \033[32m' + msg + '\033[0m')
+                # print('dependency loaded... \033[32m' + msg + '\033[0m')
+                pass
             else:
                 print('\033[31mNOT FOUND: ' + msg + '\033[0m')
                 raise IOError()
 
+        def get_source_class(kind: str, angular_duty: str):
+            print(kind)
+            print(angular_duty)
+            new_js = AKFoundationAbstract()
+            if kind == 'altDate':
+                new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'api-resolver':
+                new_js = AKFoundationRESTful(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'basic':
+                new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'chat-tab':
+                new_js = AKFoundationQuickPanel(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'config':
+                new_js = AKFoundationAngularCore(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'core':
+                new_js = AKFoundationAngularCore(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'filterByIds':
+                new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'filterByPropIds':
+                new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'fuse-config':
+                new_js = AKFoundationThemingConfiguration(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'fuse-generator':
+                new_js = AKFoundationThemingService(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'fuse-palettes':
+                new_js = AKFoundationThemingConstant(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'fuse-themes':
+                new_js = AKFoundationThemingConstant(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'fuse-theming':
+                new_js = AKFoundationThemingService(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'highlight':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'index':
+                new_js = AKFoundationIndex(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'main':
+                new_js = AKFoundationMain(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-api':
+                new_js = AKFoundationRESTful(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-card':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-datepicker-fix':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-form-wizard':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-info-bar':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-masonry':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-material-color-picker':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-nav':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-navigation':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-random-class':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-responsive-table':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-scroll':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-search-bar':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-shortcuts':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-sidenav-helper':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-splash-screen':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-stepper':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-utils':
+                new_js = AKFoundationMain(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-widget':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'navigation':
+                new_js = AKFoundationNavigation(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'quick-panel':
+                new_js = AKFoundationQuickPanel(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'tag':
+                new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'theme-options':
+                new_js = AKFoundationThemingConfiguration(first_name=kind, last_name=angular_duty, ext='.js')
+            else:
+                self.stdout.write(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + bcolors().WARNING + ('skipping... ' + kind + '.' + angular_duty) + bcolors().ENDC)
+
+
+            try:
+                # print(new_js.get_filename + new_js.ext)
+                new_js.is_selected_theme = True
+                new_js.theme = BASE_DIR + '/krogoth_core/AKThemes/Pro/'
+                new_js.code = new_js.as_frontend_response
+                new_js.unique_name = kind + angular_duty + 'v11'  # str(len(AKFoundationAbstract.objects.all())) + 'v1'
+                new_js.save()
+                self.stdout.write(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + bcolors().OKGREEN + 'SUCCESS! ' + (new_js.get_filename + new_js.ext) + bcolors().ENDC)
+            except:
+                self.stdout.write(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + bcolors().FAIL + ('FAIL...' + (new_js.get_filename + new_js.ext)) + bcolors().ENDC)
+
+
+
+            # print('dependency saved.')
+        name = 'Pro'
+        print('Installing AngularJS Frontend Theme: ' + name + '\n')
+        path = BASE_DIR + '/krogoth_core/AKThemes/' + name + '/'
+        files = os.listdir(path)
         for file in files:
             arr = file.split('.')
-
             if arr[0] == arr[len(arr) - 2]:
-                p = theme_path + arr[0] + '.' + arr[len(arr) - 1]
-                output_console(msg=p)
+                if arr[len(arr) - 1] == 'js':
+                    p = path + arr[0] + '\033[36m.' + arr[len(arr) - 1] + '\033[0m'
+                    _msg = path + arr[0] + '.' + arr[len(arr) - 1]
+                    output_console(msg=_msg)
             else:
-                p = theme_path + arr[0] + '.' + arr[len(arr) - 2] + '.' + arr[len(arr) - 1]
-                output_console(msg=p)
-
-
+                if arr[len(arr) - 1] == 'js':
+                    p = path + arr[0] + '.' + arr[len(arr) - 2] + '.' + arr[len(arr) - 1]
+                    output_console(msg=p)
+                    get_source_class(kind=arr[0], angular_duty=arr[len(arr) - 2])
