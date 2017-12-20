@@ -4,7 +4,7 @@ __author__ = 'Matt Andrzejczuk'
 from django.db import models
 from polymorphic.models import PolymorphicModel
 import codecs
-
+from jawn.settings import BASE_DIR
 
 # Create your models here.
 
@@ -26,10 +26,14 @@ class AKFoundationAbstract(PolymorphicModel):
 
     @property
     def get_filename(self) -> str:
-        return self.first_name + self.last_name
+        if self.first_name is None or self.last_name is None:
+            print('AKFoundationAbstract is missing a property.'); raise EnvironmentError()
+        return self.first_name + '.' + self.last_name + self.get_file_ext
 
     @property
     def get_file_ext(self) -> str:
+        if self.ext is None:
+            print('AKFoundationAbstract is missing a property.'); raise EnvironmentError()
         return self.ext
 
     @property
@@ -53,7 +57,7 @@ class AKFoundationAngularCore(AKFoundationAbstract):
     @property
     def as_frontend_response(self) -> str:
         if self.first_name == 'config':
-            original = codecs.open('krogoth_core/AKThemes/Pro/' + self.get_filename + '.' + self.get_file_ext, 'r').read()
+            original = codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + '.' + self.get_file_ext, 'r').read()
             p1 = original.replace("'|#1#|'", to_js(self.disableCustomScrollbars))
             p2 = p1.replace("'|#2#|'", to_js(self.disableMdInkRippleOnMobile))
             p3 = p2.replace("'|#3#|'", to_js(self.disableCustomScrollbarsOnMobile))

@@ -64,202 +64,26 @@ class Command(BaseCommand):
     #     parser.add_argument('mvc_id', nargs="+", type=int)
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS(''))
+        name = 'Pro'
+        self.stdout.write(self.style.SUCCESS('Installing AngularJS Frontend Theme: ' + name + '\n'))
+        path = '/opt/project/krogoth_core/AKThemes/' + name
+        files = os.listdir(theme_path)
 
-        ctrl = open('krogoth_gantry/management/default_templates/toolbarCtrl.js', 'r')
-        module = open('static/app/toolbar/toolbar.module.js', 'r')
+        def output_console(msg: str):
+            if os.path.isfile(msg) == True:
+                print('dependency loaded... \033[32m' + msg + '\033[0m')
+            else:
+                print('\033[31mNOT FOUND: ' + msg + '\033[0m')
+                raise IOError()
 
-        jsLayout = codecs.open('krogoth_gantry/management/default_templates/mainHtmlLayout.js', 'r')
-        jsColorThemesConstants = codecs.open('krogoth_gantry/management/default_templates/colorThemesConstants.js', 'r')
+        for file in files:
+            arr = file.split('.')
 
-        htmlMain = codecs.open('krogoth_gantry/management/default_templates/layoutMain.html', 'r')
-        htmlNav = codecs.open('krogoth_gantry/management/default_templates/layoutNavigation.html', 'r')
-        htmlToolbar = codecs.open('krogoth_gantry/management/default_templates/layoutToolbar.html', 'r')
-
-        str_ctrl = ctrl.read()
-        str_module = module.read()
-
-        str_jsColorThemesConstants = jsColorThemesConstants.read()
-        str_jsLayout = jsLayout.read()
-        str_htmlMain = htmlMain.read()
-        str_htmlNav = htmlNav.read()
-        str_htmlToolbar = htmlToolbar.read()
-
-        icon = KrogothGantryIcon()
-        cat = KrogothGantryCategory()
-        # get or create a default icon
-        try:
-            icon = KrogothGantryIcon(name='icon-ubuntu', code='icon-ubuntu')
-            icon.save()
-        except:
-            icon = KrogothGantryIcon.objects.get(name='icon-ubuntu')
-
-        try:
-            cat = KrogothGantryCategory(name='krogoth_gantry_Admin', code='icon-ubuntu')
-            cat.save()
-        except:
-            cat = KrogothGantryCategory.objects.get(name='krogoth_gantry_Admin')
-
-
-        # loginMasterViewController---------------------------------------------------------
-        try:
-            str_loginView = codecs.open('krogoth_gantry/management/default_templates/login/view.html', 'r').read()
-            str_loginModule = codecs.open('krogoth_gantry/management/default_templates/login/module.js', 'r').read()
-            str_loginController = codecs.open('krogoth_gantry/management/default_templates/login/controller.js', 'r').read()
-            mvc = KrogothGantryMasterViewController(name='Loginkrogoth_gantry', title='Login')
-            mvc.view_html = str_loginView
-            mvc.controller_js = str_loginController
-            mvc.module_js = str_loginModule
-            mvc.category = cat
-            mvc.icon = icon
-            mvc.save()
-            self.stdout.write(self.style.SUCCESS( 'ADDED... loginMasterViewController' ))
-        except:
-            self.stdout.write(self.style.WARNING('SKIPPING... loginMasterViewController'))
-        #-------------------------------------------------------------------------
-
-
-        # registerMasterViewController---------------------------------------------------------
-        try:
-            str_view = codecs.open('krogoth_gantry/management/default_templates/register/view.html', 'r').read()
-            str_module_ = codecs.open('krogoth_gantry/management/default_templates/register/module.js', 'r').read()
-            str_controller = codecs.open('krogoth_gantry/management/default_templates/register/controller.js', 'r').read()
-            mvc = KrogothGantryMasterViewController(name='Registerkrogoth_gantry', title='Register krogoth_gantry Account')
-            mvc.view_html = str_view
-            mvc.controller_js = str_controller
-            mvc.module_js = str_module_
-            mvc.category = cat
-            mvc.icon = icon
-            mvc.save()
-            self.stdout.write(self.style.SUCCESS('ADDED... registerMasterViewController'))
-        except:
-            self.stdout.write(self.style.WARNING('SKIPPING... registerMasterViewController'))
-        # -------------------------------------------------------------------------
-
-        # userprofileMasterViewController---------------------------------------------------------
-        try:
-            str_view = codecs.open('krogoth_gantry/management/default_templates/userprofile/view.html', 'r').read()
-            str_module_ = codecs.open('krogoth_gantry/management/default_templates/userprofile/module.js', 'r').read()
-            str_controller = codecs.open('krogoth_gantry/management/default_templates/userprofile/controller.js', 'r').read()
-            mvc = KrogothGantryMasterViewController(name='userprofile', title='krogoth_gantry User')
-            mvc.view_html = str_view
-            mvc.controller_js = str_controller
-            mvc.module_js = str_module_
-            mvc.category = cat
-            mvc.icon = icon
-            mvc.save()
-            self.stdout.write(self.style.SUCCESS('ADDED... userprofileMasterViewController'))
-        except:
-            self.stdout.write(self.style.WARNING('SKIPPING... userprofileMasterViewController'))
-        # -------------------------------------------------------------------------
-
-        # forumsMasterViewController---------------------------------------------------------
-        try:
-            str_view = codecs.open('krogoth_gantry/management/default_templates/forums/view.html', 'r').read()
-            str_module_ = codecs.open('krogoth_gantry/management/default_templates/forums/module.js', 'r').read()
-            str_controller = codecs.open('krogoth_gantry/management/default_templates/forums/controller.js', 'r').read()
-
-            str_ctrl_slave = codecs.open('krogoth_gantry/management/default_templates/forums/slavecontroller.js', 'r').read()
-            str_view_slave = codecs.open('krogoth_gantry/management/default_templates/forums/slaveview.html', 'r').read()
-            slave = KrogothGantrySlaveViewController(name='Thread', title="Thread")
-            slave.controller_js = str_ctrl_slave
-            slave.view_html = str_view_slave
-            slave.save()
-
-            mvc = KrogothGantryMasterViewController(name='userprofile', title='krogoth_gantry User Profile')
-            mvc.view_html = str_view
-            mvc.controller_js = str_controller
-            mvc.module_js = str_module_
-
-            mvc.category = cat
-            mvc.icon = icon
-            mvc.djangular_slave_vc.add(slave)
-            mvc.save()
-            self.stdout.write(self.style.SUCCESS('ADDED... forumsMasterViewController'))
-        except:
-            self.stdout.write(self.style.WARNING('SKIPPING... forumsMasterViewController'))
-        # -------------------------------------------------------------------------
-
-        # mvceditorMasterViewController---------------------------------------------------------
-        try:
-            str_view = codecs.open('krogoth_gantry/management/default_templates/mvc_editor/view.html', 'r').read()
-            str_module_ = codecs.open('krogoth_gantry/management/default_templates/mvc_editor/module.js', 'r').read()
-            str_controller = codecs.open('krogoth_gantry/management/default_templates/mvc_editor/controller.js', 'r').read()
-
-            mvc = KrogothGantryMasterViewController(name='mvceditor', title='Master View Controller Editor')
-            mvc.view_html = str_view
-            mvc.controller_js = str_controller
-            mvc.module_js = str_module_
-
-            mvc.category = cat
-            mvc.icon = icon
-            mvc.save()
-            self.stdout.write(self.style.SUCCESS('ADDED... mvceditorMasterViewController'))
-        except:
-            self.stdout.write(self.style.WARNING('SKIPPING... mvceditorMasterViewController'))
-        # -------------------------------------------------------------------------
-
-        # toolbarController
-        try:
-            sqlCtrl = NgIncludedJs(name='toolbarController')
-            sqlCtrl.contents = str_ctrl
-            sqlCtrl.save()
-            self.stdout.write(self.style.SUCCESS( 'ADDED... toolbarController' ))
-        except:
-            self.stdout.write(self.style.WARNING('SKIPPING... toolbarController'))
-
-        # toolbarModule
-        try:
-            modCtrl = NgIncludedJs(name='toolbarModule')
-            modCtrl.contents = str_module
-            modCtrl.save()
-            self.stdout.write(self.style.SUCCESS('ADDED... toolbarModule'))
-        except:
-            self.stdout.write(self.style.WARNING('SKIPPING... toolbarModule'))
-
-        # jsLayout
-        try:
-            modCtrl = NgIncludedJs(name='mainHtmlLayout')
-            modCtrl.contents = str_jsLayout
-            modCtrl.save()
-            self.stdout.write(self.style.SUCCESS('ADDED... mainHtmlLayout'))
-        except:
-            self.stdout.write(self.style.WARNING('SKIPPING... mainHtmlLayout'))
-
-        # colorThemesConstants
-        try:
-            colorThemesConstants = NgIncludedJs(name='colorThemesConstants')
-            colorThemesConstants.contents = str_jsColorThemesConstants
-            colorThemesConstants.save()
-            self.stdout.write(self.style.SUCCESS('ADDED... colorThemesConstants'))
-        except:
-            self.stdout.write(self.style.WARNING('SKIPPING... colorThemesConstants'))
-
-        # htmlMainLayout
-        try:
-            modCtrl = NgIncludedHtml(name='htmlMainLayout')
-            modCtrl.contents = str_htmlMain
-            modCtrl.save()
-            self.stdout.write(self.style.SUCCESS('ADDED... htmlMainLayout'))
-        except:
-            self.stdout.write(self.style.WARNING('SKIPPING... htmlMainLayout'))
-
-        # htmlNavLayout
-        try:
-            modCtrl = NgIncludedHtml(name='htmlNavLayout')
-            modCtrl.contents = str_htmlNav
-            modCtrl.save()
-            self.stdout.write(self.style.SUCCESS('ADDED... htmlNavLayout'))
-        except:
-            self.stdout.write(self.style.WARNING('SKIPPING... htmlNavLayout'))
-
-        # htmlToolbarLayout
-        try:
-            modCtrl = NgIncludedHtml(name='htmlToolbarLayout')
-            modCtrl.contents = str_htmlToolbar
-            modCtrl.save()
-            self.stdout.write(self.style.SUCCESS('ADDED... htmlToolbarLayout'))
-        except:
-            self.stdout.write(self.style.WARNING('SKIPPING... htmlToolbarLayout'))
+            if arr[0] == arr[len(arr) - 2]:
+                p = theme_path + arr[0] + '.' + arr[len(arr) - 1]
+                output_console(msg=p)
+            else:
+                p = theme_path + arr[0] + '.' + arr[len(arr) - 2] + '.' + arr[len(arr) - 1]
+                output_console(msg=p)
 
 
