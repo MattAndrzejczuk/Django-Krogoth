@@ -93,14 +93,22 @@ class NgIncludedHtmlView(APIView):
             return HttpResponse(html)
 
 
-
-# class CustomHtmlGenerator(APIView):
-#     authentication_classes = (TokenAuthentication,)
-#     permission_classes = (AllowAny,)
-#     def get(self, request, format=None):
-#         # msg = str(request.GET['msg'])
-#         html = '<div> <h1>Some Basic HTML</h1> <p>This is everything.</p> </div>'
-#         return HttpResponse(html)
+from krogoth_core.models import AKFoundationAbstract
+class KrogothFoundationView(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        unique_name = str(request.GET['unique_name'])
+        js = AKFoundationAbstract.objects.get(unique_name=unique_name)
+        ct = 'application/javascript'
+        body = js.code
+        if unique_name == 'indexmodule':
+            all_djangular = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
+            my_apps = ''
+            for application in all_djangular:
+                my_apps += ("\t\t\t'app." + application.name + "',\n")
+            body = js.code.replace('/*|#apps#|*/', my_apps)
+        return HttpResponse(content_type=ct, content=body)
 
 
 class DynamicIndexModule(APIView):

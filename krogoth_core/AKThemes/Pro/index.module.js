@@ -23,7 +23,7 @@
 
       // Quick Panel
       'app.quick-panel',
-
+/*
       // Apps
       'app.dashboards',
       'app.calendar',
@@ -39,11 +39,15 @@
 
       // Pages
       'app.pages',
-
+*/
+      /* Custom Apps Generated */
+      /*|#apps#|*/
+/*
       // User Interface
       'app.ui',
 
       // Components
       'app.components'
+*/
     ]);
 })();

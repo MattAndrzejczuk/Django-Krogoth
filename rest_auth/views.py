@@ -27,6 +27,7 @@ from .app_settings import (
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from krogoth_gantry.models import KrogothGantryIcon, KrogothGantryCategory, KrogothGantryMasterViewController
+from krogoth_core.models import AKFoundationAbstract
 
 import jsbeautifier
 
@@ -84,6 +85,7 @@ def index(request):
     all_applications = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
     for application in all_applications:
         KrogothGantryMasterViewControllers.append(application.name)
+
 
 
     # GET LAZARUS BUILD VERSION:
@@ -171,9 +173,22 @@ def index(request):
         pass
 
 
+    KrogothMainComponents = []
+    all_parts = AKFoundationAbstract.objects.filter(is_selected_theme=True)
+    for p in all_parts:
+        if p.first_name == "core" or \
+                p.first_name == "index" or \
+                p.first_name == "main" or \
+                p.first_name == "quick-panel" or \
+                p.first_name == "toolbar" or \
+                p.first_name == "navigation":
+            pass
+        else:
+            KrogothMainComponents.append(p.unique_name)
 
     context = {
         "version_build": version_build,
+        "core":KrogothMainComponents,
         "message": seo_title,
         "description": seo_description,
         "KrogothGantryMasterViewControllers": KrogothGantryMasterViewControllers,

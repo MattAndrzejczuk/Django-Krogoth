@@ -478,7 +478,7 @@
         root: '@'
       },
       controller: 'MsNavigationController as vm',
-      templateUrl: 'app/core/directives/ms-navigation/templates/vertical.html',
+      templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-navigation_vertical.html',
       transclude: true,
       compile: function (tElement) {
         tElement.addClass('ms-navigation');
@@ -1049,7 +1049,7 @@
         root: '@'
       },
       controller: 'MsNavigationController as vm',
-      templateUrl: 'app/core/directives/ms-navigation/templates/horizontal.html',
+      templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-navigation_horizontal.html',
       transclude: true,
       compile: function (tElement) {
         tElement.addClass('ms-navigation-horizontal');

@@ -451,7 +451,7 @@
       require: 'msShortcuts',
       controller: 'MsShortcutsController as MsShortcuts',
       bindToController: {},
-      templateUrl: 'app/core/directives/ms-shortcuts/ms-shortcuts.html',
+      templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-shortcuts.html',
       compile: function (tElement) {
         // Add class
         tElement.addClass('ms-shortcuts');

@@ -10,7 +10,7 @@ echo "\033[1;32mKROGOTH can not be copied and/or distributed without the express
 sleep 3
 
 docker build -t mattjawn/armprime ./app/
-docker run --name armprime-postgres -e POSTGRES_PASSWORD=58bdf87d93a3f325574900aa2f5626e3844a903ffb64bed152ae124d2e79aab9 -e POSTGRES_USER=jawn -d -P postgres
+docker run --name armprime-postgres -e POSTGRES_PASSWORD=58bdf87d93a3f325574900aa2f5626e3844a903ffb64bed152ae124d2e79aab9 -e POSTGRES_USER=jawn -d -p 8091:5432 postgres
 docker run -d -P --name=armprime-redis redis
 docker run -d -p 80:80 -v $parentdir:/usr/src/app/ --link armprime-postgres:postgres --link armprime-redis:redis --name=armprime mattjawn/armprime
 echo "\033[1;36mRunning Containers....\033[0m"

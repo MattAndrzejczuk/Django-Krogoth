@@ -375,7 +375,7 @@
         model: '=ngModel'
       },
       transclude: true,
-      templateUrl: 'app/core/directives/ms-stepper/templates/horizontal/horizontal.html',
+      templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-stepper_horizontal.html',
       compile: function (tElement) {
         tElement.addClass('ms-stepper');
 
@@ -438,7 +438,7 @@
         model: '=ngModel'
       },
       transclude: true,
-      templateUrl: 'app/core/directives/ms-stepper/templates/vertical/vertical.html',
+      templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-stepper_vertical.html',
       compile: function (tElement) {
         tElement.addClass('ms-stepper');
 
@@ -477,7 +477,7 @@
         hideStep: '=?'
       },
       transclude: true,
-      templateUrl: 'app/core/directives/ms-stepper/templates/vertical/step/vertical-step.html',
+      templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-stepper_vertical-step.html',
       compile: function (tElement) {
         tElement.addClass('ms-stepper-step');
 

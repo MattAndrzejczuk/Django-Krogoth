@@ -321,7 +321,7 @@
         onExpand: '&?',
         onCollapse: '&?'
       },
-      templateUrl: 'app/core/directives/ms-search-bar/ms-search-bar.html',
+      templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-search-bar.html',
       compile: function (tElement) {
         // Add class
         tElement.addClass('ms-search-bar');

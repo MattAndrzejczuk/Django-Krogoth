@@ -8,7 +8,7 @@
 <ul class="horizontal">
   <li ng-repeat="node in vm.navigation" ms-navigation-horizontal-node="node"
       ng-class="{'has-children': vm.hasChildren}"
-      ng-include="'navigation-horizontal-nested.html'"></li>
+      ng-include="'/moho_extractor/DynamicHTMLInjector/?unique_name=navigation-horizontal-nested.html'"></li>
 </ul>
 
 <!-- Nested horizontal navigation template -->
@@ -40,7 +40,7 @@
   <ul ng-if="vm.hasChildren && !vm.isHidden()">
     <li ng-repeat="node in node.children" ms-navigation-horizontal-node="node"
         ng-class="{'has-children': vm.hasChildren}"
-        ng-include="'navigation-horizontal-nested.html'"></li>
+        ng-include="'/moho_extractor/DynamicHTMLInjector/?unique_name=navigation-horizontal-nested.html'"></li>
   </ul>
 
 </script>

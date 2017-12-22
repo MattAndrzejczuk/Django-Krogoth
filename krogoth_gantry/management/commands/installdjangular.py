@@ -2,12 +2,14 @@ from django.core.management.base import BaseCommand, CommandError
 from moho_extractor.models import NgIncludedJs, NgIncludedHtml
 from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryIcon, KrogothGantryCategory, \
     KrogothGantrySlaveViewController
+from moho_extractor.models import NgIncludedHtml
 import codecs
 import subprocess
 from jawn.settings import BASE_DIR
 import os
 from krogoth_core.models import *
 import jsbeautifier
+from django.db import IntegrityError
 
 
 #  READ JS & HTML FILES AS A STRING LIKE SO:
@@ -40,7 +42,6 @@ class bcolors:
     lightgreen = '\033[92m'
 
 
-
 def getkrogoth_gantryBuild():
     # GET LAZARUS BUILD VERSION:
     bash_cmd = ['git', 'rev-list', '--count', 'master']
@@ -58,7 +59,6 @@ def getkrogoth_gantryBuild():
         current_build_2 = current_build_2.replace('0', '')
 
 
-
 class Command(BaseCommand):
     help = 'prints the toolbar module and controller.'
 
@@ -72,23 +72,35 @@ class Command(BaseCommand):
                 # print('dependency loaded... \033[32m' + msg + '\033[0m')
                 pass
             else:
-                print('\033[31mNOT FOUND: ' + msg + '\033[0m')
+                # print('\033[31mNOT FOUND: ' + msg + '\033[0m')
                 raise IOError()
 
+        def create_html_view(named: str, at: str):
+            try:
+                new_ng = NgIncludedHtml(name=named)
+                new_ng.contents = codecs.open(at + named + '', 'r').read()
+                new_ng.save()
+                print(bcolors().OKGREEN + 'CREATED...' + (at + named) + bcolors().ENDC)
+                pass
+            except:
+                print('\033[31mNOT FOUND: ' + named + '\033[0m')
+
         def get_source_class(kind: str, angular_duty: str):
-            print(kind)
-            print(angular_duty)
+            # print(kind)
+            # print(angular_duty)
             new_js = AKFoundationAbstract()
             if kind == 'altDate':
                 new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js')
             elif kind == 'api-resolver':
                 new_js = AKFoundationRESTful(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'toolbar':
+                new_js = AKFoundationToolbar(first_name=kind, last_name=angular_duty, ext='.js')
             elif kind == 'basic':
                 new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js')
             elif kind == 'chat-tab':
                 new_js = AKFoundationQuickPanel(first_name=kind, last_name=angular_duty, ext='.js')
             elif kind == 'config':
-                new_js = AKFoundationAngularCore(first_name=kind, last_name=angular_duty, ext='.js')
+                new_js = AKFoundationConfig(first_name=kind, last_name=angular_duty, ext='.js')
             elif kind == 'core':
                 new_js = AKFoundationAngularCore(first_name=kind, last_name=angular_duty, ext='.js')
             elif kind == 'filterByIds':
@@ -149,6 +161,8 @@ class Command(BaseCommand):
                 new_js = AKFoundationMain(first_name=kind, last_name=angular_duty, ext='.js')
             elif kind == 'ms-widget':
                 new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
+            elif kind == 'ms-timeline':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js')
             elif kind == 'navigation':
                 new_js = AKFoundationNavigation(first_name=kind, last_name=angular_duty, ext='.js')
             elif kind == 'quick-panel':
@@ -158,23 +172,27 @@ class Command(BaseCommand):
             elif kind == 'theme-options':
                 new_js = AKFoundationThemingConfiguration(first_name=kind, last_name=angular_duty, ext='.js')
             else:
-                self.stdout.write(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + bcolors().WARNING + ('skipping... ' + kind + '.' + angular_duty) + bcolors().ENDC)
-
+                self.stdout.write(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + bcolors().WARNING + (
+                        'UNKNOWN...' + kind + '.' + angular_duty) + bcolors().ENDC)
 
             try:
-                # print(new_js.get_filename + new_js.ext)
-                new_js.is_selected_theme = True
-                new_js.theme = BASE_DIR + '/krogoth_core/AKThemes/Pro/'
-                new_js.code = new_js.as_frontend_response
-                new_js.unique_name = kind + angular_duty + 'v11'  # str(len(AKFoundationAbstract.objects.all())) + 'v1'
-                new_js.save()
-                self.stdout.write(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + bcolors().OKGREEN + 'SUCCESS! ' + (new_js.get_filename + new_js.ext) + bcolors().ENDC)
-            except:
-                self.stdout.write(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + bcolors().FAIL + ('FAIL...' + (new_js.get_filename + new_js.ext)) + bcolors().ENDC)
-
-
+                if type(new_js) is not AKFoundationAbstract:
+                    new_js.is_selected_theme = True
+                    new_js.theme = BASE_DIR + '/krogoth_core/AKThemes/Pro/'
+                    new_js.code = new_js.as_frontend_response
+                    new_js.unique_name = kind + angular_duty + ''  # str(len(AKFoundationAbstract.objects.all())) + 'v1'
+                    # print(bcolors.purple + BASE_DIR + '/krogoth_core/AKThemes/Pro/' + new_js.get_filename + new_js.get_file_ext)
+                    new_js.save()
+                    self.stdout.write(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + bcolors().OKGREEN + 'CREATED...' + (
+                            new_js.get_filename + new_js.ext) + bcolors().ENDC)
+                else:
+                    print(new_js.first_name + '.' + new_js.last_name)
+            except IntegrityError:
+                self.stdout.write(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + bcolors().FAIL + (
+                        'ALREADY EXISTS...' + (new_js.get_filename + new_js.ext)) + bcolors().ENDC)
 
             # print('dependency saved.')
+
         name = 'Pro'
         print('Installing AngularJS Frontend Theme: ' + name + '\n')
         path = BASE_DIR + '/krogoth_core/AKThemes/' + name + '/'
@@ -186,6 +204,10 @@ class Command(BaseCommand):
                     p = path + arr[0] + '\033[36m.' + arr[len(arr) - 1] + '\033[0m'
                     _msg = path + arr[0] + '.' + arr[len(arr) - 1]
                     output_console(msg=_msg)
+                    get_source_class(kind=arr[0], angular_duty='AK')
+                elif arr[len(arr) - 1] == 'html':
+                    create_html_view(named=file, at=path)
+
             else:
                 if arr[len(arr) - 1] == 'js':
                     p = path + arr[0] + '.' + arr[len(arr) - 2] + '.' + arr[len(arr) - 1]

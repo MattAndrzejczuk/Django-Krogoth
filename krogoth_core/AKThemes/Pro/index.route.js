@@ -6,10 +6,11 @@
     .config(routeConfig);
 
   /** @ngInject */
-  function routeConfig($stateProvider, $urlRouterProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+  function routeConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
-    $urlRouterProvider.otherwise('/dashboard-project');
+    $locationProvider.html5Mode(true);
+    $locationProvider.hashPrefix('!');
+    $urlRouterProvider.otherwise('/home');
 
     /**
      * Layout Style Switcher
@@ -34,33 +35,33 @@
 
     var layouts = {
       verticalNavigation: {
-        main: 'app/core/layouts/vertical-navigation.html',
-        toolbar: 'app/toolbar/layouts/vertical-navigation/toolbar.html',
-        navigation: 'app/navigation/layouts/vertical-navigation/navigation.html'
+        main: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation.html',
+        toolbar: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation_toolbar.html',
+        navigation: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation_navigation.html'
       },
       verticalNavigationFullwidthToolbar: {
-        main: 'app/core/layouts/vertical-navigation-fullwidth-toolbar.html',
-        toolbar: 'app/toolbar/layouts/vertical-navigation-fullwidth-toolbar/toolbar.html',
-        navigation: 'app/navigation/layouts/vertical-navigation/navigation.html'
+        main: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation-fullwidth-toolbar.html',
+        toolbar: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation-fullwidth-toolbar_toolbar.html',
+        navigation: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation_navigation.html'
       },
       verticalNavigationFullwidthToolbar2: {
-        main: 'app/core/layouts/vertical-navigation-fullwidth-toolbar-2.html',
-        toolbar: 'app/toolbar/layouts/vertical-navigation-fullwidth-toolbar-2/toolbar.html',
-        navigation: 'app/navigation/layouts/vertical-navigation-fullwidth-toolbar-2/navigation.html'
+        main: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation-fullwidth-toolbar-2.html',
+        toolbar: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation-fullwidth-toolbar-2_toolbar.html',
+        navigation: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation-fullwidth-toolbar-2_navigation.html'
       },
       horizontalNavigation: {
-        main: 'app/core/layouts/horizontal-navigation.html',
-        toolbar: 'app/toolbar/layouts/horizontal-navigation/toolbar.html',
-        navigation: 'app/navigation/layouts/horizontal-navigation/navigation.html'
+        main: '/moho_extractor/NgIncludedHtml/?name=horizontal-navigation.html',
+        toolbar: '/moho_extractor/NgIncludedHtml/?name=horizontal-navigation_toolbar.html',
+        navigation: '/moho_extractor/NgIncludedHtml/?name=horizontal-navigation_navigation.html'
       },
       contentOnly: {
-        main: 'app/core/layouts/content-only.html',
+        main: '/moho_extractor/NgIncludedHtml/?name=content-only.html',
         toolbar: '',
         navigation: ''
       },
       contentWithToolbar: {
-        main: 'app/core/layouts/content-with-toolbar.html',
-        toolbar: 'app/toolbar/layouts/content-with-toolbar/toolbar.html',
+        main: '/moho_extractor/NgIncludedHtml/?name=content-with-toolbar.html',
+        toolbar: '/moho_extractor/NgIncludedHtml/?name=content-with-toolbar_toolbar.html',
         navigation: ''
       }
     };
@@ -84,11 +85,60 @@
             controller: 'NavigationController as vm'
           },
           'quickPanel@app': {
-            templateUrl: 'app/quick-panel/quick-panel.html',
+            templateUrl: '/moho_extractor/NgIncludedHtml/?name=quick-panel.html',
             controller: 'QuickPanelController as vm'
           }
         }
       });
+
+
+
+
+        /// $httpProvider.interceptors.push(interceptor);
+        var tokenDefaultSetter = function($q) {
+            return {
+
+                request: function(req) {
+                    if ($cookies.get('token')) {
+                        /// Using Access Token From Cookie
+                        console.debug('Using Cookie Token: ' + $cookies.get('token'));
+                        req.headers.Authorization = 'Token ' + $cookies.get('token');
+                    } else if (sessionStorage.getItem('token')) {
+                        /// Using Access Token From Session
+                        console.debug('Using Session Token: ' + sessionStorage.getItem('token'));
+                        req.headers.Authorization = 'Token ' + sessionStorage.getItem('token');
+                    } else {
+                        /// No access tokens! 'responseError' below will resolve this issue.
+                        console.warn('Client Login Credentials Are Unavailable.');
+                    }
+                    return req;
+                },
+                // optional
+                //                response: function(res) {
+                //                   console.debug('Got Some Kind of Response ! ! !');
+                //                  return res;
+                //              },
+                responseError: function(res) {
+                    if (res.status === 401) {
+                        /// Users without acess tokens will be properly redirected to login.
+                        console.warn('Unauthorized Entry Detected.');
+                        window.location = "#!/Loginkrogoth_gantry";
+                        return res;
+                        ///return $q.reject(res);
+                    } else if (res.status === 401) {
+                        alert('You have been throttled for making too many requests, try again later.');
+                    } else {
+                        console.warn('$httpProvider Interceptor has detected a server error!!!');
+                        return res;
+                    }
+                }
+            };
+        }
+        $httpProvider.interceptors.push(tokenDefaultSetter);
+
+
+
+    /* - - - - - - - - - - - */
   }
 
 })();

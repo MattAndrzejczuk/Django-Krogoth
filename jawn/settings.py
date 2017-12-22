@@ -119,7 +119,7 @@ WSGI_APPLICATION = 'jawn.wsgi.application'
 
 
 
-db_name = 'jawn'
+db_name = 'jawn2'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -238,3 +238,8 @@ print()
 
 
 
+print("POSTGRES: ")
+print(os.environ["POSTGRES_ENV_POSTGRES_USER"])
+print(os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"])
+print(os.environ["POSTGRES_PORT_5432_TCP_ADDR"])
+print(os.environ["POSTGRES_PORT_5432_TCP_PORT"])
