@@ -189,18 +189,18 @@ class WebsocketWSGIServer(object):
                             subscriber.publish_message(recvmsg)
                         if recv_dict:
                             print(recv_dict)
-                            if recv_dict['type'] == 'action':
-                                if recv_dict['action'] == 'typing':
+                            if recv_dict['event'] == 'action':
+                                if recv_dict['data'] == 'typing':
                                     print(recv_dict)
                                     subscriber.user_is_typing(request=request, expiration=3)
                                     # run some typing method in here
-                                elif recv_dict['action'] == 'upvote':
+                                elif recv_dict['data'] == 'upvote':
                                     pass
-                                elif recv_dict['action'] == 'message sent':
+                                elif recv_dict['data'] == 'message sent':
                                     print('typing typing typing typing typing #########################')
                                     subscriber.user_not_typing(request=request)
                                     # run upvote method logic here
-                            elif recv_dict['type'] == 'text':
+                            elif recv_dict['event'] == 'text':
                                 """
                                 if client is sending a message upstream as "ephemeral" instead of
                                 permenantly to the DB

@@ -156,20 +156,20 @@ class Command(BaseCommand):
             mvc.save()
             self.stdout.write(self.style.SUCCESS('ADDED... AngularEditorMasterViewController'))
 
-            str_Service = codecs.open('krogoth_gantry/management/default_templates/mvc_editor/krogoth_gantryEditorRESTful.js',
+            str_Service = codecs.open('krogoth_gantry/management/default_templates/mvc_editor/DjangularEditorRESTful.js',
                                       'r').read()
             try:
-                service = KrogothGantryService(name='krogoth_gantryEditorRESTful', title='Community Forum Service RESTful CRUD')
+                service = KrogothGantryService(name='DjangularEditorRESTful', title='Community Forum Service RESTful CRUD')
                 service.service_js = str_Service
                 service.save()
                 try:
                     mvc.djangular_service.add(service)
                     mvc.save()
                 except:
-                    self.stdout.write(self.style.SUCCESS('FAIL... AngularEditor.add -> krogoth_gantryEditorRESTful'))
+                    self.stdout.write(self.style.SUCCESS('FAIL... AngularEditor.add -> DjangularEditorRESTful'))
             except:
                 mvc.delete()
-                self.stdout.write(self.style.SUCCESS('FAIL... krogoth_gantryEditorRESTful.save()'))
+                self.stdout.write(self.style.SUCCESS('FAIL... DjangularEditorRESTful.save()'))
 
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... AngularEditorMasterViewController'))

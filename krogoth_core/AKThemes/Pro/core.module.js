@@ -6,6 +6,7 @@
       [
         'ngAnimate',
         'ngAria',
+        'ngWebsocket',
         'ngCookies',
         'ngMessages',
         'ngResource',
