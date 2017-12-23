@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import sys
 import six
 from six.moves import http_client
@@ -22,7 +21,8 @@ from rest_framework.authtoken.models import Token
 import datetime
 import json
 import time
-from jawn.settings import JAVASCRIPT_MODE
+import logging
+
 
 try:
     # django >= 1.8 && python >= 2.7
@@ -75,18 +75,19 @@ class WebsocketWSGIServer(object):
         #     request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
         #     print(request.user)
 
-        if JAVASCRIPT_MODE == False:
-            if request.META['HTTP_AUTHORIZATION']:
-                print(request.META['HTTP_AUTHORIZATION'])
-                a = request.META['HTTP_AUTHORIZATION']
-                array = a.split()
-                token = array[1]
-                print(token)
-                print(self._redis_connection)
-                request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
-                # request.user = User.objects.get(id=Token.objects.get(key=token).user_id)
-                print(request.user)
-                # print(request.user)
+
+        # get user by using the request token:
+        # if request.META['HTTP_AUTHORIZATION']:
+        #     print(request.META['HTTP_AUTHORIZATION'])
+        #     a = request.META['HTTP_AUTHORIZATION']
+        #     array = a.split()
+        #     token = array[1]
+        #     print(token)
+        #     print(self._redis_connection)
+        #     request.user = json.loads(self._redis_connection.get('tokens:' + token).decode('utf8'))
+
+            # request.user = User.objects.get(id=Token.objects.get(key=token).user_id)
+            # print(request.user)
 
 
     def process_subscriptions(self, request):
@@ -190,13 +191,13 @@ class WebsocketWSGIServer(object):
                         if recv_dict:
                             print(recv_dict)
                             if recv_dict['event'] == 'action':
-                                if recv_dict['data'] == 'typing':
+                                if recv_dict['action'] == 'typing':
                                     print(recv_dict)
                                     subscriber.user_is_typing(request=request, expiration=3)
                                     # run some typing method in here
-                                elif recv_dict['data'] == 'upvote':
+                                elif recv_dict['action'] == 'upvote':
                                     pass
-                                elif recv_dict['data'] == 'message sent':
+                                elif recv_dict['action'] == 'message sent':
                                     print('typing typing typing typing typing #########################')
                                     subscriber.user_not_typing(request=request)
                                     # run upvote method logic here
@@ -209,6 +210,16 @@ class WebsocketWSGIServer(object):
                                 message = json.dumps(recv_dict)
                                 recvmsg = RedisMessage(message)
                                 subscriber.publish_message(recvmsg)
+                            elif recv_dict['event'] == 'simple':
+                                """
+                                if client is sending a message upstream as "ephemeral" instead of
+                                permenantly to the DB
+                                """
+                                # recv_dict['jawn_user'] = request.user
+                                # message = json.dumps(recv_dict)
+                                recvmsg = RedisMessage(recv_dict['data'])
+                                subscriber.publish_message(recvmsg)
+                                websocket.send(recvmsg)
                     elif fd == redis_fd:
                         """
                         ################
@@ -221,76 +232,83 @@ class WebsocketWSGIServer(object):
                         msg = subscriber.clean_up_response(raw)
                         ### check and see if there is JSON inside msg['data']
                         try:
-                            new_dict = json.loads(msg['data'])
-                            msg['data'] = new_dict
+                            # new_dict = json.loads(msg['data'])
+                            # msg['data'] = new_dict
+                            print(msg)
                         except ValueError:
-                            # logger.warning('Got ValueError on when parsing {}'.format(str(msg)), exc_info=sys.exc_info())
+                            logging.warning('Got ValueError on when parsing {}'.format(str(msg)), exc_info=sys.exc_info())
                             pass
                         except TypeError:
                             pass
-                            # logger.warning('Got TypeError on when parsing {}'.format(str(msg)), exc_info=sys.exc_info())
-                        if msg['type'] == 'pmessage':
-                            new_outgoing_dict = {}
-                            new_outgoing_dict['data'] = 'action'
-                            if ':typing:' in msg['channel']:
-                                user = msg['channel'].split(':typing:', 1)[1]
-                                new_outgoing_dict['user'] = user
-                                new_outgoing_dict['facility'] = facility
-                                new_outgoing_dict['type'] = 'typing'
-                                if msg['data'] == 'set':
-                                    new_outgoing_dict['action'] = 'started'
-                                    new_outgoing_dict['message'] = user + ' is typing'
-                                    msg = new_outgoing_dict
-                                elif msg['data'] == 'expired' or msg['data'] == 'del':
-                                    new_outgoing_dict['action'] = 'stopped'
-                                    new_outgoing_dict['message'] = user + ' stopped typing'
-                                    msg = new_outgoing_dict
-                                elif msg['data'] == 'expire':
-                                    msg = None
-                            elif ':chatroom:' in msg['channel']:
-                                user = msg['channel'].split(':chatroom:', 1)[1]
-                                new_outgoing_dict['user'] = user
-                                new_outgoing_dict['facility'] = facility
-                                new_outgoing_dict['type'] = 'chatroom'
-                                if msg['data'] == 'set':
-                                    new_outgoing_dict['action'] = 'joined'
-                                    new_outgoing_dict['message'] = user + ' has joined the channel'
-                                    msg = new_outgoing_dict
-                                elif msg['data'] == 'expired' or msg['data'] == 'del':
-                                    new_outgoing_dict['action'] = 'left'
-                                    new_outgoing_dict['message'] = user + ' has left the channel'
-                                    msg = new_outgoing_dict
-                                elif msg['data'] == 'expire':
-                                    msg = None
-                            elif msg['channel'] == '__keyspace@0__:' + prefix + 'broadcast:' + facility or msg['channel'] == '__keyspace@0__:' + prefix + 'broadcast:' + facility + ':chatroom' or prefix + 'broadcast:' + facility:
-                                msg = None
-                        elif msg['data'] == private_settings.WS4REDIS_HEARTBEAT:
-                            msg = None
-                        m = json.dumps(msg, ensure_ascii=False)
-                        sendmsg = RedisMessage(m)
+                            logging.warning('Got TypeError on when parsing {}'.format(str(msg)), exc_info=sys.exc_info())
+                        # if msg['type'] == 'pmessage':
+                        #     new_outgoing_dict = {}
+                        #     new_outgoing_dict['data'] = 'action'
+                        #     if ':typing:' in msg['channel']:
+                        #         user = msg['channel'].split(':typing:', 1)[1]
+                        #         new_outgoing_dict['user'] = user
+                        #         new_outgoing_dict['facility'] = facility
+                        #         new_outgoing_dict['type'] = 'typing'
+                        #         if msg['data'] == 'set':
+                        #             new_outgoing_dict['action'] = 'started'
+                        #             new_outgoing_dict['message'] = user + ' is typing'
+                        #             msg = new_outgoing_dict
+                        #         elif msg['data'] == 'expired' or msg['data'] == 'del':
+                        #             new_outgoing_dict['action'] = 'stopped'
+                        #             new_outgoing_dict['message'] = user + ' stopped typing'
+                        #             msg = new_outgoing_dict
+                        #         elif msg['data'] == 'expire':
+                        #             msg = None
+                        #     elif ':chatroom:' in msg['channel']:
+                        #         user = msg['channel'].split(':chatroom:', 1)[1]
+                        #         new_outgoing_dict['user'] = user
+                        #         new_outgoing_dict['facility'] = facility
+                        #         new_outgoing_dict['type'] = 'chatroom'
+                        #         if msg['data'] == 'set':
+                        #             new_outgoing_dict['action'] = 'joined'
+                        #             new_outgoing_dict['message'] = user + ' has joined the channel'
+                        #             msg = new_outgoing_dict
+                        #         elif msg['data'] == 'expired' or msg['data'] == 'del':
+                        #             new_outgoing_dict['action'] = 'left'
+                        #             new_outgoing_dict['message'] = user + ' has left the channel'
+                        #             msg = new_outgoing_dict
+                        #         elif msg['data'] == 'expire':
+                        #             msg = None
+                        #     elif msg['channel'] == '__keyspace@0__:' + prefix + 'broadcast:' + facility or msg['channel'] == '__keyspace@0__:' + prefix + 'broadcast:' + facility + ':chatroom' or prefix + 'broadcast:' + facility:
+                        #         msg = None
+                        # elif msg['data'] == private_settings.WS4REDIS_HEARTBEAT:
+                        #     msg = None
+                        # m = json.dumps(msg, ensure_ascii=False)
+
+                        print('THE RAW MESSAGE')
+                        print(raw)
+                        print('THE MSG')
+                        print(msg)
+
+                        sendmsg = RedisMessage(msg['data'])
                         if sendmsg and (echo_message or sendmsg != recvmsg):
-                            print(m + " this is inside the websocket loop (sendmsg)")
+                            print(" this is inside the websocket loop (sendmsg)")
                             websocket.send(sendmsg)
                     else:
-                        print('Invalid file descriptor: {0}'.format(fd))
+                        logging.error('Invalid file descriptor: {0}'.format(fd))
                 # Check again that the websocket is closed before sending the heartbeat,
                 # because the websocket can closed previously in the loop.
                 if private_settings.WS4REDIS_HEARTBEAT and not websocket.closed:
                     websocket.send(private_settings.WS4REDIS_HEARTBEAT)
         except WebSocketError as excpt:
-            print('WebSocketError: {}'.format(excpt), exc_info=sys.exc_info())
+            logging.warning('WebSocketError: {}'.format(excpt), exc_info=sys.exc_info())
             response = http.HttpResponse(status=1001, content='Websocket Closed')
         except UpgradeRequiredError as excpt:
-            print('Websocket upgrade required')
+            logging.info('Websocket upgrade required')
             response = http.HttpResponseBadRequest(status=426, content=excpt)
         except HandshakeError as excpt:
-            print('HandshakeError: {}'.format(excpt), exc_info=sys.exc_info())
+            logging.warning('HandshakeError: {}'.format(excpt), exc_info=sys.exc_info())
             response = http.HttpResponseBadRequest(content=excpt)
         except PermissionDenied as excpt:
-            print('PermissionDenied: {}'.format(excpt), exc_info=sys.exc_info())
+            logging.warning('PermissionDenied: {}'.format(excpt), exc_info=sys.exc_info())
             response = http.HttpResponseForbidden(content=excpt)
         except Exception as excpt:
-            print('Other Exception: {}'.format(excpt), exc_info=sys.exc_info())
+            logging.error('Other Exception: {}'.format(excpt), exc_info=sys.exc_info())
             response = http.HttpResponseServerError(content=excpt)
         else:
             response = http.HttpResponse()
@@ -300,13 +318,12 @@ class WebsocketWSGIServer(object):
             if websocket:
                 websocket.close(code=1001, message='Websocket Closed')
             else:
-                print('Starting late response on websocket')
-                response = http.HttpResponseBadRequest(status=426, content=excpt)
+                logging.warning('Starting late response on websocket')
                 status_text = http_client.responses.get(response.status_code, 'UNKNOWN STATUS CODE')
                 status = '{0} {1}'.format(response.status_code, status_text)
                 headers = response._headers.values()
                 if six.PY3:
                     headers = list(headers)
                 start_response(force_str(status), headers)
-                print('Finish non-websocket response with status code: {}'.format(response.status_code))
+                logging.info('Finish non-websocket response with status code: {}'.format(response.status_code))
         return response

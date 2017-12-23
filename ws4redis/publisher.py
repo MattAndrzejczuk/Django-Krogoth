@@ -1,4 +1,3 @@
-#-*- coding: utf-8 -*-
 from redis import ConnectionPool, StrictRedis
 from ws4redis import settings
 from ws4redis.redis_store import RedisStore

@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-# This code was generously pilfered from https://bitbucket.org/Jeffrey/gevent-websocket
-# written by Jeffrey Gelens (http://noppo.pro/) and licensed under the Apache License, Version 2.0
 import six
 import struct
 from socket import error as socket_error
-from django.core.handlers.wsgi import logger
+import logging
 from ws4redis.utf8validator import Utf8Validator
 from ws4redis.exceptions import WebSocketError, FrameTooLargeException
 
@@ -136,7 +133,7 @@ class WebSocket(object):
         except socket_error:
             payload = ''
         except Exception:
-            logger.debug("{}: {}".format(type(e), six.text_type(e)))
+            logging.debug("{}: {}".format(type(e), six.text_type(e)))
             payload = ''
         if len(payload) != header.length:
             raise WebSocketError('Unexpected EOF reading frame payload')
@@ -213,13 +210,13 @@ class WebSocket(object):
         try:
             return self.read_message()
         except UnicodeError as e:
-            logger.info('websocket.receive: UnicodeError {}'.format(e))
+            logging.info('websocket.receive: UnicodeError {}'.format(e))
             self.close(1007)
         except WebSocketError as e:
-            logger.info('websocket.receive: WebSocketError {}'.format(e))
+            logging.info('websocket.receive: WebSocketError {}'.format(e))
             self.close(1002)
         except Exception as e:
-            logger.info('websocket.receive: Unknown error {}'.format(e))
+            logging.info('websocket.receive: Unknown error {}'.format(e))
             raise e
 
     def flush(self):
@@ -270,9 +267,9 @@ class WebSocket(object):
         except WebSocketError:
             # Failed to write the closing frame but it's ok because we're
             # closing the socket anyway.
-            logger.debug("Failed to write closing frame -> closing socket")
+            logging.debug("Failed to write closing frame -> closing socket")
         finally:
-            logger.debug("Closed WebSocket")
+            logging.debug("Closed WebSocket")
             self._closed = True
             self.stream = None
 
