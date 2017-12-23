@@ -24,6 +24,87 @@ import time
 import logging
 
 
+
+
+
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    TEAL = '\033[96m'
+    BLACK = '\033[97m'
+    GRAY = '\033[90m'
+    black = '\033[30m'
+    red = '\033[31m'
+    green = '\033[32m'
+    orange = '\033[33m'
+    blue = '\033[34m'
+    purple = '\033[35m'
+    cyan = '\033[36m'
+    lightgrey = '\033[37m'
+    darkgrey = '\033[90m'
+    lightred = '\033[91m'
+    lightgreen = '\033[92m'
+    yellow = '\033[93m'
+    lightblue = '\033[94m'
+    pink = '\033[95m'
+    lightcyan = '\033[96m'
+
+
+def log1(p):
+    print(bcolors.purple, end=" ")
+    print(p, end=" 1 ")
+    print(bcolors.ENDC, end=" ")
+
+def log2(p):
+    print(bcolors.blue, end=" ")
+    print(p, end=" 2 ")
+    print(bcolors.ENDC, end=" ")
+
+def log3(p):
+    print(bcolors.yellow, end=" ")
+    print(p, end=" 3 ")
+    print(bcolors.ENDC, end=" ")
+
+def log4(p):
+    print(bcolors.purple, end=" ")
+    print(p, end=" 4 ")
+    print(bcolors.ENDC, end=" ")
+
+
+def log5(p):
+    print(bcolors.TEAL, end=" ")
+    print(p, end=" 5 ")
+    print(bcolors.ENDC, end=" ")
+
+
+def log6(p):
+    print(bcolors.OKGREEN, end=" ")
+    print(p, end=" 6 ")
+    print(bcolors.ENDC, end=" ")
+
+
+def log7(p):
+    print(bcolors.green, end=" ")
+    print(p, end=" 7 ")
+    print(bcolors.ENDC, end=" ")
+
+
+def log8(p):
+    print(bcolors.OKBLUE, end=" ")
+    print(p, end=" 8 ")
+    print(bcolors.ENDC, end=" ")
+
+
+
+
+
 try:
     # django >= 1.8 && python >= 2.7
     # https://docs.djangoproject.com/en/1.8/releases/1.7/#django-utils-dictconfig-django-utils-importlib
@@ -127,174 +208,214 @@ class WebsocketWSGIServer(object):
                 except AttributeError:
                     pass
             websocket = self.upgrade_websocket(environ, start_response)
-            print('Subscribed to channels: {0}'.format(', '.join(channels)))
+            log1('Subscribed to channels: {0}'.format(', '.join(channels)))
+
             subscriber.set_pubsub_channels(request, channels)
             websocket_fd = websocket.get_file_descriptor()
             listening_fds = [websocket_fd]
             redis_fd = subscriber.get_file_descriptor()
             if redis_fd:
+                log3(redis_fd)
                 listening_fds.append(redis_fd)
             recvmsg = None
             enter_msg_counter = 0
             while websocket and not websocket.closed:
-                prefix = subscriber.get_prefix()
-                facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
-                if enter_msg_counter == 0:
-                    subscriber.add_user_to_chatroom(request=request)
-                    subscriber.send_persited_messages(websocket)
-                    enter_msg_counter += 1
+
                 ready = self.select(listening_fds, [], [], 4.0)[0]
-                print(ready)
                 if not ready:
                     # flush empty socket
                     websocket.flush()
                 for fd in ready:
-                    # a = RedisMessage(str(list_o_users))
-                    # websocket.send(a)
                     if fd == websocket_fd:
-                        """
-                        ################
-                        EVERYTHING THIS LOOP HAPPENS WHEN THE WEBSOCKET RECEIVES A MESSAGE
-                        I.E. A CLIENT SENDING SOMETHING UPSTREAM
-                        ################
-
-                        I need to create a parser here which knows to publish
-                        the correct message into the correct prefix....
-
-                        i.e. {prefix}:{region}#{channel name}:{type}
-                        type can be: chatroom, typing, text, etc.
-                        """
-
-                        rec = websocket.receive()
-                        """
-                        the parser should begin here, where we figure out what kind of message this is,
-                        but first we need to weed out the strings from the JSON strings
-                        """
-                        recv_dict = {}
-                        try:
-                            recv_dict = json.loads(rec.decode('utf8'))
-                            print(recv_dict)
-                            recvmsg = None
-                        except ValueError:
-                            recvmsg = RedisMessage(rec)
-                        except TypeError:
-                            recvmsg = RedisMessage(rec)
-                        print(str(recv_dict) + " this is HERE")
-                        # rec_dict = json.loads(recvmsg)
-                        # print(rec_dict)
-                        """
-                        if recvmsg is of type RedisMessage, this means it was
-                        """
+                        recvmsg = RedisMessage(websocket.receive())
                         if recvmsg:
-                            print(str(recvmsg) + " recvmessage")
+                            log5('recvmsg: ')
+                            log6(recvmsg)
                             subscriber.publish_message(recvmsg)
-                        if recv_dict:
-                            print(recv_dict)
-                            if recv_dict['event'] == 'action':
-                                if recv_dict['action'] == 'typing':
-                                    print(recv_dict)
-                                    subscriber.user_is_typing(request=request, expiration=3)
-                                    # run some typing method in here
-                                elif recv_dict['action'] == 'upvote':
-                                    pass
-                                elif recv_dict['action'] == 'message sent':
-                                    print('typing typing typing typing typing #########################')
-                                    subscriber.user_not_typing(request=request)
-                                    # run upvote method logic here
-                            elif recv_dict['event'] == 'text':
-                                """
-                                if client is sending a message upstream as "ephemeral" instead of
-                                permenantly to the DB
-                                """
-                                recv_dict['jawn_user'] = request.user
-                                message = json.dumps(recv_dict)
-                                recvmsg = RedisMessage(message)
-                                subscriber.publish_message(recvmsg)
-                            elif recv_dict['event'] == 'simple':
-                                """
-                                if client is sending a message upstream as "ephemeral" instead of
-                                permenantly to the DB
-                                """
-                                # recv_dict['jawn_user'] = request.user
-                                # message = json.dumps(recv_dict)
-                                recvmsg = RedisMessage(recv_dict['data'])
-                                subscriber.publish_message(recvmsg)
-                                websocket.send(recvmsg)
                     elif fd == redis_fd:
-                        """
-                        ################
-                        EVERYTHING THIS LOOP HAPPENS WHEN THE REDIS QUEUE RECEIVES A MESSAGE
-                        I.E. A REDIS NOTIFICATION OR PUBSUB EVENT
-                        ################
-                        """
-                        print('SHIT!!')
-                        raw = subscriber.parse_response()
-                        msg = subscriber.clean_up_response(raw)
-                        ### check and see if there is JSON inside msg['data']
-                        try:
-                            # new_dict = json.loads(msg['data'])
-                            # msg['data'] = new_dict
-                            print(msg)
-                        except ValueError:
-                            logging.warning('Got ValueError on when parsing {}'.format(str(msg)), exc_info=sys.exc_info())
-                            pass
-                        except TypeError:
-                            pass
-                            logging.warning('Got TypeError on when parsing {}'.format(str(msg)), exc_info=sys.exc_info())
-                        # if msg['type'] == 'pmessage':
-                        #     new_outgoing_dict = {}
-                        #     new_outgoing_dict['data'] = 'action'
-                        #     if ':typing:' in msg['channel']:
-                        #         user = msg['channel'].split(':typing:', 1)[1]
-                        #         new_outgoing_dict['user'] = user
-                        #         new_outgoing_dict['facility'] = facility
-                        #         new_outgoing_dict['type'] = 'typing'
-                        #         if msg['data'] == 'set':
-                        #             new_outgoing_dict['action'] = 'started'
-                        #             new_outgoing_dict['message'] = user + ' is typing'
-                        #             msg = new_outgoing_dict
-                        #         elif msg['data'] == 'expired' or msg['data'] == 'del':
-                        #             new_outgoing_dict['action'] = 'stopped'
-                        #             new_outgoing_dict['message'] = user + ' stopped typing'
-                        #             msg = new_outgoing_dict
-                        #         elif msg['data'] == 'expire':
-                        #             msg = None
-                        #     elif ':chatroom:' in msg['channel']:
-                        #         user = msg['channel'].split(':chatroom:', 1)[1]
-                        #         new_outgoing_dict['user'] = user
-                        #         new_outgoing_dict['facility'] = facility
-                        #         new_outgoing_dict['type'] = 'chatroom'
-                        #         if msg['data'] == 'set':
-                        #             new_outgoing_dict['action'] = 'joined'
-                        #             new_outgoing_dict['message'] = user + ' has joined the channel'
-                        #             msg = new_outgoing_dict
-                        #         elif msg['data'] == 'expired' or msg['data'] == 'del':
-                        #             new_outgoing_dict['action'] = 'left'
-                        #             new_outgoing_dict['message'] = user + ' has left the channel'
-                        #             msg = new_outgoing_dict
-                        #         elif msg['data'] == 'expire':
-                        #             msg = None
-                        #     elif msg['channel'] == '__keyspace@0__:' + prefix + 'broadcast:' + facility or msg['channel'] == '__keyspace@0__:' + prefix + 'broadcast:' + facility + ':chatroom' or prefix + 'broadcast:' + facility:
-                        #         msg = None
-                        # elif msg['data'] == private_settings.WS4REDIS_HEARTBEAT:
-                        #     msg = None
-                        # m = json.dumps(msg, ensure_ascii=False)
-
-                        print('THE RAW MESSAGE')
-                        print(raw)
-                        print('THE MSG')
-                        print(msg)
-
-                        sendmsg = RedisMessage(msg['data'])
+                        sendmsg = RedisMessage(subscriber.parse_response())
                         if sendmsg and (echo_message or sendmsg != recvmsg):
-                            print(" this is inside the websocket loop (sendmsg)")
+                            log7('sendmsg: ')
+                            log8(sendmsg)
                             websocket.send(sendmsg)
                     else:
-                        logging.error('Invalid file descriptor: {0}'.format(fd))
+                        log2('Invalid file descriptor: {0}'.format(fd))
                 # Check again that the websocket is closed before sending the heartbeat,
                 # because the websocket can closed previously in the loop.
                 if private_settings.WS4REDIS_HEARTBEAT and not websocket.closed:
                     websocket.send(private_settings.WS4REDIS_HEARTBEAT)
+                # Remove websocket from _websockets if closed
+                if websocket.closed:
+                    self._websockets.remove(websocket)
+
+
+
+
+                # prefix = subscriber.get_prefix()
+                # facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
+                # if enter_msg_counter == 0:
+                #     subscriber.add_user_to_chatroom(request=request)
+                #     subscriber.send_persited_messages(websocket)
+                #     enter_msg_counter += 1
+                # ready = self.select(listening_fds, [], [], 4.0)[0]
+                # print(ready)
+                # if not ready:
+                #     # flush empty socket
+                #     websocket.flush()
+                # for fd in ready:
+                #     # a = RedisMessage(str(list_o_users))
+                #     # websocket.send(a)
+                #     if fd == websocket_fd:
+                #         """
+                #         ################
+                #         EVERYTHING THIS LOOP HAPPENS WHEN THE WEBSOCKET RECEIVES A MESSAGE
+                #         I.E. A CLIENT SENDING SOMETHING UPSTREAM
+                #         ################
+                #
+                #         I need to create a parser here which knows to publish
+                #         the correct message into the correct prefix....
+                #
+                #         i.e. {prefix}:{region}#{channel name}:{type}
+                #         type can be: chatroom, typing, text, etc.
+                #         """
+                #
+                #         rec = websocket.receive()
+                #         """
+                #         the parser should begin here, where we figure out what kind of message this is,
+                #         but first we need to weed out the strings from the JSON strings
+                #         """
+                #         recv_dict = {}
+                #         try:
+                #             recv_dict = json.loads(rec.decode('utf8'))
+                #             print(recv_dict)
+                #             recvmsg = None
+                #         except ValueError:
+                #             recvmsg = RedisMessage(rec)
+                #         except TypeError:
+                #             recvmsg = RedisMessage(rec)
+                #         print(str(recv_dict) + " this is HERE")
+                #         # rec_dict = json.loads(recvmsg)
+                #         # print(rec_dict)
+                #         """
+                #         if recvmsg is of type RedisMessage, this means it was
+                #         """
+                #         if recvmsg:
+                #             print(str(recvmsg) + " recvmessage")
+                #             subscriber.publish_message(recvmsg)
+                #         if recv_dict:
+                #             print(recv_dict)
+                #             if recv_dict['event'] == 'action':
+                #                 if recv_dict['action'] == 'typing':
+                #                     print(recv_dict)
+                #                     subscriber.user_is_typing(request=request, expiration=3)
+                #                     # run some typing method in here
+                #                 elif recv_dict['action'] == 'upvote':
+                #                     pass
+                #                 elif recv_dict['action'] == 'message sent':
+                #                     print('typing typing typing typing typing #########################')
+                #                     subscriber.user_not_typing(request=request)
+                #                     # run upvote method logic here
+                #             elif recv_dict['event'] == 'text':
+                #                 """
+                #                 if client is sending a message upstream as "ephemeral" instead of
+                #                 permenantly to the DB
+                #                 """
+                #                 recv_dict['jawn_user'] = request.user
+                #                 message = json.dumps(recv_dict)
+                #                 recvmsg = RedisMessage(message)
+                #                 subscriber.publish_message(recvmsg)
+                #             elif recv_dict['event'] == 'simple':
+                #                 """
+                #                 if client is sending a message upstream as "ephemeral" instead of
+                #                 permenantly to the DB
+                #                 """
+                #                 # recv_dict['jawn_user'] = request.user
+                #                 # message = json.dumps(recv_dict)
+                #                 recvmsg = RedisMessage(recv_dict['data'])
+                #                 subscriber.publish_message(recvmsg)
+                #                 websocket.send(recvmsg)
+                #     elif fd == redis_fd:
+                #         """
+                #         ################
+                #         EVERYTHING THIS LOOP HAPPENS WHEN THE REDIS QUEUE RECEIVES A MESSAGE
+                #         I.E. A REDIS NOTIFICATION OR PUBSUB EVENT
+                #         ################
+                #         """
+                #         print('SHIT!!')
+                #         raw = subscriber.parse_response()
+                #         msg = subscriber.clean_up_response(raw)
+                #         ### check and see if there is JSON inside msg['data']
+                #         try:
+                #             # new_dict = json.loads(msg['data'])
+                #             # msg['data'] = new_dict
+                #             print(msg)
+                #         except ValueError:
+                #             logging.warning('Got ValueError on when parsing {}'.format(str(msg)), exc_info=sys.exc_info())
+                #             pass
+                #         except TypeError:
+                #             pass
+                #             logging.warning('Got TypeError on when parsing {}'.format(str(msg)), exc_info=sys.exc_info())
+                #         # if msg['type'] == 'pmessage':
+                #         #     new_outgoing_dict = {}
+                #         #     new_outgoing_dict['data'] = 'action'
+                #         #     if ':typing:' in msg['channel']:
+                #         #         user = msg['channel'].split(':typing:', 1)[1]
+                #         #         new_outgoing_dict['user'] = user
+                #         #         new_outgoing_dict['facility'] = facility
+                #         #         new_outgoing_dict['type'] = 'typing'
+                #         #         if msg['data'] == 'set':
+                #         #             new_outgoing_dict['action'] = 'started'
+                #         #             new_outgoing_dict['message'] = user + ' is typing'
+                #         #             msg = new_outgoing_dict
+                #         #         elif msg['data'] == 'expired' or msg['data'] == 'del':
+                #         #             new_outgoing_dict['action'] = 'stopped'
+                #         #             new_outgoing_dict['message'] = user + ' stopped typing'
+                #         #             msg = new_outgoing_dict
+                #         #         elif msg['data'] == 'expire':
+                #         #             msg = None
+                #         #     elif ':chatroom:' in msg['channel']:
+                #         #         user = msg['channel'].split(':chatroom:', 1)[1]
+                #         #         new_outgoing_dict['user'] = user
+                #         #         new_outgoing_dict['facility'] = facility
+                #         #         new_outgoing_dict['type'] = 'chatroom'
+                #         #         if msg['data'] == 'set':
+                #         #             new_outgoing_dict['action'] = 'joined'
+                #         #             new_outgoing_dict['message'] = user + ' has joined the channel'
+                #         #             msg = new_outgoing_dict
+                #         #         elif msg['data'] == 'expired' or msg['data'] == 'del':
+                #         #             new_outgoing_dict['action'] = 'left'
+                #         #             new_outgoing_dict['message'] = user + ' has left the channel'
+                #         #             msg = new_outgoing_dict
+                #         #         elif msg['data'] == 'expire':
+                #         #             msg = None
+                #         #     elif msg['channel'] == '__keyspace@0__:' + prefix + 'broadcast:' + facility or msg['channel'] == '__keyspace@0__:' + prefix + 'broadcast:' + facility + ':chatroom' or prefix + 'broadcast:' + facility:
+                #         #         msg = None
+                #         # elif msg['data'] == private_settings.WS4REDIS_HEARTBEAT:
+                #         #     msg = None
+                #         # m = json.dumps(msg, ensure_ascii=False)
+                #
+                #         print('THE RAW MESSAGE')
+                #         print(raw)
+                #         print('THE MSG')
+                #         print(msg)
+                #
+                #         sendmsg = RedisMessage(msg['data'])
+                #         if sendmsg and (echo_message or sendmsg != recvmsg):
+                #             print(" this is inside the websocket loop (sendmsg)")
+                #             websocket.send(sendmsg)
+                #     else:
+                #         logging.error('Invalid file descriptor: {0}'.format(fd))
+                # # Check again that the websocket is closed before sending the heartbeat,
+                # # because the websocket can closed previously in the loop.
+                # if private_settings.WS4REDIS_HEARTBEAT and not websocket.closed:
+                #     websocket.send(private_settings.WS4REDIS_HEARTBEAT)
+
+
+
+
+
+
+
         except WebSocketError as excpt:
             logging.warning('WebSocketError: {}'.format(excpt), exc_info=sys.exc_info())
             response = http.HttpResponse(status=1001, content='Websocket Closed')

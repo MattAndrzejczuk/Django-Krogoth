@@ -1,6 +1,8 @@
 from django.conf import settings
 from ws4redis.redis_store import RedisStore, SELF
-
+from django.core.handlers.wsgi import WSGIRequest
+from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
 
 class RedisSubscriber(RedisStore):
     """
@@ -51,7 +53,7 @@ class RedisSubscriber(RedisStore):
 
         # return self._subscription.listen()
 
-    def set_pubsub_channels(self, request, channels):
+    def set_pubsub_channels(self, request: WSGIRequest, channels):
         """
         Initialize the channels used for publishing and subscribing messages through the message queue.
 
@@ -71,7 +73,19 @@ class RedisSubscriber(RedisStore):
 
         print(region)
 
-        print('guest' + " has entered " + str(facility))
+        username = 'guest'
+        try:
+            request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
+            username = request.user.username
+        except:
+            print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+            print(request.user)
+            print('\033[95m')
+            print(request.COOKIES)
+        print(username + " has entered " + str(facility))
+        print('\033[0m')
+
+
 
         # initialize publishers
         audience = {

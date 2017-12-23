@@ -43,8 +43,8 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.UserRateThrottle'
     ),
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '8100/day',
-        'user': '10010/day'
+        'anon': '28100/day',
+        'user': '20010/day'
     }
 }
 AUTHENTICATION_BACKENDS = (

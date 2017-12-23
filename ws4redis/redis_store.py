@@ -2,7 +2,9 @@ import six
 import warnings
 import json
 from ws4redis import settings
-from django.contrib.auth.models import AnonymousUser
+from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+
 
 """
 A type instance to handle the special case, when a request shall refer to itself, or as a user,
@@ -16,6 +18,13 @@ def _wrap_users(users, request):
     Returns a list with the given list of users and/or the currently logged in user, if the list
     contains the magic item SELF.
     """
+
+    try:
+        request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
+    except:
+        print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+
+
     result = set()
     for u in users:
         if u is SELF and request and request.user and request.user.is_authenticated():
@@ -35,6 +44,11 @@ def _wrap_groups(groups, request):
     while the users logs in.
     """
     result = set()
+    try:
+        request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
+    except:
+        print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+
     for g in groups:
         if g is SELF and request and request.user and request.user.is_authenticated():
             result.update(request.session.get('ws4redis:memberof', []))
@@ -135,9 +149,15 @@ class RedisStore(object):
         print(request)
         facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
         prefix = self.get_prefix()
-        # channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
-        channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility,
-                                                                        user='guest')
+
+        try:
+            request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
+        except:
+            print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+
+        channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user)
+        # channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility,
+        #                                                                 user='guest')
         print(channel)
         if write_user:
             self._connection.set(channel, json.dumps(request.user))
@@ -186,9 +206,15 @@ class RedisStore(object):
         """
         facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
         prefix = self.get_prefix()
-        # channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
-        channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility,
-                                                                        user='guest')
+
+        try:
+            request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
+        except:
+            print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+
+        channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user)
+        # channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility,
+        #                                                                 user='guest')
         self._connection.delete(channel)
         self.broadcast_users_in_chatroom(prefix=prefix, facility=facility)
         # Broadcast the list of users in the chatroom to the {prefix}broadcast:{facility}:chatroom key
@@ -205,9 +231,15 @@ class RedisStore(object):
         """
         facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
         prefix = self.get_prefix()
-        # channel = '{prefix}broadcast:{facility}:typing:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
-        channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility,
-                                                                        user='guest')
+
+        try:
+            request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
+        except:
+            print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+        channel = '{prefix}broadcast:{facility}:typing:{user}'.format(prefix=prefix, facility=facility, user=request.user)
+
+        # channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility,
+        #                                                                 user='guest')
         self._connection.setex(channel, expiration, "")
 
 
@@ -220,9 +252,15 @@ class RedisStore(object):
         """
         facility = request.path_info.replace(settings.WEBSOCKET_URL, '', 1)
         prefix = self.get_prefix()
-        # channel = '{prefix}broadcast:{facility}:typing:{user}'.format(prefix=prefix, facility=facility, user=request.user['base_user']['username'])
-        channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility,
-                                                                        user='guest')
+
+        try:
+            request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
+        except:
+            print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+        channel = '{prefix}broadcast:{facility}:typing:{user}'.format(prefix=prefix, facility=facility, user=request.user)
+
+        # channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility,
+        #                                                                 user='guest')
         self._connection.delete(channel)
 
 
@@ -234,6 +272,13 @@ class RedisStore(object):
                               groups=(), users=(), sessions=(),):
         prefix = self.get_prefix()
         channels = []
+
+        try:
+            request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
+        except:
+            print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+
+
         if broadcast is True:
             # broadcast message to each subscriber listening on the named facility
             channels.append('{prefix}broadcast:{facility}'.format(prefix=prefix, facility=facility))
