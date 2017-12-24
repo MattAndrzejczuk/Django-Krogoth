@@ -19,12 +19,13 @@ class Command(BaseCommand):
         has_services = False
         has_directives = False
 
-        icon = KrogothGantryIcon()
-        try:
-            icon = KrogothGantryIcon(name='s16 icon-ta-arm', code='s16 icon-ta-arm')
-            icon.save()
-        except:
-            icon = KrogothGantryIcon.objects.get(name='s16 icon-ta-arm')
+        # icon = KrogothGantryIcon()
+        # try:
+        #     icon = KrogothGantryIcon(name='s16 icon-ta-arm', code='s16 icon-ta-arm')
+        #     icon.save()
+        # except:
+
+        icon = KrogothGantryIcon.objects.get_or_create(name='s16 icon-ta-arm')
 
 
         cat = KrogothGantryCategory.objects.get_or_create(name='DVC')
@@ -32,6 +33,8 @@ class Command(BaseCommand):
 
         djangular_dvcs = os.listdir('krogoth_gantry/DVCManager')
         for dvc in djangular_dvcs:
+            if dvc == '.DS_Store':
+                continue
             components = os.listdir('krogoth_gantry/DVCManager/' + dvc)
             serv_path = 'krogoth_gantry/DVCManager/' + dvc + '/Services'
             if os.path.isdir(serv_path):
@@ -57,8 +60,18 @@ class Command(BaseCommand):
                 str_View = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/view.html', 'r').read()
                 str_Module = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/module.js', 'r').read()
                 str_Controller = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/controller.js', 'r').read()
-                _mvc = KrogothGantryMasterViewController.objects.get_or_create(name=dvc, title=title, view_html=str_View, controller_js=str_Controller, module_js=str_Module, category=cat[0], icon=icon)
-                mvc = KrogothGantryMasterViewController.objects.get(id=_mvc[0].id)
+                _mvc = KrogothGantryMasterViewController.objects.get_or_create(name=dvc,
+                                                                               title=title, category=cat[0], icon=icon[0])
+                                                                               # view_html=str_View,
+                                                                               # controller_js=str_Controller,
+                                                                               # module_js=str_Module,
+                                                                               # category=cat[0],
+                                                                               # icon=icon)
+                _mvc[0].view_html=str_View
+                _mvc[0].controller_js=str_Controller
+                _mvc[0].module_js=str_Module
+                # _mvc[0].category=cat[0]
+                # _mvc[0].icon=icon[0]
 
                 svc = KrogothGantrySlaveViewController.objects.get_or_create(name=dvc+'Slave')
                 svc[0].title = dvc+' Slave'
@@ -68,7 +81,7 @@ class Command(BaseCommand):
                     svc[0].view_html = str_slaveV
                     svc[0].controller_js = str_slaveC
                     svc[0].save()
-                    mvc.djangular_slave_vc.add(svc[0])
+                    _mvc[0].djangular_slave_vc.add(svc[0])
 
                 if has_services == True:
                     srv_files = os.listdir('krogoth_gantry/DVCManager/' + dvc + '/Services')
@@ -78,7 +91,7 @@ class Command(BaseCommand):
                         service[0].title = srv + ' Service'
                         service[0].service_js = str_srv
                         service[0].save()
-                        mvc.djangular_service.add(service[0])
+                        _mvc[0].djangular_service.add(service[0])
 
                 if has_directives == True:
                     drec_files = os.listdir('krogoth_gantry/DVCManager/' + dvc + '/Directives')
@@ -88,8 +101,8 @@ class Command(BaseCommand):
                         directive[0].title = drec + ' Directive'
                         directive[0].directive_js = str_drec
                         directive[0].save()
-                        mvc.djangular_directive.add(directive[0])
+                        _mvc[0].djangular_directive.add(directive[0])
 
-                mvc.icon = icon
-                mvc.save()
+                _mvc[0].icon = icon[0]
+                _mvc[0].save()
                 self.stdout.write(self.style.SUCCESS('DVC Manager Saved: ' + dvc))

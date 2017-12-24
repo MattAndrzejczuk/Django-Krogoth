@@ -31,6 +31,7 @@ echo "\033[1;36mInstalling krogoth_gantry... \033[0m"
 docker exec -it armprime ./manage.py makemigrations moho_extractor krogoth_gantry djangular_dashboard LazarusIV LazarusV chat
 docker exec -it armprime ./manage.py migrate
 docker exec -it armprime ./manage.py make_default_layout
+docker exec -it armprime ./manage.py collectdvc
 echo "\033[1;34m NOW SERVING KROGOTH, IT WILL BE AVAILABLE ON: \033[0m"
 echo "\033[4;36m http://127.0.0.1 \033[0m"
 echo "\033[1;35m"

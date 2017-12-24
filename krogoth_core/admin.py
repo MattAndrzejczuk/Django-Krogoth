@@ -24,7 +24,7 @@ class AKFoundationAbstractAdmin(admin.ModelAdmin):
 
             '/static/codemirror/addon/hint/javascript-hint.js',
 
-            '/moho_extractor/NgIncludedJs/?name=codemirror_krogoth_core',
+            '/static/code_mirror_run_krogoth_core.js',
         )
         css = {
             'all': ('/static/codemirror.css',

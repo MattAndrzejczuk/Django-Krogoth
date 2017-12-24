@@ -1,43 +1,56 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('fuse')
-    .factory('api', apiService);
+    angular
+        .module('fuse')
+        .factory('api', apiService);
 
-  /** @ngInject */
-  function apiService($resource) {
-    /**
-     * You can use this service to define your API urls. The "api" service
-     * is designed to work in parallel with "apiResolver" service which you can
-     * find in the "app/core/services/api-resolver.service.js" file.
-     *
-     * You can structure your API urls whatever the way you want to structure them.
-     * You can either use very simple definitions, or you can use multi-dimensional
-     * objects.
-     *
-     * Here's a very simple API url definition example:
-     *
-     *      api.getBlogList = $resource('http://api.example.com/getBlogList');
-     *
-     * While this is a perfectly valid $resource definition, most of the time you will
-     * find yourself in a more complex situation where you want url parameters:
-     *
-     *      api.getBlogById = $resource('http://api.example.com/blog/:id', {id: '@id'});
-     *
-     * You can also define your custom methods. Custom method definitions allow you to
-     * add hardcoded parameters to your API calls that you want to sent every time you
-     * make that API call:
-     *
-     *      api.getBlogById = $resource('http://api.example.com/blog/:id', {id: '@id'}, {
+    /** @ngInject */
+    function apiService($resource) {
+
+
+        var api = {};
+
+        // Base Url
+        api.baseUrl = 'app/data/';
+
+        api.blog = {
+            list: $resource('/LazarusIV/ContentSubmission/NotificationItemViewSet/'),
+            getById: $resource('/LazarusIV/ContentSubmission/NotificationItemViewSet/:id', {id: '@id'})
+        };
+
+
+        /**
+         * You can use this service to define your API urls. The "api" service
+         * is designed to work in parallel with "apiResolver" service which you can
+         * find in the "app/core/services/api-resolver.service.js" file.
+         *
+         * You can structure your API urls whatever the way you want to structure them.
+         * You can either use very simple definitions, or you can use multi-dimensional
+         * objects.
+         *
+         * Here's a very simple API url definition example:
+         *
+         *      api.getBlogList = $resource('http://api.example.com/getBlogList');
+         *
+         * While this is a perfectly valid $resource definition, most of the time you will
+         * find yourself in a more complex situation where you want url parameters:
+         *
+         *      api.getBlogById = $resource('http://api.example.com/blog/:id', {id: '@id'});
+         *
+         * You can also define your custom methods. Custom method definitions allow you to
+         * add hardcoded parameters to your API calls that you want to sent every time you
+         * make that API call:
+         *
+         *      api.getBlogById = $resource('http://api.example.com/blog/:id', {id: '@id'}, {
          *         'getFromHomeCategory' : {method: 'GET', params: {blogCategory: 'home'}}
          *      });
-     *
-     * In addition to these definitions, you can also create multi-dimensional objects.
-     * They are nothing to do with the $resource object, it's just a more convenient
-     * way that we have created for you to packing your related API urls together:
-     *
-     *      api.blog = {
+         *
+         * In addition to these definitions, you can also create multi-dimensional objects.
+         * They are nothing to do with the $resource object, it's just a more convenient
+         * way that we have created for you to packing your related API urls together:
+         *
+         *      api.blog = {
          *                   list     : $resource('http://api.example.com/blog'),
          *                   getById  : $resource('http://api.example.com/blog/:id', {id: '@id'}),
          *                   getByDate: $resource('http://api.example.com/blog/:date', {id: '@date'}, {
@@ -49,24 +62,24 @@
          *                       }
          *                   })
          *       }
-     *
-     * If you look at the last example from above, we overrode the 'get' method to put a
-     * hardcoded parameter. Now every time we make the "getByDate" call, the {getByDate: true}
-     * object will also be sent along with whatever data we are sending.
-     *
-     * All the above methods are using standard $resource service. You can learn more about
-     * it at: https://docs.angularjs.org/api/ngResource/service/$resource
-     *
-     * -----
-     *
-     * After you defined your API urls, you can use them in Controllers, Services and even
-     * in the UIRouter state definitions.
-     *
-     * If we use the last example from above, you can do an API call in your Controllers and
-     * Services like this:
-     *
-     *      function MyController (api)
-     *      {
+         *
+         * If you look at the last example from above, we overrode the 'get' method to put a
+         * hardcoded parameter. Now every time we make the "getByDate" call, the {getByDate: true}
+         * object will also be sent along with whatever data we are sending.
+         *
+         * All the above methods are using standard $resource service. You can learn more about
+         * it at: https://docs.angularjs.org/api/ngResource/service/$resource
+         *
+         * -----
+         *
+         * After you defined your API urls, you can use them in Controllers, Services and even
+         * in the UIRouter state definitions.
+         *
+         * If we use the last example from above, you can do an API call in your Controllers and
+         * Services like this:
+         *
+         *      function MyController (api)
+         *      {
          *          // Get the blog list
          *          api.blog.list.get({},
          *
@@ -117,16 +130,16 @@
          *              }
          *          );
          *      }
-     *
-     * Because we are directly using $resource service, all your API calls will return a
-     * $promise object.
-     *
-     * --
-     *
-     * If you want to do the same calls in your UI Router state definitions, you need to use
-     * "apiResolver" service we have prepared for you:
-     *
-     *      $stateProvider.state('app.blog', {
+         *
+         * Because we are directly using $resource service, all your API calls will return a
+         * $promise object.
+         *
+         * --
+         *
+         * If you want to do the same calls in your UI Router state definitions, you need to use
+         * "apiResolver" service we have prepared for you:
+         *
+         *      $stateProvider.state('app.blog', {
          *          url      : '/blog',
          *          views    : {
          *               'content@app': {
@@ -141,10 +154,10 @@
          *              }
          *          }
          *      });
-     *
-     *  You can even use parameters with apiResolver service:
-     *
-     *      $stateProvider.state('app.blog.show', {
+         *
+         *  You can even use parameters with apiResolver service:
+         *
+         *      $stateProvider.state('app.blog.show', {
          *          url      : '/blog/:id',
          *          views    : {
          *               'content@app': {
@@ -173,87 +186,83 @@
          *      }
          */
 
-    var api = {};
 
-    // Base Url
-    api.baseUrl = 'app/data/';
+        /**
+         * Here you can find all the definitions that the Demo Project requires
+         *
+         * If you wish to use this method, you can create your API definitions
+         * in a similar way.
+         */
 
-    /**
-     * Here you can find all the definitions that the Demo Project requires
-     *
-     * If you wish to use this method, you can create your API definitions
-     * in a similar way.
-     */
+        /*
+         api.dashboard = {
+         project  : $resource(api.baseUrl + 'dashboard/project/data.json'),
+         server   : $resource(api.baseUrl + 'dashboard/server/data.json'),
+         analytics: $resource(api.baseUrl + 'dashboard/analytics/data.json')
+         };
 
-    /*
-     api.dashboard = {
-     project  : $resource(api.baseUrl + 'dashboard/project/data.json'),
-     server   : $resource(api.baseUrl + 'dashboard/server/data.json'),
-     analytics: $resource(api.baseUrl + 'dashboard/analytics/data.json')
-     };
+         api.cards = $resource(api.baseUrl + 'cards/cards.json');
 
-     api.cards = $resource(api.baseUrl + 'cards/cards.json');
+         api.fileManager = {
+         documents: $resource(api.baseUrl + 'file-manager/documents.json')
+         };
 
-     api.fileManager = {
-     documents: $resource(api.baseUrl + 'file-manager/documents.json')
-     };
+         api.ganttChart = {
+         tasks: $resource(api.baseUrl + 'gantt-chart/tasks.json'),
+         timespans : $resource(api.baseUrl + 'gantt-chart/timespans.json')
+         };
 
-     api.ganttChart = {
-     tasks: $resource(api.baseUrl + 'gantt-chart/tasks.json'),
-     timespans : $resource(api.baseUrl + 'gantt-chart/timespans.json')
-     };
+         api.icons = $resource('assets/icons/selection.json');
 
-     api.icons = $resource('assets/icons/selection.json');
+         api.invoice = $resource(api.baseUrl + 'invoice/invoice.json');
 
-     api.invoice = $resource(api.baseUrl + 'invoice/invoice.json');
+         api.mail = {
+         inbox: $resource(api.baseUrl + 'mail/inbox.json')
+         };
 
-     api.mail = {
-     inbox: $resource(api.baseUrl + 'mail/inbox.json')
-     };
+         api.profile = {
+         timeline    : $resource(api.baseUrl + 'profile/timeline.json'),
+         about       : $resource(api.baseUrl + 'profile/about.json'),
+         photosVideos: $resource(api.baseUrl + 'profile/photos-videos.json')
+         };
 
-     api.profile = {
-     timeline    : $resource(api.baseUrl + 'profile/timeline.json'),
-     about       : $resource(api.baseUrl + 'profile/about.json'),
-     photosVideos: $resource(api.baseUrl + 'profile/photos-videos.json')
-     };
+         api.quickPanel = {
+         activities: $resource(api.baseUrl + 'quick-panel/activities.json'),
+         contacts  : $resource(api.baseUrl + 'quick-panel/contacts.json'),
+         events    : $resource(api.baseUrl + 'quick-panel/events.json'),
+         notes     : $resource(api.baseUrl + 'quick-panel/notes.json')
+         };
 
-     api.quickPanel = {
-     activities: $resource(api.baseUrl + 'quick-panel/activities.json'),
-     contacts  : $resource(api.baseUrl + 'quick-panel/contacts.json'),
-     events    : $resource(api.baseUrl + 'quick-panel/events.json'),
-     notes     : $resource(api.baseUrl + 'quick-panel/notes.json')
-     };
+         api.search = {
+         classic : $resource(api.baseUrl + 'search/classic.json'),
+         mails   : $resource(api.baseUrl + 'search/mails.json'),
+         users   : $resource(api.baseUrl + 'search/users.json'),
+         contacts: $resource(api.baseUrl + 'search/contacts.json')
+         };
 
-     api.search = {
-     classic : $resource(api.baseUrl + 'search/classic.json'),
-     mails   : $resource(api.baseUrl + 'search/mails.json'),
-     users   : $resource(api.baseUrl + 'search/users.json'),
-     contacts: $resource(api.baseUrl + 'search/contacts.json')
-     };
+         api.scrumboard = {
+         boardList: $resource(api.baseUrl + 'scrumboard/boardList.json'),
+         board    : $resource(api.baseUrl + 'scrumboard/boards/:id.json')
+         };
 
-     api.scrumboard = {
-     boardList: $resource(api.baseUrl + 'scrumboard/boardList.json'),
-     board    : $resource(api.baseUrl + 'scrumboard/boards/:id.json')
-     };
+         api.tables = {
+         employees   : $resource(api.baseUrl + 'tables/employees.json'),
+         employees100: $resource(api.baseUrl + 'tables/employees100.json')
+         };
 
-     api.tables = {
-     employees   : $resource(api.baseUrl + 'tables/employees.json'),
-     employees100: $resource(api.baseUrl + 'tables/employees100.json')
-     };
+         api.timeline = {
+         page1: $resource(api.baseUrl + 'timeline/page-1.json'),
+         page2: $resource(api.baseUrl + 'timeline/page-2.json'),
+         page3: $resource(api.baseUrl + 'timeline/page-3.json')
+         };
 
-     api.timeline = {
-     page1: $resource(api.baseUrl + 'timeline/page-1.json'),
-     page2: $resource(api.baseUrl + 'timeline/page-2.json'),
-     page3: $resource(api.baseUrl + 'timeline/page-3.json')
-     };
+         api.todo = {
+         tasks: $resource(api.baseUrl + 'todo/tasks.json'),
+         tags : $resource(api.baseUrl + 'todo/tags.json')
+         };
+         */
 
-     api.todo = {
-     tasks: $resource(api.baseUrl + 'todo/tasks.json'),
-     tags : $resource(api.baseUrl + 'todo/tags.json')
-     };
-     */
-
-    return api;
-  }
+        return api;
+    }
 
 })();
