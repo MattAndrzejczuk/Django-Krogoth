@@ -47,10 +47,6 @@ class Command(BaseCommand):
         str_htmlNav = htmlNav.read()
         str_htmlToolbar = htmlToolbar.read()
 
-        str_loginView = codecs.open('krogoth_gantry/management/default_templates/login/view.html', 'r').read()
-        str_loginModule = codecs.open('krogoth_gantry/management/default_templates/login/module.js', 'r').read()
-        str_loginController = codecs.open('krogoth_gantry/management/default_templates/login/controller.js', 'r').read()
-
         icon = KrogothGantryIcon()
         try:
             icon = KrogothGantryIcon(name='icon-ubuntu')
@@ -88,10 +84,17 @@ class Command(BaseCommand):
 
         # loginMasterViewController---------------------------------------------------------
         try:
+            str_loginView = codecs.open('krogoth_gantry/management/default_templates/login/view.html', 'r').read()
+            str_loginModule = codecs.open('krogoth_gantry/management/default_templates/login/module.js', 'r').read()
+            str_loginController = codecs.open('krogoth_gantry/management/default_templates/login/controller.js',
+                                              'r').read()
+            str_loginStyle = codecs.open('krogoth_gantry/management/default_templates/login/style.css', 'r').read()
+
             mvc = KrogothGantryMasterViewController(name='Loginkrogoth_gantry', title='Login')
             mvc.view_html = str_loginView
             mvc.controller_js = str_loginController
             mvc.module_js = str_loginModule
+            mvc.style_css = str_loginStyle
 
             mvc.category = cat
             mvc.icon = icon
@@ -107,11 +110,13 @@ class Command(BaseCommand):
             str_View = codecs.open('krogoth_gantry/management/default_templates/register/view.html', 'r').read()
             str_Module = codecs.open('krogoth_gantry/management/default_templates/register/module.js', 'r').read()
             str_Controller = codecs.open('krogoth_gantry/management/default_templates/register/controller.js', 'r').read()
+            str_style = codecs.open('krogoth_gantry/management/default_templates/register/style.css', 'r').read()
 
             mvc = KrogothGantryMasterViewController(name='Registerkrogoth_gantry', title='Register')
             mvc.view_html = str_View
             mvc.controller_js = str_Controller
             mvc.module_js = str_Module
+            mvc.style_css = str_style
 
             mvc.category = cat
             mvc.icon = icon
