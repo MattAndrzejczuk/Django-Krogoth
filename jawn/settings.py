@@ -213,27 +213,36 @@ SESSION_REDIS_PORT = os.environ["REDIS_PORT_6379_TCP_PORT"]
 # Krogoth Initialization.
 # don't touch this, it just prints version info for Python and Django.
 DJANGULAR_STATIC = 'krogoth_gantryStaticFiles'
-APP_VERSION = '0.6.98'
-PUBLIC_GENERATED_THUMBNAILS = '/usr/src/persistent/media/Generated_Thumbnails/'
-PUBLIC_EXTRACTED_HPIs = '/usr/src/persistent/media/Processed_HPI_Archives/'
-if not os.path.exists(PUBLIC_EXTRACTED_HPIs):
-    os.makedirs(PUBLIC_EXTRACTED_HPIs)
-if not os.path.exists(PUBLIC_GENERATED_THUMBNAILS):
-    os.makedirs(PUBLIC_GENERATED_THUMBNAILS)
-FILEBROWSER_DIRECTORY = ''
-DIRECTORY = ''
-if JAVASCRIPT_MODE == True:
-    print('\n\033[34mWebSockets are in JavaScript Mode.\033[0m')
-else:
-    print('\n\033[35mWebSockets are in native mode, Auth headers required for a connection.\033[0m')
 import django
 import rest_framework
-print('')
-print('\033[35mInitializing Django ' +
+try:
+    print('')
+    print('\033[35mInitializing Django ' +
           str(django.VERSION[0]) + '.' + str(django.VERSION[1]) + '.' + str(django.VERSION[2]) + '\033[0m')
-print('\033[95mDjango REST Framework ' + str(rest_framework.VERSION) + '\033[0m')
-print('\033[31mArmPrime ' + APP_VERSION + ' \033[0m')
-print()
+    print('\033[95mDjango REST Framework ' + str(rest_framework.VERSION) + '\033[0m')
+
+    # GET LAZARUS BUILD VERSION:
+    bash_cmd = ['git', 'rev-list', '--count', 'master']
+    get_build_cmd = str(subprocess.check_output(bash_cmd))
+    current_build_1 = ''
+    current_build_2 = ''
+    try:
+        current_build_1 = ('0.' + str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", "")) + '.'
+        current_build_2 = (str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", ""))[1:]
+    except:
+        print('failed to check version!!!')
+    if current_build_2 == '00':
+        current_build_2 = '0'
+    else:
+        rm_0s = current_build_2.replace('01', '1').replace('02', '2').replace('03', '3').replace('04', '4')
+        current_build_2 = rm_0s.replace('05', '5').replace('06', '6').replace('07', '7').replace('08', '8').replace(
+            '09', '9')
+
+    APP_VERSION = current_build_1[:3] + "." + current_build_2
+    print('\033[31mArmPrime ' + APP_VERSION + ' \033[0m')
+    print()
+except:
+    print('Django initialized, but the version is unknown... wtf?')
 
 
 
