@@ -5,7 +5,7 @@ parentdir="$(dirname "$dir")"
 
 
 echo "\033[1;31mKROGOTH v0.6.98"
-echo "Copyright (C) 2017 Matt Andrzejczuk < matt@jawn.it >\033[0m"
+echo "Copyright (C) 2017 Matt Andrzejczuk <\033[1;31mmatt@jawn.it\033[1;0m>\033[0m"
 echo "\033[1;32mKROGOTH can not be copied and/or distributed without the express permission of Matt Andrzejczuk.\033[0m"
 sleep 3
 
