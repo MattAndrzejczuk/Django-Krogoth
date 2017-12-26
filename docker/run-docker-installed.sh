@@ -31,11 +31,12 @@ echo "\033[1;36mInstalling krogoth_gantry... \033[0m"
 docker exec -it armprime ./manage.py makemigrations moho_extractor krogoth_gantry djangular_dashboard LazarusIV LazarusV chat
 docker exec -it armprime ./manage.py migrate
 docker exec -it armprime ./manage.py make_default_layout
+docker exec -it armprime ./manage.py installdjangular
 docker exec -it armprime ./manage.py collectdvc
 echo "\033[1;34m NOW SERVING KROGOTH, IT WILL BE AVAILABLE ON: \033[0m"
 echo "\033[4;36m http://127.0.0.1 \033[0m"
 echo "\033[1;35m"
-docker exec -it armprime uwsgi ../runserver_uwsgi.ini
+
 ##############
 # On Mac or Windows with docker-machine installed, remove if Linux ####
 # download at: https://docs.docker.com/machine/install-machine/
@@ -53,8 +54,8 @@ docker exec -it armprime bash -c "apt-get update"
 docker exec -it armprime bash -c "apt-get install -y wine"
 docker exec -it armprime bash -c "dpkg --add-architecture i386"
 docker exec -it armprime bash -c "apt-get update"
-docker exec -it armprime bash -c "apt-get install wine32"
-docker exec -it armprime bash -c "apt-get install Xvfb"
+docker exec -it armprime bash -c "apt-get install -y wine32"
+docker exec -it armprime bash -c "apt-get install -y Xvfb"
 docker exec -it armprime bash -c "Xvfb :0 -screen 0 640x480x8 &"
 sleep 1
 echo ""
@@ -65,3 +66,5 @@ echo ""
 echo "DONT FORGET TO RUN THIS IN POSTGRESQL ! ! ! ! "
 echo "psql jawn4 -c 'create extension hstore;'"
 echo " "
+
+docker exec -it armprime uwsgi ../runserver_uwsgi.ini
