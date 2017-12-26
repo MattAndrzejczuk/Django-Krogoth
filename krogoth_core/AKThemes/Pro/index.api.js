@@ -14,7 +14,7 @@
         // Base Url
         api.baseUrl = 'app/data/';
 
-        api.blog = {
+        api.example = {
             list: $resource('/LazarusIV/ContentSubmission/NotificationItemViewSet/'),
             getById: $resource('/LazarusIV/ContentSubmission/NotificationItemViewSet/:id', {id: '@id'})
         };
