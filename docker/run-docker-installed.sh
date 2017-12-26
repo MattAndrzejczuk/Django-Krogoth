@@ -5,7 +5,7 @@ parentdir="$(dirname "$dir")"
 
 
 echo "\033[1;31mKROGOTH v0.6.98"
-echo "Copyright (C) 2017 Matt Andrzejczuk <\033[1;33mmatt@jawn.it\033[0m>\033[0m"
+echo "Copyright (C) 2017 Matt Andrzejczuk <\033[1;33mmatt@jawn.it\033[1;31m>\033[0m"
 echo "\033[1;32mKROGOTH can not be copied and/or distributed without the express permission of Matt Andrzejczuk.\033[0m"
 sleep 3
 
@@ -29,7 +29,9 @@ echo "\033[1;36mSelect Yes to Continue Install\033[0m"
 docker exec -it armprime ./manage.py collectstatic
 echo "\033[1;36mInstalling krogoth_gantry... \033[0m"
 docker exec -it armprime ./manage.py makemigrations
+docker exec -it armprime ./manage.py makemigrations chat krogoth_gantry krogoth_core moho_extractor kbot_lab
 docker exec -it armprime ./manage.py migrate
+docker exec -it armprime ./manage.py migrate chat krogoth_gantry krogoth_core moho_extractor kbot_lab
 docker exec -it armprime ./manage.py make_default_layout
 docker exec -it armprime ./manage.py installdjangular
 docker exec -it armprime ./manage.py collectdvc
@@ -46,25 +48,6 @@ echo "\033[1;35m"
 #echo 'export DOCKER_MACHINE_NAME="default"' >> ~/.bashrc
 
 sleep 1
-echo ""
-echo "Installing Wine for Microsoft Windows applications compatibility."
-sleep 3
-docker exec -it armprime bash -c "add-apt-repository -y ppa:ubuntu-wine/ppa"
-docker exec -it armprime bash -c "apt-get update"
-docker exec -it armprime bash -c "apt-get install -y wine"
-docker exec -it armprime bash -c "dpkg --add-architecture i386"
-docker exec -it armprime bash -c "apt-get update"
-docker exec -it armprime bash -c "apt-get install -y wine32"
-docker exec -it armprime bash -c "apt-get install -y Xvfb"
-docker exec -it armprime bash -c "Xvfb :0 -screen 0 640x480x8 &"
-sleep 1
-echo ""
-echo "Wine Installation: "
-docker exec -it armprime bash -c "wine --version"
-sleep 2
-echo ""
-echo "DONT FORGET TO RUN THIS IN POSTGRESQL ! ! ! ! "
-echo "psql jawn4 -c 'create extension hstore;'"
-echo " "
+
 
 docker exec -it armprime uwsgi ../runserver_uwsgi.ini

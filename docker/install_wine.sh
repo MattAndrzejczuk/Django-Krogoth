@@ -1,0 +1,20 @@
+echo ""
+echo "Installing Wine for Microsoft Windows applications compatibility."
+sleep 3
+docker exec -it armprime bash -c "add-apt-repository -y ppa:ubuntu-wine/ppa"
+docker exec -it armprime bash -c "apt-get update"
+docker exec -it armprime bash -c "apt-get install -y wine"
+docker exec -it armprime bash -c "dpkg --add-architecture i386"
+docker exec -it armprime bash -c "apt-get update"
+docker exec -it armprime bash -c "apt-get install -y wine32"
+docker exec -it armprime bash -c "apt-get install -y Xvfb"
+docker exec -it armprime bash -c "Xvfb :0 -screen 0 640x480x8 &"
+sleep 1
+echo ""
+echo "Wine Installation: "
+docker exec -it armprime bash -c "wine --version"
+sleep 2
+echo ""
+echo "DONT FORGET TO RUN THIS IN POSTGRESQL ! ! ! ! "
+echo "psql jawn4 -c 'create extension hstore;'"
+echo " "
