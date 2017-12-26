@@ -25,9 +25,8 @@
 
         function sendMsg() {
             console.log('sending a message... ');
-            ws.$emit(vm.userInput);
 
-            api.blog.list.get({},
+            api.example.list.get({},
                 // Success
                 function (response) {
                     console.log(response);
