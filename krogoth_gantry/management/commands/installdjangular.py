@@ -1,7 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from moho_extractor.models import NgIncludedJs, NgIncludedHtml
-from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryIcon, KrogothGantryCategory, \
-    KrogothGantrySlaveViewController
+from CommunityForum.models import ForumCategory
 from moho_extractor.models import NgIncludedHtml
 import codecs
 import subprocess
@@ -213,3 +211,6 @@ class Command(BaseCommand):
                     p = path + arr[0] + '.' + arr[len(arr) - 2] + '.' + arr[len(arr) - 1]
                     output_console(msg=p)
                     get_source_class(kind=arr[0], angular_duty=arr[len(arr) - 2])
+
+        print('SETTING UP COMMUNITY FORUM...')
+        fc = ForumCategory.objects.get_or_create(title='General', is_deleted=False)
