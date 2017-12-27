@@ -74,6 +74,7 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'rest_auth',
     'chat',
+    'LazarusIII',
     'LazarusIV',
     'LazarusV',
     'krogoth_core',

@@ -11,7 +11,7 @@ from rest_framework.decorators import detail_route, list_route, authentication_c
 
 from LazarusIV.armprime_dispatcher.jobs import Worker
 
-from LazarusIV.models_tdf import LazarusDamageDataTA, LazarusWeaponDataTA, LazarusFeatureDataTA, \
+from LazarusIII.models import LazarusDamageDataTA, LazarusWeaponDataTA, LazarusFeatureDataTA, \
     LazarusDownloadDataTA, LazarusUnitDataTA
 
 from LazarusIV.models import UploadRepository, RepositoryFile, BackgroundWorkerJob, NotificationCenter, \

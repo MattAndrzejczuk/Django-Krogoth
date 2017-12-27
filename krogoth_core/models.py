@@ -4,6 +4,7 @@ __author__ = 'Matt Andrzejczuk'
 from django.db import models
 from polymorphic.models import PolymorphicModel
 import codecs
+from django.contrib.postgres.fields import HStoreField
 from jawn.settings import BASE_DIR
 
 # Create your models here.
@@ -20,9 +21,16 @@ class AKFoundationAbstract(PolymorphicModel):
     code = models.TextField(default='Not Yet Generated.')
     ext = models.CharField(max_length=24,
                            help_text='EXAMPLES: html css js ')
+
+    path = models.CharField(max_length=90,
+                            help_text='the path to the folder which contains this code.',
+                            default='/krogoth_core/AKThemes/Pro/')
+
     theme = models.CharField(max_length=90,
                              default=BASE_DIR + '/krogoth_core/AKThemes/Pro/')
     is_selected_theme = models.BooleanField(default=False)
+    custom_key_values = HStoreField(null=True, blank=True)
+
 
     def print_path(self):
         print(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext)
@@ -58,40 +66,46 @@ def to_js(b: bool) -> str:
 
 # config.provider.js
 class AKFoundationConfig(AKFoundationAbstract):
-    disableCustomScrollbars = models.BooleanField(default=False)
-    disableMdInkRippleOnMobile = models.BooleanField(default=True)
-    disableCustomScrollbarsOnMobile = models.BooleanField(default=True)
+    class Meta:
+        proxy = True
 
+    # disableCustomScrollbars = models.BooleanField(default=False)
+    # disableMdInkRippleOnMobile = models.BooleanField(default=True)
+    # disableCustomScrollbarsOnMobile = models.BooleanField(default=True)
+    # @property
+    # def as_frontend_response(self) -> str:
+    #     if self.first_name == 'config':
+    #         original = codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
+    #         p1 = original.replace("'|#1#|'", to_js(self.disableCustomScrollbars))
+    #         p2 = p1.replace("'|#2#|'", to_js(self.disableMdInkRippleOnMobile))
+    #         p3 = p2.replace("'|#3#|'", to_js(self.disableCustomScrollbarsOnMobile))
+    #         return p3
     @property
     def as_frontend_response(self) -> str:
-        if self.first_name == 'config':
-            original = codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
-            p1 = original.replace("'|#1#|'", to_js(self.disableCustomScrollbars))
-            p2 = p1.replace("'|#2#|'", to_js(self.disableMdInkRippleOnMobile))
-            p3 = p2.replace("'|#3#|'", to_js(self.disableCustomScrollbarsOnMobile))
-            return p3
-        # elif self.first_name == 'core':
-        #     if self.last_name == '':
+        return codecs.open(self.path + self.get_filename + self.get_file_ext,'r').read()
 
 
 class AKFoundationAngularCore(AKFoundationAbstract):
-    url = models.CharField(max_length=250, default='/')
+    class Meta:
+        proxy = True
+
 
     @property
     def as_frontend_response(self) -> str:
-        return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext,
+        return codecs.open(self.path + self.get_filename + self.get_file_ext,
                            'r').read()
 
 class AKFoundationDirectives(AKFoundationAbstract):
     """ Files from /app/core/directives/
 
     """
+    class Meta:
+        proxy = True
 
-    url = models.CharField(max_length=250, default='/')
     @property
     def as_frontend_response(self) -> str:
         # print('retrieving ' + self.get_filename)
-        return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext,
+        return codecs.open(self.path + self.get_filename + self.get_file_ext,
                            'r').read()
 
 
@@ -99,101 +113,119 @@ class AKFoundationFilters(AKFoundationAbstract):
     """ Files from /app/core/filters/
 
     """
+    class Meta:
+        proxy = True
 
-    url = models.CharField(max_length=250, default='/')
     @property
     def as_frontend_response(self) -> str:
         # print('retrieving ' + self.get_filename)
-        return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
+        return codecs.open(self.path + self.get_filename + self.get_file_ext, 'r').read()
 
 
 class AKFoundationThemingService(AKFoundationAbstract):
     """ Files from /app/core/theming/
     and from /app/core/theme-options/
     """
+    class Meta:
+        proxy = True
 
-    url = models.CharField(max_length=250, default='/')
     @property
     def as_frontend_response(self) -> str:
         # print('retrieving ' + self.get_filename)
-        return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
+        return codecs.open(self.path + self.get_filename + self.get_file_ext, 'r').read()
 
 
 class AKFoundationThemingConstant(AKFoundationAbstract):
     """ Files from /app/core/theming/
     and from /app/core/theme-options/
     """
+    class Meta:
+        proxy = True
 
-    url = models.CharField(max_length=250, default='/')
     @property
     def as_frontend_response(self) -> str:
         # print('retrieving ' + self.get_filename)
-        return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
+        return codecs.open(self.path + self.get_filename + self.get_file_ext, 'r').read()
 
 class AKFoundationThemingConfiguration(AKFoundationAbstract):
     """ Files from /app/core/theming/
     and from /app/core/theme-options/
     """
+    class Meta:
+        proxy = True
 
-    url = models.CharField(max_length=250, default='/')
     @property
     def as_frontend_response(self) -> str:
         # print('retrieving ' + self.get_filename)
-        return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
+        return codecs.open(self.path + self.get_filename + self.get_file_ext, 'r').read()
 
 
 class AKFoundationIndex(AKFoundationAbstract):
-    url = models.CharField(max_length=250, default='/')
+    class Meta:
+        proxy = True
+
     @property
     def as_frontend_response(self) -> str:
         # print('retrieving ' + self.get_filename)
-        return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
+        return codecs.open(self.path + self.get_filename + self.get_file_ext, 'r').read()
 
 
 class AKFoundationToolbar(AKFoundationAbstract):
-    url = models.CharField(max_length=250, default='/')
+    class Meta:
+        proxy = True
+
     @property
     def as_frontend_response(self) -> str:
         # print('retrieving ' + self.get_filename)
-        return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
+        return codecs.open(self.path + self.get_filename + self.get_file_ext, 'r').read()
 
 
 class AKFoundationQuickPanel(AKFoundationAbstract):
-    url = models.CharField(max_length=250, default='/')
+    class Meta:
+        proxy = True
+
     @property
     def as_frontend_response(self) -> str:
         # print('retrieving ' + self.get_filename)
-        return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
+        return codecs.open(self.path + self.get_filename + self.get_file_ext, 'r').read()
 
 
 class AKFoundationNavigation(AKFoundationAbstract):
-    url = models.CharField(max_length=250, default='/')
+    class Meta:
+        proxy = True
+
     @property
     def as_frontend_response(self) -> str:
         # print('retrieving ' + self.get_filename)
-        return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
+        return codecs.open(self.path + self.get_filename + self.get_file_ext, 'r').read()
 
 
 class AKFoundationMain(AKFoundationAbstract):
-    url = models.CharField(max_length=250, default='/')
+    class Meta:
+        proxy = True
+
     @property
     def as_frontend_response(self) -> str:
         # print('retrieving ' + self.get_filename)
-        return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
+        return codecs.open(self.path + self.get_filename + self.get_file_ext, 'r').read()
 
 class AKFoundationRESTful(AKFoundationAbstract):
-    url = models.CharField(max_length=250, default='/')
+    class Meta:
+        proxy = True
+
     @property
     def as_frontend_response(self) -> str:
         # print('retrieving ' + self.get_filename)
-        return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
+        return codecs.open(self.path + self.get_filename + self.get_file_ext, 'r').read()
 
 class AKFoundationToolbar(AKFoundationAbstract):
-    url = models.CharField(max_length=250, default='/')
+    class Meta:
+        proxy = True
+
     @property
     def as_frontend_response(self) -> str:
         # print('retrieving ' + self.get_filename)
-        return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
+        return codecs.open(self.path + self.get_filename + self.get_file_ext, 'r').read()
 
 class AKBowerComponent(models.Model):
 

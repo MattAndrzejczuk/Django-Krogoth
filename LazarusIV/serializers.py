@@ -5,7 +5,7 @@ __author__ = 'Matt Andrzejczuk'
 from rest_framework import serializers, exceptions
 from chat.models import JawnUser
 
-from LazarusIV.models_tdf import LazarusDamageDataTA, LazarusWeaponDataTA, LazarusFeatureDataTA, \
+from LazarusIII.models import LazarusDamageDataTA, LazarusWeaponDataTA, LazarusFeatureDataTA, \
     LazarusDownloadDataTA, LazarusUnitDataTA
 from LazarusIV.models import NotificationItem, NotificationCenter, BackgroundWorkerJob, RepositoryFile, \
     UploadRepository, RepositoryDirectory

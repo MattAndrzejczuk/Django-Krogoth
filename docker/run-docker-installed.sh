@@ -19,25 +19,18 @@ docker exec -it armprime pip3 install django-redis==4.8.0
 #docker exec -it armprime pip3 install django-websocket-redis
 #docker exec -it armprime pip3 install fcm-django==0.2.12
 sleep 1
-docker exec -it armprime ./manage.py makemigrations
-sleep 1
-docker exec -it armprime ./manage.py migrate
-docker exec armprime-redis redis-cli config set notify-keyspace-events KEA
-echo "\033[1;36mCreate a Super User\033[0m"
-docker exec -it armprime ./manage.py createsuperuser
-echo "\033[1;36mSelect Yes to Continue Install\033[0m"
-docker exec -it armprime ./manage.py collectstatic
-echo "\033[1;36mInstalling krogoth_gantry... \033[0m"
-docker exec -it armprime ./manage.py makemigrations
+
+#docker exec -it armprime ./manage.py makemigrations
 docker exec -it armprime ./manage.py makemigrations chat krogoth_gantry krogoth_core moho_extractor kbot_lab
 docker exec -it armprime ./manage.py migrate
-docker exec -it armprime ./manage.py migrate chat krogoth_gantry krogoth_core moho_extractor kbot_lab
+#docker exec -it armprime ./manage.py migrate chat krogoth_gantry krogoth_core moho_extractor kbot_lab
+
+docker exec armprime-redis redis-cli config set notify-keyspace-events KEA
+
+
 docker exec -it armprime ./manage.py make_default_layout
 docker exec -it armprime ./manage.py installdjangular
-docker exec -it armprime ./manage.py collectdvc
-echo "\033[1;34m NOW SERVING KROGOTH, IT WILL BE AVAILABLE ON: \033[0m"
-echo "\033[4;36m http://127.0.0.1 \033[0m"
-echo "\033[1;35m"
+
 
 ##############
 # On Mac or Windows with docker-machine installed, remove if Linux ####
@@ -48,6 +41,15 @@ echo "\033[1;35m"
 #echo 'export DOCKER_MACHINE_NAME="default"' >> ~/.bashrc
 
 sleep 1
-
-
+echo '\033[33m'
+docker exec -it armprime ./manage.py createsuperuser
+echo "\033[0m"
+echo "\033[35m"
+docker exec -it armprime ./manage.py collectstatic
+echo "\033[0m"
+echo '\033[34m'
+docker exec -it armprime ./manage.py collectdvc
+echo "\033[0m"
+echo '\033[32m'
 docker exec -it armprime uwsgi ../runserver_uwsgi.ini
+echo "\033[0m"

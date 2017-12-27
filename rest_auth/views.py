@@ -55,29 +55,6 @@ def index(request):
 
 
     print('SOMEONE IS REQUESTING THE INDEX HTML PAGE ! ! !')
-    check_if_default_vc_exists = KrogothGantryMasterViewController.objects.all()
-    if len(check_if_default_vc_exists) == 0:
-
-        defaultIcon = KrogothGantryIcon(name='home, house', code='icon-home')
-        defaultIcon.save()
-
-        print('NO DEFAULT APP DETECTED!')
-        print('creating a default krogoth_gantry application...')
-        defaultCategory = KrogothGantryCategory(name='KG', code='hello!!')
-        defaultCategory.save()
-
-        default_html_header = '<h1>It works!</h1>'
-        default_html_body = "<h4>Congratulations, you've successfully installed a new Krogoth Application.</h4>"
-        default_html_pt1 = '<div flex="20"></div><div flex="60" layout="column">'
-        default_html_pt2 = '</div><div flex="20"></div>'
-
-        default = KrogothGantryMasterViewController(name='home',
-                                                title='It Works',
-                                                icon=defaultIcon,
-                                                category=defaultCategory,
-                                                view_html=default_html_pt1 + default_html_header + default_html_body + default_html_pt2)
-        default.save()
-
 
 
 
@@ -87,52 +64,15 @@ def index(request):
         KrogothGantryMasterViewControllers.append(application.name)
 
 
-
-    # GET LAZARUS BUILD VERSION:
-    # bash_cmd = ['git', 'rev-list', '--count', 'master']
-    # get_build_cmd = str(subprocess.check_output(bash_cmd))
-    # current_build_1 = ''
-    # current_build_2 = ''
-    # try:
-    #     current_build_1 = ('0.' + str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", "")) + '.'
-    #     current_build_2 = (str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", ""))[1:]
-    # except:
-    #     print('failed to check version!!!')
-
-    index_route_js = '/static/app/index.route.js'
-    try:
-        mainHtmlLayout = NgIncludedJs.objects.get(name='mainHtmlLayout')
-        index_route_js = mainHtmlLayout.url_helper
-
-    except:
-        _main_ = " '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar-2.html' "
-        _toolbar_ = " '/static/app/toolbar/layouts/vertical-navigation-fullwidth-toolbar-2/toolbar.html' "
-        _navigation_ = " '/static/app/navigation/layouts/vertical-navigation-fullwidth-toolbar-2/navigation.html' "
-        js_raw = "(function () {'use strict';angular.module('fuse').config(routeConfig); function routeConfig($stateProvider, $urlRouterProvider, $locationProvider) {$locationProvider.hashPrefix('!');$urlRouterProvider.otherwise('/home');var $cookies;angular.injector(['ngCookies']).invoke(['$cookies', function (_$cookies) {$cookies = _$cookies;}]);var layoutStyle = $cookies.get('layoutStyle') || 'LAYOUT_STYLE';' + " \
-                 "'var layouts = {LAYOUT_STYLE: {main: " + \
-                 _main_ + \
-                 ",toolbar: " + \
-                 _toolbar_ + \
-                 ",navigation: " + \
-                 _navigation_ + \
-                 "}, " + \
-                 "contentOnly: {main: '/static/app/core/layouts/content-only.html', toolbar: '', navigation: ''},contentWithToolbar: {main: '/static/app/core/layouts/content-with-toolbar.html',toolbar: '/static/app/toolbar/layouts/content-with-toolbar/toolbar.html',navigation: ''}};$stateProvider.state('app', {abstract: true,views: {'main@': {templateUrl: layouts[layoutStyle].main, controller: 'MainController as vm'},'toolbar@app': {templateUrl: layouts[layoutStyle].toolbar, controller: 'ToolbarController as vm'},'navigation@app': {templateUrl: layouts[layoutStyle].navigation,controller: 'NavigationController as vm'},'quickPanel@app': {templateUrl: '/static/app/quick-panel/quick-panel.html',controller: 'QuickPanelController as vm'}}});}})();"
-        newLayout = NgIncludedJs(name='mainHtmlLayout', contents=jsbeautifier.beautify(js_raw))
-        newLayout.save()
-        index_route_js = newLayout.url_helper
-
-
     # if current_build_2 == '00':
     #     current_build_2 = '0'
     # else:
     #     rm_0s = current_build_2.replace('01', '1').replace('02', '2').replace('03', '3').replace('04', '4')
     #     current_build_2 = rm_0s.replace('05', '5').replace('06', '6').replace('07', '7').replace('08', '8').replace('09', '9')
-
     version_build = 'Krogoth ' + settings.APP_VERSION
     seo_title = "Krogoth "
     seo_description = 'description'
     seo_description += ', description - 2'
-
     try:
         if request.META['PATH_INFO'] == '/features/':
             seo_title = 'ArmPrime - Upcoming features for TA mod development'
@@ -197,8 +137,7 @@ def index(request):
         "splash_logo_bg_color": splash_logo_bg_color,
         "width": width,
         "main_bg_color": main_bg_color,
-        "font_color": font_color,
-        "index_route_js": index_route_js
+        "font_color": font_color
     }
     return HttpResponse(template.render(context, request))
 
