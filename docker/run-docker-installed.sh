@@ -20,7 +20,7 @@ docker exec -it armprime pip3 install django-redis==4.8.0
 #docker exec -it armprime pip3 install fcm-django==0.2.12
 sleep 1
 
-#docker exec -it armprime ./manage.py makemigrations
+docker exec -it armprime ./manage.py makemigrations
 docker exec -it armprime ./manage.py makemigrations chat krogoth_gantry krogoth_core moho_extractor kbot_lab
 docker exec -it armprime ./manage.py migrate
 #docker exec -it armprime ./manage.py migrate chat krogoth_gantry krogoth_core moho_extractor kbot_lab
