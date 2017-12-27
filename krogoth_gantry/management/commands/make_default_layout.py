@@ -49,17 +49,17 @@ class Command(BaseCommand):
 
         icon = KrogothGantryIcon()
         try:
-            icon = KrogothGantryIcon(name='icon-ubuntu')
+            icon = KrogothGantryIcon(code='icon-ubuntu')
             icon.save()
         except:
-            icon = KrogothGantryIcon.objects.get(name='icon-ubuntu')
+            icon = KrogothGantryIcon.objects.get(id=1)
 
         cat = KrogothGantryCategory()
         try:
             cat = KrogothGantryCategory(name='Administration')
             cat.save()
         except:
-            cat = KrogothGantryCategory.objects.get(name='Administration')
+            cat = KrogothGantryCategory.objects.get(id=1)
 
 
         # homeLandingPage---------------------------------------------------------
@@ -90,7 +90,7 @@ class Command(BaseCommand):
                                               'r').read()
             str_loginStyle = codecs.open('krogoth_gantry/management/default_templates/login/style.css', 'r').read()
 
-            mvc = KrogothGantryMasterViewController(name='Loginkrogoth_gantry', title='Login')
+            mvc = KrogothGantryMasterViewController(name='Login', title='Login')
             mvc.view_html = str_loginView
             mvc.controller_js = str_loginController
             mvc.module_js = str_loginModule
@@ -112,7 +112,7 @@ class Command(BaseCommand):
             str_Controller = codecs.open('krogoth_gantry/management/default_templates/register/controller.js', 'r').read()
             str_style = codecs.open('krogoth_gantry/management/default_templates/register/style.css', 'r').read()
 
-            mvc = KrogothGantryMasterViewController(name='Registerkrogoth_gantry', title='Register')
+            mvc = KrogothGantryMasterViewController(name='Register', title='Register')
             mvc.view_html = str_View
             mvc.controller_js = str_Controller
             mvc.module_js = str_Module

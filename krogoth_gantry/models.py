@@ -59,7 +59,6 @@ class KrogothGantrySlaveViewController(models.Model):
 
 #     ________________________________
 class KrogothGantryIcon(models.Model):
-    name = models.CharField(max_length=25, unique=True)
     code = models.CharField(max_length=75, unique=True)
 
     def __str__(self):
@@ -80,7 +79,9 @@ class KrogothGantryMasterViewController(models.Model):
                              default='Untitled krogoth_gantry Application',
                              help_text='Cosmetic display name for this app in the primary navigation view')
     icon = models.ForeignKey(KrogothGantryIcon,
-                             on_delete=models.CASCADE)
+                             on_delete=models.CASCADE,
+                             null=True,
+                             blank=True)
     category = models.ForeignKey(KrogothGantryCategory,
                                  on_delete=models.CASCADE)
 
