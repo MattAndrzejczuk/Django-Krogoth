@@ -19,13 +19,12 @@ class Command(BaseCommand):
         has_services = False
         has_directives = False
 
-        # icon = KrogothGantryIcon()
-        # try:
-        #     icon = KrogothGantryIcon(name='s16 icon-ta-arm', code='s16 icon-ta-arm')
-        #     icon.save()
-        # except:
-
-        icon = KrogothGantryIcon.objects.get(id=1)
+        icon = KrogothGantryIcon()
+        try:
+            icon = KrogothGantryIcon(code='s16 icon-ta-arm')
+            icon.save()
+        except:
+            icon = KrogothGantryIcon.objects.get(code='s16 icon-ta-arm')
 
 
         cat = KrogothGantryCategory.objects.get(id=1)
