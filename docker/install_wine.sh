@@ -16,5 +16,5 @@ docker exec -it armprime bash -c "wine --version"
 sleep 2
 echo ""
 echo "DONT FORGET TO RUN THIS IN POSTGRESQL ! ! ! ! "
-echo "psql jawn4 -c 'create extension hstore;'"
+echo "psql jawn -c 'create extension hstore;'"
 echo " "

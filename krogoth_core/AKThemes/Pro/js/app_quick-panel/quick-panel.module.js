@@ -8,7 +8,7 @@
   /** @ngInject */
   function config($translatePartialLoaderProvider, msApiProvider) {
     // Translation
-    $translatePartialLoaderProvider.addPart('/static/app/quick-panel');
+    $translatePartialLoaderProvider.addPart('app/quick-panel');
 
     // Api
     msApiProvider.register('quickPanel.activities', ['/static/app/data/quick-panel/activities.json']);
