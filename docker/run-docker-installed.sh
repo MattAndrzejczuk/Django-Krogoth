@@ -19,13 +19,16 @@ docker exec -it armprime pip3 install django-redis==4.8.0
 #docker exec -it armprime pip3 install django-websocket-redis
 #docker exec -it armprime pip3 install fcm-django==0.2.12
 sleep 1
+docker exec armprime-redis redis-cli config set notify-keyspace-events KEA
+
+docker exec -it --user postgres armprime-postgres psql jawn -c 'create extension hstore;'
 
 docker exec -it armprime ./manage.py makemigrations
 docker exec -it armprime ./manage.py makemigrations chat krogoth_gantry moho_extractor kbot_lab
 docker exec -it armprime ./manage.py migrate
 #docker exec -it armprime ./manage.py migrate chat krogoth_gantry krogoth_core moho_extractor kbot_lab
 
-docker exec armprime-redis redis-cli config set notify-keyspace-events KEA
+
 
 
 docker exec -it armprime ./manage.py make_default_layout
