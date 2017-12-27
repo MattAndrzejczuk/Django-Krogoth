@@ -5,6 +5,7 @@ from django.db import models
 from polymorphic.models import PolymorphicModel
 import codecs
 from django.contrib.postgres.fields import HStoreField
+from django_hstore import hstore
 from jawn.settings import BASE_DIR
 
 # Create your models here.
@@ -30,6 +31,7 @@ class AKFoundationAbstract(PolymorphicModel):
                              default=BASE_DIR + '/krogoth_core/AKThemes/Pro/')
     is_selected_theme = models.BooleanField(default=False)
     custom_key_values = HStoreField(null=True, blank=True)
+
 
 
     def print_path(self):
@@ -68,6 +70,9 @@ def to_js(b: bool) -> str:
 class AKFoundationConfig(AKFoundationAbstract):
     class Meta:
         proxy = True
+        verbose_name = "Core Configuration"
+        verbose_name_plural = "Core Configuration"
+
 
     # disableCustomScrollbars = models.BooleanField(default=False)
     # disableMdInkRippleOnMobile = models.BooleanField(default=True)
@@ -84,10 +89,12 @@ class AKFoundationConfig(AKFoundationAbstract):
     def as_frontend_response(self) -> str:
         return codecs.open(self.path + self.get_filename + self.get_file_ext,'r').read()
 
-
+######################
 class AKFoundationAngularCore(AKFoundationAbstract):
     class Meta:
         proxy = True
+        verbose_name = "Core Application"
+        verbose_name_plural = "Core Application"
 
 
     @property
@@ -101,6 +108,8 @@ class AKFoundationDirectives(AKFoundationAbstract):
     """
     class Meta:
         proxy = True
+        verbose_name = "Core Directive"
+        verbose_name_plural = "Core Directives"
 
     @property
     def as_frontend_response(self) -> str:
@@ -115,6 +124,8 @@ class AKFoundationFilters(AKFoundationAbstract):
     """
     class Meta:
         proxy = True
+        verbose_name = "Core Filter"
+        verbose_name_plural = "Core Filters"
 
     @property
     def as_frontend_response(self) -> str:
@@ -128,19 +139,23 @@ class AKFoundationThemingService(AKFoundationAbstract):
     """
     class Meta:
         proxy = True
+        verbose_name = "Core Theming Service"
+        verbose_name_plural = "Core Theming Services"
 
     @property
     def as_frontend_response(self) -> str:
         # print('retrieving ' + self.get_filename)
         return codecs.open(self.path + self.get_filename + self.get_file_ext, 'r').read()
 
-
+######################
 class AKFoundationThemingConstant(AKFoundationAbstract):
     """ Files from /app/core/theming/
     and from /app/core/theme-options/
     """
     class Meta:
         proxy = True
+        verbose_name = "Core Theming Constant"
+        verbose_name_plural = "Core Theming Constants"
 
     @property
     def as_frontend_response(self) -> str:
@@ -153,16 +168,20 @@ class AKFoundationThemingConfiguration(AKFoundationAbstract):
     """
     class Meta:
         proxy = True
+        verbose_name = "Core Theming Option"
+        verbose_name_plural = "Core Theming Options"
 
     @property
     def as_frontend_response(self) -> str:
         # print('retrieving ' + self.get_filename)
         return codecs.open(self.path + self.get_filename + self.get_file_ext, 'r').read()
 
-
+######################
 class AKFoundationIndex(AKFoundationAbstract):
     class Meta:
         proxy = True
+        verbose_name = "AngularJS Index Foundation"
+        verbose_name_plural = "AngularJS Index Foundation"
 
     @property
     def as_frontend_response(self) -> str:
@@ -173,6 +192,8 @@ class AKFoundationIndex(AKFoundationAbstract):
 class AKFoundationToolbar(AKFoundationAbstract):
     class Meta:
         proxy = True
+        verbose_name = "Layout Toolbar"
+        verbose_name_plural = "Layout Toolbars"
 
     @property
     def as_frontend_response(self) -> str:
@@ -183,6 +204,8 @@ class AKFoundationToolbar(AKFoundationAbstract):
 class AKFoundationQuickPanel(AKFoundationAbstract):
     class Meta:
         proxy = True
+        verbose_name = "Layout Quick Panel"
+        verbose_name_plural = "Layout Quick Panel"
 
     @property
     def as_frontend_response(self) -> str:
@@ -193,6 +216,8 @@ class AKFoundationQuickPanel(AKFoundationAbstract):
 class AKFoundationNavigation(AKFoundationAbstract):
     class Meta:
         proxy = True
+        verbose_name = "Layout Navigation"
+        verbose_name_plural = "Layout Navigation"
 
     @property
     def as_frontend_response(self) -> str:
@@ -203,6 +228,8 @@ class AKFoundationNavigation(AKFoundationAbstract):
 class AKFoundationMain(AKFoundationAbstract):
     class Meta:
         proxy = True
+        verbose_name = "AngularJS Main Foundation"
+        verbose_name_plural = "AngularJS Main Foundation"
 
     @property
     def as_frontend_response(self) -> str:
@@ -212,6 +239,8 @@ class AKFoundationMain(AKFoundationAbstract):
 class AKFoundationRESTful(AKFoundationAbstract):
     class Meta:
         proxy = True
+        verbose_name = "AngularJS RESTful Foundation"
+        verbose_name_plural = "AngularJS RESTful Foundation"
 
     @property
     def as_frontend_response(self) -> str:
@@ -221,6 +250,8 @@ class AKFoundationRESTful(AKFoundationAbstract):
 class AKFoundationToolbar(AKFoundationAbstract):
     class Meta:
         proxy = True
+        verbose_name = "AngularJS Toolbar Foundation"
+        verbose_name_plural = "AngularJS Toolbar Foundation"
 
     @property
     def as_frontend_response(self) -> str:

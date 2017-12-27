@@ -60,6 +60,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.instagram',
     'allauth.socialaccount.providers.twitter',
     'polymorphic',
+    'django_hstore',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -87,6 +88,7 @@ INSTALLED_APPS = (
     'grappelli',
     'kbot_lab',
     'django_extensions',
+
 )
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

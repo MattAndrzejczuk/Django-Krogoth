@@ -27,3 +27,4 @@ django-filebrowser==3.9.1
 django-websocket-redis==0.5.1
 django-redis==4.8.0
 django_extensions==1.9.8
+git+https://github.com/djangonauts/django-hstore.git             ## django-hstore==1.5a0
