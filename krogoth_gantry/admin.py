@@ -118,7 +118,7 @@ class KrogothGantrySlaveViewControllerAdmin(admin.ModelAdmin):
 
 
 class KrogothGantryIconAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', )
+    list_display = ('id', 'code', )
 
 class KrogothGantryCategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', )
