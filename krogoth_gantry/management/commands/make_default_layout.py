@@ -28,7 +28,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(''))
 
         ctrl = open('krogoth_gantry/management/default_templates/toolbarCtrl.js', 'r')
-        module = open('static/app/toolbar/toolbar.module.js', 'r')
+        module = open('krogoth_core/AKThemes/Pro/js/app_toolbar/toolbar.module.js', 'r')
 
         jsLayout = codecs.open('krogoth_gantry/management/default_templates/mainHtmlLayout.js', 'r')
         jsColorThemesConstants = codecs.open('krogoth_gantry/management/default_templates/colorThemesConstants.js', 'r')
@@ -244,8 +244,9 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS('FAIL... forums.add -> KrogothGantrySlaveViewController'))
                 mvc.delete()
 
-            general_forum = ForumCategory.objects.get_or_create(title='General', is_deleted=False)
+            fc = ForumCategory.objects.get_or_create(title='General', is_deleted=False)
             self.stdout.write(self.style.SUCCESS('ADDED... forumsMasterViewController'))
+
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... forumsMasterViewController'))
         # -------------------------------------------------------------------------

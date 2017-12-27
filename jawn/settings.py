@@ -240,7 +240,7 @@ try:
             '09', '9')
 
     APP_VERSION = current_build_1[:3] + "." + current_build_2
-    print('\033[31mArmPrime ' + APP_VERSION + ' \033[0m')
+    print('\033[1m\033[32mArmPrime ' + APP_VERSION + ' \033[0m\033[0m')
     print()
 except:
     print('Django initialized, but the version is unknown... wtf?')

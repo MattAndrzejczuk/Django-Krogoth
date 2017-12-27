@@ -256,5 +256,4 @@ class Command(BaseCommand):
               end='')
         print(bcolors.ENDC)
 
-        print('SETTING UP COMMUNITY FORUM...')
-        fc = ForumCategory.objects.get_or_create(title='General', is_deleted=False)
+
