@@ -27,8 +27,12 @@ class Command(BaseCommand):
             icon = KrogothGantryIcon.objects.get(code='s16 icon-ta-arm')
 
 
-        cat = KrogothGantryCategory.objects.get(id=1)
-
+        cat = KrogothGantryCategory()
+        try:
+            cat = KrogothGantryCategory(name='DVCManager')
+            cat.save()
+        except:
+            cat = KrogothGantryCategory.objects.get(name='DVCManager')
 
         djangular_dvcs = os.listdir('krogoth_gantry/DVCManager')
         for dvc in djangular_dvcs:
