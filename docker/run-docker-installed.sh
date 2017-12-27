@@ -24,13 +24,13 @@ docker exec armprime-redis redis-cli config set notify-keyspace-events KEA
 
 docker exec -it --user postgres armprime-postgres psql jawn -c 'create extension hstore;'
 
-docker exec -it armprime ./manage.py make_default_layout
-docker exec -it armprime ./manage.py installdjangular
-
 docker exec -it armprime ./manage.py makemigrations krogoth_core chat krogoth_gantry moho_extractor kbot_lab
 #docker exec -it armprime ./manage.py makemigrations
 docker exec -it armprime ./manage.py migrate
 #docker exec -it armprime ./manage.py migrate chat krogoth_gantry krogoth_core moho_extractor kbot_lab
+
+docker exec -it armprime ./manage.py make_default_layout
+docker exec -it armprime ./manage.py installdjangular
 
 ##############
 # On Mac or Windows with docker-machine installed, remove if Linux ####
