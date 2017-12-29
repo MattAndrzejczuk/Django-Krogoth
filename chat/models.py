@@ -21,6 +21,24 @@ class JawnUser(models.Model):
     def __str__(self):
         return self.base_user.username
 
+    @classmethod
+    def get_or_create_jawn_user(cls, username: str):
+        user_exists = User.objects.filter(username='root')
+        if len(user_exists) > 0:
+            usr = user_exists.first()
+            try:
+                jawn_user = user_exists.first().jawn_user
+                return jawn_user
+            except:
+                jawn_user = cls(base_user=usr, faction='ADMIN')
+                jawn_user.save()
+                return jawn_user
+        else:
+            usr = User.objects.create_user(username=username, password='123123')
+            jawn_user = cls(base_user=usr, faction='AD HOC')
+            jawn_user.save()
+            return jawn_user
+
 
 class Channel(models.Model):
     name = models.CharField(max_length=400, unique=True)
