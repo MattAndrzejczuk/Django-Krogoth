@@ -77,7 +77,7 @@ class ImageMessageSerializer(serializers.ModelSerializer):
         #depth = 1
 
     def create(self, validated_data):
-        jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
+        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
         c = ImageMessage.objects.create(channel=validated_data['channel'], image_url=validated_data['image_url'], jawn_user=jawn_user, caption=validated_data['caption'])
 
         j = ImageMessageSerializer(c, context=self.context)
@@ -97,7 +97,7 @@ class TextMessageSerializer(serializers.ModelSerializer):
         #depth = 1
 
     def create(self, validated_data):
-        jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
+        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
         c = TextMessage.objects.create(channel=validated_data['channel'], text=validated_data['text'], jawn_user=jawn_user)
         print(validated_data['channel'])
 
@@ -138,7 +138,7 @@ class LinkMessageSerializer(serializers.ModelSerializer):
         #depth = 1
 
     def create(self, validated_data):
-        jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
+        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
         c = LinkMessage.objects.create(channel=validated_data['channel'], text=validated_data['text'], jawn_user=jawn_user, image_url=validated_data['image_url'], headline=validated_data['headline'], organization=validated_data['organization'])
         j = LinkMessageSerializer(c, context=self.context)
         json = JSONRenderer().render(j.data)
@@ -165,7 +165,7 @@ class YouTubeMessageSerializer(serializers.ModelSerializer):
         #depth = 1
 
     def create(self, validated_data):
-        jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
+        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
         c = YouTubeMessage.objects.create(channel=validated_data['channel'], text=validated_data['text'], jawn_user=jawn_user, name=validated_data['name'], youtube_url=validated_data['youtube_url'], youtube_id=validated_data['youtube_id'])
         j = YouTubeMessageSerializer(c, context=self.context)
         json = JSONRenderer().render(j.data)
@@ -266,7 +266,7 @@ class LinkMessageSerializer(serializers.ModelSerializer):
         #depth = 1
 
     def create(self, validated_data):
-        jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
+        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
         c = LinkMessage.objects.create(channel=validated_data['channel'], text=validated_data['text'], jawn_user=jawn_user, image_url=validated_data['image_url'], headline=validated_data['headline'], organization=validated_data['organization'])
         j = LinkMessageSerializer(c, context=self.context)
         json = JSONRenderer().render(j.data)

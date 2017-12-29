@@ -62,7 +62,7 @@ class KrogothGantryIcon(models.Model):
     code = models.CharField(max_length=75, unique=True)
 
     def __str__(self):
-        return self.name
+        return self.code
 
 #     ____________________________________
 class KrogothGantryCategory(models.Model):

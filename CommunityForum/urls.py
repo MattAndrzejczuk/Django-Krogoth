@@ -1,6 +1,14 @@
+__version__ = '0.6.98'
+__author__ = 'Matt Andrzejczuk'
+
 from django.conf.urls import url, include
 from CommunityForum import views
+from rest_framework.routers import DefaultRouter
+from CommunityForum.serializers import ForumReplyViewSet, ForumPostViewSet
 
+router_forum = DefaultRouter()
+router_forum.register(r'ForumReply', ForumReplyViewSet)
+router_forum.register(r'ForumPost', ForumPostViewSet)
 
 
 urlpatterns = [

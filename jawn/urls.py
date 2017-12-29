@@ -25,6 +25,7 @@ from chat.views import UserViewSet, JawnUserViewSet, ImageMessageViewSet, TextMe
 from django.contrib import admin
 # from rest_auth.views import LazarusListUnits
 from rest_auth.views import index
+from CommunityForum.urls import router_forum
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet, 'User')
@@ -39,10 +40,16 @@ router.register(r'link-messages', LinkMessageViewSet)
 router.register(r'youtube-messages', YouTubeMessageViewSet)
 router.register(r'youtube', YouTubeMessageViewSet)
 
+from CommunityForum.serializers import ForumReplyViewSet, ForumPostViewSet
+router.register(r'ForumReply', ForumReplyViewSet)
+router.register(r'ForumPost', ForumPostViewSet)
+
+
 
 urlpatterns = [
 
 
+    url(r'^api/', include('kbot_lab.urls')),
     url(r'^kbot_lab/', include('kbot_lab.urls')),
 
 
@@ -65,6 +72,7 @@ urlpatterns = [
 
     # user auth, forgot_password, reset pass, etc..
     url(r'^api/', include(router.urls)),
+
     # url(r'^api/channel-list/', ChannelList.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^rest-auth/', include('rest_auth.urls')),

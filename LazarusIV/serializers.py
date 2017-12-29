@@ -20,14 +20,15 @@ class UploadRepositorySerializer(serializers.ModelSerializer):
         read_only_fields = ('title', 'root_path', 'original_hpi_path', 'uploader')
 
     def create(self, validated_data):
-        jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
+        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
+        # jawn_user = JawnUser.objects.get(base_user=self.context['request'].user)
         new_repo = UploadRepository.objects.create(uploader=jawn_user,
-                                                hpi_file=validated_data['hpi_file'],
-                                                title=validated_data['hpi_file'].name,
-                                                total_files=0,
-                                                current_worker_job=0,
-                                                root_path='',
-                                                original_hpi_path='')
+                                                   hpi_file=validated_data['hpi_file'],
+                                                   title=validated_data['hpi_file'].name,
+                                                   total_files=0,
+                                                   current_worker_job=0,
+                                                   root_path='',
+                                                   original_hpi_path='')
         print(' 📦 ', end='')
         new_repo.set_file_paths()
         worker = BackgroundWorkerJob()
