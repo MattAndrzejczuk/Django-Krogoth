@@ -22,96 +22,140 @@ from django.core import serializers
 
 
 
-def index(request):
+
+
+
+
+
+
+class DynamicJavaScriptInjector(APIView):
+    authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
-    template = loader.get_template('index.html')
+    def get(self, request, format=None):
+        name = request.GET['name']
+        print('️💛💛💛💛💛💛💛💛💛💛')
+        application = KrogothGantryMasterViewController.objects.get(name=name)
 
-    logo_middle = '<span><img src="/static/CoreLogoVectorWhite.svg" style="color:white;"></span>'
-    splash_html = '<ms-splash-screen id="splash-screen"> <div class="center"> <div class="logo" style="width:250px; font-size: 36px; background-color: darkorange;"> '+logo_middle+' </div> <!-- Material Design Spinner --> <div class="spinner-wrapper"> <div class="spinner"> <div class="inner"> <div class="gap"></div> <div class="left"> <div class="half-circle"></div> </div> <div class="right"> <div class="half-circle"></div> </div> </div> </div> </div> <!-- / Material Design Spinner --> </div></ms-splash-screen>'
+        raw_js_services_and_directives = ''
+        djangular_services = application.djangular_service.all()
 
-    splash_title = 'Loading...'
-    font_size = 36
-    splash_logo_bg_color = 'antiquewhite'
-    width = 250
-    main_bg_color = 'darkolive'
-    font_color = 'black'
+        # raw_js_services_and_directives += '\n\n'
+        djangular_directives = application.djangular_directive.all()
 
-    try:
-        # TODO: remimplement bootscreen loader.
-        # splash = BootScreenLoader.objects.filter(enabled=True)
-        # splash_html = splash[0].html_code
-        # splash_title = splash[0].title
-        # font_size = splash[0].font_size
-        # splash_logo_bg_color = splash[0].logo_background_color
-        # width = splash[0].width
-        # main_bg_color = splash[0].main_background_color
-        # font_color = splash[0].font_color
-        print('remimplement bootscreen loader')
-    except:
-        print('There is no splash screen in the Database!')
+        #     raw_js_services_and_directives = raw_js_services_and_directives.replace('_DJANGULAR_DIRECTIVE_TITLE_', directive.title)
+        # raw_js_services_and_directives += '\n\n'
+
+        djangular_slaves = application.djangular_slave_vc.all()
+        slave_controllers_js = ''
+        slave__states = []
+        msApiProviders = []
+        for slave in djangular_slaves:
+            CRUD_MODEL = 'SampleModelOneView'
+            slave.name = application.name
+            STATE_IDENTIFIER = 'FUSE_APP_NAME.' + slave.name
+            STATE_URI = slave.title
+            print('dude... wtf...')
+            slave_identifier = slave.name + '.' + slave.title # FUSE_APP_NAME._SLAVE_NAME_
+            state_pt_1 = ".state('app."+slave_identifier+"', {url: '/" + STATE_URI + "/:id', views: { "
+            state_pt_2 = "'content@app': { templateUrl: '/krogoth_gantry/DynamicHTMLSlaveInjector/" + str(slave.id) + "/', "
+            state_pt_3 = " controller: '"+slave.title+"Controller as vm' } "
+            state_pt_4 = "  }, resolve: { Model"+slave.title+": function (msApi) { "
+            state_pt_5 = " return msApi.resolve('app."+STATE_IDENTIFIER+"REST@get' "
+            state_pt_6 = " ); } } })  "
+            msApiStateItem = state_pt_1 + state_pt_2 + state_pt_3 + state_pt_4 + state_pt_5 + state_pt_6
+            msApiProvider = "msApiProvider.register('app."+STATE_IDENTIFIER+"REST', ['"
+            msApiProvider += "/krogoth_gantry/CRUD/" + CRUD_MODEL + "/:id']);\n"
+            slave__states.append(msApiStateItem)
+            msApiProviders.append(msApiProvider)
+            slave_controllers_js += slave.controller_js.replace('_SLAVE_NAME_', slave.title).replace('FUSE_APP_NAME', application.name)
+            slave_controllers_js += '\n'
+
+        statesAsString = ''
+        providersAsString = ''
+        for state in slave__states:
+            statesAsString += state
+
+        for provider in msApiProviders:
+            providersAsString += provider
+
+        module_with_injected_msApi = application.module_js.replace('_DJANGULAR_SLAVE_VC_INJECTION_POINT_', statesAsString)
+        module_with_injected_msApi_2 = module_with_injected_msApi.replace('_DJANGULAR_SLAVE_MSAPI_INJECTION_POINT_', providersAsString)
+
+        newMsNavSrv = ''
+        for slave in djangular_slaves:
+            parse_1 = "msNavigationServiceProvider.saveItem('NAV_HEADER.FUSE_APP_NAME"+slave.title+"', { "
+            parse_2 = "	title: 'FUSE_APP_TITLE"+slave.title+"', "
+            parse_3 = " icon: 'FUSE_APP_ICON', "
+            parse_4 = " state: 'app.FUSE_APP_NAME."+slave.title+"', "
+            parse_5 = " weight: 3 }); "
+            newMsNavSrv += parse_1 + parse_2 + parse_3 + parse_4 + parse_5
+            newMsNavSrv += '\n'
+            print(newMsNavSrv)
+
+        module_with_injected_navigation = module_with_injected_msApi_2.replace('_DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_', newMsNavSrv)
+        # print('WHAT')
+        clean_js_slate = '\n\n\n\n\n\n\t /* ════════════' + application.title + '════════════ */\n\n'
+
+        clean_js_slate += ' \n /* MASTER MODULE */ \n' + module_with_injected_navigation + \
+                          ' \n /* MASTER CONTROLLER */ \n' + application.controller_js
+        clean_js_slate += '\n /* SLAVE CONTROLLER */ \n' + slave_controllers_js
 
 
-    print('SOMEONE IS REQUESTING THE INDEX HTML PAGE ! ! !')
-    check_if_default_vc_exists = KrogothGantryMasterViewController.objects.all()
-    print(len(check_if_default_vc_exists))
-    if len(check_if_default_vc_exists) == 0:
+        # clean_js_slate += application.controller_js.replace('_DJANGULAR_SLAVE_VC_INJECTION_POINT_', '') + \
+        #                  ' ' + application.controller_js
 
-        defaultIcon = KrogothGantryIcon(name='home, house', code='icon-home')
-        defaultIcon.save()
+        for service in djangular_services:
+            raw_js_services_and_directives += '\n /* COMPILED SERVICE */ \n' + \
+                                              service.service_js.replace('_DJANGULAR_SERVICE_NAME_', service.name).replace('_DJANGULAR_SERVICE_TITLE_', service.title)
+            raw_js_services_and_directives += '\n'
+            # raw_js_services_and_directives = raw_js_services_and_directives.replace('_DJANGULAR_SERVICE_TITLE_', service.title)
 
-        print('NO DEFAULT APP DETECTED!')
-        print('creating a default krogoth_gantry application...')
-        defaultCategory = KrogothGantryCategory(name='krogoth_gantry', code='hello!!')
-        defaultCategory.save()
-
-        default_html_header = '<h1>It works!</h1>'
-        default_html_body = "<h4>Congratulations, you've successfully installed a new krogoth_gantry Application.</h4>"
-        default_html_pt1 = '<div flex="20"></div><div flex="60" layout="column">'
-        default_html_pt2 = '</div><div flex="20"></div>'
-
-        default = KrogothGantryMasterViewController(name='home',
-                                                title='It Works',
-                                                icon=defaultIcon,
-                                                category=defaultCategory,
-                                                view_html=default_html_pt1 + default_html_header + default_html_body + default_html_pt2)
-        default.save()
+        # print('THE')
+        for directive in djangular_directives:
+            raw_js_services_and_directives += '\n /* COMPILED DIRECTIVE */ \n' + \
+                                              directive.directive_js.replace('_DJANGULAR_DIRECTIVE_NAME_', directive.name).replace("_DJANGULAR_DIRECTIVE_TITLE_", directive.title)
+            raw_js_services_and_directives += '\n'
+            # raw_js_services_and_directives = raw_js_services_and_directives
 
 
+        clean_js_slate += raw_js_services_and_directives
+        # print('FUCK')
+        parsed1 = clean_js_slate.replace('FUSE_APP_NAME', application.name.replace(' ','_'))
+        parsed2 = parsed1.replace('FUSE_APP_TITLE', application.title)
+        parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon.code)
+        parsed4 = parsed3.replace('NAV_HEADER', application.category.name.replace(' ','_'))
+        try:
+            raw_js_response = parsed4.replace('DJANGULAR_USERNAME', request.user.username)
+        except:
+            raw_js_response = parsed4
 
-    KrogothGantryMasterViewControllers = []
-    all_applications = KrogothGantryMasterViewController.objects.all()
-    for application in all_applications:
-        KrogothGantryMasterViewControllers.append(application.name)
+        return HttpResponse(raw_js_response, content_type='application/javascript; charset=utf-8')
 
-    _1 = str(request.META['REMOTE_ADDR'])
-    _2 = str(request.META['HTTP_USER_AGENT'])
-    _3 = str(request.META['HTTP_ACCEPT_LANGUAGE'])
-    # TODO: Visitor Tracking reimplement.
-    # newRecord = VisitorLogSB(remote_addr=_1, http_usr=_2, http_accept=_3, other_misc_notes='index.html requested.')
-    # newRecord.save()
 
-    # GET LAZARUS BUILD VERSION:
-    bash_cmd = ['git', 'rev-list', '--count', 'master']
-    get_build_cmd = str(subprocess.check_output(bash_cmd))
-    current_build_1 = ''
-    current_build_2 = ''
-    try:
-        current_build_1 = ('0.' + str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", "")) + '.'
-        current_build_2 = (str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", ""))[1:]
-    except:
-        print('failed to check version!!!')
+class DynamicHTMLInjector(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        print('🧡🧡🧡🧡🧡🧡🧡🧡🧡🧡️')
+        name = request.GET['name']
+        application = KrogothGantryMasterViewController.objects.get(name=name)
 
-    context = {
-        "message": "krogoth_gantry " + current_build_1[:3] + "." + current_build_2,
-        "KrogothGantryMasterViewControllers": KrogothGantryMasterViewControllers,
-        "splash_title": splash_title,
-        "font_size": font_size,
-        "splash_logo_bg_color": splash_logo_bg_color,
-        "width": width,
-        "main_bg_color": main_bg_color,
-        "font_color": font_color,
-    }
-    return HttpResponse(template.render(context, request))
+        raw_html_response = application.view_html
+        raw_html_response += '<style>' + application.style_css + '</style>'
+
+
+        if raw_html_response == '':
+            raw_html_response += '<div layout="column" layout-padding layout-margin>'
+            raw_html_response += '<h1>' + application.name.replace('_', ' ') + '</h1>'
+            raw_html_response += '<h3>No Fuse App HTML Component</h3>'
+            info = "You're seeing this message because no Fuse App HTML component with the type: HTML has not been " + \
+                   "added to this Angular Fuse Application named " + application.name
+            raw_html_response += "<p>" + info + "</p>"
+            raw_html_response += '</div>'
+        return HttpResponse(raw_html_response, content_type='text/html; charset=utf-8')
+
+
+
 
 
 class krogoth_gantryModelForm(APIView):
@@ -130,6 +174,7 @@ class krogoth_gantryModelForm(APIView):
         json_dict = json.loads(serialized_obj)
         finalResponse = ''
         i = 0
+        print('️💚💚💚💚💚💚💚💚💚💚')
         for key, value in json_dict[0]['fields'].items():
 
             filterCategory = 'ng-hide="filter.cbOther === false"'
@@ -199,142 +244,3 @@ class krogoth_gantryModelForm(APIView):
                 #     finalResponse += '</div>'
                 # i += 1
         return HttpResponse(finalResponse)
-
-
-
-
-class DynamicJavaScriptInjector(APIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (AllowAny,)
-    def get(self, request, format=None):
-        name = request.GET['name']
-
-        application = KrogothGantryMasterViewController.objects.get(name=name)
-
-        raw_js_services_and_directives = ''
-        djangular_services = application.djangular_service.all()
-
-        # raw_js_services_and_directives += '\n\n'
-        djangular_directives = application.djangular_directive.all()
-
-        #     raw_js_services_and_directives = raw_js_services_and_directives.replace('_DJANGULAR_DIRECTIVE_TITLE_', directive.title)
-        # raw_js_services_and_directives += '\n\n'
-
-        djangular_slaves = application.djangular_slave_vc.all()
-        slave_controllers_js = ''
-        slave__states = []
-        msApiProviders = []
-        for slave in djangular_slaves:
-            CRUD_MODEL = 'SampleModelOneView'
-            slave.name = application.name
-            STATE_IDENTIFIER = 'FUSE_APP_NAME.' + slave.name
-            STATE_URI = slave.title
-            print('dude... wtf...')
-            slave_identifier = slave.name + '.' + slave.title # FUSE_APP_NAME._SLAVE_NAME_
-            state_pt_1 = ".state('app."+slave_identifier+"', {url: '/" + STATE_URI + "/:id', views: { "
-            state_pt_2 = "'content@app': { templateUrl: '/krogoth_gantry/DynamicHTMLSlaveInjector/" + str(slave.id) + "/', "
-            state_pt_3 = " controller: '"+slave.title+"Controller as vm' } "
-            state_pt_4 = "  }, resolve: { Model"+slave.title+": function (msApi) { "
-            state_pt_5 = " return msApi.resolve('app."+STATE_IDENTIFIER+"REST@get' "
-            state_pt_6 = " ); } } })  "
-            msApiStateItem = state_pt_1 + state_pt_2 + state_pt_3 + state_pt_4 + state_pt_5 + state_pt_6
-            msApiProvider = "msApiProvider.register('app."+STATE_IDENTIFIER+"REST', ['"
-            msApiProvider += "/krogoth_gantry/CRUD/" + CRUD_MODEL + "/:id']);"
-            slave__states.append(msApiStateItem)
-            msApiProviders.append(msApiProvider)
-            slave_controllers_js += slave.controller_js.replace('_SLAVE_NAME_', slave.title).replace('FUSE_APP_NAME', application.name)
-
-        statesAsString = ''
-        providersAsString = ''
-        for state in slave__states:
-            statesAsString += state
-
-        for provider in msApiProviders:
-            providersAsString += provider
-
-        module_with_injected_msApi = application.module_js.replace('_DJANGULAR_SLAVE_VC_INJECTION_POINT_', statesAsString)
-        module_with_injected_msApi_2 = module_with_injected_msApi.replace('_DJANGULAR_SLAVE_MSAPI_INJECTION_POINT_', providersAsString)
-
-        newMsNavSrv = ''
-        for slave in djangular_slaves:
-            parse_1 = "msNavigationServiceProvider.saveItem('NAV_HEADER.FUSE_APP_NAME"+slave.title+"', { "
-            parse_2 = "	title: 'FUSE_APP_TITLE"+slave.title+"', "
-            parse_3 = " icon: 'FUSE_APP_ICON', "
-            parse_4 = " state: 'app.FUSE_APP_NAME."+slave.title+"', "
-            parse_5 = " weight: 3 }); "
-            newMsNavSrv += parse_1 + parse_2 + parse_3 + parse_4 + parse_5
-            print(newMsNavSrv)
-
-        module_with_injected_navigation = module_with_injected_msApi_2.replace('_DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_', newMsNavSrv)
-        # print('WHAT')
-        clean_js_slate = ''
-
-        clean_js_slate += module_with_injected_navigation + \
-                          ' ' + application.controller_js
-        clean_js_slate += slave_controllers_js
-
-
-        # clean_js_slate += application.controller_js.replace('_DJANGULAR_SLAVE_VC_INJECTION_POINT_', '') + \
-        #                  ' ' + application.controller_js
-
-        for service in djangular_services:
-            raw_js_services_and_directives += service.service_js.replace('_DJANGULAR_SERVICE_NAME_', service.name).replace('_DJANGULAR_SERVICE_TITLE_', service.title)
-            # raw_js_services_and_directives = raw_js_services_and_directives.replace('_DJANGULAR_SERVICE_TITLE_', service.title)
-
-        # print('THE')
-        for directive in djangular_directives:
-            raw_js_services_and_directives += directive.directive_js.replace('_DJANGULAR_DIRECTIVE_NAME_', directive.name).replace("_DJANGULAR_DIRECTIVE_TITLE_", directive.title)
-            # raw_js_services_and_directives = raw_js_services_and_directives
-
-
-        clean_js_slate += raw_js_services_and_directives
-        # print('FUCK')
-        parsed1 = clean_js_slate.replace('FUSE_APP_NAME', application.name.replace(' ','_'))
-        parsed2 = parsed1.replace('FUSE_APP_TITLE', application.title)
-        parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon.code)
-        parsed4 = parsed3.replace('NAV_HEADER', application.category.name.replace(' ','_'))
-        try:
-            raw_js_response = parsed4.replace('DJANGULAR_USERNAME', request.user.username)
-        except:
-            raw_js_response = parsed4
-
-        return HttpResponse(raw_js_response)
-
-
-class DynamicHTMLInjector(APIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (AllowAny,)
-    def get(self, request, format=None):
-        name = request.GET['name']
-        application = KrogothGantryMasterViewController.objects.get(name=name)
-
-        raw_html_response = application.view_html
-        raw_html_response += '<style>' + application.style_css + '</style>'
-
-
-        if raw_html_response == '':
-            raw_html_response += '<div layout="column" layout-padding layout-margin>'
-            raw_html_response += '<h1>' + application.name.replace('_', ' ') + '</h1>'
-            raw_html_response += '<h3>No Fuse App HTML Component</h3>'
-            info = "You're seeing this message because no Fuse App HTML component with the type: HTML has not been " + \
-                   "added to this Angular Fuse Application named " + application.name
-            raw_html_response += "<p>" + info + "</p>"
-            raw_html_response += '</div>'
-        return HttpResponse(raw_html_response)
-
-
-class DynamicHTMLSlaveInjector(APIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (AllowAny,)
-    def get(self, request, id, format=None):
-        slave_application = KrogothGantrySlaveViewController.objects.get(id=id)
-        return HttpResponse(slave_application.view_html.replace('FUSE_APP_NAME', slave_application.name).replace('_SLAVE_NAME_', slave_application.title))
-
-
-class DynamicJavaScriptSlaveInjector(APIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (AllowAny,)
-    def get(self, request, id, format=None):
-        slave_application = KrogothGantrySlaveViewController.objects.get(id=id)
-        return HttpResponse(slave_application.controller_js.replace('FUSE_APP_NAME', slave_application.name).replace('_SLAVE_NAME_', slave_application.title))
-
