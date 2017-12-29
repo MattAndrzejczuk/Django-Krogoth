@@ -10,7 +10,7 @@ from rest_framework import viewsets
 from django.contrib.auth.models import User
 import json
 
-
+from chat.models import JawnUser
 # from CommunityForum.serializers import ForumCategorySerializer, ForumPostSerializer, ForumReplySerializer
 from CommunityForum.models import ForumCategory, ForumPost, ForumReply
 # Create your views here.
@@ -109,10 +109,15 @@ class ForumPostDetailView(APIView):
             newpost_title = request.data['title']
             newpost_body = request.data['body']
             newpost_category = request.data['category']
-            newpost_author = request.user
+
             newpost = ForumPost()
             newpost.title = newpost_title
-            newpost.author = newpost_author
+
+            try:
+                newpost_author = request.user
+                newpost.author = newpost_author
+            except:
+                pass
             newpost.body = newpost_body
             cat = ForumCategory.objects.get(id=int(newpost_category))
             newpost.category = cat
