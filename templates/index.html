@@ -7,7 +7,8 @@
 
     <meta name="description"
           content="{{ description }}"/>
-    <meta name="viewport" content="width=device-width, initial-scale=0.75, maximum-scale=0.75"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=0.75, maximum-scale=0.75"/>-->
 
     <title>{{ message }}</title>
     <meta id="krogoth_gantryMetaImage_01" name="twitter:image:src" content="/static/ArmLogoVector.svg"/>
@@ -268,14 +269,17 @@
 
 <!--KrogothGantryMasterViewControllers-->
 {% for fuse_app in KrogothGantryMasterViewControllers %}
-    <script src="/krogoth_gantry/DynamicJavaScriptInjector/?name={{ fuse_app }}"></script>
+<script src="/krogoth_gantry/DynamicJavaScriptInjector/?name={{ fuse_app }}"></script>
 {% endfor %}
 
 
 <script src="/moho_extractor/KrogothFoundation/?unique_name=quick-panelmodule"></script>
 <script src="/moho_extractor/KrogothFoundation/?unique_name=coremodule"></script>
+
+
+<!--KrogothFoundation-->
 {% for com in core %}
-    <script src="/moho_extractor/KrogothFoundation/?unique_name={{ com }}"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name={{ com }}"></script>
 {% endfor %}
 
 <script src="/moho_extractor/KrogothFoundation/?unique_name=toolbarmodule"></script>
@@ -298,72 +302,11 @@
 <script src="/moho_extractor/KrogothFoundation/?unique_name=indexapi"></script>
 
 {% verbatim %}
-<!--<script src="/static/app/core/core.module.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-timeline/ms-timeline.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-widget/ms-widget.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-stepper/ms-stepper.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-splash-screen/ms-splash-screen.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-sidenav-helper/ms-sidenav-helper.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-shortcuts/ms-shortcuts.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-search-bar/ms-search-bar.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-scroll/ms-scroll.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-responsive-table/ms-responsive-table.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-random-class/ms-random-class.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-navigation/ms-navigation.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-nav/ms-nav.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-material-color-picker/ms-material-color-picker.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-form-wizard/ms-form-wizard.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-info-bar/ms-info-bar.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-masonry/ms-masonry.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-datepicker-fix/ms-datepicker-fix.directive.js"></script>-->
-<!--<script src="/static/app/core/directives/ms-card/ms-card.directive.js"></script>-->
-<!--<script src="/static/app/core/theme-options/theme-options.directive.js"></script>-->
-<!--<script src="/static/app/core/theming/fuse-theming.service.js"></script>-->
-<!--<script src="/static/app/core/theming/fuse-theming.config.js"></script>-->
-<!--<script src="/static/app/core/theming/fuse-palettes.constant.js"></script>-->
-<!--<script src="/static/app/core/theming/fuse-generator.service.js"></script>-->
-<!--<script src="/static/app/core/services/ms-utils.service.js"></script>-->
-<!--<script src="/static/app/core/services/ms-api.provider.js"></script>-->
-<!--<script src="/static/app/core/services/api-resolver.service.js"></script>-->
-<!--<script src="/static/app/core/filters/tag.filter.js"></script>-->
-<!--<script src="/static/app/core/filters/filterByPropIds.filter.js"></script>-->
-<!--<script src="/static/app/core/filters/filterByIds.filter.js"></script>-->
-<!--<script src="/static/app/core/filters/basic.filter.js"></script>-->
-<!--<script src="/static/app/core/filters/altDate.filter.js"></script>-->
-<!--<script src="/static/app/core/directives/highlight.directive.js"></script>-->
-<!--<script src="/static/app/core/config/fuse-config.provider.js"></script>-->
-<!--<script src="/static/app/quick-panel/quick-panel.controller.js"></script>-->
-<!--<script src="/static/app/navigation/navigation.module.js"></script>-->
-<!--<script src="/static/app/navigation/navigation.controller.js"></script>-->
-<!--<script src="/static/app/main/main.controller.js"></script>-->
-<!--<script src="/static/app/core/core.run.js"></script>-->
-<!--<script src="/static/app/core/core.config.js"></script>-->
-<!--<script src="/static/app/index.run.js"></script>-->
+
 {% endverbatim %}
-<!--<script src="/moho_extractor/DynamicIndexModule/"></script>-->
-        <!--<script src="/static/app/core/theming/fuse-themes.constant.js"></script>-->
-<!--<script src="/moho_extractor/NgIncludedJs/?name=colorThemesConstants"></script>-->
-        <!-- <script src="/static/app/toolbar/toolbar.module.js"></script> -->
-<!--<script src="/moho_extractor/NgIncludedJs/?name=toolbarModule"></script>-->
-        <!-- <script src="/static/app/toolbar/toolbar.controller.js"></script> -->
-<!--<script src="/moho_extractor/NgIncludedJs/?name=toolbarController"></script>-->
-        <!--<script src="/static/app/index.route.js"></script>-->
-<!--<script src="{{ index_route_js }}"></script>-->
-<!--<script src="/static/app/index.controller.js"></script>-->
-<!--<script src="/static/app/index.constants.js"></script>-->
-<!--<script src="/static/app/index.config.js"></script>-->
-<!--<script src="/static/app/index.api.js"></script>-->
-<!--<script src="/static/app/main/apps/dashboards/dashboards.module.js"></script>-->
-<!--<script src="/static/app/main/ui/ui.module.js"></script>-->
-<!--<script src="/static/app/main/pages/pages.module.js"></script>-->
-<!--<script src="/static/app/main/components/components.module.js"></script>-->
-
-
-
 
 
 <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
-
 
 
 <p id="krogoth_gantryVersion" style="display: none">{{ version_build }}</p>
@@ -374,47 +317,128 @@
 
 <style>
 
-    body {
-        color: white;
+
+    @media only screen and (max-width: 9000px) {
+        md-content {
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-attachment: fixed !important;
+        }
+
+        .opaque-global {
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-attachment: fixed !important;
+        }
+
+        md-sidenav {
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-attachment: fixed !important;
+        }
+
+        md-toolbar {
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-attachment: fixed !important;
+        }
+
+        .glass-global {
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-repeat: no-repeat;
+            background-position:left top;
+            background-attachment: fixed !important;
+        }
+
+        body {
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-attachment: fixed !important;
+            color: white;
+        }
     }
 
-    .md-tab.md-active {
-        color: rgb(41, 98, 255) !important;
+    @media only screen and (max-width: 3000px) {
+        md-content {
+            background-size: 3000px 3000px;
+        }
+
+        .opaque-global {
+            background-size: 3000px 3000px;
+        }
+
+        md-sidenav {
+            background-size: 3000px 3000px;
+        }
+
+        md-toolbar {
+            background-size: 3000px 3000px;
+        }
+
+        .glass-global {
+            background-size: 3000px 3000px;
+        }
+
+        body {
+            background-size: 3000px 3000px;
+        }
     }
 
-    .md-tab {
-        color: rgb(13, 71, 161) !important;
+    @media only screen and (max-width: 1300px) {
+
+        md-sidenav {
+            background-size: 1300px 1300px;
+        }
+
+        md-toolbar {
+            background-size: 1300px 1300px;
+        }
+
+        md-content {
+            background-size: 1300px 1300px;
+        }
+
+        .opaque-global {
+            background-size: 1300px 1300px;
+        }
+
+        .glass-global {
+            background-size: 1300px 1300px;
+        }
+
+        .glass-test {
+            background-size: 1300px 1300px;
+            background-position: left top;
+        }
+
+        body {
+            background-size: 1300px 1300px;
+        }
     }
 
-    #main-container {
-        background-color: rgba(0, 0, 0, 0) !important;
-    }
 
-    .glass_bg {
-        background-image: url('/static/coreInterface/AP-bg-01-blur.jpg') !important;
-        background-repeat: no-repeat;
-        background-position: top left;
-        background-size: 4182px 2352px;
-        background-attachment: fixed;
-        border-color: rgba(0, 0, 0, 0.70) !important;
-    }
+    /*@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {*/
+    /*.opaque-global {*/
+    /*background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-1k.jpg') !important;*/
+    /*}*/
 
-    .multi_bg_example_opaque {
-        background-image: url('/static/coreInterface/AP-bg-01-opaque.jpg') !important;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 4182px 2352px;
-        background-color: rgba(0, 0, 0, 0) !important;
-    }
+    /*md-sidenav {*/
+    /*background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-1k.jpg') !important;*/
+    /*}*/
 
-    .multi_bg_example_glass {
-        background-image: url('/static/coreInterface/AP-bg-01-blur.jpg') !important;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 4182px 2352px;
-        background-attachment: fixed;
-        border-color: rgba(0, 0, 0, 0.70) !important;
-    }
+    /*md-toolbar {*/
+    /*background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-1k.jpg') !important;*/
+    /*}*/
+
+    /*.glass-global {*/
+    /*background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-1k.jpg') !important;*/
+    /*}*/
+    /*}*/
 
     @font-face {
         font-family: 'haettenschweilerregular';

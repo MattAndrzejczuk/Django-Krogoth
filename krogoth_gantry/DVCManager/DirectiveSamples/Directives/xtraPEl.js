@@ -9,7 +9,9 @@
             restrict: 'E',
             transclude: true,
             scope: {},
-            template: '<h3>Generated Header Before P Tag</h3><p><b ng-transclude></b></p>'
+            template:
+            '<h3>Generated Header Before P Tag</h3>' +
+            '<p><b ng-transclude=""></b></p>'
         };
     }
 })

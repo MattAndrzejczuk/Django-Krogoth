@@ -1,90 +1,92 @@
-
-
-
-
-<section layout="column" layout-align="stretch">
+<section layout="column" layout-align="stretch" class="glass-global" layout-margin>
 
     <h1>Krogoth Gantry Directives</h1>
 
 
-<xtra-div-el>
-    The following examples can be accessed via Django administration.
-</xtra-div-el>
+    <xtra-div-el>
+        The following examples can be accessed via Django administration.
+    </xtra-div-el>
 
 
     <xtra-div-el>
-    xtraDivEl
-</xtra-div-el>
+        xtraDivEl
+    </xtra-div-el>
     <code-demo-section>
-    <code-demo-left layout="row">
-        <hljs lang="js" flex>
-(function () {
-    'use strict';
-    angular
-        .module('app.FUSE_APP_NAME')
-        .directive('_DJANGULAR_DIRECTIVE_NAME_', _DJANGULAR_DIRECTIVE_NAME_Directive);
+        <code-demo-left layout="row">
+            <hljs lang="js" flex>
+                (function () {
+                    'use strict';
+                    angular
+                        .module('app.FUSE_APP_NAME')
+                        .directive('_DJANGULAR_DIRECTIVE_NAME_', _DJANGULAR_DIRECTIVE_NAME_Directive);
 
-    /** @ngInject */
-    function _DJANGULAR_DIRECTIVE_NAME_Directive() {
-        return {
-            restrict: 'E',
-            transclude: true,
-            scope: {},
-            template:
-            '<div layout="row" layout-align="space-around stretch">' +
-            '<div flex="10"></div>' +
-            '<div flex="80" ng-transclude></div>' +
-            '<div flex="10"></div>' +
-            '</div>'
-        };
-    }
-})
-();
-        </hljs>
-    </code-demo-left>
-    <code-demo-right>
-        <hljs lang="html" style="width:100%">
-            <xtra-div-el>
-    This text is inside the custom xtraDivEl directive.
-</xtra-div-el>
-        </hljs>
-    </code-demo-right>
-</code-demo-section>
+                    /** @ngInject */
+                    function _DJANGULAR_DIRECTIVE_NAME_Directive() {
+                        return {
+                            restrict: 'E',
+                            transclude: true,
+                            scope: {},
+                            template:
+                            '<div layout="row" layout-align="space-around stretch">' +
+                            '<div flex="10"></div>' +
+                            '<div flex="80" ng-transclude></div>' +
+                            '<div flex="10"></div>' +
+                            '</div>'
+                        };
+                    }
+                })
+                ();
+            </hljs>
+        </code-demo-left>
+        <code-demo-right>
+            <hljs lang="html" style="width:100%">
+                <xtra-div-el>
+                    My personal div.
+                </xtra-div-el>
+            </hljs>
+        </code-demo-right>
+    </code-demo-section>
 
+    <h2>Result:</h2>
+    <xtra-div-el style="background-color: #0b3e6f">
+        My personal div.
+    </xtra-div-el>
 
-<xtra-div-el>
-    xtraDivEl
-</xtra-div-el>
-
-<code-demo-section>
-    <code-demo-left layout="row" layout-align="space-around  stretch">
-        <hljs lang="js" flex-grow>
-(function() {
-    'use strict';
-    angular
-        .module('app.FUSE_APP_NAME')
-        .directive('_DJANGULAR_DIRECTIVE_NAME_', _DJANGULAR_DIRECTIVE_NAME_Directive);
-    /** @ngInject */
-    function _DJANGULAR_DIRECTIVE_NAME_Directive() {
-        return {
-            restrict: 'E',
-            transclude: true,
-            scope: {},
-            template: '<h3>Generated Header Before P Tag</h3><p><b ng-transclude></b></p>'
-        };
-    }
-})
-();
-        </hljs>
-    </code-demo-left>
-    <code-demo-right layout="row" layout-align="space-around stretch">
-        <hljs lang="html" flex="100">
-            <xtra-p-el>
-    This text is inside the custom xtraPEl directive.
-</xtra-p-el>
-        </hljs>
-    </code-demo-right>
-</code-demo-section>
+    <code-demo-section>
+        <code-demo-left layout="row" layout-align="space-around  stretch">
+            <hljs lang="js" flex-grow>
+                (function() {
+                    'use strict';
+                    angular
+                        .module('app.FUSE_APP_NAME')
+                        .directive('_DJANGULAR_DIRECTIVE_NAME_', _DJANGULAR_DIRECTIVE_NAME_Directive);
+                    /** @ngInject */
+                    function _DJANGULAR_DIRECTIVE_NAME_Directive() {
+                        return {
+                            restrict: 'E',
+                            transclude: true,
+                            scope: {},
+                            template:
+                            '<h3>Generated Header Before P Tag</h3>' +
+                            '<p><b ng-transclude></b></p>'
+                        };
+                    }
+                })
+                ();
+            </hljs>
+        </code-demo-left>
+        <code-demo-right layout="row" layout-align="space-around stretch">
+            <hljs lang="html" flex="100">
+                <xtra-p-el>
+                    This text is inside the custom xtraPEl directive.
+                </xtra-p-el>
+            </hljs>
+        </code-demo-right>
+    </code-demo-section>
+    <h2>Result:</h2>
+    <xtra-p-el style="background-color: #0b3e6f">
+        This text is inside the custom xtraPEl directive.
+    </xtra-p-el>
 </section>
 
 

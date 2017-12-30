@@ -6,12 +6,6 @@ from rest_framework.routers import DefaultRouter
 
 from kbot_lab.views import KBNanolatheExampleUploadViewset, KBNanolatheExamplePlainViewset
 
-
-
-
-
-
-
 router = DefaultRouter()
 router.register(r'UploadExample', KBNanolatheExampleUploadViewset)
 router.register(r'PlainExample', KBNanolatheExamplePlainViewset)
