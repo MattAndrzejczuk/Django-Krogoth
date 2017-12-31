@@ -64,9 +64,12 @@ class Command(BaseCommand):
                         has_master = True
 
                 if has_master == True:
+                    style = '/**/'
                     title = 'Untitled'
                     if os.path.exists('krogoth_gantry/DVCManager/' + dvc + '/Title.txt'):
                         title = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/Title.txt', 'r').read()
+                    if os.path.exists('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/style.css'):
+                        style = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/style.css', 'r').read()
                     str_View = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/view.html', 'r').read()
                     str_Module = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/module.js', 'r').read()
                     str_Controller = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/controller.js', 'r').read()
@@ -77,6 +80,7 @@ class Command(BaseCommand):
                                                                                    # module_js=str_Module,
                                                                                    # category=cat[0],
                                                                                    # icon=icon)
+                    _mvc[0].style_css = style
                     _mvc[0].view_html=str_View
                     _mvc[0].controller_js=str_Controller
                     _mvc[0].module_js=str_Module

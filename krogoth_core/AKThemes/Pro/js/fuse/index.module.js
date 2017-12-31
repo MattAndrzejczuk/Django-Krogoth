@@ -33,7 +33,6 @@
       'app.file-manager',
       'app.gantt-chart',
       'app.scrumboard',
-      'app.todo',
       'app.contacts',
       'app.notes',
 

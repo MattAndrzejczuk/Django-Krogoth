@@ -186,7 +186,7 @@ class LazarusUnitDataTA(CavedogBase):
     CloakCostMoving = models.CharField(max_length=150, null=True, blank=True)
     Commander = models.CharField(max_length=150, null=True, blank=True)
     Copyright = models.CharField(max_length=105, default='Copyright 1997 Humongous Entertainment. All rights reserved.')
-    #TODO: PK below
+
     Corpse = models.CharField(max_length=106, null=True, blank=True)
     cruisealt = models.CharField(max_length=150, null=True, blank=True)
     DamageModifier = models.CharField(max_length=150, null=True, blank=True)

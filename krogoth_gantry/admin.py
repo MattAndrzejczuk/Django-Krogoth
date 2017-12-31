@@ -9,6 +9,7 @@ from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGant
 
 class KrogothGantryMasterViewControllerAdmin(admin.ModelAdmin):
     list_display = ('id', 'is_enabled', 'title', 'name', )
+    search_fields = ['name']
     class Media:
         js = (
             '/static/codemirror/lib/codemirror.js',

@@ -92,9 +92,9 @@ class KrogothGantryMasterViewController(models.Model):
 
     is_enabled = models.BooleanField(default=True,
                                      help_text='When disabled, this javascript code and html code will not be loaded.')
-    djangular_service = models.ManyToManyField(KrogothGantryService, null=True, blank=True)
-    djangular_directive = models.ManyToManyField(KrogothGantryDirective, null=True, blank=True)
-    djangular_slave_vc = models.ManyToManyField(KrogothGantrySlaveViewController, null=True, blank=True)
+    djangular_service = models.ManyToManyField(KrogothGantryService, null=True, blank=True, related_name='provider')
+    djangular_directive = models.ManyToManyField(KrogothGantryDirective, null=True, blank=True, related_name='displayer')
+    djangular_slave_vc = models.ManyToManyField(KrogothGantrySlaveViewController, null=True, blank=True, related_name='owner')
 
     def __str__(self):
         return self.title

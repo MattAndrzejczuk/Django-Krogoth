@@ -1,0 +1,8 @@
+@-webkit-keyframes MOVE-BG {
+	from {
+		/*-webkit-transform: translateX(0);*/
+	}
+	to {
+		-webkit-transform: translateX(-17%);
+	}
+}

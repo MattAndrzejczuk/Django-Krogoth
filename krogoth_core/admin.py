@@ -38,7 +38,7 @@ stylesheets = {
 
 class AKFoundationAbstractAdmin(admin.ModelAdmin):
     list_display = ('last_name', 'first_name', 'ext')
-
+    search_fields = ['first_name', 'last_name']
     class Media:
         js = javascript
         css = stylesheets
