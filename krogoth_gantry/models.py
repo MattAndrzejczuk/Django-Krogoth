@@ -12,7 +12,7 @@ DEFAULT_DIRECTIVE = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/D
 
 #     ___________________________________
 class KrogothGantryService(models.Model):
-    name = models.CharField(max_length=25, unique=True)
+    name = models.CharField(max_length=52, unique=True)
     title = models.CharField(max_length=55,
                              default='Untitled krogoth_gantry Service',
                              help_text='Cosmetic display name for this service in the primary navigation view')
@@ -27,7 +27,7 @@ class KrogothGantryService(models.Model):
 
 #     _____________________________________
 class KrogothGantryDirective(models.Model):
-    name = models.CharField(max_length=25, unique=True)
+    name = models.CharField(max_length=51, unique=True)
     title = models.CharField(max_length=55,
                              default='Untitled krogoth_gantry Directive',
                              help_text='Cosmetic display name for this directive in the primary navigation view')
@@ -42,7 +42,7 @@ class KrogothGantryDirective(models.Model):
 
 #     _______________________________________________
 class KrogothGantrySlaveViewController(models.Model):
-    name = models.CharField(max_length=25, unique=True,
+    name = models.CharField(max_length=56, unique=True,
                             help_text='MUST BE EXACT NAME OF MASTER VIEW CONTROLLER.')
     title = models.CharField(max_length=55,
                              default='sideNav',
@@ -66,14 +66,17 @@ class KrogothGantryIcon(models.Model):
 
 #     ____________________________________
 class KrogothGantryCategory(models.Model):
-    name = models.CharField(max_length=25, unique=True)
+    name = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return self.name
 
 #     ________________________________________________
+
+from django.utils.html import format_html
+
 class KrogothGantryMasterViewController(models.Model):
-    name = models.CharField(max_length=25, unique=True)
+    name = models.CharField(max_length=50, primary_key=True)
 
     title = models.CharField(max_length=55,
                              default='Untitled krogoth_gantry Application',
@@ -95,6 +98,10 @@ class KrogothGantryMasterViewController(models.Model):
     djangular_service = models.ManyToManyField(KrogothGantryService, null=True, blank=True, related_name='provider')
     djangular_directive = models.ManyToManyField(KrogothGantryDirective, null=True, blank=True, related_name='displayer')
     djangular_slave_vc = models.ManyToManyField(KrogothGantrySlaveViewController, null=True, blank=True, related_name='owner')
+
+    def icon_as_html(self):
+        color = 'style=color:black'
+        return format_html('<i {} class="mdi mdi-{}"> </i>', color, self.icon)
 
     def __str__(self):
         return self.title

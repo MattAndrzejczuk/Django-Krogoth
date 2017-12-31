@@ -87,6 +87,7 @@ INSTALLED_APPS = (
     'filebrowser',
     'grappelli',
     'kbot_lab',
+    'krogoth_examples',
     'django_extensions',
 
 )

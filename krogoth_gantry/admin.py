@@ -8,7 +8,7 @@ from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGant
 
 
 class KrogothGantryMasterViewControllerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'is_enabled', 'title', 'name', )
+    list_display = ('name', 'is_enabled', 'title', 'icon_as_html', )
     search_fields = ['name']
     class Media:
         js = (
@@ -33,6 +33,7 @@ class KrogothGantryMasterViewControllerAdmin(admin.ModelAdmin):
         css = {
             'all': ('/static/codemirror.css',
                     '/static/colorforth.css',
+                    '//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.min.css',
                     '/static/dracula.css',)
         }
 
