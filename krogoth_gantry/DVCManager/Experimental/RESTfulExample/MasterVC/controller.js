@@ -15,10 +15,12 @@
             // Success
             function (response) {
                 console.log(response);
+                vm.data = response;
             },
             // Error
             function (response) {
                 console.error(response);
+                vm.data = response;
             }
         );
 
@@ -30,10 +32,12 @@
                 // Success
                 function (response) {
                     console.log(response);
+                    vm.data = response;
                 },
                 // Error
                 function (response) {
                     console.error(response);
+                    vm.data = response;
                 }
             );
         }

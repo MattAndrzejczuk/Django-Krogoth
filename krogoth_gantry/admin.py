@@ -1,6 +1,6 @@
 from django.contrib import admin
 from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryService, KrogothGantryDirective, \
-    KrogothGantrySlaveViewController, KrogothGantryIcon, KrogothGantryCategory
+    KrogothGantrySlaveViewController, KrogothGantryIcon, KrogothGantryCategory, AKGantryMasterViewController
 
 
 
@@ -134,3 +134,4 @@ admin.site.register(KrogothGantryMasterViewController, KrogothGantryMasterViewCo
 admin.site.register(KrogothGantryService, KrogothGantryServiceAdmin)
 admin.site.register(KrogothGantryDirective, KrogothGantryDirectiveAdmin)
 admin.site.register(KrogothGantrySlaveViewController, KrogothGantrySlaveViewControllerAdmin)
+admin.site.register(AKGantryMasterViewController)

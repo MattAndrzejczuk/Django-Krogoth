@@ -1,6 +1,6 @@
-from chat.models import JawnUser
-from rest_framework import serializers
 
+# CONTROLLER
+from rest_framework import serializers
 from krogoth_examples.models import Fruit
 
 

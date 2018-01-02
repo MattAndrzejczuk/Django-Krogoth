@@ -4438,6 +4438,8 @@ class Command(BaseCommand):
                 new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js', path=path)
             elif kind == 'theme-options':
                 new_js = AKFoundationThemingConfiguration(first_name=kind, last_name=angular_duty, ext='.js', path=path)
+            elif kind == 'AKCustom':
+                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
             else:
                 self.stdout.write(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + bcolors().WARNING + (
                         'UNKNOWN...' + kind + '.' + angular_duty) + bcolors().ENDC)

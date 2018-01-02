@@ -1,8 +1,10 @@
 from django.core.management.base import BaseCommand
 from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryIcon, KrogothGantryService, \
-    KrogothGantryCategory, KrogothGantrySlaveViewController, KrogothGantryDirective
+    KrogothGantryCategory, KrogothGantrySlaveViewController, KrogothGantryDirective, AKGantryMasterViewController
 import codecs
 import os
+from scss import Compiler
+
 
 
 from krogoth_gantry.management.commands.installdjangular import bcolors
@@ -18,7 +20,9 @@ class Command(BaseCommand):
 
         has_master = False
 
-
+        all_old_ones = AKGantryMasterViewController.objects.all()
+        for old in all_old_ones:
+            old.delete()
         icon = KrogothGantryIcon()
         count_icons = len(KrogothGantryIcon.objects.all())
         try:
@@ -81,18 +85,27 @@ class Command(BaseCommand):
                                                             'r').read()
                         if os.path.exists('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/style.css'):
                             style = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/style.css', 'r').read()
+
+                        if os.path.exists('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/style.scss'):
+                            rawcode = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/style.scss', 'r').read()
+                            compiled = Compiler().compile_string(rawcode)
+                            style += compiled
+
                         str_View = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/view.html', 'r').read()
                         str_Module = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/module.js', 'r').read()
                         str_Controller = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/controller.js',
                                                      'r').read()
-                        _mvc = KrogothGantryMasterViewController.objects.get_or_create(name=name_pk + '_akdvc',
+                        _mvc = AKGantryMasterViewController.objects.get_or_create(name=name_pk + '_akdvc',
                                                                                        title=title, category=cat,
                                                                                        icon=icon)
+
+
                         # view_html=str_View,
                         # controller_js=str_Controller,
                         # module_js=str_Module,
                         # category=cat[0],
                         # icon=icon)
+
 
                         clean_catagory = catagory.replace(' ', '').replace('-', '')
                         set_catagory = str_Module.replace('AK_NAVCAT_KROGOTH', clean_catagory)
@@ -101,13 +114,20 @@ class Command(BaseCommand):
                         _mvc[0].style_css = style
                         _mvc[0].view_html = str_View
                         _mvc[0].controller_js = str_Controller
-                        _mvc[0].module_js = parsed_module
+                        _mvc[0].module_js = parsed_module.replace("msNavigationServiceProvider.saveItem('.",
+                                                                  "msNavigationServiceProvider.saveItem('")
                         # _mvc[0].category=cat[0]
                         # _mvc[0].icon=icon[0]
 
-                        svc = KrogothGantrySlaveViewController.objects.get_or_create(name=dvc + 'Slave')
-                        svc[0].title = dvc + '_Slave'
+
                         if has_slave == True:
+                            try:
+                                KrogothGantrySlaveViewController.objects.get(name=name_pk + 'Slave').delete()
+                                print('deleting old slave...')
+                            except:
+                                pass
+                            svc = KrogothGantrySlaveViewController.objects.get_or_create(name=name_pk + 'Slave')
+                            svc[0].title = name_pk + '_Slave' + str(i)
                             log_last_path = 'krogoth_gantry/DVCManager/' + dvc + '/MasterVC/view.html'
                             str_slaveV = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/view.html',
                                                      'r').read()
@@ -125,6 +145,11 @@ class Command(BaseCommand):
                                     log_last_path = 'krogoth_gantry/DVCManager/' + dvc + '/Services/' + srv
                                     str_srv = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/Services/' + srv,
                                                           'r').read()
+                                    try:
+                                        KrogothGantryService.objects.get(name=srv[:-3]).delete()
+                                        print('deleting old service...')
+                                    except:
+                                        pass
                                     service = KrogothGantryService.objects.get_or_create(name=srv[:-3])
                                     service[0].title = srv + '_Service'
                                     service[0].service_js = str_srv
@@ -138,6 +163,11 @@ class Command(BaseCommand):
                                     log_last_path = 'krogoth_gantry/DVCManager/' + dvc + '/Directives/' + drec
                                     str_drec = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/Directives/' + drec,
                                                            'r').read()
+                                    try:
+                                        KrogothGantryDirective.objects.get(name=drec[:-3]).delete()
+                                        print('deleting old directive...')
+                                    except:
+                                        pass
                                     directive = KrogothGantryDirective.objects.get_or_create(name=drec[:-3])
                                     directive[0].title = drec + '_Directive'
                                     directive[0].directive_js = str_drec

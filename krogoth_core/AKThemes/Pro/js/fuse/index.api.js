@@ -19,6 +19,14 @@
             getById: $resource('/LazarusIV/ContentSubmission/NotificationItemViewSet/:id', {id: '@id'})
         };
 
+		api.exampleOneAKRESTfulFruit = {
+            list: $resource('/api/__ExamplesFruit/'),
+            getById: $resource('/api/__ExamplesFruit/:id', {id: '@id'})
+        };
+
+		api.blog = {
+			list: $resource('/api/__ExamplesFruit/')
+		}
 
         /**
          * You can use this service to define your API urls. The "api" service

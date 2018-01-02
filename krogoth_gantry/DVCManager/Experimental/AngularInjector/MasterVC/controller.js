@@ -6,61 +6,69 @@
         var vm = this;
         vm.viewName = 'FUSE_APP_NAME';
 
+/*
+        // Make module Foo and store providers for later use
+        var providers = {};
+        angular.module('Foo', [], function ($controllerProvider, $compileProvider, $provide) {
+            providers = {
+                $controllerProvider: $controllerProvider,
+                $compileProvider: $compileProvider,
+                $provide: $provide
+            };
+        });
+// Bootstrap Foo
+        angular.bootstrap($('body'), ['Foo']);
 
-        vm.url_to_ctrl = '/moho_extractor/KrogothFoundation/?unique_name=coreExampleCtrlLoadedByInjection';
+// .. time passes ..
 
-        vm.providers = {};
-        vm.queueLen = angular.module('fuse')._invokeQueue.length;
+// Store our _invokeQueue length before loading our controllers/directives/services
+// This is just so we don't re-register anything
+        var queueLen = angular.module('Foo')._invokeQueue.length;
 
-        // 2.)
-        vm.loadAdditionalJavaScript = loadAdditionalJavaScript;
-
-        // 3.)
-        vm.loadHTMLFile = loadHTMLFile;
-
-        // 4.)
-        vm.registerNewMasterViewController = registerNewMasterViewController;
-
-        // 5.)
-        vm.compileNewMasterViewController = compileNewMasterViewController;
-
-
-
-
-
-
+// Load javascript file with controllers/directives/services
+        angular.module('Foo')
+            .controller('Ctrl', function ($scope, $rootScope, fooService) {
+                $scope.msg = "It works! rootScope is " + $rootScope.$id +
+                    ", should be " + $('body').scope().$id;
+                $scope.serviceMsg = fooService.msg;
+            })
+            .factory('fooService', function () {
+                return {msg: "Some text from a service"};
+            })
+            .directive('testDirective', function () {
+                return function (scope, elem) {
+                    $(elem).text('Directives also work');
+                }
+            });
 
 
-        /// 2.) An entire master view controller as a single .js file will be loaded by:
-        function loadAdditionalJavaScript(url) {
-            var script = document.createElement("script");
-            // This script has a callback function that will run when the script has
-            // finished loading.
-            script.src = url;
-            script.type = "text/javascript";
-            document.getElementsByTagName("head")[0].appendChild(script);
+// Load html file with content which uses above content
+        $('<div id="ctrl" ng-controller="Ctrl">' +
+            '<div ng-bind="msg"/>' +
+            '<div ng-bind="serviceMsg"/>' +
+            '<div test-directive/>' +
+            '</div>').appendTo('body');
+
+
+// Register the controls/directives/services we just loaded
+        var queue = angular.module('Foo')._invokeQueue;
+        for (var i = queueLen; i < queue.length; i++) {
+            var call = queue[i];
+            // call is in the form [providerName, providerFunc, providerArguments]
+            var provider = providers[call[0]];
+            if (provider) {
+                // e.g. $controllerProvider.register("Ctrl", function() { ... })
+                provider[call[1]].apply(provider, call[2]);
+            }
         }
 
-        // LOAD NEW CTRL FROM THIS URL:
-        ///http://localhost/moho_extractor/KrogothFoundation/?unique_name=coreExampleCtrlLoadedByInjection
 
-            /// angular.module('Foo')
-            /// .controller('Ctrl', function($scope, $rootScope, fooService) {
-            ///     $scope.msg = "It works! rootScope is " + $rootScope.$id +
-            ///         ", should be " + $('body').scope().$id;
-            ///     $scope.serviceMsg = fooService.msg;
-            /// })
-            /// .factory('fooService', function() {
-            ///     return { msg: "Some text from a service" };
-            /// })
-            /// .directive('testDirective', function() {
-            ///     return function(scope, elem) {
-            ///         $(elem).text('Directives also work');
-            ///     }
-            /// });
-
-
-
+// compile the new element
+        $('body').injector().invoke(function ($compile, $rootScope) {
+            $compile($('#ctrl'))($rootScope);
+            $rootScope.$apply();
+        });
+*/
 
     }
 })();

@@ -6,24 +6,35 @@
             <h1>{{ vm.viewName }}</h1>
         </div>
         <div flex>
-		</div>
+        </div>
     </div>
 </section>
 <section layout="column" layout-align="center stretch">
     <div flex="20" layout="row" layout-align="space-around stretch"
          class="md-primary-bg md-hue-3 ">
         <div flex></div>
-        <div flex="80" layout="column" layout-align="center center">
-            <span class="md-headline">RESTful Example</span>
-            <span class="md-subheading">Click the button below to make a sample request.</span>
-            <md-button ng-click="vm.sendMsg()">click me</md-button>
+        <div flex="80" layout="column" layout-align="center center" class="clear-bg glass-global" ak-frosted-glass>
+            <span class="md-headline">WebSocket Example</span>
+
+            <md-input-container>
+                <label>Compose Message</label>
+                <input ng-model="vm.userInput">
+            </md-input-container>
+            <md-input-container>
+                <label>Click the button below to make a sample request.</label>
+                <md-button ng-click="vm.sendMsg()">SEND</md-button>
+            </md-input-container>
+            <p>
+            <pre>
+                {{ vm.msgs | json }}
+            </pre>
+            </p>
+
+
         </div>
         <div flex>
 
-		</div>
+        </div>
     </div>
 </section>
 
-<pre>
-    {{ vm.msgs | json }}
-</pre>

@@ -2,6 +2,7 @@ from django.db import models
 import jsbeautifier
 import codecs
 from jawn.settings import BASE_DIR
+from polymorphic.models import PolymorphicModel
 
 DEFAULT_CONTROLLER = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/MasterVC/controller.js', 'r').read()
 DEFAULT_MODULE = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/MasterVC/module.js', 'r').read()
@@ -75,8 +76,8 @@ class KrogothGantryCategory(models.Model):
 
 from django.utils.html import format_html
 
-class KrogothGantryMasterViewController(models.Model):
-    name = models.CharField(max_length=50, primary_key=True)
+class KrogothGantryMasterViewController(PolymorphicModel):
+    name = models.CharField(max_length=50, unique=True)
 
     title = models.CharField(max_length=55,
                              default='Untitled krogoth_gantry Application',
@@ -95,9 +96,18 @@ class KrogothGantryMasterViewController(models.Model):
 
     is_enabled = models.BooleanField(default=True,
                                      help_text='When disabled, this javascript code and html code will not be loaded.')
-    djangular_service = models.ManyToManyField(KrogothGantryService, null=True, blank=True, related_name='provider')
-    djangular_directive = models.ManyToManyField(KrogothGantryDirective, null=True, blank=True, related_name='displayer')
-    djangular_slave_vc = models.ManyToManyField(KrogothGantrySlaveViewController, null=True, blank=True, related_name='owner')
+    djangular_service = models.ManyToManyField(KrogothGantryService, 
+                                               null=True, 
+                                               blank=True, 
+                                               related_name='provider')
+    djangular_directive = models.ManyToManyField(KrogothGantryDirective, 
+                                                 null=True, 
+                                                 blank=True, 
+                                                 related_name='displayer')
+    djangular_slave_vc = models.ManyToManyField(KrogothGantrySlaveViewController, 
+                                                null=True,
+                                                blank=True, 
+                                                related_name='owner')
 
     def icon_as_html(self):
         color = 'style=color:black'
@@ -110,3 +120,8 @@ class KrogothGantryMasterViewController(models.Model):
         self.module_js = jsbeautifier.beautify(self.module_js)
         self.controller_js = jsbeautifier.beautify(self.controller_js)
         super(KrogothGantryMasterViewController, self).save(*args, **kwargs)
+
+
+class AKGantryMasterViewController(KrogothGantryMasterViewController):
+    class Meta:
+        proxy = True

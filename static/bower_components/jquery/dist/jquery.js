@@ -3851,6 +3851,11 @@ jQuery.Deferred.exceptionHook = function( error, stack ) {
 
 
 jQuery.readyException = function( error ) {
+	console.log('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -');
+	console.log('KROGOTH ERROR OVERRIDE: ');
+	console.log('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -');
+	console.log(error);
+	console.log('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -');
 	window.setTimeout( function() {
 		throw error;
 	} );

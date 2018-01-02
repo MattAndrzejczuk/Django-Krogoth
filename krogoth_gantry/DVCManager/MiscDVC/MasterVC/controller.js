@@ -8,3 +8,16 @@
 			 vm.viewName = 'FUSE_APP_NAME';
 	}
 })();
+
+
+/*
+sh /Vol
+*/
+
+/*
+sh /Volumes/MBP_Backup/arm-prime/docker/KILL_ALL_.sh
+*/
+
+/*
+sh /Volumes/MBP_Backup/arm-prime/docker/run-docker-installed.sh
+*/

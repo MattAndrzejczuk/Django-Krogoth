@@ -1,0 +1,79 @@
+<div id="profile" class="page-layout simple tabbed">
+
+
+    <section class="timeline-tab" flex>
+
+
+        <div layout="row" layout-wrap>
+
+
+            <div class="timeline" layout="column" flex="100" flex-gt-sm="55" flex-gt-md="65" flex-order="2"
+                 flex-order-gt-sm="1">
+
+
+                <div class="profile-box add-post md-whiteframe-1dp clear-bg glass-global" ak-frosted-glass>
+                    <div class="form" flex>
+                <textarea placeholder="Write something.." translate ng-model="vm.toastMsg"
+                          translate-attr-placeholder="PROFILE.WRITE_SOMETHING"></textarea>
+
+                        <footer layout="row" layout-align="space-between center">
+                            <div layout="row" layout-align="start center">
+
+                            </div>
+
+                            <md-button ng-click="vm.addToastToQueue()" class="post-button md-accent md-raised"
+                                       aria-label="POST"
+                                       translate="PROFILE.POST" translate-attr-aria-label="PROFILE.POST">
+                                POST
+                            </md-button>
+                        </footer>
+                    </div>
+                </div>
+
+
+                <md-divider></md-divider>
+
+                <div class="timeline-item md-whiteframe-1dp clear-bg glass-global" ng-repeat="post in vm.posts"
+                     ak-frosted-glass>
+
+                    <header layout="row" layout-align="space-between start">
+                        <div class="user" layout="row" layout-align="start center">
+                            <div layout="column">
+                                <div class="title">
+                                    <span class="username md-accent-color">Fruits in SQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <div class="content">
+                        <md-grid-list
+                                md-cols-gt-md="12" md-cols="3" md-cols-md="8"
+                                md-row-height-gt-md="1:1" md-row-height="4:3"
+                                md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+                            <md-grid-tile
+                                    ng-repeat="tile in vm.data"
+                                    ng-class="{{tile.name}}"
+                                    md-colspan-gt-sm="1"
+                                    md-rowspan-gt-sm="1">
+                            </md-grid-tile>
+                        </md-grid-list>
+                    </div>
+
+                    <footer class="" layout="column" layout-align="start start">
+                        <div class="comment" layout="row" layout-fill>
+                            <div flex layout="column">
+                                <div class="message">
+                                    {{ Blog.results }}
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+</div>

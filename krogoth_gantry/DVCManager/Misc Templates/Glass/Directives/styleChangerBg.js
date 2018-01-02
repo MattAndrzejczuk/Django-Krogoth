@@ -1,11 +1,11 @@
 (function () {
     'use strict';
     angular
-        .module('app.core')
-        .directive('akFrostedGlass', akFrostedGlassDirective);
+        .module('app.FUSE_APP_NAME')
+        .directive('_DJANGULAR_DIRECTIVE_NAME_', _DJANGULAR_DIRECTIVE_NAME_Directive);
 
     /** @ngInject */
-    function akFrostedGlassDirective($interval) {
+    function _DJANGULAR_DIRECTIVE_NAME_Directive($interval, $window) {
 
 		console.log('akFrostedGlass');
         console.log('akFrostedGlass');
@@ -23,11 +23,11 @@
                 function updateTime() {
                     //const childPos = element.offset();
                     //const childHeight = element.height();
-                    //const parentoffset = element.parent().offset();
+                    const parentoffsetLeft = element.parent().offset().left;
                     //const parentHeight = element.parent().height();
 
-                    var y = (element.offset().top * -1) + 'px';
-                    var x = (element.offset().left * -1) + 'px';
+                    const y = ((element.offset().top) * -1) + 'px';
+                    const x = ((element.offset().left) * -1) + 'px';
 
                     element.css({
                         backgroundPositionY: y,
@@ -47,3 +47,17 @@
     }
 })
 ();
+
+
+// .glass-test {
+//     backgroundAttachment: "fixed",
+//     backgroundImage: "url('/static/fancy_bgs/EPIC_Planet-3-opaque-2k.jpg')",
+//     backgroundSize: "2000px 2000px",
+//     backgroundRepeat: "no-repeat",
+//     backgroundPositionX: "left",
+//     backgroundPositionY: "top"
+// }
+// element.css({
+//     backgroundPositionY: y,
+//     backgroundPositionX: x
+// });

@@ -1,1 +1,1 @@
-Example RESTful View Controller
+Example API Service
