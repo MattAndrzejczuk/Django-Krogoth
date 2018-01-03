@@ -1,0 +1,116 @@
+<div id="login-v2" layout="row" layout-align="start" class="glass_bg">
+    <div id="login-v2-intro" flex hide show-gt-sm>
+        <div class="logo">
+            <span>
+                <img src="/static/CoreLogoVectorWhite.svg" style="color:white;">
+            </span>
+        </div>
+        <div class="title" class="md-background-fg" style="color:white;">
+            Welcome to {{ vm.name }}
+        </div>
+        <div class="description" class="md-primary-fg" style="color:white;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+        </div>
+    </div>
+
+    <div id="login-v2-form-wrapper" class="flex-scrollable glass_bg" ms-scroll>
+        <div id="login-v2-form" class="md-background-bg" style="height:100%;">
+            <div class="logo" hide-gt-sm>
+            <span>
+                <img src="/static/CoreLogoVector.svg">
+            </span>
+            </div>
+
+            <div class="title md-background-fg md-hue-3">Log in to {{ vm.name }}</div>
+            <div class="description md-background-fg md-hue-3">
+                krogoth_gantry requires login by default.
+            </div>
+
+            <form name="loginForm" novalidate>
+                <md-input-container class="md-block" md-no-float>
+                    <!--<input type="email" name="email" ng-model="vm.form.email" placeholder="Email"
+                           translate translate-attr-placeholder="LOGIN_V2.EMAIL"
+                           ng-pattern="/^.+@.+\..+$/" required>-->
+                    <label class="md-primary-fg md-hue-2">Username</label>
+                    <input type="text" name="username" ng-model="vm.form.username" style="color:orange"
+                           ng-pattern="/^[a-zA-Z0-9]*$/" required class="md-accent-fg">
+                    <div ng-messages="loginForm.username.$error" role="alert" multiple>
+                        <div ng-message="required">
+                            <span>Username field is required</span>
+                        </div>
+                        <div ng-message="pattern">
+                            <span>Usernames cannot contain whitespaces or special characters.</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                    <label class="md-primary-fg md-hue-2">Password</label>
+                    <input type="password" 
+                           name="password" 
+                           ng-model="vm.form.password"
+                           required 
+                           style="color:orange"
+                           class="md-accent-fg">
+                    <div ng-messages="loginForm.password.$error" role="alert">
+                        <div ng-message="required">
+                            <span>Password field is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <div class="remember-forgot-password" layout="row" layout-sm="column"
+                     layout-align="space-between center">
+                    <md-checkbox class="remember-me"
+                                 style="border-color: rgb(255,255,255); border-color: rgb(255,255,255);"
+                                 ng-model="data.cb1"
+                                 aria-label="Remember Me">
+                        <span class="md-background-fg md-hue-3">Remember Me</span>
+                    </md-checkbox>
+
+                    <a ui-sref="app.pages_auth_forgot-password" class="forgot-password">Forgot Password?</a>
+                </div>
+
+                <md-button class="md-hover-button-amber-dark-bg" aria-label="LOG IN"
+                           ng-click="vm.clickLogin(loginForm.$invalid || loginForm.$pristine)"
+                           ng-disabled="loginForm.$invalid || loginForm.$pristine">
+                    LOG IN
+                </md-button>
+            </form>
+
+            <!--<div class="separator">
+                <span class="text" translate="LOGIN_V2.OR">OR</span>
+            </div>
+
+            <div layout="column" layout-align="start center">
+                <md-button class="md-raised google">
+                    <div layout="row" layout-align="center center">
+                        <span>
+                            <md-icon md-font-icon="icon-google-plus" class="s16"></md-icon>
+                            <span translate="LOGIN_V2.WITH_GOOGLE">Log in with Google</span>
+                        </span>
+                    </div>
+                </md-button>
+
+                <md-button class="md-raised facebook">
+                    <div layout="row" layout-align="center center">
+                        <span>
+                            <md-icon md-font-icon="icon-facebook" class="s16"></md-icon>
+                            <span translate="LOGIN_V2.WITH_FACEBOOK">Log in with Facebook</span>
+                        </span>
+                    </div>
+                </md-button>
+            </div>-->
+
+            <div class="register" layout="row" layout-sm="column" layout-align="center center">
+                <span class="text md-background-fg md-hue-3">Don't have an account?</span>
+                <a class="link" ui-sref="app.Registerkrogoth_gantry">Create an
+                    account</a>
+            </div>
+        </div>
+    </div>
+</div>

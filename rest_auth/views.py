@@ -184,7 +184,7 @@ class LoginView(GenericAPIView):
             user=self.user)
 
         # SERIALIZE JAWN USER FOR WRITING TO REDIS
-        jawn_user = JawnUser.objects.get(base_user=self.user)
+        jawn_user = JawnUser.get_or_create_jawn_user(username=self.user.username) #JawnUser.objects.get(base_user=self.user)
         j = JawnUserSerializer(jawn_user, context=self.get_serializer_context())
         json = JSONRenderer().render(j.data)
 

@@ -10,6 +10,15 @@
     </div>
 </section>
 <section layout="column" layout-align="center stretch">
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
     <div flex="20" layout="row" layout-align="space-around stretch"
          class="md-primary-bg md-hue-3 ">
         <div flex></div>
@@ -30,6 +39,35 @@
             </pre>
             </p>
 
+            <span class="md-title">
+                Web Socket Status:
+            </span>
+            <span>
+                {{ vm.ws.$status() }}
+            </span>
+
+            <span class="md-subhead">
+                Close Connection
+            </span>
+            <md-button ng-click="vm.closeWsCon()">
+                Disconnect
+            </md-button>
+
+            <span class="md-subhead">
+                Open Connection
+            </span>
+            <md-button ng-click="vm.openWsCon()">
+                Connect
+            </md-button>
+
+
+            <span class="md-subhead">
+                Enable Push Notifications
+            </span>
+            <md-button
+                    ng-click="vm.sendVanillaPushNotification('Push notifications have been activated!')">
+                Request Permission
+            </md-button>
 
         </div>
         <div flex>
