@@ -51,15 +51,15 @@ class DynamicJavaScriptInjector(APIView):
         msApiProviders = []
         for slave in djangular_slaves:
             CRUD_MODEL = 'SampleModelOneView'
-            slave.name = application.name
+            # slave.name = application.name
             STATE_IDENTIFIER = 'FUSE_APP_NAME.' + slave.name
-            STATE_URI = slave.title
+            STATE_URI = slave.name
             print('dude... wtf...')
-            slave_identifier = slave.name + '.' + slave.title # FUSE_APP_NAME._SLAVE_NAME_
-            state_pt_1 = ".state('app."+slave_identifier+"', {url: '/" + STATE_URI + "/:id', views: { "
-            state_pt_2 = "'content@app': { templateUrl: '/krogoth_gantry/DynamicHTMLSlaveInjector/" + str(slave.id) + "/', "
-            state_pt_3 = " controller: '"+slave.title+"Controller as vm' } "
-            state_pt_4 = "  }, resolve: { Model"+slave.title+": function (msApi) { "
+            slave_identifier = slave.name + '.' + slave.name # FUSE_APP_NAME._SLAVE_NAME_
+            state_pt_1 = ".state('app."+application.name+"." + slave.name + "', {url: '/" + STATE_URI + "/:id', views: { "
+            state_pt_2 = "'content@app': { templateUrl: '/krogoth_gantry/DynamicHTMLSlaveInjector/?name=" + str(slave.name) + "', "
+            state_pt_3 = " controller: '"+slave.name+"Controller as vm' } "
+            state_pt_4 = "  }, resolve: { Model"+slave.name+": function (msApi) { "
             state_pt_5 = " return msApi.resolve('app."+STATE_IDENTIFIER+"REST@get' "
             state_pt_6 = " ); } } })  "
             msApiStateItem = state_pt_1 + state_pt_2 + state_pt_3 + state_pt_4 + state_pt_5 + state_pt_6
@@ -67,7 +67,7 @@ class DynamicJavaScriptInjector(APIView):
             msApiProvider += "/krogoth_gantry/CRUD/" + CRUD_MODEL + "/:id']);\n"
             slave__states.append(msApiStateItem)
             msApiProviders.append(msApiProvider)
-            slave_controllers_js += slave.controller_js.replace('_SLAVE_NAME_', slave.title).replace('FUSE_APP_NAME', application.name)
+            slave_controllers_js += slave.controller_js.replace('_SLAVE_NAME_', slave.name).replace('FUSE_APP_NAME', application.name)
             slave_controllers_js += '\n'
 
         statesAsString = ''
@@ -83,10 +83,10 @@ class DynamicJavaScriptInjector(APIView):
 
         newMsNavSrv = ''
         for slave in djangular_slaves:
-            parse_1 = "msNavigationServiceProvider.saveItem('NAV_HEADER.FUSE_APP_NAME"+slave.title+"', { "
-            parse_2 = "	title: 'FUSE_APP_TITLE"+slave.title+"', "
-            parse_3 = " icon: 'FUSE_APP_ICON', "
-            parse_4 = " state: 'app.FUSE_APP_NAME."+slave.title+"', "
+            parse_1 = "msNavigationServiceProvider.saveItem('FUSE_APP_NAME."+slave.name+"', { "
+            parse_2 = "	title: '"+slave.title+"', "
+            parse_3 = " icon: 'icon-bullet', "
+            parse_4 = " state: 'app.FUSE_APP_NAME."+slave.name+"', "
             parse_5 = " weight: 3 }); "
             newMsNavSrv += parse_1 + parse_2 + parse_3 + parse_4 + parse_5
             newMsNavSrv += '\n'
@@ -154,6 +154,27 @@ class DynamicHTMLInjector(APIView):
             raw_html_response += '</div>'
         return HttpResponse(raw_html_response, content_type='text/html; charset=utf-8')
 
+
+
+
+class DynamicHTMLSlaveInjector(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        name = request.GET['name']
+
+        application = KrogothGantrySlaveViewController.objects.get(title=name)
+        raw_html_response = application.view_html
+
+        if raw_html_response == '':
+            raw_html_response += '<div layout="column" layout-padding layout-margin>'
+            raw_html_response += '<h1>' + application.name.replace('_', ' ') + '</h1>'
+            raw_html_response += '<h3>No Fuse App HTML Component</h3>'
+            info = "You're seeing this message because no Fuse App HTML component with the type: HTML has not been " + \
+                   "added to this Angular Fuse Application named " + application.name
+            raw_html_response += "<p>" + info + "</p>"
+            raw_html_response += '</div>'
+        return HttpResponse(raw_html_response, content_type='text/html; charset=utf-8')
 
 
 

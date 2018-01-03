@@ -3,13 +3,52 @@ from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGant
     KrogothGantrySlaveViewController, KrogothGantryIcon, KrogothGantryCategory, AKGantryMasterViewController
 
 
-
-
-
-
 class KrogothGantryMasterViewControllerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'is_enabled', 'title', 'icon_as_html', )
+    list_display = ('name', 'is_enabled', 'title', 'icon_as_html',)
     search_fields = ['name']
+
+    # fields = (('name', 'title', 'icon', 'category', 'is_enabled'),
+    #           'module_js', 'controller_js', 'view_html', 'style_css',
+    #           ('djangular_service', 'djangular_directive', 'djangular_slave_vc'))
+
+    fieldsets = (
+        ('Properties',
+         {
+             'fields': (('name', 'title', 'icon',), ('category', 'is_enabled'),)
+         }
+         ),
+        ('Module Editor',
+         {
+             'fields': ('module_js',),
+             'classes': ('collapse',)
+         }
+         ),
+        ('View Editor',
+         {
+             'fields': ('view_html',),
+             'classes': ('collapse',)
+         }
+         ),
+        ('Controller Editor',
+         {
+             'fields': ('controller_js',),
+             'classes': ('collapse',)
+         }
+         ),
+        ('Style Editor',
+         {
+             'fields': ('style_css',),
+             'classes': ('collapse',)
+         }
+         ),
+        ('Services Directives and Slaves',
+         {
+             'fields': ('djangular_service', 'djangular_directive', 'djangular_slave_vc',),
+             'classes': ('collapse',)
+         }
+         ),
+    )
+
     class Media:
         js = (
             '/static/codemirror/lib/codemirror.js',
@@ -37,8 +76,10 @@ class KrogothGantryMasterViewControllerAdmin(admin.ModelAdmin):
                     '/static/dracula.css',)
         }
 
+
 class KrogothGantryServiceAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'name', )
+    list_display = ('id', 'title', 'name',)
+
     class Media:
         js = (
             '/static/codemirror/lib/codemirror.js',
@@ -64,8 +105,10 @@ class KrogothGantryServiceAdmin(admin.ModelAdmin):
                     '/static/dracula.css',)
         }
 
+
 class KrogothGantryDirectiveAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'name', )
+    list_display = ('id', 'title', 'name',)
+
     class Media:
         js = (
             '/static/codemirror/lib/codemirror.js',
@@ -91,8 +134,10 @@ class KrogothGantryDirectiveAdmin(admin.ModelAdmin):
                     '/static/dracula.css',)
         }
 
+
 class KrogothGantrySlaveViewControllerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'name', )
+    list_display = ('id', 'title', 'name',)
+
     class Media:
         js = (
             '/static/codemirror/lib/codemirror.js',
@@ -120,15 +165,15 @@ class KrogothGantrySlaveViewControllerAdmin(admin.ModelAdmin):
 
 
 class KrogothGantryIconAdmin(admin.ModelAdmin):
-    list_display = ('id', 'code', )
+    list_display = ('id', 'code',)
+
 
 class KrogothGantryCategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', )
+    list_display = ('id', 'name',)
 
 
 admin.site.register(KrogothGantryIcon, KrogothGantryIconAdmin)
 admin.site.register(KrogothGantryCategory, KrogothGantryCategoryAdmin)
-
 
 admin.site.register(KrogothGantryMasterViewController, KrogothGantryMasterViewControllerAdmin)
 admin.site.register(KrogothGantryService, KrogothGantryServiceAdmin)

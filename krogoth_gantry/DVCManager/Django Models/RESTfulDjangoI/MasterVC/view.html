@@ -46,18 +46,8 @@
                         </div>
                     </header>
 
-                    <div class="content">
-                        <md-grid-list
-                                md-cols-gt-md="12" md-cols="3" md-cols-md="8"
-                                md-row-height-gt-md="1:1" md-row-height="4:3"
-                                md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
-                            <md-grid-tile
-                                    ng-repeat="tile in vm.data"
-                                    ng-class="{{tile.name}}"
-                                    md-colspan-gt-sm="1"
-                                    md-rowspan-gt-sm="1">
-                            </md-grid-tile>
-                        </md-grid-list>
+                    <div class="content" flex ng-cloak>
+
                     </div>
 
                     <footer class="" layout="column" layout-align="start start">
@@ -77,3 +67,41 @@
 
 
 </div>
+
+
+                        <md-grid-list
+                                md-cols="1"
+                                md-cols-sm="2"
+                                md-cols-md="3"
+                                md-cols-gt-md="6"
+                                md-row-height="1:1"
+                                md-gutter="8px"
+                                md-gutter-gt-sm="4px">
+
+<!--
+md-cols-gt-md="8"
+    (fits 8 total cols with a 1x1 colspans)
+
+
+KEEP TILES AS A SQUARE:
+md-row-height="1:1"
+SAME AS
+md-row-height="3:3"
+
+
+KEEP TILES WIDE:
+md-row-height="16:9"
+-->
+
+                            <md-grid-tile ng-repeat="tile in vm.tiles"
+                                          md-rowspan="{{tile.span.row}}"
+                                          md-colspan="{{tile.span.col}}"
+                                          md-colspan-xs="1"
+                                          ng-class="tile.background">
+                                <md-icon md-svg-icon="{{tile.icon}}"></md-icon>
+                                <md-grid-tile-footer>
+                                    <h3>{{tile.title}}</h3>
+                                    <h5>row: {{tile.span.row}} col: {{tile.span.col}}</h5>
+                                </md-grid-tile-footer>
+                            </md-grid-tile>
+                        </md-grid-list>

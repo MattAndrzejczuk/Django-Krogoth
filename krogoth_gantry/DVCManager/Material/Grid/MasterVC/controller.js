@@ -6,6 +6,8 @@
         var vm = this;
         vm.viewName = 'FUSE_APP_NAME';
 
+
+
         vm.tiles = buildGridModel({
             icon: "avatar:svg-",
             title: "Svg-",

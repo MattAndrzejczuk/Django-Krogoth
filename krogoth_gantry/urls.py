@@ -2,19 +2,16 @@ from django.conf.urls import url
 from krogoth_gantry import views
 from krogoth_gantry import viewseditor
 
-
 # from rest_framework.routers import DefaultRouter
-
 
 
 # router = DefaultRouter()
 
 
-
-
 urlpatterns = [
     url(r'^DynamicJavaScriptInjector/', views.DynamicJavaScriptInjector.as_view(), name='DynamicJavaScriptInjector'),
     url(r'^DynamicHTMLInjector/', views.DynamicHTMLInjector.as_view(), name='DynamicHTMLInjector'),
+    url(r'^DynamicHTMLSlaveInjector/', views.DynamicHTMLSlaveInjector.as_view(), name='Dynamic HTML Slave Injector'),
 
     url(r'^MasterViewControllerEditorList/',
         viewseditor.MasterViewControllerEditorListView.as_view(),
