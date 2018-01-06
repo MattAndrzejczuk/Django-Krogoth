@@ -52,7 +52,7 @@
 
         return function postLink(scope, iElement, iAttrs, MsTimelineCtrl) {
           // Create an element for triggering the load more action and append it
-          var loadMoreEl = angular.element('<div class="ms-timeline-loader md-accent-bg md-whiteframe-4dp"><span class="spinner animate-rotate"></span></div>');
+          var loadMoreEl = angular.element('<div class="ms-timeline-loader md-accent-bg"><span class="spinner animate-rotate"></span></div>');
           iElement.append(loadMoreEl);
 
           // Default config

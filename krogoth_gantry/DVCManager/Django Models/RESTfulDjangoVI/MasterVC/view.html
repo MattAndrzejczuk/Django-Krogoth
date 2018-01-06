@@ -1,0 +1,161 @@
+
+<style>
+    md-chip {
+        background-color: rgba(0,0,0,0) !important;
+    }
+</style>
+
+<div id="profile" class="page-layout simple tabbed">
+
+
+    <section class="timeline-tab" flex>
+
+
+        <div layout="row" layout-wrap>
+
+            <span flex="5">
+                &nbsp;
+            </span>
+            <div class="timeline"
+                 layout="column"
+
+                 flex="100">
+
+
+                <h4>Car RESTful Form</h4>
+                <div class="profile-box add-post clear-bg glass-global" ak-frosted-glass>
+                    <div class="form"
+                         flex
+                         layout="row"
+                         layout-align="start stretch"
+                         style="background-color: rgba(0,0,0,0.35)"
+                         layout-padding>
+                        <md-input-container>
+                            <label>name</label>
+                            <input ng-model="vm.RESTfulJSONPayload.name">
+                        </md-input-container>
+                        <md-input-container>
+                            <div flex="50" ng-repeat="item in vm.foreignKeys">
+                                <md-checkbox ng-click="vm.selectManyToMany(item.name)">
+                                    {{ item.name }}
+                                </md-checkbox>
+                            </div>
+                        </md-input-container>
+
+
+                        <footer layout="row" layout-align="space-between center"
+                                style="background-color: rgba(255,255,255,0.0)">
+                            <div layout="row" layout-align="start center">
+
+                            </div>
+
+                            <md-button ng-click="vm.postNewObject()"
+                                       class="post-button md-accent md-raised"
+                                       aria-label="POST">
+                                POST
+                            </md-button>
+                        </footer>
+                    </div>
+                </div>
+
+
+                <md-divider></md-divider>
+
+                <div
+                        class="timeline-item clear-bg glass-global"
+
+                        ak-frosted-glass>
+
+                    <header style="background-color: rgba(255,255,255,0.25)"
+                            layout="row"
+                            layout-align="space-between start">
+                        <div class="user" layout="row" layout-align="start center">
+                            <div layout="column">
+                                <div class="title">
+                                    <span class="username md-accent-color"
+                                          style="color: #0F192A">Manufacturers in SQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <div class="content" flex ng-cloak style="background-color: rgba(255,255,255,0.45)">
+                        <md-grid-list
+
+                                md-cols-xs="1"
+                                md-cols-sm="2"
+                                md-cols-md="2"
+                                md-cols="3"
+                                md-row-height="1:1"
+                                md-gutter="4px" md-gutter-gt-sm="2px">
+
+                            <md-grid-tile ng-repeat="tile in vm.jsonResponse"
+                                          md-rowspan="vm.getColspan(tile.toppings.length)"
+                                          md-colspan="1"
+                                          style="background-color: rgba(255,255,255,0.25)">
+
+
+                                <md-grid-tile-header style="padding: 10px;"><h3 style="color: #0F192A">
+                                    {{tile.name}} {{vm.getColspan(tile.toppings.length)}}</h3></md-grid-tile-header>
+                                <br>
+
+                                <div>
+                                    <md-chips ng-model="tile.toppings"
+                                              flex
+                                              md-on-add="vm.didAddChip($chip, $index, tile.name)"
+                                              md-on-remove="vm.didRemoveChip($chip, $index, tile.name)">
+
+                                        <md-chip-template>
+                                            <div class="glass-global" ak-frosted-glass>{{$chip}}</div>
+                                        </md-chip-template>
+                                    </md-chips>
+                                </div>
+
+
+                                <md-grid-tile-footer>
+                                    <md-button
+                                            class="md-fab md-warn md-mini md-red-bg"
+                                            ng-click="vm.deleteObject(tile.name)"
+                                            style="color: #ffffff">
+                                        <i class="icon mdi mdi-delete"></i>
+                                    </md-button>
+                                </md-grid-tile-footer>
+                            </md-grid-tile>
+                        </md-grid-list>
+                    </div>
+
+                    <footer style="background-color: rgba(255, 255, 255, 0.45)"
+                            class=""
+                            layout="column"
+                            layout-align="start start">
+                        <div class="comment" layout="row" layout-fill>
+                            <div flex layout="column">
+                                <h2 style="color: #0F192A">Manufacturer RESTful Form</h2>
+                                <h3 style="color: #0F192A"><b>POST</b> : '/api/__ExamplesManufacturer/'</h3>
+                                <div class="message" style="background-color: rgba(255, 255, 255, 0.20)">
+
+                                    <pre>
+                                        {{ vm.RESTfulJSONPayload | json }}
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+            <span flex>
+                &nbsp;
+            </span>
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<section style="background-color: #0a0a0a">
+    <pre>
+        {{ vm.jsonResponse | json }}
+    </pre>
+</section>

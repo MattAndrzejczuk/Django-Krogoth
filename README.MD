@@ -28,7 +28,7 @@ Krogoth in its current state is not ready for production. This is mainly because
 #Getting Started
 Krogoth is intended to be used by anyone from all skill levels from students to seniors. I had originally developed Krogoth as a way to quickly deploy a monolithic Django app for blogging, but found that it takes too much time to go through the process of integrating an off the shelf AngularJS template into a fresh new Django project. This is the reason why Krogoth's only prerequisite is Docker CE to be installed on any x64-bit Linux machine. You should be able to get Krogoth up and running by simply running the following bash command:
 
-$ sudo sh run-docker-installed.sh
+    $ sudo sh run-docker-installed.sh
 
 The installation can take anywhere from 15 to 30 minutes depending on your internet connection speed. Once the installation completes, you should be able to navigate to your localhost:80 and see that your Krogoth installation had succeeded with a screen that says "it works!".
 

@@ -6,14 +6,16 @@
 
         <div layout="row" layout-wrap>
 
+            <span flex="5">
+                &nbsp;
+            </span>
+            <div class="timeline" layout="column" flex="100" flex-gt-sm="65" flex-gt-md="75">
 
-            <div class="timeline" layout="column" flex="100" flex-gt-sm="55" flex-gt-md="65" flex-order="2"
-                 flex-order-gt-sm="1">
 
-
+                <h4>Fruit RESTful Form</h4>
                 <div class="profile-box add-post md-whiteframe-1dp clear-bg glass-global" ak-frosted-glass>
                     <div class="form" flex>
-                <textarea placeholder="Write something.." translate ng-model="vm.toastMsg"
+                <textarea placeholder="Write something.." translate ng-model="vm.RESTfulJSONPayload.name"
                           translate-attr-placeholder="PROFILE.WRITE_SOMETHING"></textarea>
 
                         <footer layout="row" layout-align="space-between center">
@@ -21,9 +23,9 @@
 
                             </div>
 
-                            <md-button ng-click="vm.addToastToQueue()" class="post-button md-accent md-raised"
-                                       aria-label="POST"
-                                       translate="PROFILE.POST" translate-attr-aria-label="PROFILE.POST">
+                            <md-button ng-click="vm.postNewObject()"
+                                       class="post-button md-accent md-raised"
+                                       aria-label="POST">
                                 POST
                             </md-button>
                         </footer>
@@ -33,10 +35,14 @@
 
                 <md-divider></md-divider>
 
-                <div class="timeline-item md-whiteframe-1dp clear-bg glass-global" ng-repeat="post in vm.posts"
-                     ak-frosted-glass>
+                <div
+                        class="timeline-item md-whiteframe-1dp clear-bg glass-global"
 
-                    <header layout="row" layout-align="space-between start">
+                        ak-frosted-glass>
+
+                    <header style="background-color: rgba(0,0,0,0.25)"
+                            layout="row"
+                            layout-align="space-between start">
                         <div class="user" layout="row" layout-align="start center">
                             <div layout="column">
                                 <div class="title">
@@ -46,21 +52,51 @@
                         </div>
                     </header>
 
-                    <div class="content" flex ng-cloak>
+                    <div class="content" flex ng-cloak style="background-color: rgba(0,0,0,0.20)">
+                        <md-grid-list
 
+
+                                md-cols="1"
+                                md-cols-sm="2"
+                                md-cols-md="3"
+                                md-cols-gt-md="6"
+                                md-row-height="1:1"
+                                md-gutter="8px" md-gutter-gt-sm="4px">
+
+                            <md-grid-tile ng-repeat="tile in vm.jsonResponse"
+                                          md-rowspan="1"
+                                          md-colspan="1"
+                                          md-colspan-sm="1"
+                                          md-colspan-xs="1"
+                                          style="background-color: rgba(0,0,0,0.25)">
+
+                                <md-grid-tile-footer><h3>{{tile.name}}</h3></md-grid-tile-footer>
+                            </md-grid-tile>
+                        </md-grid-list>
                     </div>
 
-                    <footer class="" layout="column" layout-align="start start">
+                    <footer style="background-color: rgba(255, 255, 255, 0.45)"
+                            class=""
+                            layout="column"
+                            layout-align="start start">
                         <div class="comment" layout="row" layout-fill>
                             <div flex layout="column">
-                                <div class="message">
-                                    {{ Blog.results }}
+                                <h2 style="color: #0F192A">Fruit RESTful Form</h2>
+                                <h3 style="color: #0F192A"><b>POST</b> : '/api/__ExamplesFruit/'</h3>
+                                <div class="message" style="background-color: rgba(255, 255, 255, 0.20)">
+
+                                    <pre>
+                                        {{ vm.RESTfulJSONPayload | json }}
+                                    </pre>
                                 </div>
                             </div>
                         </div>
                     </footer>
                 </div>
             </div>
+            <span flex>
+                &nbsp;
+            </span>
         </div>
 
     </section>
@@ -69,39 +105,8 @@
 </div>
 
 
-                        <md-grid-list
-                                md-cols="1"
-                                md-cols-sm="2"
-                                md-cols-md="3"
-                                md-cols-gt-md="6"
-                                md-row-height="1:1"
-                                md-gutter="8px"
-                                md-gutter-gt-sm="4px">
-
-<!--
-md-cols-gt-md="8"
-    (fits 8 total cols with a 1x1 colspans)
-
-
-KEEP TILES AS A SQUARE:
-md-row-height="1:1"
-SAME AS
-md-row-height="3:3"
-
-
-KEEP TILES WIDE:
-md-row-height="16:9"
--->
-
-                            <md-grid-tile ng-repeat="tile in vm.tiles"
-                                          md-rowspan="{{tile.span.row}}"
-                                          md-colspan="{{tile.span.col}}"
-                                          md-colspan-xs="1"
-                                          ng-class="tile.background">
-                                <md-icon md-svg-icon="{{tile.icon}}"></md-icon>
-                                <md-grid-tile-footer>
-                                    <h3>{{tile.title}}</h3>
-                                    <h5>row: {{tile.span.row}} col: {{tile.span.col}}</h5>
-                                </md-grid-tile-footer>
-                            </md-grid-tile>
-                        </md-grid-list>
+<section style="background-color: #0a0a0a">
+    <pre>
+        {{ vm.jsonResponse | json }}
+    </pre>
+</section>

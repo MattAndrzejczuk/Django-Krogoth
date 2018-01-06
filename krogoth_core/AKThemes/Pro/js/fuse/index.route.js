@@ -123,7 +123,7 @@
                     if (res.status === 401) {
                         /// Users without acess tokens will be properly redirected to login.
                         console.warn('Unauthorized Entry Detected.');
-                        window.location = "#!/Loginkrogoth_gantry";
+                        window.location = "#!/Login_akdvc";
                         return res;
                         ///return $q.reject(res);
                     } else if (res.status === 401) {

@@ -28,9 +28,16 @@ from CommunityForum.serializers import ForumReplyViewSet, ForumPostViewSet
 router.register(r'ForumReply', ForumReplyViewSet)
 router.register(r'ForumPost', ForumPostViewSet)
 
-from krogoth_examples.views import FruitViewSet
+from krogoth_examples.views import FruitViewSet, TextLabelViewSet, ManufacturerViewSet, CarViewSet, \
+    ToppingViewSet, PizzaViewSet, HotelViewSet, OccupantViewSet
 router.register(r'__ExamplesFruit', FruitViewSet, 'Fruit')
-
+router.register(r'__ExamplesTextLabel', TextLabelViewSet, 'TextLabel')
+router.register(r'__ExamplesManufacturer', ManufacturerViewSet, 'Manufacturer')
+router.register(r'__ExamplesCar', CarViewSet, 'Car')
+router.register(r'__ExamplesTopping', ToppingViewSet, 'Topping')
+router.register(r'__ExamplesPizza', PizzaViewSet, 'Pizza')
+router.register(r'__ExamplesHotel', HotelViewSet, 'Hotel')
+router.register(r'__ExamplesOccupant', OccupantViewSet, 'Occupant')
 
 urlpatterns = [
 
