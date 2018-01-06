@@ -12,6 +12,11 @@
 
         /* $locationProvider.html5Mode(true); */
 
+
+		const krogoth_injected={};
+
+
+
         $locationProvider.hashPrefix('!');
         $urlRouterProvider.otherwise('/home');
 
@@ -32,6 +37,7 @@
                 $cookies = _$cookies;
             }
         ]);
+
 
         // Get active layout
         var layoutStyle = $cookies.get('layoutStyle') || 'verticalNavigation';
@@ -111,6 +117,7 @@
                     } else {
                         /// No access tokens! 'responseError' below will resolve this issue.
                         console.warn('Client Login Credentials Are Unavailable.');
+						req.headers.Authorization = 'Token ' + krogoth_injected['guest_token'];
                     }
                     return req;
                 },
@@ -124,6 +131,10 @@
                         /// Users without acess tokens will be properly redirected to login.
                         console.warn('Unauthorized Entry Detected.');
                         window.location = "#!/Login_akdvc";
+						if ($cookies.get('token')) {
+							$cookies.remove('token');
+						}
+						$cookies.put('token', krogoth_injected['guest_token']);
                         return res;
                         ///return $q.reject(res);
                     } else if (res.status === 401) {

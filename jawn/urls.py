@@ -29,7 +29,8 @@ router.register(r'ForumReply', ForumReplyViewSet)
 router.register(r'ForumPost', ForumPostViewSet)
 
 from krogoth_examples.views import FruitViewSet, TextLabelViewSet, ManufacturerViewSet, CarViewSet, \
-    ToppingViewSet, PizzaViewSet, HotelViewSet, OccupantViewSet
+    ToppingViewSet, PizzaViewSet, HotelViewSet, OccupantViewSet, \
+    BasicImageUploadViewSet, BasicFileUploadViewSet
 router.register(r'__ExamplesFruit', FruitViewSet, 'Fruit')
 router.register(r'__ExamplesTextLabel', TextLabelViewSet, 'TextLabel')
 router.register(r'__ExamplesManufacturer', ManufacturerViewSet, 'Manufacturer')
@@ -38,6 +39,8 @@ router.register(r'__ExamplesTopping', ToppingViewSet, 'Topping')
 router.register(r'__ExamplesPizza', PizzaViewSet, 'Pizza')
 router.register(r'__ExamplesHotel', HotelViewSet, 'Hotel')
 router.register(r'__ExamplesOccupant', OccupantViewSet, 'Occupant')
+router.register(r'__ExamplesBasicImageUpload', BasicImageUploadViewSet, 'BasicImageUpload')
+router.register(r'__ExamplesBasicFileUpload', BasicFileUploadViewSet, 'BasicFileUpload')
 
 urlpatterns = [
 

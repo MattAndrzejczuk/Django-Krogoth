@@ -2,8 +2,11 @@
 # VIEW
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
-from krogoth_examples.models import Fruit, TextLabel, Manufacturer, Car, Topping, Pizza, Hotel, Occupant
-from krogoth_examples.serializers import FruitSerializer, TextLabelSerializer, ManufacturerSerializer, CarSerializer, ToppingSerializer, PizzaSerializer, HotelSerializer, OccupantSerializer
+from krogoth_examples.models import Fruit, TextLabel, Manufacturer, Car, Topping, Pizza, Hotel, Occupant, \
+    BasicImageUpload, BasicFileUpload
+from krogoth_examples.serializers import FruitSerializer, TextLabelSerializer, ManufacturerSerializer, CarSerializer, \
+    ToppingSerializer, PizzaSerializer, HotelSerializer, OccupantSerializer, BasicImageUploadSerializer, \
+    BasicFileUploadSerializer
 
 
 
@@ -43,3 +46,14 @@ class OccupantViewSet(viewsets.ModelViewSet):
     queryset = Occupant.objects.all()
     serializer_class = OccupantSerializer
     permission_classes = (AllowAny,)
+
+class BasicImageUploadViewSet(viewsets.ModelViewSet):
+    queryset = BasicImageUpload.objects.all()
+    serializer_class = BasicImageUploadSerializer
+    permission_classes = (AllowAny,)
+
+class BasicFileUploadViewSet(viewsets.ModelViewSet):
+    queryset = BasicFileUpload.objects.all()
+    serializer_class = BasicFileUploadSerializer
+    permission_classes = (AllowAny,)
+

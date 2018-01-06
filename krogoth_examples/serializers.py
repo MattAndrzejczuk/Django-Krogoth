@@ -1,7 +1,8 @@
 
 # CONTROLLER
 from rest_framework import serializers
-from krogoth_examples.models import Fruit, TextLabel, Manufacturer, Car, Topping, Pizza, Hotel, Occupant
+from krogoth_examples.models import Fruit, TextLabel, Manufacturer, Car, Topping, \
+    Pizza, Hotel, Occupant, BasicImageUpload, BasicFileUpload
 
 
 
@@ -41,4 +42,14 @@ class OccupantSerializer(serializers.ModelSerializer):
     # location = serializers.PrimaryKeyRelatedField(many=True)
     class Meta:
         model = Occupant
+        fields = '__all__'
+
+class BasicImageUploadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BasicImageUpload
+        fields = '__all__'
+
+class BasicFileUploadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BasicFileUpload
         fields = '__all__'

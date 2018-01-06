@@ -92,7 +92,7 @@ class NgIncludedHtmlView(APIView):
                     ' try executing: python3 manage.py make_default_layout");</script>'
             return HttpResponse(html)
 
-
+import json
 from krogoth_core.models import AKFoundationAbstract
 class KrogothFoundationView(APIView):
     authentication_classes = (TokenAuthentication,)
@@ -102,6 +102,21 @@ class KrogothFoundationView(APIView):
         js = AKFoundationAbstract.objects.get(unique_name=unique_name)
         ct = 'application/javascript'
         body = js.code
+
+        print('\033[91m' )
+        if js.custom_key_values is not None:
+            for key, value in js.custom_key_values.items():
+                p1 = 'krogoth_injected='
+
+                obj = {}
+                obj[key] = value
+
+
+
+                print(obj)
+                body = body.replace('krogoth_injected={};',
+                                    'krogoth_injected=' + json.dumps(obj) + ';')
+        print('\033[0m')
         if unique_name == 'indexmodule':
             all_djangular = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
             my_apps = ''

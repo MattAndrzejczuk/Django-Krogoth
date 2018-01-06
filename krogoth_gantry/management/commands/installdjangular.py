@@ -4522,9 +4522,27 @@ class Command(BaseCommand):
 
         print(bcolors.green, end='[js_files]: \n')
         print(json.dumps(
-            js_files, sort_keys=True, indent=2).replace('",', '",' + bcolors.red).replace(':',
+            js_files, sort_keys=True, indent=2).replace('",', '",' + bcolors.blue).replace(':',
                                                                                               ':' + bcolors.lightgrey),
               end='')
         print(bcolors.ENDC)
 
 
+        print(bcolors.OKBLUE, end='CREATING GUEST ACCOUNT...\n')
+        from django.contrib.auth.models import User
+        user=User.objects.create_user('GuestAccount', password='0001234000')
+        user.is_superuser=False
+        user.is_staff=False
+        user.save()
+        from chat.models import JawnUser
+        ju = JawnUser(base_user=user)
+        ju.save()
+        from rest_framework.authtoken.models import Token
+        token, created = Token.objects.get_or_create(user=user)
+        ajsindex = AKFoundationIndex.objects.get(unique_name='indexroute')
+        ajsindex.custom_key_values = {'guest_token': token}
+        ajsindex.save()
+        print(bcolors.ENDC)
+
+
+from django.contrib.auth.tokens import To

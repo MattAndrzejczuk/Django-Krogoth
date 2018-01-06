@@ -140,6 +140,7 @@
         }
 
 
+
         function putModifiedObject(objId) {
             RESTfulModelVI.putEditedObject(vm.RESTfulJSONPayload, objId).then(function (data) {
                 $log.info('PUT response from server: ');
