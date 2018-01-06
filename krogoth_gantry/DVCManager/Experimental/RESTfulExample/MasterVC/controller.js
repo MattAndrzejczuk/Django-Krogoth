@@ -2,45 +2,42 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
-    function FUSE_APP_NAMEController(api) {
+    function FUSE_APP_NAMEController(api, $cookies) {
         var vm = this;
         vm.viewName = 'FUSE_APP_NAME';
 
 
-        vm.sendMsg = sendMsg;
-        vm.data = {};
+        // vm.sendMsg = sendMsg;
+        vm.currentLayout = $cookies.get('layoutStyle') || 'verticalNavigation';
 
 
-        api.example.list.get({},
-            // Success
-            function (response) {
-                console.log(response);
-                vm.data = response;
-            },
-            // Error
-            function (response) {
-                console.error(response);
-                vm.data = response;
-            }
-        );
-
-
-        function sendMsg() {
-            console.log('sending a message... ');
-
-            api.example.list.get({},
-                // Success
-                function (response) {
-                    console.log(response);
-                    vm.data = response;
-                },
-                // Error
-                function (response) {
-                    console.error(response);
-                    vm.data = response;
-                }
-            );
-        }
+        // api.example.list.get({},
+        //     // Success
+        //     function (response) {
+        //         console.log(response);
+        //         vm.data = response;
+        //     },
+        //     // Error
+        //     function (response) {
+        //         console.error(response);
+        //         vm.data = response;
+        //     }
+        // );
+        // function sendMsg() {
+        //     console.log('sending a message... ');
+        //     api.example.list.get({},
+        //         // Success
+        //         function (response) {
+        //             console.log(response);
+        //             vm.data = response;
+        //         },
+        //         // Error
+        //         function (response) {
+        //             console.error(response);
+        //             vm.data = response;
+        //         }
+        //     );
+        // }
 
 
     }

@@ -3,7 +3,7 @@
          class="md-primary-bg md-hue-3 ">
         <div flex></div>
         <div flex="80" layout="column" layout-align="center center">
-            <h1>{{ vm.viewName }}</h1>
+            <h1>Krogoth Layout Settings</h1>
         </div>
         <div flex>
 		</div>
@@ -14,8 +14,11 @@
          class="md-primary-bg md-hue-3 ">
         <div flex></div>
         <div flex="80" layout="column" layout-align="center center">
-            <span class="md-headline">WebSocket Example</span>
-            <span class="md-subheading">Click the button below to make a sample request.</span>
+            <span class="md-headline">Configure App Layout</span>
+            <span class="md-subheading">You are currently using the {{vm.currentLayout}} Layout</span>
+            <p>
+                click the button below to select a different layout.
+            </p>
             <md-button ng-click="vm.sendMsg()">click me</md-button>
         </div>
         <div flex>

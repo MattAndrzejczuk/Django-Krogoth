@@ -122,7 +122,7 @@ class DynamicJavaScriptInjector(APIView):
         # print('FUCK')
         parsed1 = clean_js_slate.replace('FUSE_APP_NAME', application.name.replace(' ','_'))
         parsed2 = parsed1.replace('FUSE_APP_TITLE', application.title)
-        parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon.code)
+        parsed3 = parsed2.replace('FUSE_APP_ICON', 'mdi mdi-' + application.icon.code)
         parsed4 = parsed3.replace('NAV_HEADER', application.category.name.replace(' ','_'))
         try:
             raw_js_response = parsed4.replace('DJANGULAR_USERNAME', request.user.username)

@@ -58,6 +58,7 @@ from moho_extractor.models import NgIncludedHtml, NgIncludedJs
 
 class NgIncludedJsAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'url_helper', )
+    search_fields = ['name']
 
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'rows':20,
@@ -92,6 +93,7 @@ class NgIncludedJsAdmin(admin.ModelAdmin):
 
 class NgIncludedHtmlAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'url_helper', )
+    search_fields = ['name']
 
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'rows':20,

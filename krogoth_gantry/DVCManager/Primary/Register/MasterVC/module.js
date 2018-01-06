@@ -8,7 +8,7 @@
                 url: '/FUSE_APP_NAME',
                 views: {
                     'main@': {
-                        templateUrl: '/static/app/core/layouts/content-only.html',
+                        templateUrl: '/moho_extractor/NgIncludedHtml/?name=content-only.html',
                         controller: 'MainController as vm'
                     },
                     'content@app.FUSE_APP_NAME': {

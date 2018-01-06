@@ -166,6 +166,7 @@ class KrogothGantrySlaveViewControllerAdmin(admin.ModelAdmin):
 
 class KrogothGantryIconAdmin(admin.ModelAdmin):
     list_display = ('id', 'code',)
+    search_fields = ['code']
 
 
 class KrogothGantryCategoryAdmin(admin.ModelAdmin):

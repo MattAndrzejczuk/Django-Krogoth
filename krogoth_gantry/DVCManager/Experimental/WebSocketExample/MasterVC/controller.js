@@ -16,7 +16,7 @@
         vm.$onDestroy = onDestroy;
 
         vm.connectionTimeout = 2000;
-vm.msgs = [];
+        vm.msgs = [];
 
         const wsChannel = 'Public%7CChat%23General?subscribe-broadcast&publish-broadcast';
         const conURI = 'ws://' + $location.host() + '/ws/' + wsChannel;
@@ -61,27 +61,29 @@ vm.msgs = [];
             vm.ws.$on('$message', function (message) { // it listents for 'incoming event'
                 if (message !== '--heartbeat--') {
                     console.log('$message incoming from the server: ' + message);
-                    vm.sendVanillaPushNotification(message['data']);
-                    vm.msgs.push(message['data']);
-                    if (message['data'] === []) {
-                        var audio2 = new Audio('/static/gui_sfx/beep_surrender.wav');
-                        $mdToast.show(
-                            $mdToast.simple()
-                                .textContent('someone has disconnected.')
-                                .position('bottom left')
-                                .hideDelay(2000)
-                        );
-                        audio2.play();
-                    } else {
-                        $mdToast.show(
-                            $mdToast.simple()
-                                .textContent(message['data'])
-                                .position('bottom left')
-                                .hideDelay(2000)
-                        );
-                        var audio = new Audio('/static/gui_sfx/beep_new_line_data.wav');
-                        audio.play();
+                    if (message['data']) {
+                        vm.msgs.push(message['data']);
+                        if (message['data'] === []) {
+                            var audio2 = new Audio('/static/gui_sfx/beep_surrender.wav');
+                            $mdToast.show(
+                                $mdToast.simple()
+                                    .textContent('someone has disconnected.')
+                                    .position('bottom left')
+                                    .hideDelay(2000)
+                            );
+                            audio2.play();
+                        } else {
+                            $mdToast.show(
+                                $mdToast.simple()
+                                    .textContent(message['data'])
+                                    .position('bottom left')
+                                    .hideDelay(4000)
+                            );
+                            var audio = new Audio('/static/gui_sfx/beep_new_line_data.wav');
+                            audio.play();
+                        }
                     }
+                    vm.sendVanillaPushNotification(message['data']);
                 }
             });
             vm.ws.$on('$open', function () {
