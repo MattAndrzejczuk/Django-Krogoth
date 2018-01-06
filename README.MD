@@ -10,14 +10,10 @@
 
 #The Purpose of Krogoth
 AngularJS began with a bright and exciting future since its release in the early 2010s.
-But as time went on, its performance issues, steep learning curve, and two way data binding problems began to surface. 
-
+But as time went on, its performance issues, steep learning curve, and two way data binding problems began to surface.
 The future of AngularJS looked bleak with the announcement of Angular 2. Angular2 doesn't work with AngularJS, and if learning AngularJS was hard enough, Angular2 requires for you to take up learning TypeScript. TypeScript doesn't even execute when run on many browsers, so you'll also need to figure out how to even get started with a new project and get the damn thing to compile back to JavaScript. If that's not frustrating enough, Angular 4 no longer uses TypeScript and has yet again altered the programming language needed to run the framework.
-
 So what are we to do here? Skip Angular 2 and go straight over to 4? What if we just finished mastering the enigmatic AngularJS directives, and services. Is it worth it spending the next six months burning the midnight oil to master the same thing again? Will Angular 4 amaze me the same way AngularJS did when I discovered features like form validators, impressive and recyclable animations you can throw into your search input element that took you less than 30 minutes to get working? I'm pretty skeptical about making the switch, and the benefits of upgrading to Angular 4 don't seem to be outweighing the cost of time you'll need to spend learning it. This is where Krogoth for Django comes in.
-
-Django's server side template engine was pretty incredible to me when I first got a good understanding of how to use it. And it was especially powerful when mixed properly with jQuery. Being able to use Python as a replacement for JavaScript in certain situations was a very welcoming concept. So why add another front end, superset like TypeScript to clean up and fix the issues that have plagued AngularJS when you could just use something more preferable like Python instead? JavaScript is the language developers love to hate, there's no reason to abandon AngularJS and throw the baby out with the bath water. 
-
+Django's server side template engine was pretty incredible to me when I first got a good understanding of how to use it. And it was especially powerful when mixed properly with jQuery. Being able to use Python as a replacement for JavaScript in certain situations was a very welcoming concept. So why add another front end, superset like TypeScript to clean up and fix the issues that have plagued AngularJS when you could just use something more preferable like Python instead? JavaScript is the language developers love to hate, there's no reason to abandon AngularJS and throw the baby out with the bath water.
 AngularJS was created for developers accustomed to Java, C# and all other object oriented programming languages so we could finally treat JavaScript as such. While critics of AngularJS scoff at the difficultly of learning how to use directives, services and factories, they should ask themselves. Do you write your C++ in notepad? Or do you just write entire x86 and x64 apps in pure assembly language? Of course not, chances are, you use visual studio or Xcode that handle a ton of minor details for you so you can quickly build and compile your app. This is what Krogoth fundamentally is. You can continue writing your AngularJS app just like you've always done before, and let the Krogoth compiler handle setting up the services and directives for you.
 
 
@@ -32,7 +28,7 @@ Krogoth in its current state is not ready for production. This is mainly because
 #Getting Started
 Krogoth is intended to be used by anyone from all skill levels from students to seniors. I had originally developed Krogoth as a way to quickly deploy a monolithic Django app for blogging, but found that it takes too much time to go through the process of integrating an off the shelf AngularJS template into a fresh new Django project. This is the reason why Krogoth's only prerequisite is Docker CE to be installed on any x64-bit Linux machine. You should be able to get Krogoth up and running by simply running the following bash command:
 
-$ sudo sh run-docker-installation.sh
+$ sudo sh run-docker-installed.sh
 
 The installation can take anywhere from 15 to 30 minutes depending on your internet connection speed. Once the installation completes, you should be able to navigate to your localhost:80 and see that your Krogoth installation had succeeded with a screen that says "it works!".
 
@@ -42,7 +38,7 @@ The installation can take anywhere from 15 to 30 minutes depending on your inter
 By now your Krogoth web server should be up and running. You are now ready to start creating states for your single paged web application. Since Krogoth is intended to always operate as a single paged web application, your users will no longer be reloading entire web pages as they navigate and explore your site. Instead of web pages, Krogoth allows its users to navigate your website through states. 
 Worry Less About Separation of Concerns
 AngularJS alone made the process of creating states very difficult, even if developers wanted to simply create an "About Me" page or "Contact Us" page, there was a lot of room for error especially for beginners. If just one string is misspelled for a new and simple "Contact Us" page, a very vague error message will be thrown, and the entire app itself will crash.  The difficulty and separation of concerns issue in AngularJS alone is one of the main reasons why Angular 2 and Vue.js gained so much momentum ever since both frameworks were released.
-Krogoth Makes It Easy
+##Krogoth Makes It Easy
 With Krogoth, you can add entire Controllers, Directives, Services and Factories within seconds. When you begin creating one of these 4 AngularJS components, a default scaffold is generated for you. So if you're new to factories and directives, you can create a blank default component with the included default scaffold and see for yourself how they work. Many beginner AngularJS developers usually avoid working with directives and services because of how complicated and enigmatic they are, not anymore with Krogoth. Finally beginners will be able to step outside of their comfort zones and witness the true power of pure JavaScript.
 A Collection of Experimental Sample Templates
 Included within the Krogoth Gantry section of the Django admin panel is a collection of directives and services that'll push your web browser and web client hardware to its limits. Some of these examples include:
@@ -55,22 +51,22 @@ These experimental samples will drain any computers hardware, but regardless of 
 
 
 #Problems With AngularJS Solved With Krogoth
-	###Lazy Loading
-		*- Don't load controllers, services, nor directives until the user explicitly requests the parent Master View Controller.
-	###Dynamic Loading
-		*- Kill and reload controllers
-	###Code Organization
-		*- Managed automatically by SQL and Django Administration
-	###Onboarding Team Members
-		*- New blood will only need to know pure JS
-	###Two-way data-binding
-		*- Use the vm design pattern
-	###Dependency Injection
-		*- Clean and makes perfect sense thanks to Django and SQL.
-	###Inherited Variables Are Global Variables
-		*- Dangerous, from child scope you can access absolutely any variable of any parent scope. Krogoth allows you to easily create non-global factories and directives which are only accessible to their parent component along with the parents children.
+###Lazy Loading
+* Don't load controllers, services, nor directives until the user explicitly requests the parent Master View Controller.
+###Dynamic Loading
+* Kill and reload controllers
+###Code Organization
+* Managed automatically by SQL and Django Administration
+###Onboarding Team Members
+* New blood will only need to know pure JS
+###Two-way data-binding
+* Use the vm design pattern
+###Dependency Injection
+* Clean and makes perfect sense thanks to Django and SQL.
+###Inherited Variables Are Global Variables
+* Dangerous, from child scope you can access absolutely any variable of any parent scope. Krogoth allows you to easily create non-global factories and directives which are only accessible to their parent component along with the parents children.
 ###Search Engine Optimization 
-*- Since Krogoth manages and organizes your single page application states, it can also take care of your SEO, by automatically generated site maps to ensure any web crawlers, both old and new can find the exact content the world is looking for.
+* Since Krogoth manages and organizes your single page application states, it can also take care of your SEO, by automatically generated site maps to ensure any web crawlers, both old and new can find the exact content the world is looking for.
 
 
 
@@ -83,7 +79,7 @@ This IDE is the better one since it functions purely as a standalone view. The p
 
 
 
-AngularJS may be a resource hog, but JavaScript cheated the death of Moore's Law
+##AngularJS may be a resource hog, but JavaScript cheated the death of Moore's Law
 JavaScript can be a headache sometimes, but this is because of its asynchronous nature. Due to this asynchronous factor, it has turned a language that was originally created as a toy programing language into a sleeping giant. When the intel Pentium 4 was released in the early 2000s, the speed of individual CPU processors would barely be improved upon up until today in 2018 where overclocking is required to barely scratch the surface of 5GHz on a reasonably priced intel chip, but we have seen a dramatic increase in the amount of processor cores that provide huge performance benefits to multithreaded apps written in technologies like JavaScript. Since 2014 when AngularJS became a hit, the amount CPU cores on both desktops and mobile devices has doubled, with affordable hexacore desktop processors already available for older Socket types on the market and the recently launched product line of Core i9 processors by intel with hexacore processors.
 
 
