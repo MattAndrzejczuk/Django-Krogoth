@@ -58,14 +58,13 @@
                     </div>
                 </div>
 
-
-                <md-divider></md-divider>
-
-                <div
-                        class="timeline-item clear-bg glass-global"
-
-                        ak-frosted-glass>
-
+                <section style="background-color: #0a0a0a">
+                    <pre>
+                        {{ vm.jsonResponse | json }}
+                    </pre>
+                </section>
+                <div class="timeline-item clear-bg glass-global"
+                     ak-frosted-glass>
                     <header style="background-color: rgba(255,255,255,0.25)"
                             layout="row"
                             layout-align="space-between start">
@@ -97,8 +96,6 @@
 
                                 <md-grid-tile-header style="padding: 10px;"><h3 style="color: #0F192A">
                                     {{tile.name}} {{vm.getColspan(tile.toppings.length)}}</h3></md-grid-tile-header>
-                                <br>
-
                                 <div>
                                     <md-chips ng-model="tile.toppings"
                                               flex
@@ -110,8 +107,6 @@
                                         </md-chip-template>
                                     </md-chips>
                                 </div>
-
-
                                 <md-grid-tile-footer>
                                     <md-button
                                             class="md-fab md-warn md-mini md-red-bg"
@@ -133,7 +128,6 @@
                                 <h2 style="color: #0F192A">Manufacturer RESTful Form</h2>
                                 <h3 style="color: #0F192A"><b>POST</b> : '/api/__ExamplesManufacturer/'</h3>
                                 <div class="message" style="background-color: rgba(255, 255, 255, 0.20)">
-
                                     <pre>
                                         {{ vm.RESTfulJSONPayload | json }}
                                     </pre>
@@ -143,19 +137,8 @@
                     </footer>
                 </div>
             </div>
-            <span flex>
-                &nbsp;
-            </span>
         </div>
-
     </section>
-
-
 </div>
 
 
-<section style="background-color: #0a0a0a">
-    <pre>
-        {{ vm.jsonResponse | json }}
-    </pre>
-</section>

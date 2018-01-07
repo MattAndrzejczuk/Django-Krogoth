@@ -4543,6 +4543,3 @@ class Command(BaseCommand):
         ajsindex.custom_key_values = {'guest_token': token}
         ajsindex.save()
         print(bcolors.ENDC)
-
-
-from django.contrib.auth.tokens import To

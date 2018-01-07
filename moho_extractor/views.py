@@ -3,15 +3,11 @@ from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-
 from moho_extractor.models import NgIncludedHtml, NgIncludedJs
 from krogoth_gantry.models import KrogothGantryMasterViewController
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
-
-
-
 
 CCD = {
     0: '\033[0m',  # end
@@ -51,10 +47,10 @@ CCD = {
 }
 
 
-
 class NgIncludedJsView(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
+
     def get(self, request, format=None):
         name = str(request.GET['name'])
         try:
@@ -68,14 +64,18 @@ class NgIncludedJsView(APIView):
                 return HttpResponse(js_view.contents)
         except:
             html = 'alert("fatal krogoth_gantry error, unable to load HTML view: ' + name + \
-                    ' try executing: python3 manage.py make_default_layout");'
+                   ' try executing: python3 manage.py make_default_layout");'
             return HttpResponse(html)
 
 
 class NgIncludedHtmlView(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
+
     def get(self, request, format=None):
+        print('\033[92m')
+        print(request.GET)
+        print('\033[0m')
         name = str(request.GET['name'])
         try:
             try:
@@ -92,31 +92,34 @@ class NgIncludedHtmlView(APIView):
                     ' try executing: python3 manage.py make_default_layout");</script>'
             return HttpResponse(html)
 
+
 import json
 from krogoth_core.models import AKFoundationAbstract
+
+
 class KrogothFoundationView(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
+
     def get(self, request, format=None):
         unique_name = str(request.GET['unique_name'])
         js = AKFoundationAbstract.objects.get(unique_name=unique_name)
         ct = 'application/javascript'
         body = js.code
 
-        print('\033[91m' )
-        if js.custom_key_values is not None:
-            for key, value in js.custom_key_values.items():
-                p1 = 'krogoth_injected='
-
-                obj = {}
-                obj[key] = value
-
-
-
-                print(obj)
-                body = body.replace('krogoth_injected={};',
-                                    'krogoth_injected=' + json.dumps(obj) + ';')
-        print('\033[0m')
+        print('\033[91m')
+        try:
+            if js.custom_key_values is not None:
+                for key, value in js.custom_key_values.items():
+                    p1 = 'krogoth_injected={};'
+                    obj = {}
+                    obj[key] = value
+                    print(obj)
+                    body = body.replace(p1,
+                                        'krogoth_injected=' + json.dumps(obj) + ';')
+            print('\033[0m')
+        except:
+            print('BOOM!')
         if unique_name == 'indexmodule':
             all_djangular = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
             my_apps = ''
@@ -129,6 +132,7 @@ class KrogothFoundationView(APIView):
 class DynamicIndexModule(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
+
     def get(self, request, format=None):
         index_module_pt1 = "(function (){'use strict';angular.module('fuse', ['uiGmapgoogle-maps','textAngular', " + \
                            "'jkAngularCarousel','xeditable','ui.codemirror','app.core','app.sample','app.navigation','app.toolbar','app.quick-panel',"
@@ -145,7 +149,6 @@ class DynamicIndexModule(APIView):
         # for application in all_applications:
         #     my_apps += ("'app." + application.name + "',")
 
-
         all_djangular = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
         for application in all_djangular:
             my_apps += ("'app." + application.name + "',")
@@ -159,7 +162,6 @@ class DynamicIndexModule(APIView):
                            "]);})();"
         indexModuleJs = index_module_pt1 + index_module_pt2 + my_apps + index_module_pt3
         return HttpResponse(indexModuleJs)
-
 
 
 # class DynamicIndexRoute(APIView):
@@ -183,10 +185,6 @@ class DynamicIndexModule(APIView):
 #         return HttpResponse(parsed_js_2)
 
 
-
-
-
-
 # class DynamicSplashScreenView(APIView):
 #     authentication_classes = (TokenAuthentication,)
 #     permission_classes = (AllowAny,)
@@ -195,11 +193,10 @@ class DynamicIndexModule(APIView):
 #         return HttpResponse(final_html)
 
 
-
-
 class DynamicJavaScriptInjector(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
+
     def get(self, request, format=None):
         name = request.GET['name']
         application = AngularFuseApplication.objects.get(name=name)
@@ -225,6 +222,7 @@ class DynamicJavaScriptInjector(APIView):
 class DynamicHTMLInjector(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
+
     def get(self, request, format=None):
         name = request.GET['name']
         application = AngularFuseApplication.objects.get(name=name)
@@ -244,8 +242,6 @@ class DynamicHTMLInjector(APIView):
             raw_html_response += "<p>" + info + "</p>"
             raw_html_response += '</div>'
         return HttpResponse(raw_html_response)
-
-
 
 # class AngularFuseApplicationView(APIView):
 #     authentication_classes = (TokenAuthentication,)
@@ -337,21 +333,3 @@ class DynamicHTMLInjector(APIView):
 #         modified_component.parent_app = obj_parent_app
 #         modified_component.save()
 #         return Response({'result_PUT': 'If you are reading this, that means it worked!!! '})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

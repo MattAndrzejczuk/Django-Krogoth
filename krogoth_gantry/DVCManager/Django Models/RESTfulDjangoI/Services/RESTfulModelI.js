@@ -9,7 +9,8 @@
 
         var service = {
             getList: getList,
-            postNewObject: postNewObject
+            postNewObject: postNewObject,
+            deleteObject: deleteObject,
         };
 
 
@@ -33,6 +34,21 @@
                 method: 'POST',
                 data: objectJson,
                 url: '/api/__ExamplesFruit/'
+            }).then(function successCallback(response) {
+                deferred.resolve(response.data);
+            }, function errorCallback(response) {
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+
+
+
+        function deleteObject(objectId) {
+            var deferred = $q.defer();
+            $http({
+                method: 'DELETE',
+                url: '/api/__ExamplesTextLabel/' + objectId + ''
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {

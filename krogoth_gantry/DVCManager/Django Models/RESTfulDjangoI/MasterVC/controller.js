@@ -11,6 +11,7 @@
 
         vm.getObjectList = getObjectList;
         vm.postNewObject = postNewObject;
+        vm.deleteObject = deleteObject;
 
         vm.$onInit = onInit;
         vm.$onDestroy = onDestroy;
@@ -34,6 +35,12 @@
                 $log.info('GET response from server: ');
                 $log.log(data);
                 vm.jsonResponse = data.results;
+            });
+        }
+
+        function deleteObject(withId) {
+            RESTfulModelI.deleteObject(withId).then(function (data) {
+                vm.jsonResponse.pop(data);
             });
         }
 

@@ -36,14 +36,15 @@
                         </footer>
                     </div>
                 </div>
-
-
                 <md-divider></md-divider>
-
-                <div
-                        class="timeline-item md-whiteframe-1dp clear-bg glass-global"
-
-                        ak-frosted-glass>
+                <section style="background-color: #0a0a0a">
+    <span class="label md-blue-500-bg var-display">vm.jsonResponse</span>
+    <pre  class="blueb">
+        {{ vm.jsonResponse | json }}
+    </pre>
+</section>
+                <div class="timeline-item md-whiteframe-1dp clear-bg glass-global"
+                     ak-frosted-glass>
 
                     <header style="background-color: rgba(0,0,0,0.25)"
                             layout="row"
@@ -59,8 +60,6 @@
 
                     <div class="content" flex ng-cloak style="background-color: rgba(0,0,0,0.20)">
                         <md-grid-list
-
-
                                 md-cols="2"
                                 md-cols-sm="3"
                                 md-cols-md="4"
@@ -93,8 +92,8 @@
                                 <h2 style="color: #0F192A">Fruit RESTful Form</h2>
                                 <h3 style="color: #0F192A"><b>POST</b> : '/api/__ExamplesFruit/'</h3>
                                 <div class="message" style="background-color: rgba(255, 255, 255, 0.20)">
-
-                                    <pre>
+<span class="label md-red-700-bg var-display">vm.RESTfulJSONPayload</span>
+                                    <pre class="redb">
                                         {{ vm.RESTfulJSONPayload | json }}
                                     </pre>
                                 </div>
@@ -114,8 +113,3 @@
 </div>
 
 
-<section style="background-color: #0a0a0a">
-    <pre>
-        {{ vm.jsonResponse | json }}
-    </pre>
-</section>
