@@ -1,0 +1,152 @@
+<div class="page-layout carded opaque-global" layout="row">
+    <!-- TOP BACKGROUND -->
+    <div class=""
+         flex-xs="0"
+         flex-sm="5"
+         flex-md="5"
+         flex-gt-md="10"
+         flex-gt-lg="20">
+    </div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+
+        <!-- CONTENT HEADER -->
+        <div class="header"
+             layout="row"
+             layout-align="center center"
+             style="height: 76px; max-height: 76px; min-height: 76px">
+            <div>
+                <span class="h1">Dog Catcher</span>
+            </div>
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card glass-global"
+             layout="column"
+             ak-frosted-glass>
+            <!-- CONTENT TOOLBAR -->
+            <div class="toolbar-osx"
+                 style="background-color: rgba(255,255,255,0.75); height:85px; min-height: 80px"
+                 layout="column"
+                 layout-align="space-around stretch">
+                <div flex="10" style="height: 5px">&nbsp;</div>
+                <div layout="row" flex="40">
+                    <span flex-xs="1" flex="5" flex-gt-md="10" style="width: 5px">&nbsp;</span>
+                    <div flex-xs="60" flex="70" flex-gt-md="85" layout="row" layout-align="space-between center">
+
+
+                        <!--
+
+                            /*
+                            UNCOMMENT TO USE AN <md-select>
+                            INSTEAD OF AN AUTOCOMPLETE INPUT
+                            */
+
+                            <md-input-container
+                                    class="blueb"
+                                    style="width: 100%; height:35px"
+                                    layout="row"
+                                    layout-align="space-between center">
+                                <label>Find a breed to catch</label>
+                                <md-select ng-model="vm.breedSelectionList" style="width: 90%; color:black">
+                                    <md-option ng-repeat="breed in vm.breedSelectionList"
+                                               ng-value="breed">
+                                        {{ breed }}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        -->
+
+                        <md-autocomplete md-selected-item="vm.selectedDogBreed"
+                                         md-search-text-change="vm.breedSearchTextDidChange()"
+                                         md-search-text="vm.dogBreedSearchText"
+                                         md-selected-item-change="vm.didSelectDogBreed(item)"
+                                         md-items="item in vm.filterThis(vm.breedSelectionList, vm.dogBreedSearchText)"
+                                         md-item-text="item.display"
+                                         md-min-length="0"
+                                         style="width: 100%"
+                                         placeholder="Find a breed to catch">
+                            <md-item-template>
+                                <span
+                                        md-highlight-flags="^i">{{ item }}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No states matching "{{ctrl.searchText}}" were found.
+                                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+                            </md-not-found>
+                        </md-autocomplete>
+
+
+                    </div>
+                    <span>&nbsp;</span>
+                    <div flex="10" layout="column" layout-align="center center">
+                        <md-input-container>
+                            <!--<md-button-->
+                            <!--style="height:35px"-->
+                            <!--class="md-hover-button-blue-white-bg">-->
+                            <!--Search-->
+                            <!--</md-button>-->
+                        </md-input-container>
+                    </div>
+                    <span flex-xs="1" flex="5" flex-gt-md="10" style="width: 5px">&nbsp;</span>
+                </div>
+                <div flex="10">&nbsp;</div>
+
+
+            </div>
+            <!-- / CONTENT TOOLBAR -->
+
+            <div flex="20" style="min-height: 80px" layout="row">&nbsp;
+                <span flex="5" flex-gt-md="10" style="width: 5px">&nbsp;</span>
+                <md-input-container flex="80"
+                                    style="width: 80%;"
+                                    layout="column"
+                                    layout-align="start stretch">
+                    <md-button ng-click="vm.addRandomDogButtonClicked()"
+                               class="md-hover-button-blue-white-bg">
+                        Catch A Random Breed
+                    </md-button>
+                </md-input-container>
+                <md-input-container flex="20"
+                                    style="width: 20%;"
+                                    layout="column"
+                                    layout-align="start stretch">
+                    <md-button ng-click="vm.userDogCards = []"
+                               class="md-hover-button-red-white-bg">
+                        Delete All
+                    </md-button>
+                </md-input-container>
+                <span flex="5" flex-gt-md="10" style="width: 5px">&nbsp;</span>
+            </div>
+            <!-- CONTENT -->
+            <md-content>
+                <div class='md-padding' layout="row" layout-wrap>
+                    <md-card style="width: 300px;" ng-repeat="dog in vm.userDogCards">
+                        <img src="{{dog.img}}" class="md-card-image" alt="user avatar">
+                        <md-card-content>
+                            <h2>{{dog.breed}}</h2>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            </md-content>
+
+
+            <!-- / CONTENT -->
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+
+    <!-- TOP BACKGROUND -->
+    <div class=""
+         flex-xs="0"
+         flex-sm="5"
+         flex-md="5"
+         flex-gt-md="10"
+         flex-gt-lg="20">
+    </div>
+    <!-- / TOP BACKGROUND -->
+</div>

@@ -27,7 +27,7 @@ from .app_settings import (
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from krogoth_gantry.models import KrogothGantryIcon, KrogothGantryCategory, KrogothGantryMasterViewController
-from krogoth_core.models import AKFoundationAbstract
+from krogoth_core.models import AKFoundationAbstract, AKBowerComponent
 
 import jsbeautifier
 
@@ -126,8 +126,11 @@ def index(request):
         else:
             KrogothMainComponents.append(p.unique_name)
 
+    all_bowers = AKBowerComponent.objects.all()
+
     context = {
         "version_build": version_build,
+        "all_bowers": all_bowers,
         "core":KrogothMainComponents,
         "message": seo_title,
         "description": seo_description,

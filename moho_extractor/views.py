@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -243,93 +243,85 @@ class DynamicHTMLInjector(APIView):
             raw_html_response += '</div>'
         return HttpResponse(raw_html_response)
 
-# class AngularFuseApplicationView(APIView):
-#     authentication_classes = (TokenAuthentication,)
-#     permission_classes = (AllowAny,)
-#
-#     def get(self, request, format=None):
-#         try:
-#             name = request.GET['name']
-#             print('got the name')
-#             application = AngularFuseApplication.objects.get(name=name)
-#             print('got the application')
-#             json_response = {'id': application.id, 'name': application.name, 'components': []}
-#             print('made the json_response')
-#             components = FuseAppComponent.objects.filter(parent_app=application)
-#             print('queried the components')
-#             for comp in components:
-#                 json_response['components'].append({'name': comp.name,
-#                                                     'id': comp.id,
-#                                                     'type': comp.type,
-#                                                     'contents': comp.contents.replace('FUSE_APP_NAME',
-#                                                                                       application.name)})
-#             return Response(json_response)
-#         except:
-#             allmodels = AngularFuseApplication.objects.all()
-#             final_json = {}
-#             all_ = []
-#             for item in allmodels:
-#                 all_.append({'name': item.name,
-#                              'id': item.id})
-#             final_json['AngularFuseApplication_list'] = all_
-#             return Response(final_json)
-#     def post(self, request, *args, **kwargs):
-#         name = request.POST['name']
-#         new_app = AngularFuseApplication(name=name)
-#         new_app.save()
-#         response = {'result': 'If you are reading this, that means it worked!!! ',
-#                     'new_app': str(new_app)}
-#         return Response(response)
+
+import json
+
+from urllib.request import urlopen
+
+def get_json_from_dogs_ceo(url: str) -> str:
+    print('\033[92m' + url + '\033[0m')
+    webURL = urlopen(url)
+    data = webURL.read()
+    encoding = webURL.info().get_content_charset('utf-8')
+    obj = json.loads(data.decode(encoding))
+    print(json.dumps(obj, indent=2, sort_keys=True))
+    return obj
 
 
-# class FuseAppComponentView(APIView):
-#     authentication_classes = (TokenAuthentication,)
-#     permission_classes = (AllowAny,)  # IsAuthenticated
-#     def get(self, request, format=None):
-#         try:
-#             print('trying to grab GET shit...')
-#             component_id = request.GET['component_id']
-#             print('try will fail here.... so moving on.')
-#             component = FuseAppComponent.objects.get(name=component_id)
-#             return HttpResponse(component.contents.replace('FUSE_APP_NAME', 'no_name_9264'))
-#         except:
-#             print('DOING EXCEPTION SHIT NOW...')
-#             allmodels = FuseAppComponent.objects.all()
-#             final_json = {}
-#             all_ = []
-#             for item in allmodels:
-#                 all_.append({'name': item.name,
-#                              'id': item.id,
-#                              'contents': item.contents.replace('FUSE_APP_NAME', item.parent_app.name),
-#                              'application_name': item.parent_app.name})
-#             final_json['AngularFuseApplication_list'] = all_
-#             return Response(final_json)
-#     def post(self, request, *args, **kwargs):
-#         name = request.POST['name']
-#         type = request.POST['type']
-#         parent_app = request.POST['parent_app']
-#         contents = request.POST['contents']
-#
-#         print(CCD[1] + ' name ' + CCD[0] + CCD[12] + name + CCD[0])
-#         print(CCD[2] + ' type ' + CCD[0] + CCD[13] + type + CCD[0])
-#         print(CCD[3] + ' parent_app ' + CCD[0] + CCD[14] + parent_app + CCD[0])
-#         print(CCD[4] + ' contents ' + CCD[0] + CCD[15] + contents + CCD[0])
-#
-#         obj_parent_app = AngularFuseApplication.objects.get(name=parent_app)
-#         new_app = FuseAppComponent(name=name, type=type, contents=contents, parent_app=obj_parent_app)
-#         new_app.save()
-#         response = {'result': 'If you are reading this, that means it worked!!! ', 'new_app': str(new_app)}
-#         return Response(response)
-#     def put(self, request, *args, **kwargs):
-#         name = request.POST['name']
-#         type = request.POST['type']
-#         parent_app = request.POST['parent_app']
-#         contents = request.POST['contents']
-#         obj_parent_app = AngularFuseApplication.objects.get(name=parent_app)
-#         modified_component = AngularFuseApplication.objects.get(name=name)
-#         modified_component.name = name
-#         modified_component.type = type
-#         modified_component.contents = contents
-#         modified_component.parent_app = obj_parent_app
-#         modified_component.save()
-#         return Response({'result_PUT': 'If you are reading this, that means it worked!!! '})
+# - - - - - - - DOG API - - - - - - - -
+# https://dog.ceo/api/breeds/list/all/
+class RESTfulProxy_AllDogs(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        dogsrest = 'https://dog.ceo/api/breeds/list/all'
+        js = get_json_from_dogs_ceo(url=dogsrest)
+        return JsonResponse(js)
+# https://dog.ceo/api/breeds/image/random/
+class RESTfulProxy_RandomDogImage(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        dogsrest = 'https://dog.ceo/api/breeds/image/random'
+        js = get_json_from_dogs_ceo(url=dogsrest)
+        return JsonResponse(js)
+# https://dog.ceo/api/breeds/list/
+class RESTfulProxy_AllBreeds(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        dogsrest = 'https://dog.ceo/api/breeds/list'
+        js = get_json_from_dogs_ceo(url=dogsrest)
+        return JsonResponse(js)
+# https://dog.ceo/api/breed/mastiff/images/
+class RESTfulProxy_ListImagesForBreed(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        dogsrest = 'https://dog.ceo/api/breed/mastiff/images'
+        js = get_json_from_dogs_ceo(url=dogsrest)
+        return JsonResponse(js)
+# https://dog.ceo/api/breed/mastiff/images/random/
+class RESTfulProxy_GetRandonImageForBreed(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        breed = request.GET['breed']
+        dogsrest = 'https://dog.ceo/api/breed/' + breed + '/images/random'
+        js = get_json_from_dogs_ceo(url=dogsrest)
+        return JsonResponse(js)
+# https://dog.ceo/api/breed/mastiff/list/
+class RESTfulProxy_GetListOfSubBreedsUsingBreed(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        dogsrest = 'https://dog.ceo/api/breed/mastiff/list'
+        js = get_json_from_dogs_ceo(url=dogsrest)
+        return JsonResponse(js)
+# https://dog.ceo/api/breed/mastiff/bull/images/
+class RESTfulProxy_ListImagesForSpecificBreedAndSubBreed(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        dogsrest = 'https://dog.ceo/api/breed/mastiff/bull/images'
+        js = get_json_from_dogs_ceo(url=dogsrest)
+        return JsonResponse(js)
+# https://dog.ceo/api/breed/mastiff/bull/images/random/
+class RESTfulProxy_GetImageForSpecificBreedAndSubBreed(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+    def get(self, request, format=None):
+        dogsrest = 'https://dog.ceo/api/breed/mastiff/bull/images/random'
+        js = get_json_from_dogs_ceo(url=dogsrest)
+        return JsonResponse(js)
+# - - - - - - - /DOG API - - - - - - -

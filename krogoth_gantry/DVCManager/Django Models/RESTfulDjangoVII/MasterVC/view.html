@@ -1,68 +1,50 @@
 <div id="profile" class="page-layout simple tabbed">
-
-
     <section class="timeline-tab" flex>
-
-
         <div layout="row" layout-wrap>
 
-            <span flex="5">
-                &nbsp;
-            </span>
-            <div class="timeline" layout="column" flex="95">
-
-
-                <h4>Examples Text Label with just a unique name and description.</h4>
+            <div class="timeline" layout="column" flex="100" flex-gt-sm="65" flex-gt-md="75">
+                <h4>Image Upload Example</h4>
                 <div class="profile-box add-post md-whiteframe-1dp clear-bg glass-global" ak-frosted-glass>
                     <div class="form" flex>
-                        <md-input-container>
-                            <label>name</label>
-                            <input ng-model="vm.RESTfulJSONPayload.name">
-                        </md-input-container>
+                        <input placeholder="upload a file"
+                               type="file"
+                               style="background-color: rgba(255, 255, 255, 0.20)"
+                               ng-model="vm.RESTfulJSONPayload.image">
 
-                        <textarea placeholder="description" translate
-                                  ng-model="vm.RESTfulJSONPayload.description"></textarea>
-
-                        <footer layout="row" layout-align="space-between center">
+                        <footer layout="row"
+                                layout-align="space-between center"
+                                style="background-color: rgba(255, 255, 255, 0.0)">
                             <div layout="row" layout-align="start center">
-
                             </div>
-
                             <md-button ng-click="vm.postNewObject()"
                                        class="post-button md-accent md-raised"
                                        aria-label="POST">
-                                POST
+                                upload
                             </md-button>
                         </footer>
                     </div>
                 </div>
-                <md-divider></md-divider>
-                <section style="background-color: #0a0a0a">
-    <span class="label md-blue-500-bg var-display">vm.jsonResponse</span>
-    <pre  class="blueb">
-        {{ vm.jsonResponse | json }}
-    </pre>
-</section>
-                <div class="timeline-item md-whiteframe-1dp clear-bg glass-global"
-                     ak-frosted-glass>
 
-                    <header style="background-color: rgba(0,0,0,0.25)"
-                            layout="row"
-                            layout-align="space-between start">
-                        <div class="user" layout="row" layout-align="start center">
-                            <div layout="column">
-                                <div class="title">
-                                    <span class="username md-accent-color">Fruits in SQL</span>
-                                </div>
-                            </div>
-                        </div>
-                    </header>
+                <section style="background-color: #0a0a0a"
+                         flex
+                         class="glass-global"
+                         ak-frosted-glass>
+                    <h5>Models in Database</h5>
+                    <span class="label md-blue-500-bg var-display">vm.jsonResponse</span>
+                    <pre class="blueb">
+                    {{ vm.jsonResponse | json }}
+                </pre>
+                    <md-divider></md-divider>
+                </section>
+
+                <div class="timeline-item clear-bg glass-global"
+                     ak-frosted-glass>
 
                     <div class="content" flex ng-cloak style="background-color: rgba(0,0,0,0.20)">
                         <md-grid-list
-                                md-cols="2"
-                                md-cols-sm="3"
-                                md-cols-md="4"
+                                md-cols="1"
+                                md-cols-sm="2"
+                                md-cols-md="3"
                                 md-cols-gt-md="6"
                                 md-row-height="1:1"
                                 md-gutter="8px" md-gutter-gt-sm="4px">
@@ -70,10 +52,7 @@
                             <md-grid-tile ng-repeat="tile in vm.jsonResponse"
                                           md-rowspan="1"
                                           md-colspan="1"
-                                          md-colspan-sm="1"
-                                          md-colspan-xs="1"
                                           style="background-color: rgba(0,0,0,0.25)">
-
                                 <md-button ng-click="vm.deleteObject(tile.name)">
                                     Delete {{tile.name}}
                                 </md-button>
@@ -89,10 +68,8 @@
                             layout-align="start start">
                         <div class="comment" layout="row" layout-fill>
                             <div flex layout="column">
-                                <h2 style="color: #0F192A">Fruit RESTful Form</h2>
-                                <h3 style="color: #0F192A"><b>POST</b> : '/api/__ExamplesFruit/'</h3>
                                 <div class="message" style="background-color: rgba(255, 255, 255, 0.20)">
-<span class="label md-red-700-bg var-display">vm.RESTfulJSONPayload</span>
+                                    <span class="label md-red-700-bg var-display">vm.RESTfulJSONPayload</span>
                                     <pre class="redb">
                                         {{ vm.RESTfulJSONPayload | json }}
                                     </pre>
@@ -102,14 +79,13 @@
                     </footer>
                 </div>
             </div>
-            <span flex>
-                &nbsp;
-            </span>
+            <span flex="5"></span>
+
         </div>
-
     </section>
-
-
 </div>
 
 
+<style>
+
+</style>
