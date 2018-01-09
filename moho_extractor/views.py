@@ -161,7 +161,9 @@ class DynamicIndexModule(APIView):
         index_module_pt3 = "" + \
                            "]);})();"
         indexModuleJs = index_module_pt1 + index_module_pt2 + my_apps + index_module_pt3
-        return HttpResponse(indexModuleJs)
+        ct = 'application/javascript'
+        return HttpResponse(content_type=ct, content=indexModuleJs)
+
 
 
 # class DynamicIndexRoute(APIView):
@@ -216,7 +218,8 @@ class DynamicJavaScriptInjector(APIView):
                 parsed2 = parsed1.replace('FUSE_APP_TITLE', application.name.replace('_', ' '))
                 parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon)
                 raw_js_response += parsed3
-        return HttpResponse(raw_js_response)
+        ct = 'application/javascript'
+        return HttpResponse(content_type=ct, content=raw_js_response)
 
 
 class DynamicHTMLInjector(APIView):
@@ -241,7 +244,9 @@ class DynamicHTMLInjector(APIView):
                    "added to this Angular Fuse Application named " + application.name
             raw_html_response += "<p>" + info + "</p>"
             raw_html_response += '</div>'
-        return HttpResponse(raw_html_response)
+        ct = 'text/html'
+        return HttpResponse(content_type=ct, content=raw_html_response)
+
 
 
 import json

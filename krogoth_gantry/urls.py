@@ -1,9 +1,24 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from krogoth_gantry import views
 from krogoth_gantry import viewseditor
-
+from rest_framework.routers import DefaultRouter
 # from rest_framework.routers import DefaultRouter
-# router = DefaultRouter()
+router = DefaultRouter()
+
+from krogoth_gantry.views import KrogothGantryMasterViewControllerViewSet, KrogothGantrySlaveViewControllerViewSet, \
+    KrogothGantryIconViewSet, \
+    KrogothGantryCategoryViewSet, KrogothGantryDirectiveViewSet, KrogothGantryServiceViewSet
+
+router.register(r'MasterViewController',
+                KrogothGantryMasterViewControllerViewSet)
+router.register(r'SlaveViewController',
+                KrogothGantrySlaveViewControllerViewSet)
+router.register(r'Icon', KrogothGantryIconViewSet)
+router.register(r'Category', KrogothGantryCategoryViewSet)
+router.register(r'Directive', KrogothGantryDirectiveViewSet)
+router.register(r'Service', KrogothGantryServiceViewSet)
+
+
 
 urlpatterns = [
     url(r'^DynamicJavaScriptInjector/',
@@ -30,4 +45,6 @@ urlpatterns = [
     url(r'^krogoth_gantryModelForm/',
         views.krogoth_gantryModelForm.as_view(),
         name='krogoth_gantry Model Form'),
+
+    url(r'^viewsets/', include(router.urls)),
 ]

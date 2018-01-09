@@ -11,15 +11,70 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 
 from krogoth_gantry.models import KrogothGantrySlaveViewController, \
-    KrogothGantryIcon, KrogothGantryCategory, KrogothGantryMasterViewController
+    KrogothGantryIcon, KrogothGantryCategory, KrogothGantryMasterViewController, KrogothGantryDirective, \
+    KrogothGantryService
 
-from rest_framework import viewsets
-
+from rest_framework import viewsets, serializers, generics
 import subprocess
-from django.core import serializers
+# from django.core import serializers
+import django_filters.rest_framework
 
 
 
+class KrogothGantryMasterViewControllerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KrogothGantryMasterViewController
+        fields = '__all__'
+class KrogothGantryMasterViewControllerViewSet(viewsets.ModelViewSet):
+    queryset = KrogothGantryMasterViewController.objects.all()
+    serializer_class = KrogothGantryMasterViewControllerSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend, )
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+class KrogothGantrySlaveViewControllerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KrogothGantrySlaveViewController
+        fields = '__all__'
+class KrogothGantrySlaveViewControllerViewSet(viewsets.ModelViewSet):
+    queryset = KrogothGantrySlaveViewController.objects.all()
+    serializer_class = KrogothGantrySlaveViewControllerSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+class KrogothGantryIconSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KrogothGantryIcon
+        fields = '__all__'
+class KrogothGantryIconViewSet(viewsets.ModelViewSet):
+    queryset = KrogothGantryIcon.objects.all()
+    serializer_class = KrogothGantryIconSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+    filter_fields = ('base_user',)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+class KrogothGantryCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KrogothGantryCategory
+        fields = '__all__'
+class KrogothGantryCategoryViewSet(viewsets.ModelViewSet):
+    queryset = KrogothGantryCategory.objects.all()
+    serializer_class = KrogothGantryCategorySerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+class KrogothGantryDirectiveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KrogothGantryDirective
+        fields = '__all__'
+class KrogothGantryDirectiveViewSet(viewsets.ModelViewSet):
+    queryset = KrogothGantryDirective.objects.all()
+    serializer_class = KrogothGantryDirectiveSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+class KrogothGantryServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KrogothGantryService
+        fields = '__all__'
+class KrogothGantryServiceViewSet(viewsets.ModelViewSet):
+    queryset = KrogothGantryService.objects.all()
+    serializer_class = KrogothGantryServiceSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
 
 
 
@@ -191,7 +246,7 @@ class krogoth_gantryModelForm(APIView):
         djclass = getattr(module, 'models')
         djmodel = getattr(djclass, model_name)
         queryset = djmodel.objects.filter(id=model_id)
-        serialized_obj = serializers.serialize("json", queryset)
+        serialized_obj = django.core.serializers.serialize("json", queryset)
         json_dict = json.loads(serialized_obj)
         finalResponse = ''
         i = 0

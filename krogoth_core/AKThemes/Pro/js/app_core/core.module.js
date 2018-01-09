@@ -14,6 +14,9 @@
                 'ngMaterial',
                 'pascalprecht.translate',
                 'ui.router',
-                'ngFileUpload'
+                'ngFileUpload',
+                'ui.codemirror',
+                'oc.lazyLoad',
+                'formly'
             ]);
 })();
