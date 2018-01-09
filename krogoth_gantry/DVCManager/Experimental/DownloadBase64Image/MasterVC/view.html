@@ -1,0 +1,113 @@
+<div class="page-layout carded left-sidenav" layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- SIDENAV -->
+    <md-sidenav class="sidenav glass-test "
+                style="background: rgba(0,0,0,0)"
+                md-component-id="sidenav"
+                ms-scroll
+                ms-sidenav-helper>
+
+        <!-- SIDENAV HEADER -->
+        <div class="header">
+            <p>Sidenav header</p>
+        </div>
+        <!-- / SIDENAV HEADER -->
+
+        <!-- SIDENAV CONTENT -->
+        <md-content class="content" flex ms-scroll>
+
+            <!-- DEMO SIDENAV -->
+            <div>
+                <!-- start slipsum code -->
+                <h3>Uuummmm, this is a tasty burger!</h3>
+
+                <!-- end slipsum code -->
+            </div>
+            <!-- / DEMO SIDENAV -->
+
+        </md-content>
+        <!-- / SIDENAV CONTENT -->
+
+    </md-sidenav>
+    <!-- / SIDENAV -->
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+
+        <!-- CONTENT HEADER -->
+        <div class="header" layout="row">
+            <div>
+                <span class="h2 white-fg">Left sidenav with independent scroll</span>
+            </div>
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" layout="column" flex>
+
+            <!-- CONTENT TOOLBAR -->
+            <div class="toolbar"
+                 layout="row"
+                 layout-align="start center"
+                 style="color:black">
+                <p>
+                    Loading &amp; Saving a 30+ MB Image to Local Storage
+                </p>
+            </div>
+            <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <md-content class="content glass-test" flex ms-scroll>
+                <!-- DEMO CONTENT -->
+                <div layout="row">
+                    <!-- start slipsum code -->
+                    <div layout="column" layout-wrap>
+                        <p>
+                            By pressing the button below, you will begin the download
+                            of a very large image file in Base64 format. With Base64, you'll be able
+                            to save the image to Local Storage giving Krogoth the capability to
+                            use extreme-quality media in the GUI by recycling it from the user's
+                            hard disk storage.ngh
+                        </p>
+                        <md-button class="md-primary" ng-click="vm.series()">
+                            Download In Background
+                        </md-button>
+                    </div>
+                    <!-- end slipsum code -->
+                    <div layout="column" layout-wrap>
+                        <md-card>
+                            <strong>Async Messages:</strong>
+                            <div>
+                                <pre>{{ vm.asyncmessages }}</pre>
+                            </div>
+                        </md-card>
+                        <md-card>
+                            <strong>Success Messages:</strong>
+                            <div>
+                                <pre>{{ vm.asyncsuccessLog }}</pre>
+                            </div>
+                        </md-card>
+                        <md-card>
+                            <strong>Fail Messages:</strong>
+                            <div>
+                                <pre>{{ vm.asyncfailLog }}</pre>
+                            </div>
+                        </md-card>
+                        <md-card>
+                            <strong>Image:</strong>
+                            <img width="{{vm.imageWidth}}" ng-src="{{ vm.base64Image }}">
+                        </md-card>
+                    </div>
+                </div>
+                <!-- / DEMO CONTENT -->
+            </md-content>
+            <!-- / CONTENT -->
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

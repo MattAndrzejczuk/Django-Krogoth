@@ -241,7 +241,7 @@ try:
             '09', '9')
 
     APP_VERSION = current_build_1[:3] + "." + current_build_2
-    print('\033[1m\033[32mArmPrime ' + APP_VERSION + ' \033[0m\033[0m')
+    print('\033[1m\033[32mKrogoth ' + APP_VERSION + ' \033[0m\033[0m')
     print()
 except:
     print('Django initialized, but the version is unknown... wtf?')
@@ -249,8 +249,8 @@ except:
 
 
 
-print("POSTGRES: ")
-print(os.environ["POSTGRES_ENV_POSTGRES_USER"])
-print(os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"])
-print(os.environ["POSTGRES_PORT_5432_TCP_ADDR"])
-print(os.environ["POSTGRES_PORT_5432_TCP_PORT"])
+# print("POSTGRES: ")
+# print(os.environ["POSTGRES_ENV_POSTGRES_USER"])
+# print(os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"])
+# print(os.environ["POSTGRES_PORT_5432_TCP_ADDR"])
+# print(os.environ["POSTGRES_PORT_5432_TCP_PORT"])

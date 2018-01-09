@@ -259,6 +259,25 @@ class DynamicHTMLInjector(APIView):
         return HttpResponse(content_type=ct, content=raw_html_response)
 
 
+import os
+import base64
+from jawn.settings import BASE_DIR
+
+
+class LoadFileAsBase64View(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+    def get(self, request):
+        name = request.GET['name']
+        path = BASE_DIR + '/static/fancy_bgs/' + name
+        if os.path.isfile(path) == True:
+            pass
+        else:
+            raise IOError()
+        with open(path, "rb") as image_file:
+            encoded_string = base64.b64encode(image_file.read())
+            return HttpResponse(content_type='text/plain', content=encoded_string)
+
 
 import json
 
