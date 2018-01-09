@@ -46,6 +46,14 @@ CCD = {
     18: '\033[91m',  # red
 }
 
+from jawn.settings import DEBUG
+def krogoth_debug(msg):
+    if DEBUG == True:
+        try:
+            print(CCD[4] + '[MohoExtractor]' + CCD[0], end=CCD[10] + " >>> " + CCD[0])
+            print(str(msg), end="\n")
+        except:
+            pass
 
 class NgIncludedJsView(APIView):
     authentication_classes = (TokenAuthentication,)
@@ -73,9 +81,9 @@ class NgIncludedHtmlView(APIView):
     permission_classes = (AllowAny,)
 
     def get(self, request, format=None):
-        print('\033[92m')
-        print(request.GET)
-        print('\033[0m')
+        krogoth_debug('\033[92m')
+        krogoth_debug(request.GET)
+        krogoth_debug('\033[0m')
         name = str(request.GET['name'])
         try:
             try:
@@ -107,7 +115,7 @@ class KrogothFoundationView(APIView):
         ct = 'application/javascript'
         body = js.code
 
-        print('\033[91m')
+        krogoth_debug('\033[91m')
         try:
             if js.custom_key_values is not None:
                 for key, value in js.custom_key_values.items():
@@ -117,9 +125,9 @@ class KrogothFoundationView(APIView):
                     print(obj)
                     body = body.replace(p1,
                                         'krogoth_injected=' + json.dumps(obj) + ';')
-            print('\033[0m')
+            krogoth_debug('\033[0m')
         except:
-            print('BOOM!')
+            krogoth_debug('BOOM!')
         if unique_name == 'indexmodule':
             all_djangular = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
             my_apps = ''
@@ -151,7 +159,10 @@ class DynamicIndexModule(APIView):
 
         all_djangular = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
         for application in all_djangular:
-            my_apps += ("'app." + application.name + "',")
+            krogoth_debug()
+            if application.is_lazy == False:
+                krogoth_debug(CCD[2] + application.name + CCD[0])
+                my_apps += ("'app." + application.name + "',")
 
         my_apps += "'ui.tree', "
 
@@ -254,12 +265,12 @@ import json
 from urllib.request import urlopen
 
 def get_json_from_dogs_ceo(url: str) -> str:
-    print('\033[92m' + url + '\033[0m')
+    krogoth_debug('\033[92m' + url + '\033[0m')
     webURL = urlopen(url)
     data = webURL.read()
     encoding = webURL.info().get_content_charset('utf-8')
     obj = json.loads(data.decode(encoding))
-    print(json.dumps(obj, indent=2, sort_keys=True))
+    krogoth_debug(json.dumps(obj, indent=2, sort_keys=True))
     return obj
 
 

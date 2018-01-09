@@ -46,7 +46,7 @@ class Command(BaseCommand):
             i += 1
             if gantry[0] != '.' and gantry != 'MiscDVC':
                 djangular_dvcs = os.listdir('krogoth_gantry/DVCManager/' + gantry)
-                catagory = ''
+                catagory = gantry
                 for dvc in djangular_dvcs:
                     if dvc[0] == '.':
                         continue

@@ -95,5 +95,20 @@ With Krogoth, many example API scaffolds are included out of the box complete wi
 
 
 
+# Using bower with Krogoth
 
+## 1.) Install your AngularJS package
+    $ bower install ng-websocket
+If you receive this error:
+    /usr/bin/env: ‘node’: No such file or directory
+Then do the following:
+    $ sudo ln -s /usr/bin/nodejs /usr/bin/node
+
+
+## 2.) update your index.module import dependency
+* navigate to http://localhost/admin_a9k/krogoth_core/akfoundationangularcore/
+* open "module.core" under Home » Krogoth_Core » Core Application
+* add your dependency declaration
+    'use strict';
+    angular.module('app.core', ['ngWebsocket']);
 

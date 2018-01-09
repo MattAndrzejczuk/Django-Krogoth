@@ -25,7 +25,7 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 20,
+    'PAGE_SIZE': 40,
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
     ),
