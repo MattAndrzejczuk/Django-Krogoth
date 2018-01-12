@@ -22,7 +22,14 @@ sleep 1
 
 docker exec armprime-redis redis-cli config set notify-keyspace-events KEA
 
+echo '\033[33m'
+echo 'running psql command... "create extension hstore;"'
+echo "\033[0m"
+sleep 2
+
 docker exec -it --user postgres armprime-postgres psql jawn -c 'create extension hstore;'
+
+sleep 1
 
 docker exec -it armprime ./manage.py migrate
 docker exec -it armprime ./manage.py makemigrations krogoth_core chat krogoth_gantry moho_extractor kbot_lab
