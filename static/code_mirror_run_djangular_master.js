@@ -7,6 +7,9 @@ window.onload = function () {
     var txt_html_main = document.getElementById('id_view_html');
     var txt_style_main = document.getElementById('id_style_css');
 
+
+    var txt_style_themestyle = document.getElementById('id_themestyle');
+
     var editor1 = CodeMirror.fromTextArea(txt_js_module, {
         lineNumbers: true,
         mode: "javascript",
@@ -41,6 +44,13 @@ window.onload = function () {
         indentWithTabs: true
     });
 
+    var editor5 = CodeMirror.fromTextArea(txt_style_themestyle, {
+        lineNumbers: true,
+        mode: "css",
+        theme: "dracula",
+        indentUnit: 4,
+        indentWithTabs: true
+    });
 
     // iPad
     if (window.innerWidth <= 1124) {

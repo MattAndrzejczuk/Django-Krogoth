@@ -1,0 +1,90 @@
+<script type="text/ng-template" id="nodes_renderer.html">
+    <md-whiteframe ui-tree-handle class="tree-node tree-node-content md-whiteframe-1dp" layout="row">
+        <a class="btn btn-success btn-xs" ng-if="node.nodes && node.nodes.length > 0" data-nodrag
+           ng-click="vm.toggle(this)"><span
+                class="glyphicon"
+                ng-class="{
+          'glyphicon-chevron-right': collapsed,
+          'glyphicon-chevron-down': !collapsed
+        }"></span></a>
+        <div>&nbsp;</div>
+        <div>{{ node.title }}</div>
+        <div flex></div>
+        <a class="btn btn-danger btn-xs" data-nodrag ng-click="vm.remove(this)">
+            <span class="glyphicon glyphicon-remove"></span></a>
+        <a class="btn btn-primary btn-xs" data-nodrag ng-click="vm.newSubItem(this)" style="margin-right: 8px;">
+            <span class="glyphicon glyphicon-plus"></span></a>
+    </md-whiteframe>
+    <ol ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}" ng-show="!collapsed">
+        <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'nodes_renderer.html'">
+        </li>
+    </ol>
+</script>
+
+
+<div layout="row">
+    <div flex="20">
+    </div>
+    <div flex="60" ng-cloak>
+        <div ui-tree id="tree-root">
+            <ol ui-tree-nodes ng-model="vm.data" layout="column" layout-fill>
+                <li ng-repeat="node in vm.data" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+            </ol>
+        </div>
+    </div>
+    <div flex="20">
+
+    </div>
+</div>
+
+
+
+<div layout="row">
+    <div flex="30">
+        <strong class="badge badge-info">messages</strong>
+        <pre>
+            {{ vm.messages | json }}
+        </pre>
+    </div>
+    <div flex="60" ng-cloak>
+        <strong class="badge badge-primary">pendingRESTfulRequests</strong>
+        <pre>
+            {{ vm.pendingRESTfulRequests | json }}
+        </pre>
+        <strong class="badge badge-success">finishedRESTfulResponses</strong>
+        <pre>
+            {{ vm.finishedRESTfulResponses.length | json }}
+        </pre>
+    </div>
+    <div flex="10">
+        <button class="btn btn-warning" ng-click="vm.parallelRESTfulStart()">Call Server</button>
+    </div>
+</div>
+
+
+<!-- -->
+
+
+<ui-codemirror
+        ui-codemirror-opts="vm.editorOptions"
+        ui-codemirror="{onLoad:vm.codemirrorLoaded}">
+</ui-codemirror>
+
+
+<div style="color: white;">
+    <div class="md-display-1">Select Master View Controller</div>
+</div>
+<div layout="row">
+    <div flex="20">
+
+    </div>
+    <div flex="60" ng-cloak>
+        <pre>
+            {{ vm.objectList | json }}
+        </pre>
+    </div>
+    <div flex="20">
+
+    </div>
+</div>
+

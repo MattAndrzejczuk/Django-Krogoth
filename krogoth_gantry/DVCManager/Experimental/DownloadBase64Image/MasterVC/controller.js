@@ -64,7 +64,7 @@
                 if (id === 'dispatch_task1') {
                     $http({
                         method: 'GET',
-                        url: '/moho_extractor/LoadFileAsBase64?name=EPIC_Planet_3_uncompressed.jpg'
+                        url: '/moho_extractor/LoadFileAsBase64?name=EPIC_Planet_1.png'
                     }).then(function successCallback(response) {
                         vm.asyncmessages.push(id + ' has completed');
                         vm.base64Data = response.data;

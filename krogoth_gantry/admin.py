@@ -14,7 +14,9 @@ class KrogothGantryMasterViewControllerAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Properties',
          {
-             'fields': (('name', 'title', 'icon',), ('category', 'is_enabled'),)
+             'fields': (('name', 'title', 'icon',),
+                        ('category', 'is_enabled'),
+                        ('themestyle_is_enabled', 'themestyle'),)
          }
          ),
         ('Module Editor',

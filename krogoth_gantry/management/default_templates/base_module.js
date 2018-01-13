@@ -19,6 +19,12 @@
             })
         _DJANGULAR_SLAVE_VC_INJECTION_POINT_; /* krogoth_gantry Slave VCs automatically injected here. */
         _DJANGULAR_SLAVE_MSAPI_INJECTION_POINT_
+
+
+
+        _KROGOTH_CATEGORIES_
+
+
         msNavigationServiceProvider.saveItem('NAV_HEADER.FUSE_APP_NAME', {
             title: 'FUSE_APP_TITLE',
             icon: 'FUSE_APP_ICON',

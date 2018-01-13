@@ -17,6 +17,7 @@
                 'ngFileUpload',
                 'ui.codemirror',
                 'oc.lazyLoad',
+                'ui.tree',
                 'formly'
             ]);
 })();

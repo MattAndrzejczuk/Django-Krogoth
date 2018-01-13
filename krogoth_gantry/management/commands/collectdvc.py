@@ -5,10 +5,10 @@ import codecs
 import os
 from scss import Compiler
 
-
-
 from krogoth_gantry.management.commands.installdjangular import bcolors
 import random
+
+
 class Command(BaseCommand):
     help = 'prints the toolbar module and controller.'
 
@@ -20,8 +20,11 @@ class Command(BaseCommand):
 
         has_master = False
 
+        oldCatagories = KrogothGantryCategory.objects.all()
         all_old_ones = AKGantryMasterViewController.objects.all()
         for old in all_old_ones:
+            old.delete()
+        for old in oldCatagories:
             old.delete()
         icon = KrogothGantryIcon()
         count_icons = len(KrogothGantryIcon.objects.all())
@@ -30,7 +33,6 @@ class Command(BaseCommand):
             icon.save()
         except:
             icon = KrogothGantryIcon.objects.get(code='s16 icon-ta-arm')
-
 
         cat = KrogothGantryCategory()
         try:
@@ -87,7 +89,8 @@ class Command(BaseCommand):
                             style = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/style.css', 'r').read()
 
                         if os.path.exists('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/style.scss'):
-                            rawcode = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/style.scss', 'r').read()
+                            rawcode = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/style.scss',
+                                                  'r').read()
                             compiled = Compiler().compile_string(rawcode)
                             style += compiled
 
@@ -95,10 +98,9 @@ class Command(BaseCommand):
                         str_Module = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/module.js', 'r').read()
                         str_Controller = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/controller.js',
                                                      'r').read()
-                        _mvc = AKGantryMasterViewController.objects.get_or_create(name=name_pk + '_akdvc',
-                                                                                       title=title, category=cat,
-                                                                                       icon=icon)
-
+                        _mvc = AKGantryMasterViewController.objects.get_or_create(name=name_pk,
+                                                                                  title=title, category=cat,
+                                                                                  icon=icon)
 
                         # view_html=str_View,
                         # controller_js=str_Controller,
@@ -106,19 +108,27 @@ class Command(BaseCommand):
                         # category=cat[0],
                         # icon=icon)
 
-
                         clean_catagory = catagory.replace(' ', '').replace('-', '')
-                        set_catagory = str_Module.replace('AK_NAVCAT_KROGOTH', clean_catagory)
-                        parsed_module = set_catagory.replace('.AK_SUBCATAGORY_KROGOTH', subcatagory)
+                        clean_subcatagory = subcatagory.replace(' ', '').replace('-', '')
+
+                        # _mvc[0].category.parent = KrogothGantryCategory.get_or_create_catagory(named=clean_catagory,
+                        #                                                                        titled=catagory,
+                        #                                                                        pname=clean_catagory,
+                        #                                                                        ptitle=catagory)
+
+                        _mvc[0].category = KrogothGantryCategory.get_or_create_catagory(named=clean_catagory,
+                                                                                        titled=catagory)
+
+                        # set_catagory = str_Module.replace('AK_NAVCAT_KROGOTH', clean_catagory)
+                        # parsed_module = set_catagory.replace('.AK_SUBCATAGORY_KROGOTH', subcatagory)
 
                         _mvc[0].style_css = style
                         _mvc[0].view_html = str_View
                         _mvc[0].controller_js = str_Controller
-                        _mvc[0].module_js = parsed_module.replace("msNavigationServiceProvider.saveItem('.",
-                                                                  "msNavigationServiceProvider.saveItem('")
+                        _mvc[0].module_js = str_Module.replace("msNavigationServiceProvider.saveItem('.",
+                                                               "msNavigationServiceProvider.saveItem('")
                         # _mvc[0].category=cat[0]
                         # _mvc[0].icon=icon[0]
-
 
                         if has_slave == True:
                             try:
@@ -128,10 +138,10 @@ class Command(BaseCommand):
                                 pass
                             svc = KrogothGantrySlaveViewController.objects.get_or_create(name=name_pk + 'Slave')
                             svc[0].title = name_pk + '_Slave' + str(i)
-                            log_last_path = 'krogoth_gantry/DVCManager/' + dvc + '/MasterVC/view.html'
-                            str_slaveV = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/view.html',
+                            log_last_path = 'krogoth_gantry/DVCManager/' + dvc + '/SlaveVC/view.html'
+                            str_slaveV = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/SlaveVC/view.html',
                                                      'r').read()
-                            str_slaveC = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/controller.js',
+                            str_slaveC = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/SlaveVC/controller.js',
                                                      'r').read()
                             svc[0].view_html = str_slaveV
                             svc[0].controller_js = str_slaveC
@@ -185,5 +195,3 @@ class Command(BaseCommand):
         #     print(bcolors.ENDC)
         #     print(ex)
         #     print(bcolors.orange + log_last_path + bcolors.ENDC)
-
-
