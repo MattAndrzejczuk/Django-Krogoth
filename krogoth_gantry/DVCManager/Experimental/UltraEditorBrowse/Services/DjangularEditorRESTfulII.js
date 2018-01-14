@@ -30,8 +30,7 @@
             }, function errorCallback(response) {
                 /// Fail
                 deferred.reject(response);
-            });
-            return deferred.promise;
+            });            return deferred.promise;
         }
 
         function getDjangularMasterViewControllerDetail(id) {

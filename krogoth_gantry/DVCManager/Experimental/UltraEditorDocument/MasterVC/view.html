@@ -1,19 +1,99 @@
+<div layout="row">
+    <div flex="20">
+
+    </div>
+    <div flex="60" ng-cloak>
+        <div style="color: white;">
+            <div class="md-display-1">Select Master View Controller</div>
+        </div>
+    </div>
+    <div flex="20">
+
+    </div>
+</div>
+
 <script type="text/ng-template" id="nodes_renderer.html">
-    <md-whiteframe ui-tree-handle class="tree-node tree-node-content md-whiteframe-1dp" layout="row">
-        <a class="btn btn-success btn-xs" ng-if="node.nodes && node.nodes.length > 0" data-nodrag
-           ng-click="vm.toggle(this)"><span
-                class="glyphicon"
-                ng-class="{
-          'glyphicon-chevron-right': collapsed,
-          'glyphicon-chevron-down': !collapsed
-        }"></span></a>
+    <md-whiteframe ui-tree-handle
+                   layout-padding
+                   class="tree-node tree-node-content md-whiteframe-1dp tile-bg-4"
+                   layout="row">
+
         <div>&nbsp;</div>
-        <div>{{ node.title }}</div>
+
+        <a class="btn btn-secondary md-fab"
+           ng-if="node.nodes && node.nodes.length > 0"
+           data-nodrag
+           ng-click="vm.toggle(this)"><span
+                class="mdi"
+                ng-class="{
+          'mdi-folder': collapsed,
+          'mdi-folder-open': !collapsed
+        }"></span>
+
+            <md-tooltip md-visible="demo.showTooltip">Browse {{ node.title }}</md-tooltip>
+        </a>
+        <section ng-if="node.canRemove === true">
+
+            <span class="badge badge-dark">
+                {{ node.title }}
+            </span>
+
+        </section>
+        <section ng-if="node.canRemove === false">
+
+            <span class="badge badge-warning">
+                {{ node.id }}
+            </span>
+
+
+            <strong>
+                {{ node.title }}
+            </strong>
+
+            <span class="badge badge-success md-display-3">
+                {{ node.nodes.length }}
+            </span>
+        </section>
+
         <div flex></div>
-        <a class="btn btn-danger btn-xs" data-nodrag ng-click="vm.remove(this)">
-            <span class="glyphicon glyphicon-remove"></span></a>
-        <a class="btn btn-primary btn-xs" data-nodrag ng-click="vm.newSubItem(this)" style="margin-right: 8px;">
-            <span class="glyphicon glyphicon-plus"></span></a>
+
+        <a class="btn btn-outline-warning"
+           ng-if="node.canEdit === true"
+           data-nodrag
+           layout-wrap
+           style="padding:10px"
+           ng-click="vm.loadFileIntoEditor(node.id, node.class)">
+            <span class="mdi mdi-pencil"></span>
+            <!--            <span class="mdi mdi-circle"></span>-->
+            <md-tooltip md-visible="demo.showTooltip">
+                Open {{ node.title }} in editor
+            </md-tooltip>
+        </a>
+        <a class="btn btn-danger"
+           ng-if="node.canRemove === true"
+           data-nodrag
+           layout-wrap
+           style="padding:10px"
+           ng-click="vm.remove(this)">
+            <span class="glyphicon glyphicon-remove"></span>
+            <md-tooltip md-visible="demo.showTooltip">
+                Delete {{ node.title }}
+            </md-tooltip>
+        </a>
+        <div>&nbsp;</div>
+        <a class="btn btn-primary"
+           ng-if="node.canRemove === true"
+           data-nodrag
+           layout-wrap
+           data-max-depth="1"
+           style="padding:10px"
+           ng-click="vm.newSubItem(this)"
+           style="margin-right: 8px;">
+            <span class="glyphicon glyphicon-plus"></span>
+            <md-tooltip md-visible="demo.showTooltip">
+                Add new component to {{ node.title }}
+            </md-tooltip>
+        </a>
     </md-whiteframe>
     <ol ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}" ng-show="!collapsed">
         <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'nodes_renderer.html'">
@@ -27,8 +107,12 @@
     </div>
     <div flex="60" ng-cloak>
         <div ui-tree id="tree-root">
-            <ol ui-tree-nodes ng-model="vm.data" layout="column" layout-fill>
-                <li ng-repeat="node in vm.data" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+            <ol ui-tree-nodes
+                ng-model="vm.treeData"
+                layout="column"
+                layout-fill
+                class="whitebg">
+                <li ng-repeat="node in vm.treeData" ui-tree-node ng-include="'nodes_renderer.html'"></li>
             </ol>
         </div>
     </div>
@@ -38,26 +122,21 @@
 </div>
 
 
-
 <div layout="row">
     <div flex="30">
-        <strong class="badge badge-info">messages</strong>
-        <pre>
-            {{ vm.messages | json }}
-        </pre>
+
     </div>
     <div flex="60" ng-cloak>
-        <strong class="badge badge-primary">pendingRESTfulRequests</strong>
-        <pre>
-            {{ vm.pendingRESTfulRequests | json }}
-        </pre>
-        <strong class="badge badge-success">finishedRESTfulResponses</strong>
-        <pre>
-            {{ vm.finishedRESTfulResponses.length | json }}
-        </pre>
+        <h1>
+            <strong class="badge badge-info">{{ vm.mostRecentRESTfulCall }}</strong>
+        </h1>
     </div>
     <div flex="10">
-        <button class="btn btn-warning" ng-click="vm.parallelRESTfulStart()">Call Server</button>
+        <button class="btn btn-outline-warning"
+                style="color:black"
+                ng-click="vm.parallelRESTfulStart()">
+            Call Server
+        </button>
     </div>
 </div>
 
@@ -79,9 +158,7 @@
 
     </div>
     <div flex="60" ng-cloak>
-        <pre>
-            {{ vm.objectList | json }}
-        </pre>
+        <strong class="badge badge-info">messages</strong>
     </div>
     <div flex="20">
 

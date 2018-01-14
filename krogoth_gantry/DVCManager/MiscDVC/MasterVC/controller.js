@@ -1,12 +1,23 @@
-(function ()
-{
-	'use strict';
-	angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
-	function FUSE_APP_NAMEController()
-	{
-			var vm = this;
-			 vm.viewName = 'FUSE_APP_NAME';
-	}
+(function () {
+    'use strict';
+    angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
+
+    function FUSE_APP_NAMEController() {
+        var vm = this;
+        vm.$onInit = onInit;
+        vm.viewName = 'FUSE_APP_NAME';
+        vm.viewDidLoad = viewDidLoad;
+
+
+        function onInit() {
+            console.log('FUSE_APP_NAME did finish loading');
+            vm.viewDidLoad();
+        }
+
+        function viewDidLoad() {
+
+        }
+    }
 })();
 
 

@@ -58,7 +58,7 @@
     <link rel='stylesheet' href='/static/bower_components/wip-image-zoom/dist/wip-image-zoom.css'/>
     <link rel='stylesheet' href='/static/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css'/>
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.min.css"/>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/codemirror.css"/>
     <link rel="stylesheet" href="/static/colorforth.css"/>
     <link rel="stylesheet" href="/static/dracula.css"/>
@@ -96,8 +96,12 @@
       style="background-color: rgba(0, 0, 0, 0) !important;"
       class="{{state.current.bodyClass || ''}} multi_bg_example_opaque">
 
+<script type="text/javascript" src="/static/bower_components/threejs/three.min.js"></script>
+
+
 <!-- SPLASH SCREEN -->
-<ms-splash-screen id="splash-screen" style="background-color: {% endverbatim %}{{ main_bg_color }}{% verbatim %}">
+<ms-splash-screen id="splash-screen" >
+    <!--
     <div class="center">
         <div class="logo"
              style="width:{% endverbatim %}{{ width }}{% verbatim %}px;
@@ -107,8 +111,9 @@
                 {% endverbatim %}{{ splash_title }}{% verbatim %}
             </span>
         </div>
-        <!-- Material Design Spinner -->
-        <div class="spinner-wrapper">
+
+        <div class="spinner-wrapper" >
+
             <div class="spinner" style="color: darkolivegreen">
                 <div class="inner">
                     <div class="gap"></div>
@@ -120,9 +125,12 @@
                     </div>
                 </div>
             </div>
+
         </div>
-        <!-- / Material Design Spinner -->
+
     </div>
+-->
+
     <a style="display: none" href="http://armprime.co/#!/home">
         Arm Prime News, home of Total Annihilation Lazarus
     </a>
@@ -139,6 +147,83 @@
 </ms-splash-screen>
 
 <!-- / SPLASH SCREEN -->
+<script>
+    var camera, scene, renderer;
+    var geometry, material, mesh;
+
+    init();
+    animate();
+
+    function init() {
+
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+        camera.position.z = 1000;
+
+        scene = new THREE.Scene();
+
+        var light = new THREE.DirectionalLight(0xffffff);
+        light.position.set(0, 1, 1).normalize();
+        scene.add(light);
+
+
+        var texture = new THREE.TextureLoader().load("/static/textured_tiles/p1.png");
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(4, 4);
+
+        geometry1 = new THREE.SphereBufferGeometry(64, 128, 128);
+        material1 = new THREE.MeshBasicMaterial({
+            ambient: 0x050505,
+            color: 0x0033ff,
+            specular: 0x555555,
+            shininess: 30,
+            map: texture
+        });
+        mesh1 = new THREE.Mesh(geometry1, material1);
+        mesh1.position.z = 50;
+
+        mesh1.texture = texture;
+        scene.add(mesh1);
+        geometry2 = new THREE.SphereGeometry(32, 50, 50);
+        material2 = new THREE.MeshBasicMaterial({
+            ambient: 0x050505,
+            color: 'rgb(0,50,0)',
+            specular: 0x555555,
+            shininess: 30,
+            map: texture
+        });
+        mesh2 = new THREE.Mesh(geometry2, material2);
+        mesh2.position.z = 50;
+        scene.add(mesh2);
+        renderer = new THREE.WebGLRenderer({
+            alpha: true
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        var splash = document.getElementById('splash-screen');
+        renderer.domElement.style = "";
+        splash.appendChild(renderer.domElement);
+    }
+
+    function animate() {
+        requestAnimationFrame(animate);
+        var orbitRadius = 300;
+        var date;
+        date = Date.now() * 0.005;
+        mesh1.position.set(
+            Math.cos(date + 5) * orbitRadius,
+            Math.sin(date) * orbitRadius,
+            0
+        );
+        mesh2.position.set(
+            Math.cos(date) * orbitRadius,
+            Math.sin(date) * orbitRadius,
+            0
+        );
+        renderer.render(scene, camera);
+
+    }
+</script>
+
 <span style="display: none" id="krogoth_gantryMetaText_01">{{ version_build }}</span>
 <div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>
 
@@ -280,7 +365,7 @@
 
 <!--KrogothGantryMasterViewControllers-->
 {% for fuse_app in KrogothGantryMasterViewControllers %}
-<script src="/krogoth_gantry/DynamicJavaScriptInjector/?name={{ fuse_app }}"></script>
+    <script src="/krogoth_gantry/DynamicJavaScriptInjector/?name={{ fuse_app }}"></script>
 {% endfor %}
 
 
@@ -290,7 +375,7 @@
 
 <!--KrogothFoundation-->
 {% for com in core %}
-<script src="/moho_extractor/KrogothFoundation/?unique_name={{ com }}"></script>
+    <script src="/moho_extractor/KrogothFoundation/?unique_name={{ com }}"></script>
 {% endfor %}
 
 <script src="/moho_extractor/KrogothFoundation/?unique_name=toolbarmodule"></script>

@@ -34,14 +34,18 @@
 }
 
 .whitebg {
-    background-color: rgba(255, 255, 255, 0.55);
+    background-color: rgba(255, 255, 255, 0.25);
 }
+
+/*.btn-xs {*/
+    /*max-height: 16px;*/
+/*}*/
 
 figure {
     border-radius: 25px
 }
 
-@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+/*@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");*/
 
 .btn, .custom-file-control::before {
     display: inline-block;

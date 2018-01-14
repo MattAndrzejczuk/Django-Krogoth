@@ -22,7 +22,7 @@
             link: function (scope, element, attr) {
 
                 element.css({
-                    'background-image': "url('/static/fancy_bgs/bg-blur-01-light.jpg')"
+                    'background-image': "url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg')"
                 });
 
                 function updateTime() {
