@@ -628,7 +628,7 @@ ol {
 /* when hiding the picture */
 ol.ng-hide {
     transform: translate3d(50%, 0, 0) skewX(90deg);
-
+    height: 0px;
 }
 
 
@@ -691,21 +691,10 @@ div.ng-hide-remove {
         transform: translate3d(100%, 0, 0) skewX(30deg);
         transform: translate3d(100%, 0, 0) skewX(30deg);
         opacity: 0;
+        height: 0px;
     }
 }
 
-@keyframes lightSpeedOut {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translate3d(100%, 0, 0) skewX(30deg);
-        transform: translate3d(100%, 0, 0) skewX(30deg);
-        transform: translate3d(100%, 0, 0) skewX(30deg);
-        opacity: 0;
-    }
-}
 
 .badge {
     border: 1px solid #000; }

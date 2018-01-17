@@ -6,12 +6,10 @@
     /** @ngInject */
     function _DJANGULAR_SERVICE_NAME_($log, $http, $q) {
         $log.log('Hello. The service _DJANGULAR_SERVICE_NAME_ is online ! ! !');
-
         var service = {
-            setUpBoilerplateTreeJson: setUpBoilerplateTreeJson
+            getDjangularMasterViewControllers: getDjangularMasterViewControllers
         };
-
-        function setUpBoilerplateTreeJson() {
+        function getDjangularMasterViewControllers() {
             var deferred = $q.defer();
             $http({
                 method: 'GET',
@@ -25,8 +23,6 @@
             });
             return deferred.promise;
         }
-
         return service;
     }
 })();
-

@@ -1,84 +1,60 @@
-(function () {
+(function() {
     'use strict';
     angular
         .module('app.FUSE_APP_NAME')
         .factory('_DJANGULAR_SERVICE_NAME_', _DJANGULAR_SERVICE_NAME_);
-
     /** @ngInject */
     function _DJANGULAR_SERVICE_NAME_($log, $http, $q) {
-        // $log.log('Hello. The service _DJANGULAR_SERVICE_NAME_ is online ! ! !');
-        // var service = {
-        //     testThisService: testThisService
-        // };
-        // function testThisService() {
-        //     $log.log('_DJANGULAR_SERVICE_NAME_ is working properly.');
-        // }
-        // return service;
+        $log.log('Hello. The service _DJANGULAR_SERVICE_NAME_ is online ! ! !');
 
         var service = {
-            postNewReply: postNewReply,
-            postNewThread: postNewThread,
-            getDetailThread: getDetailThread,
-            getDetailCategory: getDetailCategory,
-            getListCategories: getListCategories
+            getDjangularMasterViewControllers: getDjangularMasterViewControllers,
+            getDjangularMasterViewControllerDetail: getDjangularMasterViewControllerDetail,
+            putDjangularMasterViewController: putDjangularMasterViewController,
+
+            getDjangularSlaveViewControllers: getDjangularSlaveViewControllers,
+            getDjangularSlaveViewControllerDetail: getDjangularSlaveViewControllerDetail,
+            putDjangularSlaveViewController: putDjangularSlaveViewController,
+
+            djangoManagePyCollectStatic: djangoManagePyCollectStatic
         };
 
-
-        const requestURI = '/api/__ExamplesFruit/';
-
-        function getList() {
+        function getDjangularMasterViewControllers() {
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: requestURI
+                url: '/krogoth_gantry/MasterViewControllerEditorList/'
             }).then(function successCallback(response) {
+                /// Success
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
+                /// Fail
                 deferred.reject(response);
             });
             return deferred.promise;
         }
 
-        function getDetail(objectId) {
+        function getDjangularMasterViewControllerDetail(id) {
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: requestURI + id + '/'
+                url: '/krogoth_gantry/MasterViewControllerEditorDetail/?id=' + id
             }).then(function successCallback(response) {
+                /// Success
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
+                /// Fail
                 deferred.reject(response);
             });
             return deferred.promise;
         }
 
-        function post(objectJson) {
-            $log.log('creating new thread...');
-            $log.log(thread);
-            var deferred = $q.defer();
-            $http({
-                method: 'POST',
-                data: thread,
-                url: requestURI
-            }).then(function successCallback(response) {
-                deferred.resolve(response.data);
-            }, function errorCallback(response) {
-                deferred.reject(response);
-            });
-            return deferred.promise;
-        }
-
-        function put(objectJson) {
-            $log.log('creating new reply...');
-            $log.log(reply);
+        function putDjangularMasterViewController(id, content) {
             var deferred = $q.defer();
             $http({
                 method: 'PUT',
-                data: reply,
-                url: requestURI,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                data: content,
+                url: '/krogoth_gantry/MasterViewControllerEditorDetail/?id=' + id
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
@@ -87,17 +63,42 @@
             return deferred.promise;
         }
 
-        function patch(objectJson) {
-            $log.log('creating new reply...');
-            $log.log(reply);
+        function getDjangularSlaveViewControllers(id) {
             var deferred = $q.defer();
             $http({
-                method: 'PATCH',
-                data: reply,
-                url: requestURI,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                method: 'GET',
+                url: '/krogoth_gantry/SlaveViewControllerEditorList/?master_id=' + id
+            }).then(function successCallback(response) {
+                /// Success
+                deferred.resolve(response.data);
+            }, function errorCallback(response) {
+                /// Fail
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+
+        function getDjangularSlaveViewControllerDetail(id) {
+            var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: '/krogoth_gantry/SlaveViewControllerEditorDetail/?id=' + id
+            }).then(function successCallback(response) {
+                /// Success
+                deferred.resolve(response.data);
+            }, function errorCallback(response) {
+                /// Fail
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+
+        function putDjangularSlaveViewController(id, content) {
+            var deferred = $q.defer();
+            $http({
+                method: 'PUT',
+                data: content,
+                url: '/krogoth_gantry/SlaveViewControllerEditorDetail/?id=' + id
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
@@ -106,17 +107,11 @@
             return deferred.promise;
         }
 
-        function deleteObject(objectJson) {
-            $log.log('creating new reply...');
-            $log.log(reply);
+        function djangoManagePyCollectStatic() {
             var deferred = $q.defer();
             $http({
-                method: 'DELETE',
-                data: reply,
-                url: requestURI,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                method: 'GET',
+                url: '/LazarusII/AutoCollectStatic/'
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
@@ -125,11 +120,11 @@
             return deferred.promise;
         }
 
-        function options() {
+        function getUnitFbiDetail(id) {
             var deferred = $q.defer();
             $http({
-                method: 'OPTIONS',
-                url: requestURI
+                method: 'GET',
+                url: '/LazarusII/serialized/FBISerialized/' + id + '/'
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
@@ -137,8 +132,34 @@
             });
             return deferred.promise;
         }
+
+        function getWeaponTdfDetail(id) {
+            var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: '/LazarusII/serialized/WeaponTDF/' + id + '/'
+            }).then(function successCallback(response) {
+                deferred.resolve(response.data);
+            }, function errorCallback(response) {
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+
+        function getAllUnitFBIsFromSQL() {
+            var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: '/LazarusDatabase/UnitFBIFromSQLView/'
+            }).then(function successCallback(response) {
+                deferred.resolve(response.data);
+            }, function errorCallback(response) {
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+
 
         return service;
-        /////
     }
 })();

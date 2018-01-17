@@ -1,167 +1,153 @@
+<!--  MAIN HEADER  -->
 <div layout="row">
     <div flex="20">
-
+        <h5>
+            Components
+        </h5>
     </div>
-    <div flex="60" ng-cloak>
+    <div flex="80" ng-cloak>
         <div style="color: white;">
-            <div class="md-display-1">Select Master View Controller</div>
+            <div class="md-display-1">{{ vm.editorHeader.name }}</div>
         </div>
     </div>
     <div flex="20">
-
     </div>
 </div>
+<!-- /MAIN HEADER  -->
+
+
+<!--  MAIN CONTENT  -->
+<div layout="row">
+    <!--  SIDE EXPLORER  -->
+    <div flex="20" class="glass-test">
+        <div ui-tree id="tree-root" data-drop-enabled="false" data-drag-enabled="false">
+            <ol ui-tree-nodes
+                ng-model="vm.treeData"
+                layout="column"
+                layout-fill
+                style="background-color: rgba(0, 0, 0, 0.85)">
+                <li ng-repeat="node in vm.treeData" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+            </ol>
+        </div>
+        <div layout-padding style="background-color: rgba(30, 30, 30, 0.25)">
+
+        </div>
+    </div>
+    <!-- /SIDE EXPLORER  -->
+    <!--  MAIN CODE EDITOR  -->
+    <div flex="80" class="whitebg">
+        <ui-codemirror
+                ui-codemirror-opts="vm.editorOptions"
+                ui-codemirror="{onLoad:vm.codemirrorLoaded}">
+        </ui-codemirror>
+    </div>
+    <!-- /MAIN CODE EDITOR  -->
+</div>
+<!-- /MAIN CONTENT  -->
+
 
 <script type="text/ng-template" id="nodes_renderer.html">
+    <md-divider ng-if="$first"></md-divider>
     <md-whiteframe ui-tree-handle
                    layout-padding
-                   class="tree-node tree-node-content md-whiteframe-1dp tile-bg-4"
+                   ng-class="{'md-whiteframe-1dp':node.canEdit === false}"
+                   class="tree-node tree-node-content tile-bg-4"
                    layout="row">
 
-        <div>&nbsp;</div>
-
-        <a class="btn btn-secondary md-fab"
-           ng-if="node.nodes && node.nodes.length > 0"
-           data-nodrag
-           ng-click="vm.toggle(this)"><span
-                class="mdi"
-                ng-class="{
-          'mdi-folder': collapsed,
-          'mdi-folder-open': !collapsed
-        }"></span>
-
-            <md-tooltip md-visible="demo.showTooltip">Browse {{ node.title }}</md-tooltip>
-        </a>
+        <button class="btn btn-outline-warning"
+                ng-if="node.nodes && node.nodes.length > 0"
+                ng-click="vm.toggleFolder(this)">
+            <span
+                    class="mdi-24px mdi"
+                    ng-class="{'mdi-folder': collapsed,'mdi-folder-open': !collapsed}">
+            </span>
+            <md-tooltip>Browse {{ node.title }}</md-tooltip>
+        </button>
         <section ng-if="node.canRemove === true">
-
             <span class="badge badge-dark">
                 {{ node.title }}
             </span>
-
         </section>
         <section ng-if="node.canRemove === false">
-
+            <!--
             <span class="badge badge-warning">
                 {{ node.id }}
             </span>
-
-
+            -->
             <strong>
                 {{ node.title }}
             </strong>
-
+            <!--
             <span class="badge badge-success md-display-3">
                 {{ node.nodes.length }}
             </span>
+            -->
         </section>
-
         <div flex></div>
-
-        <a class="btn btn-outline-warning"
-           ng-if="node.canEdit === true"
-           data-nodrag
-           layout-wrap
-           style="padding:10px"
-           ng-click="vm.loadFileIntoEditor(node.id, node.class)">
+        <div ng-if="node.index !== $index"> <!-- For Debugging, alert user that the indexes are off -->
+            <span class="badge badge-danger">
+                {{ node.index }}
+            </span>
+            <span class="badge badge-dark">
+                {{ $index }}
+            </span>
+        </div>
+        <button class="btn btn-outline-warning"
+                ng-if="node.canEdit === true"
+                layout-wrap
+                style="padding:10px"
+                ng-click="vm.loadFileIntoEditor(node.parentIndex, node.index)">
             <span class="mdi mdi-pencil"></span>
             <!--            <span class="mdi mdi-circle"></span>-->
             <md-tooltip md-visible="demo.showTooltip">
                 Open {{ node.title }} in editor
             </md-tooltip>
-        </a>
-        <a class="btn btn-danger"
-           ng-if="node.canRemove === true"
-           data-nodrag
-           layout-wrap
-           style="padding:10px"
-           ng-click="vm.remove(this)">
-            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        <button class="btn btn-outline-warning"
+                ng-if="node.hasUnsavedChanges === true"
+                layout-wrap
+                style="padding:10px"
+                ng-click="vm.saveEditorWorkToServer(node)">
+            <span class="mdi mdi-floppy"></span>
+            <!--            <span class="mdi mdi-circle"></span>-->
+            <md-tooltip md-visible="demo.showTooltip">
+                Save changes of {{ node.title }} to server.
+            </md-tooltip>
+        </button>
+        <button class="btn btn-outline-danger"
+                ng-if="node.canRemove === true"
+                layout-wrap
+                style="padding:10px"
+                ng-click="vm.remove(this)">
+            <span class="mdi mdi-remove"></span>
             <md-tooltip md-visible="demo.showTooltip">
                 Delete {{ node.title }}
             </md-tooltip>
-        </a>
-        <div>&nbsp;</div>
-        <a class="btn btn-primary"
-           ng-if="node.canRemove === true"
-           data-nodrag
-           layout-wrap
-           data-max-depth="1"
-           style="padding:10px"
-           ng-click="vm.newSubItem(this)"
-           style="margin-right: 8px;">
-            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+        <button class="btn btn-outline-success"
+                ng-if="node.canAdd === true"
+                layout-wrap
+                data-max-depth="1"
+                style="padding:10px"
+                ng-click="vm.createNewComponentClick(node)"
+                style="margin-right: 8px;">
+            <span class="mdi-24px mdi mdi-plus"></span>
             <md-tooltip md-visible="demo.showTooltip">
-                Add new component to {{ node.title }}
+                Add new component to {{ node.class }}
             </md-tooltip>
-        </a>
+        </button>
     </md-whiteframe>
-    <ol ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}" ng-show="!collapsed">
-        <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'nodes_renderer.html'">
+    <md-divider ng-if="$last"></md-divider>
+    <ol data-nodrag ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}" ng-show="!collapsed">
+        <li ng-repeat="node in node.nodes" ui-tree-node data-nodrag ng-include="'nodes_renderer.html'">
         </li>
     </ol>
 </script>
 
 
-<div layout="row">
-    <div flex="20">
-    </div>
-    <div flex="60" ng-cloak>
-        <div ui-tree id="tree-root">
-            <ol ui-tree-nodes
-                ng-model="vm.treeData"
-                layout="column"
-                layout-fill
-                class="whitebg">
-                <li ng-repeat="node in vm.treeData" ui-tree-node ng-include="'nodes_renderer.html'"></li>
-            </ol>
-        </div>
-    </div>
-    <div flex="20">
-
-    </div>
-</div>
-
-
-<div layout="row">
-    <div flex="30">
-
-    </div>
-    <div flex="60" ng-cloak>
-        <h1>
-            <strong class="badge badge-info">{{ vm.mostRecentRESTfulCall }}</strong>
-        </h1>
-    </div>
-    <div flex="10">
-        <button class="btn btn-outline-warning"
-                style="color:black"
-                ng-click="vm.parallelRESTfulStart()">
-            Call Server
-        </button>
-    </div>
-</div>
-
-
+<style>
+    button:hover {
+        color: black !important;
+    }
+</style>
 <!-- -->
-
-
-<ui-codemirror
-        ui-codemirror-opts="vm.editorOptions"
-        ui-codemirror="{onLoad:vm.codemirrorLoaded}">
-</ui-codemirror>
-
-
-<div style="color: white;">
-    <div class="md-display-1">Select Master View Controller</div>
-</div>
-<div layout="row">
-    <div flex="20">
-
-    </div>
-    <div flex="60" ng-cloak>
-        <strong class="badge badge-info">messages</strong>
-    </div>
-    <div flex="20">
-
-    </div>
-</div>
-
