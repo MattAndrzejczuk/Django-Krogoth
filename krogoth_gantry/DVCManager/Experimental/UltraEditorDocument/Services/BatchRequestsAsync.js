@@ -39,7 +39,10 @@
                             canEdit: true,
                             isMaster: false,
                             RESTfulId: id_int,
-                            RESTfulURI: '/krogoth_gantry/viewsets/Service/' + id_int + '/'
+                            RESTfulURI: '/krogoth_gantry/viewsets/Service/' + id_int + '/',
+                            hasUnsavedChanges: false,
+                            syntax: 'javascript',
+                            icon: 'language-javascript'
                         });
                     }
                     else if (name_str === "Directive") {
@@ -58,7 +61,10 @@
                             canEdit: true,
                             isMaster: false,
                             RESTfulId: id_int,
-                            RESTfulURI: '/krogoth_gantry/viewsets/Directive/' + id_int + '/'
+                            RESTfulURI: '/krogoth_gantry/viewsets/Directive/' + id_int + '/',
+                            hasUnsavedChanges: false,
+                            syntax: 'javascript',
+                            icon: 'language-javascript'
                         });
                     }
                     else if (name_str === "SlaveViewController") {
@@ -77,7 +83,10 @@
                             canEdit: true,
                             isMaster: false,
                             RESTfulId: id_int,
-                            RESTfulURI: '/krogoth_gantry/viewsets/SlaveViewController/' + id_int + '/'
+                            RESTfulURI: '/krogoth_gantry/viewsets/SlaveViewController/' + id_int + '/',
+                            hasUnsavedChanges: false,
+                            syntax: 'javascript',
+                            icon: 'angularjs'
                         });
                         treeDataOld[2].nodes.push({
                             id: id_int,
@@ -94,7 +103,10 @@
                             canEdit: true,
                             isMaster: false,
                             RESTfulId: id_int,
-                            RESTfulURI: '/krogoth_gantry/viewsets/SlaveViewController/' + id_int + '/'
+                            RESTfulURI: '/krogoth_gantry/viewsets/SlaveViewController/' + id_int + '/',
+                            hasUnsavedChanges: false,
+                            syntax: 'htmlmixed',
+                            icon: 'language-javascript'
                         });
                     }
 

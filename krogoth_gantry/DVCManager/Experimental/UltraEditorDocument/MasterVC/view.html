@@ -1,12 +1,12 @@
 <!--  MAIN HEADER  -->
 <div layout="row">
-    <div flex="20">
+    <div flex="20" layout-padding>
         <h5>
             Components
         </h5>
     </div>
     <div flex="80" ng-cloak>
-        <div style="color: white;">
+        <div style="color: white;" layout-padding>
             <div class="md-display-1">{{ vm.editorHeader.name }}</div>
         </div>
     </div>
@@ -54,15 +54,18 @@
                    class="tree-node tree-node-content tile-bg-4"
                    layout="row">
 
-        <button class="btn btn-outline-warning"
+        <button class="btn btn-outline-warning" style="padding:0px;"
                 ng-if="node.nodes && node.nodes.length > 0"
                 ng-click="vm.toggleFolder(this)">
             <span
                     class="mdi-24px mdi"
-                    ng-class="{'mdi-folder': collapsed,'mdi-folder-open': !collapsed}">
+                    ng-class="{'mdi-chevron-right': collapsed,'mdi-chevron-down': !collapsed}">
             </span>
             <md-tooltip>Browse {{ node.title }}</md-tooltip>
         </button>
+
+        <span ng-if="node.icon" class="mdi mdi-{{ node.icon }}"></span>
+
         <section ng-if="node.canRemove === true">
             <span class="badge badge-dark">
                 {{ node.title }}
@@ -92,6 +95,19 @@
                 {{ $index }}
             </span>
         </div>
+
+        <button class="btn btn-outline-info"
+                ng-if="node.hasUnsavedChanges === true"
+                layout-wrap
+                style="padding:10px"
+                ng-click="vm.saveEditorWorkToServer(node)">
+            <span class="mdi mdi-floppy"></span>
+            <!--            <span class="mdi mdi-circle"></span>-->
+            <md-tooltip md-visible="demo.showTooltip">
+                Save changes of {{ node.title }} to server.
+            </md-tooltip>
+        </button>
+
         <button class="btn btn-outline-warning"
                 ng-if="node.canEdit === true"
                 layout-wrap
@@ -103,17 +119,7 @@
                 Open {{ node.title }} in editor
             </md-tooltip>
         </button>
-        <button class="btn btn-outline-warning"
-                ng-if="node.hasUnsavedChanges === true"
-                layout-wrap
-                style="padding:10px"
-                ng-click="vm.saveEditorWorkToServer(node)">
-            <span class="mdi mdi-floppy"></span>
-            <!--            <span class="mdi mdi-circle"></span>-->
-            <md-tooltip md-visible="demo.showTooltip">
-                Save changes of {{ node.title }} to server.
-            </md-tooltip>
-        </button>
+<!--
         <button class="btn btn-outline-danger"
                 ng-if="node.canRemove === true"
                 layout-wrap
@@ -123,14 +129,13 @@
             <md-tooltip md-visible="demo.showTooltip">
                 Delete {{ node.title }}
             </md-tooltip>
-        </button>
+        </button> -->
         <button class="btn btn-outline-success"
                 ng-if="node.canAdd === true"
                 layout-wrap
                 data-max-depth="1"
-                style="padding:10px"
                 ng-click="vm.createNewComponentClick(node)"
-                style="margin-right: 8px;">
+                style="margin-right: 8px; padding:0px">
             <span class="mdi-24px mdi mdi-plus"></span>
             <md-tooltip md-visible="demo.showTooltip">
                 Add new component to {{ node.class }}

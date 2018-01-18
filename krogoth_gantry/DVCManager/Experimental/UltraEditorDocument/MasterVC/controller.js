@@ -1,12 +1,11 @@
-(function () {
+(function() {
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
     function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu,
-                                     $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync,
-                                     BatchRequestsAsync, SaveToSQL) {
+        $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync,
+        BatchRequestsAsync, SaveToSQL) {
         var vm = this;
-
 
         vm.codemirrorLoaded = codemirrorLoaded;
 
@@ -30,6 +29,7 @@
 
 
         /// REQUEST ALL DATA II.  💛
+        vm.finishedRESTfulResponses = [];
         vm.parallelRESTfulReady = parallelRESTfulReady;
         vm.parallelRESTfulAbort = parallelRESTfulAbort;
         vm.parallelRESTfulCompleted = parallelRESTfulCompleted;
@@ -51,6 +51,15 @@
         vm.slavesPendingRequest = [];
         vm.pendingRESTfulRequests = [];
 
+
+        vm.loadedIndex = -1;
+        vm.loadedParentIndex = -1;
+        vm.editorLoadedFirstDoc = false;
+        vm.saveEditorWorkToServer = saveEditorWorkToServer;
+        vm.createNewComponentClick = createNewComponentClick;
+        vm.addNewComponentToMaster = addNewComponentToMaster;
+        vm.editorHeader = {};
+
         vm.editorOptions = {
             lineWrapping: true,
             lineNumbers: true,
@@ -63,7 +72,7 @@
         /// I.
         function onInit() {
             vm.selectedMaster = $state.params.masterId;
-            UltraEditorDefaults.populateBoilerplate(vm.selectedMaster).then(function (treeData) {
+            UltraEditorDefaults.populateBoilerplate(vm.selectedMaster).then(function(treeData) {
                 vm.treeData = treeData;
                 vm.getListView();
             });
@@ -72,7 +81,7 @@
         /// II.
         function getListView() {
             AKClassEditorComponent.loadMasterInitializer(vm.selectedMaster)
-                .then(function (finishedProcess) {
+                .then(function(finishedProcess) {
                     vm.servicesPendingRequest = finishedProcess.services;
                     vm.directivesPendingRequest = finishedProcess.directives;
                     vm.slavesPendingRequest = finishedProcess.slaves;
@@ -86,21 +95,21 @@
         /*   ⚡️   */
         function parallelRESTfulStart() {
             var cpuTask1 = GatherURIsAsync.async(vm.servicesPendingRequest, "Service")()
-                .then(function (list) {
+                .then(function(list) {
                     Array.prototype.push.apply(vm.pendingRESTfulRequests, list);
                 });
             var cpuTask2 = GatherURIsAsync.async(vm.directivesPendingRequest, "Directive")()
-                .then(function (list) {
+                .then(function(list) {
                     Array.prototype.push.apply(vm.pendingRESTfulRequests, list);
                 });
             var cpuTask3 = GatherURIsAsync.async(vm.slavesPendingRequest, "SlaveViewController")()
-                .then(function (list) {
+                .then(function(list) {
                     Array.prototype.push.apply(vm.pendingRESTfulRequests, list);
                 });
             $q.all([cpuTask1,
-                cpuTask2,
-                cpuTask3
-            ])
+                    cpuTask2,
+                    cpuTask3
+                ])
                 .then(vm.parallelRESTfulReady, vm.parallelRESTfulAbort);
         }
 
@@ -108,16 +117,11 @@
             vm.messages.push("something failed: parallelRESTfulAbort");
         }
 
-/// 🧡 </INITIALIZATION I. >
+        /// 🧡 </INITIALIZATION I. >
 
 
-/// <REQUEST ALL DATA II. > 💛
-        vm.finishedRESTfulResponses = [];
+        /// <REQUEST ALL DATA II. > 💛
 
-        vm.parallelRESTfulReady = parallelRESTfulReady;
-        vm.parallelRESTfulAbort = parallelRESTfulAbort;
-        vm.parallelRESTfulCompleted = parallelRESTfulCompleted;
-        vm.parallelRESTfulServerError = parallelRESTfulServerError;
 
 
         function parallelRESTfulReady() {
@@ -127,7 +131,7 @@
                 var request_in = vm.pendingRESTfulRequests[i];
                 var cpuTaskX;
                 cpuTaskX = BatchRequestsAsync.async(request_in.id, request_in.class, vm.treeData)()
-                    .then(function (list) {
+                    .then(function(list) {
                         vm.treeData = list[0];
                         vm.finishedRESTfulResponses = list[1];
                     });
@@ -137,10 +141,10 @@
                 .then(vm.parallelRESTfulCompleted, vm.parallelRESTfulServerError);
         }
 
-/// 💛 </REQUEST ALL DATA II. >
+        /// 💛 </REQUEST ALL DATA II. >
 
 
-/// <PROCESS RESPONSE INTO RAM III. > 💚
+        /// <PROCESS RESPONSE INTO RAM III. > 💚
         function parallelRESTfulCompleted() {
             $log.log('vm.finishedRESTfulResponses ~ ~ ~ ~ ~ ~ ~  ~~  ~~ ~~ ');
             $log.log(vm.finishedRESTfulResponses);
@@ -150,7 +154,9 @@
                 0,
                 vm.objectList.view_html,
                 'view_html',
-                vm.treeData[tMaste].id
+                vm.treeData[tMaste].id,
+                'htmlmixed',
+                'language-html5'
             );
             vm.treeData[tMaste].nodes.push(moduleJS);
             const ctrlJS = new AKEditorComponentMaster(
@@ -159,7 +165,9 @@
                 0,
                 vm.objectList.module_js,
                 'module_js',
-                vm.treeData[tMaste].id
+                vm.treeData[tMaste].id,
+                'javascript',
+                'angular'
             );
             vm.treeData[tMaste].nodes.push(ctrlJS);
             const viewHTML = new AKEditorComponentMaster(
@@ -168,7 +176,9 @@
                 0,
                 vm.objectList.controller_js,
                 'controller_js',
-                vm.treeData[tMaste].id
+                vm.treeData[tMaste].id,
+                'javascript',
+                'angularjs'
             );
             vm.treeData[tMaste].nodes.push(viewHTML);
             const styleCSS = new AKEditorComponentMaster(
@@ -177,7 +187,9 @@
                 1,
                 vm.objectList.style_css,
                 'style_css',
-                vm.treeData[tStyle].id
+                vm.treeData[tStyle].id,
+                'css',
+                'language-css3'
             );
             vm.treeData[tStyle].nodes.push(styleCSS);
             const themestyleCSS = new AKEditorComponentMaster(
@@ -186,14 +198,16 @@
                 1,
                 vm.objectList.themestyle,
                 'themestyle',
-                vm.treeData[tStyle].id
+                vm.treeData[tStyle].id,
+                'css',
+                'language-css3'
             );
             vm.treeData[tStyle].nodes.push(themestyleCSS);
         }
 
 
         // vvv REMOVE vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-        function AKEditorComponentMaster(_class, index, parentIndex, sourceCode, sourceKey, restId) {
+        function AKEditorComponentMaster(_class, index, parentIndex, sourceCode, sourceKey, restId, syntax, icon) {
             this.id = -1;
             this.parentIndex = parentIndex;
             this.index = index;
@@ -208,19 +222,14 @@
             this.isMaster = true;
             this.RESTfulId = restId;
             this.RESTfulURI = '/krogoth_gantry/viewsets/MasterViewController/' + restId + '/';
+            this.hasUnsavedChanges = false;
+            this.syntax = syntax;
+            this.icon = icon;
         }
-
         // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-        vm.loadedIndex = -1;
-        vm.loadedParentIndex = -1;
-        vm.editorLoadedFirstDoc = false;
-        vm.saveEditorWorkToServer = saveEditorWorkToServer;
-        vm.createNewComponentClick = createNewComponentClick;
-        vm.addNewComponentToMaster = addNewComponentToMaster;
 
 
-        vm.editorHeader = {};
         /*  ⚡️  */
         function loadFileIntoEditor(parentIndex, index) {
             vm.unsavedChangesExist = -1;
@@ -229,27 +238,30 @@
             }
             vm.editorLoadedFirstDoc = true;
             vm.editorModel.doc.setValue(vm.treeData[parentIndex].nodes[index].sourceCode);
+            vm.unsavedChangesExist = -1;
             vm.loadedIndex = index;
             vm.loadedParentIndex = parentIndex;
             vm.editorHeader.name = vm.treeData[parentIndex].nodes[index].name;
+            vm.editorModel.setOption("mode", vm.treeData[parentIndex].nodes[index].syntax);
         }
 
 
 
         function saveEditorWorkToServer(node) {
             SaveToSQL.saveDocument(node, vm.editorModel.doc.getValue())
-                .then(function (savedWork) {
+                .then(function(savedWork) {
+                    vm.treeData[node.parentIndex].nodes[node.index].hasUnsavedChanges = false;
                     vm.treeData[node.parentIndex].nodes[node.index].sourceCode = savedWork;
+                    vm.unsavedChangesExist = -1;
                 });
         }
-
 
 
         function createNewComponentClick(treeRoot) {
             var siblings = treeRoot.nodes;
             const djangoModelName = SaveToSQL.getRESTfulModelName(treeRoot.class);
             SaveToSQL.createNew(treeRoot, 'testCreation')
-                .then(function (newNode) {
+                .then(function(newNode) {
                     vm.addNewComponentToMaster(siblings, newNode, djangoModelName, treeRoot.id);
                 });
         }
@@ -257,25 +269,28 @@
 
         function addNewComponentToMaster(siblings, newNode, djangoModelName, masterId) {
             SaveToSQL.addSiblingToMaster(siblings, newNode, djangoModelName, masterId)
-                .then(function (newNodeForTree) {
+                .then(function(newNodeForTree) {
                     $log.debug('newNodeForTree:');
                     $log.log(newNodeForTree);
+                    $log.debug('TODO FINISH THIS PART ! ! !');
                 });
         }
 
 
-/// <PROCESS RESPONSE INTO RAM III. > 💚
+        /// <PROCESS RESPONSE INTO RAM III. > 💚
 
         vm.unsavedChangesExist = -1;
+
         function editorContentWillChange() {
             $log.info('unsavedChangesExist ' + vm.unsavedChangesExist);
         }
 
         function editorContentDidChange() {
+            if (vm.loadedParentIndex !== -1 && vm.loadedIndex !== -1)
+                if (vm.unsavedChangesExist >= 0) {
+                    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].hasUnsavedChanges = true;
+                }
             vm.unsavedChangesExist += 1;
-            if (vm.unsavedChangesExist >= 0) {
-                vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].hasUnsavedChanges = true;
-            }
         }
 
         function parallelRESTfulServerError() {
@@ -294,14 +309,15 @@
             _editor.focus();
             _doc.markClean();
             _editor.setOption("firstLineNumber", 0);
-            _editor.on("beforeChange", function () {
+            _editor.on("beforeChange", function() {
                 vm.editorContentWillChange();
             });
-            _editor.on("change", function () {
+            _editor.on("change", function() {
                 vm.editorContentDidChange();
             });
             vm.editorModel = _editor;
         }
+
         ////// -----------
 
         vm.remove = remove;
