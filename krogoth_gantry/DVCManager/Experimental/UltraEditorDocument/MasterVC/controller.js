@@ -60,6 +60,8 @@
         vm.addNewComponentToMaster = addNewComponentToMaster;
         vm.editorHeader = {};
 
+        vm.goBackToCategory = goBackToCategory;
+
         vm.editorOptions = {
             lineWrapping: true,
             lineNumbers: true,
@@ -316,6 +318,12 @@
                 vm.editorContentDidChange();
             });
             vm.editorModel = _editor;
+        }
+
+        function goBackToCategory() {
+            $state.go('app.UltraEditorBrowse.slave', {
+                'categoryId': $state.params.categoryId
+            });
         }
 
         ////// -----------

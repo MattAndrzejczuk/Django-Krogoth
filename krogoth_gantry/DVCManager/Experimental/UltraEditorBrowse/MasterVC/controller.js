@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
@@ -78,7 +78,9 @@
 
 
         function selectListItem(id) {
-            $state.go('app.FUSE_APP_NAME.slave', { 'categoryId': id});
+            $state.go('app.FUSE_APP_NAME.slave', {
+                'categoryId': id
+            });
 
         }
 
@@ -88,10 +90,10 @@
             _editor.focus();
             _doc.markClean();
             _editor.setOption('firstLineNumber', 0);
-            _editor.on("beforeChange", function () {
+            _editor.on("beforeChange", function() {
                 vm.codeWillChange();
             });
-            _editor.on("change", function () {
+            _editor.on("change", function() {
                 vm.codeChanged();
             });
             vm.editorModel = _editor;
@@ -104,7 +106,7 @@
 
 
         function getMasterViewControllerDetail(id) {
-            DjangularEditorRESTfulII.getDjangularMasterViewControllerDetail(id).then(function (data) {
+            DjangularEditorRESTfulII.getDjangularMasterViewControllerDetail(id).then(function(data) {
                 vm.editorContentMaster = data;
                 vm.editorModel.doc.setValue(data.controller_js);
                 vm.input.mvcId = data.id;

@@ -94,323 +94,381 @@
 </p>
 <![endif]-->
 
-<body md-theme="{{vm.themes.active.name}}"
-      md-theme-watch
-      ng-controller="IndexController as vm"
-      style="background-color: rgba(0, 0, 0, 0) !important;"
-      class="{{state.current.bodyClass || ''}} multi_bg_example_opaque">
+<style md-theme="{{vm.themes.active.name}}"
+       md-theme-watch
+       ng-controller="IndexController as vm"
+       style="background-color: rgba(0, 0, 0, 0) !important;"
+       class="{{state.current.bodyClass || ''}} multi_bg_example_opaque">
 
-<script type="text/javascript" src="/static/bower_components/threejs/three.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/threejs/three.min.js"></script>
+
+    <style>
+        body {
+            background: #111;
+        }
+
+        .loader {
+            position: relative;
+            top: 25%;
+            left: 5%;
+            width: 10%;
+            margin: auto;
+        }
+
+        .loader .circle {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            opacity: 0;
+            transform: rotate(225deg);
+            animation-iteration-count: infinite;
+            animation-name: orbit;
+            animation-duration: 5.5s;
+        }
+
+        .loader .circle:after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 8px;
+            background: #fff;
+            /* Pick a color */
+        }
+
+        .loader .circle:nth-child(2) {
+            animation-delay: 240ms;
+        }
+
+        .loader .circle:nth-child(3) {
+            animation-delay: 480ms;
+        }
+
+        .loader .circle:nth-child(4) {
+            animation-delay: 720ms;
+        }
+
+        .loader .circle:nth-child(5) {
+            animation-delay: 960ms;
+        }
+
+        @keyframes orbit {
+            0% {
+                transform: rotate(225deg);
+                opacity: 1;
+                animation-timing-function: ease-out;
+            }
+            7% {
+                transform: rotate(345deg);
+                animation-timing-function: linear;
+            }
+            30% {
+                transform: rotate(455deg);
+                animation-timing-function: ease-in-out;
+            }
+            39% {
+                transform: rotate(690deg);
+                animation-timing-function: linear;
+            }
+            70% {
+                transform: rotate(815deg);
+                opacity: 1;
+                animation-timing-function: ease-out;
+            }
+            75% {
+                transform: rotate(945deg);
+                animation-timing-function: ease-out;
+            }
+            76% {
+                transform: rotate(945deg);
+                opacity: 0;
+            }
+            100% {
+                transform: rotate(945deg);
+                opacity: 0;
+            }
+        }
+
+    </style>
+    <!-- SPLASH SCREEN -->
+    <ms-splash-screen id="splash-screen">
+
+        <div class='loader'>
+            <div class='circle'></div>
+            <div class='circle'></div>
+            <div class='circle'></div>
+            <div class='circle'></div>
+            <div class='circle'></div>
+        </div>
+
+    </ms-splash-screen>
+
+    <!-- / SPLASH SCREEN
+        <a style="display: none" href="http://armprime.co/#!/home">
+            Arm Prime News, home of Total Annihilation Lazarus
+        </a>
+        <a style="display: none" href="http://armprime.co/#!/upcomingFeatures">
+            Creating Total Annihilation maps can take awhile. That's why we want to add a random map generator app within
+            Arm Prime.
+        </a>
+        <a style="display: none" href="http://armprime.co/#!/whatIsLaz">Total Annihilation Lazarus is a new web based mod
+            builder and conflict crusher for the 1997 classic Total Annihilation released by Cavedog entertainment.</a>
+        <a style="display: none" href="http://armprime.co/#!/projectStatus">Status of Total Annihilation mod editor</a>
+        <a style="display: none" href="http://armprime.co/#!/home">Latest news and updates</a>
+        <a style="display: none" href="http://armprime.co/#!/ArmPrimeAbout">About ArmPrime (for Total Annihilation)</a>
+        <a style="display: none" href="/static/sitemap.xml">sitemap</a>
 
 
-<!-- SPLASH SCREEN -->
-<ms-splash-screen id="splash-screen" >
+
+    <script>
+        var camera, scene, renderer;
+        var geometry, material, mesh;
+        init();
+        animate();
+        function init() {
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+            camera.position.z = 1000;
+            scene = new THREE.Scene();
+            var light = new THREE.DirectionalLight(0xffffff);
+            light.position.set(0, 1, 1).normalize();
+            scene.add(light);
+            var texture = new THREE.TextureLoader().load("/static/textured_tiles/p1.png");
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(4, 4);
+            geometry1 = new THREE.SphereBufferGeometry(64, 128, 128);
+            material1 = new THREE.MeshLambertMaterial({
+                ambient: 0x050505,
+                color: 0x0033ff,
+                specular: 0x555555,
+                shininess: 30,
+                map: texture
+            });
+            mesh1 = new THREE.Mesh(geometry1, material1);
+            mesh1.position.z = 50;
+            mesh1.texture = texture;
+            scene.add(mesh1);
+            geometry2 = new THREE.SphereGeometry(32, 50, 50);
+            material2 = new THREE.MeshPhongMaterial({
+                ambient: 0x050505,
+                color: 'rgb(0,50,0)',
+                specular: 0x555555,
+                shininess: 30,
+                map: texture
+            });
+            mesh2 = new THREE.Mesh(geometry2, material2);
+            mesh2.position.z = 50;
+            scene.add(mesh2);
+            renderer = new THREE.WebGLRenderer({
+                alpha: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            var splash = document.getElementById('splash-screen');
+            renderer.domElement.style = "";
+            splash.appendChild(renderer.domElement);
+        }
+        function animate() {
+            requestAnimationFrame(animate);
+            var orbitRadius = 300;
+            var date;
+            date = Date.now() * 0.005;
+            mesh1.position.set(
+                Math.cos(date + 5) * orbitRadius,
+                Math.sin(date) * orbitRadius,
+                0
+            );
+            mesh2.position.set(
+                Math.cos(date) * orbitRadius,
+                Math.sin(date) * orbitRadius,
+                0
+            );
+            renderer.render(scene, camera);
+        }
+    </script>
+     -->
+    <span style="display: none" id="krogoth_gantryMetaText_01">{{ version_build }}</span>
+    <div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>
+
     <!--
-    <div class="center">
-        <div class="logo"
-             style="width:{% endverbatim %}{{ width }}{% verbatim %}px;
-                     font-size: {% endverbatim %}{{ font_size }}{% verbatim %}px;
-                     background-color: {% endverbatim %}{{ splash_logo_bg_color }}{% verbatim %};">
-            <span style="color: {% endverbatim %}{{ font_color }}{% verbatim %};">
-                {% endverbatim %}{{ splash_title }}{% verbatim %}
-            </span>
-        </div>
+    <ms-theme-options></ms-theme-options>
+    -->
+    <!-- build:js(src) scripts/vendor.js -->
+    <!-- bower:js -->
 
-        <div class="spinner-wrapper" >
+    <script src="/static/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/static/bower_components/api-check-7.5.5/api-check.js"></script>
+    <script src="/static/bower_components/angular1.5/angular.js"></script>
+    <!--<script src="/static/bower_components/angular1.6/angular.min.js"></script>-->
 
-            <div class="spinner" style="color: darkolivegreen">
-                <div class="inner">
-                    <div class="gap"></div>
-                    <div class="left">
-                        <div class="half-circle"></div>
-                    </div>
-                    <div class="right">
-                        <div class="half-circle"></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
--->
-
-    <a style="display: none" href="http://armprime.co/#!/home">
-        Arm Prime News, home of Total Annihilation Lazarus
-    </a>
-    <a style="display: none" href="http://armprime.co/#!/upcomingFeatures">
-        Creating Total Annihilation maps can take awhile. That's why we want to add a random map generator app within
-        Arm Prime.
-    </a>
-    <a style="display: none" href="http://armprime.co/#!/whatIsLaz">Total Annihilation Lazarus is a new web based mod
-        builder and conflict crusher for the 1997 classic Total Annihilation released by Cavedog entertainment.</a>
-    <a style="display: none" href="http://armprime.co/#!/projectStatus">Status of Total Annihilation mod editor</a>
-    <a style="display: none" href="http://armprime.co/#!/home">Latest news and updates</a>
-    <a style="display: none" href="http://armprime.co/#!/ArmPrimeAbout">About ArmPrime (for Total Annihilation)</a>
-    <a style="display: none" href="/static/sitemap.xml">sitemap</a>
-</ms-splash-screen>
-
-<!-- / SPLASH SCREEN -->
-<script>
-    var camera, scene, renderer;
-    var geometry, material, mesh;
-
-    init();
-    animate();
-
-    function init() {
-
-        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
-        camera.position.z = 1000;
-
-        scene = new THREE.Scene();
-
-        var light = new THREE.DirectionalLight(0xffffff);
-        light.position.set(0, 1, 1).normalize();
-        scene.add(light);
-
-
-        var texture = new THREE.TextureLoader().load("/static/textured_tiles/p1.png");
-        texture.wrapS = THREE.RepeatWrapping;
-        texture.wrapT = THREE.RepeatWrapping;
-        texture.repeat.set(4, 4);
-
-        geometry1 = new THREE.SphereBufferGeometry(64, 128, 128);
-        material1 = new THREE.MeshBasicMaterial({
-            ambient: 0x050505,
-            color: 0x0033ff,
-            specular: 0x555555,
-            shininess: 30,
-            map: texture
-        });
-        mesh1 = new THREE.Mesh(geometry1, material1);
-        mesh1.position.z = 50;
-
-        mesh1.texture = texture;
-        scene.add(mesh1);
-        geometry2 = new THREE.SphereGeometry(32, 50, 50);
-        material2 = new THREE.MeshBasicMaterial({
-            ambient: 0x050505,
-            color: 'rgb(0,50,0)',
-            specular: 0x555555,
-            shininess: 30,
-            map: texture
-        });
-        mesh2 = new THREE.Mesh(geometry2, material2);
-        mesh2.position.z = 50;
-        scene.add(mesh2);
-        renderer = new THREE.WebGLRenderer({
-            alpha: true
-        });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        var splash = document.getElementById('splash-screen');
-        renderer.domElement.style = "";
-        splash.appendChild(renderer.domElement);
-    }
-
-    function animate() {
-        requestAnimationFrame(animate);
-        var orbitRadius = 300;
-        var date;
-        date = Date.now() * 0.005;
-        mesh1.position.set(
-            Math.cos(date + 5) * orbitRadius,
-            Math.sin(date) * orbitRadius,
-            0
-        );
-        mesh2.position.set(
-            Math.cos(date) * orbitRadius,
-            Math.sin(date) * orbitRadius,
-            0
-        );
-        renderer.render(scene, camera);
-
-    }
-</script>
-
-<span style="display: none" id="krogoth_gantryMetaText_01">{{ version_build }}</span>
-<div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>
-
-<!--
-<ms-theme-options></ms-theme-options>
--->
-<!-- build:js(src) scripts/vendor.js -->
-<!-- bower:js -->
-
-<script src="/static/bower_components/jquery/dist/jquery.js"></script>
-<script src="/static/bower_components/api-check-7.5.5/api-check.js"></script>
-<script src="/static/bower_components/angular1.5/angular.js"></script>
-<!--<script src="/static/bower_components/angular1.6/angular.min.js"></script>-->
-
-<script src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
-<script src="/static/bower_components/angular-aria/angular-aria.js"></script>
-<script src="/static/bower_components/chart.js/dist/Chart.js"></script>
-<script src="/static/bower_components/angular-chart.js/dist/angular-chart.js"></script>
-<script src="/static/bower_components/chartist/dist/chartist.min.js"></script>
-<script src="/static/bower_components/angular-chartist.js/dist/angular-chartist.js"></script>
-<script src="/static/bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="/static/bower_components/datatables.net/js/jquery.dataTables.js"></script>
-<script src="/static/bower_components/angular-datatables/dist/angular-datatables.js"></script>
-<script src="/static/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
-<script src="/static/bower_components/angular-datatables/dist/plugins/colreorder/angular-datatables.colreorder.js"></script>
-<script src="/static/bower_components/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.js"></script>
-<script src="/static/bower_components/angular-datatables/dist/plugins/light-columnfilter/angular-datatables.light-columnfilter.js"></script>
-<script src="/static/bower_components/angular-datatables/dist/plugins/colvis/angular-datatables.colvis.js"></script>
-<script src="/static/bower_components/angular-datatables/dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.js"></script>
-<script src="/static/bower_components/angular-datatables/dist/plugins/fixedheader/angular-datatables.fixedheader.js"></script>
-<script src="/static/bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js"></script>
-<script src="/static/bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools.js"></script>
-<script src="/static/bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js"></script>
-<script src="/static/bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.js"></script>
-<script src="/static/bower_components/angular-native-dragdrop/draganddrop.js"></script>
-<script src="/static/bower_components/jsPlumb/dist/js/jsPlumb-2.0.5.js"></script>
-<script src="/static/bower_components/moment/moment.js"></script>
-<script src="/static/bower_components/angular-moment/angular-moment.js"></script>
-<script src="/static/bower_components/angular-gantt/assets/angular-gantt.js"></script>
-<script src="/static/bower_components/angular-gantt/assets/angular-gantt-plugins.js"></script>
-<script src="/static/bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
-<script src="/static/bower_components/lodash/lodash.js"></script>
-<script src="/static/bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
-<script src="/static/bower_components/angular-messages/angular-messages.js"></script>
-<script src="/static/bower_components/angular-material/angular-material.js"></script>
-<script src="/static/bower_components/d3/d3.js"></script>
-<script src="/static/bower_components/nvd3/build/nv.d3.js"></script>
-<script src="/static/bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
-<script src="/static/bower_components/angular-resource/angular-resource.js"></script>
-<script src="/static/bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="/static/bower_components/humanize-duration/humanize-duration.js"></script>
-<script src="/static/bower_components/angular-timer/dist/angular-timer.js"></script>
-<script src="/static/bower_components/angular-translate/angular-translate.js"></script>
-<script src="/static/bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
-<script src="/static/bower_components/fullcalendar/dist/fullcalendar.js"></script>
-<script src="/static/bower_components/angular-ui-calendar/src/calendar.js"></script>
-<script src="/static/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="/static/bower_components/jquery-ui/jquery-ui.js"></script>
-<script src="/static/bower_components/angular-ui-sortable/sortable.js"></script>
-<script src="/static/bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
-<script src="/static/bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-<script src="/static/bower_components/c3/c3.js"></script>
-<script src="/static/bower_components/c3-angular/c3-angular.min.js"></script>
-<script src="/static/bower_components/css-element-queries/src/ElementQueries.js"></script>
-<script src="/static/bower_components/css-element-queries/src/ResizeSensor.js"></script>
-<script src="/static/bower_components/datatables/media/js/jquery.dataTables.js"></script>
-<script src="/static/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
-<script src="/static/bower_components/highlightjs/highlight.pack.js"></script>
-<script src="/static/bower_components/ev-emitter/ev-emitter.js"></script>
-<script src="/static/bower_components/imagesloaded/imagesloaded.js"></script>
-<script src="/static/bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-<script src="/static/bower_components/mobile-detect/mobile-detect.js"></script>
-<script src="/static/bower_components/moment-picker/dist/angular-moment-picker.min.js"></script>
-<script src="/static/bower_components/moment-range/dist/moment-range.js"></script>
-<script src="/static/bower_components/flow.js/dist/flow.js"></script>
-<script src="/static/bower_components/ng-flow/dist/ng-flow.js"></script>
-<script src="/static/bower_components/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-<script src="/static/bower_components/Sortable/Sortable.js"></script>
-<script src="/static/bower_components/Sortable/ng-sortable.js"></script>
-<script src="/static/bower_components/rangy/rangy-core.js"></script>
-<script src="/static/bower_components/rangy/rangy-classapplier.js"></script>
-<script src="/static/bower_components/rangy/rangy-highlighter.js"></script>
-<script src="/static/bower_components/rangy/rangy-selectionsaverestore.js"></script>
-<script src="/static/bower_components/rangy/rangy-serializer.js"></script>
-<script src="/static/bower_components/rangy/rangy-textrange.js"></script>
-<script src="/static/bower_components/textAngular/dist/textAngular.js"></script>
-<script src="/static/bower_components/textAngular/dist/textAngular-sanitize.js"></script>
-<script src="/static/bower_components/textAngular/dist/textAngularSetup.js"></script>
-<script src="/static/bower_components/angular-touch/angular-touch.js"></script>
-<script src="/static/bower_components/wip-image-zoom/dist/wip-image-zoom.js"></script>
+    <script src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="/static/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="/static/bower_components/chart.js/dist/Chart.js"></script>
+    <script src="/static/bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="/static/bower_components/chartist/dist/chartist.min.js"></script>
+    <script src="/static/bower_components/angular-chartist.js/dist/angular-chartist.js"></script>
+    <script src="/static/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="/static/bower_components/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="/static/bower_components/angular-datatables/dist/angular-datatables.js"></script>
+    <script src="/static/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
+    <script src="/static/bower_components/angular-datatables/dist/plugins/colreorder/angular-datatables.colreorder.js"></script>
+    <script src="/static/bower_components/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.js"></script>
+    <script src="/static/bower_components/angular-datatables/dist/plugins/light-columnfilter/angular-datatables.light-columnfilter.js"></script>
+    <script src="/static/bower_components/angular-datatables/dist/plugins/colvis/angular-datatables.colvis.js"></script>
+    <script src="/static/bower_components/angular-datatables/dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.js"></script>
+    <script src="/static/bower_components/angular-datatables/dist/plugins/fixedheader/angular-datatables.fixedheader.js"></script>
+    <script src="/static/bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js"></script>
+    <script src="/static/bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools.js"></script>
+    <script src="/static/bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js"></script>
+    <script src="/static/bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.js"></script>
+    <script src="/static/bower_components/angular-native-dragdrop/draganddrop.js"></script>
+    <script src="/static/bower_components/jsPlumb/dist/js/jsPlumb-2.0.5.js"></script>
+    <script src="/static/bower_components/moment/moment.js"></script>
+    <script src="/static/bower_components/angular-moment/angular-moment.js"></script>
+    <script src="/static/bower_components/angular-gantt/assets/angular-gantt.js"></script>
+    <script src="/static/bower_components/angular-gantt/assets/angular-gantt-plugins.js"></script>
+    <script src="/static/bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+    <script src="/static/bower_components/lodash/lodash.js"></script>
+    <script src="/static/bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+    <script src="/static/bower_components/angular-messages/angular-messages.js"></script>
+    <script src="/static/bower_components/angular-material/angular-material.js"></script>
+    <script src="/static/bower_components/d3/d3.js"></script>
+    <script src="/static/bower_components/nvd3/build/nv.d3.js"></script>
+    <script src="/static/bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
+    <script src="/static/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/static/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/static/bower_components/humanize-duration/humanize-duration.js"></script>
+    <script src="/static/bower_components/angular-timer/dist/angular-timer.js"></script>
+    <script src="/static/bower_components/angular-translate/angular-translate.js"></script>
+    <script src="/static/bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+    <script src="/static/bower_components/fullcalendar/dist/fullcalendar.js"></script>
+    <script src="/static/bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script src="/static/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/static/bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="/static/bower_components/angular-ui-sortable/sortable.js"></script>
+    <script src="/static/bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
+    <script src="/static/bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="/static/bower_components/c3/c3.js"></script>
+    <script src="/static/bower_components/c3-angular/c3-angular.min.js"></script>
+    <script src="/static/bower_components/css-element-queries/src/ElementQueries.js"></script>
+    <script src="/static/bower_components/css-element-queries/src/ResizeSensor.js"></script>
+    <script src="/static/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="/static/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
+    <script src="/static/bower_components/highlightjs/highlight.pack.js"></script>
+    <script src="/static/bower_components/ev-emitter/ev-emitter.js"></script>
+    <script src="/static/bower_components/imagesloaded/imagesloaded.js"></script>
+    <script src="/static/bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script src="/static/bower_components/mobile-detect/mobile-detect.js"></script>
+    <script src="/static/bower_components/moment-picker/dist/angular-moment-picker.min.js"></script>
+    <script src="/static/bower_components/moment-range/dist/moment-range.js"></script>
+    <script src="/static/bower_components/flow.js/dist/flow.js"></script>
+    <script src="/static/bower_components/ng-flow/dist/ng-flow.js"></script>
+    <script src="/static/bower_components/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+    <script src="/static/bower_components/Sortable/Sortable.js"></script>
+    <script src="/static/bower_components/Sortable/ng-sortable.js"></script>
+    <script src="/static/bower_components/rangy/rangy-core.js"></script>
+    <script src="/static/bower_components/rangy/rangy-classapplier.js"></script>
+    <script src="/static/bower_components/rangy/rangy-highlighter.js"></script>
+    <script src="/static/bower_components/rangy/rangy-selectionsaverestore.js"></script>
+    <script src="/static/bower_components/rangy/rangy-serializer.js"></script>
+    <script src="/static/bower_components/rangy/rangy-textrange.js"></script>
+    <script src="/static/bower_components/textAngular/dist/textAngular.js"></script>
+    <script src="/static/bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+    <script src="/static/bower_components/textAngular/dist/textAngularSetup.js"></script>
+    <script src="/static/bower_components/angular-touch/angular-touch.js"></script>
+    <script src="/static/bower_components/wip-image-zoom/dist/wip-image-zoom.js"></script>
 
 
-<script src="/static/bower_components/ng-websocket/ng-websocket.js"></script>
-<script src="/static/bower_components/ng-file-upload/ng-file-upload.js"></script>
-<script src="/static/bower_components/oclazyload/dist/ocLazyLoad.js"></script>
-<script src="/static/bower_components/angular-formly/formly.js"></script>
+    <script src="/static/bower_components/ng-websocket/ng-websocket.js"></script>
+    <script src="/static/bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="/static/bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+    <script src="/static/bower_components/angular-formly/formly.js"></script>
 
 
-<!-- https://github.com/danialfarid/ng-file-upload -->
-<!-- endbower -->
-<!-- endbuild -->
+    <!-- https://github.com/danialfarid/ng-file-upload -->
+    <!-- endbower -->
+    <!-- endbuild -->
 
-<!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
-<!-- inject:js -->
+    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- inject:js -->
 
-<script src="/static/app/main/apps/scrumboard/scrumboard.module.js"></script>
-<script src="/static/app/main/apps/scrumboard/views/calendar/dialogs/event/event-dialog.controller.js"></script>
-<script src="/static/app/main/apps/scrumboard/sidenavs/settings/menus/members/members-menu.controller.js"></script>
-<script src="/static/app/main/apps/scrumboard/sidenavs/settings/menus/labels/labels-menu.controller.js"></script>
-<script src="/static/app/main/apps/scrumboard/sidenavs/settings/menus/color/color-menu.controller.js"></script>
-<!--<script src="/static/angular-ui-tree/angular-ui-tree.min.js"></script>-->
+    <script src="/static/app/main/apps/scrumboard/scrumboard.module.js"></script>
+    <script src="/static/app/main/apps/scrumboard/views/calendar/dialogs/event/event-dialog.controller.js"></script>
+    <script src="/static/app/main/apps/scrumboard/sidenavs/settings/menus/members/members-menu.controller.js"></script>
+    <script src="/static/app/main/apps/scrumboard/sidenavs/settings/menus/labels/labels-menu.controller.js"></script>
+    <script src="/static/app/main/apps/scrumboard/sidenavs/settings/menus/color/color-menu.controller.js"></script>
+    <!--<script src="/static/angular-ui-tree/angular-ui-tree.min.js"></script>-->
 
-<script src="/static/jkcarousel/jk-carousel.min.js"></script>
+    <script src="/static/jkcarousel/jk-carousel.min.js"></script>
 
-<script type="text/javascript" src="/static/codemirror/angular/ui-codemirror.js"></script>
-<script type="text/javascript" src="/static/codemirror/lib/codemirror.js"></script>
+    <script type="text/javascript" src="/static/codemirror/angular/ui-codemirror.js"></script>
+    <script type="text/javascript" src="/static/codemirror/lib/codemirror.js"></script>
 
-<script type="text/javascript" src="/static/codemirror/mode/xml/xml.js"></script>
-<script type="text/javascript" src="/static/codemirror/mode/htmlmixed/htmlmixed.js"></script>
-<script type="text/javascript" src="/static/codemirror/mode/htmlembedded/htmlembedded.js"></script>
-<script type="text/javascript" src="/static/codemirror/mode/javascript/javascript.js"></script>
-<script type="text/javascript" src="/static/codemirror/mode/css/css.js"></script>
+    <script type="text/javascript" src="/static/codemirror/mode/xml/xml.js"></script>
+    <script type="text/javascript" src="/static/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script type="text/javascript" src="/static/codemirror/mode/htmlembedded/htmlembedded.js"></script>
+    <script type="text/javascript" src="/static/codemirror/mode/javascript/javascript.js"></script>
+    <script type="text/javascript" src="/static/codemirror/mode/css/css.js"></script>
 
-<script type="text/javascript" src="/static/codemirror/addon/edit/matchtags.js"></script>
-<script type="text/javascript" src="/static/codemirror/addon/edit/closebrackets.js"></script>
-<script type="text/javascript" src="/static/codemirror/addon/edit/continuelist.js"></script>
-<script type="text/javascript" src="/static/codemirror/addon/edit/matchbrackets.js"></script>
-<script type="text/javascript" src="/static/codemirror/addon/edit/matchtags.js"></script>
-<script type="text/javascript" src="/static/codemirror/addon/edit/trailingspace.js"></script>
+    <script type="text/javascript" src="/static/codemirror/addon/edit/matchtags.js"></script>
+    <script type="text/javascript" src="/static/codemirror/addon/edit/closebrackets.js"></script>
+    <script type="text/javascript" src="/static/codemirror/addon/edit/continuelist.js"></script>
+    <script type="text/javascript" src="/static/codemirror/addon/edit/matchbrackets.js"></script>
+    <script type="text/javascript" src="/static/codemirror/addon/edit/matchtags.js"></script>
+    <script type="text/javascript" src="/static/codemirror/addon/edit/trailingspace.js"></script>
 
-<script type="text/javascript" src="/static/codemirror/addon/hint/javascript-hint.js"></script>
-
-
-<!--<script src="/static/app/main/sample/sample.module.js"></script>-->
-<!--<script src="/static/app/main/sample/sample.controller.js"></script>-->
-
-{% endverbatim %}
+    <script type="text/javascript" src="/static/codemirror/addon/hint/javascript-hint.js"></script>
 
 
-<!--KrogothGantryMasterViewControllers-->
-{% for fuse_app in KrogothGantryMasterViewControllers %}
-    <script src="/krogoth_gantry/DynamicJavaScriptInjector/?name={{ fuse_app }}"></script>
-{% endfor %}
+    <!--<script src="/static/app/main/sample/sample.module.js"></script>-->
+    <!--<script src="/static/app/main/sample/sample.controller.js"></script>-->
+
+    {% endverbatim %}
 
 
-<script src="/moho_extractor/KrogothFoundation/?unique_name=quick-panelmodule"></script>
-<script src="/moho_extractor/KrogothFoundation/?unique_name=coremodule"></script>
+    <!--KrogothGantryMasterViewControllers-->
+    {% for fuse_app in KrogothGantryMasterViewControllers %}
+        <script src="/krogoth_gantry/DynamicJavaScriptInjector/?name={{ fuse_app }}"></script>
+    {% endfor %}
 
 
-<!--KrogothFoundation-->
-{% for com in core %}
-    <script src="/moho_extractor/KrogothFoundation/?unique_name={{ com }}"></script>
-{% endfor %}
-
-<script src="/moho_extractor/KrogothFoundation/?unique_name=toolbarmodule"></script>
-<script src="/moho_extractor/KrogothFoundation/?unique_name=toolbarcontroller"></script>
-
-<script src="/moho_extractor/KrogothFoundation/?unique_name=navigationmodule"></script>
-<script src="/moho_extractor/KrogothFoundation/?unique_name=navigationcontroller"></script>
-
-<script src="/moho_extractor/KrogothFoundation/?unique_name=quick-panelcontroller"></script>
-
-<script src="/moho_extractor/KrogothFoundation/?unique_name=indexmodule"></script>
-<script src="/moho_extractor/KrogothFoundation/?unique_name=maincontroller"></script>
-<script src="/moho_extractor/KrogothFoundation/?unique_name=corerun"></script>
-<script src="/moho_extractor/KrogothFoundation/?unique_name=coreconfig"></script>
-<script src="/moho_extractor/KrogothFoundation/?unique_name=indexrun"></script>
-<script src="/moho_extractor/KrogothFoundation/?unique_name=indexroute"></script>
-<script src="/moho_extractor/KrogothFoundation/?unique_name=indexcontroller"></script>
-<script src="/moho_extractor/KrogothFoundation/?unique_name=indexconstants"></script>
-<script src="/moho_extractor/KrogothFoundation/?unique_name=indexconfig"></script>
-<script src="/moho_extractor/KrogothFoundation/?unique_name=indexapi"></script>
-
-{% verbatim %}
-
-{% endverbatim %}
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=quick-panelmodule"></script>
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=coremodule"></script>
 
 
-<link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
+    <!--KrogothFoundation-->
+    {% for com in core %}
+        <script src="/moho_extractor/KrogothFoundation/?unique_name={{ com }}"></script>
+    {% endfor %}
+
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=toolbarmodule"></script>
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=toolbarcontroller"></script>
+
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=navigationmodule"></script>
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=navigationcontroller"></script>
+
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=quick-panelcontroller"></script>
+
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=indexmodule"></script>
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=maincontroller"></script>
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=corerun"></script>
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=coreconfig"></script>
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=indexrun"></script>
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=indexroute"></script>
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=indexcontroller"></script>
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=indexconstants"></script>
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=indexconfig"></script>
+    <script src="/moho_extractor/KrogothFoundation/?unique_name=indexapi"></script>
+
+    {% verbatim %}
+
+    {% endverbatim %}
 
 
-<p id="krogoth_gantryVersion" style="display: none">{{ version_build }}</p>
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
 
-</body>
+
+    <p id="krogoth_gantryVersion" style="display: none">{{ version_build }}</p>
+
+    </body>
 
 </html>

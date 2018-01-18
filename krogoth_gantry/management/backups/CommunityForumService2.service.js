@@ -45,7 +45,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: '/api/ForumPost/' + id
+                url: '/Forum/ForumPostDetailView/?post_id=' + id
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
@@ -61,7 +61,7 @@
             $http({
                 method: 'POST',
                 data: thread,
-                url: '/api/ForumPost/'
+                url: '/Forum/ForumPostDetailView/'
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
@@ -77,7 +77,7 @@
             $http({
                 method: 'POST',
                 data: reply,
-                url: '/api/ForumReply/',
+                url: '/Forum/ForumReplySubmitView/',
                 headers: {
                     'Content-Type': 'application/json'
                 }

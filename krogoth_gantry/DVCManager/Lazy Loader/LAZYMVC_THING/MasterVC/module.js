@@ -1,3 +1,15 @@
+
+// Name:
+// LAZYMVC_THING
+
+// We will load: LAZYMVC_UNLOADED
+
+// COMPILED HTML:
+////krogoth_gantry/DynamicHTMLInjector/?name=FUSE_APP_NAME
+
+// COMPILED JAVASCRIPT:
+////krogoth_gantry/DynamicJavaScriptInjector/?name=FUSE_APP_NAME
+
 (function() {
     'use strict';
     angular.module('app.FUSE_APP_NAME', ['flow']).config(config);
@@ -15,21 +27,11 @@
             })
         _DJANGULAR_SLAVE_VC_INJECTION_POINT_; /* krogoth_gantry Slave VCs automatically injected here. */
         _DJANGULAR_SLAVE_MSAPI_INJECTION_POINT_
-
-
-        _KROGOTH_CATEGORIES_
-
-        msNavigationServiceProvider.saveItem('Lazarus', {
-            title: 'Lazarus',
-            icon: 'mdi mdi-react',
-            /*state: 'app.FUSE_APP_NAME',*/
-            weight: 3
-        });
-        msNavigationServiceProvider.saveItem('NAV_HEADER.FUSE_APP_NAME', {
-            title: 'Mod Editor',
-            icon: 'mdi mdi-dna',
+        msNavigationServiceProvider.saveItem('AK_NAVCAT_KROGOTH.AK_SUBCATAGORY_KROGOTH.FUSE_APP_NAME', {
+            title: 'FUSE_APP_TITLE',
+            icon: 'FUSE_APP_ICON',
             state: 'app.FUSE_APP_NAME',
-            weight: 2
+            weight: 3
         });
         _DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_
     }

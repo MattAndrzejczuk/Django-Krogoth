@@ -80,6 +80,10 @@ class Command(BaseCommand):
                         style = '/**/'
                         title = 'Untitled'
                         subcatagory = ''
+
+                        is_lazy = False
+                        if os.path.exists('krogoth_gantry/DVCManager/' + dvc + '/Lazy.txt'):
+                            is_lazy = True
                         if os.path.exists('krogoth_gantry/DVCManager/' + dvc + '/Title.txt'):
                             title = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/Title.txt', 'r').read()
                         if os.path.exists('krogoth_gantry/DVCManager/' + dvc + '/SubCatagory.txt'):
@@ -100,7 +104,7 @@ class Command(BaseCommand):
                                                      'r').read()
                         _mvc = AKGantryMasterViewController.objects.get_or_create(name=name_pk,
                                                                                   title=title, category=cat,
-                                                                                  icon=icon)
+                                                                                  icon=icon, is_enabled=False)
 
                         # view_html=str_View,
                         # controller_js=str_Controller,

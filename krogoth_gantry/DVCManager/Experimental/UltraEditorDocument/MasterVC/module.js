@@ -5,7 +5,7 @@
     function config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider) {
         $stateProvider
             .state('app.FUSE_APP_NAME', {
-                url: '/FUSE_APP_NAME/:masterId',
+                url: '/FUSE_APP_NAME/:categoryId/:masterId',
                 views: {
                     'main@': {
                         templateUrl: '/moho_extractor/NgIncludedHtml/?name=content-only.html',
@@ -18,20 +18,20 @@
 
                 }
             });
-            // .state('app.FUSE_APP_NAME.slave', {
-            //     url: '/edit/:documentType/:documentId',
-            //     views: {
-            //         'main@': {
-            //             templateUrl: '/moho_extractor/NgIncludedHtml/?name=content-only.html',
-            //             controller: 'MainController as vm'
-            //         },
-            //         'content@app.FUSE_APP_NAME.slave': {
-            //             templateUrl: '/krogoth_gantry/DynamicHTMLSlaveInjector/?name=UltraEditorSlave',
-            //             controller: 'FUSE_APP_SLAVE_NAMEController as vm'
-            //         }
-            //
-            //     }
-            // });
+        // .state('app.FUSE_APP_NAME.slave', {
+        //     url: '/edit/:documentType/:documentId',
+        //     views: {
+        //         'main@': {
+        //             templateUrl: '/moho_extractor/NgIncludedHtml/?name=content-only.html',
+        //             controller: 'MainController as vm'
+        //         },
+        //         'content@app.FUSE_APP_NAME.slave': {
+        //             templateUrl: '/krogoth_gantry/DynamicHTMLSlaveInjector/?name=UltraEditorSlave',
+        //             controller: 'FUSE_APP_SLAVE_NAMEController as vm'
+        //         }
+        //
+        //     }
+        // });
 
 
         msNavigationServiceProvider.saveItem('NAV_HEADER.FUSE_APP_NAME', {

@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_SLAVE_NAMEController', FUSE_APP_SLAVE_NAMEController);
 
@@ -14,6 +14,7 @@
 
         vm.objectList = {};
         vm.selectListItem = selectListItem;
+        vm.goBackToMaster = goBackToMaster;
 
         function onInit() {
             vm.loadMasters();
@@ -35,8 +36,15 @@
 
 
         function selectListItem(id) {
-            $log.log("$state.go('app."+vm.nextView+"', {'masterId': id});");
-            $state.go('app.'+vm.nextView, {'masterId': id});
+            $log.log("$state.go('app." + vm.nextView + "', {'masterId': id});");
+            $state.go('app.' + vm.nextView, {
+                'masterId': id,
+                'categoryId': $stateParams.categoryId
+            });
+        }
+
+        function goBackToMaster() {
+            $state.go('app.FUSE_APP_NAME');
         }
 
 
@@ -47,11 +55,11 @@
             _editor.focus();
             _doc.markClean();
             _editor.setOption('firstLineNumber', 0);
-            _editor.on("beforeChange", function () {
+            _editor.on("beforeChange", function() {
                 // vm.codeWillChange();
                 $log.log('beforeChange');
             });
-            _editor.on("change", function () {
+            _editor.on("change", function() {
                 // vm.codeChanged();
                 $log.log('change');
             });

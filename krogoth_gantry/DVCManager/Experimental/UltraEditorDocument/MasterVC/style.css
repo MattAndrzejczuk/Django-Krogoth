@@ -36,7 +36,9 @@
 .whitebg {
     background-color: rgba(255, 255, 255, 0.25);
 }
-
+.blackbg {
+    background-color: rgba(0, 0, 0, 0.25);
+}
 /*.btn-xs {*/
     /*max-height: 16px;*/
 /*}*/
@@ -209,7 +211,7 @@ fieldset[disabled] a.custom-file-control::before {
 
 .btn-warning {
     color: #111;
-    background-color: #ffeb3b;
+    background-color: #fff702;
     border-color: #ffeb3b;
     box-shadow: none;
 }
@@ -386,10 +388,10 @@ fieldset[disabled] a.custom-file-control::before {
 }
 
 .btn-outline-success {
-    color: #4caf50;
+    color: #00af02;
     background-color: transparent;
     background-image: none;
-    border-color: #4caf50;
+    border-color: #02af00;
 }
 
 .btn-outline-success:hover {
@@ -444,10 +446,10 @@ fieldset[disabled] a.custom-file-control::before {
 }
 
 .btn-outline-warning {
-    color: #ffeb3b;
+    color: #ffd000;
     background-color: transparent;
     background-image: none;
-    border-color: #ffeb3b;
+    border-color: #b9b900;
 }
 
 .btn-outline-warning:hover {
@@ -846,4 +848,3 @@ div.ng-hide-remove {
 /*-moz-box-sizing: border-box;*/
 /*box-sizing: border-box;*/
 /*}*/
-

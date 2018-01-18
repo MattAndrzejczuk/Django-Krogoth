@@ -1,7 +1,12 @@
-<div style="color:white">
+<div style="color:white" layout="row">
+	<button class="btn btn-outline-primary md-button md-fab md-raised" ng-click="vm.goBackToMaster()">
+				<span class="mdi-24px mdi mdi-arrow-left"></span>
+				<md-tooltip>
+					Go Back
+				</md-tooltip>
+    </button>
     <h1>{{ vm.viewName }}</h1>
 </div>
-
 
 
 <div layout="row">
@@ -21,12 +26,11 @@
                           md-colspan="1"
                           md-colspan-sm="1"
                           md-colspan-xs="1"
-                          class="glass-global"
                           ak-frosted-glass
                           style="border-radius:25px"
                           md-whiteframe="3">
 
-                <div class="whitebg" layout-fill flex-offset="10" style="border-radius:25px">
+                <div class="blackbg" layout-fill flex-offset="10" style="border-radius:25px">
                     <div class="tile-bg-5" layout-fill flex-offset="10" layout="column" style="border-radius:25px">
 									<span flex="30" layout-align="center center">
 										<md-button class="md-fab md-green-A700-bg"
@@ -39,7 +43,9 @@
                         <div flex="50" layout-wrap layout="row">
 										<span editable-text="tile.name"
                                               layout-margin layout-align="center center"
-                                              onaftersave="vm.updateName(tile)">{{ tile.name }}</span>
+                                              onaftersave="vm.updateName(tile)">
+                                            <strong>{{ tile.name }}</strong>
+                                        </span>
                             <span flex="20"></span>
                         </div>
                     </div>
@@ -60,3 +66,11 @@
 
     </div>
 </div>
+
+
+<style>
+    .editable-click {
+        border-bottom: none;
+        color: white;
+    }
+</style>
