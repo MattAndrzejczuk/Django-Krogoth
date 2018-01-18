@@ -18,6 +18,7 @@
                 'ui.codemirror',
                 'oc.lazyLoad',
                 'ui.tree',
+                'djangoRESTResources',
                 'formly'
             ]);
 })();

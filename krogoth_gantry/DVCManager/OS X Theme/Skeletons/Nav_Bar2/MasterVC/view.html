@@ -1,0 +1,657 @@
+<style>
+
+    .toolbarTopWindow {
+
+        border-bottom: solid 1px #686868;
+        background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2U0ZTRlNCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2I4YjdiOCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+        background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e4e4e4), color-stop(100%, #b8b7b8));
+        background: -moz-linear-gradient(#e4e4e4, #b8b7b8);
+        background: -webkit-linear-gradient(#e4e4e4, #b8b7b8);
+        background: linear-gradient(#e4e4e4, #b8b7b8);
+        -moz-box-shadow: #f1f1f1 0 1px inset;
+        -webkit-box-shadow: #f1f1f1 0 1px inset;
+        box-shadow: #f1f1f1 0 1px inset;
+        -moz-border-radius: 6px 6px 0 0;
+        -webkit-border-radius: 6px;
+        border-radius: 6px 6px 0 0;
+    }
+
+</style>
+
+
+<section style="background-color: white">
+
+
+    <!--
+    <div class="sidebar">
+        <div class="sidebar-navicontainer">
+            <div class="sidebar-headbox">
+                <span class="sidebar-header">UI Elements</span>
+                <a class="sidebar-toggle">Hide</a>
+            </div>
+            <ul class="nav">
+                <li ng-class="{ selected: isActive('/maverix')}"><a href="#/maverix"><span class="entypo-window"></span>
+                    Guide</a></li>
+                <li ng-class="{ selected: isActive('/controls')}"><a href="#/controls"><span
+                        class="entypo-plus-circled"></span>
+                    Controls</a></li>
+                <li ng-class="{ selected: isActive('/forms')}"><a href="#/forms"><span class="entypo-pencil"></span>
+                    Forms</a></li>
+                <li ng-class="{ selected: isActive('/modals')}"><a href="#/modals"><span class="entypo-window"></span>
+                    Modals</a></li>
+                <li ng-class="{ selected: isActive('/tables')}"><a href="#/tables"><span class="entypo-list"></span>
+                    Tables</a></li>
+                <li ng-class="{ selected: isActive('/icons')}"><a href="#/icons"><span class="entypo-box"></span>
+                    Icons</a></li>
+                <li ng-class="{ selected: isActive('/type')}"><a href="#/type"><span class="entypo-behance"></span>
+                    Typography</a></li>
+                <li ng-class="{ selected: isActive('/charts')}"><a href="#/charts"><span
+                        class="entypo-chart-bar"></span>
+                    Charts</a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-navicontainer">
+            <div class="sidebar-headbox">
+                <span class="sidebar-header">Example Pages</span>
+                <a class="sidebar-toggle">Hide</a>
+            </div>
+            <ul class="nav">
+                <li ng-class="{ selected: isActive('/view1')}"><a href="#/view1"><span class="entypo-monitor"></span>
+                    Maverix</a></li>
+                <li ng-class="{ selected: isActive('/view2')}"><a href="#/view2"><span class="entypo-attention"></span>
+                    Warnings <span class="sidebar-badge">4</span>
+                </a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-navicontainer">
+            <div class="sidebar-headbox">
+                <span class="sidebar-header">Placeholder Accounts</span>
+                <a class="sidebar-toggle">Hide</a>
+            </div>
+            <ul class="nav">
+                <li><span class="entypo-user"></span> Users</li>
+                <li><span class="entypo-users"></span> Groups</li>
+                <li><span class="entypo-vcard"></span> Certificates</li>
+                <li><span class="entypo-doc-text"></span> Protocols</li>
+                <li><span class="entypo-chart-bar"></span> Stats</li>
+            </ul>
+        </div>
+
+        <div class="sidebar-navicontainer">
+            <div class="sidebar-headbox">
+                <span class="sidebar-header">Placeholder Services</span>
+                <a class="sidebar-toggle">Hide</a>
+            </div>
+            <ul class="nav">
+                <li><a href=""><span class="entypo-archive"></span> Caching</a></li>
+                <li><a href=""><span class="entypo-drive"></span> File Sharing</a></li>
+                <li><a href=""><span class="entypo-calendar"></span> Calendar</a></li>
+                <li><a href=""><span class="entypo-book"></span> Contacts</a></li>
+                <li><a href=""><span class="entypo-mail"></span> Mail</a></li>
+                <li><a href=""><span class="entypo-chat"></span> Messages <span class="sidebar-badge">1</span></a></li>
+                <li><a href=""><span class="entypo-newspaper"></span> Profile Manager</a></li>
+                <li><a href=""><span class="entypo-ccw"></span> Backups</a></li>
+                <li><a href=""><span class="entypo-lock"></span> VPN</a></li>
+                <li><a href=""><span class="entypo-globe"></span> Websites</a></li>
+                <li><a href=""><span class="entypo-docs"></span> Wiki</a></li>
+                <li><a href=""><span class="entypo-tools"></span> Build</a></li>
+            </ul>
+        </div>
+    </div>
+    -->
+
+    <!--<div class="heading-bar">-->
+    <!--<div class="user-bar">
+        Hi, Username | <a href="#">Sign out</a>
+    </div>-->
+    <!--<span class="heading-one">-->
+    <!--<img ng-src="{{img}}" width="48"-->
+    <!--height="48">-->
+    <!--{{title}}-->
+    <!--</span>-->
+    <!--</div>-->
+    <div class="sub-nav toolbarTopWindow">
+        <ul>
+            <li ng-class="{selected : vm.subNav1 === -1}">
+                <a href="" ng-click="vm.subNav1 = -1">OS X Theme</a>
+            </li>
+            <li ng-class="{selected : vm.subNav1 === 0}">
+                <a href="" ng-click="vm.subNav1 = 0">Overview</a>
+            </li>
+            <li ng-class="{selected : vm.subNav1 === 1}">
+                <a href="" ng-click="vm.subNav1 = 1">Settings</a>
+            </li>
+            <li ng-class="{selected : vm.subNav1 === 2}">
+                <a href="" ng-click="vm.subNav1 = 2">Memory</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="container-fluid container-maverix glass-global" ak-frosted-glass>
+
+            <div class="sub-nav-content-container" style="background-color: rgba(255,255,255,0.65);">
+                <br>
+                <br>
+                <h1 style="margin: 0px">
+                    Leopard X Theme
+                </h1>
+            </div>
+            <div class="sub-nav-content-container" style="background-color: rgba(255,255,255,0.65);">
+
+                <br>
+                <h1>Icons from entypo</h1>
+                <br>
+                <section layout="column" style="font-size:200%" layout-padding layout-margin>
+                    <div class="entypo-address"> &nbsp; address</div>
+                    <div class="entypo-adjust"> &nbsp; adjust</div>
+                    <div class="entypo-air"> &nbsp; air</div>
+                    <div class="entypo-alert"> &nbsp; alert</div>
+                    <div class="entypo-archive"> &nbsp; archive</div>
+                    <div class="entypo-arrow-combo"> &nbsp; arrow-combo</div>
+                    <div class="entypo-arrows-ccw"> &nbsp; arrows-ccw</div>
+                    <div class="entypo-attach"> &nbsp; attach</div>
+                    <div class="entypo-attention"> &nbsp; attention</div>
+                    <div class="entypo-back"> &nbsp; back</div>
+                    <div class="entypo-back-in-time"> &nbsp; back-in-time</div>
+                    <div class="entypo-bag"> &nbsp; bag</div>
+                    <div class="entypo-basket"> &nbsp; basket</div>
+                    <div class="entypo-battery"> &nbsp; battery</div>
+                    <div class="entypo-behance"> &nbsp; behance</div>
+                    <div class="entypo-bell"> &nbsp; bell</div>
+                    <div class="entypo-block"> &nbsp; block</div>
+                    <div class="entypo-book"> &nbsp; book</div>
+                    <div class="entypo-book-open"> &nbsp; book-open</div>
+                    <div class="entypo-bookmark"> &nbsp; bookmark</div>
+                    <div class="entypo-bookmarks"> &nbsp; bookmarks</div>
+                    <div class="entypo-box"> &nbsp; box</div>
+                    <div class="entypo-briefcase"> &nbsp; briefcase</div>
+                    <div class="entypo-brush"> &nbsp; brush</div>
+                    <div class="entypo-bucket"> &nbsp; bucket</div>
+                    <div class="entypo-calendar"> &nbsp; calendar</div>
+                    <div class="entypo-camera"> &nbsp; camera</div>
+                    <div class="entypo-cancel"> &nbsp; cancel</div>
+                    <div class="entypo-cancel-circled"> &nbsp; cancel-circled</div>
+                    <div class="entypo-cancel-squared"> &nbsp; cancel-squared</div>
+                    <div class="entypo-cc"> &nbsp; cc</div>
+                    <div class="entypo-cc-by"> &nbsp; cc-by</div>
+                    <div class="entypo-cc-nc"> &nbsp; cc-nc</div>
+                    <div class="entypo-cc-nc-eu"> &nbsp; cc-nc-eu</div>
+                    <div class="entypo-cc-nc-jp"> &nbsp; cc-nc-jp</div>
+                    <div class="entypo-cc-nd"> &nbsp; cc-nd</div>
+                    <div class="entypo-cc-pd"> &nbsp; cc-pd</div>
+                    <div class="entypo-cc-remix"> &nbsp; cc-remix</div>
+                    <div class="entypo-cc-sa"> &nbsp; cc-sa</div>
+                    <div class="entypo-cc-share"> &nbsp; cc-share</div>
+                    <div class="entypo-cc-zero"> &nbsp; cc-zero</div>
+                    <div class="entypo-ccw"> &nbsp; ccw</div>
+                    <div class="entypo-cd"> &nbsp; cd</div>
+                    <div class="entypo-chart-area"> &nbsp; chart-area</div>
+                    <div class="entypo-chart-bar"> &nbsp; chart-bar</div>
+                    <div class="entypo-chart-line"> &nbsp; chart-line</div>
+                    <div class="entypo-chart-pie"> &nbsp; chart-pie</div>
+                    <div class="entypo-chat"> &nbsp; chat</div>
+                    <div class="entypo-check"> &nbsp; check</div>
+                    <div class="entypo-clipboard"> &nbsp; clipboard</div>
+                    <div class="entypo-clock"> &nbsp; clock</div>
+                    <div class="entypo-cloud"> &nbsp; cloud</div>
+                    <div class="entypo-cloud-thunder"> &nbsp; cloud-thunder</div>
+                    <div class="entypo-code"> &nbsp; code</div>
+                    <div class="entypo-cog"> &nbsp; cog</div>
+                    <div class="entypo-comment"> &nbsp; comment</div>
+                    <div class="entypo-compass"> &nbsp; compass</div>
+                    <div class="entypo-credit-card"> &nbsp; credit-card</div>
+                    <div class="entypo-cup"> &nbsp; cup</div>
+                    <div class="entypo-cw"> &nbsp; cw</div>
+                    <div class="entypo-database"> &nbsp; database</div>
+                    <div class="entypo-db-shape"> &nbsp; db-shape</div>
+                    <div class="entypo-direction"> &nbsp; direction</div>
+                    <div class="entypo-doc"> &nbsp; doc</div>
+                    <div class="entypo-doc-landscape"> &nbsp; doc-landscape</div>
+                    <div class="entypo-doc-text"> &nbsp; doc-text</div>
+                    <div class="entypo-doc-text-inv"> &nbsp; doc-text-inv</div>
+                    <div class="entypo-docs"> &nbsp; docs</div>
+                    <div class="entypo-dot"> &nbsp; dot</div>
+                    <div class="entypo-dot-2"> &nbsp; dot-2</div>
+                    <div class="entypo-dot-3"> &nbsp; dot-3</div>
+                    <div class="entypo-down"> &nbsp; down</div>
+                    <div class="entypo-down-bold"> &nbsp; down-bold</div>
+                    <div class="entypo-down-circled"> &nbsp; down-circled</div>
+                    <div class="entypo-down-dir"> &nbsp; down-dir</div>
+                    <div class="entypo-down-open"> &nbsp; down-open</div>
+                    <div class="entypo-down-open-big"> &nbsp; down-open-big</div>
+                    <div class="entypo-down-open-mini"> &nbsp; down-open-mini</div>
+                    <div class="entypo-down-thin"> &nbsp; down-thin</div>
+                    <div class="entypo-download"> &nbsp; download</div>
+                    <div class="entypo-dribbble"> &nbsp; dribbble</div>
+                    <div class="entypo-dribbble-circled"> &nbsp; dribbble-circled</div>
+                    <div class="entypo-drive"> &nbsp; drive</div>
+                    <div class="entypo-dropbox"> &nbsp; dropbox</div>
+                    <div class="entypo-droplet"> &nbsp; droplet</div>
+                    <div class="entypo-erase"> &nbsp; erase</div>
+                    <div class="entypo-evernote"> &nbsp; evernote</div>
+                    <div class="entypo-export"> &nbsp; export</div>
+                    <div class="entypo-eye"> &nbsp; eye</div>
+                    <div class="entypo-facebook"> &nbsp; facebook</div>
+                    <div class="entypo-facebook-circled"> &nbsp; facebook-circled</div>
+                    <div class="entypo-facebook-squared"> &nbsp; facebook-squared</div>
+                    <div class="entypo-fast-backward"> &nbsp; fast-backward</div>
+                    <div class="entypo-fast-forward"> &nbsp; fast-forward</div>
+                    <div class="entypo-feather"> &nbsp; feather</div>
+                    <div class="entypo-flag"> &nbsp; flag</div>
+                    <div class="entypo-flash"> &nbsp; flash</div>
+                    <div class="entypo-flashlight"> &nbsp; flashlight</div>
+                    <div class="entypo-flattr"> &nbsp; flattr</div>
+                    <div class="entypo-flickr"> &nbsp; flickr</div>
+                    <div class="entypo-flickr-circled"> &nbsp; flickr-circled</div>
+                    <div class="entypo-flight"> &nbsp; flight</div>
+                    <div class="entypo-floppy"> &nbsp; floppy</div>
+                    <div class="entypo-flow-branch"> &nbsp; flow-branch</div>
+                    <div class="entypo-flow-cascade"> &nbsp; flow-cascade</div>
+                    <div class="entypo-flow-line"> &nbsp; flow-line</div>
+                    <div class="entypo-flow-parallel"> &nbsp; flow-parallel</div>
+                    <div class="entypo-flow-tree"> &nbsp; flow-tree</div>
+                    <div class="entypo-folder"> &nbsp; folder</div>
+                    <div class="entypo-forward active"> &nbsp; forward</div>
+                    <div class="entypo-gauge"> &nbsp; gauge</div>
+                    <div class="entypo-github"> &nbsp; github</div>
+                    <div class="entypo-github-circled"> &nbsp; github-circled</div>
+                    <div class="entypo-globe"> &nbsp; globe</div>
+                    <div class="entypo-google-circles"> &nbsp; google-circles</div>
+                    <div class="entypo-gplus"> &nbsp; gplus</div>
+                    <div class="entypo-gplus-circled"> &nbsp; gplus-circled</div>
+                    <div class="entypo-graduation-cap"> &nbsp; graduation-cap</div>
+                    <div class="entypo-heart"> &nbsp; heart</div>
+                    <div class="entypo-heart-empty"> &nbsp; heart-empty</div>
+                    <div class="entypo-help"> &nbsp; help</div>
+                    <div class="entypo-help-circled"> &nbsp; help-circled</div>
+                    <div class="entypo-home"> &nbsp; home</div>
+                    <div class="entypo-hourglass"> &nbsp; hourglass</div>
+                    <div class="entypo-inbox"> &nbsp; inbox</div>
+                    <div class="entypo-infinity"> &nbsp; infinity</div>
+                    <div class="entypo-info"> &nbsp; info</div>
+                    <div class="entypo-info-circled"> &nbsp; info-circled</div>
+                    <div class="entypo-instagrem"> &nbsp; instagrem</div>
+                    <div class="entypo-install"> &nbsp; install</div>
+                    <div class="entypo-key"> &nbsp; key</div>
+                    <div class="entypo-keyboard"> &nbsp; keyboard</div>
+                    <div class="entypo-lamp"> &nbsp; lamp</div>
+                    <div class="entypo-language"> &nbsp; language</div>
+                    <div class="entypo-lastfm"> &nbsp; lastfm</div>
+                    <div class="entypo-lastfm-circled"> &nbsp; lastfm-circled</div>
+                    <div class="entypo-layout"> &nbsp; layout</div>
+                    <div class="entypo-leaf"> &nbsp; leaf</div>
+                    <div class="entypo-left"> &nbsp; left</div>
+                    <div class="entypo-left-bold"> &nbsp; left-bold</div>
+                    <div class="entypo-left-circled"> &nbsp; left-circled</div>
+                    <div class="entypo-left-dir"> &nbsp; left-dir</div>
+                    <div class="entypo-left-open"> &nbsp; left-open</div>
+                    <div class="entypo-left-open-big"> &nbsp; left-open-big</div>
+                    <div class="entypo-left-open-mini"> &nbsp; left-open-mini</div>
+                    <div class="entypo-left-thin"> &nbsp; left-thin</div>
+                    <div class="entypo-level-down"> &nbsp; level-down</div>
+                    <div class="entypo-level-up"> &nbsp; level-up</div>
+                    <div class="entypo-lifebuoy"> &nbsp; lifebuoy</div>
+                    <div class="entypo-light-down"> &nbsp; light-down</div>
+                    <div class="entypo-light-up"> &nbsp; light-up</div>
+                    <div class="entypo-link"> &nbsp; link</div>
+                    <div class="entypo-linkedin"> &nbsp; linkedin</div>
+                    <div class="entypo-linkedin-circled"> &nbsp; linkedin-circled</div>
+                    <div class="entypo-list"> &nbsp; list</div>
+                    <div class="entypo-list-add"> &nbsp; list-add</div>
+                    <div class="entypo-location"> &nbsp; location</div>
+                    <div class="entypo-lock"> &nbsp; lock</div>
+                    <div class="entypo-lock-open"> &nbsp; lock-open</div>
+                    <div class="entypo-login"> &nbsp; login</div>
+                    <div class="entypo-logo-db"> &nbsp; logo-db</div>
+                    <div class="entypo-logout"> &nbsp; logout</div>
+                    <div class="entypo-loop"> &nbsp; loop</div>
+                    <div class="entypo-magnet"> &nbsp; magnet</div>
+                    <div class="entypo-mail"> &nbsp; mail</div>
+                    <div class="entypo-map"> &nbsp; map</div>
+                    <div class="entypo-megaphone"> &nbsp; megaphone</div>
+                    <div class="entypo-menu"> &nbsp; menu</div>
+                    <div class="entypo-mic"> &nbsp; mic</div>
+                    <div class="entypo-minus"> &nbsp; minus</div>
+                    <div class="entypo-minus-circled"> &nbsp; minus-circled</div>
+                    <div class="entypo-minus-squared"> &nbsp; minus-squared</div>
+                    <div class="entypo-mixi"> &nbsp; mixi</div>
+                    <div class="entypo-mobile"> &nbsp; mobile</div>
+                    <div class="entypo-monitor"> &nbsp; monitor</div>
+                    <div class="entypo-moon"> &nbsp; moon</div>
+                    <div class="entypo-mouse"> &nbsp; mouse</div>
+                    <div class="entypo-music"> &nbsp; music</div>
+                    <div class="entypo-mute"> &nbsp; mute</div>
+                    <div class="entypo-network"> &nbsp; network</div>
+                    <div class="entypo-newspaper"> &nbsp; newspaper</div>
+                    <div class="entypo-note"> &nbsp; note</div>
+                    <div class="entypo-note-beamed"> &nbsp; note-beamed</div>
+                    <div class="entypo-palette"> &nbsp; palette</div>
+                    <div class="entypo-paper-plane"> &nbsp; paper-plane</div>
+                    <div class="entypo-pause"> &nbsp; pause</div>
+                    <div class="entypo-paypal"> &nbsp; paypal</div>
+                    <div class="entypo-pencil"> &nbsp; pencil</div>
+                    <div class="entypo-phone"> &nbsp; phone</div>
+                    <div class="entypo-picasa"> &nbsp; picasa</div>
+                    <div class="entypo-picture"> &nbsp; picture</div>
+                    <div class="entypo-pinterest"> &nbsp; pinterest</div>
+                    <div class="entypo-pinterest-circled"> &nbsp; pinterest-circled</div>
+                    <div class="entypo-play"> &nbsp; play</div>
+                    <div class="entypo-plus"> &nbsp; plus</div>
+                    <div class="entypo-plus-circled"> &nbsp; plus-circled</div>
+                    <div class="entypo-plus-squared"> &nbsp; plus-squared</div>
+                    <div class="entypo-popup"> &nbsp; popup</div>
+                    <div class="entypo-print"> &nbsp; print</div>
+                    <div class="entypo-progress-0"> &nbsp; progress-0</div>
+                    <div class="entypo-progress-1"> &nbsp; progress-1</div>
+                    <div class="entypo-progress-2"> &nbsp; progress-2</div>
+                    <div class="entypo-progress-3"> &nbsp; progress-3</div>
+                    <div class="entypo-publish"> &nbsp; publish</div>
+                    <div class="entypo-qq"> &nbsp; qq</div>
+                    <div class="entypo-quote"> &nbsp; quote</div>
+                    <div class="entypo-rdio"> &nbsp; rdio</div>
+                    <div class="entypo-rdio-circled"> &nbsp; rdio-circled</div>
+                    <div class="entypo-record"> &nbsp; record</div>
+                    <div class="entypo-renren"> &nbsp; renren</div>
+                    <div class="entypo-reply"> &nbsp; reply</div>
+                    <div class="entypo-reply-all"> &nbsp; reply-all</div>
+                    <div class="entypo-resize-full"> &nbsp; resize-full</div>
+                    <div class="entypo-resize-small"> &nbsp; resize-small</div>
+                    <div class="entypo-retweet"> &nbsp; retweet</div>
+                    <div class="entypo-right"> &nbsp; right</div>
+                    <div class="entypo-right-bold"> &nbsp; right-bold</div>
+                    <div class="entypo-right-circled"> &nbsp; right-circled</div>
+                    <div class="entypo-right-dir"> &nbsp; right-dir</div>
+                    <div class="entypo-right-open"> &nbsp; right-open</div>
+                    <div class="entypo-right-open-big"> &nbsp; right-open-big</div>
+                    <div class="entypo-right-open-mini"> &nbsp; right-open-mini</div>
+                    <div class="entypo-right-thin"> &nbsp; right-thin</div>
+                    <div class="entypo-rocket"> &nbsp; rocket</div>
+                    <div class="entypo-rss"> &nbsp; rss</div>
+                    <div class="entypo-search"> &nbsp; search</div>
+                    <div class="entypo-share"> &nbsp; share</div>
+                    <div class="entypo-shareable"> &nbsp; shareable</div>
+                    <div class="entypo-shuffle"> &nbsp; shuffle</div>
+                    <div class="entypo-signal"> &nbsp; signal</div>
+                    <div class="entypo-sina-weibo"> &nbsp; sina-weibo</div>
+                    <div class="entypo-skype"> &nbsp; skype</div>
+                    <div class="entypo-skype-circled"> &nbsp; skype-circled</div>
+                    <div class="entypo-smashing"> &nbsp; smashing</div>
+                    <div class="entypo-sound"> &nbsp; sound</div>
+                    <div class="entypo-soundcloud"> &nbsp; soundcloud</div>
+                    <div class="entypo-spotify"> &nbsp; spotify</div>
+                    <div class="entypo-spotify-circled"> &nbsp; spotify-circled</div>
+                    <div class="entypo-star"> &nbsp; star</div>
+                    <div class="entypo-star-empty"> &nbsp; star-empty</div>
+                    <div class="entypo-stop"> &nbsp; stop</div>
+                    <div class="entypo-stumbleupon"> &nbsp; stumbleupon</div>
+                    <div class="entypo-stumbleupon-circled"> &nbsp; stumbleupon-circled</div>
+                    <div class="entypo-suitcase"> &nbsp; suitcase</div>
+                    <div class="entypo-sweden"> &nbsp; sweden</div>
+                    <div class="entypo-switch"> &nbsp; switch</div>
+                    <div class="entypo-tag"> &nbsp; tag</div>
+                    <div class="entypo-tape"> &nbsp; tape</div>
+                    <div class="entypo-target"> &nbsp; target</div>
+                    <div class="entypo-thermometer"> &nbsp; thermometer</div>
+                    <div class="entypo-thumbs-down"> &nbsp; thumbs-down</div>
+                    <div class="entypo-thumbs-up"> &nbsp; thumbs-up</div>
+                    <div class="entypo-ticket"> &nbsp; ticket</div>
+                    <div class="entypo-to-end"> &nbsp; to-end</div>
+                    <div class="entypo-to-start"> &nbsp; to-start</div>
+                    <div class="entypo-tools"> &nbsp; tools</div>
+                    <div class="entypo-traffic-cone"> &nbsp; traffic-cone</div>
+                    <div class="entypo-trash"> &nbsp; trash</div>
+                    <div class="entypo-trophy"> &nbsp; trophy</div>
+                    <div class="entypo-tumblr"> &nbsp; tumblr</div>
+                    <div class="entypo-tumblr-circled"> &nbsp; tumblr-circled</div>
+                    <div class="entypo-twitter"> &nbsp; twitter</div>
+                    <div class="entypo-twitter-circled"> &nbsp; twitter-circled</div>
+                    <div class="entypo-up"> &nbsp; up</div>
+                    <div class="entypo-up-bold"> &nbsp; up-bold</div>
+                    <div class="entypo-up-circled"> &nbsp; up-circled</div>
+                    <div class="entypo-up-dir"> &nbsp; up-dir</div>
+                    <div class="entypo-up-open"> &nbsp; up-open</div>
+                    <div class="entypo-up-open-big"> &nbsp; up-open-big</div>
+                    <div class="entypo-up-open-mini"> &nbsp; up-open-mini</div>
+                    <div class="entypo-up-thin"> &nbsp; up-thin</div>
+                    <div class="entypo-upload"> &nbsp; upload</div>
+                    <div class="entypo-upload-cloud"> &nbsp; upload-cloud</div>
+                    <div class="entypo-user"> &nbsp; user</div>
+                    <div class="entypo-user-add"> &nbsp; user-add</div>
+                    <div class="entypo-users"> &nbsp; users</div>
+                    <div class="entypo-vcard"> &nbsp; vcard</div>
+                    <div class="entypo-video"> &nbsp; video</div>
+                    <div class="entypo-vimeo"> &nbsp; vimeo</div>
+                    <div class="entypo-vimeo-circled"> &nbsp; vimeo-circled</div>
+                    <div class="entypo-vkontakte"> &nbsp; vkontakte</div>
+                    <div class="entypo-volume"> &nbsp; volume</div>
+                    <div class="entypo-water"> &nbsp; water</div>
+                    <div class="entypo-window"> &nbsp; window</div>
+                </section>
+                <br>
+                <div ng-show="vm.subNav1 === 0" ng-cloak class="content-glassed-bg">
+                    <h2>Access</h2>
+                    <table class="table-content-block">
+                        <tr>
+                            <td class="td-label">Hostname:</td>
+                            <td><span class="on-badge"></span></td>
+                            <td>maverix.local<br>
+                                <span class="nfo">
+                        Here you'll find Access Information to this Server over the Internet.
+                    </span>
+                            </td>
+                            <td class="td-actions">
+                                <button class="btn btn-default">Edit ...</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-label">Computername:</td>
+                            <td><span class="on-badge"></span></td>
+                            <td>maverix<br>
+                                <span class="nfo">
+                        Your Server is reachable under this address in the local network. <a href=""><span
+                                        class="entypo-right maverix-circle"></span></a>
+                    </span>
+                            </td>
+                            <td class="td-actions">
+                                <md-button class="btn btn-default">Edit ...</md-button>
+                            </td>
+                        </tr>
+
+                    </table>
+
+
+                    <h2>Server</h2>
+                    <table class="table-content-block">
+                        <tr>
+                            <td class="td-label">Active for:</td>
+                            <td>25 Days, 3 Hours, 49 Minutes</td>
+                        </tr>
+                        <tr>
+                            <td class="td-label">Theme:</td>
+                            <td>Maverix Bootstrap (Version 1.0.0)</td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-label">Author:</td>
+                            <td>Bijan Rahnema <a href="mailto:b.rahnema@gmail.com">b.rahnema@gmail.com</a></td>
+                        </tr>
+
+                    </table>
+
+                    <h2>Networks</h2>
+                    <table class="table-content-block">
+                        <tr>
+                            <td class="td-label">Wrapbootstrap:</td>
+                            <td>Maverix Theme</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+
+                <div ng-show="vm.subNav1 === 1" ng-cloak class="content-glassed-bg">
+                    <h2>Settings</h2>
+
+                    <ul class="list-unstyled indent">
+                        <li>
+                            <input type="checkbox"> Allow Remote Access via SSH for
+                            <select>
+                                <option>Administrators</option>
+                                <option>All Users</option>
+                            </select>
+                        </li>
+                        <li>
+                            <input type="checkbox"> Activate Screen Sharing and Remote Access
+                        </li>
+                        <li>
+                            <input type="checkbox"> Allow Remote Administration through Server
+                        </li>
+                        <li>
+                            <input type="checkbox"> Allow Push Notifications
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div ng-show="vm.subNav1 === 2" ng-cloak class="content-glassed-bg">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Memory Usage</h2>
+                            <div class="demo-container">
+                                <div id="placeholder" class="demo-placeholder"
+                                     style="width: 600px; height: 300px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="indent">
+                        This theme has a very nice font.
+                    </p>
+                </div>
+
+
+                <div ng-show="vm.subNav1 === -1" ng-cloak class="content-glassed-bg">
+
+
+                    <h2>What is Maverix?</h2>
+
+                    <p class="indent">Maverix is a maccish bootstrap theme and application boilerplate. It gives your
+                        web-apps a
+                        native look and feel and bundles
+                        <a href="https://angularjs.org/">AngularJS</a> and other components such as <a
+                                href="http://jquery.com/">jQuery</a>,
+                        <a href="http://www.flotcharts.org/">Flot</a> and <a
+                                href="http://andreruffert.github.io/rangeslider.js/">rangeslider.js</a>
+                    </p>
+
+                    <p class="indent">It is perfect to be used for apps that are based on HTML App Containers such as:
+                    <ul>
+                        <li><a href="https://github.com/maccman/macgap">MacGap</a></li>
+                        <li><a href="https://github.com/rogerwang/node-webkit">Node-Webkit</a></li>
+                        <li><a href="https://github.com/atom/atom-shell">Github Atom Shell</a></li>
+                        <li><a href="https://github.com/adobe/brackets-shell">Adobe Brackets Shell</a></li>
+                    </ul>
+                    </p>
+                    <hr/>
+                    <h2>Design Decisions</h2>
+
+                    <div class="indent">
+                        <h3>Closest possible to native</h3>
+
+
+                        <p>All controls and Elements are carefully designed to perfectly fit into the native mac
+                            environment.</p>
+
+                        <h3>Non Responsive (for now...)</h3>
+
+                        <p>Desktop Apps don't need to run on thousands of different devices and
+                            viewports. You are the master of setting a minimum-viewport and the app won't get smaller
+                            than
+                            this. If
+                            you
+                            are
+                            using Maverix Theme in a traditional web-app it is also okay for Admin Backends that don't
+                            need
+                            responsive
+                            layout.
+                        </p>
+
+                        <h3>Built on Bootstrap and Less</h3>
+
+                        <p>Twitters Bootstrap comes bundled with tons of useful styles and add ons and
+                            allows beginners and masters to get started quickly (grid positioning, etc.). The maverix
+                            styles
+                            are
+                            enhancing bootstrap and are written in
+                            <a href="http://lesscss.org/">less.css</a>
+                        </p>
+
+                        <h3>Webkit first</h3>
+
+                        <p>
+                            Maverix Theme is primarily made to enable app container based web-apps to look like native
+                            OS X
+                            Apps.
+                            So webkit is the primary engine when releasing new components. However this doesn't mean
+                            that
+                            other
+                            browsers
+                            are totally unsupported. Maverix Theme is tested on Safari, Firefox and Chrome on OS X.
+                        </p>
+                        <hr/>
+                    </div>
+                    <h2>Bundled with AngularJS</h2>
+
+                    <p class="indent"><a href="https://angularjs.org/">AngularJS</a> is one of the best Javascript App
+                        Frameworks
+                        available today and so Maverix Theme comes bundled with AngularJS including fully working
+                        routing to
+                        get you
+                        started fast. Anyways, AngularJS usage is optional.</p>
+
+                    <hr/>
+                    <h2>Roadmap</h2>
+
+                    <p class="indent">
+                    <ul>
+                        <li>Bugfix requests are priority one.</li>
+                        <li>New Features will be added as far as they make sense.</li>
+                        <li>If demand is high for responsive design I will add it.</li>
+                    </ul>
+                    </p>
+
+                    <hr/>
+                    <h2>Bugs & Feature Requests</h2>
+                    <p class="indent">Use the <a href="https://github.com/tschundeee/maverix/issues">Maverix Github
+                        Issue
+                        Tracker</a>.
+                        You can also reach out to me via Mail <a href="mailto:b.rahnema@gmail.com?subject=Maverix">b.rahnema@gmail.com</a>
+                        or Twitter
+                        <a href="https://twitter.com/tschundeee">@tschundeee</a></p>
+                    <hr/>
+                    <h2>Feedback</h2>
+                    <p class="indent">
+                        Feedback is always welcome.
+                    </p>
+
+
+                    </di>
+
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+

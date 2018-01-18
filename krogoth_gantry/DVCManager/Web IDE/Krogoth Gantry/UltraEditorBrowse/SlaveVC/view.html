@@ -1,0 +1,62 @@
+<div style="color: white;">
+    <div class="md-display-1">Select Catagory</div>
+
+</div>
+
+
+<div layout="row">
+    <div flex="20">
+
+    </div>
+    <div flex="60" ng-cloak>
+        <md-grid-list
+                md-cols="1" md-cols-sm="1" md-cols-md="2" md-cols-gt-md="3" md-cols-gt-lg="4"
+                md-row-height-gt-md="1:1" md-row-height="1:1"
+                md-gutter="18px" md-gutter-gt-sm="14px">
+            <md-grid-tile ng-repeat="tile in vm.objectList.results"
+                          ng-mouseenter="tile.hidden = false"
+                          ng-mouseleave="tile.hidden = true"
+                          md-rowspan="1"
+                          md-colspan="1"
+                          md-colspan-sm="1"
+                          md-colspan-xs="1"
+                          class="blackbg"
+                          style="border-radius:25px"
+                          md-whiteframe="3">
+                <div layout-fill flex-offset="10" style="border-radius:25px">
+                    <div layout-fill flex-offset="10" layout="column"
+                         style="border-radius:25px">
+                        <span flex="30" layout-align="center center">
+                            <md-button class="md-fab md-green-A700-bg"
+                                       ng-show="tile.hidden === false"
+                                       ng-click="vm.selectListItem(tile.id)"
+                                       layout-align="center center">
+                                <i class="mdi mdi-arrow-right-bold-circle-outline"></i>
+                            </md-button>
+                        </span>
+                        <div flex="50" layout-wrap layout="row">
+                            <span editable-text="tile.name"
+                                  layout-margin
+                                  layout-align="center center"
+                                  onaftersave="vm.updateName(tile)">
+											<strong>{{ tile.name }}</strong>
+							</span>
+                            <span flex="20"></span>
+                        </div>
+                    </div>
+                </div>
+                <md-grid-tile-footer layout-padding style="border-radius: 0px 0px 25px 25px;">
+                    <span editable-text="tile.title"
+                          layout-wrap
+                          onaftersave="vm.updateTitle(tile)"
+                          layout="column">
+                        {{ tile.title }}
+                    </span>
+                </md-grid-tile-footer>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+    <div flex="20">
+
+    </div>
+</div>

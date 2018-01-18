@@ -127,14 +127,23 @@ class DynamicJavaScriptInjector(APIView):
             processed_cats = ''
             for cat in KrogothGantryCategory.objects.all():
                 icon = 'folder'
+                parent_icon = 'folder'
                 if cat.icon is not None:
                     icon = cat.icon.code
-                p1 = 'msNavigationServiceProvider.saveItem("' + cat.name + '", {\n'
-                p2 = '\ttitle: "' + cat.title + '",\n'
-                p3 = '\ticon: "mdi mdi-' + icon + '",\n'
-                p4 = '\tweight: 3\n'
-                p5 = '});\n'
-                processed_cats += p1 + p2 + p3 + p4 + p5
+                if cat.parent is not None:
+                    parent_icon = cat.parent.icon.code
+                if cat.parent is not None:
+                    p04 = 'msNavigationServiceProvider.saveItem("' + cat.parent.name + '", {\n'
+                    p03 = '\ttitle: "' + cat.parent.title + '",\n'
+                    p02 = '\ticon: "mdi mdi-' + parent_icon + '",\n'
+                    p01 = '\tweight: 3\n'
+                    p0 = '});\n'
+                    p1 = 'msNavigationServiceProvider.saveItem("' + cat.parent.name + '.' + cat.name + '", {\n'
+                    p2 = '\ttitle: "' + cat.title + '",\n'
+                    p3 = '\ticon: "mdi mdi-' + icon + '",\n'
+                    p4 = '\tweight: 3\n'
+                    p5 = '});\n'
+                    processed_cats += p04 + p03 + p02 + p01 + p0 + p1 + p2 + p3 + p4 + p5
             cat_contain = compiled_slave['module_with_injected_navigation'].replace('_KROGOTH_CATEGORIES_', processed_cats)
             clean_js_slate += ' \n /* MASTER MODULE */ \n' + cat_contain + \
                               ' \n /* MASTER CONTROLLER */ \n' + application.controller_js

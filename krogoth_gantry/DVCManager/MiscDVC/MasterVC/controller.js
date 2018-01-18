@@ -10,12 +10,11 @@
 
 
         function onInit() {
-            console.log('FUSE_APP_NAME did finish loading');
             vm.viewDidLoad();
         }
 
         function viewDidLoad() {
-
+            console.log('FUSE_APP_NAME did finish loading');
         }
     }
 })();

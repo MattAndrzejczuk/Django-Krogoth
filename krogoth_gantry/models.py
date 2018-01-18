@@ -160,7 +160,7 @@ class KrogothGantryMasterViewController(PolymorphicModel):
                 cat = self.category.parent.name
             subcat = self.category.name
         cat_set = old_module.replace('AK_NAVCAT_KROGOTH', cat)
-        subcat_set = cat_set.replace('.AK_SUBCATAGORY_KROGOTH', subcat)
+        subcat_set = cat_set.replace('AK_SUBCATAGORY_KROGOTH', subcat)
         return subcat_set
 
     @property
