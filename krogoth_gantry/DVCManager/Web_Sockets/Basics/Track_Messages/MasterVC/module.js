@@ -12,11 +12,15 @@
                         controller: 'FUSE_APP_NAMEController as vm'
                     }
                 }
-            });
-
-
-        _KROGOTH_CATEGORIES_
-
-
+            })
+        _DJANGULAR_SLAVE_VC_INJECTION_POINT_; /* krogoth_gantry Slave VCs automatically injected here. */
+        _DJANGULAR_SLAVE_MSAPI_INJECTION_POINT_
+        msNavigationServiceProvider.saveItem('AK_NAVCAT_KROGOTH.AK_SUBCATAGORY_KROGOTH.FUSE_APP_NAME', {
+            title: 'FUSE_APP_TITLE',
+            icon: 'FUSE_APP_ICON',
+            state: 'app.FUSE_APP_NAME',
+            weight: "AK_GANTRY_WEIGHT"
+        });
+        _DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_
     }
 })();

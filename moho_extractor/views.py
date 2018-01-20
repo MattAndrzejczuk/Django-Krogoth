@@ -219,7 +219,7 @@ class DynamicJavaScriptInjector(APIView):
 
         parsed1 = clean_js_slate.replace('FUSE_APP_NAME', application.name)
         parsed2 = parsed1.replace('FUSE_APP_TITLE', application.name.replace('_', ' '))
-        parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon)
+        parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon.prefix + ' ' + application.icon.code)
         parsed4 = parsed3.replace('NAV_HEADER', application.category)
         raw_js_response = parsed4
 
@@ -227,7 +227,7 @@ class DynamicJavaScriptInjector(APIView):
             if comp.type == 'js':
                 parsed1 = comp.contents.replace('FUSE_APP_NAME', application.name)
                 parsed2 = parsed1.replace('FUSE_APP_TITLE', application.name.replace('_', ' '))
-                parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon)
+                parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon.prefix + ' ' + application.icon.code)
                 raw_js_response += parsed3
         ct = 'application/javascript'
         return HttpResponse(content_type=ct, content=raw_js_response)

@@ -72,7 +72,7 @@ class KrogothGantrySlaveViewController(models.Model):
 #     ________________________________
 class KrogothGantryIcon(models.Model):
     code = models.CharField(max_length=75, unique=True)
-
+    prefix = models.CharField(max_length=75, default='mdi mdi-')
     def __str__(self):
         return self.code
 
@@ -83,6 +83,7 @@ class KrogothGantryCategory(PolymorphicModel):
                              default='Untitled krogoth_gantry Application',
                              help_text='Cosmetic display name for this app in the primary navigation view')
     icon = models.ForeignKey(KrogothGantryIcon, on_delete=models.CASCADE, blank=True, null=True)
+    weight = models.IntegerField(default=3)
     parent = models.ForeignKey('KrogothGantryCategory', on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return self.name

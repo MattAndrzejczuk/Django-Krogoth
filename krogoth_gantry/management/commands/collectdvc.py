@@ -4,7 +4,7 @@ from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGant
 import codecs
 import os
 from scss import Compiler
-
+import json
 from krogoth_gantry.management.commands.installdjangular import bcolors
 import random
 
@@ -26,13 +26,9 @@ class Command(BaseCommand):
             old.delete()
         for old in oldCatagories:
             old.delete()
-        icon = KrogothGantryIcon()
+        icon = KrogothGantryIcon.objects.get_or_create(code='cube')
         count_icons = len(KrogothGantryIcon.objects.all())
-        try:
-            icon = KrogothGantryIcon(code='s16 icon-ta-arm')
-            icon.save()
-        except:
-            icon = KrogothGantryIcon.objects.get(code='s16 icon-ta-arm')
+
 
         cat = KrogothGantryCategory()
         try:
@@ -46,6 +42,7 @@ class Command(BaseCommand):
         i = 0
         for gantry in gantry_catagories:
             i += 1
+
             if gantry[0] != '.' and gantry != 'MiscDVC':
 
                 # catagory = gantry
@@ -54,31 +51,58 @@ class Command(BaseCommand):
                 cat_host_obj = cat
                 cats_exist = KrogothGantryCategory.objects.filter(name=gantry)
                 if len(cats_exist) < 1:
-                    star = KrogothGantryIcon.objects.get(id=1778)
+                    star = KrogothGantryIcon.objects.get_or_create(code='star')
                     cat_host_obj = KrogothGantryCategory(name=gantry.replace(' ','_'),
                                                          title=gantry.replace('_',' '),
-                                                         icon=star)
+                                                         icon=star[0])
                     cat_host_obj.save()
+
 
                 krogoth_subcats = os.listdir('krogoth_gantry/DVCManager/' + gantry)
                 for subcats in krogoth_subcats:
                     if subcats[0] == '.':
                         continue
+                    elif subcats[-4:].lower() == 'json':
+                        with open('krogoth_gantry/DVCManager/' + gantry + '/' + subcats) as json_data:
+                            d = json.load(json_data)
+                            cat_icon = KrogothGantryIcon.objects.get_or_create(code=d['icon'], prefix=d['prefix'])
+                            cat_host_obj.icon = cat_icon[0]
+                            cat_host_obj.weight = d['weight']
+                            cat_host_obj.save()
+                        continue
                     cat_sub_obj = cat
                     cats_exist = KrogothGantryCategory.objects.filter(name=subcats)
                     if len(cats_exist) < 1:
-                        star2 = KrogothGantryIcon.objects.get(id=32)
+                        star2 = KrogothGantryIcon.objects.get_or_create(code='adjust')
                         cat_sub_obj = KrogothGantryCategory(name=subcats.replace(' ', '_'),
                                                             title=subcats.replace('_', ' '),
-                                                            icon=star2, parent=cat_host_obj)
+                                                            icon=star2[0], parent=cat_host_obj)
                         cat_sub_obj.save()
 
-                    djangular_dvcs = os.listdir('krogoth_gantry/DVCManager/' + gantry + '/' + subcats)
 
+                    # make icon from code
+
+
+
+
+
+                    djangular_dvcs = os.listdir('krogoth_gantry/DVCManager/' + gantry + '/' + subcats)
+                    num_weight = 5
                     for dvc in djangular_dvcs:
+
                         if dvc[0] == '.':
                             continue
-
+                        elif dvc[-4:].lower() == 'json':
+                            with open('krogoth_gantry/DVCManager/' + gantry + '/' + subcats + '/' + dvc) as json_data:
+                                d = json.load(json_data)
+                                cat_icon = KrogothGantryIcon.objects.get_or_create(code=d['icon'], prefix=d['prefix'])
+                                cat_sub_obj.icon = cat_icon[0]
+                                cat_sub_obj.weight = d['weight']
+                                try:
+                                    num_weight = d["weight"]
+                                except: pass;
+                                cat_sub_obj.save()
+                            continue
                         name_pk = dvc
                         dvc = gantry + '/' + subcats + '/' + dvc
                         has_slave = False
@@ -136,7 +160,7 @@ class Command(BaseCommand):
                                                          'r').read()
                             _mvc = AKGantryMasterViewController.objects.get_or_create(name=name_pk,
                                                                                       title=title, category=cat_sub_obj,
-                                                                                      icon=icon, is_enabled=not_lazy)
+                                                                                      icon=icon[0], is_enabled=not_lazy)
 
                             # clean_catagory = catagory.replace(' ', '').replace('-', '')
                             # clean_subcatagory = subcatagory.replace(' ', '').replace('-', '')
@@ -145,7 +169,7 @@ class Command(BaseCommand):
                             _mvc[0].view_html = str_View
                             _mvc[0].controller_js = str_Controller
                             _mvc[0].module_js = str_Module.replace("msNavigationServiceProvider.saveItem('.",
-                                                                   "msNavigationServiceProvider.saveItem('")
+                                                                   "msNavigationServiceProvider.saveItem('").replace('"AK_GANTRY_WEIGHT"', str(num_weight))
 
                             if has_slave == True:
                                 try:
@@ -201,7 +225,7 @@ class Command(BaseCommand):
                                         directive[0].save()
                                         _mvc[0].djangular_directive.add(directive[0])
 
-                            _mvc[0].icon = KrogothGantryIcon.objects.get(id=int(random.randint(i, count_icons - 20)))
+
                             _mvc[0].save()
                             self.stdout.write(self.style.SUCCESS('DVC Manager Saved: ' + dvc))
         # try:
