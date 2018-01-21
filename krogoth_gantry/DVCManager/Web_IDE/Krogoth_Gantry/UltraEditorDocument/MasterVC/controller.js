@@ -94,8 +94,7 @@
                 vm.treeData = treeData;
                 vm.getMasterViewCtrlDetail();
 
-                vm.getTemplatesHTML();
-                vm.getKrogothCoreParts();
+
             });
         }
 
@@ -107,6 +106,10 @@
                     vm.directivesPendingRequest = finishedProcess.directives;
                     vm.slavesPendingRequest = finishedProcess.slaves;
                     vm.objectList = finishedProcess.objectList;
+
+                    vm.getTemplatesHTML();
+                    vm.getKrogothCoreParts();
+
                     /// III.
                     vm.parallelRESTfulStart();
                 });

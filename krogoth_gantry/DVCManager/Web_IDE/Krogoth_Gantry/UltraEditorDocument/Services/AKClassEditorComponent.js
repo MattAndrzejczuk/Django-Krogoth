@@ -67,7 +67,7 @@
                         parentIndex: 5,
                         index: returnNodes.length,
                         title: item_in.name,
-                        name: item_in.name,
+                        name: item_in.url_helper,
                         class: "NgIncludedHtml",
                         canRemove: true,
                         canEdit: true,
@@ -75,7 +75,7 @@
                         sourceCode: item_in.contents,
                         sourceKey: 'contents',
                         RESTfulId: item_in.id,
-                        RESTfulURI: "/krogoth_gantry/viewsets/AKFoundation/" + item_in.id + "/",
+                        RESTfulURI: "/krogoth_gantry/viewsets/NgIncludedHtml/" + item_in.id + "/",
                         syntax: 'htmlmixed',
                         icon: 'link-variant'
                     };

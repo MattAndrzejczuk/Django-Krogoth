@@ -99,6 +99,10 @@ urlpatterns = [
     url(r'^krogoth_gantry/', include('krogoth_gantry.urls')),
     url(r'^Forum/', include('CommunityForum.urls')),
 
+
+    url(r'^ThirdParty/', include('krogoth_3rdparty_api.urls')),
+
+
     # user auth, forgot_password, reset pass, etc..
     url(r'^api/', include(router.urls)),
 
