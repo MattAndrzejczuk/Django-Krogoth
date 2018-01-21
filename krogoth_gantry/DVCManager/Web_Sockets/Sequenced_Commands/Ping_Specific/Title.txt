@@ -1,1 +1,1 @@
-Example WebSocket View Controller
+Ping Specific

@@ -51,7 +51,7 @@
         function loadHTMLIncludeList(masterName) {
             $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
             $log.log("    GET");
-            $log.log("    /krogoth_gantry/viewsets/IncludedHtmlMaster/?master_vc__name="+masterName);
+            $log.log("    /krogoth_gantry/viewsets/IncludedHtmlMaster/?master_vc__name=" + masterName);
             $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
             var deferred = $q.defer();
             $http({

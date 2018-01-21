@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_SLAVE_NAMEController', FUSE_APP_SLAVE_NAMEController);
 
@@ -43,7 +43,7 @@
 
         function getMasters(catId) {
             RESTfulUltraSubCat.getMastersSlaveBrowser(catId)
-                .then(function (results) {
+                .then(function(results) {
                     vm.objectList = results;
                 });
         }
@@ -51,7 +51,7 @@
 
         function getCategories() {
             RESTfulUltraSubCat.getCategoriesSlaveBrowser()
-                .then(function (results) {
+                .then(function(results) {
                     vm.processCategoryResults(results);
                 });
         }
@@ -72,7 +72,7 @@
 
         function putCatagory(instance) {
             RESTfulUltraSubCat.putCatagorySlaveBrowser(instance)
-                .then(function (results) {
+                .then(function(results) {
                     vm.objectList = results;
                 });
         }
@@ -89,7 +89,8 @@
         function selectMaster(id) {
             $log.info("SELECTED MASTER ID: " + id);
             $state.go('app.FUSE_APP_NAME.slave', {
-                'categoryId': vm.selectedCategory, 'childId': id
+                'categoryId': vm.selectedCategory,
+                'childId': id
             });
         }
 
@@ -98,10 +99,10 @@
             _editor.focus();
             _doc.markClean();
             _editor.setOption('firstLineNumber', 0);
-            _editor.on("beforeChange", function () {
+            _editor.on("beforeChange", function() {
                 vm.codeWillChange();
             });
-            _editor.on("change", function () {
+            _editor.on("change", function() {
                 vm.codeChanged();
             });
             vm.editorModel = _editor;
@@ -114,7 +115,7 @@
 
 
         function getMasterViewControllerDetail(id) {
-            RESTfulUltraBrowser.getDjangularMasterViewControllerDetail(id).then(function (data) {
+            RESTfulUltraBrowser.getDjangularMasterViewControllerDetail(id).then(function(data) {
                 vm.editorContentMaster = data;
                 vm.editorModel.doc.setValue(data.controller_js);
                 vm.input.mvcId = data.id;

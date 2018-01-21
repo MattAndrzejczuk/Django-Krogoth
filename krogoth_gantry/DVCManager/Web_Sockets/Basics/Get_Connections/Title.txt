@@ -1,1 +1,1 @@
-Example WebSocket View Controller
+Get Connections

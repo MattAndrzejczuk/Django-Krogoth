@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_SLAVE_NAMEController', FUSE_APP_SLAVE_NAMEController);
 
@@ -42,7 +42,7 @@
 
         function getMasters(catId) {
             RESTfulUltraSubCat.getMastersSlaveBrowser(catId)
-                .then(function (results) {
+                .then(function(results) {
                     vm.objectList = results;
                 });
         }
@@ -50,7 +50,7 @@
 
         function getCategories() {
             RESTfulUltraSubCat.getCategoriesSlaveBrowser()
-                .then(function (results) {
+                .then(function(results) {
                     vm.processCategoryResults(results);
                 });
         }
@@ -67,7 +67,7 @@
 
         function putCatagory(instance) {
             RESTfulUltraSubCat.putCatagorySlaveBrowser(instance)
-                .then(function (results) {
+                .then(function(results) {
                     vm.objectList = results;
                 });
         }
@@ -81,7 +81,8 @@
 
         function selectMaster(id) {
             $state.go('app.UltraEditorDocument', {
-                'categoryId': vm.selectedCategory, 'masterId': id
+                'categoryId': vm.selectedCategory,
+                'masterId': id
             });
         }
 

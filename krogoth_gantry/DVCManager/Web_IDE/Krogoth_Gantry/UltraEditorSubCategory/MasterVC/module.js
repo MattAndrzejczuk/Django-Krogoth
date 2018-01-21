@@ -33,13 +33,13 @@
                 }
             });
 
-
-        msNavigationServiceProvider.saveItem('AK_NAVCAT_KROGOTH.AK_SUBCATAGORY_KROGOTH.FUSE_APP_NAME', {
-            title: 'FUSE_APP_TITLE',
-            icon: 'FUSE_APP_ICON',
-            state: 'app.FUSE_APP_NAME',
-            weight: 10
-        });
-
+        /*
+                msNavigationServiceProvider.saveItem('AK_NAVCAT_KROGOTH.AK_SUBCATAGORY_KROGOTH.FUSE_APP_NAME', {
+                    title: 'FUSE_APP_TITLE',
+                    icon: 'FUSE_APP_ICON',
+                    state: 'app.FUSE_APP_NAME',
+                    weight: 10
+                });
+        */
     }
 })();

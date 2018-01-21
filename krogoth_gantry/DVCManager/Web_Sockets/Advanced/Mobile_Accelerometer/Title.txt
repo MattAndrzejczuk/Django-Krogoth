@@ -1,1 +1,1 @@
-Example WebSocket View Controller
+Mobile Accelerometer

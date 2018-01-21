@@ -124,7 +124,7 @@
 
         function getTemplatesHTML() {
             AKClassEditorComponent.loadHTMLIncludeList(vm.objectList.name)
-                .then(function (htmlTemps) {
+                .then(function(htmlTemps) {
                     $log.log("GOT THE NEW NG INCLUDE HTML TEMPLATES: ");
                     $log.info(htmlTemps);
                     vm.treeData[5].nodes = htmlTemps;

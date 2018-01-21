@@ -1,0 +1,176 @@
+/*----------------------------------------------------------------*/
+/*  ms-card
+/*----------------------------------------------------------------*/
+
+.ms-card {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+
+  .ms-card-content-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.14), 0px 2px 2px 0px rgba(0, 0, 0, 0.098), 0px 1px 5px 0px rgba(0, 0, 0, 0.084);
+  }
+}
+
+.ms-card {
+
+  .template-1 {
+
+    .media {
+
+      .image {
+        width: 100%;
+        border-radius: 2px 2px 0 0;
+      }
+    }
+  }
+}
+
+.ms-card {
+
+  .template-2 {
+
+    .header {
+
+      .avatar {
+
+        .image {
+          display: block;
+          width: 40px;
+          height: 40px;
+          border-radius: 20px;
+        }
+      }
+    }
+
+    .media {
+
+      .image {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.ms-card {
+
+  .template-3 {
+
+  }
+}
+
+.ms-card {
+
+  .template-4 {
+
+    .info {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.54);
+    }
+
+    .media {
+      z-index: 1;
+
+      .image {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.ms-card {
+
+  .template-5 {
+
+    .media {
+      width: 80px;
+      min-width: 80px;
+      max-width: 80px;
+    }
+    // ie10 fix
+    .info, .media {
+      -ms-flex: 0 1 auto;
+    }
+  }
+}
+
+.ms-card {
+
+  .template-8 {
+
+    .media {
+
+      .image {
+        width: 100%;
+        border-radius: 2px 2px 0 0;
+      }
+    }
+  }
+}
+
+.ms-card {
+
+  .template-9 {
+
+    .header {
+
+      .avatar {
+
+        .image {
+          display: block;
+          width: 40px;
+          height: 40px;
+          border-radius: 20px;
+        }
+      }
+    }
+
+    .media {
+
+      .image {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.ms-card {
+
+  .template-10 {
+
+    .media {
+      width: 80px;
+      min-width: 80px;
+      max-width: 80px;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

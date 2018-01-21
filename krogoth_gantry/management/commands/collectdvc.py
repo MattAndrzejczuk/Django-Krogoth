@@ -170,12 +170,22 @@ class Command(BaseCommand):
                                 htmls = os.listdir(partial_HTMLs_path)
                                 if len(os.listdir(partial_HTMLs_path)) >= 1:
                                     for html in htmls:
-                                        newIncludeHTML = IncludedHtmlMaster.objects.get_or_create(name=html,
-                                                                                                  master_vc=_mvc[0])
+                                        rawHtml = ""
                                         pathHTML = partial_HTMLs_path + "/" + html
+                                        try:
+                                            rawHtml = codecs.open(pathHTML, 'r').read()
+                                            self.stdout.write(self.style.SUCCESS(" ✅  Successfully loaded file: " + pathHTML))
+                                        except:
+                                            rawHtml = ""
+                                            self.stdout.write(self.style.ERROR("Skipping file: " + pathHTML))
+                                        newIncludeHTML = IncludedHtmlMaster.objects.get_or_create(
+                                            name=(html + str(name_pk).replace(".html", "") +
+                                                  str(len(IncludedHtmlMaster.objects.all()))),
+                                            master_vc=_mvc[0])
                                         newIncludeHTML[0].sys_path = pathHTML
-                                        newIncludeHTML[0].contents = codecs.open(pathHTML, 'r').read()
+                                        newIncludeHTML[0].contents = rawHtml
                                         newIncludeHTML[0].save()
+                                        print("TOTAL PARTIALS: " + str(len(IncludedHtmlMaster.objects.all())))
 
                             # clean_catagory = catagory.replace(' ', '').replace('-', '')
                             # clean_subcatagory = subcatagory.replace(' ', '').replace('-', '')
