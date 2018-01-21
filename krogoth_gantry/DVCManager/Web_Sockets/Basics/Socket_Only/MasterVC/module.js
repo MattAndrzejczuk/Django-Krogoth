@@ -19,7 +19,7 @@
             title: 'FUSE_APP_TITLE',
             icon: 'FUSE_APP_ICON',
             state: 'app.FUSE_APP_NAME',
-            weight: "AK_GANTRY_WEIGHT"
+            weight: 5
         });
         _DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_
     }

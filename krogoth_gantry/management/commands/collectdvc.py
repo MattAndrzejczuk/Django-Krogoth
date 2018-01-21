@@ -5,6 +5,8 @@ import codecs
 import os
 from scss import Compiler
 import json
+from moho_extractor.models import IncludedHtmlMaster
+
 from krogoth_gantry.management.commands.installdjangular import bcolors
 import random
 
@@ -127,6 +129,7 @@ class Command(BaseCommand):
                             if len(os.listdir(master_path)) >= 1:
                                 has_master = True
 
+
                         if has_master == True:
                             style = '/**/'
                             title = 'Untitled'
@@ -161,6 +164,18 @@ class Command(BaseCommand):
                             _mvc = AKGantryMasterViewController.objects.get_or_create(name=name_pk,
                                                                                       title=title, category=cat_sub_obj,
                                                                                       icon=icon[0], is_enabled=not_lazy)
+
+                            partial_HTMLs_path = 'krogoth_gantry/DVCManager/' + dvc + '/partialsHTML'
+                            if os.path.isdir(partial_HTMLs_path):
+                                htmls = os.listdir(partial_HTMLs_path)
+                                if len(os.listdir(partial_HTMLs_path)) >= 1:
+                                    for html in htmls:
+                                        newIncludeHTML = IncludedHtmlMaster.objects.get_or_create(name=html,
+                                                                                                  master_vc=_mvc[0])
+                                        pathHTML = partial_HTMLs_path + "/" + html
+                                        newIncludeHTML[0].sys_path = pathHTML
+                                        newIncludeHTML[0].contents = codecs.open(pathHTML, 'r').read()
+                                        newIncludeHTML[0].save()
 
                             # clean_catagory = catagory.replace(' ', '').replace('-', '')
                             # clean_subcatagory = subcatagory.replace(' ', '').replace('-', '')

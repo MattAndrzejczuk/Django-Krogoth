@@ -87,7 +87,8 @@
 
         function selectListItem(id, parent) {
             $state.go('app.FUSE_APP_NAME.slave', {
-                'categoryId': parent, 'childId': id
+                'categoryId': parent,
+                'childId': id
             });
 
         }

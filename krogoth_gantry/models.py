@@ -140,6 +140,9 @@ class KrogothGantryMasterViewController(PolymorphicModel):
     path_to_static = models.CharField(default='NOT_SET', max_length=125)
     is_lazy = models.BooleanField(default=False,
                                   help_text='If lazy, this master view controller will not load until accessed.')
+    
+        
+        
     @property
     def get_theme_style(self):
         if self.themestyle_is_enabled == True:

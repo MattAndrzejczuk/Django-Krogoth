@@ -11,6 +11,8 @@ from krogoth_gantry.views import KrogothGantryMasterViewControllerViewSet, Krogo
 
 from krogoth_core.views import AKFoundationViewSet
 
+from moho_extractor.views import IncludedHtmlMasterViewSet
+
 router.register(r'MasterViewController',
                 KrogothGantryMasterViewControllerViewSet)
 router.register(r'SlaveViewController',
@@ -20,6 +22,10 @@ router.register(r'Category', KrogothGantryCategoryViewSet)
 router.register(r'Directive', KrogothGantryDirectiveViewSet)
 router.register(r'Service', KrogothGantryServiceViewSet)
 
+router.register(r'IncludedHtmlMaster', IncludedHtmlMasterViewSet)
+# router.register(r'NgIncludedJs', AKFoundationViewSet)
+
+router.register(r'AKFoundation', AKFoundationViewSet)
 
 
 urlpatterns = [
@@ -44,9 +50,6 @@ urlpatterns = [
     url(r'^SlaveViewControllerEditorDetail/',
         viewseditor.SlaveViewControllerEditorDetailView.as_view(),
         name='Slave View Controller Editor Detail'),
-    url(r'^AKFoundation/',
-        viewseditor.AKFoundationViewSet.as_view(),
-        name='AKFoundation Editor Detail'),
     url(r'^krogoth_gantryModelForm/',
         views.krogoth_gantryModelForm.as_view(),
         name='krogoth_gantry Model Form'),

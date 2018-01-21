@@ -21,7 +21,7 @@
                     nodes: [],
                     canRemove: false,
                     canEdit: false,
-                    canAdd: true
+                    canAdd: false
                 };
                 var styles = {
                     id: _masterVCID,
@@ -31,7 +31,7 @@
                     nodes: [],
                     canRemove: false,
                     canEdit: false,
-                    canAdd: true
+                    canAdd: false
                 };
                 var slaves = {
                     id: _masterVCID,
@@ -41,7 +41,7 @@
                     nodes: [],
                     canRemove: false,
                     canEdit: false,
-                    canAdd: true
+                    canAdd: false
                 };
                 var direct = {
                     id: _masterVCID,
@@ -81,6 +81,15 @@
                     canEdit: false,
                     canAdd: true
                 };
+                var core = {
+                    id: _masterVCID,
+                    index: 7,
+                    title: 'Krogoth Core',
+                    nodes: [],
+                    canRemove: false,
+                    canEdit: false,
+                    canAdd: false
+                };
                 returnData.push(master);
                 returnData.push(styles);
                 returnData.push(slaves);
@@ -88,6 +97,7 @@
                 returnData.push(servic);
                 returnData.push(xtHTML);
                 returnData.push(xtraJS);
+                returnData.push(core);
                 deferred.resolve(returnData);
             } catch (ex) {
                 deferred.reject(returnData);

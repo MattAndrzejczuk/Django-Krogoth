@@ -18,7 +18,7 @@
         const tXtrJS = 6;
 
         vm.$onInit = onInit;
-        vm.getListView = getListView;
+        vm.getMasterViewCtrlDetail = getMasterViewCtrlDetail;
 
         vm.editorContentWillChange = editorContentWillChange;
         vm.editorContentDidChange = editorContentDidChange;
@@ -60,6 +60,10 @@
         vm.addNewComponentToMaster = addNewComponentToMaster;
         vm.editorHeader = {};
 
+        vm.createFirstTreeNodes = createFirstTreeNodes;
+        vm.getKrogothCoreParts = getKrogothCoreParts;
+        vm.getTemplatesHTML = getTemplatesHTML;
+
         vm.goBackToCategory = goBackToCategory;
 
         vm.editorOptions = {
@@ -73,15 +77,30 @@
 
         /// I.
         function onInit() {
+
             vm.selectedMaster = $state.params.masterId;
+
+            $log.debug('MASTER ID:');
+            $log.debug('MASTER ID:');
+            $log.debug('MASTER ID:');
+            $log.debug('MASTER ID:');
+            $log.log('|' + vm.selectedMaster + '|');
+            vm.createFirstTreeNodes();
+
+        }
+
+        function createFirstTreeNodes() {
             UltraEditorDefaults.populateBoilerplate(vm.selectedMaster).then(function(treeData) {
                 vm.treeData = treeData;
-                vm.getListView();
+                vm.getMasterViewCtrlDetail();
+
+                vm.getTemplatesHTML();
+                vm.getKrogothCoreParts();
             });
         }
 
         /// II.
-        function getListView() {
+        function getMasterViewCtrlDetail() {
             AKClassEditorComponent.loadMasterInitializer(vm.selectedMaster)
                 .then(function(finishedProcess) {
                     vm.servicesPendingRequest = finishedProcess.services;
@@ -93,6 +112,21 @@
                 });
         }
 
+        function getKrogothCoreParts() {
+            AKClassEditorComponent.loadKrogothCoreList()
+                .then(function(nodesForTree) {
+                    vm.treeData[7].nodes = nodesForTree;
+                });
+        }
+
+        function getTemplatesHTML() {
+            AKClassEditorComponent.loadHTMLIncludeList(vm.objectList.name)
+                .then(function (htmlTemps) {
+                    $log.log("GOT THE NEW NG INCLUDE HTML TEMPLATES: ");
+                    $log.info(htmlTemps);
+                    vm.treeData[5].nodes = htmlTemps;
+                });
+        }
 
         /*   ⚡️   */
         function parallelRESTfulStart() {
@@ -233,7 +267,13 @@
 
 
         /*  ⚡️  */
-        function loadFileIntoEditor(parentIndex, index) {
+        function loadFileIntoEditor(parentIndex, index, scope) {
+            $log.info("PARENT INDEX: " + parentIndex);
+            $log.info("INDEX: " + index);
+            $log.info("SCOPE: ");
+            $log.debug(scope);
+            $log.info("TREE DATA: ");
+            $log.debug(vm.treeData);
             vm.unsavedChangesExist = -1;
             if (vm.editorLoadedFirstDoc === true) {
                 vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode = vm.editorModel.doc.getValue();
@@ -245,6 +285,7 @@
             vm.loadedParentIndex = parentIndex;
             vm.editorHeader.name = vm.treeData[parentIndex].nodes[index].name;
             vm.editorModel.setOption("mode", vm.treeData[parentIndex].nodes[index].syntax);
+
         }
 
 

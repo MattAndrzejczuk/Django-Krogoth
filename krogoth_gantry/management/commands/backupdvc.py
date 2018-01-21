@@ -27,16 +27,17 @@ class Command(BaseCommand):
             text_file.write(app.view_html)
             text_file.close()
             self.stdout.write(self.style.SUCCESS(p3))
+            slave = app.djangular_slave_vc.all().first()
             if os.path.isfile(static_root + "SlaveVC/view.html"):
                 p4 = static_root + "SlaveVC/view.html"
                 text_file = open(p4, "w")
-                text_file.write(app.view_html)
+                text_file.write(slave.view_html)
                 text_file.close()
                 self.stdout.write(self.style.SUCCESS(p4))
             if os.path.isfile(static_root + "SlaveVC/controller.js"):
                 p5 = static_root + "SlaveVC/controller.js"
                 text_file = open(p5, "w")
-                text_file.write(app.controller_js)
+                text_file.write(slave.controller_js)
                 text_file.close()
                 self.stdout.write(self.style.SUCCESS(p5))
             djangularServices = app.djangular_service.all()

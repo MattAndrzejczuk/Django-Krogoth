@@ -2,13 +2,14 @@ from django.http import HttpResponse, JsonResponse
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from moho_extractor.serializers import IncludedHtmlMasterSerializer
 
-from moho_extractor.models import NgIncludedHtml, NgIncludedJs
+from moho_extractor.models import NgIncludedHtml, NgIncludedJs, IncludedHtmlMaster
 from krogoth_gantry.models import KrogothGantryMasterViewController
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
-
+from rest_framework import viewsets, filters
 CCD = {
     0: '\033[0m',  # end
 
@@ -55,6 +56,14 @@ def krogoth_debug(msg):
         except:
             pass
 
+
+class IncludedHtmlMasterViewSet(viewsets.ModelViewSet):
+    queryset = IncludedHtmlMaster.objects.all()
+    serializer_class = IncludedHtmlMasterSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('master_vc__name', )
+
+
 class NgIncludedJsView(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
@@ -85,19 +94,23 @@ class NgIncludedHtmlView(APIView):
         krogoth_debug(request.GET)
         krogoth_debug('\033[0m')
         name = str(request.GET['name'])
+        error = ""
         try:
             try:
                 data = str(request.GET['data'])
                 html_view = NgIncludedHtml.objects.get(name=name)
                 final_html = html_view.contents.replace('INJECTED_DATA', data)
                 return HttpResponse(final_html)
-            except:
+            except Exception as e:
+                error += str(e) + " \n"
                 html_view = NgIncludedHtml.objects.get(name=name)
                 return HttpResponse(html_view.contents)
-        except:
+        except Exception as e:
+            error += str(e) + " \n"
             html = '<div> <h1>Fatal Error</h1> <p>Unable to load HTML: <b>' + name + '</b> </p> </div>'
             html += '<script>alert("fatal krogoth_gantry error, unable to load HTML view: ' + name + \
-                    ' try executing: python3 manage.py make_default_layout");</script>'
+                    ' due to: ' + error + '");</script>'
+            html += '<h2>' + error + '</h2>'
             return HttpResponse(html)
 
 
