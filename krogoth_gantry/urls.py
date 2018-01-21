@@ -9,6 +9,8 @@ from krogoth_gantry.views import KrogothGantryMasterViewControllerViewSet, Krogo
     KrogothGantryIconViewSet, \
     KrogothGantryCategoryViewSet, KrogothGantryDirectiveViewSet, KrogothGantryServiceViewSet
 
+from krogoth_core.views import AKFoundationViewSet
+
 router.register(r'MasterViewController',
                 KrogothGantryMasterViewControllerViewSet)
 router.register(r'SlaveViewController',
@@ -42,6 +44,9 @@ urlpatterns = [
     url(r'^SlaveViewControllerEditorDetail/',
         viewseditor.SlaveViewControllerEditorDetailView.as_view(),
         name='Slave View Controller Editor Detail'),
+    url(r'^AKFoundation/',
+        viewseditor.AKFoundationViewSet.as_view(),
+        name='AKFoundation Editor Detail'),
     url(r'^krogoth_gantryModelForm/',
         views.krogoth_gantryModelForm.as_view(),
         name='krogoth_gantry Model Form'),

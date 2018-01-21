@@ -120,61 +120,6 @@
             return deferred.promise;
         }
 
-        function getUnitFbiDetail(id) {
-            var deferred = $q.defer();
-            $http({
-                method: 'GET',
-                url: '/LazarusII/serialized/FBISerialized/' + id + '/'
-            }).then(function successCallback(response) {
-                deferred.resolve(response.data);
-            }, function errorCallback(response) {
-                deferred.reject(response);
-            });
-            return deferred.promise;
-        }
-
-        function getWeaponTdfDetail(id) {
-            var deferred = $q.defer();
-            $http({
-                method: 'GET',
-                url: '/LazarusII/serialized/WeaponTDF/' + id + '/'
-            }).then(function successCallback(response) {
-                deferred.resolve(response.data);
-            }, function errorCallback(response) {
-                deferred.reject(response);
-            });
-            return deferred.promise;
-        }
-
-        function getAllUnitFBIsFromSQL() {
-            var deferred = $q.defer();
-            $http({
-                method: 'GET',
-                url: '/LazarusDatabase/UnitFBIFromSQLView/'
-            }).then(function successCallback(response) {
-                deferred.resolve(response.data);
-            }, function errorCallback(response) {
-                deferred.reject(response);
-            });
-            return deferred.promise;
-        }
-        /*
-                function postNewThread(thread) {
-                    $log.log('creating new thread...');
-                    $log.log(thread);
-                    var deferred = $q.defer();
-                    $http({
-                        method: 'POST',
-                        data: thread,
-                        url: '/Forum/ForumPostDetailView/'
-                    }).then(function successCallback(response) {
-                        deferred.resolve(response.data);
-                    }, function errorCallback(response) {
-                        deferred.reject(response);
-                    });
-                    return deferred.promise;
-                }
-        */
         return service;
     }
 })();

@@ -47,7 +47,7 @@
                                   layout-margin
                                   layout-align="center center"
                                   onaftersave="vm.updateName(tile)">
-											<strong>{{ tile.name }} {{ tile.id }}</strong>
+											<strong>{{ tile.name }}</strong>
 							</span>
                             <span flex="20"></span>
                         </div>
@@ -68,20 +68,3 @@
 
     </div>
 </div>
-
-
-<h1>vm.selectedMaster</h1>
-<div>
-    {{ vm.selectedMaster }}
-</div>
-
-<h1>vm.selectedCategory</h1>
-<div>
-    {{ vm.selectedCategory }}
-</div>
-
-
-
-<pre>
-    {{ vm.objectList | json }}
-</pre>
