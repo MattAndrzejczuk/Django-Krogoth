@@ -1,160 +1,110 @@
+<div id="cards" class="page-layout simple fullwidth doc-page">
 
-<div id="profile" class="page-layout simple tabbed">
-
-
-    <section class="timeline-tab" flex>
-
-
-        <div layout="row" layout-wrap>
-
-
-            <div class="timeline" layout="column" flex="100" flex-gt-sm="55" flex-gt-md="65" flex-order="2"
-                 flex-order-gt-sm="1">
-
-
-                <div class="profile-box add-post md-whiteframe-1dp clear-bg glass-global" ak-frosted-glass>
-                    <div class="form" flex>
-                <textarea placeholder="Write something.." translate
-                          translate-attr-placeholder="PROFILE.WRITE_SOMETHING"></textarea>
-
-                        <footer layout="row" layout-align="space-between center">
-                            <div layout="row" layout-align="start center">
-                                <md-button class="md-icon-button" aria-label="insert photo" translate
-                                           translate-attr-aria-label="PROFILE.INSERT_PHOTO">
-                                    <md-icon md-font-icon="icon-file-image-box"></md-icon>
-                                    <md-tooltip><span translate="PROFILE.INSERT_PHOTO">insert photo</span></md-tooltip>
-                                </md-button>
-
-                                <md-button class="md-icon-button" aria-label="add person" translate
-                                           translate-attr-aria-label="PROFILE.ADD_PERSON">
-                                    <md-icon md-font-icon="icon-person-plus"></md-icon>
-                                    <md-tooltip><span translate="PROFILE.ADD_PERSON">add person</span></md-tooltip>
-                                </md-button>
-
-                                <md-button class="md-icon-button" aria-label="add location" translate
-                                           translate-attr-aria-label="PROFILE.LOCATION">
-                                    <md-icon md-font-icon="icon-map-marker"></md-icon>
-                                    <md-tooltip><span translate="PROFILE.LOCATION">add location</span></md-tooltip>
-                                </md-button>
-                            </div>
-
-                            <md-button ng-click="" class="post-button md-accent md-raised" aria-label="POST"
-                                       translate="PROFILE.POST" translate-attr-aria-label="PROFILE.POST">
-                                POST
-                            </md-button>
-                        </footer>
-                    </div>
-                </div>
-
-
-                <md-divider></md-divider>
-
-                <div class="timeline-item md-whiteframe-1dp clear-bg glass-global" ng-repeat="post in vm.posts" ak-frosted-glass>
-                    <header layout="row" layout-align="space-between start">
-                        <div class="user" layout="row" layout-align="start center">
-                            <img class="avatar" ng-src="{{post.user.avatar}}">
-
-                            <div layout="column">
-                                <div class="title">
-                                    <span class="username md-accent-color">{{post.user.name}}</span>
-                                    <span ng-if="post.type == 'post'" translate="PROFILE.TYPE_POST">posted on your
-                                timeline</span>
-                                    <span ng-if="post.type == 'something'" translate="PROFILE.TYPE_SOMETHING">shared something
-                                with you</span>
-                                    <span ng-if="post.type == 'video'" translate="PROFILE.TYPE_VIDEO">shared a video with
-                                you</span>
-                                    <span ng-if="post.type == 'article'" translate="PROFILE.TYPE_ARTICLE">shared an article with
-                                you</span>
-                                </div>
-                                <div class="time">{{post.time}}</div>
-                            </div>
-                        </div>
-
-                        <md-button class="md-icon-button" aria-label="more" translate
-                                   translate-attr-aria-label="PROFILE.MORE">
-                            <md-icon md-font-icon="icon-dots-vertical"></md-icon>
-                        </md-button>
-                    </header>
-
-                    <div class="content">
-                        <div ng-if="post.message" class="message">
-                            {{post.message}}
-                        </div>
-
-                        <div ng-if="post.media" class="media">
-                            <img ng-if="post.media.type === 'image'" ng-src="{{post.media.preview}}">
-
-                            <div ng-if="post.media.type === 'video'" ng-bind-html="post.media.embed | toTrusted">
-                            </div>
-                        </div>
-
-                        <div ng-if="post.article" layout="column" class="article">
-                            <div class="media">
-                                <img ng-src="{{post.article.media.preview}}">
-                            </div>
-                            <div class="title">{{post.article.title}}</div>
-                            <div class="subtitle">{{post.article.subtitle}}</div>
-                            <div class="excerpt">{{post.article.excerpt}}</div>
-                        </div>
-
-                        <div layout="row" layout-align="start center">
-                            <md-button class="like-button">
-                                <div layout="row" layout-align="start center">
-                                    <md-icon md-font-icon="icon-heart-outline" class="s16"></md-icon>
-                                    <span translate="PROFILE.LIKE">Like</span>&nbsp;<span>({{post.like}})</span>
-                                </div>
-                            </md-button>
-                            <md-button class="share-button">
-                                <div layout="row" layout-align="start center">
-                                    <md-icon md-font-icon="icon-share" class="s16"></md-icon>
-                                    <span translate="PROFILE.SHARE">Share</span>&nbsp;<span>({{post.share}})</span>
-                                </div>
-                            </md-button>
-                        </div>
-                    </div>
-
-                    <footer class="" layout="column" layout-align="start start">
-                        <div ng-if="post.comments" class="comment-count">{{post.comments.length}} comments
-                            <md-icon md-font-icon="icon-keyboard_arrow_down"></md-icon>
-                        </div>
-
-                        <div class="comment" layout="row" layout-fill ng-repeat="comment in post.comments">
-                            <img ng-src="{{comment.user.avatar}}" class="avatar"/>
-
-                            <div flex layout="column">
-                                <div layout="row" layout-align="start center">
-                                    <span class="username">{{comment.user.name}}</span>
-                                    <span class="time">{{comment.time}}</span>
-                                </div>
-                                <div class="message">
-                                    {{comment.message}}
-                                </div>
-                                <div class="actions" layout="row" layout-align="space-between center">
-                                    <a href="#" class="reply-button md-accent-color" translate="PROFILE.REPLY">Reply</a>
-                                    <md-icon flex md-font-icon="icon-flag" class="report-button s16"></md-icon>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="reply" layout="row" layout-fill>
-                            <img src="/static/assets/images/avatars/profile.jpg" class="avatar"/>
-
-                            <form flex>
-                        <textarea placeholder="Add a comment..." translate
-                                  translate-attr-placeholder="PROFILE.ADD_COMMENT"></textarea>
-                                <md-button ng-click="" class="post-comment-button md-accent md-raised"
-                                           aria-label="Post Comment"
-                                           translate="PROFILE.POST_COMMENT" translate-aria-label="PROFILE.POST_COMMENT">
-                                    Post Comment
-                                </md-button>
-                            </form>
-                        </div>
-                    </footer>
-                </div>
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="space-between">
+        <div layout="column" layout-align="center start">
+            <div class="breadcrumb" layout="row" layout-align="start center">
+                <md-icon md-font-icon="icon-home" class="s16"></md-icon>
+                <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
+                <span class="parent">COMPONENTS</span>
             </div>
+            <div class="title">Cards</div>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content" md-background-bg>
+
+        <p>
+            Cards are useful for showing excerpts, quick information or notifications. Using
+            <code>ms-card</code> directive you can easily create different cards compatible with Google's Material
+            Design specifications.
+        </p>
+
+        <p>
+            <code>ms-card</code> directive templates have pre-defined content areas. The reason for that is to force
+            you to create cards that follows both Google's Material Design specifications and Fuse Theme's general
+            design rules. But of course you can create your own designs and templates and use them with
+            <code>ms-card</code>
+            directive.
+        </p>
+
+        <div>
+
+            <div class="md-title mt-32">Template 1</div>
+
+            <!-- MS-CARD -->
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_1MS_Card52MS_Card52MS_Card51'"
+					 ng-model="vm.cards[0]"></ms-card>
+            <!-- / MS-CARD -->
+
+            <div class="md-title mt-48">Template 2</div>
+
+            <!-- MS-CARD -->
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_2MS_Card49'"
+					 ng-model="vm.cards[1]"></ms-card>
+            <!-- / MS-CARD -->
+
+            <div class="md-title mt-48">Template 3</div>
+
+            <!-- MS-CARD -->
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_3MS_Card51'"
+					 ng-model="vm.cards[2]"></ms-card>
+            <!-- / MS-CARD -->
+
+            <div class="md-title mt-48">Template 4</div>
+
+            <!-- MS-CARD -->
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_4MS_Card46'" 
+					 ng-model="vm.cards[3]"></ms-card>
+            <!-- / MS-CARD -->
+
+            <div class="md-title mt-48">Template 5</div>
+
+            <!-- MS-CARD -->
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_5MS_Card47'" 
+					 ng-model="vm.cards[4]"></ms-card>
+            <!-- / MS-CARD -->
+
+            <div class="md-title mt-48">Template 6</div>
+
+            <!-- MS-CARD -->
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_6MS_Card53'" 
+					 ng-model="vm.cards[5]"></ms-card>
+            <!-- / MS-CARD -->
+
+            <div class="md-title mt-48">Template 7</div>
+
+            <!-- MS-CARD -->
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_7MS_Card54MS_Card47'"
+					 ng-model="vm.cards[6]"></ms-card>
+            <!-- / MS-CARD -->
+
+            <div class="md-title mt-48">Template 8</div>
+
+            <!-- MS-CARD -->
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_8MS_Card45MS_Card48'"
+					 ng-model="vm.cards[7]"></ms-card>
+            <!-- / MS-CARD -->
+
+            <div class="md-title mt-48">Template 9</div>
+
+            <!-- MS-CARD -->
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_9MS_Card48MS_Card46'"
+					 ng-model="vm.cards[8]"></ms-card>
+            <!-- / MS-CARD -->
+
+            <div class="md-title mt-48">Template 10</div>
+
+            <!-- MS-CARD -->
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_10MS_Card50MS_Card51'"
+					 ng-model="vm.cards[9]"></ms-card>
+            <!-- / MS-CARD -->
+
         </div>
 
-    </section>
-
+    </div>
+    <!-- / CONTENT -->
 
 </div>
