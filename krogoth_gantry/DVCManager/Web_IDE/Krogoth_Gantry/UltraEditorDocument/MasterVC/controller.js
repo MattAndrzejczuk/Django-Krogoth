@@ -41,24 +41,22 @@
         vm.editorModel = {};
         vm.objectList = {};
         vm.messages = [];
-
         vm.finishedRESTfulResponses = [];
         vm.newComponentForm = {};
-
         vm.dumpNode = {};
         vm.servicesPendingRequest = [];
         vm.directivesPendingRequest = [];
         vm.slavesPendingRequest = [];
         vm.pendingRESTfulRequests = [];
-
-
         vm.loadedIndex = -1;
         vm.loadedParentIndex = -1;
+
+
         vm.editorLoadedFirstDoc = false;
+        vm.reloadData = reloadData;
         vm.saveEditorWorkToServer = saveEditorWorkToServer;
         vm.createNewComponentClick = createNewComponentClick;
         vm.addNewComponentToMaster = addNewComponentToMaster;
-        vm.editorHeader = {};
 
         vm.createFirstTreeNodes = createFirstTreeNodes;
         vm.getKrogothCoreParts = getKrogothCoreParts;
@@ -87,6 +85,21 @@
             $log.log('|' + vm.selectedMaster + '|');
             vm.createFirstTreeNodes();
 
+        }
+
+        function reloadData() {
+            vm.treeData = [];
+            vm.editorModel = {};
+            vm.objectList = {};
+            vm.messages = [];
+            vm.finishedRESTfulResponses = [];
+            vm.newComponentForm = {};
+            vm.dumpNode = {};
+            vm.servicesPendingRequest = [];
+            vm.directivesPendingRequest = [];
+            vm.slavesPendingRequest = [];
+            vm.pendingRESTfulRequests = [];
+            vm.createFirstTreeNodes();
         }
 
         function createFirstTreeNodes() {
@@ -286,7 +299,6 @@
             vm.unsavedChangesExist = -1;
             vm.loadedIndex = index;
             vm.loadedParentIndex = parentIndex;
-            vm.editorHeader.name = vm.treeData[parentIndex].nodes[index].name;
             vm.editorModel.setOption("mode", vm.treeData[parentIndex].nodes[index].syntax);
 
         }

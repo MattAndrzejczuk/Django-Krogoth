@@ -4,18 +4,18 @@
                 md-is-locked-open="$mdMedia('gt-md')"
                 md-component-id="sidenav"
                 ms-scroll
-				flex="30"
+                flex="30"
                 ms-sidenav-helper>
         <!-- SIDENAV HEADER -->
-        <div class="header"> 
-			<button class="btn btn-outline-primary" 
-					ng-click="vm.goBackToCategory()" 
-					style="min-height:42px">
-				<span class="mdi-24px mdi mdi-arrow-left"></span>
-				<md-tooltip>
-					Go Back
-				</md-tooltip>
-        	</button>
+        <div class="header">
+            <button class="btn btn-outline-primary"
+                    ng-click="vm.goBackToCategory()"
+                    style="min-height:42px">
+                <span class="mdi-24px mdi mdi-arrow-left"></span>
+                <md-tooltip>
+                    Go Back
+                </md-tooltip>
+            </button>
         </div>
         <!-- / SIDENAV HEADER -->
         <div class="toolbar-osx" style="color: black">
@@ -29,159 +29,159 @@
             <!-- DEMO SIDENAV -->
             <div ui-tree id="tree-root" data-drop-enabled="false" data-drag-enabled="false" class="glass-global">
                 <!-- start slipsum code -->
-						<ol ui-tree-nodes
-							class="glass-global"
-							ng-model="vm.treeData"
-							layout="column"
-							layout-fill>
-							<li ng-repeat="node in vm.treeData"
-								ui-tree-node
-								ng-include="'nodes_renderer.html'">
-							</li>
-						</ol>
+                <ol ui-tree-nodes
+                    class="glass-global"
+                    ng-model="vm.treeData"
+                    layout="column"
+                    layout-fill>
+                    <li ng-repeat="node in vm.treeData"
+                        ui-tree-node
+                        ng-include="'nodes_renderer.html'">
+                    </li>
+                </ol>
                 <!-- end slipsum code -->
             </div>
             <!-- / DEMO SIDENAV -->
-			
-			<div style="color: orange">
-				<div layout="row" layout-align="space-between center">
+
+            <div style="color: orange">
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						ID :
 					</span>
-					<span class="badge badge-dark">
+                    <span class="badge badge-dark">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].id }}
 					</span>
-				</div>
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						parentIndex :
 					</span>
-					<span class="badge badge-dark">
+                    <span class="badge badge-dark">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].parentIndex }}
 					</span>
-				</div>
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						index :
 					</span>
-					<span class="badge badge-dark">
+                    <span class="badge badge-dark">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].index }}
 					</span>
-				</div>
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						name :
 					</span>
-					<span class="badge badge-success">
+                    <span class="badge badge-success">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name }}
 					</span>
-				</div>
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						title :
 					</span>
-					<span class="badge badge-info">
+                    <span class="badge badge-info">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title }}
 					</span>
-				</div>
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						class :
 					</span>
-					<span class="badge badge-info">
+                    <span class="badge badge-info">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class }}
 					</span>
-				</div>
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						nodes :
 					</span>
-					<span class="badge badge-danger">
+                    <span class="badge badge-danger">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].nodes.length }}
 					</span>
-				</div> <!-- = = = = = = == = = = = = = = = = ==  -->
-				<div layout="row" layout-align="space-between center">
+                </div> <!-- = = = = = = == = = = = = = = = = ==  -->
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						canRemove :
 					</span>
-					<span class="badge badge-warning">
+                    <span class="badge badge-warning">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].canRemove }}
 					</span>
-				</div>	
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						canEdit :
 					</span>
-					<span class="badge badge-warning">
+                    <span class="badge badge-warning">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].canEdit }}
 					</span>
-				</div>	
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						isMaster :
 					</span>
-					<span class="badge badge-warning">
+                    <span class="badge badge-warning">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].isMaster }}
 					</span>
-				</div>	
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						sourceCode :
 					</span>
-					<span class="badge badge-secondary">
+                    <span class="badge badge-secondary">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode.length }}
 					</span>
-				</div>
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						sourceKey :
 					</span>
-					<span class="badge badge-primary">
+                    <span class="badge badge-primary">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceKey }}
 					</span>
-				</div>
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						RESTfulId :
 					</span>
-					<span class="badge badge-primary">
+                    <span class="badge badge-primary">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].RESTfulId }}
 					</span>
-				</div>	
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						RESTfulURI :
 					</span>
-					<span class="badge badge-primary">
+                    <span class="badge badge-primary">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].RESTfulURI }}
 					</span>
-				</div>	
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						syntax :
 					</span>
-					<span class="badge badge-danger">
+                    <span class="badge badge-danger">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].syntax }}
 					</span>
-				</div>	
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						hasUnsavedChanges :
 					</span>
-					<span class="badge badge-warning">
+                    <span class="badge badge-warning">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].hasUnsavedChanges }}
 					</span>
-				</div>
-				<div layout="row" layout-align="space-between center">
+                </div>
+                <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
 						icon :
 					</span>
-					<span class="badge badge-warning">
+                    <span class="badge badge-warning">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].icon }}
 					</span>
-				</div>
-			</div>
-			
+                </div>
+            </div>
+
         </md-content>
         <!-- / SIDENAV CONTENT -->
     </md-sidenav>
@@ -190,23 +190,44 @@
     <div class="center" layout="column" flex="70" flex-xs="100" flex-sm="100">
         <!-- CONTENT HEADER -->
         <div class="header"
-             layout="row"
-             style="height: 76px; max-height: 76px; min-height: 76px">
-            <div>
-				<span class="h2 badge badge-light">
-					ID : &nbsp;
+             flex="5"
+             layout="column"
+             style="height: 100px; max-height: 122px; min-height: 76px; padding:0px">
+            <h3>
+                <span class="h2 badge badge-light">
+					NAME :
 				</span>
-				<span class="badge badge-danger">
-                	{{ vm.objectList.id }}
-            	</span>
-				&nbsp;
-                <span class="h2 badge badge-secondary">
-					MASTER NAME : &nbsp;
-				</span>
-				<span class="h2 badge badge-primary">
+                <span class="h2 badge badge-danger">
 					{{ vm.objectList.name }}
 				</span>
-            </div>
+                <span class="h2 badge badge-light">
+					ID :
+				</span>
+                <span class="h2 badge badge-warning">
+					{{ vm.objectList.id }}
+				</span>
+            </h3>
+
+            <h2>
+				<span class="h2 badge badge-secondary">
+					sourceKey :
+				</span>
+                <span class="h2 badge badge-primary">
+					{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceKey }}
+				</span>
+                <span class="h2 badge badge-secondary">
+					RESTfulId :
+				</span>
+                <span class="h2 badge badge-primary">
+					{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].RESTfulId }}
+				</span>
+                <span class="h2 badge badge-secondary">
+					RESTfulURI :
+				</span>
+                <span class="h2 badge badge-primary">
+					{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].RESTfulURI }}
+				</span>
+            </h2>
         </div>
         <!-- / CONTENT HEADER -->
         <!-- CONTENT CARD -->
@@ -219,9 +240,24 @@
                            aria-label="Toggle left sidenav">
                     <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
                 </md-button>
-                <h4 style="color: white">
-					{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class }}
-				</h4>
+                <h1 style="color: white">
+                    <span>class:</span>
+                    <span class="h1 badge badge-primary">
+						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class }}
+					</span>
+                    <span>name:</span>
+                    <span class="h1 badge badge-success">
+						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name }}
+					</span>
+                    <span ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title !== vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class">title:</span>
+                    <span class="h1 badge badge-danger"
+                          ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title !== vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class">
+						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title }}
+					</span>
+                </h1>
+                <md-button ng-click="vm.reloadData()">
+                    Reload Data
+                </md-button>
             </div>
             <!-- / CONTENT TOOLBAR -->
             <!-- CONTENT -->
@@ -230,10 +266,10 @@
                         ms-scroll
                         style="background-color: rgba(255,255,255,0.45);">
                 <div class="container-fluid container-maverix ">
-						<ui-codemirror
-								ui-codemirror-opts="vm.editorOptions"
-								ui-codemirror="{onLoad:vm.codemirrorLoaded}">
-						</ui-codemirror>
+                    <ui-codemirror
+                            ui-codemirror-opts="vm.editorOptions"
+                            ui-codemirror="{onLoad:vm.codemirrorLoaded}">
+                    </ui-codemirror>
 
                 </div>
             </md-content>
@@ -252,20 +288,20 @@
                    ng-class="{'md-whiteframe-1dp':node.canEdit === false,'blackbg':node.canEdit === true}"
                    class="tree-node tree-node-content"
                    layout="row">
-<div ng-if="node.nodes && node.nodes.length > 0">
-        <button class="btn btn-outline-warning" style="padding:0px; min-height:42px"
-                ng-click="vm.toggleFolder(this)">
+        <div ng-if="node.nodes && node.nodes.length > 0">
+            <button class="btn btn-outline-warning" style="padding:0px; min-height:42px"
+                    ng-click="vm.toggleFolder(this)">
             <span
                     class="mdi-24px mdi"
                     ng-class="{'mdi-chevron-right': collapsed,'mdi-chevron-down': !collapsed}">
             </span>
-            <md-tooltip>Browse {{ node.title }}</md-tooltip>
-        </button>
-</div>
+                <md-tooltip>Browse {{ node.title }}</md-tooltip>
+            </button>
+        </div>
 
         <span ng-if="node.icon"
-			  class="mdi-36px mdi mdi-{{ node.icon }}"
-			  style="color: rgba(255, 255, 255, 0.80)"></span>
+              class="mdi-36px mdi mdi-{{ node.icon }}"
+              style="color: rgba(255, 255, 255, 0.80)"></span>
         <section ng-if="node.canRemove === true">
             <span class="badge badge-dark">
                 {{ node.title }}
@@ -295,32 +331,32 @@
                 {{ $index }}
             </span>
         </div>
-<div ng-if="node.hasUnsavedChanges === true">
-        <button class="btn btn-outline-info"
-                layout-wrap
-                style="padding:5px; min-height:42px"
-                ng-click="vm.saveEditorWorkToServer(node)">
-            <span class="mdi-24px mdi mdi-floppy"></span>
-            <!--            <span class="mdi mdi-circle"></span>-->
-            <md-tooltip md-visible="demo.showTooltip">
-                Save changes of {{ node.title }} to server.
-            </md-tooltip>
-        </button>
-</div>
-<div ng-if="node.canEdit === true">
-        <button class="btn btn-outline-warning"
+        <div ng-if="node.hasUnsavedChanges === true">
+            <button class="btn btn-outline-info"
+                    layout-wrap
+                    style="padding:5px; min-height:42px"
+                    ng-click="vm.saveEditorWorkToServer(node)">
+                <span class="mdi-24px mdi mdi-floppy"></span>
+                <!--            <span class="mdi mdi-circle"></span>-->
+                <md-tooltip md-visible="demo.showTooltip">
+                    Save changes of {{ node.title }} to server.
+                </md-tooltip>
+            </button>
+        </div>
+        <div ng-if="node.canEdit === true">
+            <button class="btn btn-outline-warning"
 
-                layout-wrap
-                style="padding:5px; min-height:42px"
-                ng-click="vm.loadFileIntoEditor(node.parentIndex, node.index, this)">
-            <span class="mdi-24px mdi mdi-pencil"></span>
-            <!--            <span class="mdi mdi-circle"></span>-->
-            <md-tooltip md-visible="demo.showTooltip">
-                Open {{ node.title }} in editor
-            </md-tooltip>
-        </button>
-</div>
-<!--
+                    layout-wrap
+                    style="padding:5px; min-height:42px"
+                    ng-click="vm.loadFileIntoEditor(node.parentIndex, node.index, this)">
+                <span class="mdi-24px mdi mdi-pencil"></span>
+                <!--            <span class="mdi mdi-circle"></span>-->
+                <md-tooltip md-visible="demo.showTooltip">
+                    Open {{ node.title }} in editor
+                </md-tooltip>
+            </button>
+        </div>
+        <!--
         <button class="btn btn-outline-danger"
                 ng-if="node.canRemove === true"
                 layout-wrap
@@ -331,19 +367,19 @@
                 Delete {{ node.title }}
             </md-tooltip>
         </button> -->
-<div ng-if="node.canAdd === true">
-        <button class="btn btn-outline-success"
-                ng-if="node.canAdd === true"
-                layout-wrap
-                data-max-depth="1"
-                ng-click="vm.createNewComponentClick(node)"
-                style="margin-right: 8px; padding:0px; min-height:42px">
-            <span class="mdi-24px mdi mdi-plus"></span>
-            <md-tooltip md-visible="demo.showTooltip">
-                Add new component to {{ node.class }}
-            </md-tooltip>
-        </button>
-</div>
+        <div ng-if="node.canAdd === true">
+            <button class="btn btn-outline-success"
+                    ng-if="node.canAdd === true"
+                    layout-wrap
+                    data-max-depth="1"
+                    ng-click="vm.createNewComponentClick(node)"
+                    style="margin-right: 8px; padding:0px; min-height:42px">
+                <span class="mdi-24px mdi mdi-plus"></span>
+                <md-tooltip md-visible="demo.showTooltip">
+                    Add new component to {{ node.class }}
+                </md-tooltip>
+            </button>
+        </div>
     </md-whiteframe>
     <ol data-nodrag ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}" ng-show="!collapsed">
         <li ng-repeat="node in node.nodes" ui-tree-node data-nodrag ng-include="'nodes_renderer.html'">
