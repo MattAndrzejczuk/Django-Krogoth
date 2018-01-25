@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_SLAVE_NAMEController', FUSE_APP_SLAVE_NAMEController);
 
@@ -77,7 +77,7 @@
                 .cancel('Cancel')
                 .targetEvent(event);
 
-            $mdDialog.show(confirm).then(function () {
+            $mdDialog.show(confirm).then(function() {
                 // Dummy delete action
                 for (var i = 0; i < vm.tasks.length; i++) {
                     if (vm.tasks[i].id === vm.task.id) {
@@ -85,7 +85,7 @@
                         break;
                     }
                 }
-            }, function () {
+            }, function() {
                 // Cancel Action
             });
         }

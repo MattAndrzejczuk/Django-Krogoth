@@ -1159,9 +1159,11 @@
     content: "\f603"
 }
 
+/*
 *:focus {
     outline: none
 }
+
 
 body.blur .sidebar {
     background-image: -o-linear-gradient(-89deg, #f7f7f7 0, #ebebeb 100%);
@@ -1345,33 +1347,13 @@ p {
     text-shadow: none
 }
 
-.content {
-    /*position: absolute;*/
-    /*left: 0px;*/
-    /*right: 0;*/
-    /*top: 88px;*/
-    /*bottom: 0;*/
-    /*overflow-y: scroll*/
-}
 
 .content-glassed-bg {
     padding-left: 60px;
     padding-right: 60px;
 }
 
-.content .container-fluid {
-    /*padding: 20px*/
-}
 
-.content .container-maverix {
-    width: 720px;
-    margin: 0 auto;
-    font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
-    font-size: 13px;
-    color: #000;
-    line-height: 16px;
-    /*padding-top: 25px*/
-}
 
 @media only screen and (max-width: 480px) {
 
@@ -1402,15 +1384,10 @@ p {
 
     .content .container-maverix {
         width: 320px !important;
-        /*padding-top: 25px*/
     }
 
     .sub-nav {
         height: 75px !important;
-        /*position: fixed;*/
-        /*top: 0;*/
-        /*left: 0;*/
-        /*right: 0*/
     }
 }
 
@@ -1465,10 +1442,6 @@ div.heading-bar .heading-one img {
     -moz-box-shadow: inset 0 1px 0 0 #fff;
     box-shadow: inset 0 1px 0 0 #fff;
     height: 50px;
-    /*position: fixed;*/
-    /*top: 0;*/
-    /*left: 0;*/
-    /*right: 0*/
 }
 
 .sub-nav ul {
@@ -2355,7 +2328,7 @@ ul.entypo-ul li {
     font-size: 20px !important;
     line-height: 28px !important
 }
-
+*/
 .emoji-font {
     font-family: "Apple Color Emoji";
     font-size: 20px !important;

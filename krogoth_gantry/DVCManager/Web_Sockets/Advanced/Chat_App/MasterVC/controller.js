@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
@@ -29,7 +29,7 @@
          * @param contactId
          */
         function getChat(contactId) {
-            ChatsService.getContactChat(contactId).then(function (response) {
+            ChatsService.getContactChat(contactId).then(function(response) {
                 vm.chatContactId = contactId;
                 vm.chat = [{
                     "who": "contact",
@@ -172,7 +172,7 @@
          * @param speed
          */
         function scrollToBottomOfChat() {
-            $timeout(function () {
+            $timeout(function() {
                 var chatContent = angular.element($document.find('#chat-content'));
 
                 PerfectScrollbar.update(chatContent[0]);
@@ -217,8 +217,8 @@
          * @param value
          * @returns {T}
          */
-        Array.prototype.getById = function (value) {
-            return this.filter(function (x) {
+        Array.prototype.getById = function(value) {
+            return this.filter(function(x) {
                 return x.id === value;
             })[0];
         };

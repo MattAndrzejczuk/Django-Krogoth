@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
@@ -17,7 +17,7 @@
             console.log('FUSE_APP_NAME did finish loading');
         }
 
-// Data
+        // Data
         vm.tasks = [{
             "id": "561551bd7fe2ff461101c192",
             "title": "Proident tempor est nulla irure ad est",
@@ -28,110 +28,92 @@
             "starred": false,
             "important": false,
             "deleted": false,
-            "tags": [
-                {
-                    "id": 1,
-                    "name": "frontend",
-                    "label": "Frontend",
-                    "color": "#388E3C"
-                }
-            ]
-        },
-            {
-                "id": "561551bd4ac1e7eb77a3a750",
-                "title": "Magna quis irure quis ea pariatur laborum",
-                "notes": "",
-                "startDate": "Sunday, February 1, 2015 1:30 PM",
-                "dueDate": "Friday, December 30, 2016 10:07 AM",
-                "completed": false,
-                "starred": false,
-                "important": true,
-                "deleted": false,
-                "tags": [
-                    {
-                        "id": 1,
-                        "name": "frontend",
-                        "label": "Frontend",
-                        "color": "#388E3C"
-                    },
-                    {
-                        "id": 4,
-                        "name": "issue",
-                        "label": "Issue",
-                        "color": "#0091EA"
-                    }
-                ]
-            },
-            {
-                "id": "561551bd917bfec2ddef2d49",
-                "title": "Ullamco duis commodo sint ad aliqua aute",
-                "notes": "Sunt laborum enim nostrud ea fugiat cillum mollit aliqua exercitation ad elit.",
-                "startDate": "Friday, April 11, 2014 3:43 AM",
-                "dueDate": "Wednesday, July 26, 2017 11:14 AM",
-                "completed": false,
-                "starred": true,
-                "important": true,
-                "deleted": false,
-                "tags": [
-                    {
-                        "id": 3,
-                        "name": "API",
-                        "label": "API",
-                        "color": "#FF9800"
-                    }
-                ]
-            },
-            {
-                "id": "561551bdeeb2fd6877e18c29",
-                "title": "Eiusmod non occaecat pariatur Lorem in ex",
-                "notes": "Nostrud anim mollit incididunt qui qui sit commodo duis. Anim amet irure aliquip duis nostrud sit quis fugiat ullamco non dolor labore. Lorem sunt voluptate laboris culpa proident. Aute eiusmod aliqua exercitation irure exercitation qui laboris mollit occaecat eu occaecat fugiat.",
-                "startDate": "Wednesday, May 7, 2014 4:14 AM",
-                "dueDate": "Friday, December 15, 2017 4:01 AM",
-                "completed": true,
-                "starred": true,
-                "important": false,
-                "deleted": false,
-                "tags": [
-                    {
-                        "id": 2,
-                        "name": "backend",
-                        "label": "Backend",
-                        "color": "#F44336"
-                    }
-                ]
-            }];
-        vm.tags = [
-            {
+            "tags": [{
                 "id": 1,
                 "name": "frontend",
                 "label": "Frontend",
                 "color": "#388E3C"
-            },
-            {
-                "id": 2,
-                "name": "backend",
-                "label": "Backend",
-                "color": "#F44336"
-            },
-            {
-                "id": 3,
-                "name": "API",
-                "label": "API",
-                "color": "#FF9800"
-            },
-            {
+            }]
+        }, {
+            "id": "561551bd4ac1e7eb77a3a750",
+            "title": "Magna quis irure quis ea pariatur laborum",
+            "notes": "",
+            "startDate": "Sunday, February 1, 2015 1:30 PM",
+            "dueDate": "Friday, December 30, 2016 10:07 AM",
+            "completed": false,
+            "starred": false,
+            "important": true,
+            "deleted": false,
+            "tags": [{
+                "id": 1,
+                "name": "frontend",
+                "label": "Frontend",
+                "color": "#388E3C"
+            }, {
                 "id": 4,
                 "name": "issue",
                 "label": "Issue",
                 "color": "#0091EA"
-            },
-            {
-                "id": 5,
-                "name": "mobile",
-                "label": "Mobile",
-                "color": "#9C27B0"
-            }
-        ];
+            }]
+        }, {
+            "id": "561551bd917bfec2ddef2d49",
+            "title": "Ullamco duis commodo sint ad aliqua aute",
+            "notes": "Sunt laborum enim nostrud ea fugiat cillum mollit aliqua exercitation ad elit.",
+            "startDate": "Friday, April 11, 2014 3:43 AM",
+            "dueDate": "Wednesday, July 26, 2017 11:14 AM",
+            "completed": false,
+            "starred": true,
+            "important": true,
+            "deleted": false,
+            "tags": [{
+                "id": 3,
+                "name": "API",
+                "label": "API",
+                "color": "#FF9800"
+            }]
+        }, {
+            "id": "561551bdeeb2fd6877e18c29",
+            "title": "Eiusmod non occaecat pariatur Lorem in ex",
+            "notes": "Nostrud anim mollit incididunt qui qui sit commodo duis. Anim amet irure aliquip duis nostrud sit quis fugiat ullamco non dolor labore. Lorem sunt voluptate laboris culpa proident. Aute eiusmod aliqua exercitation irure exercitation qui laboris mollit occaecat eu occaecat fugiat.",
+            "startDate": "Wednesday, May 7, 2014 4:14 AM",
+            "dueDate": "Friday, December 15, 2017 4:01 AM",
+            "completed": true,
+            "starred": true,
+            "important": false,
+            "deleted": false,
+            "tags": [{
+                "id": 2,
+                "name": "backend",
+                "label": "Backend",
+                "color": "#F44336"
+            }]
+        }];
+        vm.tags = [{
+            "id": 1,
+            "name": "frontend",
+            "label": "Frontend",
+            "color": "#388E3C"
+        }, {
+            "id": 2,
+            "name": "backend",
+            "label": "Backend",
+            "color": "#F44336"
+        }, {
+            "id": 3,
+            "name": "API",
+            "label": "API",
+            "color": "#FF9800"
+        }, {
+            "id": 4,
+            "name": "issue",
+            "label": "Issue",
+            "color": "#0091EA"
+        }, {
+            "id": 5,
+            "name": "mobile",
+            "label": "Mobile",
+            "color": "#9C27B0"
+        }];
         vm.completed = [];
         vm.colors = ['blue', 'blue-grey', 'orange', 'pink', 'purple'];
         vm.projects = {
@@ -194,7 +176,7 @@
          * Initialize the controller
          */
         function init() {
-            angular.forEach(vm.tasks, function (task) {
+            angular.forEach(vm.tasks, function(task) {
                 if (task.startDate) {
                     task.startDate = new Date(task.startDate);
                     task.startDateTimestamp = task.startDate.getTime();
@@ -277,8 +259,7 @@
         function toggleFilterWithEmpty(filter) {
             if (vm.taskFilters[filter] === '') {
                 vm.taskFilters[filter] = true;
-            }
-            else {
+            } else {
                 vm.taskFilters[filter] = '';
             }
 
@@ -339,8 +320,7 @@
 
             if (i > -1) {
                 vm.taskFilters.tags.splice(i, 1);
-            }
-            else {
+            } else {
                 vm.taskFilters.tags.push(tag);
             }
 
@@ -356,24 +336,6 @@
         function isTagFilterExists(tag) {
             return vm.taskFilters.tags.indexOf(tag) > -1;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

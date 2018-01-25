@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
     angular
         .module('app.FUSE_APP_NAME')
@@ -347,8 +347,8 @@
          * @param value
          * @returns {T}
          */
-        Array.prototype.getById = function (value) {
-            return this.filter(function (x) {
+        Array.prototype.getById = function(value) {
+            return this.filter(function(x) {
                 return x.id === value;
             })[0];
         };
