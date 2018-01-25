@@ -12,14 +12,12 @@
         <div class="toolbar-separator"></div>
 
         <md-button id="navigation-toggle" class="md-icon-button" ng-click="vm.toggleSidenav('navigation')"
-                   hide-gt-sm aria-label="Toggle navigation" translate
-                   translate-attr-aria-label="TOOLBAR.TOGGLE_NAVIGATION">
+                   hide-gt-sm aria-label="Toggle navigation">
             <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
         </md-button>
 
         <md-button class="md-icon-button navigation-fold-toggle"
                    hide show-gt-sm aria-label="Toggle navigation fold"
-                   translate translate-attr-aria-label="TOOLBAR.TOGGLE_NAVIGATION_FOLD"
                    ng-click="vm.toggleMsNavigationFolded()">
             <md-icon class="s18" md-font-icon="icon-backburger"></md-icon>
         </md-button>
@@ -37,8 +35,7 @@
         <md-menu-bar id="user-menu">
             <md-menu md-position-mode="left bottom">
                 <md-button class="user-button" ng-click="$mdOpenMenu()"
-                           aria-label="User settings"
-                           translate translate-attr-aria-label="TOOLBAR.USER_SETTINGS">
+                           aria-label="User settings">
                     <div layout="row" layout-align="space-between center">
                         <div class="avatar-wrapper">
                             <img md-menu-align-target class="avatar" src="assets/images/avatars/profile.jpg">
@@ -115,11 +112,10 @@
 
             <md-menu-content width="3" id="language-menu-content">
                 <md-menu-item ng-repeat="(iso, lang) in vm.languages">
-                    <md-button ng-click="vm.changeLanguage(lang)" aria-label="{{lang.title}}" translate
-                               translate-attr-aria-label="{{lang.title}}">
+                    <md-button ng-click="vm.changeLanguage(lang)" aria-label="{{lang.title}}">
                         <span layout="row" layout-align="start center">
                             <img class="flag" ng-src="assets/images/flags/{{lang.flag}}.png">
-                            <span translate="{{lang.translation}}">{{lang.title}}</span>
+                            <span>{{lang.title}}</span>
                         </span>
                     </md-button>
                 </md-menu-item>
@@ -129,7 +125,7 @@
         <div class="toolbar-separator"></div>
 
         <md-button id="quick-panel-toggle" class="md-icon-button" ng-click="vm.toggleSidenav('quick-panel')"
-                   aria-label="Toggle quick panel" translate translate-attr-aria-label="TOOLBAR.TOGGLE_QUICK_PANEL">
+                   aria-label="Toggle quick panel">
             <md-icon md-font-icon="icon-format-list-bulleted" class="icon"></md-icon>
         </md-button>
     </div>

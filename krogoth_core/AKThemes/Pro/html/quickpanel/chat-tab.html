@@ -1,7 +1,7 @@
 <div class="main animate-slide-left" ng-hide="vm.chatActive">
   <md-list class="recent">
     <md-subheader class="md-no-sticky">
-      <span translate="QUICKPANEL.RECENT">Recent</span>
+      <span>Recent</span>
     </md-subheader>
 
     <md-list-item class="contact md-3-line" ng-repeat="contact in vm.contacts.recent"
@@ -23,7 +23,7 @@
 
   <md-list class="all">
     <md-subheader class="md-no-sticky">
-      <span translate="QUICKPANEL.START_NEW_CHAT">Start New Chat</span>
+      <span>Start New Chat</span>
     </md-subheader>
 
     <md-list-item class="contact" ng-repeat="contact in vm.contacts.all" ng-click="vm.toggleChat(contact)">
@@ -45,8 +45,7 @@
     <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
 
       <div layout="row" layout-align="start center">
-        <md-button class="md-icon-button" ng-click="vm.toggleChat()" aria-label="Back" translate
-                   translate-attr-aria-label="QUICKPANEL.BACK">
+        <md-button class="md-icon-button" ng-click="vm.toggleChat()" aria-label="Back">
           <md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
         </md-button>
         <h4>
@@ -55,13 +54,11 @@
       </div>
 
       <div layout="row" layout-align="end center">
-        <md-button class="md-icon-button" aria-label="Call" translate
-                   translate-attr-aria-label="QUICKPANEL.CALL">
+        <md-button class="md-icon-button" aria-label="Call">
           <md-icon md-font-icon="icon-phone"></md-icon>
         </md-button>
 
-        <md-button class="md-icon-button" aria-label="More" translate
-                   translate-attr-aria-label="QUICKPANEL.MORE">
+        <md-button class="md-icon-button" aria-label="More">
           <md-icon md-font-icon="icon-dots-vertical"></md-icon>
         </md-button>
       </div>
@@ -73,7 +70,7 @@
          ng-class="dialog.who">
       <img ng-if="dialog.who ==='contact'" ng-src="{{vm.chat.contact.avatar}}" class="avatar"
            alt="{{vm.chat.contact.name}}"/>
-      <img ng-if="dialog.who ==='user'" class="avatar" src="assets/images/avatars/profile.jpg">
+      <img ng-if="dialog.who ==='user'" class="avatar" src="/static/assets/images/avatars/profile.jpg">
 
       <div class="bubble" flex>
         <div class="message">{{dialog.message}}</div>
@@ -84,11 +81,9 @@
 
   <form ng-submit="vm.reply()" layout="row" class="reply" layout-align="start center">
         <textarea ng-keyup="$event.keyCode == 13 ? vm.reply() : null" flex
-                  ng-model="vm.replyMessage" placeholder="Type and hit enter to send message" translate
-                  translate-attr-placeholder="QUICKPANEL.REPLY_PLACEHOLDER"></textarea>
+                  ng-model="vm.replyMessage" placeholder="Type and hit enter to send message"></textarea>
 
-    <md-button class="md-fab md-mini" type="submit" aria-label="Send message" translate
-               translate-attr-aria-label="QUICKPANEL.SEND_MESSAGE">
+    <md-button class="md-fab md-mini" type="submit" aria-label="Send message">
       <md-icon md-font-icon="icon-send" class="s16"></md-icon>
     </md-button>
   </form>
