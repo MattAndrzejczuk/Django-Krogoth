@@ -16,6 +16,101 @@
     <!-- CONTENT -->
     <div class="content" md-background-bg>
 
+        <div class="card md-whiteframe-4dp" layout="column">
+
+            <p>
+                <!-- htmlmin:ignore -->
+                <hljs language="html" class="source-code">
+                    <ms-card template="PATH_TO_TEMPLATE" ng-model="CARD_MODEL_DATA"></ms-card>
+                </hljs>
+                <!-- htmlmin:ignore -->
+            </p>
+
+            <span class="h2 pt-16">Description:</span>
+            <p>
+                <b>ms-card</b> directive can be used for creating cards that follow Google's Material Design
+                specifications. Currently it has 10 different pre-defined templates but you can always create your own
+                templates and use them with the directive.
+            </p>
+
+            <div class="simple-table-container md-whiteframe-1dp mv-16">
+                <table class="simple">
+                    <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>template</td>
+                        <td>
+                            This attribute must be present in order to ms-card directive to work. It works similar
+                            to ng-include directive. You can either provide the path of the html template file or
+                            the variable that holds the path of the html template file.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ng-model</td>
+                        <td>
+                            Directive uses ng-model to hold the card data. Data passed with using ng-model will be
+                            available in the template files within variable named card.
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <span class="h2 pt-16">Example:</span>
+            <!-- htmlmin:ignore -->
+            <hljs language="html" class="source-code">
+                <ms-card template="'app/card-templates/my-custom-template.html'" ng-model="vm.cardModel"></ms-card>
+            </hljs>
+            <!-- htmlmin:ignore -->
+
+            <p>
+                Above directive will use <span class="text-boxed">my-custom-template.html</span> file as a template. And
+                you will be able to access to the <span class="text-boxed">vm.cardModel</span> object through card
+                variable inside the template.
+            </p>
+
+            <p>
+                Consider the following object:
+                <!-- htmlmin:ignore -->
+                <hljs language="js" class="source-code">
+                    vm.cardModel = {
+                    title : 'My Card',
+                    description: 'My card description'
+                    }
+                </hljs>
+                <!-- htmlmin:ignore -->
+            </p>
+
+            <p>
+                It will be available in the template file as:
+                <!-- htmlmin:ignore -->
+                <hljs language="js" class="source-code">
+                    card = {
+                    title : 'My Card',
+                    description: 'My card description'
+                    }
+                </hljs>
+                <!-- htmlmin:ignore -->
+            </p>
+
+            <p>
+                So you will be able to access the title by doing
+                <!-- htmlmin:ignore -->
+                <hljs language="js" class="source-code">
+                    {{ card.title }}
+                </hljs>
+                <!-- htmlmin:ignore -->
+                inside the template file.
+            </p>
+
+        </div>
+
+
         <p>
             Cards are useful for showing excerpts, quick information or notifications. Using
             <code>ms-card</code> directive you can easily create different cards compatible with Google's Material
@@ -35,70 +130,70 @@
             <div class="md-title mt-32">Template 1</div>
 
             <!-- MS-CARD -->
-            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_1MS_Card52MS_Card52MS_Card51'"
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=cardsample-template-1.html'"
 					 ng-model="vm.cards[0]"></ms-card>
             <!-- / MS-CARD -->
 
             <div class="md-title mt-48">Template 2</div>
 
             <!-- MS-CARD -->
-            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_2MS_Card49'"
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=cardsample-template-2.html'"
 					 ng-model="vm.cards[1]"></ms-card>
             <!-- / MS-CARD -->
 
             <div class="md-title mt-48">Template 3</div>
 
             <!-- MS-CARD -->
-            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_3MS_Card51'"
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=cardsample-template-3.html'"
 					 ng-model="vm.cards[2]"></ms-card>
             <!-- / MS-CARD -->
 
             <div class="md-title mt-48">Template 4</div>
 
             <!-- MS-CARD -->
-            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_4MS_Card46'" 
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=cardsample-template-4.html'"
 					 ng-model="vm.cards[3]"></ms-card>
             <!-- / MS-CARD -->
 
             <div class="md-title mt-48">Template 5</div>
 
             <!-- MS-CARD -->
-            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_5MS_Card47'" 
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=cardsample-template-5.html'"
 					 ng-model="vm.cards[4]"></ms-card>
             <!-- / MS-CARD -->
 
             <div class="md-title mt-48">Template 6</div>
 
             <!-- MS-CARD -->
-            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_6MS_Card53'" 
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=cardsample-template-6.html'"
 					 ng-model="vm.cards[5]"></ms-card>
             <!-- / MS-CARD -->
 
             <div class="md-title mt-48">Template 7</div>
 
             <!-- MS-CARD -->
-            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_7MS_Card54MS_Card47'"
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=cardsample-template-7.html'"
 					 ng-model="vm.cards[6]"></ms-card>
             <!-- / MS-CARD -->
 
             <div class="md-title mt-48">Template 8</div>
 
             <!-- MS-CARD -->
-            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_8MS_Card45MS_Card48'"
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=cardsample-template-8.html'"
 					 ng-model="vm.cards[7]"></ms-card>
             <!-- / MS-CARD -->
 
             <div class="md-title mt-48">Template 9</div>
 
             <!-- MS-CARD -->
-            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_9MS_Card48MS_Card46'"
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=cardsample-template-9.html'"
 					 ng-model="vm.cards[8]"></ms-card>
             <!-- / MS-CARD -->
 
             <div class="md-title mt-48">Template 10</div>
 
             <!-- MS-CARD -->
-            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=card_tmpl_10MS_Card50MS_Card51'"
+            <ms-card template="'/moho_extractor/NgIncludedHtml/?name=cardsample-template-10.html'"
 					 ng-model="vm.cards[9]"></ms-card>
             <!-- / MS-CARD -->
 

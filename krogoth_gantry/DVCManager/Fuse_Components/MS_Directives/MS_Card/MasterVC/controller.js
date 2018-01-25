@@ -15,13 +15,13 @@
                 "text": "Look deep into nature, then you will understand everything better.",
                 "media": {
                     "image": {
-                        "src": "assets/images/etc/early-sunrise.jpg",
+                        "src": "/static/assets/images/etc/early-sunrise.jpg",
                         "alt": "Early Sunrise"
                     }
                 }
             }, {
                 "avatar": {
-                    "src": "assets/images/avatars/alice.jpg",
+                    "src": "/static/assets/images/avatars/alice.jpg",
                     "alt": "Alice Freeman"
                 },
                 "title": "Alice Freeman posted on Nature",
@@ -29,7 +29,7 @@
                 "text": "Look deep into nature, then you will understand everything better. Look deep into nature, then you will understand everything better.",
                 "media": {
                     "image": {
-                        "src": "assets/images/etc/early-sunrise.jpg",
+                        "src": "/static/assets/images/etc/early-sunrise.jpg",
                         "alt": "Early Sunrise"
                     }
                 }
@@ -39,7 +39,7 @@
                 "cta": "LISTEN NOW",
                 "media": {
                     "image": {
-                        "src": "assets/images/etc/alice-cooper-poison.jpg",
+                        "src": "/static/assets/images/etc/alice-cooper-poison.jpg",
                         "alt": "Alice Cooper - Poison"
                     }
                 }
@@ -48,7 +48,7 @@
                 "text": "Look deep into nature, then you will understand everything better. Look deep into nature, then you will understand everything better.",
                 "media": {
                     "image": {
-                        "src": "assets/images/etc/avenue.jpg",
+                        "src": "/static/assets/images/etc/avenue.jpg",
                         "alt": "Avenue"
                     }
                 }
@@ -57,7 +57,7 @@
                 "event": "Andrew Ryan is now following you",
                 "media": {
                     "image": {
-                        "src": "assets/images/avatars/vincent.jpg",
+                        "src": "/static/assets/images/avatars/vincent.jpg",
                         "alt": "Andrew Ryan"
                     }
                 }
@@ -71,7 +71,7 @@
                 "text": "Poison",
                 "media": {
                     "image": {
-                        "src": "assets/images/etc/alice-cooper-poison.jpg",
+                        "src": "/static/assets/images/etc/alice-cooper-poison.jpg",
                         "alt": "Alice Cooper - Poison"
                     }
                 }
@@ -83,13 +83,13 @@
                 "text": "Look deep into nature, then you will understand everything better. Look deep into nature, then you will understand everything better. Duis leo enim, interdum vitae commodo quis, ullamcorper eget lectus. Phasellus auctor tellus id sem dictum gravida. Quisque vitae enim quis libero ultricies dictum sit amet vitae metus. Mauris efficitur nisi eu metus eleifend, sit amet molestie eros viverra.",
                 "media": {
                     "image": {
-                        "src": "assets/images/etc/early-sunrise.jpg",
+                        "src": "/static/assets/images/etc/early-sunrise.jpg",
                         "alt": "Early Sunrise"
                     }
                 }
             }, {
                 "avatar": {
-                    "src": "assets/images/avatars/alice.jpg",
+                    "src": "/static/assets/images/avatars/alice.jpg",
                     "alt": "Alice Freeman"
                 },
                 "title": "Alice Freeman posted on Nature",
@@ -97,7 +97,7 @@
                 "text": "Look deep into nature, then you will understand everything better. Look deep into nature, then you will understand everything better.",
                 "media": {
                     "image": {
-                        "src": "assets/images/etc/early-sunrise.jpg",
+                        "src": "/static/assets/images/etc/early-sunrise.jpg",
                         "alt": "Early Sunrise"
                     }
                 }
@@ -106,7 +106,7 @@
                 "subtitle": "Stimpaks are good for you",
                 "media": {
                     "image": {
-                        "src": "assets/images/logos/fallout.png",
+                        "src": "/static/assets/images/logos/fallout.png",
                         "alt": "Andrew Ryan"
                     }
                 },
