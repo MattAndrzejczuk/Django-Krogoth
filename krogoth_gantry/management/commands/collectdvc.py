@@ -170,6 +170,8 @@ class Command(BaseCommand):
                                 htmls = os.listdir(partial_HTMLs_path)
                                 if len(os.listdir(partial_HTMLs_path)) >= 1:
                                     for html in htmls:
+                                        if html == ".DS_Store":
+                                            continue
                                         rawHtml = ""
                                         pathHTML = partial_HTMLs_path + "/" + html
                                         try:
