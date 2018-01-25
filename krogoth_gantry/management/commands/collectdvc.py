@@ -179,8 +179,7 @@ class Command(BaseCommand):
                                             rawHtml = ""
                                             self.stdout.write(self.style.ERROR("Skipping file: " + pathHTML))
                                         newIncludeHTML = IncludedHtmlMaster.objects.get_or_create(
-                                            name=(html + str(name_pk).replace(".html", "") +
-                                                  str(len(IncludedHtmlMaster.objects.all()))),
+                                            name=(html),
                                             master_vc=_mvc[0])
                                         newIncludeHTML[0].sys_path = pathHTML
                                         newIncludeHTML[0].contents = rawHtml
