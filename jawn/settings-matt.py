@@ -91,7 +91,7 @@ INSTALLED_APPS = (
     'krogoth_core',
     'moho_extractor',
     'krogoth_gantry',
-    'CommunityForum',
+    'krogoth_social',
     'djangular_dashboard',
     'django_filters',
     'filebrowser',

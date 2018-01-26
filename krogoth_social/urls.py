@@ -2,9 +2,9 @@
 # __author__ = 'Matt Andrzejczuk'
 #
 # from django.conf.urls import url, include
-# from CommunityForum import views
+# from krogoth_social import views
 # from rest_framework.routers import DefaultRouter
-# from CommunityForum.serializers import ForumReplyViewSet, ForumPostViewSet
+# from krogoth_social.serializers import ForumReplyViewSet, ForumPostViewSet
 #
 # router_forum = DefaultRouter()
 # router_forum.register(r'ForumReply', ForumReplyViewSet)

@@ -40,12 +40,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='akthread',
             name='category',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='akcat', to='CommunityForum.AKThreadCategory'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='akcat', to='krogoth_social.AKThreadCategory'),
         ),
         migrations.AddField(
             model_name='akthread',
             name='parent',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='broodling', to='CommunityForum.AKThread'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='broodling', to='krogoth_social.AKThread'),
         ),
         migrations.AddField(
             model_name='akthread',

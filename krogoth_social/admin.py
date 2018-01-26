@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-# from CommunityForum.models import ForumCategory, ForumPost, ForumReply
+# from krogoth_social.models import ForumCategory, ForumPost, ForumReply
 #
 #
 # class ForumCategoryAdmin(admin.ModelAdmin):

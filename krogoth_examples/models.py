@@ -46,8 +46,8 @@ class Occupant(models.Model):
 
 
 class BasicImageUpload(models.Model):
-    image = models.ImageField(upload_to='krogoth_example_imageuploads')
+    file = models.ImageField(upload_to='krogoth_example_imageuploads')
 
 
 class BasicFileUpload(models.Model):
-    image = models.FileField(upload_to='krogoth_example_fileuploads')
+    file = models.FileField(upload_to='krogoth_example_fileuploads')

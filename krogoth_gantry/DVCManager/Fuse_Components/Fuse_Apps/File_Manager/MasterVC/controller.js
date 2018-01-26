@@ -165,12 +165,12 @@
 
         vm.ngFlowOptions = {
             // You can configure the ngFlow from here
-            /*target                   : 'api/media/image',
+            target                   : '/api/__ExamplesBasicImageUpload/',
              chunkSize                : 15 * 1024 * 1024,
              maxChunkRetries          : 1,
              simultaneousUploads      : 1,
              testChunks               : false,
-             progressCallbacksInterval: 1000*/
+             progressCallbacksInterval: 1000
         };
         vm.ngFlow = {
             // ng-flow will be injected into here through its directive
@@ -199,8 +199,9 @@
             // Prepare the temp file data for file list
             var uploadingFile = {
                 id: file.uniqueIdentifier,
-                file: file,
+                image: file,
                 type: '',
+                name: "image",
                 owner: 'Emily Bennett',
                 size: '',
                 modified: moment().format('MMMM D, YYYY'),
@@ -213,7 +214,7 @@
             };
 
             // Append it to the file list
-            vm.files.push(uploadingFile);
+            vm.files.push(file);
         }
 
         /**

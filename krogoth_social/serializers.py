@@ -6,7 +6,7 @@ from chat.models import JawnUser
 from chat.serializers import JawnUserSerializer
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from django.shortcuts import render
-from CommunityForum.models import AKThreadCategory, AKThread
+from krogoth_social.models import AKThreadCategory, AKThread
 from rest_framework import viewsets
 
 from krogoth_gantry.management.commands.installdjangular import bcolors

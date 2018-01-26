@@ -23,7 +23,7 @@ router.register(r'link-messages', LinkMessageViewSet)
 router.register(r'youtube-messages', YouTubeMessageViewSet)
 router.register(r'youtube', YouTubeMessageViewSet)
 
-from CommunityForum.serializers import AKThreadViewSet, AKThreadCategoryViewSet
+from krogoth_social.serializers import AKThreadViewSet, AKThreadCategoryViewSet
 router.register(r'AKThreadCategory', AKThreadCategoryViewSet)
 router.register(r'AKThread', AKThreadViewSet)
 
@@ -97,7 +97,7 @@ urlpatterns = [
 
     url(r'^moho_extractor/', include('moho_extractor.urls')),
     url(r'^krogoth_gantry/', include('krogoth_gantry.urls')),
-    # url(r'^Forum/', include('CommunityForum.urls')),
+    # url(r'^Forum/', include('krogoth_social.urls')),
 
 
     url(r'^ThirdParty/', include('krogoth_3rdparty_api.urls')),
