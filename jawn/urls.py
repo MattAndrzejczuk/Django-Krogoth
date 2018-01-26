@@ -23,9 +23,9 @@ router.register(r'link-messages', LinkMessageViewSet)
 router.register(r'youtube-messages', YouTubeMessageViewSet)
 router.register(r'youtube', YouTubeMessageViewSet)
 
-from CommunityForum.serializers import ForumReplyViewSet, ForumPostViewSet
-router.register(r'ForumReply', ForumReplyViewSet)
-router.register(r'ForumPost', ForumPostViewSet)
+from CommunityForum.serializers import AKThreadViewSet, AKThreadCategoryViewSet
+router.register(r'AKThreadCategory', AKThreadCategoryViewSet)
+router.register(r'AKThread', AKThreadViewSet)
 
 from krogoth_examples.views import FruitViewSet, TextLabelViewSet, ManufacturerViewSet, CarViewSet, \
     ToppingViewSet, PizzaViewSet, HotelViewSet, OccupantViewSet, \
@@ -97,7 +97,7 @@ urlpatterns = [
 
     url(r'^moho_extractor/', include('moho_extractor.urls')),
     url(r'^krogoth_gantry/', include('krogoth_gantry.urls')),
-    url(r'^Forum/', include('CommunityForum.urls')),
+    # url(r'^Forum/', include('CommunityForum.urls')),
 
 
     url(r'^ThirdParty/', include('krogoth_3rdparty_api.urls')),

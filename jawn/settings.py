@@ -78,6 +78,7 @@ INSTALLED_APPS = (
     'LazarusIV',
     'LazarusV',
     'krogoth_core',
+    'krogoth_apps',
     'moho_extractor',
     'krogoth_gantry',
     'krogoth_3rdparty_api',

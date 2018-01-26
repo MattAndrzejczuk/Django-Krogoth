@@ -1,5 +1,4 @@
 from django.core.management.base import BaseCommand, CommandError
-from CommunityForum.models import ForumCategory
 from moho_extractor.models import NgIncludedHtml
 import codecs
 import subprocess
