@@ -17,9 +17,9 @@
         _DJANGULAR_SLAVE_MSAPI_INJECTION_POINT_
         msNavigationServiceProvider.saveItem('AK_NAVCAT_KROGOTH.AK_SUBCATAGORY_KROGOTH.FUSE_APP_NAME', {
             title: 'FUSE_APP_TITLE',
-            icon: 'FUSE_APP_ICON',
+            icon: 'entypo entypo-signal',
             state: 'app.FUSE_APP_NAME',
-            weight: 0
+            weight: 4
         });
         _DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_
     }

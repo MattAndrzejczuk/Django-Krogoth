@@ -2,7 +2,7 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
-    function FUSE_APP_NAMEController($websocket, $mdToast, $location, $timeout) {
+    function FUSE_APP_NAMEController($websocket, $mdToast, $location, $timeout, $mdSidenav) {
         /* jshint validthis: true */
         var vm = this;
         vm.viewName = 'FUSE_APP_NAME';
@@ -16,7 +16,12 @@
         vm.$onDestroy = onDestroy;
 
         vm.connectionTimeout = 2000;
+
+        vm.messagesTracked = [];
+
         vm.msgs = [];
+
+        vm.customSocketUriForm = {};
 
         const wsChannel = 'Public%7CChat%23General?subscribe-broadcast&publish-broadcast';
         const conURI = 'ws://' + $location.host() + '/ws/' + wsChannel;
@@ -26,25 +31,15 @@
             lazy: true
         });
 
-        function onInit() {
-            var introMsg = 'Unknown Connection Status: ';
-            if (vm.ws.$status() === 3) {
-                const secsFromMiliseconds = vm.connectionTimeout / 1000;
-                introMsg = 'Connecting to Web Socket in ' + secsFromMiliseconds + ' seconds... ';
+        vm.toggleSidenav = toggleSidenav;
 
-                $timeout(function() {
-                    vm.openWsCon(); // it will open the websocket after 5 seconds
-                }, vm.connectionTimeout);
-            } else {
-                introMsg = introMsg + ' ' + vm.ws.$status();
-            }
-            $mdToast.show({
-                template: '<md-toast class="md-toast">' + introMsg + '</md-toast>',
-                hideDelay: 4000,
-                position: 'bottom right'
-            });
+        function toggleSidenav(sidenavId) {
+            $mdSidenav(sidenavId).toggle();
         }
 
+        function onInit() {
+
+        }
 
         function closeWsCon() {
             if (vm.ws.$status() === 1)
@@ -56,12 +51,22 @@
         }
 
         function openWsCon() {
-            if (vm.ws.$status() !== 1)
-                vm.ws.$open();
+            var p1 = vm.customSocketUriForm.p1 + "%7C";
+            var p2 = vm.customSocketUriForm.p2 + "%23";
+            var p3 = vm.customSocketUriForm.p3 + "?subscribe-broadcast&publish-broadcast";
+            var chnl = p1 + p2 + p3;
+            var uri = 'ws://' + $location.host() + '/ws/' + chnl;
+
+            vm.ws = $websocket.$new({
+                url: uri,
+                lazy: false
+            });
+
             vm.ws.$on('$message', function(message) { // it listents for 'incoming event'
                 if (message !== '--heartbeat--') {
                     console.log('$message incoming from the server: ' + message);
                     if (message['data']) {
+                        vm.messagesTracked.push(message);
                         vm.msgs.push(message['data']);
                         if (message['data'] === []) {
                             var audio2 = new Audio('/static/gui_sfx/beep_surrender.wav');
@@ -111,6 +116,10 @@
             if (vm.ws.$status() === 1) {
                 userFeedback = 'Message sent!';
                 vm.ws.$emit('messageType', vm.userInput);
+                vm.messagesTracked.push({
+                    myMessage: vm.userInput
+                });
+                vm.userInput = "";
             }
             $mdToast.show(
                 $mdToast.simple()

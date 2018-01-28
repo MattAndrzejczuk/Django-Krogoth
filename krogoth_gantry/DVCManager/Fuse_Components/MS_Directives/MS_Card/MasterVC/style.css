@@ -1,59 +1,297 @@
 
 
-.clear-bg {
-	background-color: rgba(0, 0, 0, 0) !important;
-}
-.ms-card .template-1 .media .image {
-  width: 100%;
-  border-radius: 2px 2px 0 0;
-}
-.ms-card .template-2 .header .avatar .image {
-  display: block;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-}
-.ms-card .template-2 .media .image {
-  width: 100%;
-}
-.ms-card .template-4 .info {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
-  background: rgba(0, 0, 0, 0.54);
-}
-.ms-card .template-4 .media {
-  z-index: 1;
-}
-.ms-card .template-4 .media .image {
-  width: 100%;
-}
-.ms-card .template-5 .media {
-  width: 80px;
-  min-width: 80px;
-  max-width: 80px;
-}
-.ms-card .template-5 .info, .ms-card .template-5 .media {
-  -ms-flex: 0 1 auto;
-}
-.ms-card .template-8 .media .image {
-  width: 100%;
-  border-radius: 2px 2px 0 0;
-}
-.ms-card .template-9 .header .avatar .image {
-  display: block;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-}
-.ms-card .template-9 .media .image {
-  width: 100%;
-}
-.ms-card .template-10 .media {
-  width: 80px;
-  min-width: 80px;
-  max-width: 80px;
-}
 
+/*GLOBALSTYLE*/
+
+
+
+
+    @media only screen and (max-width: 9000px) {
+        md-content.md-default-theme.md-hue-2, md-content.md-hue-2 {
+            background-size: 4000px 4000px !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-attachment: fixed !important;
+        }
+
+        .opaque-global {
+            background-size: 4000px 4000px !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-attachment: fixed !important;
+        }
+
+        md-sidenav {
+            background-size: 4000px 4000px !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-attachment: fixed !important;
+        }
+
+        md-toolbar {
+            background-size: 4000px 4000px !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-attachment: fixed !important;
+        }
+
+        .glass-global {
+            background-attachment: fixed !important;
+            background-size: 4000px 4000px !important;
+            background-position: left top;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+        }
+
+        .glass-test {
+            background-attachment: fixed !important;
+            background-size: 4000px 4000px !important;
+            background-position: left top;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+        }
+
+        body {
+            background-size: 4000px 4000px !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-attachment: fixed !important;
+            color: white;
+        }
+    }
+
+    @media only screen and (max-width: 3000px) {
+        md-content.md-default-theme.md-hue-2, md-content.md-hue-2 {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-size: 3000px 3000px !important;
+            background-position: left top;
+        }
+
+        .opaque-global {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-size: 3000px 3000px !important;
+            background-position: left top;
+        }
+
+        md-sidenav {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-size: 3000px 3000px !important;
+            background-position: left top;
+        }
+
+        md-toolbar {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-size: 3000px 3000px;
+            background-position: left top;
+        }
+
+        .glass-global {
+            background-size: 3000px 3000px !important;
+            background-position: left top;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+        }
+
+        body {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-size: 3000px 3000px !important;
+            background-position: left top;
+        }
+
+        .glass-test {
+            background-attachment: fixed !important;
+            background-size: 3000px 3000px !important;
+            background-position: left top;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+        }
+    }
+
+    @media only screen and (max-width: 2001px) {
+
+        md-sidenav {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-size: 2000px 2000px !important;
+            background-position: left top;
+        }
+
+        md-toolbar {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-size: 2000px 2000px !important;
+            background-position: left top;
+        }
+
+        md-content.md-default-theme.md-hue-2, md-content.md-hue-2 {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-size: 2000px 2000px !important;
+            background-position: left top;
+        }
+
+        .opaque-global {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-size: 2000px 2000px !important;
+            background-position: left top;
+        }
+
+        .glass-global {
+            background-attachment: fixed !important;
+            background-size: 2000px 2000px !important;
+            background-position: left top;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+        }
+
+        .glass-test {
+            background-attachment: fixed !important;
+            background-size: 2000px 2000px !important;
+            background-position: left top;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+        }
+
+        body {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-size: 2000px 2000px !important;
+            background-position: left top;
+        }
+    }
+
+
+    @media only screen and (max-width: 1024px) {
+
+        md-sidenav {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-size: 1024px 1024px !important;
+            background-position: left top;
+        }
+
+        md-toolbar {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-size: 1024px 1024px !important;
+            background-position: left top;
+        }
+
+        md-content.md-default-theme.md-hue-2, md-content.md-hue-2 {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-size: 1024px 1024px !important;
+            background-position: left top;
+        }
+
+        .opaque-global {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-size: 1024px 1024px !important;
+            background-position: left top;
+        }
+
+        .glass-global {
+            background-attachment: fixed !important;
+            background-size: 1024px 1024px !important;
+            background-position: left top;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+        }
+
+        .glass-test {
+            background-attachment: fixed !important;
+            background-size: 1024px 1024px !important;
+            background-position: left top;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+        }
+
+        body {
+            background-attachment: fixed !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-size: 1024px 1024px !important;
+            background-position: left top;
+        }
+    }
+
+    @font-face {
+        font-family: 'haettenschweilerregular';
+        src: url('/static/fonts/haettenschweiler-webfont.woff2') format('woff2'),
+        url('/static/fonts/haettenschweiler-webfont.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .icon-ta-arm {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-image: url('/static/ArmLogoVectorWhite.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .icon-ta-core {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-image: url('/static/CoreLogoVectorWhite.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    @-webkit-keyframes MOVE-BG {
+        0% {
+            -webkit-transform: translateX(0%);
+        }
+        50% {
+            -webkit-transform: translateX(-9%);
+        }
+        100% {
+            -webkit-transform: translateX(0%);
+        }
+    }
+
+    @-webkit-keyframes SCALE-INFINITE {
+        0% {
+            -ms-transform: scale(1.0, 1.0); /* IE 9 */
+            -webkit-transform: scale(1.0, 1.0); /* Safari */
+            transform: scale(1.0, 1.0); /* Standard syntax */
+        }
+        50% {
+            -ms-transform: scale(1.01, 1.01); /* IE 9 */
+            -webkit-transform: scale(1.01, 1.01); /* Safari */
+            transform: scale(1.01, 1.01); /* Standard syntax */
+        }
+        100% {
+            -ms-transform: scale(1.0, 1.0); /* IE 9 */
+            -webkit-transform: scale(1.0, 1.0); /* Safari */
+            transform: scale(1.0, 1.0); /* Standard syntax */
+        }
+    }
+
+    .redb {
+        border-radius: 3px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #D32F2F;
+    }
+    .blueb {
+        border-radius: 3px !important;
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: #2196F3 !important;
+    }
+    .var-display {
+        width:60px;
+        padding:5px;
+        border-radius: 10px;
+    }
+
+
+
+/*EndGlobalStyle*/

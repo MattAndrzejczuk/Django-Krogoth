@@ -312,7 +312,7 @@
                     </md-button>
                     <div class="steps">
                         <span ng-repeat="form in msWizard.forms"
-                              ng-class="{'selected md-accent-bg':msWizard.selectedIndex === $index}"></span>
+                              ng-class="{'selected md-accent-bg':msWizard.selectedIndex}"></span>
                     </div>
                     <md-button class="md-raised md-accent" ng-click="msWizard.nextStep()"
                                ng-hide="msWizard.isLastStep()"

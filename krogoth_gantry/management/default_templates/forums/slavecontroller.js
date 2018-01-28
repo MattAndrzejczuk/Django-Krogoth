@@ -2,7 +2,7 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('_SLAVE_NAME_Controller', _SLAVE_NAME_Controller);
 
-    function _SLAVE_NAME_Controller($stateParams, $log, CommunityForumService) {
+    function _SLAVE_NAME_Controller($stateParams, $log, krogoth_socialService) {
         var vm = this;
 
         vm.createThreadMode = false;
@@ -16,7 +16,7 @@
         if ($stateParams.id) {
             vm.viewName = '_SLAVE_NAME_ ' + $stateParams.id;
             vm.listData = {};
-            CommunityForumService.getDetailThread($stateParams.id).then(function(data) {
+            krogoth_socialService.getDetailThread($stateParams.id).then(function(data) {
                 vm.listData = data;
             });
         } else {
@@ -39,12 +39,12 @@
             };
             $log.log(jsonData);
             vm.viewName = 'Posting New Thread . . . ';
-            CommunityForumService.postNewThread(jsonData).then(function(data) {
+            krogoth_socialService.postNewThread(jsonData).then(function(data) {
                 vm.createThreadMode = false;
                 var newThreadToLoad = data['id'];
                 vm.viewName = 'Loading Newly Created Thread . . . ';
                 vm.form = {};
-                CommunityForumService.getDetailThread(newThreadToLoad).then(function(data) {
+                krogoth_socialService.getDetailThread(newThreadToLoad).then(function(data) {
                     vm.viewName = '';
                     vm.listData = data;
                 });
@@ -59,11 +59,11 @@
             };
             $log.log(jsonData);
             vm.viewName = 'Posting Reply . . . ';
-            CommunityForumService.postNewReply(jsonData).then(function(data) {
+            krogoth_socialService.postNewReply(jsonData).then(function(data) {
                 vm.createReplyMode = false;
                 vm.viewName = 'Reloading Thread . . . ';
                 vm.form = {};
-                CommunityForumService.getDetailThread($stateParams.id).then(function(data) {
+                krogoth_socialService.getDetailThread($stateParams.id).then(function(data) {
                     vm.listData = data;
                     vm.viewName = '';
                 });

@@ -165,12 +165,12 @@
 
         vm.ngFlowOptions = {
             // You can configure the ngFlow from here
-            target                   : '/api/__ExamplesBasicImageUpload/',
-             chunkSize                : 15 * 1024 * 1024,
-             maxChunkRetries          : 1,
-             simultaneousUploads      : 1,
-             testChunks               : false,
-             progressCallbacksInterval: 1000
+            target: '/api/__ExamplesBasicImageUpload/',
+            chunkSize: 15 * 1024 * 1024,
+            maxChunkRetries: 1,
+            simultaneousUploads: 1,
+            testChunks: false,
+            progressCallbacksInterval: 1000
         };
         vm.ngFlow = {
             // ng-flow will be injected into here through its directive

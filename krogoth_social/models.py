@@ -48,6 +48,8 @@ class AKThread(PolymorphicModel):
         return self.uid
 
 
+#class AKThreadArticle(AKThread):
+
 
 # DEFAULTS:
 

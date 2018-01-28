@@ -16,6 +16,9 @@
         vm.$onDestroy = onDestroy;
 
         vm.connectionTimeout = 2000;
+
+        vm.messagesTracked = [];
+
         vm.msgs = [];
 
         const wsChannel = 'Public%7CChat%23General?subscribe-broadcast&publish-broadcast';
@@ -62,6 +65,7 @@
                 if (message !== '--heartbeat--') {
                     console.log('$message incoming from the server: ' + message);
                     if (message['data']) {
+                        vm.messagesTracked.push(message);
                         vm.msgs.push(message['data']);
                         if (message['data'] === []) {
                             var audio2 = new Audio('/static/gui_sfx/beep_surrender.wav');
@@ -111,6 +115,10 @@
             if (vm.ws.$status() === 1) {
                 userFeedback = 'Message sent!';
                 vm.ws.$emit('messageType', vm.userInput);
+                vm.messagesTracked.push({
+                    myMessage: vm.userInput
+                });
+                vm.userInput = "";
             }
             $mdToast.show(
                 $mdToast.simple()

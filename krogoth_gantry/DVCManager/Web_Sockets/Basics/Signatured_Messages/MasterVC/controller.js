@@ -2,7 +2,7 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
-    function FUSE_APP_NAMEController($websocket, $mdToast, $location, $timeout) {
+    function FUSE_APP_NAMEController($websocket, $mdToast, $location, $timeout, $mdSidenav) {
         /* jshint validthis: true */
         var vm = this;
         vm.viewName = 'FUSE_APP_NAME';
@@ -15,16 +15,28 @@
         vm.$onInit = onInit;
         vm.$onDestroy = onDestroy;
 
-        vm.connectionTimeout = 2000;
+        vm.connectionTimeout = 1000;
+
+        vm.messagesTracked = [];
+
         vm.msgs = [];
 
-        const wsChannel = 'Public%7CChat%23General?subscribe-broadcast&publish-broadcast';
+        vm.customSocketUriForm = {};
+        vm.signature = {};
+
+        const wsChannel = 'Signature%7CChat%23General?subscribe-broadcast&publish-broadcast';
         const conURI = 'ws://' + $location.host() + '/ws/' + wsChannel;
 
         vm.ws = $websocket.$new({
             url: conURI,
             lazy: true
         });
+
+        vm.toggleSidenav = toggleSidenav;
+
+        function toggleSidenav(sidenavId) {
+            $mdSidenav(sidenavId).toggle();
+        }
 
         function onInit() {
             var introMsg = 'Unknown Connection Status: ';
@@ -45,7 +57,6 @@
             });
         }
 
-
         function closeWsCon() {
             if (vm.ws.$status() === 1)
                 vm.ws.$close();
@@ -56,12 +67,22 @@
         }
 
         function openWsCon() {
-            if (vm.ws.$status() !== 1)
-                vm.ws.$open();
+            var p1 = vm.customSocketUriForm.p1 + "%7C";
+            var p2 = vm.customSocketUriForm.p2 + "%23";
+            var p3 = vm.customSocketUriForm.p3 + "?subscribe-broadcast&publish-broadcast";
+            var chnl = p1 + p2 + p3;
+            var uri = 'ws://' + $location.host() + '/ws/' + chnl;
+
+            vm.ws = $websocket.$new({
+                url: uri,
+                lazy: false
+            });
+
             vm.ws.$on('$message', function(message) { // it listents for 'incoming event'
                 if (message !== '--heartbeat--') {
                     console.log('$message incoming from the server: ' + message);
                     if (message['data']) {
+                        vm.messagesTracked.push(message);
                         vm.msgs.push(message['data']);
                         if (message['data'] === []) {
                             var audio2 = new Audio('/static/gui_sfx/beep_surrender.wav');
@@ -108,9 +129,17 @@
 
         function sendMsg() {
             var userFeedback = 'Failed to send message! No connection is established.';
+            var msg = {
+                text: vm.userInput,
+                sender: vm.signature
+            };
             if (vm.ws.$status() === 1) {
                 userFeedback = 'Message sent!';
-                vm.ws.$emit('messageType', vm.userInput);
+                vm.ws.$emit('text', msg);
+                vm.messagesTracked.push({
+                    data: msg
+                });
+                vm.userInput = "";
             }
             $mdToast.show(
                 $mdToast.simple()

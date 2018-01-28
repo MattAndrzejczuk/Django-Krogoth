@@ -5,7 +5,7 @@ from django.core.management.base import BaseCommand, CommandError
 from moho_extractor.models import NgIncludedJs, NgIncludedHtml
 from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryIcon, KrogothGantryService, \
     KrogothGantryCategory, KrogothGantrySlaveViewController
-from CommunityForum.models import ForumCategory
+from krogoth_social.models import ForumCategory
 import codecs
 
 
@@ -221,9 +221,9 @@ class Command(BaseCommand):
             except:
                 self.stdout.write(self.style.SUCCESS('FAIL... KrogothGantrySlaveViewController.save()'))
 
-            str_Service = codecs.open('krogoth_gantry/management/default_templates/forums/CommunityForumService.js',
+            str_Service = codecs.open('krogoth_gantry/management/default_templates/forums/krogoth_socialService.js',
                                       'r').read()
-            service = KrogothGantryService(name='CommunityForumService', title='Community Forum Service RESTful CRUD')
+            service = KrogothGantryService(name='krogoth_socialService', title='Community Forum Service RESTful CRUD')
             try:
                 service.service_js = str_Service
                 service.save()

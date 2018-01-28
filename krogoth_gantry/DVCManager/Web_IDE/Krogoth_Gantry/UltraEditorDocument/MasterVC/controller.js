@@ -63,6 +63,7 @@
         vm.getTemplatesHTML = getTemplatesHTML;
 
         vm.goBackToCategory = goBackToCategory;
+        vm.toggleSidenav = toggleSidenav;
 
         vm.editorOptions = {
             lineWrapping: true,
@@ -284,12 +285,14 @@
 
         /*  ⚡️  */
         function loadFileIntoEditor(parentIndex, index, scope) {
+            /*
             $log.info("PARENT INDEX: " + parentIndex);
             $log.info("INDEX: " + index);
             $log.info("SCOPE: ");
             $log.debug(scope);
             $log.info("TREE DATA: ");
             $log.debug(vm.treeData);
+			*/
             vm.unsavedChangesExist = -1;
             if (vm.editorLoadedFirstDoc === true) {
                 vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode = vm.editorModel.doc.getValue();
@@ -308,9 +311,28 @@
         function saveEditorWorkToServer(node) {
             SaveToSQL.saveDocument(node, vm.editorModel.doc.getValue())
                 .then(function(savedWork) {
-                    vm.treeData[node.parentIndex].nodes[node.index].hasUnsavedChanges = false;
-                    vm.treeData[node.parentIndex].nodes[node.index].sourceCode = savedWork;
+
+                    var pi = node.parentIndex;
+                    var ni = node.index;
+
+
+                    vm.loadedParentIndex = pi;
+                    vm.loadedIndex = ni;
+                    var key = vm.treeData[pi].nodes[ni].sourceKey;
+                    $log.info(key);
+                    $log.info("HERE's OUR SAVED WORK: ");
+                    $log.info(savedWork[key]);
+                    vm.editorModel.doc.setValue(savedWork[key]);
+                    vm.treeData[pi].nodes[ni].sourceCode = savedWork.sourceCode;
+                    ///vm.loadFileIntoEditor(pi, ni, node);
+                    vm.treeData[pi].nodes[ni].hasUnsavedChanges = false;
                     vm.unsavedChangesExist = -1;
+                    $mdToast.show(
+                        $mdToast.simple()
+                        .textContent('Document Saved.')
+                        .position('top right')
+                        .hideDelay(2000)
+                    );
                 });
         }
 
@@ -410,6 +432,11 @@
             });
         }
 
+
+
+        function toggleSidenav(sidenavId) {
+            $mdSidenav(sidenavId).toggle();
+        }
 
     }
 })();
