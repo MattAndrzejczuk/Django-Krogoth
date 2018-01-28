@@ -1,297 +1,458 @@
+pre {
+	color: white;
+}
+
+strong {
+	color: white;
+}
+
+.clear-bg {
+	background-color: rgba(0, 0, 0, 0) !important;
+}
+
+#profile .timeline-tab {
+	max-width: 1200px;
+}
+
+#profile .timeline-tab .timeline {
+	padding: 8px;
+}
+
+#profile .timeline-tab .timeline .add-post {
+	margin-bottom: 0;
+}
+
+#profile .timeline-tab .timeline .add-post textarea {
+	font-size: 13px;
+	width: 100%;
+	height: 140px;
+	border: none;
+	padding: 16px;
+	resize: vertical;
+}
+
+#profile .timeline-tab .timeline .add-post footer {
+	background: #F3F4F5;
+}
+
+#profile .timeline-tab .timeline .add-post footer .post-button {
+	margin: 0;
+	width: 64px;
+	min-width: 64px;
+	height: 30px;
+	line-height: 30px;
+	min-height: 30px;
+}
+
+#profile .timeline-tab .timeline md-divider {
+	margin: 32px 0;
+}
+
+#profile .timeline-tab .timeline .timeline-item {
+	margin-bottom: 32px;
+	overflow: hidden;
+	border-radius: 2px;
+	background: #FFFFFF;
+}
+
+#profile .timeline-tab .timeline .timeline-item:last-child {
+	margin-bottom: 0;
+}
+
+#profile .timeline-tab .timeline .timeline-item header {
+	padding: 16px 0 8px 16px;
+}
+
+#profile .timeline-tab .timeline .timeline-item header .title {
+	font-weight: 500;
+}
+
+#profile .timeline-tab .timeline .timeline-item header .title .username {
+	margin-right: 4px;
+}
+
+#profile .timeline-tab .timeline .timeline-item header .time {
+	color: rgba(0, 0, 0, 0.54);
+}
+
+#profile .timeline-tab .timeline .timeline-item .content .message {
+	padding: 8px 16px;
+}
+
+#profile .timeline-tab .timeline .timeline-item .content .media {
+	padding: 16px 8px;
+}
+
+#profile .timeline-tab .timeline .timeline-item .content .media img, #profile .timeline-tab .timeline .timeline-item .content .media iframe {
+	width: 100%;
+}
+
+#profile .timeline-tab .timeline .timeline-item .content .media a {
+	color: inherit;
+}
+
+#profile .timeline-tab .timeline .timeline-item .content .like-button,
+      #profile .timeline-tab .timeline .timeline-item .content .share-button {
+	padding: 4px 6px;
+	text-transform: inherit;
+	font-size: 13px;
+	font-weight: normal;
+	margin: 0 0 16px 8px;
+	min-width: inherit;
+	line-height: inherit;
+}
+
+#profile .timeline-tab .timeline .timeline-item .content .like-button:hover,
+        #profile .timeline-tab .timeline .timeline-item .content .share-button:hover {
+	background-color: transparent;
+}
+
+#profile .timeline-tab .timeline .timeline-item .content .like-button md-icon,
+        #profile .timeline-tab .timeline .timeline-item .content .share-button md-icon {
+	margin: 0 8px 0 0;
+}
+
+#profile .timeline-tab .timeline .timeline-item .content .article {
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	margin: 8px;
+}
+
+#profile .timeline-tab .timeline .timeline-item .content .article .media {
+	padding: 0;
+	overflow: hidden;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#profile .timeline-tab .timeline .timeline-item .content .article .media img {
+	display: block;
+	padding: 0;
+}
+
+#profile .timeline-tab .timeline .timeline-item .content .article .title {
+	font-size: 15px;
+	padding: 16px 16px 4px 16px;
+}
+
+#profile .timeline-tab .timeline .timeline-item .content .article .subtitle {
+	padding: 0 16px;
+	color: rgba(0, 0, 0, 0.54);
+}
+
+#profile .timeline-tab .timeline .timeline-item .content .article .excerpt {
+	padding: 16px 16px;
+}
+
+#profile .timeline-tab .timeline .timeline-item footer {
+	border-top: 1px solid rgba(0, 0, 0, 0.08);
+	background-color: rgba(0, 0, 0, 0.04);
+	padding: 16px;
+}
+
+#profile .timeline-tab .timeline .timeline-item footer .comment-count {
+	margin-bottom: 16px;
+	cursor: pointer;
+}
+
+#profile .timeline-tab .timeline .timeline-item footer .comment-count md-icon {
+	margin-left: 8px;
+}
+
+#profile .timeline-tab .timeline .timeline-item footer .comment {
+	margin-bottom: 24px;
+}
+
+#profile .timeline-tab .timeline .timeline-item footer .comment .username {
+	font-weight: 500;
+	margin-right: 4px;
+}
+
+#profile .timeline-tab .timeline .timeline-item footer .comment .message {
+	color: rgba(0, 0, 0, 0.87);
+}
+
+#profile .timeline-tab .timeline .timeline-item footer .comment .time {
+	color: rgba(0, 0, 0, 0.54);
+}
+
+#profile .timeline-tab .timeline .timeline-item footer .comment .actions {
+	margin-top: 8px;
+}
+
+#profile .timeline-tab .timeline .timeline-item footer .comment .actions .reply-button {
+	margin-right: 16px;
+	cursor: pointer;
+}
+
+#profile .timeline-tab .timeline .timeline-item footer .comment .actions .report-button {
+	margin: 0;
+	cursor: pointer;
+}
+
+#profile .timeline-tab .timeline .timeline-item footer .reply form textarea {
+	width: 100% !important;
+	min-height: 72px;
+	padding: 8px;
+	margin-bottom: 8px;
+	font-size: 13px;
+	border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#profile .timeline-tab .timeline .timeline-item footer .reply form .post-comment-button {
+	margin: 0;
+	text-transform: inherit;
+	font-weight: normal;
+	padding: 0 12px;
+	min-height: 30px;
+	min-width: inherit;
+	line-height: 30px;
+}
+
+#profile .timeline-tab .timeline-sidebar {
+	padding: 8px 8px 8px 32px;
+}
+
+#profile .timeline-tab .timeline-sidebar .latest-activity .content .activities .activity {
+	padding: 16px 0;
+}
+
+#profile .timeline-tab .timeline-sidebar .latest-activity .content .activities .activity .avatar {
+	margin-right: 16px;
+}
+
+#profile .timeline-tab .timeline-sidebar .latest-activity .content .activities .activity .username {
+	font-weight: 500;
+}
+
+#profile .timeline-tab .timeline-sidebar .latest-activity .content .activities .activity .message {
+	font-weight: 500;
+}
+
+@media screen and (max-width: 1300) {
+	#profile .timeline-tab .timeline-sidebar {
+		padding: 8px;
+	}
+}
 
 
+#profile .timeline-tab {
+	max-width: 1200px;
+}
 
-/*GLOBALSTYLE*/
+#profile .timeline-tab .timeline {
+	padding: 8px;
+}
 
+#profile .timeline-tab .timeline .add-post {
+	margin-bottom: 0;
+}
 
+#profile .timeline-tab .timeline .add-post textarea {
+	font-size: 13px;
+	width: 100%;
+	height: 140px;
+	border: none;
+	padding: 16px;
+	resize: vertical;
+}
 
+#profile .timeline-tab .timeline .add-post footer {
+	background: #F3F4F5;
+}
 
-    @media only screen and (max-width: 9000px) {
-        md-content.md-default-theme.md-hue-2, md-content.md-hue-2 {
-            background-size: 4000px 4000px !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
-            background-repeat: no-repeat;
-            background-position: left top;
-            background-attachment: fixed !important;
-        }
+#profile .timeline-tab .timeline .add-post footer .post-button {
+	margin: 0;
+	width: 64px;
+	min-width: 64px;
+	height: 30px;
+	line-height: 30px;
+	min-height: 30px;
+}
 
-        .opaque-global {
-            background-size: 4000px 4000px !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
-            background-repeat: no-repeat;
-            background-position: left top;
-            background-attachment: fixed !important;
-        }
+#profile .timeline-tab .timeline md-divider {
+	margin: 32px 0;
+}
 
-        md-sidenav {
-            background-size: 4000px 4000px !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-            background-repeat: no-repeat;
-            background-position: left top;
-            background-attachment: fixed !important;
-        }
+#profile .timeline-tab .timeline .timeline-item {
+	margin-bottom: 32px;
+	overflow: hidden;
+	border-radius: 2px;
+	background: #FFFFFF;
+}
 
-        md-toolbar {
-            background-size: 4000px 4000px !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-            background-repeat: no-repeat;
-            background-position: left top;
-            background-attachment: fixed !important;
-        }
+#profile .timeline-tab .timeline .timeline-item:last-child {
+	margin-bottom: 0;
+}
 
-        .glass-global {
-            background-attachment: fixed !important;
-            background-size: 4000px 4000px !important;
-            background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-        }
+#profile .timeline-tab .timeline .timeline-item header {
+	padding: 16px 0 8px 16px;
+}
 
-        .glass-test {
-            background-attachment: fixed !important;
-            background-size: 4000px 4000px !important;
-            background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-        }
+#profile .timeline-tab .timeline .timeline-item header .title {
+	font-weight: 500;
+}
 
-        body {
-            background-size: 4000px 4000px !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
-            background-repeat: no-repeat;
-            background-position: left top;
-            background-attachment: fixed !important;
-            color: white;
-        }
-    }
+#profile .timeline-tab .timeline .timeline-item header .title .username {
+	margin-right: 4px;
+}
 
-    @media only screen and (max-width: 3000px) {
-        md-content.md-default-theme.md-hue-2, md-content.md-hue-2 {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
-            background-size: 3000px 3000px !important;
-            background-position: left top;
-        }
+#profile .timeline-tab .timeline .timeline-item header .time {
+	color: rgba(0, 0, 0, 0.54);
+}
 
-        .opaque-global {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
-            background-size: 3000px 3000px !important;
-            background-position: left top;
-        }
+#profile .timeline-tab .timeline .timeline-item .content .message {
+	padding: 8px 16px;
+}
 
-        md-sidenav {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-            background-size: 3000px 3000px !important;
-            background-position: left top;
-        }
+#profile .timeline-tab .timeline .timeline-item .content .media {
+	padding: 16px 8px;
+}
 
-        md-toolbar {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-            background-size: 3000px 3000px;
-            background-position: left top;
-        }
+#profile .timeline-tab .timeline .timeline-item .content .media img, #profile .timeline-tab .timeline .timeline-item .content .media iframe {
+	width: 100%;
+}
 
-        .glass-global {
-            background-size: 3000px 3000px !important;
-            background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-        }
+#profile .timeline-tab .timeline .timeline-item .content .media a {
+	color: inherit;
+}
 
-        body {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-            background-size: 3000px 3000px !important;
-            background-position: left top;
-        }
+#profile .timeline-tab .timeline .timeline-item .content .like-button,
+      #profile .timeline-tab .timeline .timeline-item .content .share-button {
+	padding: 4px 6px;
+	text-transform: inherit;
+	font-size: 13px;
+	font-weight: normal;
+	margin: 0 0 16px 8px;
+	min-width: inherit;
+	line-height: inherit;
+}
 
-        .glass-test {
-            background-attachment: fixed !important;
-            background-size: 3000px 3000px !important;
-            background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-        }
-    }
+#profile .timeline-tab .timeline .timeline-item .content .like-button:hover,
+        #profile .timeline-tab .timeline .timeline-item .content .share-button:hover {
+	background-color: transparent;
+}
 
-    @media only screen and (max-width: 2001px) {
+#profile .timeline-tab .timeline .timeline-item .content .like-button md-icon,
+        #profile .timeline-tab .timeline .timeline-item .content .share-button md-icon {
+	margin: 0 8px 0 0;
+}
 
-        md-sidenav {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-            background-size: 2000px 2000px !important;
-            background-position: left top;
-        }
+#profile .timeline-tab .timeline .timeline-item .content .article {
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	margin: 8px;
+}
 
-        md-toolbar {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-            background-size: 2000px 2000px !important;
-            background-position: left top;
-        }
+#profile .timeline-tab .timeline .timeline-item .content .article .media {
+	padding: 0;
+	overflow: hidden;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
 
-        md-content.md-default-theme.md-hue-2, md-content.md-hue-2 {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
-            background-size: 2000px 2000px !important;
-            background-position: left top;
-        }
+#profile .timeline-tab .timeline .timeline-item .content .article .media img {
+	display: block;
+	padding: 0;
+}
 
-        .opaque-global {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
-            background-size: 2000px 2000px !important;
-            background-position: left top;
-        }
+#profile .timeline-tab .timeline .timeline-item .content .article .title {
+	font-size: 15px;
+	padding: 16px 16px 4px 16px;
+}
 
-        .glass-global {
-            background-attachment: fixed !important;
-            background-size: 2000px 2000px !important;
-            background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-        }
+#profile .timeline-tab .timeline .timeline-item .content .article .subtitle {
+	padding: 0 16px;
+	color: rgba(0, 0, 0, 0.54);
+}
 
-        .glass-test {
-            background-attachment: fixed !important;
-            background-size: 2000px 2000px !important;
-            background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-        }
+#profile .timeline-tab .timeline .timeline-item .content .article .excerpt {
+	padding: 16px 16px;
+}
 
-        body {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-            background-size: 2000px 2000px !important;
-            background-position: left top;
-        }
-    }
+#profile .timeline-tab .timeline .timeline-item footer {
+	border-top: 1px solid rgba(0, 0, 0, 0.08);
+	background-color: rgba(0, 0, 0, 0.04);
+	padding: 16px;
+}
 
+#profile .timeline-tab .timeline .timeline-item footer .comment-count {
+	margin-bottom: 16px;
+	cursor: pointer;
+}
 
-    @media only screen and (max-width: 1024px) {
+#profile .timeline-tab .timeline .timeline-item footer .comment-count md-icon {
+	margin-left: 8px;
+}
 
-        md-sidenav {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-            background-size: 1024px 1024px !important;
-            background-position: left top;
-        }
+#profile .timeline-tab .timeline .timeline-item footer .comment {
+	margin-bottom: 24px;
+}
 
-        md-toolbar {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-            background-size: 1024px 1024px !important;
-            background-position: left top;
-        }
+#profile .timeline-tab .timeline .timeline-item footer .comment .username {
+	font-weight: 500;
+	margin-right: 4px;
+}
 
-        md-content.md-default-theme.md-hue-2, md-content.md-hue-2 {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
-            background-size: 1024px 1024px !important;
-            background-position: left top;
-        }
+#profile .timeline-tab .timeline .timeline-item footer .comment .message {
+	color: rgba(0, 0, 0, 0.87);
+}
 
-        .opaque-global {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
-            background-size: 1024px 1024px !important;
-            background-position: left top;
-        }
+#profile .timeline-tab .timeline .timeline-item footer .comment .time {
+	color: rgba(0, 0, 0, 0.54);
+}
 
-        .glass-global {
-            background-attachment: fixed !important;
-            background-size: 1024px 1024px !important;
-            background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-        }
+#profile .timeline-tab .timeline .timeline-item footer .comment .actions {
+	margin-top: 8px;
+}
 
-        .glass-test {
-            background-attachment: fixed !important;
-            background-size: 1024px 1024px !important;
-            background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-        }
+#profile .timeline-tab .timeline .timeline-item footer .comment .actions .reply-button {
+	margin-right: 16px;
+	cursor: pointer;
+}
 
-        body {
-            background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
-            background-size: 1024px 1024px !important;
-            background-position: left top;
-        }
-    }
+#profile .timeline-tab .timeline .timeline-item footer .comment .actions .report-button {
+	margin: 0;
+	cursor: pointer;
+}
 
-    @font-face {
-        font-family: 'haettenschweilerregular';
-        src: url('/static/fonts/haettenschweiler-webfont.woff2') format('woff2'),
-        url('/static/fonts/haettenschweiler-webfont.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
+#profile .timeline-tab .timeline .timeline-item footer .reply form textarea {
+	width: 100% !important;
+	min-height: 72px;
+	padding: 8px;
+	margin-bottom: 8px;
+	font-size: 13px;
+	border: 1px solid rgba(0, 0, 0, 0.12);
+}
 
-    .icon-ta-arm {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        background-image: url('/static/ArmLogoVectorWhite.svg');
-        background-repeat: no-repeat;
-        background-position: center center;
-    }
+#profile .timeline-tab .timeline .timeline-item footer .reply form .post-comment-button {
+	margin: 0;
+	text-transform: inherit;
+	font-weight: normal;
+	padding: 0 12px;
+	min-height: 30px;
+	min-width: inherit;
+	line-height: 30px;
+}
 
-    .icon-ta-core {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        background-image: url('/static/CoreLogoVectorWhite.svg');
-        background-repeat: no-repeat;
-        background-position: center center;
-    }
+#profile .timeline-tab .timeline-sidebar {
+	padding: 8px 8px 8px 32px;
+}
 
-    @-webkit-keyframes MOVE-BG {
-        0% {
-            -webkit-transform: translateX(0%);
-        }
-        50% {
-            -webkit-transform: translateX(-9%);
-        }
-        100% {
-            -webkit-transform: translateX(0%);
-        }
-    }
+#profile .timeline-tab .timeline-sidebar .latest-activity .content .activities .activity {
+	padding: 16px 0;
+}
 
-    @-webkit-keyframes SCALE-INFINITE {
-        0% {
-            -ms-transform: scale(1.0, 1.0); /* IE 9 */
-            -webkit-transform: scale(1.0, 1.0); /* Safari */
-            transform: scale(1.0, 1.0); /* Standard syntax */
-        }
-        50% {
-            -ms-transform: scale(1.01, 1.01); /* IE 9 */
-            -webkit-transform: scale(1.01, 1.01); /* Safari */
-            transform: scale(1.01, 1.01); /* Standard syntax */
-        }
-        100% {
-            -ms-transform: scale(1.0, 1.0); /* IE 9 */
-            -webkit-transform: scale(1.0, 1.0); /* Safari */
-            transform: scale(1.0, 1.0); /* Standard syntax */
-        }
-    }
+#profile .timeline-tab .timeline-sidebar .latest-activity .content .activities .activity .avatar {
+	margin-right: 16px;
+}
 
-    .redb {
-        border-radius: 3px;
-        border-style: solid;
-        border-width: 1px;
-        border-color: #D32F2F;
-    }
-    .blueb {
-        border-radius: 3px !important;
-        border-style: solid !important;
-        border-width: 1px !important;
-        border-color: #2196F3 !important;
-    }
-    .var-display {
-        width:60px;
-        padding:5px;
-        border-radius: 10px;
-    }
+#profile .timeline-tab .timeline-sidebar .latest-activity .content .activities .activity .username {
+	font-weight: 500;
+}
 
+#profile .timeline-tab .timeline-sidebar .latest-activity .content .activities .activity .message {
+	font-weight: 500;
+}
 
-
-/*EndGlobalStyle*/
+@media screen and (max-width: 1300) {
+	#profile .timeline-tab .timeline-sidebar {
+		padding: 8px;
+	}
+}
