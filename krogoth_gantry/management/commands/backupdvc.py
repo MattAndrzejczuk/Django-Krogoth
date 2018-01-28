@@ -36,7 +36,7 @@ class Command(BaseCommand):
             text_file.close()
             self.stdout.write(self.style.SUCCESS(p4))
 
-            p5 = static_root + "MasterVC/style.css"
+            p5 = static_root + "MasterVC/themestyle.css"
             text_file = open(p5, "w")
             text_file.write(app.themestyle)
             text_file.close()
