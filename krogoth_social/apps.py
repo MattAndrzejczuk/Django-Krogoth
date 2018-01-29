@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class CommunityforumConfig(AppConfig):
+class KrogothSocialConfig(AppConfig):
     name = 'krogoth_social'

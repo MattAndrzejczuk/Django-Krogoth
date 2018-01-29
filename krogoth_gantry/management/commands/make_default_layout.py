@@ -5,7 +5,7 @@ from django.core.management.base import BaseCommand, CommandError
 from moho_extractor.models import NgIncludedJs, NgIncludedHtml
 from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryIcon, KrogothGantryService, \
     KrogothGantryCategory, KrogothGantrySlaveViewController
-from krogoth_social.models import ForumCategory
+
 import codecs
 
 
@@ -244,8 +244,6 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS('FAIL... forums.add -> KrogothGantrySlaveViewController'))
                 mvc.delete()
 
-            fc = ForumCategory.objects.get_or_create(title='General', is_deleted=False)
-            self.stdout.write(self.style.SUCCESS('ADDED... forumsMasterViewController'))
 
         except:
             self.stdout.write(self.style.WARNING('SKIPPING... forumsMasterViewController'))
