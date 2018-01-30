@@ -1,5 +1,8 @@
+
+
+
 /*GLOBALSTYLE*/
- 
+
 
 
 
@@ -47,14 +50,7 @@
             background-attachment: fixed !important;
             background-size: 4000px 4000px !important;
             background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-2k.jpg') !important;
-        }
-		
-		.opaque-test {
-            background-attachment: fixed !important;
-            background-size: 4000px 4000px !important;
-            background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-2k.jpg') !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
         }
 
         body {
@@ -113,14 +109,7 @@
             background-attachment: fixed !important;
             background-size: 3000px 3000px !important;
             background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-2k.jpg') !important;
-        }
-		
-		        .opaque-test {
-            background-attachment: fixed !important;
-            background-size: 3000px 3000px !important;
-            background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-2k.jpg') !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
         }
     }
 
@@ -165,14 +154,7 @@
             background-attachment: fixed !important;
             background-size: 2000px 2000px !important;
             background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-2k.jpg') !important;
-        }
-		
-		.opaque-test {
-            background-attachment: fixed !important;
-            background-size: 2000px 2000px !important;
-            background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-2k.jpg') !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
         }
 
         body {
@@ -225,14 +207,9 @@
             background-attachment: fixed !important;
             background-size: 1024px 1024px !important;
             background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-2k.jpg') !important;
+            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
         }
-        .opaque-test {
-            background-attachment: fixed !important;
-            background-size: 1024px 1024px !important;
-            background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-2k.jpg') !important;
-        }
+
         body {
             background-attachment: fixed !important;
             background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;

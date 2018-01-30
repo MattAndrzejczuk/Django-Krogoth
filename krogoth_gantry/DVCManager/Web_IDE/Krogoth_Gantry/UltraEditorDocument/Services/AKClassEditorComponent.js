@@ -75,7 +75,7 @@
                         sourceCode: item_in.contents,
                         sourceKey: 'contents',
                         RESTfulId: item_in.id,
-                        RESTfulURI: "/krogoth_gantry/viewsets/NgIncludedHtml/" + item_in.id + "/",
+                        RESTfulURI: "/krogoth_gantry/viewsets/IncludedHtmlMaster/" + item_in.id + "/",
                         syntax: 'htmlmixed',
                         icon: 'link-variant'
                     };

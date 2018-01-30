@@ -1,7 +1,12 @@
-.CodeMirror-code {
-    font-size: 14px !important;
-    line-height: 19px !important;
+.CodeMirror-code { 
+	font-family: 'Ubuntu Mono', monospace;
+	/*font-family: 'Inconsolata', monospace;*/
+    font-weight: normal;
+    font-style: normal;
+    font-size: 14.5px !important;  
+    line-height: 12.5px !important;
 }
+
 
 .tile-bg-1 {
     background-image: url("/static/textured_tiles/p1.png");

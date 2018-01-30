@@ -1,7 +1,9 @@
 from django.core.management.base import BaseCommand, CommandError
 from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantrySlaveViewController, \
     KrogothGantryService, KrogothGantryDirective
+from moho_extractor.models import IncludedHtmlMaster
 import os
+
 # python3 manage.py backupdjangular
 
 class Command(BaseCommand):
@@ -71,5 +73,15 @@ class Command(BaseCommand):
                 d1 = static_root + "Directives/" + dtv.name + ".js"
                 text_file = open(d1, "w")
                 text_file.write(dtv.directive_js)
+                text_file.close()
+                self.stdout.write(self.style.SUCCESS(d1))
+            tmplsHTML = IncludedHtmlMaster.objects.filter(master_vc=app.id)
+            for tmpl in tmplsHTML:
+                basedir = os.path.dirname(static_root + "partialsHTML/")
+                if not os.path.exists(basedir):
+                    os.makedirs(basedir)
+                d1 = static_root + "partialsHTML/" + tmpl.name
+                text_file = open(d1, "w")
+                text_file.write(tmpl.directive_js)
                 text_file.close()
                 self.stdout.write(self.style.SUCCESS(d1))

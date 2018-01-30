@@ -248,6 +248,14 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   -webkit-font-variant-ligatures: contextual;
   font-variant-ligatures: contextual;
 }
+
+.CodeMirror-code {
+  font-size: 12px !important;
+  line-height: 13.2px !important;
+}
+
+
+
 .CodeMirror-wrap pre {
   word-wrap: break-word;
   white-space: pre-wrap;

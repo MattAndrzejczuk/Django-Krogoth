@@ -322,8 +322,14 @@
                     $log.info(key);
                     $log.info("HERE's OUR SAVED WORK: ");
                     $log.info(savedWork[key]);
-                    vm.editorModel.doc.setValue(savedWork[key]);
-                    vm.treeData[pi].nodes[ni].sourceCode = savedWork.sourceCode;
+
+                    if (savedWork[key]) {
+                        vm.treeData[pi].nodes[ni].sourceCode = savedWork.sourceCode;
+                    } else if (key === "contents") {
+                        vm.treeData[pi].nodes[ni].sourceCode = savedWork;
+                    } else {
+
+                    }
                     ///vm.loadFileIntoEditor(pi, ni, node);
                     vm.treeData[pi].nodes[ni].hasUnsavedChanges = false;
                     vm.unsavedChangesExist = -1;

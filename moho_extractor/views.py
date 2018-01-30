@@ -155,68 +155,24 @@ class DynamicIndexModule(APIView):
     permission_classes = (AllowAny,)
 
     def get(self, request, format=None):
-        index_module_pt1 = "(function (){'use strict';angular.module('fuse', ['uiGmapgoogle-maps','textAngular', " + \
-                           "'jkAngularCarousel','xeditable','ui.codemirror','app.core','app.sample','app.navigation','app.toolbar','app.quick-panel',"
-
-        index_module_pt2 = ''
-
-        # index_module_pt2 = "'app.dashboards','app.calendar','app.e-commerce','app.mail','app.chat','app.file-manager'," + \
-        #                   "'app.gantt-chart','app.scrumboard','app.todo','app.contacts','app.notes','app.toastCtrl','app.lazarus',"
-
-        my_apps = "'app.sample',"
-
-        # inject dynamic apps
-        # all_applications = AngularFuseApplication.objects.all()
-        # for application in all_applications:
-        #     my_apps += ("'app." + application.name + "',")
-
-        all_djangular = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
-        for application in all_djangular:
-            krogoth_debug()
-            if application.is_lazy == False:
-                krogoth_debug(CCD[2] + application.name + CCD[0])
-                my_apps += ("'app." + application.name + "',")
-
-        my_apps += "'ui.tree', "
-
-        # my_apps += "'app.pages','app.ui','app.components', "
-        my_apps += "'app.sample'"
-
-        index_module_pt3 = "" + \
-                           "]);})();"
-        indexModuleJs = index_module_pt1 + index_module_pt2 + my_apps + index_module_pt3
+        # index_module_pt1 = "(function (){'use strict';angular.module('fuse', ['uiGmapgoogle-maps','textAngular', " + \
+        #                    "'jkAngularCarousel','xeditable','ui.codemirror','app.core','app.sample','app.navigation','app.toolbar','app.quick-panel',"
+        # index_module_pt2 = ''
+        # my_apps = "'app.sample',"
+        # all_djangular = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
+        # for application in all_djangular:
+        #     krogoth_debug()
+        #     if application.is_lazy == False:
+        #         krogoth_debug(CCD[2] + application.name + CCD[0])
+        #         my_apps += ("'app." + application.name + "',")
+        # my_apps += "'ui.tree', "
+        # # my_apps += "'app.pages','app.ui','app.components', "
+        # my_apps += "'app.sample'"
+        # index_module_pt3 = "" + \
+        #                    "]);})();"
+        # indexModuleJs = index_module_pt1 + index_module_pt2 + my_apps + index_module_pt3
         ct = 'application/javascript'
-        return HttpResponse(content_type=ct, content=indexModuleJs)
-
-
-
-# class DynamicIndexRoute(APIView):
-#     authentication_classes = (TokenAuthentication,)
-#     permission_classes = (AllowAny,)
-#     def get(self, request, format=None):
-#         full_js = "(function (){    'use strict';    angular        .module('fuse')        .config(routeConfig);    /** @ngInject */    function routeConfig($stateProvider, $urlRouterProvider, $locationProvider)    {        $locationProvider.hashPrefix('!');        $urlRouterProvider.otherwise('/Home');        var $cookies;        angular.injector(['ngCookies']).invoke([            '$cookies', function (_$cookies)            {                $cookies = _$cookies;            }        ]);        var layoutStyle = $cookies.get('layoutStyle') || 'verticalNavigation';        var layouts = {            verticalNavigation  : {                main      : '/static/app/core/layouts/vertical-navigation.html',                toolbar   : '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar.html',                navigation: '/static/app/navigation/layouts/vertical-navigation/navigation.html'            },            verticalNavigationFullwidthToolbar  : {                main      : '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar.html',                toolbar   : '/static/app/toolbar/layouts/vertical-navigation-fullwidth-toolbar/toolbar.html',                navigation: '/static/app/navigation/layouts/vertical-navigation/navigation.html'            },            verticalNavigationFullwidthToolbar2  : {                main      : '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar-2.html',                toolbar   : '/static/app/toolbar/layouts/vertical-navigation-fullwidth-toolbar-2/toolbar.html',                navigation: '/static/app/navigation/layouts/vertical-navigation-fullwidth-toolbar-2/navigation.html'            },            horizontalNavigation: {                main      : '/static/app/core/layouts/horizontal-navigation.html',                toolbar   : '/static/app/toolbar/layouts/horizontal-navigation/toolbar.html',                navigation: '/static/app/navigation/layouts/horizontal-navigation/navigation.html'            },            contentOnly         : {                main      : '/static/app/core/layouts/content-only.html',                toolbar   : '',                navigation: ''            },            contentWithToolbar  : {                main      : '/static/app/core/layouts/content-with-toolbar.html',                toolbar   : '/static/app/toolbar/layouts/content-with-toolbar/toolbar.html',                navigation: ''            }        };        $stateProvider            .state('app', {                abstract: true,                views   : {                    'main@'         : {                        templateUrl: layouts[layoutStyle].main,                        controller : 'MainController as vm'                    },                    'toolbar@app'   : {                        templateUrl: layouts[layoutStyle].toolbar,                        controller : 'ToolbarController as vm'                    },                    'navigation@app': {                        templateUrl: layouts[layoutStyle].navigation,                        controller : 'NavigationController as vm'                    },                    'quickPanel@app': {                        templateUrl: '/static/app/quick-panel/quick-panel.html',                        controller : 'QuickPanelController as vm'                    }                }            });    }})();"
-#         default_url = 'Home'
-#         try:
-#             print('Getting krogoth_gantry app with id: 1')
-#             application = KrogothGantryMasterViewController.objects.get(id=1)
-#             print(application.title)
-#             default_url = application.name.replace(' ', '_')
-#             print(application.name)
-#         except:
-#             print('Something fucked up, reverting to Home')
-#             default_url = 'Home'
-#         toolbar_html =  '/static/app/core/layouts/vertical-navigation-fullwidth-toolbar.html' ## '/moho_extractor/DynamicHTMLToolbar/'
-#         parsed_js_1 = full_js.replace('FUSE_DEFAULT_APP', default_url)
-#         parsed_js_2 = parsed_js_1.replace('FUSE_TOOLBAR_HTML', toolbar_html)
-#         return HttpResponse(parsed_js_2)
-
-
-# class DynamicSplashScreenView(APIView):
-#     authentication_classes = (TokenAuthentication,)
-#     permission_classes = (AllowAny,)
-#     def get(self, request, format=None):
-#         final_html = 'todo 1624'
-#         return HttpResponse(final_html)
+        return HttpResponse(content_type=ct, content='')
 
 
 class DynamicJavaScriptInjector(APIView):

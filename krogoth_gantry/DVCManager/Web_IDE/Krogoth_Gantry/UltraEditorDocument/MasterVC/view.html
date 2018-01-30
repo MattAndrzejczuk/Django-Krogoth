@@ -1,7 +1,6 @@
-<div class="page-layout carded left-sidenav opaque-global" layout="row">
+<div class="page-layout carded left-sidenav opaque-global" layout="row" layout-align="center stretch">
     <!-- SIDENAV -->
-    <md-sidenav class="opaque-global"
-                md-is-locked-open="$mdMedia('gt-md')"
+    <md-sidenav class="opaque-global"                
                 md-component-id="sidenav"
                 ms-scroll
                 flex="30"
@@ -187,7 +186,7 @@
     </md-sidenav>
     <!-- / SIDENAV -->
     <!-- CENTER -->
-    <div class="center" layout="column" flex="70" flex-xs="100" flex-sm="100">
+    <div layout="column" flex>
         <!-- CONTENT HEADER -->
         <div class="header"
              flex="5"
@@ -233,10 +232,9 @@
         <!-- CONTENT CARD -->
         <div class="content-card glass-global" layout="column" flex ak-frosted-glass>
             <!-- CONTENT TOOLBAR -->
-            <div class="toolbar-osx"
-                 layout="row"
+            <div layout="row"
                  layout-align="start center">
-                <md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('sidenav')" hide-gt-md
+                <md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('sidenav')"
                            aria-label="Toggle left sidenav">
                     <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
                 </md-button>
@@ -392,4 +390,6 @@
         color: black !important;
     }
 </style>
-<!-- -->
+
+
+ <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
