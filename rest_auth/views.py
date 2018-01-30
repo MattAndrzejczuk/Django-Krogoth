@@ -17,7 +17,6 @@ from django.template import loader
 from django.http import HttpResponse
 
 from django.contrib.auth.models import User
-from moho_extractor.models import NgIncludedJs
 
 from .app_settings import (
     TokenSerializer, UserDetailsSerializer, LoginSerializer,
@@ -28,11 +27,6 @@ from .app_settings import (
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from krogoth_gantry.models import KrogothGantryIcon, KrogothGantryCategory, KrogothGantryMasterViewController
 from krogoth_core.models import AKFoundationAbstract, AKBowerComponent
-
-import jsbeautifier
-
-import subprocess
-
 redis_connection_pool = ConnectionPool(**redis_settings.WS4REDIS_CONNECTION)
 
 
@@ -42,9 +36,6 @@ redis_connection_pool = ConnectionPool(**redis_settings.WS4REDIS_CONNECTION)
 def index(request):
     permission_classes = (AllowAny,)
     template = loader.get_template('index.html')
-
-    splash_html = '<ms-splash-screen id="splash-screen"> <div class="center"> <div class="logo" style="width:250px; font-size: 36px; background-color: darkorange;"> <span>Lazarus</span> </div> <!-- Material Design Spinner --> <div class="spinner-wrapper"> <div class="spinner"> <div class="inner"> <div class="gap"></div> <div class="left"> <div class="half-circle"></div> </div> <div class="right"> <div class="half-circle"></div> </div> </div> </div> </div> <!-- / Material Design Spinner --> </div></ms-splash-screen>'
-
     splash_title = 'Krogoth'
     font_size = 36
     splash_logo_bg_color = 'antiquewhite'
@@ -63,54 +54,10 @@ def index(request):
     for application in all_applications:
         KrogothGantryMasterViewControllers.append(application.name)
 
-
-    # if current_build_2 == '00':
-    #     current_build_2 = '0'
-    # else:
-    #     rm_0s = current_build_2.replace('01', '1').replace('02', '2').replace('03', '3').replace('04', '4')
-    #     current_build_2 = rm_0s.replace('05', '5').replace('06', '6').replace('07', '7').replace('08', '8').replace('09', '9')
     version_build = 'Krogoth ' + settings.APP_VERSION
     seo_title = "Krogoth "
     seo_description = 'description'
     seo_description += ', description - 2'
-    try:
-        if request.META['PATH_INFO'] == '/features/':
-            seo_title = 'ArmPrime - Upcoming features for TA mod development'
-            seo_description = 'Features and web based tools ArmPrime will have in the future for Total Annihilation.'
-            seo_description += ' Random Map Generator, Enhanced Skirmish Mode, and more Lazarus updates'
-    except:
-        pass
-
-    try:
-        if request.META['PATH_INFO'] == '/news/':
-            seo_title = 'ArmPrime - Latest News and Updates'
-            seo_description = 'Lazarus is almost ready for building and playing Total Annihilation mods.'
-            seo_description += ' - Posted by Matt on September 14, 2017'
-    except:
-        pass
-
-    try:
-        if request.META['PATH_INFO'] == '/whatIsLazarus/':
-            seo_title = 'ArmPrime - What is Total Annihilation: Lazarus?'
-            seo_description = 'Total Annihilation Lazarus is a new web based mod builder and conflict crusher '
-            seo_description += 'for the 1997 classic Total Annihilation released by Cavedog entertainment.'
-    except:
-        pass
-
-    try:
-        if request.META['PATH_INFO'] == '/status/':
-            seo_title = 'ArmPrime Lazarus - Current Project Status'
-            seo_description = 'There are currently 3 major components of Lazarus that will need to be completed before the public beta test.'
-            seo_description += ' Mod Nanolather, Download TDF Editor, and Weapon TDF Editor'
-    except:
-        pass
-
-    try:
-        if request.META['PATH_INFO'] == '/forums/':
-            seo_title = 'ArmPrime - Community Forums'
-            seo_description = 'Discuss anything related to Cavedog\'s 1997 Real Time Strategy game Total Annihilation.'
-    except:
-        pass
 
 
     KrogothMainComponents = []

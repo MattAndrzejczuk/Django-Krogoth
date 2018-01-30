@@ -4,7 +4,7 @@
 
     function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu,
         $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync,
-        BatchRequestsAsync, SaveToSQL) {
+        BatchRequestsAsync, SaveToSQL, $mdSidenav) {
         var vm = this;
 
         vm.codemirrorLoaded = codemirrorLoaded;

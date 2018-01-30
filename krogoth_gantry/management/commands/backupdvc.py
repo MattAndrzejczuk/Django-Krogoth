@@ -28,8 +28,6 @@ class Command(BaseCommand):
             text_file.close()
             self.stdout.write(self.style.SUCCESS(p3))
 
-
-
             p4 = static_root + "MasterVC/style.css"
             text_file = open(p4, "w")
             text_file.write(app.style_css)
