@@ -50,6 +50,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='akthread',
             name='polymorphic_ctype',
-            field=models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='polymorphic_communityforum.akthread_set+', to='contenttypes.ContentType'),
+            field=models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='polymorphic_krogoth_social.akthread_set+', to='contenttypes.ContentType'),
         ),
     ]

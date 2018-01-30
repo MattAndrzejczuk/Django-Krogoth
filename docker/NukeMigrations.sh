@@ -5,9 +5,9 @@ if echo "$answer" | grep -iq "^y" ;then
     echo " ☢ ☢ NUCLEAR LAUNCH DETECTED ☢ ☢ "
     rm -R ../chat/migrations
     rm -R ../krogoth_3rdparty_api/migrations
-    rm -R ../krogoth_gantry/migrations
+#    rm -R ../krogoth_gantry/migrations
     rm -R ../krogoth_examples/migrations
-    rm -R ../krogoth_core/migrations
+#    rm -R ../krogoth_core/migrations
     rm -R ../krogoth_apps/migrations
     rm -R ../krogoth_social/migrations
     rm -R ../moho_extractor/migrations
