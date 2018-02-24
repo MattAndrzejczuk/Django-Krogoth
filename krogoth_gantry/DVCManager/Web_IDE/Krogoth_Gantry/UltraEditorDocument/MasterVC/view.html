@@ -1,9 +1,14 @@
+<script type="text/ng-template" id="nodes_renderer.html">
+	<span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_07.html'"></span>
+</script>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
+
 <div class="page-layout carded left-sidenav opaque-global" layout="row" layout-align="center stretch">
     <!-- SIDENAV -->
     <md-sidenav class="opaque-global"                
                 md-component-id="sidenav"
                 ms-scroll
-                flex="30"
+                flex="50"
                 ms-sidenav-helper>
         <!-- SIDENAV HEADER -->
         <div class="header">
@@ -15,7 +20,7 @@
                     Go Back
                 </md-tooltip>
             </button>
-        </div>
+        </div>   
         <!-- / SIDENAV HEADER -->
         <div class="toolbar-osx" style="color: black">
         </div>
@@ -35,9 +40,9 @@
                     layout-fill>
                     <li ng-repeat="node in vm.treeData"
                         ui-tree-node
-                        ng-include="'nodes_renderer.html'">
+                        ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_07.html'">
                     </li>
-                </ol>
+                </ol> 
                 <!-- end slipsum code -->
             </div>
             <!-- / DEMO SIDENAV -->
@@ -280,117 +285,8 @@
 </div>
 
 
-<script type="text/ng-template" id="nodes_renderer.html">
-    <md-divider ng-if="!$first"></md-divider>
-    <md-whiteframe ui-tree-handle
-                   layout-padding
-                   ng-class="{'md-whiteframe-1dp':node.canEdit === false,'blackbg':node.canEdit === true}"
-                   class="tree-node tree-node-content"
-                   layout="row">
-        <div ng-if="node.nodes && node.nodes.length > 0">
-            <button class="btn btn-outline-warning" style="padding:0px; min-height:42px"
-                    ng-click="vm.toggleFolder(this)">
-            <span
-                    class="mdi-24px mdi"
-                    ng-class="{'mdi-chevron-right': collapsed,'mdi-chevron-down': !collapsed}">
-            </span>
-                <md-tooltip>Browse {{ node.title }}</md-tooltip>
-            </button>
-        </div>
-
-        <span ng-if="node.icon"
-              class="mdi-36px mdi mdi-{{ node.icon }}"
-              style="color: rgba(255, 255, 255, 0.80)"></span>
-        <section ng-if="node.canRemove === true">
-            <span class="badge badge-dark">
-                {{ node.title }}
-            </span>
-        </section>
-        <section ng-if="node.canRemove === false">
-            <!--
-            <span class="badge badge-warning">
-                {{ node.id }}
-            </span>
-            -->
-            <strong>
-                {{ node.title }}
-            </strong>
-            <!--
-            <span class="badge badge-success md-display-3">
-                {{ node.nodes.length }}
-            </span>
-            -->
-        </section>
-        <div flex></div>
-        <div ng-if="node.index !== $index"> <!-- For Debugging, alert user that the indexes are off -->
-            <span class="badge badge-danger">
-                {{ node.index }}
-            </span>
-            <span class="badge badge-dark">
-                {{ $index }}
-            </span>
-        </div>
-        <div ng-if="node.hasUnsavedChanges === true">
-            <button class="btn btn-outline-info"
-                    layout-wrap
-                    style="padding:5px; min-height:42px"
-                    ng-click="vm.saveEditorWorkToServer(node)">
-                <span class="mdi-24px mdi mdi-floppy"></span>
-                <!--            <span class="mdi mdi-circle"></span>-->
-                <md-tooltip md-visible="demo.showTooltip">
-                    Save changes of {{ node.title }} to server.
-                </md-tooltip>
-            </button>
-        </div>
-        <div ng-if="node.canEdit === true">
-            <button class="btn btn-outline-warning"
-
-                    layout-wrap
-                    style="padding:5px; min-height:42px"
-                    ng-click="vm.loadFileIntoEditor(node.parentIndex, node.index, this)">
-                <span class="mdi-24px mdi mdi-pencil"></span>
-                <!--            <span class="mdi mdi-circle"></span>-->
-                <md-tooltip md-visible="demo.showTooltip">
-                    Open {{ node.title }} in editor
-                </md-tooltip>
-            </button>
-        </div>
-        <!--
-        <button class="btn btn-outline-danger"
-                ng-if="node.canRemove === true"
-                layout-wrap
-                style="padding:5px; min-height:42px"
-                ng-click="vm.remove(this)">
-            <span class="mdi-24px mdi mdi-remove"></span>
-            <md-tooltip md-visible="demo.showTooltip">
-                Delete {{ node.title }}
-            </md-tooltip>
-        </button> -->
-        <div ng-if="node.canAdd === true">
-            <button class="btn btn-outline-success"
-                    ng-if="node.canAdd === true"
-                    layout-wrap
-                    data-max-depth="1"
-                    ng-click="vm.createNewComponentClick(node)"
-                    style="margin-right: 8px; padding:0px; min-height:42px">
-                <span class="mdi-24px mdi mdi-plus"></span>
-                <md-tooltip md-visible="demo.showTooltip">
-                    Add new component to {{ node.class }}
-                </md-tooltip>
-            </button>
-        </div>
-    </md-whiteframe>
-    <ol data-nodrag ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}" ng-show="!collapsed">
-        <li ng-repeat="node in node.nodes" ui-tree-node data-nodrag ng-include="'nodes_renderer.html'">
-        </li>
-    </ol>
-</script>
-
 <style>
     button:hover {
         color: black !important;
     }
 </style>
-
-
- <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">

@@ -6,7 +6,7 @@
 
 
 #__AngularJS Krogoth__
-__Copyright (C) Matt Andrzejczuk 2017-2018 < matt@jawn.it >__
+__Copyright (C) Matt Andrzejczuk 2017-2018__<__matt@jawn.it__>
 
 #The Purpose of Krogoth
 AngularJS began with a bright and exciting future since its release in the early 2010s.
@@ -119,10 +119,10 @@ running with a testing server using a freshly installed virtual machine running 
 Krogoth is the ability to become fully operational using few enough commands you countable using one hand.
 
 Your Krogoth project should never be like PC:
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=1PwiljBN5-8
+[<a href="http://www.youtube.com/watch?feature=player_embedded&v=1PwiljBN5-8
 " target="_blank"><img src="http://img.youtube.com/vi/1PwiljBN5-8/0.jpg" 
-alt="Krogoth powered by Django and AngularJS" width="240" height="180" border="10" /></a>
-[![Krogoth powered by Django and AngularJS](http://img.youtube.com/vi/1PwiljBN5-8/0.jpg)](
+alt="Krogoth powered by Django and AngularJS" width="240" height="180" border="10" /></a>]
+[![Krogoth powered by Django and AngularJS](http://img.youtube.com/vi/1PwiljBN5-8/0.jpg)]
 
 
 ---

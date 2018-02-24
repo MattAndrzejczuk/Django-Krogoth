@@ -7,14 +7,13 @@
         <div ng-if="node.nodes && node.nodes.length > 0">
             <button class="btn btn-outline-warning" style="padding:0px; min-height:42px"
                     ng-click="vm.toggleFolder(this)">
-            <span
+                <span
                     class="mdi-24px mdi"
                     ng-class="{'mdi-chevron-right': collapsed,'mdi-chevron-down': !collapsed}">
-            </span>
+                </span>
                 <md-tooltip>Browse {{ node.title }}</md-tooltip>
             </button>
         </div>
-
         <span ng-if="node.icon"
               class="mdi-36px mdi mdi-{{ node.icon }}"
               style="color: rgba(255, 255, 255, 0.80)"></span>
@@ -24,19 +23,9 @@
             </span>
         </section>
         <section ng-if="node.canRemove === false">
-            <!--
-            <span class="badge badge-warning">
-                {{ node.id }}
-            </span>
-            -->
             <strong>
                 {{ node.title }}
             </strong>
-            <!--
-            <span class="badge badge-success md-display-3">
-                {{ node.nodes.length }}
-            </span>
-            -->
         </section>
         <div flex></div>
         <div ng-if="node.index !== $index"> <!-- For Debugging, alert user that the indexes are off -->
@@ -72,17 +61,6 @@
                 </md-tooltip>
             </button>
         </div>
-        <!--
-        <button class="btn btn-outline-danger"
-                ng-if="node.canRemove === true"
-                layout-wrap
-                style="padding:5px; min-height:42px"
-                ng-click="vm.remove(this)">
-            <span class="mdi-24px mdi mdi-remove"></span>
-            <md-tooltip md-visible="demo.showTooltip">
-                Delete {{ node.title }}
-            </md-tooltip>
-        </button> -->
         <div ng-if="node.canAdd === true">
             <button class="btn btn-outline-success"
                     ng-if="node.canAdd === true"

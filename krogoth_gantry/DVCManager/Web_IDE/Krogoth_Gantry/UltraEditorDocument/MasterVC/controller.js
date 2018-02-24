@@ -4,7 +4,7 @@
 
     function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu,
         $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync,
-        BatchRequestsAsync, SaveToSQL, $mdSidenav) {
+        BatchRequestsAsync, SaveToSQL, $mdSidenav, untitledServiceIDE01, BreadCrumbsIDE) {
         var vm = this;
 
         vm.codemirrorLoaded = codemirrorLoaded;
@@ -83,6 +83,7 @@
             $log.log('|' + vm.selectedMaster + '|');
             vm.createFirstTreeNodes();
 
+
         }
 
         function reloadData() {
@@ -104,7 +105,6 @@
             UltraEditorDefaults.populateBoilerplate(vm.selectedMaster).then(function(treeData) {
                 vm.treeData = treeData;
                 vm.getMasterViewCtrlDetail();
-
 
             });
         }
@@ -189,7 +189,6 @@
             $q.all(threads)
                 .then(vm.parallelRESTfulCompleted, vm.parallelRESTfulServerError);
         }
-
         /// 💛 </REQUEST ALL DATA II. >
 
 
@@ -434,9 +433,8 @@
             });
         }
 
-
-
         function toggleSidenav(sidenavId) {
+            BreadCrumbsIDE.cookBread()
             $mdSidenav(sidenavId).toggle();
         }
 
