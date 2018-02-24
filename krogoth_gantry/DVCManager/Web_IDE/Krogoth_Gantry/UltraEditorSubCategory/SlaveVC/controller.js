@@ -15,19 +15,16 @@
         vm.selectMaster = selectMaster;
         vm.processCategoryResults = processCategoryResults;
         vm.getMasters = getMasters;
+        vm.startStateTransition = startStateTransition;
 
         vm.objectList = [];
         vm.selectedCategory = -1;
-        vm.selectedMaster = -1;
+        vm.selectedSubCategory = -1;
 
         function onInit() {
             vm.selectedCategory = $state.params.categoryId;
-            if ($state.params.childId) {
-                vm.selectedMaster = $state.params.childId;
-                vm.getMasters($state.params.childId);
-            } else {
-                vm.getCategories();
-            }
+            vm.selectedSubCategory = $state.params.childId;
+            vm.getMasters(vm.selectedSubCategory);
         }
 
 
@@ -79,18 +76,31 @@
         //    });
         //}
 
+
+        function startStateTransition(stateName, cargo) {
+            $log.info("-=-=-=- Changing State  🌀    -=-=-=-");
+            $log.info("-=-       " + stateName);
+            $log.debug(cargo);
+            $log.info("-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-");
+            $state.go(stateName, cargo);
+        }
+
         function selectMaster(id) {
-            $state.go('app.UltraEditorDocument', {
+            const destination = "app.UltraEditorDocument";
+            const cargo = {
                 'categoryId': vm.selectedCategory,
-                'subCategoryId': $state.params.childId,
+                'subCategoryId': vm.selectedSubCategory,
                 'masterId': id
-            });
+            };
+            vm.startStateTransition(destination, cargo);
         }
 
         function goToParentCategory() {
-            $state.go('app.FUSE_APP_NAME', {
+            const destination = "app.FUSE_APP_NAME";
+            const cargo = {
                 'categoryId': vm.selectedCategory
-            });
+            };
+            vm.startStateTransition(destination, cargo);
         }
 
 

@@ -6,7 +6,7 @@ parentdir="$(dirname "$dir")"
 reset
 
 v1="\033[92m"
-v2="KROGOTH v0.8.20"
+v2="KROGOTH v0.8.23"
 v3="\033[;0m\033[93m"
 
 v4="Copyright (C) 2017 Matt Andrzejczuk <\033[;0m"

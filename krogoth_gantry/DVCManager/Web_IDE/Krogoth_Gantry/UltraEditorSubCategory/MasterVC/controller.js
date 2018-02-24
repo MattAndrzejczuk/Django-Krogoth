@@ -85,12 +85,32 @@
         }
 
 
+
+        vm.startStateTransition = startStateTransition;
+
+        function startStateTransition(stateName, cargo) {
+            $log.info("-=-=-=- Changing State  🌀    -=-=-=-");
+            $log.info("-=-       " + stateName);
+            $log.debug(cargo);
+            $log.info("-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-");
+            $state.go(stateName, cargo);
+        }
+
+
         function selectListItem(id, parent) {
-            $state.go('app.FUSE_APP_NAME.slave', {
+            const destination = "app.FUSE_APP_NAME.slave";
+            const cargo = {
                 'categoryId': parent,
                 'childId': id
-            });
+            };
+            vm.startStateTransition(destination, cargo);
+        }
 
+
+        function goToParentCategory() {
+            const destination = "app.UltraEditorBrowse";
+            const cargo = {};
+            vm.startStateTransition(destination, cargo);
         }
 
 
@@ -128,9 +148,7 @@
             });
         }
 
-        function goToParentCategory() {
-            $state.go('app.UltraEditorBrowse');
-        }
+
 
         vm.editorOptions = {
             lineWrapping: true,

@@ -379,11 +379,32 @@
             vm.messages.push("something failed: parallelRESTfulServerError");
         }
 
+        vm.startStateTransition = startStateTransition;
+
+        function startStateTransition(stateName, cargo) {
+            $log.info("-=-=-=- Changing State  🌀    -=-=-=-");
+            $log.info("-=-       " + stateName);
+            $log.debug(cargo);
+            $log.info("-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-");
+            $state.go(stateName, cargo);
+        }
+
 
         function selectListItem(id) {
-            $state.go("app.FUSE_APP_NAME.slave", {
+            const destination = "app.FUSE_APP_NAME.slave";
+            const cargo = {
                 "categoryId": id
-            });
+            };
+            vm.startStateTransition(destination, cargo);
+        }
+
+        function goBackToCategory() {
+            const destination = "app.UltraEditorSubCategory.slave";
+            const cargo = {
+                'categoryId': vm.finishedBreadCrumbsJson._1st.id,
+                'childId': vm.finishedBreadCrumbsJson._2nd.id
+            };
+            vm.startStateTransition(destination, cargo);
         }
 
         function codemirrorLoaded(_editor) {
@@ -400,12 +421,6 @@
             vm.editorModel = _editor;
         }
 
-        function goBackToCategory() {
-            $state.go('app.UltraEditorBrowse.slave', {
-                'categoryId': vm.finishedBreadCrumbsJson._1st.id,
-                'childId': vm.finishedBreadCrumbsJson._2nd.id
-            });
-        }
 
         ////// -----------
 

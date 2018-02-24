@@ -225,6 +225,9 @@ class DynamicHTMLSlaveInjector(APIView):
         application = KrogothGantrySlaveViewController.objects.get(name=name)
         raw_html_response = application.view_html
 
+        master = application.owner.get()
+        raw_html_response += '<style>' + master.style_css + master.get_theme_style + '</style>'
+
         if raw_html_response == '':
             raw_html_response += '<div layout="column" layout-padding layout-margin>'
             raw_html_response += '<h1>' + application.name.replace('_', ' ') + '</h1>'
