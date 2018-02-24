@@ -83,6 +83,7 @@ INSTALLED_APPS = (
     'krogoth_gantry',
     'krogoth_3rdparty_api',
     'krogoth_social',
+    'krogoth_admin',
     'djangular_dashboard',
     'django_filters',
     'filebrowser',

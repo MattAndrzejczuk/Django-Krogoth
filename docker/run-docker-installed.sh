@@ -66,7 +66,7 @@ rm -R ../LazarusIII/migrations
 rm -R ../LazarusIV/migrations
 rm -R ../LazarusV/migrations
 
-docker exec -it armprime ./manage.py makemigrations chat krogoth_3rdparty_api krogoth_examples krogoth_apps krogoth_social moho_extractor krogoth_gantry krogoth_core
+docker exec -it armprime ./manage.py makemigrations chat krogoth_3rdparty_api krogoth_examples krogoth_apps krogoth_social moho_extractor krogoth_gantry krogoth_core krogoth_admin
 docker exec -it armprime ./manage.py migrate
 docker exec -it armprime ./manage.py installdjangular
 
