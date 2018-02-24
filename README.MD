@@ -3,9 +3,9 @@
 
 
 
-* Copyright (C) 2017 Matt Andrzejczuk < matt@jawn.it >
+* __Copyright (C) 2017 Matt Andrzejczuk < matt@jawn.it >__
 
-#AngularJS Krogoth
+#__AngularJS Krogoth__
 
 
 #The Purpose of Krogoth
@@ -27,17 +27,18 @@ Krogoth in its current state is not ready for production. This is mainly because
 
 #Getting Started
 Krogoth is intended to be used by anyone from all skill levels from students to seniors. I had originally developed Krogoth as a way to quickly deploy a monolithic Django app for blogging, but found that it takes too much time to go through the process of integrating an off the shelf AngularJS template into a fresh new Django project. This is the reason why Krogoth's only prerequisite is Docker CE to be installed on any x64-bit Linux machine. You should be able to get Krogoth up and running by simply running the following bash command:
-
+```bash
     $ sudo sh run-docker-installed.sh
+```
 
-The installation can take anywhere from 15 to 30 minutes depending on your internet connection speed. Once the installation completes, you should be able to navigate to your localhost:80 and see that your Krogoth installation had succeeded with a screen that says "it works!".
+The installation can take anywhere from 15 to 30 minutes depending on your internet connection speed. Once the installation completes, you should be able to navigate to your localhost:80 and see that your Krogoth installation had succeeded with a screen that says **it works!**.
 
 
 
 #Creating Your First Krogoth Component
 By now your Krogoth web server should be up and running. You are now ready to start creating states for your single paged web application. Since Krogoth is intended to always operate as a single paged web application, your users will no longer be reloading entire web pages as they navigate and explore your site. Instead of web pages, Krogoth allows its users to navigate your website through states. 
 Worry Less About Separation of Concerns
-AngularJS alone made the process of creating states very difficult, even if developers wanted to simply create an "About Me" page or "Contact Us" page, there was a lot of room for error especially for beginners. If just one string is misspelled for a new and simple "Contact Us" page, a very vague error message will be thrown, and the entire app itself will crash.  The difficulty and separation of concerns issue in AngularJS alone is one of the main reasons why Angular 2 and Vue.js gained so much momentum ever since both frameworks were released.
+AngularJS alone made the process of creating states very difficult, even if developers wanted to simply create an **About Me** page or **Contact Us** page, there was a lot of room for error especially for beginners. If just one string is misspelled for a new and simple **Contact Us** page, a very vague error message will be thrown, and the entire app itself will crash.  The difficulty and separation of concerns issue in AngularJS alone is one of the main reasons why Angular 2 and Vue.js gained so much momentum ever since both frameworks were released.
 ##Krogoth Makes It Easy
 With Krogoth, you can add entire Controllers, Directives, Services and Factories within seconds. When you begin creating one of these 4 AngularJS components, a default scaffold is generated for you. So if you're new to factories and directives, you can create a blank default component with the included default scaffold and see for yourself how they work. Many beginner AngularJS developers usually avoid working with directives and services because of how complicated and enigmatic they are, not anymore with Krogoth. Finally beginners will be able to step outside of their comfort zones and witness the true power of pure JavaScript.
 A Collection of Experimental Sample Templates
@@ -93,22 +94,54 @@ A feature which will be released soon, Krogoth will handle SEO for you automatic
 With Krogoth, many example API scaffolds are included out of the box complete with samples ranging from single property models to complex models with multiple relations with other models. The models included are also pre-integrated with the AngularJS front end, along with elegant and clean code implementations that match up with the latest in quality standards. So you'll spend more time visualizing and organizing your brand and inventory rather than spending hours of time with development and testing.
 
 
+##git Help
+###Undo all changes properly for git clone
+Freshly cloned Krogoth projects will generate many files after installation which may confuse git.
+If you know for a fact that your Krogoth local repository doesn't have any unsaved changes and you'd simply like to
+pull the latest changes for the purpose of applying a hotfix to your installation process, the following git commands
+will help you restore Krogoth into a fresh state in a situation where you are working on the installation process.
+
+* THIS WILL DELETE ALL YOUR UNCOMMITED WORK, PROCEED WITH CAUTION
+```bash
+    $ git clean -f
+    $ git reset --hard
+    $ git pull
+```
+
+As you make changes to your installer scripts such as **run-docker-installed.sh**, you will need a quick way to wipe
+and pull the latest changes on your testing server. The command lines above will reset your repository into a fresh
+and never removed from box state which will allow you to check and see if the latest commit fails on installation.
+This is useful in a situation where you have a new developer join your team, and you'd like to help get them up and 
+running with a testing server using a freshly installed virtual machine running Ubuntu. One of the cornerstones of 
+Krogoth is the ability to become fully operational using few enough commands you countable using one hand.
+
+Your Krogoth project should never be like PC:
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=1PwiljBN5-8
+" target="_blank"><img src="http://img.youtube.com/vi/1PwiljBN5-8/0.jpg" 
+alt="Krogoth powered by Django and AngularJS" width="240" height="180" border="10" /></a>
 
 
 # Using bower with Krogoth
 
 ## 1.) Install your AngularJS package
+```bash
     $ bower install ng-websocket
+```
+
 If you receive this error:
     /usr/bin/env: ‘node’: No such file or directory
+    
 Then do the following:
+```bash
     $ sudo ln -s /usr/bin/nodejs /usr/bin/node
-
+```
 
 ## 2.) update your index.module import dependency
 * navigate to http://localhost/admin_a9k/krogoth_core/akfoundationangularcore/
-* open "module.core" under Home » Krogoth_Core » Core Application
+* open **module.core** under Home » Krogoth_Core » Core Application
 * add your dependency declaration
-    'use strict';
-    angular.module('app.core', ['ngWebsocket']);
+```javascript
+'use strict';
+angular.module('app.core', ['ngWebsocket']);
+```
 
