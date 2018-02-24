@@ -5,7 +5,15 @@
 }
 </style>
 
-<div style="color: white;">
+<div style="color: white;" layout="row">
+    <button class="btn btn-outline-primary"
+            ng-click="vm.goToParentCategory()"
+            style="min-height:42px">
+        <span class="mdi-24px mdi mdi-arrow-up"></span>
+        <md-tooltip>
+            Go Back
+        </md-tooltip>
+    </button>
     <div class="md-display-1">Select Sub Catagory</div>
 </div>
   
@@ -15,7 +23,7 @@
 
     </div>
     <div flex="90" ng-cloak>
-        <md-grid-list
+        <md-grid-list 
                 md-cols="1" md-cols-sm="1" md-cols-md="2" md-cols-gt-md="3" md-cols-gt-lg="4"
                 md-row-height-gt-md="1:1" md-row-height="1:1"
                 md-gutter="18px" md-gutter-gt-sm="14px">
@@ -33,6 +41,7 @@
                     <div layout-fill flex-offset="10" layout="column"
                          style="border-radius:25px">
                         <span flex="30" layout-align="center center">
+							
                             <md-button class="md-fab md-green-A700-bg"
                                        ng-show="tile.hidden === false"
                                        ng-click="vm.selectListItem(tile.id, tile.parent)"

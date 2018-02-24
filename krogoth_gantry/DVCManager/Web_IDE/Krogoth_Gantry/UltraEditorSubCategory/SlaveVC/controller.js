@@ -11,7 +11,7 @@
         vm.putCatagory = putCatagory;
         vm.updateName = updateName;
         vm.updateTitle = updateTitle;
-        vm.selectListItem = selectListItem;
+        vm.goToParentCategory = goToParentCategory;
         vm.selectMaster = selectMaster;
         vm.processCategoryResults = processCategoryResults;
         vm.getMasters = getMasters;
@@ -73,16 +73,23 @@
         }
 
 
-        function selectListItem(id) {
-            $state.go('app.FUSE_APP_NAME.slave', {
-                'categoryId': id
-            });
-        }
+        //function selectListItem(id) {
+        //    $state.go('app.FUSE_APP_NAME.slave', {
+        //        'categoryId': id
+        //    });
+        //}
 
         function selectMaster(id) {
             $state.go('app.UltraEditorDocument', {
                 'categoryId': vm.selectedCategory,
+                'subCategoryId': $state.params.childId,
                 'masterId': id
+            });
+        }
+
+        function goToParentCategory() {
+            $state.go('app.FUSE_APP_NAME', {
+                'categoryId': vm.selectedCategory
             });
         }
 

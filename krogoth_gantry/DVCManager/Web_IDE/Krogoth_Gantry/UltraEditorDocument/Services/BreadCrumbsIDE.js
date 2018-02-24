@@ -7,9 +7,10 @@
     /** @ngInject */
     function _DJANGULAR_SERVICE_NAME_($log, $http, $q) {
         var service = {
-            breadCategory: "",
-            breadSubCategory: "",
-            breadEnd: "",
+            breadCategory: {},
+            breadSubCategory: {},
+            breadEnd: {},
+            cookBread: cookBread,
             makeBread: makeBread
         };
 
@@ -21,11 +22,13 @@
                 .then(function(firstSlice) {
                     $log.info("[   ]:  25%");
                     service.breadCategory = firstSlice;
-                    service.makeBread(catId)
+                    service.makeBread(subId)
                         .then(function(secondSlice) {
                             $log.info("[   ]:  50%");
                             service.breadSubCategory = secondSlice;
-                            service.breadEnd = docId;
+                            service.breadEnd = {
+                                "MasterVCId": docId
+                            };
                             $log.info("[   ]:  75%");
                             var finishedBread = [];
                             finishedBread.push(service.breadCategory);
@@ -47,9 +50,11 @@
                 method: 'GET',
                 url: "/krogoth_gantry/viewsets/Category/" + catId + "/"
             }).then(function successCallback(response) {
-                /// Success
-                service.breadCategory = response.data.name;
-                deferred.resolve(service.breadCategory);
+                /// Success               
+                $log.info(" - - - - - - - - - - - - - makeBread ! ! ! ! ! ");
+                $log.log("/krogoth_gantry/viewsets/Category/" + catId + "/");
+                //service.breadSubCategory = response.data.parent;
+                deferred.resolve(response.data);
             }, function errorCallback(response) {
                 /// Fail
                 deferred.reject(response);

@@ -1,23 +1,54 @@
+<!-- This is a hack to resolve angular tree data directive bug -->
+<!-- ng-include does nothing special here except that it creates an alias named "nodes_renderer.html" -->
 <script type="text/ng-template" id="nodes_renderer.html">
 	<span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_07.html'"></span>
 </script>
+
+
+<span class="h2 badge badge-light">
+					{{ vm.finishedBreadCrumbsJson._1st.name }}
+</span>
+<span class="h2 badge badge-light">
+					{{ vm.finishedBreadCrumbsJson._2nd.name }}
+</span>
+<span class="h2 badge badge-light">
+					{{ vm.finishedBreadCrumbsJson._3rd.MasterVCId }}
+</span>
+
+
 <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
 
 <div class="page-layout carded left-sidenav opaque-global" layout="row" layout-align="center stretch">
     <!-- SIDENAV -->
-    <md-sidenav class="opaque-global"                
+    <md-sidenav class="opaque-global"
+				md-is-locked-open="vm.sideNavLocked"
                 md-component-id="sidenav"
                 ms-scroll
-                flex="50"
+				flex-xs="50"
+                flex-sm="40"
+				flex-md="30"
+				flex-lg="25"
+				flex-gt-lg="20"
                 ms-sidenav-helper>
         <!-- SIDENAV HEADER -->
-        <div class="header">
+        <div class="header" layout="row">
             <button class="btn btn-outline-primary"
                     ng-click="vm.goBackToCategory()"
                     style="min-height:42px">
                 <span class="mdi-24px mdi mdi-arrow-left"></span>
                 <md-tooltip>
                     Go Back
+                </md-tooltip>
+            </button>
+			<span flex>
+			</span>
+			<button class="btn btn-outline-secondary"
+                    ng-click="vm.sideNavLocked=!vm.sideNavLocked"
+                    style="min-height:42px">
+                <span class="mdi-24px mdi mdi-pin" ng-if="vm.sideNavLocked===false"></span>
+				<span class="mdi-24px mdi mdi-pin-off" ng-if="vm.sideNavLocked===true"></span>
+                <md-tooltip>
+                    Toggle Side Navigation
                 </md-tooltip>
             </button>
         </div>   
@@ -29,7 +60,8 @@
                 style="padding: 0px"
                 class="content glass-global"
                 ak-frosted-glass
-                flex ms-scroll>
+                flex 
+				ms-scroll>
             <!-- DEMO SIDENAV -->
             <div ui-tree id="tree-root" data-drop-enabled="false" data-drag-enabled="false" class="glass-global">
                 <!-- start slipsum code -->
@@ -241,7 +273,7 @@
                 <md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('sidenav')"
                            aria-label="Toggle left sidenav">
                     <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
-                </md-button>
+                </md-button>toggleSidenav
                 <h1 style="color: white">
                     <span>class:</span>
                     <span class="h1 badge badge-primary">

@@ -28,7 +28,7 @@
         vm.updateName = updateName;
         vm.updateTitle = updateTitle;
         vm.selectListItem = selectListItem;
-
+        vm.goToParentCategory = goToParentCategory;
         vm.selectedCategory = -1;
 
 
@@ -126,6 +126,10 @@
                 vm.toolbarInfo.name = data.name;
                 vm.toolbarInfo.title = data.title;
             });
+        }
+
+        function goToParentCategory() {
+            $state.go('app.UltraEditorBrowse');
         }
 
         vm.editorOptions = {

@@ -63,6 +63,8 @@
 
         vm.goBackToCategory = goBackToCategory;
         vm.toggleSidenav = toggleSidenav;
+        vm.buildBreadCrumbs = buildBreadCrumbs;
+        vm.sideNavLocked = true;
 
         vm.editorOptions = {
             lineWrapping: true,
@@ -82,8 +84,7 @@
             $log.debug('MASTER ID:');
             $log.log('|' + vm.selectedMaster + '|');
             vm.createFirstTreeNodes();
-
-
+            vm.buildBreadCrumbs();
         }
 
         function reloadData() {
@@ -401,7 +402,8 @@
 
         function goBackToCategory() {
             $state.go('app.UltraEditorBrowse.slave', {
-                'categoryId': $state.params.categoryId
+                'categoryId': vm.finishedBreadCrumbsJson._1st.id,
+                'childId': vm.finishedBreadCrumbsJson._2nd.id
             });
         }
 
@@ -433,8 +435,18 @@
             });
         }
 
+        vm.finishedBreadCrumbsJson = {};
+
+        function buildBreadCrumbs() {
+            BreadCrumbsIDE.cookBread($state.params.categoryId, $state.params.subCategoryId, $state.params.masterId)
+                .then(function(finishedBread) {
+                    vm.finishedBreadCrumbsJson._1st = finishedBread[0];
+                    vm.finishedBreadCrumbsJson._2nd = finishedBread[1];
+                    vm.finishedBreadCrumbsJson._3rd = finishedBread[2];
+                })
+        }
+
         function toggleSidenav(sidenavId) {
-            BreadCrumbsIDE.cookBread()
             $mdSidenav(sidenavId).toggle();
         }
 

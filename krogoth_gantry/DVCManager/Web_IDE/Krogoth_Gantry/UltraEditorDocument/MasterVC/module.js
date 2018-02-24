@@ -5,7 +5,7 @@
     function config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider) {
         $stateProvider
             .state('app.FUSE_APP_NAME', {
-                url: '/FUSE_APP_NAME/:categoryId/:masterId',
+                url: '/FUSE_APP_NAME/:categoryId/:subCategoryId/:masterId',
                 views: {
                     'main@': {
                         templateUrl: '/moho_extractor/NgIncludedHtml/?name=content-only.html',
