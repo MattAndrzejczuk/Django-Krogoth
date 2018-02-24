@@ -14,16 +14,19 @@ class Command(BaseCommand):
         for app in djangularApp:
             # self.stdout.write("Saving krogoth_gantry Master View Controllers", ending='\n')
             static_root = app.path_to_static
+
             p1 = static_root + "MasterVC/module.js"
             text_file = open(p1, "w")
             text_file.write(app.module_js)
             text_file.close()
             self.stdout.write(self.style.SUCCESS(p1))
+
             p2 = static_root + "MasterVC/controller.js"
             text_file = open(p2, "w")
             text_file.write(app.controller_js)
             text_file.close()
             self.stdout.write(self.style.SUCCESS(p2))
+
             p3 = static_root + "MasterVC/view.html"
             text_file = open(p3, "w")
             text_file.write(app.view_html)
@@ -82,6 +85,6 @@ class Command(BaseCommand):
                     os.makedirs(basedir)
                 d1 = static_root + "partialsHTML/" + tmpl.name
                 text_file = open(d1, "w")
-                text_file.write(tmpl.directive_js)
+                text_file.write(tmpl.contents)
                 text_file.close()
                 self.stdout.write(self.style.SUCCESS(d1))

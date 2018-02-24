@@ -1,24 +1,30 @@
+<style>
+.editable-click {
+	border-bottom: none;
+	color: white;
+}
+</style>
+
 <div style="color: white;">
     <div class="md-display-1">Select Sub Catagory</div>
-
 </div>
-
+  
 
 <div layout="row">
-    <div flex="20">
+    <div flex="5">
 
     </div>
-    <div flex="60" ng-cloak>
+    <div flex="90" ng-cloak>
         <md-grid-list
                 md-cols="1" md-cols-sm="1" md-cols-md="2" md-cols-gt-md="3" md-cols-gt-lg="4"
                 md-row-height-gt-md="1:1" md-row-height="1:1"
                 md-gutter="18px" md-gutter-gt-sm="14px">
-            <md-grid-tile ng-repeat="tile in vm.objectList"
+            <md-grid-tile ng-repeat="tile in vm.objectList | orderBy:'weight'"
                           ng-mouseenter="tile.hidden = false"
                           ng-mouseleave="tile.hidden = true"
                           md-rowspan="1"
-                          md-colspan="1"
-                          md-colspan-sm="1"
+                          md-colspan="2"
+                          md-colspan-sm="2"
                           md-colspan-xs="1"
                           class="blackbg"
                           style="border-radius:25px"
@@ -42,6 +48,7 @@
 											<strong>{{ tile.name }}</strong>
 							</span>
                             <span flex="20"></span>
+							<pre> {{ tile | json }} </pre>
                         </div>
                     </div>
                 </div>
@@ -56,7 +63,7 @@
             </md-grid-tile>
         </md-grid-list>
     </div>
-    <div flex="20">
+    <div flex="5">
 
     </div>
 </div>

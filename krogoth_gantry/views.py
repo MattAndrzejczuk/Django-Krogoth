@@ -17,6 +17,22 @@ import subprocess
 import django_filters.rest_framework
 
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+class KrogothGantryIconSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KrogothGantryIcon
+        fields = '__all__'
+
+
+class KrogothGantryIconViewSet(viewsets.ModelViewSet):
+    queryset = KrogothGantryIcon.objects.all()
+    serializer_class = KrogothGantryIconSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('^code',)
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 class KrogothGantryMasterViewControllerSerializer(serializers.ModelSerializer):
     class Meta:
         model = KrogothGantryMasterViewController
@@ -44,25 +60,14 @@ class KrogothGantrySlaveViewControllerViewSet(viewsets.ModelViewSet):
     search_fields = ('^name', '^title')
 
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-class KrogothGantryIconSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = KrogothGantryIcon
-        fields = '__all__'
-
-
-class KrogothGantryIconViewSet(viewsets.ModelViewSet):
-    queryset = KrogothGantryIcon.objects.all()
-    serializer_class = KrogothGantryIconSerializer
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('^code',)
-
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 class KrogothGantryCategorySerializer(serializers.ModelSerializer):
+    icon = KrogothGantryIconSerializer(read_only=True)
     class Meta:
+
         model = KrogothGantryCategory
-        fields = '__all__'
+        fields = ('id', 'name', 'title', 'weight', 'icon', 'parent',)
 
 
 class KrogothGantryCategoryViewSet(viewsets.ModelViewSet):

@@ -1,8 +1,6 @@
 from django.conf.urls import url
+from moho_extractor.views import NgIncludedHtmlView, KrogothFoundationView, LoadFileAsBase64View
 
-from moho_extractor.views import DynamicIndexModule, \
-    DynamicJavaScriptInjector, DynamicHTMLInjector, \
-    NgIncludedHtmlView, NgIncludedJsView, KrogothFoundationView, LoadFileAsBase64View
 
 
 

@@ -1,10 +1,9 @@
 from django.http import HttpResponse, JsonResponse
 
 from rest_framework.views import APIView
-from rest_framework.response import Response
 from moho_extractor.serializers import IncludedHtmlMasterSerializer
 
-from moho_extractor.models import NgIncludedHtml, NgIncludedJs, IncludedHtmlMaster
+from moho_extractor.models import NgIncludedHtml, IncludedHtmlMaster
 from krogoth_gantry.models import KrogothGantryMasterViewController
 
 from rest_framework.authentication import TokenAuthentication
@@ -64,26 +63,6 @@ class IncludedHtmlMasterViewSet(viewsets.ModelViewSet):
     filter_fields = ('master_vc__name', )
 
 
-class NgIncludedJsView(APIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (AllowAny,)
-
-    def get(self, request, format=None):
-        name = str(request.GET['name'])
-        try:
-            try:
-                data = str(request.GET['data'])
-                js_view = NgIncludedJs.objects.get(name=name)
-                final_html = js_view.contents.replace('INJECTED_DATA', data)
-                return HttpResponse(final_html)
-            except:
-                js_view = NgIncludedJs.objects.get(name=name)
-                return HttpResponse(js_view.contents)
-        except:
-            html = 'alert("fatal krogoth_gantry error, unable to load HTML view: ' + name + \
-                   ' try executing: python3 manage.py make_default_layout");'
-            return HttpResponse(html)
-
 
 class NgIncludedHtmlView(APIView):
     authentication_classes = (TokenAuthentication,)
@@ -114,7 +93,7 @@ class NgIncludedHtmlView(APIView):
             return HttpResponse(html)
 
 
-import json
+
 from krogoth_core.models import AKFoundationAbstract
 
 
@@ -148,84 +127,6 @@ class KrogothFoundationView(APIView):
                 my_apps += ("\t\t\t'app." + application.name + "',\n")
             body = js.code.replace('/*|#apps#|*/', my_apps)
         return HttpResponse(content_type=ct, content=body)
-
-
-class DynamicIndexModule(APIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (AllowAny,)
-
-    def get(self, request, format=None):
-        # index_module_pt1 = "(function (){'use strict';angular.module('fuse', ['uiGmapgoogle-maps','textAngular', " + \
-        #                    "'jkAngularCarousel','xeditable','ui.codemirror','app.core','app.sample','app.navigation','app.toolbar','app.quick-panel',"
-        # index_module_pt2 = ''
-        # my_apps = "'app.sample',"
-        # all_djangular = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
-        # for application in all_djangular:
-        #     krogoth_debug()
-        #     if application.is_lazy == False:
-        #         krogoth_debug(CCD[2] + application.name + CCD[0])
-        #         my_apps += ("'app." + application.name + "',")
-        # my_apps += "'ui.tree', "
-        # # my_apps += "'app.pages','app.ui','app.components', "
-        # my_apps += "'app.sample'"
-        # index_module_pt3 = "" + \
-        #                    "]);})();"
-        # indexModuleJs = index_module_pt1 + index_module_pt2 + my_apps + index_module_pt3
-        ct = 'application/javascript'
-        return HttpResponse(content_type=ct, content='')
-
-
-class DynamicJavaScriptInjector(APIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (AllowAny,)
-
-    def get(self, request, format=None):
-        name = request.GET['name']
-        application = AngularFuseApplication.objects.get(name=name)
-        components = FuseAppComponent.objects.filter(parent_app=application)
-
-        clean_js_slate = application.js_module + ' ' + application.js_controller
-
-        parsed1 = clean_js_slate.replace('FUSE_APP_NAME', application.name)
-        parsed2 = parsed1.replace('FUSE_APP_TITLE', application.name.replace('_', ' '))
-        parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon.prefix + ' ' + application.icon.code)
-        parsed4 = parsed3.replace('NAV_HEADER', application.category)
-        raw_js_response = parsed4
-
-        for comp in components:
-            if comp.type == 'js':
-                parsed1 = comp.contents.replace('FUSE_APP_NAME', application.name)
-                parsed2 = parsed1.replace('FUSE_APP_TITLE', application.name.replace('_', ' '))
-                parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon.prefix + ' ' + application.icon.code)
-                raw_js_response += parsed3
-        ct = 'application/javascript'
-        return HttpResponse(content_type=ct, content=raw_js_response)
-
-
-class DynamicHTMLInjector(APIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (AllowAny,)
-
-    def get(self, request, format=None):
-        name = request.GET['name']
-        application = AngularFuseApplication.objects.get(name=name)
-        components = FuseAppComponent.objects.filter(parent_app=application)
-        raw_html_response = application.html_main
-        for comp in components:
-            if comp.type == 'html':
-                parsed1 = comp.contents.replace('FUSE_APP_NAME', application.name)
-                parsed2 = parsed1.replace('FUSE_APP_TITLE', application.name.replace('_', ' '))
-                raw_html_response += parsed2
-        if raw_html_response == '':
-            raw_html_response += '<div layout="column" layout-padding layout-margin>'
-            raw_html_response += '<h1>' + application.name.replace('_', ' ') + '</h1>'
-            raw_html_response += '<h3>No Fuse App HTML Component</h3>'
-            info = "You're seeing this message because no Fuse App HTML component with the type: HTML has not been " + \
-                   "added to this Angular Fuse Application named " + application.name
-            raw_html_response += "<p>" + info + "</p>"
-            raw_html_response += '</div>'
-        ct = 'text/html'
-        return HttpResponse(content_type=ct, content=raw_html_response)
 
 
 import os

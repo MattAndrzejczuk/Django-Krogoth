@@ -55,9 +55,9 @@ sleep 1
 
 rm -R ../chat/migrations
 rm -R ../krogoth_3rdparty_api/migrations
-#    rm -R ../krogoth_gantry/migrations
+rm -R ../krogoth_gantry/migrations
 rm -R ../krogoth_examples/migrations
-#    rm -R ../krogoth_core/migrations
+rm -R ../krogoth_core/migrations
 rm -R ../krogoth_apps/migrations
 rm -R ../krogoth_social/migrations
 rm -R ../moho_extractor/migrations

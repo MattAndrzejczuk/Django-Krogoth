@@ -41,11 +41,10 @@
                 <!-- end slipsum code -->
             </div>
             <!-- / DEMO SIDENAV -->
-
             <div style="color: orange">
                 <div layout="row" layout-align="space-between center">
 					<span class="h2 badge badge-light">
-						ID :
+						ID :   
 					</span>
                     <span class="badge badge-dark">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].id }}
@@ -253,9 +252,12 @@
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title }}
 					</span>
                 </h1>
-                <md-button ng-click="vm.reloadData()">
-                    Reload Data
+                <md-button ng-show="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].hasUnsavedChanges"
+						   ng-click="vm.saveEditorWorkToServer(vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex])">
+                    Save Changes
                 </md-button>
+				vm.loadedParentIndex
+				{{ vm.loadedParentIndex }}
             </div>
             <!-- / CONTENT TOOLBAR -->
             <!-- CONTENT -->
@@ -268,7 +270,6 @@
                             ui-codemirror-opts="vm.editorOptions"
                             ui-codemirror="{onLoad:vm.codemirrorLoaded}">
                     </ui-codemirror>
-
                 </div>
             </md-content>
             <!-- / CONTENT -->

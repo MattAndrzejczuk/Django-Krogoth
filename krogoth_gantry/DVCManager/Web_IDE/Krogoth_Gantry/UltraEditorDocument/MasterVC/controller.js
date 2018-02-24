@@ -51,7 +51,6 @@
         vm.loadedIndex = -1;
         vm.loadedParentIndex = -1;
 
-
         vm.editorLoadedFirstDoc = false;
         vm.reloadData = reloadData;
         vm.saveEditorWorkToServer = saveEditorWorkToServer;
@@ -76,9 +75,7 @@
 
         /// I.
         function onInit() {
-
             vm.selectedMaster = $state.params.masterId;
-
             $log.debug('MASTER ID:');
             $log.debug('MASTER ID:');
             $log.debug('MASTER ID:');
@@ -120,7 +117,6 @@
                     vm.directivesPendingRequest = finishedProcess.directives;
                     vm.slavesPendingRequest = finishedProcess.slaves;
                     vm.objectList = finishedProcess.objectList;
-
                     vm.getTemplatesHTML();
                     vm.getKrogothCoreParts();
 
