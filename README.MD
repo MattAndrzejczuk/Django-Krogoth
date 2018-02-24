@@ -3,10 +3,10 @@
 
 
 
-* __Copyright (C) 2017 Matt Andrzejczuk < matt@jawn.it >__
+
 
 #__AngularJS Krogoth__
-
+__Copyright (C) Matt Andrzejczuk 2017-2018 < matt@jawn.it >__
 
 #The Purpose of Krogoth
 AngularJS began with a bright and exciting future since its release in the early 2010s.
@@ -33,7 +33,7 @@ Krogoth is intended to be used by anyone from all skill levels from students to 
 
 The installation can take anywhere from 15 to 30 minutes depending on your internet connection speed. Once the installation completes, you should be able to navigate to your localhost:80 and see that your Krogoth installation had succeeded with a screen that says **it works!**.
 
-
+---
 
 #Creating Your First Krogoth Component
 By now your Krogoth web server should be up and running. You are now ready to start creating states for your single paged web application. Since Krogoth is intended to always operate as a single paged web application, your users will no longer be reloading entire web pages as they navigate and explore your site. Instead of web pages, Krogoth allows its users to navigate your website through states. 
@@ -49,7 +49,7 @@ Included within the Krogoth Gantry section of the Django admin panel is a collec
 * 2D Canvas Rendering The Golden Ratio in Real-Time
 These experimental samples will drain any computers hardware, but regardless of the amount of processing power they consume, they remain encapsulated within their home MasterViewControllers. We look forward to the community taking these examples to create more next generation directives and services that are more efficient and further blur the line between native and web applications.
 
-
+---
 
 #Problems With AngularJS Solved With Krogoth
 ###Lazy Loading
@@ -94,14 +94,17 @@ A feature which will be released soon, Krogoth will handle SEO for you automatic
 With Krogoth, many example API scaffolds are included out of the box complete with samples ranging from single property models to complex models with multiple relations with other models. The models included are also pre-integrated with the AngularJS front end, along with elegant and clean code implementations that match up with the latest in quality standards. So you'll spend more time visualizing and organizing your brand and inventory rather than spending hours of time with development and testing.
 
 
-##git Help
-###Undo all changes properly for git clone
+---
+
+
+###Fast & Easy Method For Tweaking & Testing Your Installer
+####Undo all changes properly for git clone
 Freshly cloned Krogoth projects will generate many files after installation which may confuse git.
 If you know for a fact that your Krogoth local repository doesn't have any unsaved changes and you'd simply like to
 pull the latest changes for the purpose of applying a hotfix to your installation process, the following git commands
 will help you restore Krogoth into a fresh state in a situation where you are working on the installation process.
 
-* THIS WILL DELETE ALL YOUR UNCOMMITED WORK, PROCEED WITH CAUTION
+__THIS WILL DELETE ALL OF YOUR UNCOMMITED WORK, PROCEED WITH CAUTION__
 ```bash
     $ git clean -f
     $ git reset --hard
@@ -119,11 +122,19 @@ Your Krogoth project should never be like PC:
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=1PwiljBN5-8
 " target="_blank"><img src="http://img.youtube.com/vi/1PwiljBN5-8/0.jpg" 
 alt="Krogoth powered by Django and AngularJS" width="240" height="180" border="10" /></a>
+[![Krogoth powered by Django and AngularJS](http://img.youtube.com/vi/1PwiljBN5-8/0.jpg)](
 
 
-# Using bower with Krogoth
+---
 
-## 1.) Install your AngularJS package
+
+# Using bower with Krogoth (ALPHA)
+
+Eventually there will be more simple and seamless compatibility with legacy package managers like bower and npm.
+For now, here's how you can use bower alongside Krogoth and simplify the installation of your app's dependencies.
+
+
+### 1.) Install your AngularJS package
 ```bash
     $ bower install ng-websocket
 ```
@@ -136,7 +147,7 @@ Then do the following:
     $ sudo ln -s /usr/bin/nodejs /usr/bin/node
 ```
 
-## 2.) update your index.module import dependency
+### 2.) update your index.module import dependency
 * navigate to http://localhost/admin_a9k/krogoth_core/akfoundationangularcore/
 * open **module.core** under Home » Krogoth_Core » Core Application
 * add your dependency declaration
@@ -145,3 +156,7 @@ Then do the following:
 angular.module('app.core', ['ngWebsocket']);
 ```
 
+### 3.) make sure you add the path to this bower package to your __index.html__ file:
+```html
+<script src="/static/bower_components/ng-websocket/ng-websocket.js"></script>
+```
