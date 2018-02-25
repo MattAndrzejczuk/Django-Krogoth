@@ -15,7 +15,32 @@ from rest_framework import viewsets, serializers, generics, filters
 import subprocess
 # from django.core import serializers
 import django_filters.rest_framework
+from krogoth_gantry.management.commands.installdjangular import bcolors
+from krogoth_admin.models import UncommitedSQL
+from chat.models import JawnUser
 
+import json
+
+
+class AbstractKrogothSerializer(serializers.ModelSerializer):
+
+    def update(self, instance, validated_data):
+        print(bcolors.BOLD + bcolors.blue + "  🛠  " +
+              str(type(self)) +
+              " \nUPDATED" + bcolors.ENDC + bcolors.ENDC)
+        instance.save()
+        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
+        uncommitedChange = UncommitedSQL.objects.create(name=instance.name,
+                                                        edited_by=jawn_user,
+                                                        krogoth_class="KrogothGantryMasterViewController")
+        return instance
+    ### To do later, recycle reflection from class "krogoth_gantryModelForm"
+    ### too much going on in this .py file now.
+    def create(self, validated_data):
+        print(bcolors.BOLD + bcolors.purple + "  🛠  " +
+              str(type(self)) +
+              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
+        pass
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 class KrogothGantryIconSerializer(serializers.ModelSerializer):
@@ -33,10 +58,20 @@ class KrogothGantryIconViewSet(viewsets.ModelViewSet):
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-class KrogothGantryMasterViewControllerSerializer(serializers.ModelSerializer):
+class KrogothGantryMasterViewControllerSerializer(AbstractKrogothSerializer):
     class Meta:
         model = KrogothGantryMasterViewController
         fields = '__all__'
+
+    def create(self, validated_data):
+        print(bcolors.BOLD + bcolors.purple + "  🛠  " +
+              str(type(self)) +
+              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
+        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
+        uncommitedChange = UncommitedSQL.objects.create(name=validated_data['name'],
+                                                        edited_by=jawn_user,
+                                                        krogoth_class="KrogothGantryMasterViewController")
+        return KrogothGantryMasterViewController.objects.create(**validated_data)
 
 
 class KrogothGantryMasterViewControllerViewSet(viewsets.ModelViewSet):
@@ -46,12 +81,23 @@ class KrogothGantryMasterViewControllerViewSet(viewsets.ModelViewSet):
     filter_fields = ('name', 'category', 'id')
 
 
+
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-class KrogothGantrySlaveViewControllerSerializer(serializers.ModelSerializer):
+class KrogothGantrySlaveViewControllerSerializer(AbstractKrogothSerializer):
     class Meta:
         model = KrogothGantrySlaveViewController
         fields = '__all__'
 
+    def create(self, validated_data):
+        print(bcolors.BOLD + bcolors.purple + "  🛠  " +
+              str(type(self)) +
+              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
+        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
+        uncommitedChange = UncommitedSQL.objects.create(name=validated_data['name'],
+                                                        edited_by=jawn_user,
+                                                        krogoth_class="KrogothGantrySlaveViewController")
+        return KrogothGantrySlaveViewController.objects.create(**validated_data)
 
 class KrogothGantrySlaveViewControllerViewSet(viewsets.ModelViewSet):
     queryset = KrogothGantrySlaveViewController.objects.all()
@@ -62,7 +108,7 @@ class KrogothGantrySlaveViewControllerViewSet(viewsets.ModelViewSet):
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-class KrogothGantryCategorySerializer(serializers.ModelSerializer):
+class KrogothGantryCategorySerializer(AbstractKrogothSerializer):
     icon = KrogothGantryIconSerializer(read_only=True)
     class Meta:
 
@@ -78,11 +124,20 @@ class KrogothGantryCategoryViewSet(viewsets.ModelViewSet):
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-class KrogothGantryDirectiveSerializer(serializers.ModelSerializer):
+class KrogothGantryDirectiveSerializer(AbstractKrogothSerializer):
     class Meta:
         model = KrogothGantryDirective
         fields = '__all__'
 
+    def create(self, validated_data):
+        print(bcolors.BOLD + bcolors.purple + "  🛠  " +
+              str(type(self)) +
+              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
+        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
+        uncommitedChange = UncommitedSQL.objects.create(name=validated_data['name'],
+                                                        edited_by=jawn_user,
+                                                        krogoth_class="KrogothGantryDirective")
+        return KrogothGantryDirective.objects.create(**validated_data)
 
 class KrogothGantryDirectiveViewSet(viewsets.ModelViewSet):
     queryset = KrogothGantryDirective.objects.all()
@@ -92,10 +147,20 @@ class KrogothGantryDirectiveViewSet(viewsets.ModelViewSet):
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-class KrogothGantryServiceSerializer(serializers.ModelSerializer):
+class KrogothGantryServiceSerializer(AbstractKrogothSerializer):
     class Meta:
         model = KrogothGantryService
         fields = '__all__'
+
+    def create(self, validated_data):
+        print(bcolors.BOLD + bcolors.purple + "  🛠  " +
+              str(type(self)) +
+              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
+        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
+        uncommitedChange = UncommitedSQL.objects.create(name=validated_data['name'],
+                                                        edited_by=jawn_user,
+                                                        krogoth_class="KrogothGantryService")
+        return KrogothGantryService.objects.create(**validated_data)
 
 
 class KrogothGantryServiceViewSet(viewsets.ModelViewSet):

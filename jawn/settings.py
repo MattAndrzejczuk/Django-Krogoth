@@ -91,8 +91,8 @@ INSTALLED_APPS = (
     'kbot_lab',
     'krogoth_examples',
     'django_extensions',
-
 )
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -103,6 +103,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 )
+
 ROOT_URLCONF = 'jawn.urls'
 TEMPLATES = [
     {
@@ -239,9 +240,9 @@ try:
     if current_build_2 == '00':
         current_build_2 = '0'
     else:
-        rm_0s = current_build_2.replace('01', '1').replace('02', '2').replace('03', '3').replace('04', '4')
-        current_build_2 = rm_0s.replace('05', '5').replace('06', '6').replace('07', '7').replace('08', '8').replace(
-            '09', '9')
+        rm_0s = current_build_2.replace('10', '1').replace('20', '2').replace('30', '3').replace('40', '4')
+        current_build_2 = rm_0s.replace('50', '5').replace('60', '6').replace('70', '7').replace('80', '8').replace(
+            '90', '9')
 
     APP_VERSION = current_build_1[:3] + "." + current_build_2
     print('\033[1m\033[32mKrogoth ' + APP_VERSION + ' \033[0m\033[0m')

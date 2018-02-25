@@ -1,14 +1,55 @@
 from django.db import models
 from chat.models import JawnUser
 # Create your models here.
+from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantrySlaveViewController, \
+    KrogothGantryService, KrogothGantryDirective
+from krogoth_gantry.management.commands.installdjangular import bcolors
 
+
+def more_than_zero(length: int):
+    if length > 0:
+        return True
+    else:
+        return False
 
 
 class UncommitedSQL(models.Model):
+    """When saving code using web IDE, keep track of saved modules.
+
+    This model keeps track of code which has been saved to SQL, but has still never been backed up
+    to be saved as a file to the filesystem. They must be saved to the file system in order to
+    allow developers to commit their HTML, JS or CSS code.
+
+    Developers should avoid changing the 'name' property for all models in the Gantry app.
+    """
     date_created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=255)
-    code_syntax = models.CharField(max_length=25)
+    krogoth_class = models.CharField(max_length=125)
     edited_by = models.ForeignKey(JawnUser, on_delete=models.CASCADE)
+
+    @classmethod
+    def does_exist(cls, name: str, krogoth_class: str) -> bool:
+        if krogoth_class == "KrogothGantryMasterViewController":
+            return more_than_zero(len(cls.objects.filter(name=name)))
+        elif krogoth_class == "KrogothGantrySlaveViewController":
+            return more_than_zero(len(cls.objects.filter(name=name)))
+        elif krogoth_class == "KrogothGantryService":
+            return more_than_zero(len(cls.objects.filter(name=name)))
+        elif krogoth_class == "KrogothGantryDirective":
+            return more_than_zero(len(cls.objects.filter(name=name)))
+        elif krogoth_class == "IncludedHtmlMaster":
+            return more_than_zero(len(cls.objects.filter(name=name)))
+        else:
+            print(bcolors.red + " ! ! ! WARNING ! ! ! " + bcolors.ENDC)
+            print(bcolors.red + " ! UNKNOWN GANTRY  ! " + bcolors.ENDC)
+            print(bcolors.orange + " ! Gantry: " + krogoth_class + " " + bcolors.ENDC)
+            print(bcolors.orange + " ! Name: " + name + " " + bcolors.ENDC)
+            return False
+
+    @classmethod
+    def finish_and_remove(cls, name: str):
+        destroy = cls.objects.get(name=name)
+        destroy.delete()
 
     def save(self, *args, **kwargs):
         pre_existing = UncommitedSQL.objects.filter(name=self.name)
