@@ -53,16 +53,16 @@ class IncludedHtmlMaster(NgIncludedHtml):
         super(IncludedHtmlMaster, self).save(*args, **kwargs)
 
 
-class ReadyForFileSystemFrontend(models.Model):
-    """Anything saved from the Web IDE needs to be recorded.
-
-    Helps speed up backupdvc a bit and more importantly, reminds you
-    save the Database copy permanently to the filesystem.
-    """
-    modified_time = models.DateTimeField(auto_now_add=True)
-    absolute_path = models.CharField(primary_key=True,
-                                     max_length=279,
-                                     default="/usr/src/app/")
-    title = models.CharField(max_length=279)
-    name = models.CharField(max_length=279)
-    is_unsaved = models.BooleanField(default=True)
+# class ReadyForFileSystemFrontend(models.Model):
+#     """Anything saved from the Web IDE needs to be recorded.
+#
+#     Helps speed up backupdvc a bit and more importantly, reminds you
+#     save the Database copy permanently to the filesystem.
+#     """
+    # modified_time = models.DateTimeField(auto_now_add=True)
+    # absolute_path = models.CharField(primary_key=True,
+    #                                  max_length=279,
+    #                                  default="/usr/src/app/")
+    # title = models.CharField(max_length=279)
+    # name = models.CharField(max_length=279)
+    # is_unsaved = models.BooleanField(default=True)

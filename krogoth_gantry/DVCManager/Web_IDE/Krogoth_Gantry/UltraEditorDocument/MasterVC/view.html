@@ -3,6 +3,9 @@
 <script type="text/ng-template" id="nodes_renderer.html">
 	<span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_07.html'"></span>
 </script>
+<!-- Import some extra themes: -->
+<span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_56.html'"></span>
+
 
 
 <span class="h2 badge badge-light">
@@ -78,145 +81,10 @@
                 <!-- end slipsum code -->
             </div>
             <!-- / DEMO SIDENAV -->
-            <div style="color: orange">
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						ID :   
-					</span>
-                    <span class="badge badge-dark">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].id }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						parentIndex :
-					</span>
-                    <span class="badge badge-dark">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].parentIndex }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						index :
-					</span>
-                    <span class="badge badge-dark">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].index }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						name :
-					</span>
-                    <span class="badge badge-success">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						title :
-					</span>
-                    <span class="badge badge-info">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						class :
-					</span>
-                    <span class="badge badge-info">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						nodes :
-					</span>
-                    <span class="badge badge-danger">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].nodes.length }}
-					</span>
-                </div> <!-- = = = = = = == = = = = = = = = = ==  -->
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						canRemove :
-					</span>
-                    <span class="badge badge-warning">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].canRemove }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						canEdit :
-					</span>
-                    <span class="badge badge-warning">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].canEdit }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						isMaster :
-					</span>
-                    <span class="badge badge-warning">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].isMaster }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						sourceCode :
-					</span>
-                    <span class="badge badge-secondary">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode.length }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						sourceKey :
-					</span>
-                    <span class="badge badge-primary">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceKey }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						RESTfulId :
-					</span>
-                    <span class="badge badge-primary">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].RESTfulId }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						RESTfulURI :
-					</span>
-                    <span class="badge badge-primary">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].RESTfulURI }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						syntax :
-					</span>
-                    <span class="badge badge-danger">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].syntax }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						hasUnsavedChanges :
-					</span>
-                    <span class="badge badge-warning">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].hasUnsavedChanges }}
-					</span>
-                </div>
-                <div layout="row" layout-align="space-between center">
-					<span class="h2 badge badge-light">
-						icon :
-					</span>
-                    <span class="badge badge-warning">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].icon }}
-					</span>
-                </div>
-            </div>
-
+			
+			<!-- Raw Data of currently selected tree node. -->
+			<span ng-include="'/moho_extractor/NgIncludedHtml/?name=HTML_TMPL_ID'"></span>
+			
         </md-content>
         <!-- / SIDENAV CONTENT -->
     </md-sidenav>
@@ -228,6 +96,13 @@
              flex="5"
              layout="column"
              style="height: 100px; max-height: 122px; min-height: 76px; padding:0px">
+			
+			<md-button ng-show="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].hasUnsavedChanges"
+						   ng-click="vm.saveEditorWorkToServer(vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex])">
+                    Save Changes
+            </md-button>
+			
+			<!--
             <h3>
                 <span class="h2 badge badge-light">
 					NAME :
@@ -263,18 +138,23 @@
 					{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].RESTfulURI }}
 				</span>
             </h2>
+			-->
         </div>
         <!-- / CONTENT HEADER -->
         <!-- CONTENT CARD -->
         <div class="content-card glass-global" layout="column" flex ak-frosted-glass>
-            <!-- CONTENT TOOLBAR -->
+            
+			
+			<!-- CONTENT TOOLBAR -->
             <div layout="row"
-                 layout-align="start center">
-                <md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('sidenav')"
+                 layout-align="start center">				
+                <md-button class="md-icon-button sidenav-toggle" 
+						   ng-click="vm.toggleSidenav('sidenav')"
                            aria-label="Toggle left sidenav">
                     <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
-                </md-button>toggleSidenav
-                <h1 style="color: white">
+                </md-button>
+				
+				<h1 style="color: white" ng-if="vm.oldDebugInformation2">
                     <span>class:</span>
                     <span class="h1 badge badge-primary">
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class }}
@@ -289,14 +169,15 @@
 						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title }}
 					</span>
                 </h1>
-                <md-button ng-show="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].hasUnsavedChanges"
-						   ng-click="vm.saveEditorWorkToServer(vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex])">
-                    Save Changes
-                </md-button>
-				vm.loadedParentIndex
-				{{ vm.loadedParentIndex }}
+				
+                
+				
+				vm.loadedParentIndex				
+				{{ vm.loadedParentIndex }}				
             </div>
             <!-- / CONTENT TOOLBAR -->
+			
+			
             <!-- CONTENT -->
             <md-content class="contentosx"
                         flex
@@ -307,6 +188,19 @@
                             ui-codemirror-opts="vm.editorOptions"
                             ui-codemirror="{onLoad:vm.codemirrorLoaded}">
                     </ui-codemirror>
+					<span ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class==='NgIncludedHtml'">
+						<div>
+							Import This Partial Into Your Master/Slave ViewHTML 
+						</div>
+						
+						<hljs language="html" class="source-code">
+							<span ng-include="'/moho_extractor/NgIncludedHtml/?name=HTML_TMPL_ID'"></span>
+						</hljs>
+						<h1 ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class='NgIncludedHtml'">
+						<span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ng-include=</span>
+						<span style="color:red">"'/moho_extractor/NgIncludedHtml/?name={{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name.replace("/moho_extractor/NgIncludedHtml/?name=", "") }}'"</span>
+						</h1>
+					</span>
                 </div>
             </md-content>
             <!-- / CONTENT -->

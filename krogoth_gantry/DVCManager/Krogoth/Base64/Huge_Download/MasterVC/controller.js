@@ -15,12 +15,22 @@
         vm.imageWidth = 3840;
         vm.imageHeight = 512;
 
+        vm.cacheImageInCookies = cacheImageInCookies;
+        vm.deleteImageFromCookies = cacheImageInCookies;
+
+        function cacheImageInCookies() {
+
+        }
+
+        function deleteImageFromCookies() {
+
+        }
 
         function didClickLoadBase64() {
             $log.log('Did Click Load Base64');
             $http({
                 method: 'GET',
-                url: '/moho_extractor/LoadFileAsBase64?name=EPIC_Planet_3_uncompressed.jpg'
+                url: '/moho_extractor/LoadFileAsBase64?name=EpicPlanet_1.png'
             }).then(function successCallback(response) {
                 vm.base64Data = response.data;
             }, function errorCallback(response) {
@@ -59,13 +69,11 @@
         var async = function(id) {
             return function() {
                 var deferred = $q.defer();
-
                 vm.asyncmessages.push(id + ' has started');
-
                 if (id === 'dispatch_task1') {
                     $http({
                         method: 'GET',
-                        url: '/moho_extractor/LoadFileAsBase64?name=EPIC_Planet_1.png'
+                        url: '/moho_extractor/LoadFileAsBase64?name=EpicPlanet_1.png'
                     }).then(function successCallback(response) {
                         vm.asyncmessages.push(id + ' has completed');
                         vm.base64Data = response.data;
@@ -78,8 +86,6 @@
                     vm.base64Image = 'data:image/jpg;base64,' + vm.base64Data;
                     deferred.resolve();
                 }
-
-
                 return deferred.promise;
             }
         };

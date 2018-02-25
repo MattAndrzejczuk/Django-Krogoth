@@ -78,11 +78,6 @@
         /// I.
         function onInit() {
             vm.selectedMaster = $state.params.masterId;
-            $log.debug('MASTER ID:');
-            $log.debug('MASTER ID:');
-            $log.debug('MASTER ID:');
-            $log.debug('MASTER ID:');
-            $log.log('|' + vm.selectedMaster + '|');
             vm.createFirstTreeNodes();
             vm.buildBreadCrumbs();
         }
@@ -277,18 +272,11 @@
         }
         // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
+        vm.customThemeMode = false;
+        vm.setThemeBasedOnSyntax = setThemeBasedOnSyntax;
 
         /*  ⚡️  */
         function loadFileIntoEditor(parentIndex, index, scope) {
-            /*
-            $log.info("PARENT INDEX: " + parentIndex);
-            $log.info("INDEX: " + index);
-            $log.info("SCOPE: ");
-            $log.debug(scope);
-            $log.info("TREE DATA: ");
-            $log.debug(vm.treeData);
-			*/
             vm.unsavedChangesExist = -1;
             if (vm.editorLoadedFirstDoc === true) {
                 vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode = vm.editorModel.doc.getValue();
@@ -298,10 +286,29 @@
             vm.unsavedChangesExist = -1;
             vm.loadedIndex = index;
             vm.loadedParentIndex = parentIndex;
-            vm.editorModel.setOption("mode", vm.treeData[parentIndex].nodes[index].syntax);
+
+            const syntax = vm.treeData[parentIndex].nodes[index].syntax;
+
+            vm.editorModel.setOption("mode", syntax);
+
+            if (vm.customThemeMode === false) {
+                vm.setThemeBasedOnSyntax(syntax);
+            }
 
         }
 
+
+        function setThemeBasedOnSyntax(syntax) {
+            if (syntax === "html") {
+                vm.editorModel.setOption("theme", "ambiance");
+            } else if (syntax === "javascript") {
+                vm.editorModel.setOption("theme", "cobalt");
+            } else if (syntax === "htmlmixed") {
+                vm.editorModel.setOption("theme", "ambiance");
+            } else {
+                vm.editorModel.setOption("theme", "the-matrix");
+            }
+        }
 
 
         function saveEditorWorkToServer(node) {

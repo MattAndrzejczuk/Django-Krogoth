@@ -140,10 +140,10 @@ class LoadFileAsBase64View(APIView):
     def get(self, request):
         name = request.GET['name']
         path = BASE_DIR + '/static/fancy_bgs/' + name
-        if os.path.isfile(path) == True:
-            pass
-        else:
-            raise IOError()
+        # if os.path.isfile(path) == True:
+        #     pass
+        # else:
+        #     raise IOError()
         with open(path, "rb") as image_file:
             encoded_string = base64.b64encode(image_file.read())
             return HttpResponse(content_type='text/plain', content=encoded_string)

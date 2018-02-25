@@ -62,8 +62,10 @@ succeeded with a screen that says **it works!**.
 By now your Krogoth web server should be up and running. You are now ready to start creating states for your single 
 paged web application. Since Krogoth is intended to always operate as a single paged web application, your users will 
 no longer be reloading entire web pages as they navigate and explore your site. Instead of web pages, Krogoth allows its 
-users to navigate your website through states. 
-Worry Less About Separation of Concerns
+users to navigate your website through states.
+
+######Worry Less About Separation of Concerns
+
 AngularJS alone made the process of creating states very difficult, even if developers wanted to simply create an 
 **About Me** page or **Contact Us** page, there was a lot of room for error especially for beginners. If just one string 
 is misspelled for a new and simple **Contact Us** page, a very vague error message will be thrown, and the entire app 
@@ -81,13 +83,17 @@ and witness the true power of pure JavaScript.
 ######A Collection of Experimental Sample Templates
 Included within the Krogoth Gantry section of the Django admin panel is a collection of directives and services that'll 
 push your web browser and web client hardware to its limits. Some of these examples include:
+
+;
 * 4K Gaussian Blur Frosted Glass Background
 * 3D Model Viewer
 * Web Socket Component
 * 2D Canvas Rendering The Golden Ratio in Real-Time
 
-These experimental samples will drain any computers hardware, but regardless of the amount of processing power they 
-consume, they remain encapsulated within their home MasterViewControllers. We look forward to the community taking these 
+
+
+These experimental samples will drain any computer system's hardware, but regardless of the amount of processing power they 
+consume, they remain encapsulated within their own MasterViewControllers. We look forward to the community taking these 
 examples to create more next generation directives and services that are more efficient and further blur the line 
 between native and web applications.
 
@@ -108,7 +114,7 @@ between native and web applications.
 * Clean and makes perfect sense thanks to Django and SQL.
 ###Inherited Variables Are Global Variables
 * Dangerous, from child scope you can access absolutely any variable of any parent scope. Krogoth allows you to easily 
-create non-global factories and directives which are only accessible to their parent component along with the parents 
+create non-global factories and directives which are only accessible to their parent component along with the parent's 
 children.
 ###Search Engine Optimization 
 * Since Krogoth manages and organizes your single page application states, it can also take care of your SEO, by 
@@ -146,7 +152,7 @@ functionality since it lives alongside pre-existing Django/Python code and uses 
 JavaScript can be a headache sometimes, but this is because of its asynchronous nature. Due to this asynchronous factor, 
 it has turned a language that was originally created as a toy programing language into a sleeping giant. When the intel 
 Pentium 4 was released in the early 2000s, the speed of individual CPU processors would barely be improved upon up until 
-today in 2018 where overclocking is required to barely scratch the surface of 5GHz on a reasonably priced intel chip, 
+today in 2018 where overclocking is required to barely scratch the surface of 5GHz on a high-end intel chip, 
 but we have seen a dramatic increase in the amount of processor cores that provide huge performance benefits to 
 multithreaded apps written in technologies like JavaScript. Since 2014 when AngularJS became a hit, the amount CPU cores 
 on both desktops and mobile devices has doubled, with affordable hexacore desktop processors already available for older 

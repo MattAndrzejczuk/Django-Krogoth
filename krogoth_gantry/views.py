@@ -25,9 +25,11 @@ import json
 class AbstractKrogothSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
-        print(bcolors.BOLD + bcolors.blue + "  🛠  " +
-              str(type(self)) +
-              " \nUPDATED" + bcolors.ENDC + bcolors.ENDC)
+        for key in validated_data.keys():
+            setattr(instance, key, validated_data[key])
+            print(bcolors.BOLD + bcolors.blue + "  🛠  " +
+                  str(type(self)) + " : " + str(key) +
+                  " \nUPDATED" + bcolors.ENDC + bcolors.ENDC)
         instance.save()
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
         uncommitedChange = UncommitedSQL.objects.create(name=instance.name,

@@ -8,6 +8,8 @@ class IncludedHtmlMasterSerializer(AbstractKrogothSerializer):
         print(bcolors.BOLD + bcolors.lightgreen + "  🛠  " +
               str(type(self)) +
               " \nUPDATED" + bcolors.ENDC + bcolors.ENDC)
+        for key in validated_data.keys():
+            setattr(instance, key, validated_data[key])
         instance.save()
         return instance
 
