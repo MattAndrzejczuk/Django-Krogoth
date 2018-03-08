@@ -15,7 +15,6 @@
                         templateUrl: '/krogoth_gantry/DynamicHTMLInjector/?name=FUSE_APP_NAME',
                         controller: 'FUSE_APP_NAMEController as vm'
                     }
-
                 }
             });
         // .state('app.FUSE_APP_NAME.slave', {
@@ -32,7 +31,6 @@
         //
         //     }
         // });
-
         /*
                 msNavigationServiceProvider.saveItem('AK_NAVCAT_KROGOTH.AK_SUBCATAGORY_KROGOTH.FUSE_APP_NAME', {
                     title: 'FUSE_APP_TITLE',

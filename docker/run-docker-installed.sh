@@ -1,5 +1,41 @@
 #!/bin/bash
 
+
+
+
+
+HEADER = "\033[95m"
+OKBLUE = "\033[94m"
+OKGREEN = "\033[92m"
+WARNING = "\033[93m"
+FAIL = "\033[91m"
+ENDC = "\033[0m"
+BOLD = "\033[1m"
+UNDERLINE = "\033[4m"
+TEAL = "\033[96m"
+BLACK = "\033[97m"
+GRAY = "\033[90m"
+black = "\033[30m"
+red = "\033[31m"
+green = "\033[32m"
+orange = "\033[33m"
+blue = "\033[34m"
+purple = "\033[35m"
+cyan = "\033[36m"
+lightgrey = "\033[37m"
+darkgrey = "\033[90m"
+lightred = "\033[91m"
+lightgreen = "\033[92m"
+yellow = "\033[93m"
+lightblue = "\033[94m"
+pink = "\033[95m"
+lightcyan = "\033[96m"
+    
+    
+    
+    
+    
+
 dir=$PWD
 parentdir="$(dirname "$dir")"
 
@@ -33,10 +69,14 @@ docker build -t mattjawn/armprime ./app/
 echo "  💦 armprime "
 docker run --name armprime-postgres -e POSTGRES_PASSWORD=58bdf87d93a3f325574900aa2f5626e3844a903ffb64bed152ae124d2e79aab9 -e POSTGRES_USER=jawn -d -p 8091:5432 postgres
 echo "  💦 armprime-postgres "
-docker run -d -P --name=armprime-redis redis
+docker run -d -p 7070:6379 --name=armprime-redis redis
 echo "  💦 armprime-redis "
 docker run -d -p 80:80 -v $parentdir:/usr/src/app/ --link armprime-postgres:postgres --link armprime-redis:redis --name=armprime mattjawn/armprime
-echo "\033[1;36mRunning Containers....\033[0m"
+echo "\033[1;36mContainers Are Now Running...\033[0m"
+
+
+
+
 
 docker exec -it armprime pip3 install django-redis==4.8.0
 docker exec -it armprime apt-get install -y -qq nodejs

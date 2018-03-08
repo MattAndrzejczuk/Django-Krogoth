@@ -1,3 +1,38 @@
+/* when hiding the picture */
+.btn.ng-hide-add {
+    animation: 0.5s lightSpeedOut ease;
+}
+
+/* when showing the picture */
+.btn.ng-hide-remove {
+    animation: 0.2s clipMeBtn ease; 
+}
+
+@keyframes clipMeBtn { 
+    0%   {
+		opacity: 0;
+		transform: translate(-50px,-50px); /* Standard syntax */
+	}
+    100% {
+		opacity: 1;
+		transform: translate(0px,0px); /* Standard syntax */
+	}
+}
+
+/* light speed out */
+@keyframes lightSpeedOut {
+    0% {
+        opacity: 1;
+    } 
+
+    100% {
+        transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        opacity: 0;
+        height: 10px;
+    }
+}
+
+
 .CodeMirror-code { 
 	font-family: 'Ubuntu Mono', monospace;
 	/*font-family: 'Inconsolata', monospace;*/
@@ -823,12 +858,11 @@ div.ng-hide-remove {
 
 /*!* --- Tree --- *!*/
 
-/*.tree-node {*/
-/*border: 1px solid #dae2ea;*/
-/*background: #f8faff;*/
-/*color: #7c9eb2;*/
-/*}*/
-
+/*
+.tree-node {
+max-height: 100px
+}
+*/
 /*.nodrop {*/
 /*background-color: #f2dede;*/
 /*}*/

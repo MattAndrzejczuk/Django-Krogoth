@@ -9,7 +9,7 @@
     <button class="btn btn-outline-primary"
             ng-click="vm.goToParentCategory()"
             style="min-height:42px">
-        <span class="mdi-24px mdi mdi-arrow-up"></span>
+        <span class="mdi-24px mdi mdi-arrow-left"></span>
         <md-tooltip>
             Go Back
         </md-tooltip>
@@ -40,34 +40,56 @@
                 <div layout-fill flex-offset="10" style="border-radius:25px">
                     <div layout-fill flex-offset="10" layout="column"
                          style="border-radius:25px">
-                        <span flex="30" layout-align="center center">
+                        <span flex="30"
+							  style=""
+							  layout="row"
+							  layout-margin 
+							  layout-padding>
+ 
+								<i style="color:white;max-height:42px"
+								   class="{{tile.icon.code}}">									
+								</i>
+
 							
-                            <md-button class="md-fab md-green-A700-bg"
-                                       ng-show="tile.hidden === false"
-                                       ng-click="vm.selectListItem(tile.id, tile.parent)"
-                                       layout-align="center center">
-                                <i class="mdi mdi-arrow-right-bold-circle-outline"></i>
-                            </md-button>
+							<div> 
+								<md-tooltip>
+									click to edit the title
+								</md-tooltip>
+								<span editable-text="tile.title"
+									  style="color:white"
+									  layout-wrap
+									  onaftersave="vm.updateTitle(tile)"
+									  layout="column">
+									Display Title: <b>{{ tile.title }}</b>
+
+								</span>
+							</div>
                         </span>
-                        <div flex="50" layout-wrap layout="row">
+                        <div flex="50" layout-wrap layout="row" layout-align="center center">
                             <span editable-text="tile.name"
                                   layout-margin
                                   layout-align="center center"
-                                  onaftersave="vm.updateName(tile)">
-											<strong>{{ tile.name }}</strong>
+                                  onaftersave="vm.updateName(tile)">				
+									Identifier Name: 
+								<strong>{{ tile.name }}</strong>
+									<md-tooltip>
+										click to edit the unique name
+									</md-tooltip>
 							</span>
                             <span flex="20"></span>
-							<pre> {{ tile | json }} </pre>
                         </div>
                     </div>
                 </div>
-                <md-grid-tile-footer layout-padding style="border-radius: 0px 0px 25px 25px;">
-                    <span editable-text="tile.title"
-                          layout-wrap
-                          onaftersave="vm.updateTitle(tile)"
-                          layout="column">
-                        {{ tile.title }}
-                    </span>
+                <md-grid-tile-footer layout-padding
+									 layout-align="end center"
+									 style="border-radius: 0px 0px 25px 25px;">
+                    
+					<button class="btn btn-outline-primary" 
+                               ng-show="tile.hidden === false"
+                               ng-click="vm.selectListItem(tile.id, tile.parent)"
+                               layout-align="center center">
+                    	<i class="mdi mdi-arrow-right"></i>
+                    </button>
                 </md-grid-tile-footer>
             </md-grid-tile>
         </md-grid-list>

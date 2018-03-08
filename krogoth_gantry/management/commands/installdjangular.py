@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from moho_extractor.models import NgIncludedHtml
+from moho_extractor.models import NgIncludedHtml, IncludedHtmlCoreTemplate
 import codecs
 import subprocess
 from jawn.settings import BASE_DIR
@@ -39,7 +39,7 @@ class bcolors:
     lightred = '\033[91m'
     lightgreen = '\033[92m'
 
-
+from krogoth_core.ak_theme_meta import meta_generator
 
 def getkrogoth_gantryBuild():
     # GET LAZARUS BUILD VERSION:
@@ -4341,9 +4341,15 @@ class Command(BaseCommand):
                 # print('\033[31mNOT FOUND: ' + msg + '\033[0m')
                 raise IOError()
 
-        def create_html_view(named: str, at: str):
+        def create_html_view(named: str, at: str, file_name: str, os_path: str):
             try:
-                new_ng = NgIncludedHtml(name=named)
+                new_ng = IncludedHtmlCoreTemplate(name=named,
+                                                  file_name=file_name,
+                                                  os_path=os_path)
+                meta_data = meta_generator.determine_meta_data(filename=file_name)
+                new_ng.meta_kind_1 = meta_data[1]
+                new_ng.meta_kind_2 = meta_data[2]
+                new_ng.meta_kind_3 = meta_data[3]
                 new_ng.contents = codecs.open(at + named + '', 'r').read()
                 new_ng.save()
                 print(bcolors().OKGREEN + 'CREATED...' + (at + named) + bcolors().ENDC)
@@ -4510,7 +4516,7 @@ class Command(BaseCommand):
             for file in os.listdir(v):
                 count = len(file.split('/'))
                 array = file.split('/')
-                create_html_view(named=str(array[count - 1]), at=key_paths_html[k])
+                create_html_view(named=str(array[count - 1]), at=key_paths_html[k], file_name=file, os_path=v)
                 html_files[array[count - 1]] = key_paths_html[k]
 
         print(bcolors.OKBLUE, end='[html_files]: \n')

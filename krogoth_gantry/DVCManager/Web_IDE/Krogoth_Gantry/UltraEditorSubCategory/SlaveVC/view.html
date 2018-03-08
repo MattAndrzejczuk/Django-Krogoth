@@ -48,7 +48,9 @@
                                        layout-align="center center">
                                 <i class="mdi mdi-angularjs"></i>
                             </md-button>
-							{{ tile.id }} {{ tile.name }}
+							<i style="color:white;max-height:42px"
+								   class="{{tile.icon.code}}">									
+							</i>
                         </span>
                         <div flex="50" layout-wrap layout="row">
                             <span editable-text="tile.name"
@@ -57,7 +59,6 @@
                                   onaftersave="vm.updateName(tile)">
 											<strong>{{ tile.name }}</strong>
 							</span>
-                            <span flex="20"></span>
                         </div>
                     </div>
                 </div>

@@ -1,3 +1,6 @@
+<div ng-include="'/moho_extractor/NgIncludedHtml/?name=ctrlStyles.html'">
+</div>
+
 <!-- This is a hack to resolve angular tree data directive bug -->
 <!-- ng-include does nothing special here except that it creates an alias named "nodes_renderer.html" -->
 <script type="text/ng-template" id="nodes_renderer.html">
@@ -5,19 +8,6 @@
 </script>
 <!-- Import some extra themes: -->
 <span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_56.html'"></span>
-
-
-
-<span class="h2 badge badge-light">
-					{{ vm.finishedBreadCrumbsJson._1st.name }}
-</span>
-<span class="h2 badge badge-light">
-					{{ vm.finishedBreadCrumbsJson._2nd.name }}
-</span>
-<span class="h2 badge badge-light">
-					{{ vm.finishedBreadCrumbsJson._3rd.MasterVCId }}
-</span>
-
 
 <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
 
@@ -27,6 +17,7 @@
 				md-is-locked-open="vm.sideNavLocked"
                 md-component-id="sidenav"
                 ms-scroll
+				layout-fill
 				flex-xs="50"
                 flex-sm="40"
 				flex-md="30"
@@ -35,19 +26,9 @@
                 ms-sidenav-helper>
         <!-- SIDENAV HEADER -->
         <div class="header" layout="row">
-            <button class="btn btn-outline-primary"
-                    ng-click="vm.goBackToCategory()"
-                    style="min-height:42px">
-                <span class="mdi-24px mdi mdi-arrow-left"></span>
-                <md-tooltip>
-                    Go Back
-                </md-tooltip>
-            </button>
-			<span flex>
-			</span>
 			<button class="btn btn-outline-secondary"
                     ng-click="vm.sideNavLocked=!vm.sideNavLocked"
-                    style="min-height:42px">
+                    style="min-height:50px">
                 <span class="mdi-24px mdi mdi-pin" ng-if="vm.sideNavLocked===false"></span>
 				<span class="mdi-24px mdi mdi-pin-off" ng-if="vm.sideNavLocked===true"></span>
                 <md-tooltip>
@@ -83,7 +64,7 @@
             <!-- / DEMO SIDENAV -->
 			
 			<!-- Raw Data of currently selected tree node. -->
-			<span ng-include="'/moho_extractor/NgIncludedHtml/?name=HTML_TMPL_ID'"></span>
+			<span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_32.html'"> </span>
 			
         </md-content>
         <!-- / SIDENAV CONTENT -->
@@ -92,15 +73,41 @@
     <!-- CENTER -->
     <div layout="column" flex>
         <!-- CONTENT HEADER -->
-        <div class="header"
+        <div class="header" 
              flex="5"
-             layout="column"
-             style="height: 100px; max-height: 122px; min-height: 76px; padding:0px">
-			
+             layout="row"
+			 layout-align="start center"
+             style="height: 21px; max-height: 50px; min-height: 50px">
+
+			<h2 flex>
+            <button class="btn btn-outline-primary"
+                    ng-click="vm.goBackToCategory()"> 
+                <i class="mdi-24px mdi mdi-arrow-left"></i>
+                <md-tooltip>
+                    Go Back
+                </md-tooltip>
+            </button> 
+				&nbsp;&nbsp;&nbsp;
+				<span class="badge badge-dark">
+							{{ vm.finishedBreadCrumbsJson._1st.name }}
+				</span>
+				<span class="mdi-12px badge badge-dark mdi mdi-chevron-right">
+				</span>
+				<span class="badge badge-dark">
+							{{ vm.finishedBreadCrumbsJson._2nd.name }}
+				</span>
+				<span class="mdi-12px badge badge-dark mdi mdi-chevron-right">
+				</span>
+				<span class="h2 badge badge-dark">
+							{{ vm.objectList.name }}
+				</span>
+			</h2>
+<!--			
 			<md-button ng-show="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].hasUnsavedChanges"
 						   ng-click="vm.saveEditorWorkToServer(vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex])">
                     Save Changes
             </md-button>
+-->
 			
 			<!--
             <h3>
@@ -196,10 +203,11 @@
 						<hljs language="html" class="source-code">
 							<span ng-include="'/moho_extractor/NgIncludedHtml/?name=HTML_TMPL_ID'"></span>
 						</hljs>
-						<h1 ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class='NgIncludedHtml'">
-						<span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ng-include=</span>
-						<span style="color:red">"'/moho_extractor/NgIncludedHtml/?name={{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name.replace("/moho_extractor/NgIncludedHtml/?name=", "") }}'"</span>
-						</h1>
+						<h4 ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class='NgIncludedHtml'">
+						&lt;span
+						<span style="color:green">&nbsp;ng-include=</span>
+						<span style="color:red">"'/moho_extractor/NgIncludedHtml/?name={{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name.replace("/moho_extractor/NgIncludedHtml/?name=", "") }}'"</span>&gt;&lt;/span&gt;
+						</h4>
 					</span>
                 </div>
             </md-content>

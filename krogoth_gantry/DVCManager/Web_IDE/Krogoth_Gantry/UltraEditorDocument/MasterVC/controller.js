@@ -4,7 +4,7 @@
 
     function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu,
         $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync,
-        BatchRequestsAsync, SaveToSQL, $mdSidenav, untitledServiceIDE01, BreadCrumbsIDE) {
+        BatchRequestsAsync, SaveToSQL, $mdSidenav, BreadCrumbsIDE) {
         var vm = this;
 
         vm.codemirrorLoaded = codemirrorLoaded;
@@ -66,14 +66,7 @@
         vm.buildBreadCrumbs = buildBreadCrumbs;
         vm.sideNavLocked = true;
 
-        vm.editorOptions = {
-            lineWrapping: true,
-            lineNumbers: true,
-            mode: "javascript",
-            theme: "colorforth",
-            indentUnit: 4,
-            indentWithTabs: true
-        };
+
 
         /// I.
         function onInit() {
@@ -273,7 +266,7 @@
         // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
         vm.customThemeMode = false;
-        vm.setThemeBasedOnSyntax = setThemeBasedOnSyntax;
+        vm.setThemeBasedOnClass = setThemeBasedOnClass;
 
         /*  ⚡️  */
         function loadFileIntoEditor(parentIndex, index, scope) {
@@ -288,28 +281,54 @@
             vm.loadedParentIndex = parentIndex;
 
             const syntax = vm.treeData[parentIndex].nodes[index].syntax;
-
+            const _class = vm.treeData[parentIndex].nodes[index].class;
             vm.editorModel.setOption("mode", syntax);
 
             if (vm.customThemeMode === false) {
-                vm.setThemeBasedOnSyntax(syntax);
+                vm.setThemeBasedOnClass(_class);
             }
-
         }
 
+        vm.editorOptions = {
+            lineWrapping: true,
+            lineNumbers: true,
+            mode: "javascript",
+            theme: "colorforth",
+            indentUnit: 4,
+            indentWithTabs: true
+        };
 
-        function setThemeBasedOnSyntax(syntax) {
-            if (syntax === "html") {
-                vm.editorModel.setOption("theme", "ambiance");
-            } else if (syntax === "javascript") {
-                vm.editorModel.setOption("theme", "cobalt");
-            } else if (syntax === "htmlmixed") {
-                vm.editorModel.setOption("theme", "ambiance");
+        function setThemeBasedOnClass(_class) {
+            if (_class === "ViewHTML") {
+                vm.editorModel.setOption("theme", "base16-dark");
+            } else if (_class === "ControllerJS") {
+                vm.editorModel.setOption("theme", "blackboard");
+            } else if (_class === "ModuleJS") {
+                vm.editorModel.setOption("theme", "twilight");
+            } else if (_class === "StyleCSS") {
+                vm.editorModel.setOption("theme", "icecoder");
+            } else if (_class === "ThemeCSS") {
+                vm.editorModel.setOption("theme", "vibrant-ink");
+            } else if (_class === "Service") {
+                vm.editorModel.setOption("theme", "xq-dark");
             } else {
-                vm.editorModel.setOption("theme", "the-matrix");
+                vm.editorModel.setOption("theme", "pastel-on-dark");
             }
         }
 
+        function codemirrorLoaded(_editor) {
+            var _doc = _editor.getDoc();
+            _editor.focus();
+            _doc.markClean();
+            _editor.setOption("firstLineNumber", 0);
+            _editor.on("beforeChange", function() {
+                vm.editorContentWillChange();
+            });
+            _editor.on("change", function() {
+                vm.editorContentDidChange();
+            });
+            vm.editorModel = _editor;
+        }
 
         function saveEditorWorkToServer(node) {
             SaveToSQL.saveDocument(node, vm.editorModel.doc.getValue())
@@ -414,20 +433,6 @@
             vm.startStateTransition(destination, cargo);
         }
 
-        function codemirrorLoaded(_editor) {
-            var _doc = _editor.getDoc();
-            _editor.focus();
-            _doc.markClean();
-            _editor.setOption("firstLineNumber", 0);
-            _editor.on("beforeChange", function() {
-                vm.editorContentWillChange();
-            });
-            _editor.on("change", function() {
-                vm.editorContentDidChange();
-            });
-            vm.editorModel = _editor;
-        }
-
 
         ////// -----------
 
@@ -470,6 +475,29 @@
 
         function toggleSidenav(sidenavId) {
             $mdSidenav(sidenavId).toggle();
+        }
+
+        vm.highlightSyntax = highlightSyntax;
+
+        function highlightSyntax() {
+            for (var j = 0; j < lineCount; j++) {
+                var temp = vm.editorModel.getDoc().getLine(j);
+                var count = (temp.match(/\(/g) || []).length;
+                var step = 0;
+                for (var i = 0; i < count; i++) {
+                    var n = temp.indexOf('(', step);
+                    step = n;
+                    vm.editorModel.getDoc().markText({
+                        "line": j,
+                        "ch": n
+                    }, {
+                        "line": j,
+                        "ch": n + 1
+                    }, {
+                        "css": "color : #ffc3fc;"
+                    });
+                }
+            }
         }
 
     }
