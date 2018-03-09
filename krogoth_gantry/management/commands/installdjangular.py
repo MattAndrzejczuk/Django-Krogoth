@@ -4342,20 +4342,30 @@ class Command(BaseCommand):
                 raise IOError()
 
         def create_html_view(named: str, at: str, file_name: str, os_path: str):
-            try:
-                new_ng = IncludedHtmlCoreTemplate(name=named,
-                                                  file_name=file_name,
-                                                  os_path=os_path)
-                meta_data = meta_generator.determine_meta_data(filename=file_name)
-                new_ng.meta_kind_1 = meta_data[1]
-                new_ng.meta_kind_2 = meta_data[2]
-                new_ng.meta_kind_3 = meta_data[3]
-                new_ng.contents = codecs.open(at + named + '', 'r').read()
-                new_ng.save()
-                print(bcolors().OKGREEN + 'CREATED...' + (at + named) + bcolors().ENDC)
-                pass
-            except:
-                print('\033[31mNOT FOUND: ' + named + '\033[0m')
+            new_ng = IncludedHtmlCoreTemplate(name=named,
+                                              file_name=file_name,
+                                              os_path=os_path)
+            meta_data = meta_generator.determine_meta_data(filename=file_name)
+            new_ng.meta_kind_0 = meta_data[0]
+            new_ng.meta_kind_1 = meta_data[1]
+            new_ng.meta_kind_2 = meta_data[2]
+            new_ng.contents = codecs.open(at + named + '', 'r').read()
+            new_ng.save()
+            print(bcolors().OKGREEN + 'CREATED...' + (at + named) + bcolors().ENDC)
+# ;           try:
+#                 new_ng = IncludedHtmlCoreTemplate(name=named,
+#                                                   file_name=file_name,
+#                                                   os_path=os_path)
+#                 meta_data = meta_generator.determine_meta_data(filename=file_name)
+#                 new_ng.meta_kind_1 = meta_data[1]
+#                 new_ng.meta_kind_2 = meta_data[2]
+#                 new_ng.meta_kind_3 = meta_data[3]
+#                 new_ng.contents = codecs.open(at + named + '', 'r').read()
+#                 new_ng.save()
+#                 print(bcolors().OKGREEN + 'CREATED...' + (at + named) + bcolors().ENDC)
+#                 pass
+#             except:
+#                 print('\033[31mNOT FOUND: ' + named + '\033[0m')
 
         def get_source_class(kind: str, angular_duty: str, path: str):
             # print(kind)

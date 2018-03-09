@@ -1,9 +1,9 @@
 from django.http import HttpResponse, JsonResponse
 
 from rest_framework.views import APIView
-from moho_extractor.serializers import IncludedHtmlMasterSerializer
+from moho_extractor.serializers import IncludedHtmlMasterSerializer, IncludedHtmlCoreTemplateSerializer
 
-from moho_extractor.models import NgIncludedHtml, IncludedHtmlMaster
+from moho_extractor.models import NgIncludedHtml, IncludedHtmlMaster, IncludedHtmlCoreTemplate
 from krogoth_gantry.models import KrogothGantryMasterViewController
 
 from rest_framework.authentication import TokenAuthentication
@@ -61,6 +61,12 @@ class IncludedHtmlMasterViewSet(viewsets.ModelViewSet):
     serializer_class = IncludedHtmlMasterSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('master_vc__name', )
+
+
+
+class IncludedHtmlCoreViewSet(viewsets.ModelViewSet):
+    queryset = IncludedHtmlCoreTemplate.objects.all()
+    serializer_class = IncludedHtmlCoreTemplateSerializer
 
 
 

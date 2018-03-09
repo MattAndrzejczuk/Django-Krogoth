@@ -44,10 +44,12 @@ class IncludedHtmlCoreTemplate(NgIncludedHtml):
                                  default='/usr/src/app/')
     os_path = models.CharField(max_length=256,
                                default='/usr/src/app/')
-    meta_kind_1 = models.CharField(max_length=60,
+    meta_kind_0 = models.CharField(max_length=160,
                                    default='Layout')
-    meta_kind_2 = models.CharField(max_length=60,
+    meta_kind_1 = models.CharField(max_length=160,
                                    default='Horizontal')
+    meta_kind_2 = models.CharField(max_length=160,
+                                   default='n/a')
 
 
 class IncludedHtmlMaster(NgIncludedHtml):

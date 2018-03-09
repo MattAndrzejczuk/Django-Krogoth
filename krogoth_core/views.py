@@ -15,4 +15,3 @@ class AKFoundationViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('unique_name', 'first_name', 'last_name', 'ext', )
 
-
