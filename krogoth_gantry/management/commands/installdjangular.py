@@ -80,18 +80,16 @@ class Command(BaseCommand):
 
             # print(bcolors().OKGREEN + 'CREATED...' + (at + named) + bcolors().ENDC)
             try:
-                  new_ng = IncludedHtmlCoreTemplate(name=named,
-                                                    file_name=file_name,
-                                                    os_path=os_path)
-                  meta_data = meta_generator.determine_meta_data(filename=file_name)
-                  new_ng.meta_kind_0 = meta_data[0]
-                  new_ng.meta_kind_1 = meta_data[1]
-                  new_ng.meta_kind_2 = meta_data[2]
-                  new_ng.contents = codecs.open(at + named + '', 'r').read()
-                  new_ng.save()
-                  print(bcolors().OKGREEN + 'CREATED...' + (at + named) + bcolors().ENDC)
-              except:
-                  print('\033[31mNOT FOUND: ' + named + '\033[0m')
+                new_ng = IncludedHtmlCoreTemplate(name=named,file_name=file_name,os_path=os_path)
+                meta_data = meta_generator.determine_meta_data(filename=file_name)
+                new_ng.meta_kind_0 = meta_data[0]
+                new_ng.meta_kind_1 = meta_data[1]
+                new_ng.meta_kind_2 = meta_data[2]
+                new_ng.contents = codecs.open(at + named + '', 'r').read()
+                new_ng.save()
+                print(bcolors().OKGREEN + 'CREATED...' + (at + named) + bcolors().ENDC)
+            except:
+                print('\033[31mNOT FOUND: ' + named + '\033[0m')
 
         def get_source_class(kind: str, angular_duty: str, path: str):
             # print(kind)
@@ -255,18 +253,17 @@ class Command(BaseCommand):
                 create_html_view(named=str(array[count - 1]), at=key_paths_html[k], file_name=file, os_path=v)
                 html_files[array[count - 1]] = key_paths_html[k]
 
-        print(bcolors.OKBLUE, end='[html_files]: \n')
-        print(json.dumps(
-            html_files, sort_keys=True, indent=2).replace('",', '",' + bcolors.green).replace(':', ':' + bcolors.OKBLUE),
-              end='')
-        print(bcolors.ENDC)
-
-        print(bcolors.green, end='[js_files]: \n')
-        print(json.dumps(
-            js_files, sort_keys=True, indent=2).replace('",', '",' + bcolors.blue).replace(':',
-                                                                                              ':' + bcolors.lightgrey),
-              end='')
-        print(bcolors.ENDC)
+        # print(bcolors.OKBLUE, end='[html_files]: \n')
+        # print(json.dumps(
+        #     html_files, sort_keys=True, indent=2).replace('",', '",' + bcolors.green).replace(':', ':' + bcolors.OKBLUE),
+        #       end='')
+        # print(bcolors.ENDC)
+        # print(bcolors.green, end='[js_files]: \n')
+        # print(json.dumps(
+        #     js_files, sort_keys=True, indent=2).replace('",', '",' + bcolors.blue).replace(':',
+        #                                                                                       ':' + bcolors.lightgrey),
+        #       end='')
+        # print(bcolors.ENDC)
 
 
         print(bcolors.OKBLUE, end='CREATING GUEST ACCOUNT...\n')
