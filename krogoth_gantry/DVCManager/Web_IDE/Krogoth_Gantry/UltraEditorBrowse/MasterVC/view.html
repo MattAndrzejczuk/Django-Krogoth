@@ -27,6 +27,20 @@
                     <div layout-fill flex-offset="10" layout="column"
                          style="border-radius:25px">
                         <span flex="30" layout-align="center center">
+							<i style="color:white; max-width: 45px; max-height:42px; font-size: 11em" 
+								   ng-if="tile.icon.prefix !== 'FA' && tile.icon.prefix !== 'ENTYPO'"
+								   class="{{tile.icon.code}}">									
+								</i>
+								<span ng-if="tile.icon.prefix === 'FA'"> 
+								<i style="color:white;max-height:42px; font-size: 1.5em"
+								   
+								   class="{{tile.icon.code}}">									
+								</i>
+								</span>
+								<i style="color:white;max-height:42px; font-size: 1.5em"
+								   ng-if="tile.icon.prefix === 'ENTYPO'" 
+								   class="{{tile.icon.code}}">									
+							</i>
                             <md-button class="md-fab md-green-A700-bg"
                                        ng-show="tile.hidden === false"
                                        ng-click="vm.selectListItem(tile.id)"

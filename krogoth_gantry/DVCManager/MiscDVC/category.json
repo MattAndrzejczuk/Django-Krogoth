@@ -1,5 +1,5 @@
 {
-  "icon": "power-plug",
-  "prefix": "mdi mdi-",
+  "icon": "mdi mdi-power-plug",
+  "prefix": "MDI",
   "weight": 0
 }

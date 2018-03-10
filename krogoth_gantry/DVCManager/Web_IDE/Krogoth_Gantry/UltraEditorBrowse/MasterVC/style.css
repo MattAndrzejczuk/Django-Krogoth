@@ -1,3 +1,15 @@
+.entypo {
+	font-size: 2em !important;
+	line-height: 3 !important;
+	margin-left: 15px;
+}
+
+.entypo-regular {
+	font-size: 2em !important;
+	line-height: 3 !important;
+	margin-left: 15px;
+}
+
 .editable-click {
 	border-bottom: none;
 	color: white;

@@ -1,5 +1,5 @@
 {
-  "icon": "power-socket-us",
-  "prefix": "mdi mdi-",
+  "icon": "mdi mdi-power-socket-us",
+  "prefix": "MDI",
   "weight": 0
 }
