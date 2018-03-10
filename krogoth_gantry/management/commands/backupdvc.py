@@ -1,9 +1,10 @@
 from django.core.management.base import BaseCommand, CommandError
 from krogoth_gantry.models import KrogothGantryMasterViewController
-from moho_extractor.models import IncludedHtmlMaster
+from moho_extractor.models import IncludedHtmlMaster, IncludedHtmlCoreTemplate
 from krogoth_admin.models import UncommitedSQL
 
 import os
+
 
 # python3 manage.py backupdjangular
 
@@ -87,7 +88,19 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.SUCCESS(d1))
             tmplsHTML = IncludedHtmlMaster.objects.filter(master_vc=app.id)
             for tmpl in tmplsHTML:
-                if UncommitedSQL.does_exist(name=tmpl.name, krogoth_class="IncludedHtmlMaster"):
+                if UncommitedSQL.does_exist(name=tmpl.name, krogoth_class="NgIncludedHtml"):
+                    UncommitedSQL.finish_and_remove(name=tmpl.name)
+                    basedir = os.path.dirname(static_root + "partialsHTML/")
+                    if not os.path.exists(basedir):
+                        os.makedirs(basedir)
+                    d1 = static_root + "partialsHTML/" + tmpl.name
+                    text_file = open(d1, "w")
+                    text_file.write(tmpl.contents)
+                    text_file.close()
+                    self.stdout.write(self.style.SUCCESS(d1))
+            tmplsHTML = IncludedHtmlCoreTemplate.objects.all()
+            for tmpl in tmplsHTML:
+                if UncommitedSQL.does_exist(name=tmpl.name, krogoth_class="NgIncludedHtml"):
                     UncommitedSQL.finish_and_remove(name=tmpl.name)
                     basedir = os.path.dirname(static_root + "partialsHTML/")
                     if not os.path.exists(basedir):

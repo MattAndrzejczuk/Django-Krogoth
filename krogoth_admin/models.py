@@ -37,7 +37,7 @@ class UncommitedSQL(models.Model):
             return more_than_zero(len(cls.objects.filter(name=name)))
         elif krogoth_class == "KrogothGantryDirective":
             return more_than_zero(len(cls.objects.filter(name=name)))
-        elif krogoth_class == "IncludedHtmlMaster":
+        elif krogoth_class == "NgIncludedHtml":
             return more_than_zero(len(cls.objects.filter(name=name)))
         else:
             print(bcolors.red + " ! ! ! WARNING ! ! ! " + bcolors.ENDC)
