@@ -5,7 +5,6 @@ from django.db import models
 from polymorphic.models import PolymorphicModel
 import codecs
 from django.contrib.postgres.fields import HStoreField
-from django_hstore import hstore
 from jawn.settings import BASE_DIR
 
 # Create your models here.
