@@ -9,6 +9,10 @@
 <!-- Import some extra themes: -->
 <span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_56.html'"></span>
 
+<!-- Import window modal HTML: -->
+<span ng-if="vm.treeModalIsVisible" ng-include= "'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_32.html'"></span> 
+
+
 <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
 
 <div class="page-layout carded left-sidenav opaque-global" layout="row" layout-align="center stretch">
@@ -35,6 +39,10 @@
                     Toggle Side Navigation
                 </md-tooltip>
             </button>
+			<md-button ng-click="vm.hideTreeDataModal = !vm.hideTreeDataModal">
+				show tree data
+			</md-button>
+			
         </div>   
         <!-- / SIDENAV HEADER -->
         <div class="toolbar-osx" style="color: black">
@@ -63,8 +71,7 @@
             </div>
             <!-- / DEMO SIDENAV -->
 			
-			<!-- Raw Data of currently selected tree node. -->
-			<span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_32.html'"> </span>
+
 			
         </md-content>
         <!-- / SIDENAV CONTENT -->
@@ -102,50 +109,8 @@
 							{{ vm.objectList.name }}
 				</span>
 			</h2>
-<!--			
-			<md-button ng-show="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].hasUnsavedChanges"
-						   ng-click="vm.saveEditorWorkToServer(vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex])">
-                    Save Changes
-            </md-button>
--->
-			
-			<!--
-            <h3>
-                <span class="h2 badge badge-light">
-					NAME :
-				</span>
-                <span class="h2 badge badge-danger">
-					{{ vm.objectList.name }}
-				</span>
-                <span class="h2 badge badge-light">
-					ID :
-				</span>
-                <span class="h2 badge badge-warning">
-					{{ vm.objectList.id }}
-				</span>
-            </h3>
 
-            <h2>
-				<span class="h2 badge badge-secondary">
-					sourceKey :
-				</span>
-                <span class="h2 badge badge-primary">
-					{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceKey }}
-				</span>
-                <span class="h2 badge badge-secondary">
-					RESTfulId :
-				</span>
-                <span class="h2 badge badge-primary">
-					{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].RESTfulId }}
-				</span>
-                <span class="h2 badge badge-secondary">
-					RESTfulURI :
-				</span>
-                <span class="h2 badge badge-primary">
-					{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].RESTfulURI }}
-				</span>
-            </h2>
-			-->
+			
         </div>
         <!-- / CONTENT HEADER -->
         <!-- CONTENT CARD -->
@@ -177,10 +142,50 @@
 					</span>
                 </h1>
 				
-                
+                <!--
 				
 				vm.loadedParentIndex				
-				{{ vm.loadedParentIndex }}				
+				{{ vm.loadedParentIndex }}
+				
+
+				
+				
+				
+        <div class="toolbar">
+            <div style="float: left">
+				
+                <button class="toolbar-button"  ng-click="vm.highlightSyntax()">
+					<span class="entypo-minus"></span>
+				</button>
+                <button class="toolbar-button" ng-click="vm.highlightSyntaxGetHtmlProperties()">
+					HTML ng syntax
+				</button>
+			</div>
+            <div style="float: right">
+                <span class="search-input">
+                    <button class="toolbar-search" href=""><span class="entypo-search"></span></button>
+                    <input type="text" class="mvx-search" placeholder="Find"/>
+                </span>				
+            </div>
+        </div>
+				
+				
+				
+				<button class="btn btn-secondary" ng-click="vm.highlightSyntax()">syntax</button>
+				<button class="btn btn-secondary" ng-click="vm.highlightSyntaxGetHtmlProperties()">HTML ng syntax</button>
+				
+				
+				-->
+                <button class="toolbar-button" ng-click="vm.loadOSXDoc()">
+					Load OS X Theme
+				</button>				
+				
+				
+                <button class="toolbar-button" ng-click="vm.highlightSyntaxGetHtmlProperties()">
+					HTML ng syntax
+				</button>
+				
+				
             </div>
             <!-- / CONTENT TOOLBAR -->
 			

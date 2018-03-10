@@ -70,11 +70,29 @@ class KrogothGantrySlaveViewController(models.Model):
         super(KrogothGantrySlaveViewController, self).save(*args, **kwargs)
 
 #     ________________________________
+ICON_TYPES = (
+    ('FA', 'Font Awesome'),
+    ('MDI', 'Material Design Icon'),
+    ('ENTYPO', 'Entypo'),
+)
 class KrogothGantryIcon(models.Model):
     code = models.CharField(max_length=75, unique=True)
-    prefix = models.CharField(max_length=75, default='mdi mdi-')
+    prefix = models.CharField(max_length=75,
+                              default='FA',
+                              choices=ICON_TYPES,
+                              help_text="The icon type, i.e. font awesome, material design, etc...")
     def __str__(self):
         return self.code
+
+    def save(self, *args, **kwargs):
+        c = self.code.lower()
+        if "mdi " in c:
+            self.prefix = "MDI"
+        elif "fa " in c or "fas " in c or "far " in c or "fab " in c or "fal " in c:
+            self.prefix = "FA"
+        elif "entypo-" in c:
+            self.prefix = "ENTYPO"
+        super(KrogothGantryIcon, self).save(*args, **kwargs)
 
 #     ____________________________________
 class KrogothGantryCategory(PolymorphicModel):

@@ -10,8 +10,48 @@
         var service = {
             getMastersSlaveBrowser: getMastersSlaveBrowser,
             getCategoriesSlaveBrowser: getCategoriesSlaveBrowser,
-            putCatagorySlaveBrowser: putCatagorySlaveBrowser
+            putCatagorySlaveBrowser: putCatagorySlaveBrowser,
+            getIconUsingId: getIconUsingId
         };
+
+        function getIconUsingId(icoId) {
+            /// "/krogoth_gantry/viewsets/Icon/586/"
+            const uri = "/krogoth_gantry/viewsets/Icon/" + icoId + "/";
+            var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: uri
+            }).then(function successCallback(response) {
+
+                /// Establish valid icon CSS classes				
+                var isValid = false;
+                const valids = ["fa ", "fas ", "far ", "fab ", "fal ", "mdi ", "entypo-"];
+
+                /// Check if this icon is not invalid
+                for (var i = 0; i < valids.length; i++) {
+                    if (response.data.code.indexOf(valids[i]) >= 0) {
+                        isValid = true;
+                    }
+                }
+
+                /// Return a valid icon, or else try fixing it
+                if (isValid === true) {
+                    deferred.resolve(response.data.code);
+                } else {
+                    $log.error("Invalid icon code: ");
+                    $log.debug(response.data);
+                    deferred.resolve("mdi mdi-" + response.data.code);
+                }
+
+            }, function errorCallback(response) {
+                /// Fail
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+
+
+
 
         function getMastersSlaveBrowser(catId) {
             const uri = "/krogoth_gantry/viewsets/MasterViewController/?category=" + catId;
@@ -58,6 +98,7 @@
             });
             return deferred.promise;
         }
+
 
 
         return service;

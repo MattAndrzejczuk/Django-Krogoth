@@ -4,10 +4,11 @@
 
     function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu,
         $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync,
-        BatchRequestsAsync, SaveToSQL, $mdSidenav, BreadCrumbsIDE) {
+        BatchRequestsAsync, SaveToSQL, $mdSidenav, BreadCrumbsIDE, $timeout, codeHighlightIDE) {
         var vm = this;
 
         vm.codemirrorLoaded = codemirrorLoaded;
+        vm.hideTreeDataModal = true;
 
         const tMaste = 0;
         const tStyle = 1;
@@ -355,6 +356,7 @@
                     ///vm.loadFileIntoEditor(pi, ni, node);
                     vm.treeData[pi].nodes[ni].hasUnsavedChanges = false;
                     vm.unsavedChangesExist = -1;
+                    vm.setBrowserTabEditMode(false);
                     $mdToast.show(
                         $mdToast.simple()
                         .textContent('Document Saved.')
@@ -395,8 +397,9 @@
 
         function editorContentDidChange() {
             if (vm.loadedParentIndex !== -1 && vm.loadedIndex !== -1)
-                if (vm.unsavedChangesExist >= 0) {
+                if (vm.unsavedChangesExist === 0) {
                     vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].hasUnsavedChanges = true;
+                    vm.setBrowserTabEditMode(true);
                 }
             vm.unsavedChangesExist += 1;
         }
@@ -464,41 +467,123 @@
 
         vm.finishedBreadCrumbsJson = {};
 
+        vm.browserTabEmoji = " 🔨 ";
+        vm.browserTabText = "Krogoth Editor";
+        vm.setBrowserTabText = setBrowserTabText;
+        vm.setBrowserTabEditMode = setBrowserTabEditMode;
+
         function buildBreadCrumbs() {
             BreadCrumbsIDE.cookBread($state.params.categoryId, $state.params.subCategoryId, $state.params.masterId)
                 .then(function(finishedBread) {
                     vm.finishedBreadCrumbsJson._1st = finishedBread[0];
                     vm.finishedBreadCrumbsJson._2nd = finishedBread[1];
                     vm.finishedBreadCrumbsJson._3rd = finishedBread[2];
+                    var changeTabTitle = document.getElementById("browser_tab_text");
+                    $log.log(finishedBread[2]);
+                    changeTabTitle.innerHTML = " 🔨 " + vm.objectList.name;
                 })
         }
+
+        function setBrowserTabText(newText) {
+            vm.browserTabText = newText;
+            var changeTabTitle = document.getElementById("browser_tab_text");
+            changeTabTitle.innerHTML = vm.browserTabEmoji + vm.browserTabText;
+        }
+
+        function setBrowserTabEditMode(isActive) {
+            var changeTabTitle = document.getElementById("browser_tab_text");
+            vm.browserTabEmoji = " 🛠 ";
+            changeTabTitle.innerHTML = vm.browserTabEmoji + vm.browserTabText;
+
+            if (isActive === true)
+                $timeout(function() {
+                    vm.browserTabEmoji = " 🔨 ";
+                    changeTabTitle.innerHTML = vm.browserTabEmoji + vm.browserTabText;
+                    $timeout(function() {
+                        vm.browserTabEmoji = " 🛠 ";
+                        changeTabTitle.innerHTML = vm.browserTabEmoji + vm.browserTabText;
+                    }, 500);
+                }, 500);
+
+            if (isActive === false) {
+                vm.browserTabEmoji = " ✅ ";
+                changeTabTitle.innerHTML = vm.browserTabEmoji + vm.browserTabText;
+                $timeout(function() {
+                    vm.browserTabEmoji = " 🔨 ";
+                    changeTabTitle.innerHTML = vm.browserTabEmoji + vm.browserTabText;
+                }, 500);
+            }
+        }
+
+
 
         function toggleSidenav(sidenavId) {
             $mdSidenav(sidenavId).toggle();
         }
 
         vm.highlightSyntax = highlightSyntax;
+        vm.highlightSyntaxGetHtmlProperties = highlightSyntaxGetHtmlProperties;
+
 
         function highlightSyntax() {
+            var lineCount = vm.editorModel.getDoc().lineCount();
             for (var j = 0; j < lineCount; j++) {
                 var temp = vm.editorModel.getDoc().getLine(j);
-                var count = (temp.match(/\(/g) || []).length;
+                var count = (temp.match(/Controller/g) || []).length;
                 var step = 0;
                 for (var i = 0; i < count; i++) {
-                    var n = temp.indexOf('(', step);
+                    var n = temp.indexOf('Controller', step);
                     step = n;
                     vm.editorModel.getDoc().markText({
                         "line": j,
                         "ch": n
                     }, {
                         "line": j,
-                        "ch": n + 1
+                        "ch": n + 10
                     }, {
-                        "css": "color : #ffc3fc;"
+                        "css": "color : #A459FF; font-weight:bold;"
                     });
                 }
             }
         }
+
+
+        function highlightSyntaxGetHtmlProperties() {
+            codeHighlightIDE.colorNgClick1(vm.editorModel)
+                .then(function(coloredEditorModel) {
+                    vm.editorModel = coloredEditorModel;
+                })
+        }
+
+
+
+        vm.loadOSXDoc = loadOSXDoc;
+        vm.treeModalIsVisible = false;
+        vm.simplifiedTreeData = [];
+
+        function loadOSXDoc() {
+
+            vm.treeModalIsVisible = !vm.treeModalIsVisible;
+            vm.simplifiedTreeData = vm.treeData;
+
+            for (var i = 0; i < vm.simplifiedTreeData.length; i++) {
+                const nodeInRoot = vm.simplifiedTreeData[i];
+                $log.debug(nodeInRoot);
+
+                for (var j = 0; j < nodeInRoot.nodes.length; j++) {
+
+                    /// const nodeInCat = nodeInRoot[j];
+
+                    vm.simplifiedTreeData[i].nodes[j].sourceCode = "NAN";
+
+                }
+
+
+            }
+        }
+
+
+
 
     }
 })();

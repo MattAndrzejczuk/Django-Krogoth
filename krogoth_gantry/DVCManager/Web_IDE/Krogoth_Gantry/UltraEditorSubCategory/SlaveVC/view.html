@@ -34,41 +34,53 @@
                     <div layout-fill flex-offset="10" layout="column"
                          style="border-radius:25px">
                         <span flex="30" layout-align="center center">
-                            <md-button class="md-fab md-green-A700-bg"
-                                       ng-if="tile.parent"
-                                       ng-show="tile.hidden === false"
-                                       ng-click="vm.selectListItem(tile.id)"
-                                       layout-align="center center">
-                                <i class="mdi mdi-arrow-right-bold-circle-outline"></i>
-                            </md-button>
-                            <md-button class="md-fab md-purple-A700-bg"
-                                       ng-if="tile.controller_js"
-                                       ng-show="tile.hidden === false"
-                                       ng-click="vm.selectMaster(tile.id)"
-                                       layout-align="center center">
-                                <i class="mdi mdi-angularjs"></i>
-                            </md-button>
-							<i style="color:white;max-height:42px"
-								   class="{{tile.icon.code}}">									
-							</i>
+							
+							<span style="color:white; margin-left:10px;">
+								<i style="margin-top:10px; line-height: 55px;"
+								   ng-init="vm.httpGETIconUsingId(tile.icon.id);"
+								   class="{{vm.storedIcons[tile.icon.id]}}">									
+								</i>
+								<i style="margin-top:10px; line-height: 55px;"
+								   class="{{tile.icon.prefix}}{{tile.icon.code}} {{tile.icon.code}}">									
+								</i>
+							</span>
+							
+                            
+
                         </span>
                         <div flex="50" layout-wrap layout="row">
                             <span editable-text="tile.name"
                                   layout-margin
                                   layout-align="center center"
                                   onaftersave="vm.updateName(tile)">
-											<strong>{{ tile.name }}</strong>
+								<strong>{{ tile.name }}</strong>
 							</span>
                         </div>
                     </div>
                 </div>
                 <md-grid-tile-footer layout-padding style="border-radius: 0px 0px 25px 25px;">
+
+					
+					
+					<div>
                     <span editable-text="tile.title"
                           layout-wrap
                           onaftersave="vm.updateTitle(tile)"
                           layout="column">
                         {{ tile.title }}
                     </span>
+						
+                            <button class="btn btn-outline-secondary"
+                                       ng-if="tile.controller_js"
+                                       ng-show="tile.hidden === false"
+                                       ng-click="vm.selectMaster(tile.id)"
+                                       layout-align="center center">
+                                <i class="mdi mdi-angularjs"></i>
+                            </button>                                
+                    </div> 
+
+
+					
                 </md-grid-tile-footer>
             </md-grid-tile>
         </md-grid-list>

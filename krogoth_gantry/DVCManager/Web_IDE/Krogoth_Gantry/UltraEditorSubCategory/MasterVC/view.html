@@ -46,11 +46,20 @@
 							  layout-margin 
 							  layout-padding>
  
-								<i style="color:white;max-height:42px"
+								<i style="color:white; max-width: 45px; max-height:42px; font-size: 11em" 
+								   ng-if="tile.icon.prefix !== 'FA' && tile.icon.prefix !== 'ENTYPO'"
 								   class="{{tile.icon.code}}">									
 								</i>
-
-							
+								<span ng-if="tile.icon.prefix === 'FA'"> 
+								<i style="color:white;max-height:42px; font-size: 1.5em"
+								   
+								   class="{{tile.icon.code}}">									
+								</i>
+								</span>
+								<i style="color:white;max-height:42px; font-size: 1.5em"
+								   ng-if="tile.icon.prefix === 'MDI'"
+								   class="{{tile.icon.code}}">									
+								</i>
 							<div> 
 								<md-tooltip>
 									click to edit the title

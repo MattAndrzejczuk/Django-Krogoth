@@ -55,12 +55,15 @@ class KrogothGantryIconViewSet(viewsets.ModelViewSet):
     queryset = KrogothGantryIcon.objects.all()
     serializer_class = KrogothGantryIconSerializer
     filter_backends = (filters.SearchFilter,)
-    search_fields = ('^code',)
+    search_fields = ('code',)
 
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 class KrogothGantryMasterViewControllerSerializer(AbstractKrogothSerializer):
+
+    icon = KrogothGantryIconSerializer(many=False, read_only=True)
+
     class Meta:
         model = KrogothGantryMasterViewController
         fields = '__all__'
