@@ -39,6 +39,8 @@ class UncommitedSQL(models.Model):
             return more_than_zero(len(cls.objects.filter(name=name)))
         elif krogoth_class == "NgIncludedHtml":
             return more_than_zero(len(cls.objects.filter(name=name)))
+        elif krogoth_class == "AKFoundation":
+            return more_than_zero(len(cls.objects.filter(name=name)))
         else:
             print(bcolors.red + " ! ! ! WARNING ! ! ! " + bcolors.ENDC)
             print(bcolors.red + " ! UNKNOWN GANTRY  ! " + bcolors.ENDC)
