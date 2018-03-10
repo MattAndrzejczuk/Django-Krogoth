@@ -39,7 +39,7 @@ RUN python -c "print('\033[31m[\033[0m\033[92mAPP_DOCKERFILE\033[0m 🐳 \033[31
 RUN python -c "print('\033[31m[\033[0m\033[92mAPP_DOCKERFILE\033[0m 🐳 \033[31m]\033[0m\033[34m>>> \033[0m\033[0m\033[35m              sqlite3             libjpeg62-turbo-dev   git      \033[0m')"
 
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -q --no-cache-dir -r requirements.txt
 RUN python -c "print('\033[31m[\033[0m\033[92mAPP_DOCKERFILE\033[0m 🐳 \033[31m]\033[0m\033[34m>>> \033[0m\033[0m\033[32m              RUN pip install --no-cache-dir -r requirements.txt         \033[0m')"
 
 
@@ -47,15 +47,15 @@ RUN pip install --upgrade pip
 RUN python -c "print('\033[31m[\033[0m\033[92mAPP_DOCKERFILE\033[0m 🐳 \033[31m]\033[0m\033[34m>>> \033[0m\033[0m\033[32m              RUN pip install --upgrade pip         \033[0m')"
 
 
-RUN pip install wheel
+RUN pip install -q wheel
 RUN python -c "print('\033[31m[\033[0m\033[92mAPP_DOCKERFILE\033[0m 🐳 \033[31m]\033[0m\033[34m>>> \033[0m\033[0m\033[32m              RUN pip install wheel         \033[0m')"
 
-RUN pip install setuptools==36.6.0
+RUN pip install -q setuptools==36.6.0
 RUN python -c "print('\033[31m[\033[0m\033[92mAPP_DOCKERFILE\033[0m 🐳 \033[31m]\033[0m\033[34m>>> \033[0m\033[0m\033[32m              RUN pip install setuptools==36.6.0         \033[0m')"
 
 
 
-RUN pip install uwsgi
+RUN pip install -q uwsgi
 RUN python -c "print('\033[31m[\033[0m\033[92mAPP_DOCKERFILE\033[0m 🐳 \033[31m]\033[0m\033[34m>>> \033[0m\033[0m\033[32m              RUN pip install uwsgi         \033[0m')"
 
 
@@ -97,7 +97,7 @@ RUN ln -s /usr/src/supervisor-app.conf /etc/supervisor/conf.d/
 RUN python -c "print('\033[31m[\033[0m\033[92mAPP_DOCKERFILE\033[0m 🐳 \033[31m]\033[0m\033[34m>>> \033[0m\033[0m\033[32m              RUN ln -s /usr/src/supervisor-app.conf /etc/supervisor/conf.d/         \033[0m')"
 
 
-RUN pip install -r -q /usr/src/app/requirements.txt
+RUN pip install -q -r /usr/src/app/requirements.txt
 RUN python -c "print('\033[31m[\033[0m\033[92mAPP_DOCKERFILE\033[0m 🐳 \033[31m]\033[0m\033[34m>>> \033[0m\033[0m\033[32m              RUN pip install -r /usr/src/app/requirements.txt         \033[0m')"
 
 
