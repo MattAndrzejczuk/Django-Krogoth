@@ -113,7 +113,6 @@ urlpatterns = [
 
     # Admin stuff
     url(r'^djangular_dashboard/', include('djangular_dashboard.urls')),
-    url(r'^grappelli/', include('grappelli.urls')),
 
     url(r'^$', index),
 ]

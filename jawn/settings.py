@@ -85,7 +85,6 @@ INSTALLED_APPS = (
     'krogoth_admin',
     'djangular_dashboard',
     'django_filters',
-    'grappelli',
     'kbot_lab',
     'krogoth_examples',
     'django_extensions',
