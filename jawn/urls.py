@@ -1,4 +1,3 @@
-from filebrowser.sites import site
 from django.conf.urls import url, include
 from rest_framework.routers import DefaultRouter
 from chat.views import UserViewSet, JawnUserViewSet, ImageMessageViewSet, TextMessageViewSet, ChannelViewSet, \
@@ -114,7 +113,6 @@ urlpatterns = [
 
     # Admin stuff
     url(r'^djangular_dashboard/', include('djangular_dashboard.urls')),
-    url(r'^admin_a9k/filebrowser/', include(site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
 
     url(r'^$', index),

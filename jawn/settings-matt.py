@@ -93,7 +93,6 @@ INSTALLED_APPS = (
     'krogoth_social',
     'djangular_dashboard',
     'django_filters',
-    'filebrowser',
     'grappelli',
     'kbot_lab',
     'django_extensions',
