@@ -3,7 +3,7 @@
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
     function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu,
-        $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync,
+        $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync, fileNameChanger,
         BatchRequestsAsync, SaveToSQL, $mdSidenav, BreadCrumbsIDE, $timeout, codeHighlightIDE) {
         var vm = this;
 
@@ -552,7 +552,7 @@
             codeHighlightIDE.colorNgClick1(vm.editorModel)
                 .then(function(coloredEditorModel) {
                     vm.editorModel = coloredEditorModel;
-                })
+                });
         }
 
 
@@ -562,27 +562,40 @@
         vm.simplifiedTreeData = [];
 
         function loadOSXDoc() {
-
             vm.treeModalIsVisible = !vm.treeModalIsVisible;
-            vm.simplifiedTreeData = vm.treeData;
-
+            const backup = vm.treeData;
+            vm.simplifiedTreeData = backup;
             for (var i = 0; i < vm.simplifiedTreeData.length; i++) {
                 const nodeInRoot = vm.simplifiedTreeData[i];
                 $log.debug(nodeInRoot);
-
                 for (var j = 0; j < nodeInRoot.nodes.length; j++) {
-
                     /// const nodeInCat = nodeInRoot[j];
-
                     vm.simplifiedTreeData[i].nodes[j].sourceCode = "NAN";
-
                 }
-
-
             }
         }
 
+        vm.renameObjectForm = {};
+        vm.renameObjectSubmit = renameObjectSubmit;
 
+        function renameObjectSubmit() {
+            const _0 = vm.finishedBreadCrumbsJson._1st.name;
+            const _1 = vm.finishedBreadCrumbsJson._2nd.name;
+            const _2 = vm.objectList.name;
+            fileNameChanger.renameService(_0,
+                    _1,
+                    _2,
+                    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
+                    vm.renameObjectForm.new)
+                .then(function(didFinish) {
+                    $log.debug("The rename service operation finished on the server.");
+                    $log.debug(didFinish);
+                    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name = vm.renameObjectForm.new;
+                    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title = vm.renameObjectForm.new;
+                    vm.renameObjectForm.new = "";
+                    /// success
+                });
+        }
 
 
     }

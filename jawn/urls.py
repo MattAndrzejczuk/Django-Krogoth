@@ -96,6 +96,7 @@ urlpatterns = [
 
     url(r'^moho_extractor/', include('moho_extractor.urls')),
     url(r'^krogoth_gantry/', include('krogoth_gantry.urls')),
+    url(r'^krogoth_admin/', include('krogoth_admin.urls')),
     # url(r'^Forum/', include('krogoth_social.urls')),
 
 

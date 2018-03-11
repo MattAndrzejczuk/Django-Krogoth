@@ -17,7 +17,7 @@
 
 <div class="page-layout carded left-sidenav opaque-global" layout="row" layout-align="center stretch">
     <!-- SIDENAV -->
-    <md-sidenav class="opaque-global"
+    <md-sidenav class=""
 				md-is-locked-open="vm.sideNavLocked"
                 md-component-id="sidenav"
                 ms-scroll
@@ -29,12 +29,15 @@
 				flex-gt-lg="20"
                 ms-sidenav-helper>
         <!-- SIDENAV HEADER -->
-        <div class="header" layout="row">
+        <div class="headerosx" layout="row">
 			<button class="btn btn-outline-secondary"
-                    ng-click="vm.sideNavLocked=!vm.sideNavLocked"
-                    style="min-height:50px">
-                <span class="mdi-24px mdi mdi-pin" ng-if="vm.sideNavLocked===false"></span>
-				<span class="mdi-24px mdi mdi-pin-off" ng-if="vm.sideNavLocked===true"></span>
+                    ng-click="vm.sideNavLocked=!vm.sideNavLocked"> 
+                <span class="mdi-12px mdi mdi-pin" 
+					  style="font-size:1.5em; line-height:0px" 
+					  ng-if="vm.sideNavLocked===false"></span>
+				<span class="mdi-12px mdi mdi-pin-off" 
+					  style="font-size:1.5em; line-height:0px" 
+					  ng-if="vm.sideNavLocked===true"></span>
                 <md-tooltip>
                     Toggle Side Navigation
                 </md-tooltip>
@@ -50,15 +53,13 @@
         <!-- SIDENAV CONTENT -->
         <md-content
                 style="padding: 0px"
-                class="content glass-global"
-                ak-frosted-glass
+                class="white-bg"
                 flex 
 				ms-scroll>
             <!-- DEMO SIDENAV -->
-            <div ui-tree id="tree-root" data-drop-enabled="false" data-drag-enabled="false" class="glass-global">
+            <div ui-tree id="tree-root" data-drop-enabled="false" data-drag-enabled="false" class="white-bg">
                 <!-- start slipsum code -->
                 <ol ui-tree-nodes
-                    class="glass-global"
                     ng-model="vm.treeData"
                     layout="column"
                     layout-fill>
@@ -169,7 +170,7 @@
             </div>
         </div>
 				
-				
+				RenamedCodeHighlight
 				
 				<button class="btn btn-secondary" ng-click="vm.highlightSyntax()">syntax</button>
 				<button class="btn btn-secondary" ng-click="vm.highlightSyntaxGetHtmlProperties()">HTML ng syntax</button>
@@ -185,6 +186,10 @@
 					HTML ng syntax
 				</button>
 				
+				<input type="text" placeholder="Rename Service" ng-model="vm.renameObjectForm.new">
+                <button class="toolbar-button" ng-click="vm.renameObjectSubmit()">
+					SUBMIT
+				</button>				
 				
             </div>
             <!-- / CONTENT TOOLBAR -->
