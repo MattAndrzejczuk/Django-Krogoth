@@ -3,7 +3,7 @@
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
     function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu,
-        $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync, fileNameChanger,
+        $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync, fileNameChanger, $mdDialog,
         BatchRequestsAsync, SaveToSQL, $mdSidenav, BreadCrumbsIDE, $timeout, codeHighlightIDE) {
         var vm = this;
 
@@ -301,19 +301,19 @@
 
         function setThemeBasedOnClass(_class) {
             if (_class === "ViewHTML") {
-                vm.editorModel.setOption("theme", "base16-dark");
+                vm.editorModel.setOption("theme", "dracula");
             } else if (_class === "ControllerJS") {
-                vm.editorModel.setOption("theme", "blackboard");
+                vm.editorModel.setOption("theme", "colorforth");
             } else if (_class === "ModuleJS") {
-                vm.editorModel.setOption("theme", "twilight");
+                vm.editorModel.setOption("theme", "night");
             } else if (_class === "StyleCSS") {
                 vm.editorModel.setOption("theme", "icecoder");
             } else if (_class === "ThemeCSS") {
                 vm.editorModel.setOption("theme", "vibrant-ink");
             } else if (_class === "Service") {
-                vm.editorModel.setOption("theme", "xq-dark");
+                vm.editorModel.setOption("theme", "3024-night");
             } else {
-                vm.editorModel.setOption("theme", "pastel-on-dark");
+                vm.editorModel.setOption("theme", "isotope");
             }
         }
 
@@ -367,24 +367,7 @@
         }
 
 
-        function createNewComponentClick(treeRoot) {
-            var siblings = treeRoot.nodes;
-            const djangoModelName = SaveToSQL.getRESTfulModelName(treeRoot.class);
-            SaveToSQL.createNew(treeRoot, 'testCreation')
-                .then(function(newNode) {
-                    vm.addNewComponentToMaster(siblings, newNode, djangoModelName, treeRoot.id);
-                });
-        }
 
-
-        function addNewComponentToMaster(siblings, newNode, djangoModelName, masterId) {
-            SaveToSQL.addSiblingToMaster(siblings, newNode, djangoModelName, masterId)
-                .then(function(newNodeForTree) {
-                    $log.debug('newNodeForTree:');
-                    $log.log(newNodeForTree);
-                    $log.debug('TODO FINISH THIS PART ! ! !');
-                });
-        }
 
 
         /// <PROCESS RESPONSE INTO RAM III. > 💚
@@ -597,6 +580,67 @@
                 });
         }
 
+
+        /* ⬇︎ ⬇︎ ⬇︎ RELOCATE ME TO A SEPARATE SERVICE ⬇︎ ⬇︎ ⬇︎ */
+
+        function createNewComponentClick(ev, treeRoot) {
+            var siblings = treeRoot.nodes;
+            const djangoModelName = SaveToSQL.getRESTfulModelName(treeRoot.class);
+
+            $log.debug('---createNewComponentClick---');
+            $log.log("treeRoot: ");
+            $log.log(treeRoot);
+            $log.debug('TODO FINISH THIS PART ! ! !');
+
+
+
+
+            var confirm = $mdDialog.prompt()
+                .title('Create new ' + djangoModelName)
+                .textContent('Unique ' + djangoModelName + ' file name:')
+                .placeholder(djangoModelName + '.js')
+                .ariaLabel('Unique ' + djangoModelName + ' file name:')
+                .initialValue('')
+                .targetEvent(ev)
+                .ok('Ok')
+                .cancel('Cancel');
+            $mdDialog.show(confirm).then(function(new_name) {
+
+                const postPayload = {
+                    "path_0": vm.finishedBreadCrumbsJson._1st.name,
+                    "path_1": vm.finishedBreadCrumbsJson._2nd.name,
+                    "master_name": vm.objectList.name,
+                    "index": treeRoot.nodes.length,
+                    "new_name": new_name
+                };
+
+                fileNameChanger.createService(postPayload)
+                    .then(function(newTreeNode) {
+                        $log.log("CREATE FINISHED");
+                        $log.debug(newTreeNode);
+                        //newTreeNode.index = treeRoot.nodes.length;
+                        const parentI = newTreeNode.parentIndex;
+                        vm.treeData[parentI].nodes.push(newTreeNode);
+                    });
+
+            }, function() {});
+
+            ///SaveToSQL.createNew(treeRoot, 'testCreation')
+            ///    .then(function(newNode) {
+            ///        vm.addNewComponentToMaster(siblings, newNode, djangoModelName, treeRoot.id);
+            ///    });
+
+        }
+
+        function addNewComponentToMaster(siblings, newNode, djangoModelName, masterId) {
+            SaveToSQL.addSiblingToMaster(siblings, newNode, djangoModelName, masterId)
+                .then(function(newNodeForTree) {
+                    $log.debug('newNodeForTree:');
+                    $log.log(newNodeForTree);
+                    $log.debug('TODO FINISH THIS PART ! ! !');
+                });
+        }
+        /* ⬆︎ ⬆︎ ⬆︎ RELOCATE ME TO A SEPARATE SERVICE ⬆︎ ⬆︎ ⬆︎ */
 
     }
 })();

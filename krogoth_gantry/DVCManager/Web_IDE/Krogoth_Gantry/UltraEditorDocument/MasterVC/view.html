@@ -29,7 +29,7 @@
 				flex-gt-lg="20"
                 ms-sidenav-helper>
         <!-- SIDENAV HEADER -->
-        <div class="headerosx" layout="row">
+        <div class="headerosx" layout="row" style="height: 22px; max-height: 22px; min-height: 22px">
 			<button class="btn btn-outline-secondary"
                     ng-click="vm.sideNavLocked=!vm.sideNavLocked"> 
                 <span class="mdi-12px mdi mdi-pin" 
@@ -42,9 +42,6 @@
                     Toggle Side Navigation
                 </md-tooltip>
             </button>
-			<md-button ng-click="vm.hideTreeDataModal = !vm.hideTreeDataModal">
-				show tree data
-			</md-button>
 			
         </div>   
         <!-- / SIDENAV HEADER -->
@@ -79,34 +76,35 @@
     </md-sidenav>
     <!-- / SIDENAV -->
     <!-- CENTER -->
-    <div layout="column" flex>
+    <div layout="column" flex class="white-bg">
         <!-- CONTENT HEADER -->
-        <div class="header" 
+        <div class="headerosx"  
              flex="5"
              layout="row"
 			 layout-align="start center"
-             style="height: 21px; max-height: 50px; min-height: 50px">
+             style="height: 22px; max-height: 22px; min-height: 22px">
 
 			<h2 flex>
             <button class="btn btn-outline-primary"
+					style="margin-top: 4px; font-size:0.5em;"
                     ng-click="vm.goBackToCategory()"> 
-                <i class="mdi-24px mdi mdi-arrow-left"></i>
+                <span class="entypo entypo-left-bold"></span>
                 <md-tooltip>
                     Go Back
                 </md-tooltip>
             </button> 
 				&nbsp;&nbsp;&nbsp;
-				<span class="badge badge-dark">
+				<span class="h4">
 							{{ vm.finishedBreadCrumbsJson._1st.name }}
 				</span>
 				<span class="mdi-12px badge badge-dark mdi mdi-chevron-right">
 				</span>
-				<span class="badge badge-dark">
+				<span class="h4">
 							{{ vm.finishedBreadCrumbsJson._2nd.name }}
 				</span>
 				<span class="mdi-12px badge badge-dark mdi mdi-chevron-right">
 				</span>
-				<span class="h2 badge badge-dark">
+				<span class="h4">
 							{{ vm.objectList.name }}
 				</span>
 			</h2>
@@ -115,11 +113,12 @@
         </div>
         <!-- / CONTENT HEADER -->
         <!-- CONTENT CARD -->
-        <div class="content-card glass-global" layout="column" flex ak-frosted-glass>
+        <div class="content-card glass-global" layout="column" flex >
             
 			
 			<!-- CONTENT TOOLBAR -->
             <div layout="row"
+				 style="margin-top: 22px;"
                  layout-align="start center">				
                 <md-button class="md-icon-button sidenav-toggle" 
 						   ng-click="vm.toggleSidenav('sidenav')"
@@ -149,7 +148,7 @@
 				{{ vm.loadedParentIndex }}
 				
 
-				
+				 
 				
 				
         <div class="toolbar">
@@ -226,11 +225,25 @@
         <!-- / CONTENT CARD -->
     </div>
     <!-- / CENTER -->
-</div>
+</div> 
 
 
 <style>
     button:hover {
         color: black !important;
     }
+	.CodeMirror {
+		font-style: normal;
+		font-variant: normal;
+		font-weight: 500;
+		font-family: Ubuntu Mono !important; 
+		font-size: 14px !important; 
+	}	 
+	.CodeMirror-code {
+		font-style: normal;
+		font-variant: normal;
+		font-weight: 500;
+		font-family: Ubuntu Mono !important; 
+		font-size: 14px !important; 
+	}
 </style>

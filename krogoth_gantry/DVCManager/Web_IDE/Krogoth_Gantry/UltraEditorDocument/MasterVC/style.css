@@ -1,1 +1,42 @@
-/**/
+/*
+"/static/osx/puma-01.png"
+"/static/osx/puma-02.png"
+background-image: url("/static/osx/puma-metal-bg.png");
+*/
+
+
+
+
+/*
+.tree-node {
+
+    background-image: url("/static/osx/puma-01.png");
+    background-repeat: repeat;
+
+}
+*/
+
+
+.white-bg {
+    background-image: url("/static/osx/puma-01.png");
+    background-repeat: repeat; 
+	background-size: auto;
+	background-position: left top;
+	background-attachment: fixed !important;
+}
+
+.angular-ui-tree-handle {
+    cursor: auto !important;
+}
+
+.the-ol-drop {	
+	background-image: url("/static/osx/puma-03.png");
+    background-repeat: repeat; 
+	background-size: auto;
+	background-position: left top;
+	background-attachment: fixed !important;
+	-moz-box-shadow:    inset 0 0 10px #1C1C1C;
+    -webkit-box-shadow: inset 0 0 10px #1C1C1C;
+    box-shadow:         inset 0 0 10px #1C1C1C;
+
+}
