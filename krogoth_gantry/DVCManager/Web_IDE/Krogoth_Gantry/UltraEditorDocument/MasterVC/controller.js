@@ -3,6 +3,7 @@
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
     function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu,
+        TemplateCRUD, DirectiveCRUD,
         $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync, fileNameChanger, $mdDialog,
         BatchRequestsAsync, SaveToSQL, $mdSidenav, BreadCrumbsIDE, $timeout, codeHighlightIDE) {
         var vm = this;
@@ -593,8 +594,6 @@
             $log.debug('TODO FINISH THIS PART ! ! !');
 
 
-
-
             var confirm = $mdDialog.prompt()
                 .title('Create new ' + djangoModelName)
                 .textContent('Unique ' + djangoModelName + ' file name:')
@@ -614,21 +613,38 @@
                     "new_name": new_name
                 };
 
-                fileNameChanger.createService(postPayload)
-                    .then(function(newTreeNode) {
-                        $log.log("CREATE FINISHED");
-                        $log.debug(newTreeNode);
-                        //newTreeNode.index = treeRoot.nodes.length;
-                        const parentI = newTreeNode.parentIndex;
-                        vm.treeData[parentI].nodes.push(newTreeNode);
-                    });
+                if (djangoModelName === "Directive") {
+                    DirectiveCRUD.createDirective(postPayload)
+                        .then(function(newTreeNode) {
+                            $log.log("CREATE FINISHED");
+                            $log.debug(newTreeNode);
+                            const parentI = newTreeNode.parentIndex;
+                            vm.treeData[parentI].nodes.push(newTreeNode);
+                        });
+
+                } else if (djangoModelName === "Service") {
+                    fileNameChanger.createService(postPayload)
+                        .then(function(newTreeNode) {
+                            $log.log("CREATE FINISHED");
+                            $log.debug(newTreeNode);
+                            const parentI = newTreeNode.parentIndex;
+                            vm.treeData[parentI].nodes.push(newTreeNode);
+                        });
+
+                } else if (treeRoot.title === "HTML Templates") {
+
+                    TemplateCRUD.createTemplate(postPayload)
+                        .then(function(newTreeNode) {
+                            $log.log("CREATE FINISHED");
+                            $log.debug(newTreeNode);
+                            const parentI = newTreeNode.parentIndex;
+                            vm.treeData[parentI].nodes.push(newTreeNode);
+                        });
+                }
+
 
             }, function() {});
 
-            ///SaveToSQL.createNew(treeRoot, 'testCreation')
-            ///    .then(function(newNode) {
-            ///        vm.addNewComponentToMaster(siblings, newNode, djangoModelName, treeRoot.id);
-            ///    });
 
         }
 

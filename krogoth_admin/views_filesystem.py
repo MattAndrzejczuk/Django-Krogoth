@@ -41,6 +41,8 @@ class CreateService(APIView):
         new_name = str(request.data["new_name"])
         sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
         sql_path = path_0 + "/" + path_1 + "/" + master_name + "/Services/"
+        if not os.path.isdir(sys_path + sql_path):
+            os.makedirs(sys_path + sql_path)
         new_path = sys_path + sql_path + new_name + ".js"
         make_blank = open(new_path, 'w')
         make_blank.write("/* " + new_name + " Service */")
@@ -103,6 +105,8 @@ class CreateDirective(APIView):
         new_name = str(request.data["new_name"])
         sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
         sql_path = path_0 + "/" + path_1 + "/" + master_name + "/Directives/"
+        if not os.path.isdir(sys_path + sql_path):
+            os.makedirs(sys_path + sql_path)
         new_path = sys_path + sql_path + new_name + ".js"
         make_blank = open(new_path, 'w')
         make_blank.write("/* " + new_name + " Directive */")
@@ -146,8 +150,8 @@ class RenameTemplate(APIView):
         new_name = str(request.data["new_name"])
         sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
         sql_path = path_0 + "/" + path_1 + "/" + path_2 + "/partialsHTML/"
-        old_path = sys_path + sql_path + old_name + ".js"
-        new_path = sys_path + sql_path + new_name + ".js"
+        old_path = sys_path + sql_path + old_name + ".html"
+        new_path = sys_path + sql_path + new_name + ".html"
         os.rename(old_path, new_path)
         renamed_sql = IncludedHtmlMaster.objects.get(name=old_name)
         renamed_sql.name = new_name
@@ -164,8 +168,10 @@ class CreateTemplate(APIView):
         new_name = str(request.data["new_name"])
         sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
         sql_path = path_0 + "/" + path_1 + "/" + master_name + "/partialsHTML/"
-        new_path = sys_path + sql_path + new_name + ".js"
-        new_sql = IncludedHtmlMaster(name=new_name, title=new_name)
+        if not os.path.isdir(sys_path + sql_path):
+            os.makedirs(sys_path + sql_path)
+        new_path = sys_path + sql_path + new_name + ".html"
+        new_sql = IncludedHtmlMaster(name=new_name)
         new_sql.save()
         make_blank = open(new_path, 'w')
         make_blank.write("/* " + new_name + " IncludedHtmlMaster */\n\n" + new_sql.contents)

@@ -15,6 +15,18 @@
 
 <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
 
+
+
+
+
+<div style="height: 22px; max-height: 22px; min-height: 22px"  class="headerosx" layout="row">
+    {{vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class}}
+	<span ng-if="-1 !== vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name">
+	{{vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name}}
+	</span>
+</div>
+
+
 <div class="page-layout carded left-sidenav opaque-global" layout="row" layout-align="center stretch">
     <!-- SIDENAV -->
     <md-sidenav class=""
@@ -29,27 +41,28 @@
 				flex-gt-lg="20"
                 ms-sidenav-helper>
         <!-- SIDENAV HEADER -->
-        <div class="headerosx" layout="row" style="height: 22px; max-height: 22px; min-height: 22px">
-			<button class="btn btn-outline-secondary"
+
+        <!-- / SIDENAV HEADER -->
+        <div style="margin-top:25px">
+			&nbsp;
+			<button class="toolbar-button" 
+					style="padding:0px; height:15px; width:15px"
                     ng-click="vm.sideNavLocked=!vm.sideNavLocked"> 
                 <span class="mdi-12px mdi mdi-pin" 
-					  style="font-size:1.5em; line-height:0px" 
+					  style="font-size:1.0em"
 					  ng-if="vm.sideNavLocked===false"></span>
 				<span class="mdi-12px mdi mdi-pin-off" 
-					  style="font-size:1.5em; line-height:0px" 
+					  style="font-size:1.0em"
 					  ng-if="vm.sideNavLocked===true"></span>
                 <md-tooltip>
                     Toggle Side Navigation
                 </md-tooltip>
-            </button>
-			
-        </div>   
-        <!-- / SIDENAV HEADER -->
-        <div class="toolbar-osx" style="color: black">
+            </button> 
+
         </div>
         <!-- SIDENAV CONTENT -->
         <md-content
-                style="padding: 0px"
+                style="padding: 0px; margin-top:2px"
                 class="white-bg"
                 flex 
 				ms-scroll>
@@ -142,44 +155,11 @@
 					</span>
                 </h1>
 				
-                <!--
-				
-				vm.loadedParentIndex				
-				{{ vm.loadedParentIndex }}
-				
-
-				 
 				
 				
-        <div class="toolbar">
-            <div style="float: left">
-				
-                <button class="toolbar-button"  ng-click="vm.highlightSyntax()">
-					<span class="entypo-minus"></span>
-				</button>
-                <button class="toolbar-button" ng-click="vm.highlightSyntaxGetHtmlProperties()">
-					HTML ng syntax
-				</button>
-			</div>
-            <div style="float: right">
-                <span class="search-input">
-                    <button class="toolbar-search" href=""><span class="entypo-search"></span></button>
-                    <input type="text" class="mvx-search" placeholder="Find"/>
-                </span>				
-            </div>
-        </div>
-				
-				RenamedCodeHighlight
-				
-				<button class="btn btn-secondary" ng-click="vm.highlightSyntax()">syntax</button>
-				<button class="btn btn-secondary" ng-click="vm.highlightSyntaxGetHtmlProperties()">HTML ng syntax</button>
-				
-				
-				-->
                 <button class="toolbar-button" ng-click="vm.loadOSXDoc()">
 					Load OS X Theme
-				</button>				
-				
+				</button>								
 				
                 <button class="toolbar-button" ng-click="vm.highlightSyntaxGetHtmlProperties()">
 					HTML ng syntax
