@@ -172,13 +172,15 @@ class CreateTemplate(APIView):
             os.makedirs(sys_path + sql_path)
         new_path = sys_path + sql_path + new_name + ".html"
         new_sql = IncludedHtmlMaster(name=new_name)
-        new_sql.save()
+
         make_blank = open(new_path, 'w')
         make_blank.write("/* " + new_name + " IncludedHtmlMaster */\n\n" + new_sql.contents)
         make_blank.close()
         mastervc = KrogothGantryMasterViewController.objects.get(name=master_name)
-        mastervc.partial_html.add(new_sql)
-        mastervc.save()
+        # mastervc.partial_html.add(new_sql)
+        # mastervc.save()
+        new_sql.master_vc = mastervc
+        new_sql.save()
         node_for_frontend = {
             "id": new_sql.id,
             "parentIndex": 5,
@@ -194,9 +196,11 @@ class CreateTemplate(APIView):
             "sourceKey": "contents",
             "RESTfulId": new_sql.id,
             "RESTfulURI": "/krogoth_gantry/viewsets/IncludedHtmlMaster/" + str(new_sql.id) + "/",
-            "syntax": "javascript",
+            "syntax": "htmlmixed",
             "hasUnsavedChanges": False,
-            "icon": "language-javascript"
+            "icon": "link-variant"
         }
         return Response(node_for_frontend, status=201)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
