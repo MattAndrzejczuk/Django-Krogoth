@@ -67,6 +67,7 @@
                     id: _masterVCID,
                     index: 5,
                     title: 'HTML Templates',
+                    class: "Template",
                     nodes: [],
                     canRemove: false,
                     canEdit: false,

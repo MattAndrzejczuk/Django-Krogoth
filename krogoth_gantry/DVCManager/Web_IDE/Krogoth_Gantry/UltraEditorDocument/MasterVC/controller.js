@@ -586,13 +586,14 @@
 
         function createNewComponentClick(ev, treeRoot) {
             var siblings = treeRoot.nodes;
-            const djangoModelName = SaveToSQL.getRESTfulModelName(treeRoot.class);
+
+            var djangoModelName = (treeRoot.class);
+            ///var djangoModelName = SaveToSQL.getRESTfulModelName(treeRoot.class);
 
             $log.debug('---createNewComponentClick---');
             $log.log("treeRoot: ");
             $log.log(treeRoot);
             $log.debug('TODO FINISH THIS PART ! ! !');
-
 
             var confirm = $mdDialog.prompt()
                 .title('Create new ' + djangoModelName)

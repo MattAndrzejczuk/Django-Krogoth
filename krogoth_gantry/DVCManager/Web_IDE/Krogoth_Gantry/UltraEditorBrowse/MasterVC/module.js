@@ -7,15 +7,10 @@
             .state('app.FUSE_APP_NAME', {
                 url: '/FUSE_APP_NAME',
                 views: {
-                    'main@': {
-                        templateUrl: '/moho_extractor/NgIncludedHtml/?name=content-only.html',
-                        controller: 'MainController as vm'
-                    },
-                    'content@app.FUSE_APP_NAME': {
+                    'content@app': {
                         templateUrl: '/krogoth_gantry/DynamicHTMLInjector/?name=FUSE_APP_NAME',
                         controller: 'FUSE_APP_NAMEController as vm'
                     }
-
                 }
             })
             .state('app.FUSE_APP_NAME.slave', {

@@ -1,3 +1,39 @@
-<!--
+<!-- EDITOR MODALS -->
 
--->
+	<div class="windowosx moveToFront">
+		<div ng-cloak >
+			<button class="windowctrl-yellow mdi mdi-plus"  
+					ng-click="vm.toggleSidenav('sidenav')" 
+					hide-gt-md
+                    aria-label="Toggle left sidenav">
+            </button>
+		</div>
+
+		<div layout="column" 
+					layout-align="space-around stretch" 
+					class="windowosxcontainer"
+					style="background-color:rgba(0,0,0,0); overflow: auto; margin-top:18px">
+			
+				<div>					 					
+					<pre style="height: 872px">
+						{{ vm.simplifiedTreeData | json }}
+					</pre> 										
+				</div> 
+	
+		</div>	  
+	</div>
+
+
+
+<style>
+	.moveToFront {
+	
+		z-index: 1000;
+		width: 800px;
+		height: 900px;
+		position: fixed;
+		left: 200px;
+		top: 100px;
+	 
+	}
+</style>
