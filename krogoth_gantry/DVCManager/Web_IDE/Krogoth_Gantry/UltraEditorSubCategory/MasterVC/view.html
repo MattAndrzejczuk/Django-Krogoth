@@ -23,18 +23,18 @@
 
     </div>
     <div flex="90" ng-cloak>
-        <md-grid-list 
-                md-cols="1" md-cols-sm="1" md-cols-md="2" md-cols-gt-md="3" md-cols-gt-lg="4"
+        <md-grid-list
+                md-cols="2" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="6" md-cols-gt-lg="8"
                 md-row-height-gt-md="1:1" md-row-height="1:1"
                 md-gutter="18px" md-gutter-gt-sm="14px">
-            <md-grid-tile ng-repeat="tile in vm.objectList | orderBy:'weight'"
+            <md-grid-tile ng-repeat="tile in vm.objectList"
                           ng-mouseenter="tile.hidden = false"
                           ng-mouseleave="tile.hidden = true"
                           md-rowspan="1"
-                          md-colspan="2"
-                          md-colspan-sm="2"
+                          md-colspan="1"
+                          md-colspan-sm="1"
                           md-colspan-xs="1"
-                          class="blackbg"
+                          class="blur-content-primary"
                           style="border-radius:25px"
                           md-whiteframe="3">
                 <div layout-fill flex-offset="10" style="border-radius:25px">

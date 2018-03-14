@@ -18,6 +18,9 @@
         vm.objectList = [];
 
 
+        vm.serverSideChanges = [];
+        vm.getUncommitedSQL = getUncommitedSQL;
+
 
         vm.$onInit = onInit;
         vm.getCategories = getCategories;
@@ -34,6 +37,7 @@
 
         function onInit() {
             vm.getCategories();
+            vm.getUncommitedSQL();
         }
 
 
@@ -44,6 +48,41 @@
         function updateTitle(tile) {
             vm.putCatagory(tile);
         }
+
+
+
+
+
+        function getUncommitedSQL() {
+            //var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: "/krogoth_admin/KrogothAdministration/UncommitedSQL/"
+            }).then(function successCallback(response) {
+                /// Success
+                //deferred.resolve(response.data);
+                $log.log("response.data");
+                $log.debug(response.data);
+                if (response.data.results) {
+                    var rawResponse = response.data.results;
+                    for (var i = 0; i < rawResponse.length; i++) {
+                        vm.serverSideChanges.push(rawResponse[i]);
+                        $log.info(i);
+                    }
+                } else {
+                    $log.log("Failed to get UncommitedSQL, admin access required.");
+                }
+
+            }, function errorCallback(response) {
+                /// Fail
+                //deferred.reject(response);
+            });
+            //return deferred.promise;
+        }
+
+
+
+
 
         function getCategories() {
             //var deferred = $q.defer();
@@ -57,7 +96,8 @@
                 var allCategories = response.data.results;
                 for (var i = 0; i < allCategories.length; i++) {
                     if (allCategories[i].parent === null) {
-                        vm.objectList.push(allCategories[i]);
+                        if (allCategories[i].name !== "DVCManager")
+                            vm.objectList.push(allCategories[i]);
                     }
                 }
             }, function errorCallback(response) {

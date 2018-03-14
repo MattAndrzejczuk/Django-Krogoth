@@ -41,7 +41,7 @@ class IncludedHtmlCoreTemplateSerializer(AbstractKrogothSerializer):
         for key in validated_data.keys():
             setattr(instance, key, validated_data[key])
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
-        logThis = UncommitedSQL(name=instance.name, edited_by=jawn_user, krogoth_class="NgIncludedHtml")
+        logThis = UncommitedSQL(name=instance.name, edited_by=jawn_user, krogoth_class="NgIncludedHtmlCore")
         logThis.save()
         instance.save()
         return instance
@@ -51,7 +51,7 @@ class IncludedHtmlCoreTemplateSerializer(AbstractKrogothSerializer):
               str(type(self)) +
               " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
-        logThis = UncommitedSQL(name=instance.name, edited_by=jawn_user, krogoth_class="NgIncludedHtml")
+        logThis = UncommitedSQL(name=instance.name, edited_by=jawn_user, krogoth_class="NgIncludedHtmlCore")
         logThis.save()
         return IncludedHtmlCoreTemplate.objects.create(**validated_data)
 
