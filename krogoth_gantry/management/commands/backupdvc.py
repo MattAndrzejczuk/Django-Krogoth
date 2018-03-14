@@ -90,16 +90,16 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.SUCCESS(d1))
             tmplsHTML = IncludedHtmlMaster.objects.filter(master_vc=app.id)
             for tmpl in tmplsHTML:
-                if UncommitedSQL.does_exist(name=tmpl.name, krogoth_class="NgIncludedHtml"):
-                    UncommitedSQL.finish_and_remove(name=tmpl.name)
-                    basedir = os.path.dirname(static_root + "partialsHTML/")
-                    if not os.path.exists(basedir):
-                        os.makedirs(basedir)
-                    d1 = static_root + "partialsHTML/" + tmpl.name
-                    text_file = open(d1, "w")
-                    text_file.write(tmpl.contents)
-                    text_file.close()
-                    self.stdout.write(self.style.SUCCESS(d1))
+                #if UncommitedSQL.does_exist(name=tmpl.name, krogoth_class="NgIncludedHtml"):
+                #    UncommitedSQL.finish_and_remove(name=tmpl.name)
+                basedir = os.path.dirname(static_root + "partialsHTML/")
+                if not os.path.exists(basedir):
+                    os.makedirs(basedir)
+                d1 = static_root + "partialsHTML/" + tmpl.name + ".html"
+                text_file = open(d1, "w")
+                text_file.write(tmpl.contents)
+                text_file.close()
+                self.stdout.write(self.style.SUCCESS(d1))
             coreJSFiles = AKFoundationAbstract.objects.all()
             for fuse in coreJSFiles:
                 if UncommitedSQL.does_exist(name=fuse.unique_name, krogoth_class="AKFoundation"):
