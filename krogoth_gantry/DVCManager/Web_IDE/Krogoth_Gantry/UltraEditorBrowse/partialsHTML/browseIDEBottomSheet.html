@@ -40,8 +40,8 @@
 
 
 				<!-- SELECT SUBCATEGORY -->
-				<md-select ng-model="subcat" 
-						   placeholder="SUBCATEGORY"
+				<md-select ng-model="vm.mvcSubCatName" 
+						   placeholder="SUBCATEG"
 						   class="md-no-underline">
 					<md-option ng-repeat="subcat in vm.mvcSubCatOptions" value="{{subcat.name}}">{{subcat.title}}</md-option>
 				</md-select>
@@ -58,9 +58,12 @@
 		<md-button class="md-warn md-block" ng-click="vm.addCatMenuIsOpen = !vm.addCatMenuIsOpen">
 			Cancel
 		</md-button>
-		<md-button class="md-primary md-block" ng-click="vm.addCatMenuIsOpen = !vm.addCatMenuIsOpen">
+		<md-button class="md-primary md-block" ng-click="vm.submitCreateNewMVC()">
 			Create
-		</md-button>
+		</md-button> 
+		
+		 {{vm.mvcSubCatName}}
+		 {{vm.mvcCatName}}
 	</div
 
 </md-bottom-sheet

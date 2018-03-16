@@ -91,6 +91,7 @@ class NgIncludedHtmlView(APIView):
                 html_view = NgIncludedHtml.objects.get(name=name)
                 return HttpResponse(html_view.contents)
         except Exception as e:
+
             error += str(e) + " \n"
             html = '<div> <h1>Fatal Error</h1> <p>Unable to load HTML: <b>' + name + '</b> </p> </div>'
             html += '<script>alert("fatal krogoth_gantry error, unable to load HTML view: ' + name + \

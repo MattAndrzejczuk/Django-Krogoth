@@ -4,13 +4,13 @@
 <!-- This is a hack to resolve angular tree data directive bug -->
 <!-- ng-include does nothing special here except that it creates an alias named "nodes_renderer.html" -->
 <script type="text/ng-template" id="nodes_renderer.html">
-	<span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_07.html'"></span>
+	<span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_07'"></span>
 </script>
 <!-- Import some extra themes: -->
-<span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_56.html'"></span>
+<span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_56'"></span>
 
 <!-- Import window modal HTML: -->
-<span ng-if="vm.treeModalIsVisible" ng-include= "'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_32.html'"></span> 
+<span ng-if="vm.treeModalIsVisible" ng-include= "'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_32'"></span>
 
 <!-- VM property viewer: -->
 <span ng-include="'/moho_extractor/NgIncludedHtml/?name=controllerVmProperties'"></span>
@@ -80,7 +80,7 @@
                     layout-fill>
                     <li ng-repeat="node in vm.treeData"
                         ui-tree-node
-                        ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_07.html'">
+                        ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_07'">
                     </li>
                 </ol> 
                 <!-- end slipsum code -->

@@ -66,7 +66,13 @@
                 "cat": vm.mvcCatName,
                 "subcat": vm.mvcSubCatName,
                 "weight": 5,
-                "is_lazy": 0
+                "is_lazy": 0,
+                "app_icon": "tdtdtd",
+                "app_icon_prefix": "tdtdtd",
+                "cat_icon": "tdtdtd",
+                "cat_icon_prefix": "tdtdtd",
+                "subcat_icon": "tdtdtd",
+                "subcat_icon_prefix": "tdtdtd"
             };
             $http({
                 method: 'POST',
