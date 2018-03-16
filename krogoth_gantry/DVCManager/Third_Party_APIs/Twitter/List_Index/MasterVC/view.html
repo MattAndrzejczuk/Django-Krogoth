@@ -1,78 +1,12 @@
-<section layout="column" layout-align="center stretch">
-    <div flex="20" layout="row" layout-align="space-around stretch"
-         class="md-primary-bg md-hue-3 ">
-        <div flex></div>
-        <div flex="80" layout="column" layout-align="center center">
-            <h1>{{ vm.viewName }}</h1>
-        </div>
-        <div flex>
-        </div>
-    </div>
-</section>
-<section layout="column" layout-align="center stretch">
+<h1>header</h1>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <div flex="20" layout="row" layout-align="space-around stretch"
-         class="md-primary-bg md-hue-3 ">
-        <div flex></div>
-        <div flex="80" layout="column" layout-align="center center" class="clear-bg glass-global" ak-frosted-glass>
-            <span class="md-headline">WebSocket Example</span>
-
-            <md-input-container>
-                <label>Compose Message</label>
-                <input ng-model="vm.userInput">
-            </md-input-container>
-            <md-input-container>
-                <label>Click the button below to make a sample request.</label>
-                <md-button ng-click="vm.sendMsg()">SEND</md-button>
-            </md-input-container>
-            <p>
-            <pre>
-                {{ vm.msgs | json }}
-            </pre>
-            </p>
-
-            <span class="md-title">
-                Web Socket Status:
-            </span>
-            <span>
-                {{ vm.ws.$status() }}
-            </span>
-
-            <span class="md-subhead">
-                Close Connection
-            </span>
-            <md-button ng-click="vm.closeWsCon()">
-                Disconnect
-            </md-button>
-
-            <span class="md-subhead">
-                Open Connection
-            </span>
-            <md-button ng-click="vm.openWsCon()">
-                Connect
-            </md-button>
-
-
-            <span class="md-subhead">
-                Enable Push Notifications
-            </span>
-            <md-button
-                    ng-click="vm.sendVanillaPushNotification('Push notifications have been activated!')">
-                Request Permission
-            </md-button>
-
-        </div>
-        <div flex>
-
-        </div>
-    </div>
-</section>
-
+<div layout="row" layout-align="space-around stretch">
+	
+	<span  flex="10">
+	</span>
+	<md-card md-theme-watch  flex="80" style="background-color:white; min-height:900px">
+		inner content goes here
+	</md-card>
+	<span flex="10">
+	</span>
+</div>

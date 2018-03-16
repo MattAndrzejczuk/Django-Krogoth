@@ -44,7 +44,7 @@ To give us the result:
             for (var j = 0; j < lineCount; j++) {
                 var temp = editorModel.getDoc().getLine(j);
 
-                const codeLinesArray = (temp.match(/(vm.)(.+)(?==)()/g) || []);
+                const codeLinesArray = (temp.match(/(vm.)(.+)(?==|\[)()/g) || []);
                 const count = codeLinesArray.length;
 
                 var lenOfThisMatch = 0;

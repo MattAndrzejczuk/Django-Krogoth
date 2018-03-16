@@ -81,6 +81,7 @@ save changes to filesystem using URL:
         vm.buildBreadCrumbs = buildBreadCrumbs;
         vm.sideNavLocked = true;
 
+        vm.beautifyCode = beautifyCode;
 
 
         /// I.
@@ -567,7 +568,7 @@ save changes to filesystem using URL:
         }
 
         function highlightCollectedVMs() {
-            syntaxAnalyzePropertiesVM.highlightCurrentDocument();
+            syntaxAnalyzePropertiesVM.highlightCurrentDocument(vm.editorModel);
         }
         /* △ △ △ RELOCATE ME TO A SEPARATE SERVICE △ △ △ */
 
@@ -690,6 +691,9 @@ save changes to filesystem using URL:
         /* ⬆︎ ⬆︎ ⬆︎ RELOCATE ME TO A SEPARATE SERVICE ⬆︎ ⬆︎ ⬆︎ */
 
 
+        function beautifyCode() {
+            vm.editorModel.execCommand("indentAuto");
+        }
 
 
 

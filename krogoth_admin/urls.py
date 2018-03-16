@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from rest_framework.routers import DefaultRouter
 from krogoth_admin.views import UncommitedSQLViewSet, SaveSQLToFileSystemView
 from krogoth_admin.views_filesystem import RenameService, CreateService, RenameDirective, \
-    CreateDirective, RenameTemplate, CreateTemplate
+    CreateDirective, RenameTemplate, CreateTemplate, CreateNewMVCView
 
 
 router = DefaultRouter()
@@ -14,6 +14,8 @@ urlpatterns = [
     url(r'^KrogothAdministration/', include(router.urls)),
 
     url(r'^SaveSQLToFileSystem/$', SaveSQLToFileSystemView.as_view(), name='Save SQL To File System'),
+
+    url(r'^createNewMasterViewController/$', CreateNewMVCView.as_view(), name='Create New MVC View'),
 
     url(r'^renameAngularJSService/$', RenameService.as_view(), name='Rename AngularJS Service'),
     url(r'^createAngularJSService/$', CreateService.as_view(), name='Create AngularJS Service'),
