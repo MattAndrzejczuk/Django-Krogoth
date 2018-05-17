@@ -137,7 +137,7 @@ class CreateNewMVCView(APIView):
             ico.save()
             app_obj.icon = ico
 
-        app_obj.category = cat_obj
+        app_obj.category = subcat_obj
         app_obj.is_lazy = is_lazy
 
         self.create_master_file(named=name,ext="html",with_contents=app_obj.view_html,category=cat_,

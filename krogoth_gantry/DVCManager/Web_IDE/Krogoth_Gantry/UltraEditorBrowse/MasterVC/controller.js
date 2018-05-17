@@ -38,7 +38,7 @@
 
         vm.openBottomSheet = openBottomSheet;
 
-
+        vm.querySubCatsWithParent = querySubCatsWithParent;
 
 
         function onInit() {
@@ -53,6 +53,10 @@
         vm.mvcSubCatOptions = [];
         vm.mvcCatOptions = [];
 
+        vm.selectedCategoryWizardName = "";
+        vm.categoryWizardSelected = "EXISTING";
+        vm.subCategoryWizardSelected = "NEW";
+
         vm.submitCreateNewMVC = submitCreateNewMVC;
         vm.saveUncommitedSQLToFilesystem = saveUncommitedSQLToFilesystem;
 
@@ -63,7 +67,7 @@
         function submitCreateNewMVC() {
             const restPayloadNewMVC = {
                 "name": vm.mvcFormName,
-                "cat": vm.mvcCatName,
+                "cat": vm.selectedCategoryWizardName,
                 "subcat": vm.mvcSubCatName,
                 "weight": 5,
                 "is_lazy": 0,
@@ -95,7 +99,36 @@
         }
 
 
+        function querySubCatsWithParent() {
 
+            $log.info("GETTING PARENTS...");
+            $log.log(JSON.parse(vm.mvcCat));
+            $log.info("/krogoth_gantry/viewsets/Category/?id=&name=&parent__id=" + JSON.parse(vm.mvcCat)['id']);
+            vm.mvcSubCatOptions = [];
+
+            vm.selectedCategoryWizardName = JSON.parse(vm.mvcCat)['name'];
+
+            $http({
+                method: 'GET',
+                url: "/krogoth_gantry/viewsets/Category/?id=&name=&parent__id=" + JSON.parse(vm.mvcCat)['id']
+            }).then(function successCallback(response) {
+                //deferred.resolve(response.data);
+                const results = response.data.results;
+                vm.masters = response.data;
+
+
+                for (var i = 0; i < results.length; i++) {
+                    const parentId = results[i].parent;
+                    $log.log("HERE's THE PARENT: " + parentId);
+                    $log.log(results[i]);
+                    $log.log(results[i].name);
+                    vm.mvcSubCatOptions.push(results[i]);
+                }
+
+            }, function errorCallback(response) {
+                //deferred.reject(response);
+            });
+        }
 
 
         function getUncommitedSQL() {
@@ -161,7 +194,7 @@
                             vm.mvcCatOptions.push(allCategories[i]);
                         }
                     } else {
-                        vm.mvcSubCatOptions.push(allCategories[i]);
+                        ///vm.mvcSubCatOptions.push(allCategories[i]);
                     }
                 }
 

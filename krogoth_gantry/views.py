@@ -124,8 +124,8 @@ class KrogothGantryCategorySerializer(AbstractKrogothSerializer):
 class KrogothGantryCategoryViewSet(viewsets.ModelViewSet):
     queryset = KrogothGantryCategory.objects.all()
     serializer_class = KrogothGantryCategorySerializer
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('^name',)
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('id', 'name', 'parent__id')
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

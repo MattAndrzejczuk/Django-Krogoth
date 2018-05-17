@@ -1,16 +1,16 @@
-<!-- Unsaved Frontend -->
+<!-- Unsaved Frontend --> 
         <table class="simple blur-content-secondary" ms-responsive-table="">
             <tbody>
             <tr>
-                <td>name</td>
-                <td>editor</td>
-                <td>modified</td>
+                <td><span md-colors="{color:'primary'}">name</span></td>
+                <td><span md-colors="{color:'primary'}">editor</span></td>
+                <td><span md-colors="{color:'primary'}">modified</span></td>
             </tr>
             <tr ng-repeat="chng in vm.serverSideChanges">
-                <td>{{ chng.name }}</td>
-                <td>{{ chng.edited_by.base_user.username }}</td>
-                <td>{{ chng.date_created | date : short }}</td>
+                <td><span md-colors="{color:'accent'}">{{ chng.name }}</span></td>
+                <td><span md-colors="{color:'accent'}">{{ chng.edited_by.base_user.username }}</span></td>
+                <td><span md-colors="{color:'accent'}">{{ chng.date_created | date : short }}</span></td>
             </tr>
             </tbody>
         </table>
-		<!--/Unsaved Frontend -->
+<!--/Unsaved Frontend -->

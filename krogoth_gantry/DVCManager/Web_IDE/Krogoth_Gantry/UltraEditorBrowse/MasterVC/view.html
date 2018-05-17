@@ -12,7 +12,7 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;
 	</span>
 
-	<div flex="70" flex-sm="70" flex-xs="70" ng-cloak>
+	<div flex ng-cloak>
 		<md-grid-list
 					  md-cols="2" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="6" md-cols-gt-lg="8"
 					  md-row-height-gt-md="1:1" md-row-height="1:1"
@@ -47,16 +47,18 @@
 
 
 	<span>
-		...
+		&nbsp;&nbsp;&nbsp;
 	</span>
 
 
 
 	<div flex="30" flex-sm="30" flex-xs="30">
-		<md-button ng-click="vm.saveUncommitedSQLToFilesystem()"  
-				   ng-if="vm.serverSideChanges.length > 0">
-			Save All To Filesystem
-		</md-button>
+		<div layout="row" layout-margin layout-padding>
+			<!--<span flex="5">&nbsp;</span>-->
+			<button class="btn btn-outline-primary" ng-click="vm.saveUncommitedSQLToFilesystem()" ng-if="vm.serverSideChanges.length > 0">
+				Save All To Filesystem
+			</button>
+		</div>
 		<!-- Unsaved Frontend -->
 		<span  ng-include= "'/moho_extractor/NgIncludedHtml/?name=unsavedFrontendSidebar'"></span>
 		<!--/Unsaved Frontend -->
