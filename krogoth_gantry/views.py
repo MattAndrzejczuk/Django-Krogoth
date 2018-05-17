@@ -9,7 +9,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from krogoth_gantry.models import KrogothGantrySlaveViewController, \
     KrogothGantryIcon, KrogothGantryCategory, KrogothGantryMasterViewController, KrogothGantryDirective, \
-    KrogothGantryService
+    KrogothGantryService, AKGantryMasterViewController
 
 from rest_framework import viewsets, serializers, generics, filters
 import subprocess
@@ -18,7 +18,7 @@ import django_filters.rest_framework
 from krogoth_gantry.management.commands.installdjangular import bcolors
 from krogoth_admin.models import UncommitedSQL
 from chat.models import JawnUser
-
+from jawn.settings import BASE_DIR
 import json
 
 
@@ -119,6 +119,49 @@ class KrogothGantryCategorySerializer(AbstractKrogothSerializer):
 
         model = KrogothGantryCategory
         fields = ('id', 'name', 'title', 'weight', 'icon', 'parent',)
+
+    def update(self, instance, validated_data):
+        print("ID: " + str(instance.id))
+        is_subcat = True
+        old_references = AKGantryMasterViewController.objects.none()
+        filter_refs = ""
+        replacement_path_part = ""
+        if instance.parent is None:
+            is_subcat = False
+        if is_subcat:
+            print("parent: " + str(instance.parent.name))
+            # krogoth_gantry/DVCManager/Web_Sockets/Advanced/Chat_App/
+            filter_refs = "krogoth_gantry/DVCManager/" + instance.parent.name + "/" + instance.name
+            old_references = AKGantryMasterViewController.objects.filter(path_to_static__icontains=filter_refs)
+            print("OLD NAME: " + BASE_DIR + "/krogoth_gantry/DVCManager/" + instance.parent.name + "/" + instance.name)
+            print("\n\nDiscovered " + str(len(old_references)) + " MVCs that need an update made to their static path.")
+            print("Their old path will be replaced: " + filter_refs)
+
+        for key in validated_data.keys():
+            setattr(instance, key, validated_data[key])
+            # print(bcolors.BOLD + bcolors.blue + "  🛠  " +
+            #       str(type(self)) + " : " + str(key) +
+            #       " \nUPDATED CATEGORY: " + bcolors.ENDC + bcolors.ENDC)
+            if is_subcat:
+                if str(key) == 'name':
+                    replacement_path_part = "krogoth_gantry/DVCManager/" + instance.parent.name + "/" + validated_data['name']
+                    print("With this new path substring   : " + replacement_path_part)
+                    print(
+                        "NEW NAME: " + BASE_DIR + "/krogoth_gantry/DVCManager/" + instance.parent.name + "/" + validated_data['name'])
+
+        for app in old_references:
+            old = app.path_to_static
+            print("Changing " + app.name + "'s path_to_static.")
+            app.path_to_static = old.replace(filter_refs, replacement_path_part)
+            app.save()
+            print("It's new path is now: " + app.path_to_static)
+
+        instance.save()
+        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
+        uncommitedChange = UncommitedSQL.objects.create(name=instance.name,
+                                                        edited_by=jawn_user,
+                                                        krogoth_class="KrogothGantryMasterViewController")
+        return instance
 
 
 class KrogothGantryCategoryViewSet(viewsets.ModelViewSet):

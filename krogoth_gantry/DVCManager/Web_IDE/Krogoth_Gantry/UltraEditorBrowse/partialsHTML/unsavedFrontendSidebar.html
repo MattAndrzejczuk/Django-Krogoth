@@ -5,11 +5,15 @@
                 <td><span md-colors="{color:'primary'}">name</span></td>
                 <td><span md-colors="{color:'primary'}">editor</span></td>
                 <td><span md-colors="{color:'primary'}">modified</span></td>
+				<td><span md-colors="{color:'primary'}">status</span></td>
             </tr>
             <tr ng-repeat="chng in vm.serverSideChanges">
                 <td><span md-colors="{color:'accent'}">{{ chng.name }}</span></td>
                 <td><span md-colors="{color:'accent'}">{{ chng.edited_by.base_user.username }}</span></td>
                 <td><span md-colors="{color:'accent'}">{{ chng.date_created | date : short }}</span></td>
+				<td>
+					<span ng-if="chng.has_error === true">⚠️<md-tooltip md-direction="top">{{chng.status}}</md-tooltip></span>
+				</td>
             </tr>
             </tbody>
         </table>

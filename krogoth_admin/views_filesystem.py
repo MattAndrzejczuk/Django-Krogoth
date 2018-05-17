@@ -31,7 +31,7 @@ class CreateNewMVCView(APIView):
             os.makedirs(sys_path)
         pass
 
-    def create_master_file(self, named: str, ext: str, with_contents: str, category: str, subcategory: str, kind: str):
+    def create_master_file(self, named: str, ext: str, with_contents: str, category: str, subcategory: str, kind: str) -> str:
         p1 = BASE_DIR + "/krogoth_gantry/DVCManager/" + category + "/" + subcategory
         sys_path = p1 + "/" + named + "/MasterVC/" + kind + "." + ext
         print(sys_path)
@@ -45,6 +45,7 @@ class CreateNewMVCView(APIView):
         f = open(sys_path, "w+")
         f.write(with_contents)
         f.close()
+        return p1 + "/" + named + "/"
 
     def create_subcat_json_file(self, json_dump: str, category: str, subcategory: str):
         sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/" + category + "/" + subcategory + "/subcat.json"
@@ -140,8 +141,7 @@ class CreateNewMVCView(APIView):
         app_obj.category = subcat_obj
         app_obj.is_lazy = is_lazy
 
-        self.create_master_file(named=name,ext="html",with_contents=app_obj.view_html,category=cat_,
-                                subcategory=subcat,kind="view")
+        root_mvc_path = self.create_master_file(named=name,ext="html",with_contents=app_obj.view_html,category=cat_, subcategory=subcat,kind="view")
         self.create_master_file(named=name, ext="js", with_contents=app_obj.module_js, category=cat_,
                                 subcategory=subcat, kind="module")
         self.create_master_file(named=name, ext="js", with_contents=app_obj.controller_js, category=cat_,
@@ -150,7 +150,9 @@ class CreateNewMVCView(APIView):
                                 subcategory=subcat, kind="style")
         self.create_master_file(named=name, ext="css", with_contents=app_obj.themestyle, category=cat_,
                                 subcategory=subcat, kind="themestyle")
-        print("\n\n\n\n\n")
+        print("\n")
+        print(root_mvc_path)
+        app_obj.path_to_static = root_mvc_path
         app_obj.save()
 
         return Response({"result": "success"}, status=201)

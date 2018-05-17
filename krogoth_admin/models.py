@@ -26,6 +26,8 @@ class UncommitedSQL(models.Model):
     name = models.CharField(max_length=255)
     krogoth_class = models.CharField(max_length=125)
     edited_by = models.ForeignKey(JawnUser, on_delete=models.CASCADE)
+    has_error = models.BooleanField(default=False)
+    status = models.CharField(max_length=255, null=True, blank=True)
 
     @classmethod
     def does_exist(cls, name: str, krogoth_class: str) -> bool:
@@ -52,6 +54,13 @@ class UncommitedSQL(models.Model):
     def finish_and_remove(cls, name: str):
         destroy = cls.objects.get(name=name)
         destroy.delete()
+
+    @classmethod
+    def report_failure(cls, for_record_named: str, error_info: str):
+        broken = cls.objects.get(name=for_record_named)
+        broken.has_error = True
+        broken.status = error_info
+        broken.save()
 
     def save(self, *args, **kwargs):
         pre_existing = UncommitedSQL.objects.filter(name=self.name)

@@ -11,8 +11,8 @@
         vm.primaryDocs = ['FBITest', 'LazarusMainMenu', 'uploadRepository', 'home'];
 
         // Master View Controller Setup
-        vm.codemirrorLoaded = codemirrorLoaded;
-        vm.editorModel = {};
+        //vm.codemirrorLoaded = codemirrorLoaded;
+        //vm.editorModel = {};
         vm.getMasterViewControllerDetail = getMasterViewControllerDetail;
         vm.didClickInit = didClickInit;
 
@@ -234,6 +234,7 @@
         }
 
 
+        /*
         function codemirrorLoaded(_editor) {
             var _doc = _editor.getDoc();
             _editor.focus();
@@ -247,7 +248,7 @@
             });
             vm.editorModel = _editor;
         }
-
+		*/
 
         function didClickInit() {
             vm.getMasterViewControllerDetail(1);
@@ -268,6 +269,7 @@
             });
         }
 
+        /*
         vm.editorOptions = {
             lineWrapping: true,
             lineNumbers: true,
@@ -276,6 +278,7 @@
             indentUnit: 4,
             indentWithTabs: true
         };
+		*/
         ////// -----------
     }
 })();
