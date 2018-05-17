@@ -1,0 +1,69 @@
+<md-bottom-sheet class="md-grid" layout="column">
+
+
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h1 style="color:black">Create New Master View Controller</h1>
+		</div>
+	</md-toolbar>
+
+	<div ng-cloak style="color:black" layout="row">
+
+		<md-input-container class="md-block" flex="50">
+			<label>Name For New MVC</label>
+			<input md-maxlength="50" required md-no-asterisk name="MVC Name" ng-model="vm.mvcFormName">
+			<div ng-messages="projectForm.description.$error">
+				<div ng-message="required">This is required.</div>
+				<div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+			</div>
+		</md-input-container>
+
+		<span flex="10"></span>
+		
+		<md-input-container class="md-block" flex="20">
+			<div layout="row" layout-align="space-between center">
+
+				<!-- SELECT CATEGORY -->
+				<md-select ng-model="vm.mvcCatName" 
+						   placeholder="CATEGORY"
+						   class="md-no-underline">
+					<md-option ng-repeat="cat in vm.mvcCatOptions" value="{{cat.name}}">{{cat.title}}</md-option>
+				</md-select>
+				<!--/SELECT CATEGORY -->
+
+
+			</div>
+		</md-input-container>
+
+		<md-input-container class="md-block" flex="20">
+			<div layout="row" layout-align="space-between center">
+
+
+				<!-- SELECT SUBCATEGORY -->
+				<md-select ng-model="vm.mvcSubCatName" 
+						   placeholder="SUBCATEG"
+						   class="md-no-underline">
+					<md-option ng-repeat="subcat in vm.mvcSubCatOptions" value="{{subcat.name}}">{{subcat.title}}</md-option>
+				</md-select>
+				<!--/SELECT SUBCATEGORY -->
+
+
+			</div>
+		</md-input-container>
+
+	</div>
+	
+	
+	<div layout="row">
+		<md-button class="md-warn md-block" ng-click="vm.addCatMenuIsOpen = !vm.addCatMenuIsOpen">
+			Cancel
+		</md-button>
+		<md-button class="md-primary md-block" ng-click="vm.submitCreateNewMVC()">
+			Create
+		</md-button> 
+		
+		 {{vm.mvcSubCatName}}
+		 {{vm.mvcCatName}}
+	</div
+
+</md-bottom-sheet

@@ -1,0 +1,36 @@
+<div class="windowvmp moveToFront2" ng-if="vm.isDisplayingPropModal">
+	<div layout="column" 
+			 layout-align="space-around stretch" 
+			 class="windowosxcontainer"
+			 style="background-color:rgba(0,0,0,0); overflow: auto; margin-top:18px">
+			
+		<button ng-click="vm.scanAllVms()" class="btn">Scan VMs</button>
+		
+				<div>					 					
+					<pre style="height: 872px">
+						{{ vm.scannedVMs | json }}
+					</pre> 										
+				</div>
+	
+	</div>	  
+</div>
+
+
+
+<style>
+	
+	.windowvmp {
+		background-color: rgba(225,225,225,0.85);
+	}
+	
+	.moveToFront2 {
+	
+		z-index: 1000;
+		width: 800px;
+		height: 900px;
+		position: fixed;
+		left: 200px;
+		top: 100px;
+	 
+	}
+</style>

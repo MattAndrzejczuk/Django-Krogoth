@@ -1,0 +1,16 @@
+<!-- Unsaved Frontend -->
+        <table class="simple blur-content-secondary" ms-responsive-table="">
+            <tbody>
+            <tr>
+                <td>name</td>
+                <td>editor</td>
+                <td>modified</td>
+            </tr>
+            <tr ng-repeat="chng in vm.serverSideChanges">
+                <td>{{ chng.name }}</td>
+                <td>{{ chng.edited_by.base_user.username }}</td>
+                <td>{{ chng.date_created | date : short }}</td>
+            </tr>
+            </tbody>
+        </table>
+		<!--/Unsaved Frontend -->

@@ -1,76 +1,77 @@
-<div style="color: white;">
-    <div class="md-display-1">Select Catagory</div>
-
-</div>
-
-
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<div class="md-display-1" style="color:white">Select Catagory</div>
+	</div>
+</md-toolbar>
+<span>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+</span>
 <div layout="row">
-    <div flex="20">
 
-    </div>
-    <div flex="60" ng-cloak>
-        <md-grid-list
-                md-cols="1" md-cols-sm="1" md-cols-md="2" md-cols-gt-md="3" md-cols-gt-lg="4"
-                md-row-height-gt-md="1:1" md-row-height="1:1"
-                md-gutter="18px" md-gutter-gt-sm="14px">
-            <md-grid-tile ng-repeat="tile in vm.objectList"
-                          ng-mouseenter="tile.hidden = false"
-                          ng-mouseleave="tile.hidden = true"
-                          md-rowspan="1"
-                          md-colspan="1"
-                          md-colspan-sm="1"
-                          md-colspan-xs="1"
-                          class="blackbg"
-                          style="border-radius:25px"
-                          md-whiteframe="3">
-                <div layout-fill flex-offset="10" style="border-radius:25px">
-                    <div layout-fill flex-offset="10" layout="column"
-                         style="border-radius:25px">
-                        <span flex="30" layout-align="center center">
-							<i style="color:white; max-width: 45px; max-height:42px; font-size: 11em" 
-								   ng-if="tile.icon.prefix !== 'FA' && tile.icon.prefix !== 'ENTYPO'"
-								   class="{{tile.icon.code}}">									
-								</i>
-								<span ng-if="tile.icon.prefix === 'FA'"> 
-								<i style="color:white;max-height:42px; font-size: 1.5em"
-								   
-								   class="{{tile.icon.code}}">									
-								</i>
-								</span>
-								<i style="color:white;max-height:42px; font-size: 1.5em"
-								   ng-if="tile.icon.prefix === 'ENTYPO'" 
-								   class="{{tile.icon.code}}">									
-							</i>
-                            <md-button class="md-fab md-green-A700-bg"
-                                       ng-show="tile.hidden === false"
-                                       ng-click="vm.selectListItem(tile.id)"
-                                       layout-align="center center">
-                                <i class="mdi mdi-arrow-right-bold-circle-outline"></i>
-                            </md-button>
-                        </span>
-                        <div flex="50" layout-wrap layout="row">
-                            <span editable-text="tile.name"
-                                  layout-margin
-                                  layout-align="center center"
-                                  onaftersave="vm.updateName(tile)">
-											<strong>{{ tile.name }}</strong>
-							</span>
-                            <span flex="20"></span>
-                        </div>
-                    </div>
-                </div>
-                <md-grid-tile-footer layout-padding style="border-radius: 0px 0px 25px 25px;">
-                    <span editable-text="tile.title"
-                          layout-wrap
-                          onaftersave="vm.updateTitle(tile)"
-                          layout="column">
-                        {{ tile.title }}
-                    </span>
-                </md-grid-tile-footer>
-            </md-grid-tile>
-        </md-grid-list>
-    </div>
-    <div flex="20">
+	<span>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	</span>
 
-    </div>
+	<div flex="70" flex-sm="70" flex-xs="70" ng-cloak>
+		<md-grid-list
+					  md-cols="2" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="6" md-cols-gt-lg="8"
+					  md-row-height-gt-md="1:1" md-row-height="1:1"
+					  md-gutter="18px" md-gutter-gt-sm="14px">
+			<md-grid-tile ng-repeat="tile in vm.objectList"
+						  ng-mouseenter="tile.hidden = false"
+						  ng-mouseleave="tile.hidden = true"
+						  md-rowspan="1"
+						  md-colspan="1"
+						  md-colspan-sm="1"
+						  md-colspan-xs="1"
+						  class="blur-content-primary"
+						  style="border-radius:25px"
+						  md-whiteframe="3">
+
+				<!-- Category Tile -->
+				<span ng-if="tile.name !== 'AddMVC'"
+					  ng-include= "'/moho_extractor/NgIncludedHtml/?name=categoryTileBrowser'">
+				</span>
+				<!--/Category Tile -->
+
+				<!-- Add MVC Tile -->
+				<span ng-if="tile.name === 'AddMVC'"
+					  ng-include= "'/moho_extractor/NgIncludedHtml/?name=addTileMVCMain'">
+				</span>
+				<!--/Add MVC Tile -->
+			</md-grid-tile>
+		</md-grid-list>
+	</div>
+
+
+
+
+	<span>
+		...
+	</span>
+
+
+
+	<div flex="30" flex-sm="30" flex-xs="30">
+		<md-button ng-click="vm.saveUncommitedSQLToFilesystem()"  
+				   ng-if="vm.serverSideChanges.length > 0">
+			Save All To Filesystem
+		</md-button>
+		<!-- Unsaved Frontend -->
+		<span  ng-include= "'/moho_extractor/NgIncludedHtml/?name=unsavedFrontendSidebar'"></span>
+		<!--/Unsaved Frontend -->
+	</div>
+
+
+
+
+	<span>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	</span>
+
+
 </div>
+
+
+<span ng-if="vm.addCatMenuIsOpen"
+	  ng-include= "'/moho_extractor/NgIncludedHtml/?name=browseIDEBottomSheet'"></span>

@@ -1,9 +1,22 @@
+/* 
+
+save changes to filesystem using URL:
+
+
+ [ GET ]
+ 
+ /krogoth_admin/SaveSQLToFileSystem/
+
+
+*/
+
+
 (function() {
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
     function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu,
-        TemplateCRUD, DirectiveCRUD,
+        TemplateCRUD, DirectiveCRUD, syntaxAnalyzePropertiesVM,
         $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync, fileNameChanger, $mdDialog,
         BatchRequestsAsync, SaveToSQL, $mdSidenav, BreadCrumbsIDE, $timeout, codeHighlightIDE) {
         var vm = this;
@@ -68,6 +81,7 @@
         vm.buildBreadCrumbs = buildBreadCrumbs;
         vm.sideNavLocked = true;
 
+        vm.beautifyCode = beautifyCode;
 
 
         /// I.
@@ -302,7 +316,7 @@
 
         function setThemeBasedOnClass(_class) {
             if (_class === "ViewHTML") {
-                vm.editorModel.setOption("theme", "dracula");
+                vm.editorModel.setOption("theme", "isotope");
             } else if (_class === "ControllerJS") {
                 vm.editorModel.setOption("theme", "colorforth");
             } else if (_class === "ModuleJS") {
@@ -505,9 +519,24 @@
             $mdSidenav(sidenavId).toggle();
         }
 
+
+        /* ▽ ▽ ▽ RELOCATE ME TO A SEPARATE SERVICE ▽ ▽ ▽ */
+        vm.isDisplayingPropModal = false;
+        vm.scannedVMs = [];
+        vm.scanAllVms = scanAllVms;
+        vm.highlightCollectedVMs = highlightCollectedVMs;
+
+        function scanAllVms() {
+            /// const code = vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode;
+            syntaxAnalyzePropertiesVM.getAllVms(vm.editorModel)
+                .then(function(detectedVMs) {
+                    vm.scannedVMs = detectedVMs;
+                });
+        }
+
+
         vm.highlightSyntax = highlightSyntax;
         vm.highlightSyntaxGetHtmlProperties = highlightSyntaxGetHtmlProperties;
-
 
         function highlightSyntax() {
             var lineCount = vm.editorModel.getDoc().lineCount();
@@ -531,7 +560,6 @@
             }
         }
 
-
         function highlightSyntaxGetHtmlProperties() {
             codeHighlightIDE.colorNgClick1(vm.editorModel)
                 .then(function(coloredEditorModel) {
@@ -539,6 +567,10 @@
                 });
         }
 
+        function highlightCollectedVMs() {
+            syntaxAnalyzePropertiesVM.highlightCurrentDocument(vm.editorModel);
+        }
+        /* △ △ △ RELOCATE ME TO A SEPARATE SERVICE △ △ △ */
 
 
         vm.loadOSXDoc = loadOSXDoc;
@@ -583,7 +615,6 @@
 
 
         /* ⬇︎ ⬇︎ ⬇︎ RELOCATE ME TO A SEPARATE SERVICE ⬇︎ ⬇︎ ⬇︎ */
-
         function createNewComponentClick(ev, treeRoot) {
             var siblings = treeRoot.nodes;
 
@@ -658,6 +689,14 @@
                 });
         }
         /* ⬆︎ ⬆︎ ⬆︎ RELOCATE ME TO A SEPARATE SERVICE ⬆︎ ⬆︎ ⬆︎ */
+
+
+        function beautifyCode() {
+            vm.editorModel.execCommand("indentAuto");
+        }
+
+
+
 
     }
 })();

@@ -46,7 +46,7 @@
                         "line": j,
                         "ch": n + lenOfThisMatch
                     }, {
-                        "css": "color : #A459FF; font-weight:bold;"
+                        "css": "color : #A459FF; font-weight:bold; background-color: rgba(0, 43, 114, 0.9);"
                     });
                     step += 1;
                 }

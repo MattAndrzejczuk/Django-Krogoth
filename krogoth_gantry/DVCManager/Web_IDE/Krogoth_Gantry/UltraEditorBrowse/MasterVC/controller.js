@@ -2,7 +2,8 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
-    function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu, RESTfulUltraBrowser, $q) {
+    function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu, constAddNewMVCTile,
+        RESTfulUltraBrowser, $q, $mdBottomSheet) {
         var vm = this;
 
 
@@ -18,6 +19,9 @@
         vm.objectList = [];
 
 
+        vm.serverSideChanges = [];
+        vm.getUncommitedSQL = getUncommitedSQL;
+
 
         vm.$onInit = onInit;
         vm.getCategories = getCategories;
@@ -32,10 +36,55 @@
         vm.selectedCategory = $state.params.categoryId;
 
 
+        vm.openBottomSheet = openBottomSheet;
+
+
+
+
         function onInit() {
             vm.getCategories();
+            vm.getUncommitedSQL();
         }
 
+        vm.addCatMenuIsOpen = false;
+        vm.mvcFormName = "";
+        vm.mvcCatName = "";
+        vm.mvcSubCatName = "";
+        vm.mvcSubCatOptions = [];
+        vm.mvcCatOptions = [];
+
+        vm.submitCreateNewMVC = submitCreateNewMVC;
+        vm.saveUncommitedSQLToFilesystem = saveUncommitedSQLToFilesystem;
+
+        function openBottomSheet() {
+            vm.addCatMenuIsOpen = !vm.addCatMenuIsOpen;
+        }
+
+        function submitCreateNewMVC() {
+            const restPayloadNewMVC = {
+                "name": vm.mvcFormName,
+                "cat": vm.mvcCatName,
+                "subcat": vm.mvcSubCatName,
+                "weight": 5,
+                "is_lazy": 0,
+                "app_icon": "tdtdtd",
+                "app_icon_prefix": "tdtdtd",
+                "cat_icon": "tdtdtd",
+                "cat_icon_prefix": "tdtdtd",
+                "subcat_icon": "tdtdtd",
+                "subcat_icon_prefix": "tdtdtd"
+            };
+            $http({
+                method: 'POST',
+                data: restPayloadNewMVC,
+                url: "/krogoth_admin/createNewMasterViewController/"
+            }).then(function successCallback(response) {
+                //deferred.resolve(response.data);
+                vm.masters = response.data;
+            }, function errorCallback(response) {
+                //deferred.reject(response);
+            });
+        }
 
         function updateName(tile) {
             vm.putCatagory(tile);
@@ -44,6 +93,56 @@
         function updateTitle(tile) {
             vm.putCatagory(tile);
         }
+
+
+
+
+
+        function getUncommitedSQL() {
+            //var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: "/krogoth_admin/KrogothAdministration/UncommitedSQL/"
+            }).then(function successCallback(response) {
+                /// Success
+                //deferred.resolve(response.data);
+                $log.log("response.data");
+                $log.debug(response.data);
+                if (response.data.results) {
+                    var rawResponse = response.data.results;
+                    for (var i = 0; i < rawResponse.length; i++) {
+                        vm.serverSideChanges.push(rawResponse[i]);
+                        $log.info(i);
+                    }
+                } else {
+                    $log.log("Failed to get UncommitedSQL, admin access required.");
+                }
+
+            }, function errorCallback(response) {
+                /// Fail
+                //deferred.reject(response);
+            });
+            //return deferred.promise;
+        }
+
+
+        function saveUncommitedSQLToFilesystem() {
+            //var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: "/krogoth_admin/SaveSQLToFileSystem/"
+            }).then(function successCallback(response) {
+                /// Success
+                //deferred.resolve(response.data);
+                vm.serverSideChanges = [];
+                vm.getUncommitedSQL();
+            }, function errorCallback(response) {
+                /// Fail
+                //deferred.reject(response);
+            });
+            //return deferred.promise;
+        }
+
 
         function getCategories() {
             //var deferred = $q.defer();
@@ -57,9 +156,20 @@
                 var allCategories = response.data.results;
                 for (var i = 0; i < allCategories.length; i++) {
                     if (allCategories[i].parent === null) {
-                        vm.objectList.push(allCategories[i]);
+                        if (allCategories[i].name !== "DVCManager") {
+                            vm.objectList.push(allCategories[i]);
+                            vm.mvcCatOptions.push(allCategories[i]);
+                        }
+                    } else {
+                        vm.mvcSubCatOptions.push(allCategories[i]);
                     }
                 }
+
+                constAddNewMVCTile.makeTileJson()
+                    .then(function(t) {
+                        vm.objectList.push(t);
+                    });
+
             }, function errorCallback(response) {
                 /// Fail
                 //deferred.reject(response);

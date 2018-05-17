@@ -1,6 +1,7 @@
 from django.contrib import admin
 from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryService, KrogothGantryDirective, \
-    KrogothGantrySlaveViewController, KrogothGantryIcon, KrogothGantryCategory, AKGantryMasterViewController
+    KrogothGantrySlaveViewController, KrogothGantryIcon, KrogothGantryCategory, \
+    AKGantryMasterViewController
 
 
 class KrogothGantryMasterViewControllerAdmin(admin.ModelAdmin):

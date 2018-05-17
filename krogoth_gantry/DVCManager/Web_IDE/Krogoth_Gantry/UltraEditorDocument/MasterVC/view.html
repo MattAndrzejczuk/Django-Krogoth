@@ -1,16 +1,19 @@
-<div ng-include="'/moho_extractor/NgIncludedHtml/?name=ctrlStyles.html'">
+<div ng-include="'/moho_extractor/NgIncludedHtml/?name=ctrlStyles'">
 </div>
 
 <!-- This is a hack to resolve angular tree data directive bug -->
 <!-- ng-include does nothing special here except that it creates an alias named "nodes_renderer.html" -->
 <script type="text/ng-template" id="nodes_renderer.html">
-	<span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_07.html'"></span>
+	<span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_07'"></span>
 </script>
 <!-- Import some extra themes: -->
-<span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_56.html'"></span>
+<span ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_56'"></span>
 
 <!-- Import window modal HTML: -->
-<span ng-if="vm.treeModalIsVisible" ng-include= "'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_32.html'"></span> 
+<span ng-if="vm.treeModalIsVisible" ng-include= "'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_32'"></span>
+
+<!-- VM property viewer: -->
+<span ng-include="'/moho_extractor/NgIncludedHtml/?name=controllerVmProperties'"></span>
 
 
 <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
@@ -19,8 +22,10 @@
 
 
 
-<div style="height: 22px; max-height: 22px; min-height: 22px"  class="headerosx" layout="row">
-    {{vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class}}
+<div style="height: 22px; max-height: 22px; min-height: 22px; background-color:white"  
+	 class="headerosx" 
+	 layout="row">
+    {{vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class}}&nbsp;&nbsp;
 	<span ng-if="-1 !== vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name">
 	{{vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name}}
 	</span>
@@ -75,7 +80,7 @@
                     layout-fill>
                     <li ng-repeat="node in vm.treeData"
                         ui-tree-node
-                        ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_07.html'">
+                        ng-include="'/moho_extractor/NgIncludedHtml/?name=partial_tmpl_07'">
                     </li>
                 </ol> 
                 <!-- end slipsum code -->
@@ -131,46 +136,9 @@
 			
 			<!-- CONTENT TOOLBAR -->
             <div layout="row"
-				 style="margin-top: 22px;"
-                 layout-align="start center">				
-                <md-button class="md-icon-button sidenav-toggle" 
-						   ng-click="vm.toggleSidenav('sidenav')"
-                           aria-label="Toggle left sidenav">
-                    <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
-                </md-button>
-				
-				<h1 style="color: white" ng-if="vm.oldDebugInformation2">
-                    <span>class:</span>
-                    <span class="h1 badge badge-primary">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class }}
-					</span>
-                    <span>name:</span>
-                    <span class="h1 badge badge-success">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name }}
-					</span>
-                    <span ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title !== vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class">title:</span>
-                    <span class="h1 badge badge-danger"
-                          ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title !== vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title }}
-					</span>
-                </h1>
-				
-				
-				
-                <button class="toolbar-button" ng-click="vm.loadOSXDoc()">
-					Load OS X Theme
-				</button>								
-				
-                <button class="toolbar-button" ng-click="vm.highlightSyntaxGetHtmlProperties()">
-					HTML ng syntax
-				</button>
-				
-				<input type="text" placeholder="Rename Service" ng-model="vm.renameObjectForm.new">
-                <button class="toolbar-button" ng-click="vm.renameObjectSubmit()">
-					SUBMIT
-				</button>				
-				
-            </div>
+				 ng-include="'/moho_extractor/NgIncludedHtml/?name=codeToolbarIDE'"
+                 layout-align="start center">
+			</div>
             <!-- / CONTENT TOOLBAR -->
 			
 			
@@ -209,6 +177,14 @@
 
 
 <style>
+	
+	.ide-tool-btn {
+	
+		line-height: 1.1 !important;
+	
+	}
+	
+	
     button:hover {
         color: black !important;
     }
@@ -226,4 +202,22 @@
 		font-family: Ubuntu Mono !important; 
 		font-size: 14px !important; 
 	}
+	
+
+/** OVERRIDE SELECTED TEXT HIGHLIGHT COLOR FOR THEMES: **/
+	
+	/* isotope theme */
+	.cm-s-isotope div.CodeMirror-selected {
+		background: #0004FF !important;
+	}
+	/* colorforth theme */
+	.cm-s-colorforth div.CodeMirror-selected {
+		background: #0004FF !important;
+	}
+	/* 3024-night theme */
+	.cm-s-3024-night div.CodeMirror-selected {
+		background: #0004FF !important;
+	}
+	
+/** - - - - - **/
 </style>

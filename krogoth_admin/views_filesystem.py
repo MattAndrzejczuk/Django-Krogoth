@@ -2,11 +2,158 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from rest_framework.permissions import IsAdminUser
-from krogoth_gantry.models import KrogothGantryService, KrogothGantryMasterViewController, KrogothGantryDirective
+from krogoth_gantry.models import KrogothGantryService, KrogothGantryCategory, KrogothGantryIcon, \
+    KrogothGantryMasterViewController, KrogothGantryDirective
 from moho_extractor.models import IncludedHtmlMaster
 from jawn.settings import BASE_DIR
+import json
 import os
 
+
+
+# Generate New MVC
+class CreateNewMVCView(APIView):
+
+    def create_directory(self, named: str):
+        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/" + named
+        print(sys_path)
+        if (os.path.isdir(sys_path)):
+            pass
+        else:
+            os.makedirs(sys_path)
+
+    def create_subdirectory(self, named: str, within: str):
+        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/" + within + "/" + named
+        print(sys_path)
+        if (os.path.isdir(sys_path)):
+            pass
+        else:
+            os.makedirs(sys_path)
+        pass
+
+    def create_master_file(self, named: str, ext: str, with_contents: str, category: str, subcategory: str, kind: str):
+        p1 = BASE_DIR + "/krogoth_gantry/DVCManager/" + category + "/" + subcategory
+        sys_path = p1 + "/" + named + "/MasterVC/" + kind + "." + ext
+        print(sys_path)
+        if not os.path.exists(p1 + "/" + named + "/MasterVC/"):
+            os.makedirs(p1 + "/" + named + "/")
+            os.makedirs(p1 + "/" + named + "/MasterVC/")
+            f = open(p1 + "/" + named + "/Title.txt", "w+")
+            f.write(named.replace("_", " "))
+            f.close()
+        #os.mknod(sys_path)
+        f = open(sys_path, "w+")
+        f.write(with_contents)
+        f.close()
+
+    def create_subcat_json_file(self, json_dump: str, category: str, subcategory: str):
+        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/" + category + "/" + subcategory + "/subcat.json"
+        print(sys_path)
+        f = open(sys_path, "w+")
+        f.write(json_dump)
+        f.close()
+
+    def create_cat_json_file(self, json_dump: str, category: str):
+        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/" + category + "/category.json"
+        print(sys_path)
+        f = open(sys_path, "w+")
+        f.write(json_dump)
+        f.close()
+
+    def post(self, request, format=None):
+        name = str(request.data["name"])
+        cat_ = str(request.data["cat"])
+        subcat = str(request.data["subcat"])
+        weight = int(request.data["weight"])
+        app_icon = str(request.data["app_icon"])
+        app_icon_prefix = str(request.data["app_icon_prefix"])
+        cat_icon = str(request.data["cat_icon"])
+        cat_icon_prefix = str(request.data["cat_icon_prefix"])
+        subcat_icon = str(request.data["subcat_icon"])
+        subcat_icon_prefix = str(request.data["subcat_icon_prefix"])
+        is_lazy = bool(int(request.data["is_lazy"]))
+
+        cat_json = json.dumps({
+            "icon": cat_icon,
+            "prefix": cat_icon_prefix,
+            "weight": weight
+        }, indent=2, sort_keys=True)
+        subcat_json = json.dumps({
+            "icon": subcat_icon,
+            "prefix": subcat_icon_prefix,
+            "weight": weight
+        }, indent=2, sort_keys=True)
+
+        app_obj = KrogothGantryMasterViewController()
+        mvc_already_exists = bool(len(KrogothGantryMasterViewController.objects.filter(name=name)))
+        if mvc_already_exists:
+            return Response({"result": "mvc with that name already exists."}, status=405)
+
+        app_obj = KrogothGantryMasterViewController(name=name, title=name.replace("_", " "))
+
+        cat_exists = bool(len(KrogothGantryCategory.objects.filter(name=cat_)))
+        subcat_exists = bool(len(KrogothGantryCategory.objects.filter(name=subcat)))
+
+        cat_obj = KrogothGantryCategory()
+        subcat_obj = KrogothGantryCategory()
+
+        self.create_directory(named=cat_)
+        self.create_subdirectory(named=subcat, within=cat_)
+
+        if cat_exists:
+            cat_obj = KrogothGantryCategory.objects.get(name=cat_)
+        else:
+            cat_obj = KrogothGantryCategory(name=cat_, title=cat_.replace("_", " "))
+            cat_icon_exists = bool(len(KrogothGantryIcon.objects.filter(code=cat_icon)))
+            if cat_icon_exists:
+                cat_obj.icon = KrogothGantryIcon.objects.get(code=cat_icon)
+            else:
+                ico = KrogothGantryIcon(code=cat_icon, prefix=cat_icon_prefix)
+                ico.save()
+                cat_obj.icon = ico
+            cat_obj.save()
+            self.create_cat_json_file(json_dump=cat_json, category=cat_)
+
+        if subcat_exists:
+            subcat_obj = KrogothGantryCategory.objects.get(name=subcat)
+        else:
+            subcat_obj = KrogothGantryCategory(name=subcat, title=subcat.replace("_", " "))
+            subcat_icon_exists = bool(len(KrogothGantryIcon.objects.filter(code=subcat_icon)))
+            if subcat_icon_exists:
+                subcat_obj.icon = KrogothGantryIcon.objects.get(code=subcat_icon)
+            else:
+                ico = KrogothGantryIcon(code=subcat_icon, prefix=subcat_icon_prefix)
+                ico.save()
+                subcat_obj.icon = ico
+            subcat_obj.parent = cat_obj
+            subcat_obj.save()
+            self.create_subcat_json_file(json_dump=subcat_json, category=cat_, subcategory=subcat)
+
+        app_icon_exists = bool(len(KrogothGantryIcon.objects.filter(code=app_icon)))
+        if app_icon_exists:
+            app_obj.icon = KrogothGantryIcon.objects.get(code=app_icon)
+        else:
+            ico = KrogothGantryIcon(code=app_icon, prefix=app_icon_prefix)
+            ico.save()
+            app_obj.icon = ico
+
+        app_obj.category = cat_obj
+        app_obj.is_lazy = is_lazy
+
+        self.create_master_file(named=name,ext="html",with_contents=app_obj.view_html,category=cat_,
+                                subcategory=subcat,kind="view")
+        self.create_master_file(named=name, ext="js", with_contents=app_obj.module_js, category=cat_,
+                                subcategory=subcat, kind="module")
+        self.create_master_file(named=name, ext="js", with_contents=app_obj.controller_js, category=cat_,
+                                subcategory=subcat, kind="controller")
+        self.create_master_file(named=name, ext="css", with_contents=app_obj.style_css, category=cat_,
+                                subcategory=subcat, kind="style")
+        self.create_master_file(named=name, ext="css", with_contents=app_obj.themestyle, category=cat_,
+                                subcategory=subcat, kind="themestyle")
+        print("\n\n\n\n\n")
+        app_obj.save()
+
+        return Response({"result": "success"}, status=201)
 
 # Services
 class RenameService(APIView):

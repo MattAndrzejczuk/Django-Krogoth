@@ -43,6 +43,60 @@ services from multiple light weight NGINX servers.
 
 
 #Getting Started
+
+###Before You Clone Krogoth
+Docker is required for Krogoth to install and run, follow the steps below for your OS to get Docker up and running.
+####CentOS 7 64-bit
+Add docker repo for the yum package manager:
+```bash
+    $ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+```
+```bash
+    $ sudo yum install docker-ce
+```
+```bash
+    $ sudo systemctl start docker
+```
+
+
+####Ubuntu 16.04 64-bit
+```bash
+    $ sudo apt install curl
+```
+
+```bash
+    $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+
+```bash
+    $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+```
+
+```bash
+    $ sudo apt-get update
+```
+
+```bash
+    $ apt-cache policy docker-ce
+```
+
+```bash
+    $ sudo apt-get install -y docker-ce
+```
+
+
+
+
+#####Verify Successful Docker Installation
+```bash
+    $ sudo docker run hello-world
+```
+
+
+
+
+
+
 Krogoth is intended to be used by anyone from all skill levels from students to seniors. I had originally developed 
 Krogoth as a way to quickly deploy a monolithic Django app for blogging, but found that it takes too much time to go 
 through the process of integrating an off the shelf AngularJS template into a fresh new Django project. This is the 
