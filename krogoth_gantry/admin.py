@@ -22,32 +22,27 @@ class KrogothGantryMasterViewControllerAdmin(admin.ModelAdmin):
          ),
         ('Module Editor',
          {
-             'fields': ('module_js',),
-             'classes': ('collapse',)
+             'fields': ('module_js',)
          }
          ),
         ('View Editor',
          {
-             'fields': ('view_html',),
-             'classes': ('collapse',)
+             'fields': ('view_html',)
          }
          ),
         ('Controller Editor',
          {
-             'fields': ('controller_js',),
-             'classes': ('collapse',)
+             'fields': ('controller_js',)
          }
          ),
         ('Style Editor',
          {
-             'fields': ('style_css',),
-             'classes': ('collapse',)
+             'fields': ('style_css',)
          }
          ),
         ('Services Directives and Slaves',
          {
-             'fields': ('djangular_service', 'djangular_directive', 'djangular_slave_vc',),
-             'classes': ('collapse',)
+             'fields': ('djangular_service', 'djangular_directive', 'djangular_slave_vc',)
          }
          ),
     )

@@ -83,6 +83,8 @@ save changes to filesystem using URL:
 
         vm.beautifyCode = beautifyCode;
 
+        vm.goBackToExplorerHome = goBackToExplorerHome
+
 
         /// I.
         function onInit() {
@@ -316,7 +318,7 @@ save changes to filesystem using URL:
 
         function setThemeBasedOnClass(_class) {
             if (_class === "ViewHTML") {
-                vm.editorModel.setOption("theme", "isotope");
+                vm.editorModel.setOption("theme", "ambiance");
             } else if (_class === "ControllerJS") {
                 vm.editorModel.setOption("theme", "colorforth");
             } else if (_class === "ModuleJS") {
@@ -695,6 +697,9 @@ save changes to filesystem using URL:
             vm.editorModel.execCommand("indentAuto");
         }
 
+        function goBackToExplorerHome() {
+            $state.go('app.UltraEditorBrowse');
+        }
 
 
 

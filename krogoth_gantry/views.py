@@ -1,54 +1,26 @@
 from rest_framework.views import APIView
-
 from django.template import loader
 from django.http import HttpResponse
 import json
-
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
-
 from krogoth_gantry.models import KrogothGantrySlaveViewController, \
     KrogothGantryIcon, KrogothGantryCategory, KrogothGantryMasterViewController, KrogothGantryDirective, \
     KrogothGantryService, AKGantryMasterViewController
-
+from krogoth_gantry.serializers import AbstractKrogothSerializer, KrogothGantryMasterViewControllerSerializer, \
+    KrogothGantryIconSerializer, KrogothGantrySlaveViewControllerSerializer, KrogothGantryCategorySerializer, \
+    KrogothGantryDirectiveSerializer, KrogothGantryServiceSerializer
 from rest_framework import viewsets, serializers, generics, filters
 import subprocess
 # from django.core import serializers
 import django_filters.rest_framework
 from krogoth_gantry.management.commands.installdjangular import bcolors
-from krogoth_admin.models import UncommitedSQL
-from chat.models import JawnUser
-from jawn.settings import BASE_DIR
+
+
+
 import json
 
 
-class AbstractKrogothSerializer(serializers.ModelSerializer):
-
-    def update(self, instance, validated_data):
-        for key in validated_data.keys():
-            setattr(instance, key, validated_data[key])
-            print(bcolors.BOLD + bcolors.blue + "  🛠  " +
-                  str(type(self)) + " : " + str(key) +
-                  " \nUPDATED" + bcolors.ENDC + bcolors.ENDC)
-        instance.save()
-        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
-        uncommitedChange = UncommitedSQL.objects.create(name=instance.name,
-                                                        edited_by=jawn_user,
-                                                        krogoth_class="KrogothGantryMasterViewController")
-        return instance
-    ### To do later, recycle reflection from class "krogoth_gantryModelForm"
-    ### too much going on in this .py file now.
-    def create(self, validated_data):
-        print(bcolors.BOLD + bcolors.purple + "  🛠  " +
-              str(type(self)) +
-              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
-        pass
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-class KrogothGantryIconSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = KrogothGantryIcon
-        fields = '__all__'
 
 
 class KrogothGantryIconViewSet(viewsets.ModelViewSet):
@@ -60,24 +32,6 @@ class KrogothGantryIconViewSet(viewsets.ModelViewSet):
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-class KrogothGantryMasterViewControllerSerializer(AbstractKrogothSerializer):
-
-    icon = KrogothGantryIconSerializer(many=False, read_only=True)
-
-    class Meta:
-        model = KrogothGantryMasterViewController
-        fields = '__all__'
-
-    def create(self, validated_data):
-        print(bcolors.BOLD + bcolors.purple + "  🛠  " +
-              str(type(self)) +
-              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
-        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
-        uncommitedChange = UncommitedSQL.objects.create(name=validated_data['name'],
-                                                        edited_by=jawn_user,
-                                                        krogoth_class="KrogothGantryMasterViewController")
-        return KrogothGantryMasterViewController.objects.create(**validated_data)
-
 
 class KrogothGantryMasterViewControllerViewSet(viewsets.ModelViewSet):
     queryset = KrogothGantryMasterViewController.objects.all()
@@ -89,20 +43,6 @@ class KrogothGantryMasterViewControllerViewSet(viewsets.ModelViewSet):
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-class KrogothGantrySlaveViewControllerSerializer(AbstractKrogothSerializer):
-    class Meta:
-        model = KrogothGantrySlaveViewController
-        fields = '__all__'
-
-    def create(self, validated_data):
-        print(bcolors.BOLD + bcolors.purple + "  🛠  " +
-              str(type(self)) +
-              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
-        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
-        uncommitedChange = UncommitedSQL.objects.create(name=validated_data['name'],
-                                                        edited_by=jawn_user,
-                                                        krogoth_class="KrogothGantrySlaveViewController")
-        return KrogothGantrySlaveViewController.objects.create(**validated_data)
 
 class KrogothGantrySlaveViewControllerViewSet(viewsets.ModelViewSet):
     queryset = KrogothGantrySlaveViewController.objects.all()
@@ -113,57 +53,6 @@ class KrogothGantrySlaveViewControllerViewSet(viewsets.ModelViewSet):
 
 import os
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-class KrogothGantryCategorySerializer(AbstractKrogothSerializer):
-    icon = KrogothGantryIconSerializer(read_only=True)
-    class Meta:
-
-        model = KrogothGantryCategory
-        fields = ('id', 'name', 'title', 'weight', 'icon', 'parent',)
-
-    def update(self, instance, validated_data):
-        print("ID: " + str(instance.id))
-        is_subcat = True
-        old_references = AKGantryMasterViewController.objects.none()
-        filter_refs = ""
-        replacement_path_part = ""
-        if instance.parent is None:
-            is_subcat = False
-        if is_subcat:
-            print("parent: " + str(instance.parent.name))
-            # krogoth_gantry/DVCManager/Web_Sockets/Advanced/Chat_App/
-            filter_refs = "krogoth_gantry/DVCManager/" + instance.parent.name + "/" + instance.name
-            old_references = AKGantryMasterViewController.objects.filter(path_to_static__icontains=filter_refs)
-            print("OLD NAME: " + BASE_DIR + "/krogoth_gantry/DVCManager/" + instance.parent.name + "/" + instance.name)
-            print("\n\nDiscovered " + str(len(old_references)) + " MVCs that need an update made to their static path.")
-            print("Their old path will be replaced: " + filter_refs)
-
-        for key in validated_data.keys():
-            setattr(instance, key, validated_data[key])
-            # print(bcolors.BOLD + bcolors.blue + "  🛠  " +
-            #       str(type(self)) + " : " + str(key) +
-            #       " \nUPDATED CATEGORY: " + bcolors.ENDC + bcolors.ENDC)
-            if is_subcat:
-                if str(key) == 'name':
-                    replacement_path_part = "krogoth_gantry/DVCManager/" + instance.parent.name + "/" + validated_data['name']
-                    print("With this new path substring   : " + replacement_path_part)
-                    print(
-                        "NEW NAME: " + BASE_DIR + "/krogoth_gantry/DVCManager/" + instance.parent.name + "/" + validated_data['name'])
-                    os.rename(BASE_DIR + "/krogoth_gantry/DVCManager/" + instance.parent.name + "/" + instance.name,
-                              BASE_DIR + "/krogoth_gantry/DVCManager/" + instance.parent.name + "/" + validated_data['name'])
-
-        for app in old_references:
-            old = app.path_to_static
-            print("Changing " + app.name + "'s path_to_static.")
-            app.path_to_static = old.replace(filter_refs, replacement_path_part)
-            app.save()
-            print("It's new path is now: " + app.path_to_static)
-
-        instance.save()
-        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
-        uncommitedChange = UncommitedSQL.objects.create(name=instance.name,
-                                                        edited_by=jawn_user,
-                                                        krogoth_class="KrogothGantryMasterViewController")
-        return instance
 
 
 class KrogothGantryCategoryViewSet(viewsets.ModelViewSet):
@@ -174,20 +63,6 @@ class KrogothGantryCategoryViewSet(viewsets.ModelViewSet):
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-class KrogothGantryDirectiveSerializer(AbstractKrogothSerializer):
-    class Meta:
-        model = KrogothGantryDirective
-        fields = '__all__'
-
-    def create(self, validated_data):
-        print(bcolors.BOLD + bcolors.purple + "  🛠  " +
-              str(type(self)) +
-              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
-        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
-        uncommitedChange = UncommitedSQL.objects.create(name=validated_data['name'],
-                                                        edited_by=jawn_user,
-                                                        krogoth_class="KrogothGantryDirective")
-        return KrogothGantryDirective.objects.create(**validated_data)
 
 class KrogothGantryDirectiveViewSet(viewsets.ModelViewSet):
     queryset = KrogothGantryDirective.objects.all()
@@ -197,20 +72,6 @@ class KrogothGantryDirectiveViewSet(viewsets.ModelViewSet):
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-class KrogothGantryServiceSerializer(AbstractKrogothSerializer):
-    class Meta:
-        model = KrogothGantryService
-        fields = '__all__'
-
-    def create(self, validated_data):
-        print(bcolors.BOLD + bcolors.purple + "  🛠  " +
-              str(type(self)) +
-              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
-        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
-        uncommitedChange = UncommitedSQL.objects.create(name=validated_data['name'],
-                                                        edited_by=jawn_user,
-                                                        krogoth_class="KrogothGantryService")
-        return KrogothGantryService.objects.create(**validated_data)
 
 
 class KrogothGantryServiceViewSet(viewsets.ModelViewSet):
