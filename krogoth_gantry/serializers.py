@@ -6,7 +6,7 @@ from krogoth_gantry.models import KrogothGantrySlaveViewController, \
     KrogothGantryService, AKGantryMasterViewController
 from jawn.settings import BASE_DIR
 from chat.models import JawnUser
-
+from krogoth_gantry.helpers.os_directory import MoveToNewDirectory
 
 class KrogothGantryIconSerializer(serializers.ModelSerializer):
     class Meta:
@@ -88,6 +88,7 @@ class KrogothGantryCategorySerializer(AbstractKrogothSerializer):
         old_references = AKGantryMasterViewController.objects.none()
         filter_refs = ""
         replacement_path_part = ""
+        old_name = instance.name
         if instance.parent is None:
             is_subcat = False
         if is_subcat:
@@ -95,7 +96,6 @@ class KrogothGantryCategorySerializer(AbstractKrogothSerializer):
             # krogoth_gantry/DVCManager/Web_Sockets/Advanced/Chat_App/
             filter_refs = "krogoth_gantry/DVCManager/" + instance.parent.name + "/" + instance.name
             old_references = AKGantryMasterViewController.objects.filter(path_to_static__icontains=filter_refs)
-            print("OLD NAME: " + BASE_DIR + "/krogoth_gantry/DVCManager/" + instance.parent.name + "/" + instance.name)
             print("\n\nDiscovered " + str(len(old_references)) + " MVCs that need an update made to their static path.")
             print("Their old path will be replaced: " + filter_refs)
 
@@ -109,12 +109,13 @@ class KrogothGantryCategorySerializer(AbstractKrogothSerializer):
                     replacement_path_part = "krogoth_gantry/DVCManager/" + instance.parent.name + "/" + validated_data[
                         'name']
                     print("With this new path substring   : " + replacement_path_part)
-                    print(
-                        "NEW NAME: " + BASE_DIR + "/krogoth_gantry/DVCManager/" + instance.parent.name + "/" +
-                        validated_data['name'])
-                    os.rename(BASE_DIR + "/krogoth_gantry/DVCManager/" + instance.parent.name + "/" + instance.name,
-                              BASE_DIR + "/krogoth_gantry/DVCManager/" + instance.parent.name + "/" + validated_data[
-                                  'name'])
+                    dvc_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
+                    old = dvc_path + instance.parent.name + "/" + old_name
+                    new = dvc_path + instance.parent.name + "/" + validated_data['name']
+                    print("RENAMING DIRECTORY: ")
+                    print("OLD: " + old)
+                    print("NEW: " + new)
+                    MoveToNewDirectory(old_path=old, new_path=new)
 
         for app in old_references:
             old = app.path_to_static
