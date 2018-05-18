@@ -48,7 +48,7 @@
                 <button class="toolbar-button" ng-click="vm.highlightCollectedVMs()">			
 					<i class="entypo entypo-check ide-tool-btn" style="font-size:1.4em"></i>
 					<md-tooltip>
-						Scan Controller Properties
+						Highlight VMs
 					</md-tooltip>
 				</button>
                 <button class="toolbar-button" ng-click="vm.beautifyCode()">			
@@ -60,6 +60,14 @@
 
 
 				<input type="text" placeholder="Find String..." ng-model="vm.findStringForm">
+                <button class="toolbar-button" ng-click="vm.renameObjectSubmit()">
+					<i class="entypo entypo-search ide-tool-btn" style="font-size:1.4em"></i>
+					<md-tooltip>
+						Highlight Custom String
+					</md-tooltip>
+				</button>
+
+				<input type="text" placeholder="Rename" ng-model="vm.renameObjectForm.new">
                 <button class="toolbar-button" ng-click="vm.renameObjectSubmit()">
 					<i class="entypo entypo-search ide-tool-btn" style="font-size:1.4em"></i>
 					<md-tooltip>

@@ -600,19 +600,55 @@ save changes to filesystem using URL:
             const _0 = vm.finishedBreadCrumbsJson._1st.name;
             const _1 = vm.finishedBreadCrumbsJson._2nd.name;
             const _2 = vm.objectList.name;
-            fileNameChanger.renameService(_0,
+            const objectToRename = vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class;
+            $log.debug("RENAME OBJECT DID FINISH SUBMIT");
+            $log.debug(objectToRename);
+            if (objectToRename === "Service") {
+                fileNameChanger.renameService(_0,
                     _1,
                     _2,
                     vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
                     vm.renameObjectForm.new)
-                .then(function(didFinish) {
-                    $log.debug("The rename service operation finished on the server.");
-                    $log.debug(didFinish);
-                    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name = vm.renameObjectForm.new;
-                    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title = vm.renameObjectForm.new;
-                    vm.renameObjectForm.new = "";
-                    /// success
-                });
+                    .then(function (didFinish) {
+                        $log.debug("The rename service operation finished on the server.");
+                        $log.debug(didFinish);
+                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name = vm.renameObjectForm.new;
+                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title = vm.renameObjectForm.new;
+                        vm.renameObjectForm.new = "";
+                        /// success
+                    });
+            }
+            else if (objectToRename === "Directive") {
+                DirectiveCRUD.renameDirective(_0,
+                    _1,
+                    _2,
+                    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
+                    vm.renameObjectForm.new)
+                    .then(function (didFinish) {
+                        $log.debug("The rename service operation finished on the server.");
+                        $log.debug(didFinish);
+                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name = vm.renameObjectForm.new;
+                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title = vm.renameObjectForm.new;
+                        vm.renameObjectForm.new = "";
+                        /// success
+                    });
+            }
+            else if (objectToRename === "NgIncludedHtml") {
+                TemplateCRUD.renameTemplate(_0,
+                    _1,
+                    _2,
+                    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
+                    vm.renameObjectForm.new)
+                    .then(function (didFinish) {
+                        $log.debug("The rename service operation finished on the server.");
+                        $log.debug(didFinish);
+                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name = vm.renameObjectForm.new;
+                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title = vm.renameObjectForm.new;
+                        vm.renameObjectForm.new = "";
+                        /// success
+                    });
+            }
+
         }
 
 
