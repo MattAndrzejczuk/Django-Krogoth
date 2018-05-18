@@ -14,7 +14,7 @@ from rest_framework import viewsets, serializers, generics, filters
 import subprocess
 # from django.core import serializers
 import django_filters.rest_framework
-from krogoth_gantry.management.commands.installdjangular import bcolors
+
 
 
 

@@ -173,7 +173,8 @@ class RenameService(APIView):
 
         old_path = sys_path + sql_path + old_name + ".js"
         new_path = sys_path + sql_path + new_name + ".js"
-
+        print("\n\nOLD: " + old_path)
+        print("\n\nNEW: " + new_path)
         os.rename(old_path, new_path)
         renamed_sql = KrogothGantryService.objects.get(name=old_name)
         renamed_sql.name = new_name
@@ -237,6 +238,8 @@ class RenameDirective(APIView):
         sql_path = path_0 + "/" + path_1 + "/" + path_2 + "/Directives/"
         old_path = sys_path + sql_path + old_name + ".js"
         new_path = sys_path + sql_path + new_name + ".js"
+        print("\n\nOLD: " + old_path)
+        print("\n\nNEW: " + new_path)
         os.rename(old_path, new_path)
         renamed_sql = KrogothGantryDirective.objects.get(name=old_name)
         renamed_sql.name = new_name
@@ -295,12 +298,19 @@ class RenameTemplate(APIView):
         path_0 = str(request.data["path_0"])
         path_1 = str(request.data["path_1"])
         path_2 = str(request.data["path_2"])
-        old_name = str(request.data["old_name"])
+        old_name = ""
+        try:
+            old_name = str(request.data["old_name"]).split("?name=")[1]
+        except:
+            old_name = str(request.data["old_name"])
+        old_name = str(request.data["old_name"]).split("?name=")[1]
         new_name = str(request.data["new_name"])
         sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
         sql_path = path_0 + "/" + path_1 + "/" + path_2 + "/partialsHTML/"
         old_path = sys_path + sql_path + old_name + ".html"
         new_path = sys_path + sql_path + new_name + ".html"
+        print("\n\nOLD: " + old_path)
+        print("\n\nNEW: " + new_path)
         os.rename(old_path, new_path)
         renamed_sql = IncludedHtmlMaster.objects.get(name=old_name)
         renamed_sql.name = new_name

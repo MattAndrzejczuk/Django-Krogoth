@@ -7,7 +7,7 @@ save changes to filesystem using URL:
  
  /krogoth_admin/SaveSQLToFileSystem/
 
-
+...
 */
 
 
@@ -605,11 +605,11 @@ save changes to filesystem using URL:
             $log.debug(objectToRename);
             if (objectToRename === "Service") {
                 fileNameChanger.renameService(_0,
-                    _1,
-                    _2,
-                    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
-                    vm.renameObjectForm.new)
-                    .then(function (didFinish) {
+                        _1,
+                        _2,
+                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
+                        vm.renameObjectForm.new)
+                    .then(function(didFinish) {
                         $log.debug("The rename service operation finished on the server.");
                         $log.debug(didFinish);
                         vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name = vm.renameObjectForm.new;
@@ -617,14 +617,13 @@ save changes to filesystem using URL:
                         vm.renameObjectForm.new = "";
                         /// success
                     });
-            }
-            else if (objectToRename === "Directive") {
+            } else if (objectToRename === "Directive") {
                 DirectiveCRUD.renameDirective(_0,
-                    _1,
-                    _2,
-                    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
-                    vm.renameObjectForm.new)
-                    .then(function (didFinish) {
+                        _1,
+                        _2,
+                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
+                        vm.renameObjectForm.new)
+                    .then(function(didFinish) {
                         $log.debug("The rename service operation finished on the server.");
                         $log.debug(didFinish);
                         vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name = vm.renameObjectForm.new;
@@ -632,14 +631,13 @@ save changes to filesystem using URL:
                         vm.renameObjectForm.new = "";
                         /// success
                     });
-            }
-            else if (objectToRename === "NgIncludedHtml") {
+            } else if (objectToRename === "NgIncludedHtml") {
                 TemplateCRUD.renameTemplate(_0,
-                    _1,
-                    _2,
-                    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
-                    vm.renameObjectForm.new)
-                    .then(function (didFinish) {
+                        _1,
+                        _2,
+                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
+                        vm.renameObjectForm.new)
+                    .then(function(didFinish) {
                         $log.debug("The rename service operation finished on the server.");
                         $log.debug(didFinish);
                         vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name = vm.renameObjectForm.new;

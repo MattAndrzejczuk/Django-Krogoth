@@ -7,6 +7,7 @@ from krogoth_gantry.models import KrogothGantrySlaveViewController, \
 from jawn.settings import BASE_DIR
 from chat.models import JawnUser
 from krogoth_gantry.helpers.os_directory import MoveToNewDirectory
+from krogoth_gantry.management.commands.installdjangular import bcolors
 
 class KrogothGantryIconSerializer(serializers.ModelSerializer):
     class Meta:
