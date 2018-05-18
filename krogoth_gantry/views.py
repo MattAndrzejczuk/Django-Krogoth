@@ -111,7 +111,7 @@ class KrogothGantrySlaveViewControllerViewSet(viewsets.ModelViewSet):
     search_fields = ('^name', '^title')
 
 
-
+import os
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 class KrogothGantryCategorySerializer(AbstractKrogothSerializer):
     icon = KrogothGantryIconSerializer(read_only=True)
@@ -148,6 +148,8 @@ class KrogothGantryCategorySerializer(AbstractKrogothSerializer):
                     print("With this new path substring   : " + replacement_path_part)
                     print(
                         "NEW NAME: " + BASE_DIR + "/krogoth_gantry/DVCManager/" + instance.parent.name + "/" + validated_data['name'])
+                    os.rename(BASE_DIR + "/krogoth_gantry/DVCManager/" + instance.parent.name + "/" + instance.name,
+                              BASE_DIR + "/krogoth_gantry/DVCManager/" + instance.parent.name + "/" + validated_data['name'])
 
         for app in old_references:
             old = app.path_to_static
@@ -376,7 +378,8 @@ class krogoth_gantryModelForm(APIView):
             # FILTER COMBAT CHECKBOX
             if key == 'Weapon1' or key == 'Weapon2' or key == 'Weapon3' or key == 'canattack' or key == 'SightDistance':
                 filterCategory = 'ng-hide="filter.cbCombat === false"'
-            if key == 'ImmuneToParalyzer' or key == 'HealTime' or key == 'init_cloaked' or key == 'SelfDestructAs' or key == 'wsec_badTargetCategory':
+            if key == 'ImmuneToParalyzer' or key == 'HealTime' or key == 'init_cloaked' or key == 'SelfDestructAs' \
+                    or key == 'wsec_badTargetCategory':
                 filterCategory = 'ng-hide="filter.cbCombat === false"'
             if key == 'NoAutoFire' or key == 'attackrunlength' or key == 'CanDgun' or key == 'BadTargetCategory':
                 filterCategory = 'ng-hide="filter.cbCombat === false"'

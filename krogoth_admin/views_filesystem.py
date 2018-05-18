@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from rest_framework.permissions import IsAdminUser
 from krogoth_gantry.models import KrogothGantryService, KrogothGantryCategory, KrogothGantryIcon, \
-    KrogothGantryMasterViewController, KrogothGantryDirective
+    KrogothGantryMasterViewController, KrogothGantryDirective, AKGantryMasterViewController
 from moho_extractor.models import IncludedHtmlMaster
 from jawn.settings import BASE_DIR
 import json
@@ -85,12 +85,12 @@ class CreateNewMVCView(APIView):
             "weight": weight
         }, indent=2, sort_keys=True)
 
-        app_obj = KrogothGantryMasterViewController()
-        mvc_already_exists = bool(len(KrogothGantryMasterViewController.objects.filter(name=name)))
+        app_obj = AKGantryMasterViewController()
+        mvc_already_exists = bool(len(AKGantryMasterViewController.objects.filter(name=name)))
         if mvc_already_exists:
             return Response({"result": "mvc with that name already exists."}, status=405)
 
-        app_obj = KrogothGantryMasterViewController(name=name, title=name.replace("_", " "))
+        app_obj = AKGantryMasterViewController(name=name, title=name.replace("_", " "))
 
         cat_exists = bool(len(KrogothGantryCategory.objects.filter(name=cat_)))
         subcat_exists = bool(len(KrogothGantryCategory.objects.filter(name=subcat)))
