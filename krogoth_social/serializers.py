@@ -13,84 +13,50 @@ from krogoth_gantry.management.commands.installdjangular import bcolors
 
 # Create your views here.
 
+
+class AKThreadChildReplySerializer(serializers.Serializer):
+    title = serializers.CharField(read_only=True)
+    pub_date = serializers.DateTimeField(read_only=True)
+
+class AKThreadListField(serializers.RelatedField):
+    def to_representation(self, value):
+        ser = AKThreadChildReplySerializer(value)
+        return (ser.data)
+
+
+
+
 class AKThreadCategorySerializer(serializers.ModelSerializer):
     pub_date = serializers.DateTimeField(read_only=True)
+    ak_threads = AKThreadListField(many=True, read_only=True)
     class Meta:
         model = AKThreadCategory
         fields = ('title', 'ak_threads', 'pub_date', )
 
 
-
-
-
-
-class AKThreadCategoryViewSet(viewsets.ModelViewSet):
-    queryset = AKThreadCategory.objects.all()
-    serializer_class = AKThreadCategorySerializer
-    permission_classes = (AllowAny,)
-
-
-
-class AKThreadCategorySerializer(serializers.ModelSerializer):
-    def to_representation(self, obj):
-        return {
-            'title': obj.title
-        }
 class AKThreadParentSerializer(serializers.ListSerializer):
-    def to_representation(self, obj):
-        return {
-            'parent': obj.parent,
-            'title': obj.title
-        }
+    pub_date = serializers.DateTimeField(read_only=True)
+    uid = serializers.ReadOnlyField()
+
+    class Meta:
+        model = AKThread
+        category = AKThreadCategorySerializer
+        fields = ('title', 'parent', 'author', 'category', 'pub_date', 'uid',)
+
 
 
 # - - - - - - - - - - - - - - -
 class AKThreadSerializer(serializers.ModelSerializer):
     pub_date = serializers.DateTimeField(read_only=True)
+    uid = serializers.ReadOnlyField()
+    broodling = AKThreadListField(many=True, read_only=True)
+
     class Meta:
         model = AKThread
         category = AKThreadCategorySerializer
         parent = AKThreadParentSerializer
-        fields = ('title', 'parent', 'author', 'category', 'pub_date', )
+        fields = ('title', 'parent', 'author', 'category', 'pub_date', 'uid', 'broodling')
 
     def create(self, validated_data):
+        return AKThread.objects.create(**validated_data)
 
-        print(bcolors.blue + " AKThreadSerializer " + bcolors.ENDC)
-        print(bcolors.purple)
-        print(validated_data)
-        print(bcolors.ENDC)
-
-        jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
-        cat = AKThreadCategory.objects.get(id=validated_data['category'].id)
-        new = AKThread.objects.create(title=validated_data['title'],
-                                      author=jawn_user,
-                                      category=cat)
-        if validated_data['parent']:
-            try:
-                new.parent = AKThread.objects.get(title=validated_data['parent'].title)
-            except:
-                new.parent = AKThread.objects.get(uid=validated_data['parent'].id)
-        return new
-
-
-class AKThreadViewSet(viewsets.ModelViewSet):
-    queryset = AKThread.objects.all()
-    serializer_class = AKThreadSerializer
-    permission_classes = (AllowAny,)
-# - - - - - - - - - - - - - - -
-# class ForumReplySerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = ForumReply
-#         fields = '__all__'
-#     def create(self, validated_data):
-#         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
-#         new = ForumReply.objects.create(post=validated_data['post'],
-#                                         body=validated_data['body'],
-#                                         author=jawn_user.base_user,
-#                                         category=validated_data['category'])
-#         return new
-# class ForumReplyViewSet(viewsets.ModelViewSet):
-#     queryset = ForumReply.objects.all()
-#     serializer_class = ForumReplySerializer
-#     permission_classes = (AllowAny,)
-# - - - - - - - - - - - - - - -

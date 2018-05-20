@@ -39,6 +39,7 @@
         vm.openBottomSheet = openBottomSheet;
 
         vm.querySubCatsWithParent = querySubCatsWithParent;
+        vm.openUltraEditorDocumentTwo = openUltraEditorDocumentTwo;
 
 
         function onInit() {
@@ -267,6 +268,10 @@
                 vm.toolbarInfo.name = data.name;
                 vm.toolbarInfo.title = data.title;
             });
+        }
+
+        function openUltraEditorDocumentTwo() {
+            $state.go("app.UltraEditorDocumentTwo");
         }
 
         /*

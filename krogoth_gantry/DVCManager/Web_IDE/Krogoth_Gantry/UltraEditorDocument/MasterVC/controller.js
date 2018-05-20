@@ -73,7 +73,7 @@ save changes to filesystem using URL:
         vm.addNewComponentToMaster = addNewComponentToMaster;
 
         vm.createFirstTreeNodes = createFirstTreeNodes;
-        vm.getKrogothCoreParts = getKrogothCoreParts;
+        ///vm.getKrogothCoreParts = getKrogothCoreParts;
         vm.getTemplatesHTML = getTemplatesHTML;
 
         vm.goBackToCategory = goBackToCategory;
@@ -125,20 +125,20 @@ save changes to filesystem using URL:
                     vm.slavesPendingRequest = finishedProcess.slaves;
                     vm.objectList = finishedProcess.objectList;
                     vm.getTemplatesHTML();
-                    vm.getKrogothCoreParts();
+                    ///vm.getKrogothCoreParts();
 
                     /// III.
                     vm.parallelRESTfulStart();
                 });
         }
-
-        function getKrogothCoreParts() {
-            AKClassEditorComponent.loadKrogothCoreList()
-                .then(function(nodesForTree) {
-                    vm.treeData[7].nodes = nodesForTree;
-                });
-        }
-
+        /*
+                function getKrogothCoreParts() {
+                    AKClassEditorComponent.loadKrogothCoreList()
+                        .then(function(nodesForTree) {
+                            vm.treeData[7].nodes = nodesForTree;
+                        });
+                }
+        */
         function getTemplatesHTML() {
             AKClassEditorComponent.loadHTMLIncludeList(vm.objectList.name)
                 .then(function(htmlTemps) {
@@ -345,7 +345,17 @@ save changes to filesystem using URL:
             _editor.on("change", function() {
                 vm.editorContentDidChange();
             });
+            _editor.on("cursorActivity", function() {
+                vm.cursorActivity();
+            });
             vm.editorModel = _editor;
+        }
+
+        vm.cursorActivity = cursorActivity;
+
+        function cursorActivity() {
+            console.log(" . . . . . . . . . ");
+            $log.info(vm.editorModel.getScrollInfo());
         }
 
         function saveEditorWorkToServer(node) {

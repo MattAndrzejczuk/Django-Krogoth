@@ -38,6 +38,7 @@ class AKThread(PolymorphicModel):
     category = models.ForeignKey(AKThreadCategory, on_delete=models.CASCADE, related_name="ak_threads", null=True, blank=True)
     parent = models.ForeignKey('AKThread', on_delete=models.CASCADE, null=True, blank=True, related_name="broodling")
 
+
     def save(self, *args, **kwargs):
         count = len(AKThread.objects.all())
         p1 = self.title.replace(" ", "_").replace("?", "").replace("$", "").replace("!", "").replace("$", "")
@@ -46,6 +47,7 @@ class AKThread(PolymorphicModel):
 
     def __str__(self):
         return self.uid
+
 
 
 #class AKThreadArticle(AKThread):
