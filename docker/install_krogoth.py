@@ -31,7 +31,6 @@ class bc:
 
 
 
-
 os.system('sh KILL_ALL_.sh')
 
 cwd = os.getcwd()

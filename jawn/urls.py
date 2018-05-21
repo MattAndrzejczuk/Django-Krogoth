@@ -22,9 +22,7 @@ router.register(r'link-messages', LinkMessageViewSet)
 router.register(r'youtube-messages', YouTubeMessageViewSet)
 router.register(r'youtube', YouTubeMessageViewSet)
 
-from krogoth_social.serializers import AKThreadViewSet, AKThreadCategoryViewSet
-router.register(r'AKThreadCategory', AKThreadCategoryViewSet)
-router.register(r'AKThread', AKThreadViewSet)
+
 
 from krogoth_examples.views import FruitViewSet, TextLabelViewSet, ManufacturerViewSet, CarViewSet, \
     ToppingViewSet, PizzaViewSet, HotelViewSet, OccupantViewSet, \
@@ -101,7 +99,7 @@ urlpatterns = [
 
 
     url(r'^ThirdParty/', include('krogoth_3rdparty_api.urls')),
-
+    url(r'^krogoth_social/', include('krogoth_social.urls')),
 
     # user auth, forgot_password, reset pass, etc..
     url(r'^api/', include(router.urls)),
