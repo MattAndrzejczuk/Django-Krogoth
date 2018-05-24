@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from krogoth_social.models import AKThread, AKThreadCategory
-from krogoth_social.serializers import AKThreadCategorySerializer, AKThreadSerializer
+from krogoth_social.models import AKThread, AKThreadCategory, AKThreadSocialMedia
+from krogoth_social.serializers import AKThreadCategorySerializer, AKThreadSerializer, AKThreadSocialMediaSerializer
 
 
 
@@ -17,3 +17,8 @@ class AKThreadViewSet(viewsets.ModelViewSet):
     serializer_class = AKThreadSerializer
     permission_classes = (AllowAny,)
 
+
+class AKThreadSocialMediaViewSet(viewsets.ModelViewSet):
+    queryset = AKThreadSocialMedia.objects.all()
+    serializer_class = AKThreadSocialMediaSerializer
+    permission_classes = (AllowAny,)

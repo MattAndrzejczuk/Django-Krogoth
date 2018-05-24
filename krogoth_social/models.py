@@ -49,6 +49,19 @@ class AKThread(PolymorphicModel):
         return self.uid
 
 
+SOCIAL_MEDIA_THREAD_KINDS = (
+    ('text', 'text'),
+    ('article', 'article'),
+    ('video', 'video'),
+    ('image', 'image'),
+)
+class AKThreadSocialMedia(AKThread):
+    type = models.CharField(max_length=40, default="text", choices=SOCIAL_MEDIA_THREAD_KINDS)
+    text_body = models.TextField()
+    likes = models.IntegerField(default=0)
+
+
+
 
 #class AKThreadArticle(AKThread):
 

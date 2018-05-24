@@ -6,7 +6,7 @@ from chat.models import JawnUser
 from chat.serializers import JawnUserSerializer
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from django.shortcuts import render
-from krogoth_social.models import AKThreadCategory, AKThread
+from krogoth_social.models import AKThreadCategory, AKThread, AKThreadSocialMedia
 from rest_framework import viewsets
 
 from krogoth_gantry.management.commands.installdjangular import bcolors
@@ -31,7 +31,7 @@ class AKThreadCategorySerializer(serializers.ModelSerializer):
     ak_threads = AKThreadListField(many=True, read_only=True)
     class Meta:
         model = AKThreadCategory
-        fields = ('title', 'ak_threads', 'pub_date', )
+        fields = ('uid', 'title', 'ak_threads', 'pub_date', )
 
 
 class AKThreadParentSerializer(serializers.ListSerializer):
@@ -60,3 +60,9 @@ class AKThreadSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return AKThread.objects.create(**validated_data)
 
+class AKThreadSocialMediaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AKThreadSocialMedia
+        category = AKThreadCategorySerializer
+        parent = AKThreadParentSerializer
+        fields = ('title', 'parent', 'author', 'category', 'pub_date', 'uid', 'broodling', 'text_body', 'likes', 'type')
