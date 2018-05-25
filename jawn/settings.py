@@ -23,6 +23,15 @@ SECRET_KEY = '-ic*v=-p%!6#0ki%kj2l&@4e_a_j!7xm7g9wmxu%8f$9xj*2ht'
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 
+
+
+# App will serve frontend from '/static/compiled' rather than slowly generating
+# frontend code dynamically. Use True for production.
+STATIC_KROGOTH_MODE = False
+
+
+
+
 # Application definition
 REST_FRAMEWORK = {
     'PAGE_SIZE': 40,

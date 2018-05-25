@@ -12,8 +12,8 @@ from krogoth_gantry.serializers import AbstractKrogothSerializer, KrogothGantryM
     KrogothGantryDirectiveSerializer, KrogothGantryServiceSerializer
 from rest_framework import viewsets, serializers, generics, filters
 import subprocess
-# from django.core import serializers
 import django_filters.rest_framework
+# from django.core import serializers
 
 
 
@@ -80,98 +80,21 @@ class KrogothGantryServiceViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.SearchFilter,)
     search_fields = ('^name', '^title')
 
+from krogoth_gantry.krogoth_compiler import master_compiler
 
 class DynamicJavaScriptInjector(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
-
     def get(self, request, format=None):
         name = request.GET['name']
-        print('️💛💛💛💛💛💛💛💛💛💛')
-        application = KrogothGantryMasterViewController.objects.get(name=name)
-
-        raw_js_services_and_directives = ''
-        djangular_services = application.djangular_service.all()
-
-        # raw_js_services_and_directives += '\n\n'
-        djangular_directives = application.djangular_directive.all()
-
-        #     raw_js_services_and_directives = raw_js_services_and_directives.replace('_DJANGULAR_DIRECTIVE_TITLE_', directive.title)
-        # raw_js_services_and_directives += '\n\n'
-
-        compiled_slave = application.compileModuleSlaves
-
-        # print('WHAT')
-        clean_js_slate = '\n\n\n\n\n\n\t /* ════════════' + application.title + '════════════ */\n\n'
-
-        if name == 'home':
-            processed_cats = ''
-            for cat in KrogothGantryCategory.objects.all():
-                icon = 'folder'
-                ipre = 'mdi mdi-'
-                parent_icon = 'folder'
-                if cat.icon is not None:
-                    icon = cat.icon.prefix + cat.icon.code
-                if cat.parent is not None:
-                    if cat.parent.icon is not None:
-                        parent_icon = cat.parent.icon.code
-                    p04 = 'msNavigationServiceProvider.saveItem("' + cat.parent.name + '", {\n'
-                    p03 = '\ttitle: "' + cat.parent.title + '",\n'
-                    p02 = '\ticon: "' + parent_icon + '",\n'
-                    p01 = '\tweight: ' + str(cat.parent.weight) + '\n'
-                    p0 = '});\n'
-                    p1 = 'msNavigationServiceProvider.saveItem("' + cat.parent.name + '.' + cat.name + '", {\n'
-                    p2 = '\ttitle: "' + cat.title + '",\n'
-                    p3 = '\ticon: "' + ipre + icon + '",\n'
-                    p4 = '\tweight: ' + str(cat.weight) + '\n'
-                    p5 = '});\n'
-                    processed_cats += p04 + p03 + p02 + p01 + p0 + p1 + p2 + p3 + p4 + p5
-            cat_contain = compiled_slave['module_with_injected_navigation'].replace('_KROGOTH_CATEGORIES_', processed_cats)
-            clean_js_slate += ' \n /* MASTER MODULE */ \n' + cat_contain + \
-                              ' \n /* MASTER CONTROLLER */ \n' + application.controller_js
-        else:
-            clean_js_slate += ' \n /* MASTER MODULE */ \n' + compiled_slave['module_with_injected_navigation'] + \
-                              ' \n /* MASTER CONTROLLER */ \n' + application.controller_js
-        clean_js_slate += '\n /* SLAVE CONTROLLER */ \n' + compiled_slave['slave_controllers_js']
-
-        # clean_js_slate += application.controller_js.replace('_DJANGULAR_SLAVE_VC_INJECTION_POINT_', '') + \
-        #                  ' ' + application.controller_js
-
-        for service in djangular_services:
-            raw_js_services_and_directives += '\n /* COMPILED SERVICE */ \n' + \
-                                              service.service_js.replace('_DJANGULAR_SERVICE_NAME_',
-                                                                         service.name).replace(
-                                                  '_DJANGULAR_SERVICE_TITLE_', service.title)
-            raw_js_services_and_directives += '\n'
-            # raw_js_services_and_directives = raw_js_services_and_directives.replace('_DJANGULAR_SERVICE_TITLE_', service.title)
-
-        # print('THE')
-        for directive in djangular_directives:
-            raw_js_services_and_directives += '\n /* COMPILED DIRECTIVE */ \n' + \
-                                              directive.directive_js.replace('_DJANGULAR_DIRECTIVE_NAME_',
-                                                                             directive.name).replace(
-                                                  "_DJANGULAR_DIRECTIVE_TITLE_", directive.title)
-            raw_js_services_and_directives += '\n'
-            # raw_js_services_and_directives = raw_js_services_and_directives
-
-        clean_js_slate += raw_js_services_and_directives
-
-        parsed1 = clean_js_slate.replace('FUSE_APP_NAME', application.name.replace(' ', '_'))
-        parsed2 = parsed1.replace('FUSE_APP_TITLE', application.title).replace('FUSE_APP_SLAVE_NAME', application.name + 'Slave')
-        parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon.prefix + ' ' + application.icon.code)
-        parsed4 = parsed3.replace('NAV_HEADER', application.category.name.replace(' ', '_'))
-        try:
-            raw_js_response = parsed4.replace('DJANGULAR_USERNAME', request.user.username)
-        except:
-            raw_js_response = parsed4
-
-        return HttpResponse(raw_js_response, content_type='application/javascript; charset=utf-8')
+        raw_js = master_compiler(username=request.user.username)
+        js_response = raw_js.compiled_raw(named=name)
+        return HttpResponse(js_response, content_type='application/javascript; charset=utf-8')
 
 
 class DynamicHTMLInjector(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
-
     def get(self, request, format=None):
         print('🧡🧡🧡🧡🧡🧡🧡🧡🧡🧡️')
         name = request.GET['name']
@@ -197,13 +120,10 @@ class DynamicHTMLSlaveInjector(APIView):
 
     def get(self, request, format=None):
         name = request.GET['name']
-
         application = KrogothGantrySlaveViewController.objects.get(name=name)
         raw_html_response = application.view_html
-
         master = application.owner.get()
         raw_html_response += '<style>' + master.style_css + master.get_theme_style + '</style>'
-
         if raw_html_response == '':
             raw_html_response += '<div layout="column" layout-padding layout-margin>'
             raw_html_response += '<h1>' + application.name.replace('_', ' ') + '</h1>'

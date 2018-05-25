@@ -15,7 +15,7 @@ from redis import ConnectionPool, StrictRedis
 from jawn import settings as redis_settings
 from django.template import loader
 from django.http import HttpResponse
-
+from jawn.settings import STATIC_KROGOTH_MODE
 from django.contrib.auth.models import User
 
 from .app_settings import (
@@ -29,7 +29,7 @@ from krogoth_gantry.models import KrogothGantryIcon, KrogothGantryCategory, Krog
 from krogoth_core.models import AKFoundationAbstract, AKBowerComponent
 redis_connection_pool = ConnectionPool(**redis_settings.WS4REDIS_CONNECTION)
 
-
+import os
 
 
 
@@ -50,9 +50,14 @@ def index(request):
 
 
     KrogothGantryMasterViewControllers = []
-    all_applications = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
-    for application in all_applications:
-        KrogothGantryMasterViewControllers.append(application.name)
+    if STATIC_KROGOTH_MODE == False:
+        all_applications = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
+        for application in all_applications:
+            KrogothGantryMasterViewControllers.append('/krogoth_gantry/DynamicJavaScriptInjector/?name=' + application.name)
+    else:
+        all_applications = os.listdir('static/compiled')
+        for application in all_applications:
+            KrogothGantryMasterViewControllers.append('/static/compiled/' + application)
 
     version_build = 'Krogoth ' + settings.APP_VERSION
     seo_title = "Krogoth "

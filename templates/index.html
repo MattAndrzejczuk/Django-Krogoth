@@ -427,9 +427,10 @@
     {% endverbatim %}
 
 
+    <!-- Compiled Frontend Goes: /static/compiled/ -->
     <!--KrogothGantryMasterViewControllers-->
     {% for fuse_app in KrogothGantryMasterViewControllers %}
-        <script src="/krogoth_gantry/DynamicJavaScriptInjector/?name={{ fuse_app }}"></script>
+        <script src="{{ fuse_app }}"></script>
     {% endfor %}
 
 
@@ -444,12 +445,9 @@
 
     <script src="/moho_extractor/KrogothFoundation/?unique_name=toolbarmodule"></script>
     <script src="/moho_extractor/KrogothFoundation/?unique_name=toolbarcontroller"></script>
-
     <script src="/moho_extractor/KrogothFoundation/?unique_name=navigationmodule"></script>
     <script src="/moho_extractor/KrogothFoundation/?unique_name=navigationcontroller"></script>
-
     <script src="/moho_extractor/KrogothFoundation/?unique_name=quick-panelcontroller"></script>
-
     <script src="/moho_extractor/KrogothFoundation/?unique_name=indexmodule"></script>
     <script src="/moho_extractor/KrogothFoundation/?unique_name=maincontroller"></script>
     <script src="/moho_extractor/KrogothFoundation/?unique_name=corerun"></script>
