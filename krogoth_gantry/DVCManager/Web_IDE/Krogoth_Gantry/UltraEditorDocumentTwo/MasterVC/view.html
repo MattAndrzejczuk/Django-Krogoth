@@ -1,0 +1,240 @@
+<div ng-include="'/moho_extractor/NgIncludedHtml/?name=ctrlStyles'">
+</div>
+      
+<!-- This is a hack to resolve angular tree data directive bug -->
+<!-- ng-include does nothing special here except that it creates an alias named "nodes_renderer.html" -->
+<script type="text/ng-template" id="nodes_renderer.html">
+	<span ng-include="'/moho_extractor/NgIncludedHtml/?name=leftSideTreeNavClone01'"></span>
+</script>
+<!-- Import some extra themes: -->
+<span ng-include="'/moho_extractor/NgIncludedHtml/?name=codeMirrorCSSImporterClone01'"></span>
+
+<!-- Import window modal HTML: -->
+<span ng-if="vm.treeModalIsVisible" ng-include= "'/moho_extractor/NgIncludedHtml/?name=editorModalTmplsClone01'"></span>
+ 
+<!-- VM property viewer: -->
+<span ng-include="'/moho_extractor/NgIncludedHtml/?name=controllerVmPropertiesClone01'"></span>
+
+
+<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
+
+
+
+   
+
+<div style="height: 22px; max-height: 22px; min-height: 22px; background-color:white"  
+	 class="headerosx" 
+	 layout="row">
+	
+			<button class="btn btn-outline-primary" 
+					style="padding:0px; height:18px; width:18px; margin-left:1px; margin-top:1px;"
+                    ng-click="vm.goBackToExplorerHome()"> 
+                <span class="mdi-12px mdi mdi-bank" 
+					  style="font-size:1.0em"></span>
+                <md-tooltip>
+                    Return To Explorer Home  
+                </md-tooltip>
+            </button>
+	<span>&nbsp;</span>
+	<span ng-if="!vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class">No Document Opened</span>
+    {{vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class}}&nbsp;&nbsp;
+	<span ng-if="-1 !== vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name">
+	{{vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name}}
+	</span>
+</div>
+
+
+<div class="page-layout carded left-sidenav opaque-global" layout="row" layout-align="center stretch">
+    <!-- SIDENAV -->
+    <md-sidenav class=""
+				md-is-locked-open="vm.sideNavLocked"
+                md-component-id="sidenav"
+                ms-scroll
+				layout-fill
+				flex-xs="50"
+                flex-sm="40"
+				flex-md="30"
+				flex-lg="25"
+				flex-gt-lg="20"
+                ms-sidenav-helper>
+        <!-- SIDENAV HEADER -->
+
+        <!-- / SIDENAV HEADER -->
+        <div style="margin-top:1px" layout="row">
+			<span class="font-weight-700" ng-if="vm.objectList.name">
+			{{ vm.objectList.name }}
+			</span>
+			<span flex="50">&nbsp;</span>
+			<button class="toolbar-button" 
+					style="padding:0px; height:15px; width:15px"
+                    ng-click="vm.sideNavLocked=!vm.sideNavLocked"> 
+                <span class="mdi-12px mdi mdi-arrow-expand-right" 
+					  style="font-size:1.0em"
+					  ng-if="vm.sideNavLocked===false"></span>
+				<span class="mdi-12px mdi mdi-arrow-expand-left" 
+					  style="font-size:1.0em"
+					  ng-if="vm.sideNavLocked===true"></span>
+                <md-tooltip>
+                    Toggle Side Navigation
+                </md-tooltip>
+            </button> 
+
+        </div>
+        <!-- SIDENAV CONTENT -->
+        <md-content
+                style="padding: 0px; margin-top:2px"
+                class="white-bg"
+                flex 
+				ms-scroll>
+            <!-- DEMO SIDENAV -->
+            <div ui-tree id="tree-root" data-drop-enabled="false" data-drag-enabled="false" class="white-bg">
+                <!-- start slipsum code -->
+                <ol ui-tree-nodes
+                    ng-model="vm.treeData"
+                    layout="column"
+                    layout-fill>
+                    <li ng-repeat="node in vm.treeData"
+                        ui-tree-node
+                        ng-include="'/moho_extractor/NgIncludedHtml/?name=leftSideTreeNavClone01'"
+						ng-if="node.class !== 'MasterViewController' && node.class !== 'SlaveViewController' && node.canAdd !== true">
+						
+                    </li>
+                </ol> 
+                <!-- end slipsum code -->
+            </div>
+            <!-- / DEMO SIDENAV -->
+			
+
+			
+        </md-content>
+        <!-- / SIDENAV CONTENT -->
+    </md-sidenav>
+    <!-- / SIDENAV -->
+    <!-- CENTER -->
+    <div layout="column" flex class="white-bg">
+        <!-- CONTENT HEADER -->
+        <div class="headerosx"  
+             flex="5"
+             layout="row"
+			 layout-align="start center"
+             style="height: 22px; max-height: 22px; min-height: 22px">
+            <button class="toolbar-button" 
+					style="padding:0px; height:15px; width:15px; margin-left:8px;" 
+                    ng-click="vm.goBackToCategory()"> 
+                <span class="entypo entypo-left-bold" style="font-size:1.1em"></span>
+                <md-tooltip>
+                    Go Back
+                </md-tooltip>
+            </button> 
+			<span flex>
+
+				&nbsp;&nbsp;&nbsp;
+				<span class="h4">
+							{{ vm.finishedBreadCrumbsJson._1st.name }}
+				</span>
+				<span class="mdi-12px badge badge-dark mdi mdi-chevron-right">
+				</span>
+				<span class="h4">
+							{{ vm.finishedBreadCrumbsJson._2nd.name }}
+				</span>
+				<span class="mdi-12px badge badge-dark mdi mdi-chevron-right">
+				</span>
+				<span class="h4">
+							{{ vm.objectList.name }}
+				</span>
+			</span>
+
+			
+        </div>
+        <!-- / CONTENT HEADER -->
+        <!-- CONTENT CARD -->
+        <div class="content-card glass-global" layout="column" flex >
+            
+			
+			<!-- CONTENT TOOLBAR -->
+            <div layout="row"
+				 ng-include="'/moho_extractor/NgIncludedHtml/?name=codeToolbarIDEClone01'"
+                 layout-align="start center">
+			</div>
+            <!-- / CONTENT TOOLBAR -->
+			
+			
+            <!-- CONTENT -->
+            <md-content class="contentosx"
+                        flex
+                        ms-scroll
+                        style="background-color: rgba(255,255,255,0.45);">
+                <div class="container-fluid container-maverix ">
+                    <ui-codemirror
+                            ui-codemirror-opts="vm.editorOptions"
+                            ui-codemirror="{onLoad:vm.codemirrorLoaded}">
+                    </ui-codemirror>
+					<span ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class==='NgIncludedHtml'">
+						<div>
+							Import This Partial Into Your Master/Slave ViewHTML 
+						</div>
+						
+						<hljs language="html" class="source-code">
+							<span ng-include="'/moho_extractor/NgIncludedHtml/?name=HTML_TMPL_ID'"></span>
+						</hljs>
+						<h4 ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class='NgIncludedHtml'">
+						&lt;span
+						<span style="color:green">&nbsp;ng-include=</span>
+						<span style="color:red">"'/moho_extractor/NgIncludedHtml/?name={{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name.replace("/moho_extractor/NgIncludedHtml/?name=", "") }}'"</span>&gt;&lt;/span&gt;
+						</h4>
+					</span>
+                </div>
+            </md-content>
+            <!-- / CONTENT -->
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div> 
+
+
+<style>
+	
+	.ide-tool-btn {
+	
+		line-height: 1.1 !important;
+	
+	}
+	
+	
+    button:hover {
+        color: black !important;
+    }
+	.CodeMirror {
+		font-style: normal;
+		font-variant: normal;
+		font-weight: 500;
+		font-family: Ubuntu Mono !important; 
+		font-size: 14px !important; 
+	}	 
+	.CodeMirror-code {
+		font-style: normal;
+		font-variant: normal;
+		font-weight: 500;
+		font-family: Ubuntu Mono !important; 
+		font-size: 14px !important; 
+	}
+	
+
+/** OVERRIDE SELECTED TEXT HIGHLIGHT COLOR FOR THEMES: **/
+	
+	/* isotope theme */
+	.cm-s-isotope div.CodeMirror-selected {
+		background: #0004FF !important;
+	}
+	/* colorforth theme */
+	.cm-s-colorforth div.CodeMirror-selected {
+		background: #0004FF !important;
+	}
+	/* 3024-night theme */
+	.cm-s-3024-night div.CodeMirror-selected {
+		background: #0004FF !important;
+	}
+	
+/** - - - - - **/
+</style>

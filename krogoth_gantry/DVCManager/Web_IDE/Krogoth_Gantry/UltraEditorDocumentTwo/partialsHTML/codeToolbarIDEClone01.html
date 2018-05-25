@@ -1,0 +1,79 @@
+<!-- CONTENT TOOLBAR -->
+
+                <md-button class="md-icon-button sidenav-toggle" 
+						   ng-click="vm.toggleSidenav('sidenav')"
+                           aria-label="Toggle left sidenav">
+                    <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+                </md-button>
+				
+				<h1 style="color: white" ng-if="vm.oldDebugInformation2">
+                    <span>class:</span>
+                    <span class="h1 badge badge-primary">
+						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class }}
+					</span>
+                    <span>name:</span>
+                    <span class="h1 badge badge-success">
+						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name }}
+					</span>
+                    <span ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title !== vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class">title:</span>
+                    <span class="h1 badge badge-danger"
+                          ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title !== vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class">
+						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title }}
+					</span>
+                </h1>
+				
+				
+				
+                <button class="toolbar-button" ng-click="vm.loadOSXDoc()">
+					<i class="entypo entypo-newspaper ide-tool-btn" style="font-size:1.4em"></i>
+					<md-tooltip>
+						Display Raw Tree Data As JSON
+					</md-tooltip>
+				</button>								
+				
+                <button class="toolbar-button" ng-click="vm.highlightSyntaxGetHtmlProperties()">			
+					<i class="entypo entypo-eye ide-tool-btn" style="font-size:1.4em"></i>
+					<md-tooltip>
+						Highlight HTML Syntax
+					</md-tooltip>
+				</button>
+ 
+                <button class="toolbar-button" ng-click="vm.isDisplayingPropModal = !vm.isDisplayingPropModal">			
+					<i class="entypo entypo-code ide-tool-btn" style="font-size:1.4em"></i>
+					<md-tooltip>
+						Scan Controller Properties
+					</md-tooltip>
+				</button>
+
+                <button class="toolbar-button" ng-click="vm.highlightCollectedVMs()">			
+					<i class="entypo entypo-check ide-tool-btn" style="font-size:1.4em"></i>
+					<md-tooltip>
+						Highlight VMs
+					</md-tooltip>
+				</button>
+                <button class="toolbar-button" ng-click="vm.beautifyCode()">			
+					<i class="entypo entypo-switch ide-tool-btn" style="font-size:1.4em"></i>
+					<md-tooltip>
+						Reformat Code (beautify)
+					</md-tooltip>
+				</button> 
+
+
+				<input type="text" placeholder="Find String..." ng-model="vm.findStringForm">
+                <button class="toolbar-button" ng-click="vm.renameObjectSubmit()">
+					<i class="entypo entypo-search ide-tool-btn" style="font-size:1.4em"></i>
+					<md-tooltip>
+						Highlight Custom String
+					</md-tooltip>
+				</button>
+
+				<input type="text" placeholder="Rename" ng-model="vm.renameObjectForm.new">
+                <button class="toolbar-button" ng-click="vm.renameObjectClick()">
+					<i class="entypo entypo-search ide-tool-btn" style="font-size:1.4em"></i>
+					<md-tooltip>
+						Rename Object
+					</md-tooltip>
+				</button>				
+				
+            
+            <!-- / CONTENT TOOLBAR -->

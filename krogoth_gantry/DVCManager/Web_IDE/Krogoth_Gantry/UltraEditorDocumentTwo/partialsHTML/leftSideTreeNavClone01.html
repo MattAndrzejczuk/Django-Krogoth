@@ -1,0 +1,77 @@
+<md-divider></md-divider>
+    <md-whiteframe ui-tree-handle
+                   ng-class="{'md-whiteframe-1dp':node.canEdit === false,'blackbg':node.canEdit === true}"
+                   class="tree-node tree-node-content"  
+				   style="height:21px"
+                   layout="row">
+        <div ng-if="node.nodes && node.nodes.length > 0">
+            <button class="btn btn-outline-warning" 
+					style="padding:0px; height:25px"
+                    ng-click="vm.toggleFolder(this)">
+                <span
+                    style="font-size:1.4em"
+                    ng-class="{'mdi mdi-chevron-right': collapsed,'mdi mdi-chevron-down': !collapsed}">
+                </span>
+                <md-tooltip>Browse {{ node.title }}</md-tooltip>
+            </button>
+        </div>
+        <span ng-if="node.icon"
+			  style="font-size:1.45em" 
+              class="mdi mdi-{{ node.icon }}"
+              style="color: rgba(255, 255, 255, 0.80)"></span>
+        <section>
+            <strong>
+                {{ node.title }}
+            </strong>  
+        </section>
+        <div flex></div>
+        <div> <!-- For Debugging, alert user that the indexes are off -->
+            <span class="badge badge-danger">
+                {{ node.parentIndex }}
+            </span>
+            <span class="badge badge-dark">
+                {{ $index }}
+            </span>
+        </div>
+        <div ng-if="node.hasUnsavedChanges === true">
+            <button class="toolbar-button"
+                    layout-wrap
+                    style="padding:0px; height:15px; width:15px"
+                    ng-click="vm.saveEditorWorkToServer(node.parentIndex, $index, node)">
+                <span style="font-size:1.0em" class="entypo entypo-floppy"></span>
+                <!--            <span class="mdi mdi-circle"></span>-->
+                <md-tooltip md-visible="demo.showTooltip">
+                    Save changes of {{ node.title }} to server.
+                </md-tooltip>
+            </button>
+        </div>
+        <div ng-if="node.canEdit === true" flex="10">
+            <button class="toolbar-button"
+                    layout-wrap 
+                    style="padding:0px; height:15px; width:15px"
+                    ng-click="vm.loadFileIntoEditor(node.parentIndex, node.index, this)">
+                <span class="entypo entypo-pencil" style="font-size:1.1em" ></span>
+                <!--            <span class="mdi mdi-circle"></span>-->
+                <md-tooltip md-visible="demo.showTooltip">
+                    Open {{ node.title }} in editor
+                </md-tooltip>
+            </button>
+        </div>
+        <div ng-if="node.canAdd === true">
+            <button class="btn btn-outline-success"
+                    ng-if="node.canAdd === true"
+                    layout-wrap
+                    data-max-depth="1"
+                    ng-click="vm.createNewComponentClick($event, node)"
+                    style="margin-right: 8px; padding:0px; height:25px">
+                <span style="font-size:1.4em" class="mdi mdi-plus"></span>
+                <md-tooltip md-visible="demo.showTooltip">
+                    Add new component to {{ node.class }}
+                </md-tooltip>
+            </button>
+        </div>
+    </md-whiteframe>
+    <ol data-nodrag ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}" ng-show="!collapsed" class="the-ol-drop">
+        <li ng-repeat="node in node.nodes" ui-tree-node data-nodrag ng-include="'nodes_renderer.html'">
+        </li>
+    </ol>

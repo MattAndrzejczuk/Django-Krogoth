@@ -1,0 +1,63 @@
+<div class="windowvmp moveToFront2" ng-if="vm.isDisplayingPropModal">
+	<div layout="column" 
+			 layout-align="space-around stretch" 
+			 class="windowosxcontainer"
+			 style="background-color:rgba(0,0,0,0); overflow: auto; margin-top:18px">
+			
+		<button ng-click="vm.scanAllVms()" class="btn">Scan VMs</button>
+		
+				<div>					 					
+					<pre style="height: 872px">
+						{{ vm.scannedVMs | json }}
+					</pre> 										
+				</div>
+	
+	</div>	  
+</div>
+
+
+
+<style>
+	.cm-s-ambiance span.cm-tag {
+    color: #00ff00;
+}
+	.cm-s-ambiance .cm-keyword {
+    color: #a7b5ff;
+}
+	.cm-s-ambiance .cm-variable {
+    color: #ff5200;
+}
+.cm-s-ambiance .cm-property {
+    color: #ff8200;
+}
+.cm-s-ambiance .cm-atom {
+    color: #00ff82;
+}
+	.cm-s-isotope span.cm-comment {
+    color: #b36aff;
+}
+	.cm-s-ambiance span.cm-comment {
+    color: #b36aff;
+}
+.cm-s-ambiance .cm-string {
+    color: #b9ff00;
+	}	
+	.cm-s-ambiance .cm-attribute {
+		color: #ea00ff;
+	}
+	
+	.windowvmp {
+		background-color: rgba(225,225,225,0.85);
+	}
+	
+	.moveToFront2 {
+	
+		z-index: 1000;
+		width: 800px;
+		height: 900px;
+		position: fixed;
+		left: 200px;
+		top: 100px;
+	 
+	}
+</style>
