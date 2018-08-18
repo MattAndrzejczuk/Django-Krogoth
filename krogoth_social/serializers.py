@@ -17,6 +17,7 @@ from krogoth_gantry.management.commands.installdjangular import bcolors
 class AKThreadChildReplySerializer(serializers.Serializer):
     title = serializers.CharField(read_only=True)
     pub_date = serializers.DateTimeField(read_only=True)
+    content = serializers.CharField(read_only=True)
 
 class AKThreadListField(serializers.RelatedField):
     def to_representation(self, value):
@@ -31,7 +32,7 @@ class AKThreadCategorySerializer(serializers.ModelSerializer):
     ak_threads = AKThreadListField(many=True, read_only=True)
     class Meta:
         model = AKThreadCategory
-        fields = ('uid', 'title', 'ak_threads', 'pub_date', )
+        fields = ('uid', 'description', 'title', 'ak_threads', 'pub_date', )
 
 
 class AKThreadParentSerializer(serializers.ListSerializer):
@@ -41,7 +42,7 @@ class AKThreadParentSerializer(serializers.ListSerializer):
     class Meta:
         model = AKThread
         category = AKThreadCategorySerializer
-        fields = ('title', 'parent', 'author', 'category', 'pub_date', 'uid',)
+        fields = ('title', 'parent', 'author', 'category', 'pub_date', 'uid', 'date_modified', 'author_name',)
 
 
 
@@ -55,7 +56,7 @@ class AKThreadSerializer(serializers.ModelSerializer):
         model = AKThread
         category = AKThreadCategorySerializer
         parent = AKThreadParentSerializer
-        fields = ('title', 'parent', 'author', 'category', 'pub_date', 'uid', 'broodling')
+        fields = ('title', 'parent', 'author', 'category', 'pub_date', 'date_modified', 'uid', 'broodling', 'is_reply', 'content', 'author_name',)
 
     def create(self, validated_data):
         return AKThread.objects.create(**validated_data)
@@ -65,4 +66,12 @@ class AKThreadSocialMediaSerializer(serializers.ModelSerializer):
         model = AKThreadSocialMedia
         category = AKThreadCategorySerializer
         parent = AKThreadParentSerializer
-        fields = ('title', 'parent', 'author', 'category', 'pub_date', 'uid', 'broodling', 'text_body', 'likes', 'type')
+        fields = ('title', 'parent', 'author', 'uid', 'category', 'pub_date', 'broodling', 'content', 'likes', 'type')
+
+class AKThreadReplySocialMediaSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = AKThreadSocialMedia
+        category = AKThreadCategorySerializer
+        parent = AKThreadParentSerializer
+        fields = ('title', 'parent', 'author', 'category', 'pub_date', 'content', 'likes', 'type')

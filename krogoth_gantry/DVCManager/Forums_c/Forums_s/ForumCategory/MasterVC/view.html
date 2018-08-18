@@ -1,0 +1,77 @@
+<!--<h1>{{ vm.threadsData.title }}</h1>-->
+
+
+
+<div layout="column">
+	 
+
+	
+<div id="profile" class="page-layout simple tabbed" layout="row" layout-align="center start">
+				<div class="timeline" 
+					 layout="column" 
+					 flex="100" 
+					 flex-gt-sm="80" 
+					 flex-gt-md="60" 
+					 flex-xl="60"
+					 flex-order="2"
+					 flex-order-gt-sm="1">
+						
+					
+					<div layout="row" 
+						 style="margin-top:5px"
+						 layout-align="space-between center">
+						<button ui-sref="app.Forums"
+								   style="max-width: 200px"
+								   class="btn btn-outline-light" 
+								   aria-label="Go Back">
+							<i class="mdi mdi-chevron-left"></i>
+						</button>
+						<md-button 
+								   ng-click="vm.didPressNewThread()"
+								   style="max-width: 200px"
+								   class="btn btn-outline-success"
+								   aria-label="Post Reply">
+							New Thread
+						</md-button>		
+					</div>
+					<md-divider style="margin-top:5px; margin-bottom:5px"></md-divider>
+					<div class="profile-box add-post md-whiteframe-1dp hover-hl"
+						 style="margin-top:5px;"
+						 layout="row"
+						 layout-align="space-between center"
+						 ng-repeat="thread in vm.threadsData.results | orderBy:'date_modified'"     
+						 ng-click="vm.openThread(thread.uid)"> 
+						<div flex="65">   
+							<strong>{{thread.title}}</strong>
+						</div>
+						<div flex="5">&nbsp;</div>
+						<div layout="row">							
+							<p>{{thread.pub_date | date:"MMM d, y h:mm:ss a"}}</p>						
+						</div>
+					</div>
+	</div>
+</div> 
+					
+
+	
+<style>
+	
+	.hover-hl {
+		background-color: rgba(255,255,255,0.65);
+	}
+	
+	.hover-hl:hover {
+		background-color: rgba(255,255,255,0.90) !important;
+		cursor: pointer !important;
+		animation-name: SCALE-INFINITE;
+		animation-duration: 0.3s;
+	}
+	
+</style>
+
+<div class="profile-box add-post md-whiteframe-1dp clear-bg glass-global">
+	<md-button ui-sref="app.NewThread">New Thread</md-button>
+	<pre>
+		{{ vm.threadsData | json }}
+	</pre>
+</div>

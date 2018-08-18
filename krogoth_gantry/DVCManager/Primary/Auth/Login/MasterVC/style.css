@@ -1,5 +1,5 @@
 #login-v2 #login-v2-form-wrapper {
-    background-image: url('/static/assets/ArmPrimeBg_b-login.jpg');
+    background-image: url('/static/assets/DoA_Wallpaper_Blur2.jpg');
     background-repeat: no-repeat;
     background-position: top left;
     background-size: 3096px 2352px;
@@ -12,7 +12,7 @@
 }
 
 .glass_bg {
-    background-image: url('/static/assets/ArmPrimeBg_b-login.jpg');
+    background-image: url('/static/assets/DoA_Wallpaper_Blur2.jpg');
     background-repeat: no-repeat;
     background-position: top left;
     background-size: 3096px 2352px;
@@ -23,7 +23,7 @@
 #login-v2 {
     height: 100%;
     overflow: hidden;
-    background-image: url('/static/assets/ArmPrimeBg-login.jpg');
+    background-image: url('/static/assets/DoA_Wallpaper_Opaque.jpg');
     background-repeat: no-repeat;
     background-position: top left;
     background-size: 3096px 2352px;
@@ -31,7 +31,7 @@
 }
 
 .multi_bg_example_opaque {
-    background-image: url('/static/assets/ArmPrimeBg-login.jpg');
+    background-image: url('/static/assets/DoA_Wallpaper_Opaque.jpg');
     background-repeat: no-repeat;
     background-position: top left;
     background-size: 3096px 2352px;
@@ -39,7 +39,7 @@
 }
 
 .multi_bg_example_glass {
-    background-image: url('/static/assets/ArmPrimeBg_b-login.jpg');
+    background-image: url('/static/assets/DoA_Wallpaper_Blur2.jpg');
     background-repeat: no-repeat;
     background-position: top left;
     background-size: 3096px 2352px;
@@ -58,4 +58,3 @@
     color: rgb(255, 171, 0) !important;
     border-color: rgb(255, 171, 0) !important;
 }
-

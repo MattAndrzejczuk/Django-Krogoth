@@ -5,12 +5,14 @@ from django.db import models
 from chat.models import JawnUser
 from polymorphic.models import PolymorphicModel
 from random import *
-
+from datetime import datetime
+from django.contrib.auth.models import User
 
 # Create your models here.
 class AKThreadCategory(models.Model):
     uid = models.CharField(max_length=249, primary_key=True)
     title = models.CharField(max_length=248, default='new category')
+    description = models.CharField(max_length=248, default='No description.')
     is_deleted = models.BooleanField(default=False)
 
     @classmethod
@@ -34,16 +36,28 @@ class AKThread(PolymorphicModel):
     title = models.CharField(max_length=257, default='new post')
     author = models.ForeignKey(JawnUser, on_delete=models.CASCADE, null=True, blank=True)
     pub_date = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(null=True, blank=True)
     is_deleted = models.BooleanField(default=False)
     category = models.ForeignKey(AKThreadCategory, on_delete=models.CASCADE, related_name="ak_threads", null=True, blank=True)
     parent = models.ForeignKey('AKThread', on_delete=models.CASCADE, null=True, blank=True, related_name="broodling")
-
+    content = models.TextField(default="")
 
     def save(self, *args, **kwargs):
         count = len(AKThread.objects.all())
         p1 = self.title.replace(" ", "_").replace("?", "").replace("$", "").replace("!", "").replace("$", "")
-        self.uid = p1.replace("%", "_").replace("&", "").replace("@", "").replace("^", "").replace("/", "") + str(count)
+        self.uid = p1.replace("%", "_").replace("&", "").replace("@", "").replace("^", "").replace("/", "")
+        self.date_modified = datetime.now()
         super(AKThread, self).save(*args, **kwargs)
+        
+    @property
+    def is_reply(self):
+	    return self.parent is not None
+	    
+    @property
+    def author_name(self):
+        return self.author.base_user.username
+	    	 
+    
 
     def __str__(self):
         return self.uid

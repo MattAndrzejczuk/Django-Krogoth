@@ -1,4 +1,3 @@
-
 <div id="profile" class="page-layout simple tabbed">
 
 
@@ -57,13 +56,13 @@
                             <div layout="column">
                                 <div class="title">
                                     <span class="username md-accent-color">{{post.user.name}}</span>
-                                    <span ng-if="post.type == 'post'" translate="PROFILE.TYPE_POST">posted on your
+                                    <span ng-if="post.type == 'post'" >posted on your
                                 timeline</span>
-                                    <span ng-if="post.type == 'something'" translate="PROFILE.TYPE_SOMETHING">shared something
+                                    <span ng-if="post.type == 'something'" >shared something
                                 with you</span>
-                                    <span ng-if="post.type == 'video'" translate="PROFILE.TYPE_VIDEO">shared a video with
+                                    <span ng-if="post.type == 'video'">shared a video with
                                 you</span>
-                                    <span ng-if="post.type == 'article'" translate="PROFILE.TYPE_ARTICLE">shared an article with
+                                    <span ng-if="post.type == 'article'" >shared an article with
                                 you</span>
                                 </div>
                                 <div class="time">{{post.time}}</div>
@@ -75,6 +74,7 @@
                             <md-icon md-font-icon="icon-dots-vertical"></md-icon>
                         </md-button>
                     </header>
+					
 
                     <div class="content">
                         <div ng-if="post.message" class="message">

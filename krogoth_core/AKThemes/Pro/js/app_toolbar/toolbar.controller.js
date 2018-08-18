@@ -6,7 +6,8 @@
         .controller('ToolbarController', ToolbarController);
 
     /** @ngInject */
-    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService, $http, $cookies) {
+    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, $log,
+								msNavigationService, $http, $cookies) {
         var vm = this;
 
         // Data
@@ -106,6 +107,10 @@
                 url: '/rest-auth/user/'
             }).then(function successCallback(response) {
                 vm.user = response.data;
+				$log.info("GOT THE USER LOGIN! ! !!");
+				$log.log(response.data);
+				$cookies.put("username", vm. user.username);
+				
             }, function errorCallback(response) {
                 $mdToast.show($mdToast.simple().textContent('Login is required.'));
             });
@@ -145,12 +150,13 @@
                     url: '/rest-auth/logout/'
                 }).then(function successCallback(response) {
                     $cookies.remove('token');
-                    $state.go('app.Loginkrogoth_gantry');
+					$cookies.remove('username');
+                    $state.go('app.Login');
                 }, function errorCallback(response) {
                     $mdToast.show($mdToast.simple().textContent('Unexpected server error: /rest-auth/logout/'));
                 });
             } else {
-                $state.go('app.Loginkrogoth_gantry');
+                $state.go('app.Login');
             }
         }
 

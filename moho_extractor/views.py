@@ -57,6 +57,7 @@ def krogoth_debug(msg):
 
 
 class IncludedHtmlMasterViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
     queryset = IncludedHtmlMaster.objects.all()
     serializer_class = IncludedHtmlMasterSerializer
     filter_backends = (filters.DjangoFilterBackend,)
@@ -65,13 +66,14 @@ class IncludedHtmlMasterViewSet(viewsets.ModelViewSet):
 
 
 class IncludedHtmlCoreViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
     queryset = IncludedHtmlCoreTemplate.objects.all()
     serializer_class = IncludedHtmlCoreTemplateSerializer
 
 
 
 class NgIncludedHtmlView(APIView):
-    authentication_classes = (TokenAuthentication,)
+    #authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
 
     def get(self, request, format=None):
@@ -105,7 +107,7 @@ from krogoth_core.models import AKFoundationAbstract
 
 
 class KrogothFoundationView(APIView):
-    authentication_classes = (TokenAuthentication,)
+    #authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
 
     def get(self, request, format=None):
@@ -142,7 +144,7 @@ from jawn.settings import BASE_DIR
 
 
 class LoadFileAsBase64View(APIView):
-    authentication_classes = (TokenAuthentication,)
+    #authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
     def get(self, request):
         name = request.GET['name']

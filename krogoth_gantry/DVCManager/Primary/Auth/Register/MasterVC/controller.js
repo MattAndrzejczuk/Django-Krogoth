@@ -27,12 +27,10 @@
                     }
                 }).then(function successCallback(response) {
                     /// Success
-                    $log.info('Login Successful');
+                    $log.info('Registration Successful');
                     $log.debug(response.data);
-                    $log.log(response.data.key);
                     $mdToast.show($mdToast.simple().textContent('Registration Successful!'));
-                    $cookies.put('token', response.data.key);
-                    $state.go('app.Loginkrogoth_gantry');
+                    $state.go('app.Login');
                 }, function errorCallback(response) {
                     /// Fail
                     $mdToast.show($mdToast.simple().textContent('Server Error - Failed To Register.'));

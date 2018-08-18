@@ -24,6 +24,7 @@ import json
 
 
 class KrogothGantryIconViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
     queryset = KrogothGantryIcon.objects.all()
     serializer_class = KrogothGantryIconSerializer
     filter_backends = (filters.SearchFilter,)
@@ -34,6 +35,7 @@ class KrogothGantryIconViewSet(viewsets.ModelViewSet):
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 class KrogothGantryMasterViewControllerViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
     queryset = KrogothGantryMasterViewController.objects.all()
     serializer_class = KrogothGantryMasterViewControllerSerializer
     filter_backends = (filters.DjangoFilterBackend,)
@@ -45,6 +47,7 @@ class KrogothGantryMasterViewControllerViewSet(viewsets.ModelViewSet):
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 class KrogothGantrySlaveViewControllerViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
     queryset = KrogothGantrySlaveViewController.objects.all()
     serializer_class = KrogothGantrySlaveViewControllerSerializer
     filter_backends = (filters.SearchFilter,)
@@ -56,6 +59,7 @@ import os
 
 
 class KrogothGantryCategoryViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
     queryset = KrogothGantryCategory.objects.all()
     serializer_class = KrogothGantryCategorySerializer
     filter_backends = (filters.DjangoFilterBackend,)
@@ -65,6 +69,7 @@ class KrogothGantryCategoryViewSet(viewsets.ModelViewSet):
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 class KrogothGantryDirectiveViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
     queryset = KrogothGantryDirective.objects.all()
     serializer_class = KrogothGantryDirectiveSerializer
     filter_backends = (filters.SearchFilter,)
@@ -75,6 +80,7 @@ class KrogothGantryDirectiveViewSet(viewsets.ModelViewSet):
 
 
 class KrogothGantryServiceViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
     queryset = KrogothGantryService.objects.all()
     serializer_class = KrogothGantryServiceSerializer
     filter_backends = (filters.SearchFilter,)
@@ -83,7 +89,7 @@ class KrogothGantryServiceViewSet(viewsets.ModelViewSet):
 from krogoth_gantry.krogoth_compiler import master_compiler
 
 class DynamicJavaScriptInjector(APIView):
-    authentication_classes = (TokenAuthentication,)
+    #authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
         name = request.GET['name']
@@ -93,7 +99,7 @@ class DynamicJavaScriptInjector(APIView):
 
 
 class DynamicHTMLInjector(APIView):
-    authentication_classes = (TokenAuthentication,)
+    # authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
         print('🧡🧡🧡🧡🧡🧡🧡🧡🧡🧡️')
@@ -115,7 +121,7 @@ class DynamicHTMLInjector(APIView):
 
 
 class DynamicHTMLSlaveInjector(APIView):
-    authentication_classes = (TokenAuthentication,)
+    #authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
 
     def get(self, request, format=None):

@@ -1,0 +1,139 @@
+<div layout="column" layout-padding>
+	<div id="profile" class="page-layout simple tabbed" layout="row" layout-align="center start">
+				<div class="timeline" 
+					 layout="column" 
+					 flex="100" 
+					 flex-gt-sm="80" 
+					 flex-gt-md="60"
+					 flex-xl="60"
+					 flex-order="2"
+					 flex-order-gt-sm="1">
+					
+					<div layout="row" 
+						 class=" md-whiteframe-2dp"
+						 style="margin-top:5px; background-color:rgba(255,255,255,0.45)"
+						 layout-align="space-between center">
+						<div>
+							<button ng-click="vm.backToCategory()"
+									   style="max-width: 200px"
+									   class="btn btn-outline-light" 
+									   aria-label="Go Back">
+								<i class="mdi mdi-chevron-left"></i>
+							</button>
+						</div>
+					
+						<div>
+							<strong>{{vm.opData.title}} {{vm.opData.parent}}</strong> 
+						</div>
+					</div>
+					
+					<div class="profile-box add-post md-whiteframe-3dp clear-bg glass-global"
+						 flex
+						 layout="column" 
+						 layout-align="space-between stretch">
+						
+						<header layout="row" layout-align="space-between start">
+							<div class="user" layout="row" layout-align="start center">
+								
+								<img ng-if="vm.opData.author_name !== 'CiniCraft'"
+									 class="avatar" 
+									 ng-src="/static/wow-icons/Achievement_Boss_Mutanus_the_Devourer.png">
+								
+								<img ng-if="vm.opData.author_name === 'CiniCraft'"
+									 class="avatar" 
+									 ng-src="/static/wow-icons/Spell_Paladin_HammerOfWrath.png">
+								
+								<div layout="column"> 
+									<div class="title">
+										<span class="username md-accent-color">{{vm.opData.author_name}}</span>
+									</div>
+									<div class="time">{{vm.opData.pub_date | date:"MMM d, y h:mm:ss a"}}</div>
+								</div>
+							</div>
+						</header>
+						
+						<md-divider></md-divider>
+						
+						<footer class="" layout="column" layout-align="end stretch" layout-padding>
+							<div class="reply" layout="row" layout-fill>
+								<pre>{{vm.opData.content}}</pre>
+							</div>
+						</footer>
+						
+		                <md-divider></md-divider>
+					</div>			  
+					<div ng-repeat="reply in vm.repliesData.results" 
+						 class="profile-box add-post md-whiteframe-1dp clear-bg glass-global"
+						 flex
+						 layout="column" 
+						 layout-align="space-between stretch">
+						
+						<header layout="row" layout-align="space-between start">
+							<div class="user" layout="row" layout-align="start center">
+								<img ng-if="vm.opData.author_name !== 'CiniCraft'"
+									 class="avatar" 
+									 ng-src="/static/wow-icons/Achievement_Boss_Mutanus_the_Devourer.png">
+								
+								<img ng-if="vm.opData.author_name === 'CiniCraft'"
+									 class="avatar" 
+									 ng-src="/static/wow-icons/Spell_Paladin_HammerOfWrath.png">
+								<div layout="column">
+									<div class="title">
+										<span class="username md-accent-color">{{reply.author_name}}</span>
+									</div>
+									<div class="time">{{reply.pub_date | date:"MMM d, y h:mm:ss a"}}</div>
+								</div>
+							</div>
+						</header>
+		                <md-divider></md-divider>
+						<div class="content clear-bg glass-global">
+							<div class="message">
+								<pre>{{reply.content}}</pre>
+							</div>
+						</div> 
+					</div>
+					
+					
+					
+					<div  class="timeline-item md-whiteframe-1dp clear-bg glass-global" >
+						<footer class="" layout="column" layout-align="space-around end" layout-padding>
+							<div class="reply" layout="row" layout-fill> 
+								<img src="/static/wow-icons/Achievement_Boss_Mutanus_the_Devourer.png" class="avatar"/>
+								<form flex style="background-color:red">
+									<textarea placeholder="add reply..."
+											  ng-model="vm.replyInput"
+											  style="width:100%; min-height: 100px"></textarea>
+								</form>
+							</div>
+							<md-button ng-click="vm.postReply()"
+									   style="max-width: 200px" 
+									   class="btn btn-outline-success"
+									   aria-label="Post Reply">
+										Post Reply
+							</md-button> 
+						</footer>
+					</div>
+					
+				</div>
+		<!--
+		<section class="timeline-tab" layout="row" style="background-color:rgba(0,255,0,0.4);" flex="100">
+			<div style="background-color:rgba(255,0,255,0.4); width:100%">
+			</div>
+		</section>
+		-->
+	</div>
+</div>
+
+
+
+
+
+<div class="profile-box add-post md-whiteframe-1dp clear-bg glass-global">
+	<pre>
+		{{ vm.opData | json }}
+	</pre>
+	<md-divider></md-divider>
+	<pre>
+		{{ vm.repliesData | json }}
+	</pre>
+</div>
