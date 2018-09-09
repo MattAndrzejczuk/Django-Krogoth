@@ -7,6 +7,7 @@ from polymorphic.models import PolymorphicModel
 from random import *
 from datetime import datetime
 from django.contrib.auth.models import User
+import random
 
 # Create your models here.
 class AKThreadCategory(models.Model):
@@ -14,6 +15,7 @@ class AKThreadCategory(models.Model):
     title = models.CharField(max_length=248, default='new category')
     description = models.CharField(max_length=248, default='No description.')
     is_deleted = models.BooleanField(default=False)
+
 
     @classmethod
     def make_thread_category(cls, named: str):
@@ -42,12 +44,14 @@ class AKThread(PolymorphicModel):
     parent = models.ForeignKey('AKThread', on_delete=models.CASCADE, null=True, blank=True, related_name="broodling")
     content = models.TextField(default="")
 
-    def save(self, *args, **kwargs):
-        count = len(AKThread.objects.all())
-        p1 = self.title.replace(" ", "_").replace("?", "").replace("$", "").replace("!", "").replace("$", "")
-        self.uid = p1.replace("%", "_").replace("&", "").replace("@", "").replace("^", "").replace("/", "")
-        self.date_modified = datetime.now()
-        super(AKThread, self).save(*args, **kwargs)
+#     def save(self, *args, **kwargs):
+#         if self.title is not "REPLY":
+#             count = len(AKThread.objects.all())
+#             seed = str(random.randint(0,999999))
+#             p1 = self.title
+#             self.uid = ''.join(e for e in p1 if e.isalnum()) + "_" + str(self.totalThreads)
+#             self.date_modified = datetime.now()
+#         super(AKThread, self).save(*args, **kwargs)
         
     @property
     def is_reply(self):
@@ -57,6 +61,9 @@ class AKThread(PolymorphicModel):
     def author_name(self):
         return self.author.base_user.username
 	    	 
+    @property
+    def totalThreads(self):
+        return len(AKThread.objects.all())
     
 
     def __str__(self):
@@ -73,6 +80,54 @@ class AKThreadSocialMedia(AKThread):
     type = models.CharField(max_length=40, default="text", choices=SOCIAL_MEDIA_THREAD_KINDS)
     text_body = models.TextField()
     likes = models.IntegerField(default=0)
+
+
+
+
+class ForumThreadCategory(models.Model):
+    uid = models.CharField(max_length=249, primary_key=True)
+    title = models.CharField(max_length=248, default='new category')
+    description = models.CharField(max_length=248, default='No description.')
+    total_threads = models.IntegerField(default=0)
+    weight = models.IntegerField(default=0)
+    img_url = models.CharField(max_length=249, null=True, blank=True)
+
+
+class ForumThreadOP(models.Model):
+    uid = models.CharField(max_length=249, primary_key=True)
+    title = models.CharField(max_length=257, default='new post')
+    author = models.ForeignKey(JawnUser, on_delete=models.CASCADE, null=True, blank=True)
+    pub_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    date_modified = models.DateTimeField(null=True, blank=True)
+    not_deleted = models.BooleanField(default=True)
+    category = models.ForeignKey(ForumThreadCategory, on_delete=models.CASCADE, null=True, blank=True)
+    content = models.TextField(default="")
+    total_likes = models.IntegerField(default=0)
+    total_replies = models.IntegerField(default=0)
+    total_views = models.IntegerField(default=0)
+
+    @property
+    def header(self):
+        self.total_views += 1
+        return "Views " + str(total_views)
+
+    @property
+    def author_name(self):
+        return self.author.base_user.username
+
+class ForumThreadReply(models.Model):
+    uid = models.CharField(max_length=249, primary_key=True)
+    author = models.ForeignKey(JawnUser, on_delete=models.CASCADE, null=True, blank=True)
+    pub_date = models.DateTimeField(null=True, blank=True)
+    date_modified = models.DateTimeField(null=True, blank=True)
+    not_deleted = models.BooleanField(default=True)
+    content = models.TextField(default="")
+    total_likes = models.IntegerField(default=0)
+    parent = models.ForeignKey(ForumThreadOP, on_delete=models.CASCADE, null=True, blank=True)
+
+    @property
+    def author_name(self):
+        return self.author.base_user.username
 
 
 
