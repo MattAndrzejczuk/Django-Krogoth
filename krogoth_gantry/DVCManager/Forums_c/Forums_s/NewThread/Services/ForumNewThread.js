@@ -25,18 +25,20 @@
             */
 
             if (title !== "REPLY") {
+                const uri = '/krogoth_social/api/ForumThreadOP/'
                 const payload = {
                     "category": category,
                     "title": title,
-                    "content": text,
-                    "author": $cookies.get("user_id")
+                    "content": text
                 };
-
+                $log.log("Creating new thread: ");
+                $log.debug(uri);
+                $log.debug(payload);
                 var deferred = $q.defer();
                 $http({
                     method: 'POST',
                     data: payload,
-                    url: '/krogoth_social/api/AKThreadSocialMedia/'
+                    url: uri
                 }).then(function successCallback(response) {
                     /// Success
                     deferred.resolve(response.data);

@@ -2,7 +2,7 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
-    function FUSE_APP_NAMEController(ForumNewThread, $state, $mdToast, $log) {
+    function FUSE_APP_NAMEController(ForumNewThread, $state, $mdToast, $log, $timeout) {
         var vm = this;
         vm.$onInit = onInit;
         vm.viewName = 'FUSE_APP_NAME';
@@ -35,9 +35,11 @@
                         $log.debug("SERVER RETURNED THIS RESPONSE: ");
                         $log.info(newThreadData);
 
-                        $state.go("app.ThreadDetail", {
-                            "threadId": newThreadData.uid
-                        });
+                        $timeout(function() {
+                            $state.go("app.ThreadDetail", {
+                                "threadId": newThreadData.uid
+                            });
+                        }, 500);
                     });
             }
         }

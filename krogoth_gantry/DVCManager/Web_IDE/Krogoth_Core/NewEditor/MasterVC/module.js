@@ -21,13 +21,16 @@
         _DJANGULAR_SLAVE_VC_INJECTION_POINT_; /* krogoth_gantry Slave VCs automatically injected here. */
         _DJANGULAR_SLAVE_MSAPI_INJECTION_POINT_
 
+
+        /*
         msNavigationServiceProvider.saveItem('AK_NAVCAT_KROGOTH.AK_SUBCATAGORY_KROGOTH.FUSE_APP_NAME', {
             title: 'FUSE_APP_TITLE',
             icon: 'FUSE_APP_ICON',
             state: 'app.FUSE_APP_NAME',
             weight: 10
         });
-        _DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_
 
+        _DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_
+		*/
     }
 })();

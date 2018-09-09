@@ -15,11 +15,11 @@
         };
 
         function getThreadOP(id) {
-            $log.info('/krogoth_social/api/AKThreadSocialMedia/' + id + '/?format=json');
+            $log.info('/krogoth_social/api/ForumThreadOP/' + id + '/?format=json');
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: '/krogoth_social/api/AKThreadSocialMedia/' + id + '/?format=json'
+                url: '/krogoth_social/api/ForumThreadOP/' + id + '/?format=json'
             }).then(function successCallback(response) {
                 /// Success  
                 deferred.resolve(response.data);
@@ -34,7 +34,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: '/krogoth_social/api/AKThreadSocialMediaReply/?format=json&parent=' + id
+                url: '/krogoth_social/api/ForumThreadReply/?format=json&parent=' + id
             }).then(function successCallback(response) {
                 /// Success
                 deferred.resolve(response.data);
@@ -47,11 +47,8 @@
 
         function postReply(text, parent) {
             var wrapper = {
-                "title": "REPLY",
                 "parent": parent,
-                "content": text,
-                "author": $cookies.get("user_id"),
-                "type": "text"
+                "content": text
             };
             $log.info("POSTING REPLY: ");
             $log.log(wrapper);
@@ -59,7 +56,7 @@
             $http({
                 method: 'POST',
                 data: wrapper,
-                url: '/krogoth_social/api/AKThreadSocialMediaReply/'
+                url: '/krogoth_social/api/ForumThreadReply/'
             }).then(function successCallback(response) {
                 /// Success
                 deferred.resolve(response.data);
@@ -71,6 +68,7 @@
         }
 
         function updateParent(parent) {
+            /*
             var deferred = $q.defer();
             $http({
                 method: 'GET',
@@ -83,6 +81,7 @@
                 deferred.reject(response);
             });
             return deferred.promise;
+			*/
         }
 
         return service;

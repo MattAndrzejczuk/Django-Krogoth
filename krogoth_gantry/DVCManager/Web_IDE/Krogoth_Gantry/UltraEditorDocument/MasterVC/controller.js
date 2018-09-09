@@ -11,6 +11,8 @@ save changes to filesystem using URL:
 */
 
 
+
+
 (function() {
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
@@ -31,7 +33,7 @@ save changes to filesystem using URL:
         const tServi = 4;
         const tXHTML = 5;
         const tXtrJS = 6;
-
+        ///renameObjectClick
         vm.$onInit = onInit;
         vm.getMasterViewCtrlDetail = getMasterViewCtrlDetail;
 
@@ -82,8 +84,37 @@ save changes to filesystem using URL:
         vm.sideNavLocked = true;
 
         vm.beautifyCode = beautifyCode;
-
         vm.goBackToExplorerHome = goBackToExplorerHome
+
+        vm.cursorActivity = cursorActivity;
+        vm.unsavedChangesExist = -1;
+        vm.customThemeMode = false;
+        vm.setThemeBasedOnClass = setThemeBasedOnClass;
+        vm.remove = remove;
+        vm.toggleFolder = toggleFolder;
+        vm.newSubItem = newSubItem;
+        vm.finishedBreadCrumbsJson = {};
+        vm.browserTabEmoji = " 🔨 ";
+        vm.browserTabText = "Krogoth Editor";
+        vm.setBrowserTabText = setBrowserTabText;
+        vm.setBrowserTabEditMode = setBrowserTabEditMode;
+        vm.isDisplayingPropModal = false;
+        vm.scannedVMs = [];
+        vm.scanAllVms = scanAllVms;
+        vm.highlightCollectedVMs = highlightCollectedVMs;
+        vm.highlightSyntax = highlightSyntax;
+        vm.highlightSyntaxGetHtmlProperties = highlightSyntaxGetHtmlProperties;
+        vm.loadOSXDoc = loadOSXDoc;
+        vm.treeModalIsVisible = false;
+        vm.simplifiedTreeData = [];
+
+        vm.renameObjectForm = {};
+        vm.renameObjectSubmit = renameObjectSubmit;
+
+        vm.openedDocTitle = "";
+        vm.highlightInputCustom = highlightInputCustom;
+        vm.removeHighlights = removeHighlights;
+
 
 
         /// I.
@@ -283,8 +314,7 @@ save changes to filesystem using URL:
         }
         // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-        vm.customThemeMode = false;
-        vm.setThemeBasedOnClass = setThemeBasedOnClass;
+
 
         /*  ⚡️  */
         function loadFileIntoEditor(parentIndex, index, scope) {
@@ -300,6 +330,14 @@ save changes to filesystem using URL:
 
             const syntax = vm.treeData[parentIndex].nodes[index].syntax;
             const _class = vm.treeData[parentIndex].nodes[index].class;
+
+            if (_class === "NgIncludedHtml" || _class === "Service" || _class === "Directive") {
+                vm.openedDocTitle = vm.treeData[parentIndex].nodes[index].title;
+            } else {
+                vm.openedDocTitle = "INVALID_FOR_RENAME";
+            }
+
+
             vm.editorModel.setOption("mode", syntax);
 
             if (vm.customThemeMode === false) {
@@ -351,7 +389,7 @@ save changes to filesystem using URL:
             vm.editorModel = _editor;
         }
 
-        vm.cursorActivity = cursorActivity;
+
 
         function cursorActivity() {
             console.log(" . . . . . . . . . ");
@@ -398,8 +436,6 @@ save changes to filesystem using URL:
 
 
         /// <PROCESS RESPONSE INTO RAM III. > 💚
-
-        vm.unsavedChangesExist = -1;
 
         function editorContentWillChange() {
             $log.info('unsavedChangesExist ' + vm.unsavedChangesExist);
@@ -449,9 +485,6 @@ save changes to filesystem using URL:
 
         ////// -----------
 
-        vm.remove = remove;
-        vm.toggleFolder = toggleFolder;
-        vm.newSubItem = newSubItem;
 
 
         /*  ⚡️  */
@@ -475,12 +508,7 @@ save changes to filesystem using URL:
             });
         }
 
-        vm.finishedBreadCrumbsJson = {};
 
-        vm.browserTabEmoji = " 🔨 ";
-        vm.browserTabText = "Krogoth Editor";
-        vm.setBrowserTabText = setBrowserTabText;
-        vm.setBrowserTabEditMode = setBrowserTabEditMode;
 
         function buildBreadCrumbs() {
             BreadCrumbsIDE.cookBread($state.params.categoryId, $state.params.subCategoryId, $state.params.masterId)
@@ -533,10 +561,7 @@ save changes to filesystem using URL:
 
 
         /* ▽ ▽ ▽ RELOCATE ME TO A SEPARATE SERVICE ▽ ▽ ▽ */
-        vm.isDisplayingPropModal = false;
-        vm.scannedVMs = [];
-        vm.scanAllVms = scanAllVms;
-        vm.highlightCollectedVMs = highlightCollectedVMs;
+
 
         function scanAllVms() {
             /// const code = vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode;
@@ -547,8 +572,7 @@ save changes to filesystem using URL:
         }
 
 
-        vm.highlightSyntax = highlightSyntax;
-        vm.highlightSyntaxGetHtmlProperties = highlightSyntaxGetHtmlProperties;
+
 
         function highlightSyntax() {
             var lineCount = vm.editorModel.getDoc().lineCount();
@@ -585,9 +609,8 @@ save changes to filesystem using URL:
         /* △ △ △ RELOCATE ME TO A SEPARATE SERVICE △ △ △ */
 
 
-        vm.loadOSXDoc = loadOSXDoc;
-        vm.treeModalIsVisible = false;
-        vm.simplifiedTreeData = [];
+
+
 
         function loadOSXDoc() {
             vm.treeModalIsVisible = !vm.treeModalIsVisible;
@@ -603,8 +626,7 @@ save changes to filesystem using URL:
             }
         }
 
-        vm.renameObjectForm = {};
-        vm.renameObjectSubmit = renameObjectSubmit;
+
 
         function renameObjectSubmit() {
             const _0 = vm.finishedBreadCrumbsJson._1st.name;
@@ -745,6 +767,18 @@ save changes to filesystem using URL:
             $state.go('app.UltraEditorBrowse');
         }
 
+
+
+        function highlightInputCustom() {
+            codeHighlightIDE.highlightCustom(vm.editorModel, vm.findStringForm)
+                .then(function(coloredEditorModel) {
+                    vm.editorModel = coloredEditorModel;
+                });
+        }
+
+        function removeHighlights() {
+            vm.editorModel.doc.setValue(vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode);
+        }
 
 
     }

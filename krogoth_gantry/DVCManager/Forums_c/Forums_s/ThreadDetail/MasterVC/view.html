@@ -22,8 +22,11 @@
 							</button>
 						</div>
 					
-						<div>
+						<div flex layout="row" layout-align="center center">
 							<strong>{{vm.opData.title}} {{vm.opData.parent}}</strong> 
+						</div>
+						<div flex="10">
+							&nbsp;
 						</div>
 					</div>
 					
@@ -35,17 +38,17 @@
 						<header layout="row" layout-align="space-between start">
 							<div class="user" layout="row" layout-align="start center">
 								
-								<img ng-if="vm.opData.author_name !== 'CiniCraft'"
+								<img ng-if="vm.opData.author.base_user.username !== 'CiniCraft'"
 									 class="avatar" 
 									 ng-src="/static/wow-icons/Achievement_Boss_Mutanus_the_Devourer.png">
 								
-								<img ng-if="vm.opData.author_name === 'CiniCraft'"
+								<img ng-if="vm.opData.author.base_user.usernameauthor_name === 'CiniCraft'"
 									 class="avatar" 
 									 ng-src="/static/wow-icons/Spell_Paladin_HammerOfWrath.png">
 								
 								<div layout="column"> 
 									<div class="title">
-										<span class="username md-accent-color">{{vm.opData.author_name}}</span>
+										<span class="username md-accent-color">{{vm.opData.author.base_user.username}}</span>
 									</div>
 									<div class="time">{{vm.opData.pub_date | date:"MMM d, y h:mm:ss a"}}</div>
 								</div>
@@ -70,16 +73,16 @@
 						
 						<header layout="row" layout-align="space-between start">
 							<div class="user" layout="row" layout-align="start center">
-								<img ng-if="vm.opData.author_name !== 'CiniCraft'"
+								<img ng-if="vm.opData.author.base_user.username !== 'CiniCraft'"
 									 class="avatar" 
 									 ng-src="/static/wow-icons/Achievement_Boss_Mutanus_the_Devourer.png">
 								
-								<img ng-if="vm.opData.author_name === 'CiniCraft'"
+								<img ng-if="vm.opData.author.base_user.usernameauthor_name === 'CiniCraft'"
 									 class="avatar" 
 									 ng-src="/static/wow-icons/Spell_Paladin_HammerOfWrath.png">
 								<div layout="column">
 									<div class="title">
-										<span class="username md-accent-color">{{reply.author_name}}</span>
+										<span class="username md-accent-color">{{reply.author.base_user.username}}</span>
 									</div>
 									<div class="time">{{reply.pub_date | date:"MMM d, y h:mm:ss a"}}</div>
 								</div>
@@ -126,7 +129,7 @@
 
 
 
-
+<!--
 
 <div class="profile-box add-post md-whiteframe-1dp clear-bg glass-global">
 	<pre>
@@ -137,3 +140,4 @@
 		{{ vm.repliesData | json }}
 	</pre>
 </div>
+-->

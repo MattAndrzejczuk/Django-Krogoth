@@ -40,9 +40,9 @@
         }
 
         function loadReplies(id) {
-            if (vm.threadId === "") {
-                $state.go("app.Forums");
-            }
+            //if (vm.threadId === "") {
+            //    $state.go("app.Forums");
+            //}
             ThreadDetailREST.getRepliesToThread(id).then(function(data) {
                 vm.repliesData = data;
             });

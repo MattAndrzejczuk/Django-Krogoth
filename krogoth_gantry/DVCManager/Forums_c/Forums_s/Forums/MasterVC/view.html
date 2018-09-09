@@ -4,56 +4,100 @@
 
 
 
-<div layout="column">
+<div layout="column" layout-align="space-between stretch">
 	
 
 	
-	<div>
-		<h1>Forum Categories</h1>
+	<div layout="row"  layout-align="center center">
+		<div flex="15"></div>
+		<div>
+			<h1>Forum Categories</h1>
+		</div>
 	</div>
 	
 	 
+	<div layout="row"  layout-align="center center" layout-wrap>
+		<div flex-sm="0" flex-xs="0" flex="20">
+			...
+		</div> 
+		<div id="profile" class="page-layout simple tabbed" layout="row" layout-align="space-between center" flex-xs="100" flex-sm="100" flex="80" flex-xl="60">
+					<div class="timeline" 
+						 layout="column" 
+						 flex="100" 
+						 flex-gt-sm="80" 
+						 flex-gt-md="60"
+						 flex-xl="60" 
+						 flex-order="2"
+						 flex-order-gt-sm="1">
+						<div class="profile-box add-post md-whiteframe-1dp hover-hl"
+							 style="margin-top:5px;"
+							 layout="row" 
+							 layout-align="start start"
+							 ng-click="vm.didPressCategory(cat.uid)"
+							 ng-repeat="cat in vm.categoriesData.results | orderBy:'weight'">
+							<div flex="15">
 
-	<div id="profile" class="page-layout simple tabbed" style="background-color:rgba(255,0,0,0.4)" layout="row" layout-align="center start">
-				<div class="timeline" 
-					 layout="column" 
-					 flex="100" 
-					 flex-gt-sm="80" 
-					 flex-gt-md="60"
-					 flex-xl="60"
-					 flex-order="2"
-					 flex-order-gt-sm="1">
-					<div class="profile-box add-post md-whiteframe-1dp clear-bg glass-global"
-						 style="margin-top:5px;"
-						 style="background-color:rgba(0,0,255,0.4)"
-						 layout="row"
-						 layout-align="start start"
-						 ng-repeat="cat in vm.categoriesData.results">
-						<div flex="15">
-							ICON NEEDED HERE
-						</div>
-						<div flex="5">&nbsp;</div>
-						<div layout="column">
-							<h3>{{cat.title}}</h3>
-							<p>{{cat.description}}</p>						
-						</div>
-						<div>
-							<md-button ng-click="vm.didPressCategory(cat.uid)">view</md-button>
+							</div>
+							<div flex="5">&nbsp;</div>
+							<div layout="column" flex="60">
+								<h3>{{cat.title}}</h3>
+								<p>{{cat.description}}</p>						
+							</div>
+							<div layout="column" layout-align="center center" flex="10">
+								{{cat.total_threads}} Threads
+							</div>
 						</div>
 					</div>
+			<!--
+			<section class="timeline-tab" layout="row" style="background-color:rgba(0,255,0,0.4);" flex="100">
+				<div style="background-color:rgba(255,0,255,0.4); width:100%">
 				</div>
-		<!--
-		<section class="timeline-tab" layout="row" style="background-color:rgba(0,255,0,0.4);" flex="100">
-			<div style="background-color:rgba(255,0,255,0.4); width:100%">
-			</div>
-		</section>
-		-->
+			</section>
+			-->
+		</div>
 	</div>
 </div>
-
-
+<style>
+	
+	.hover-hl {
+		background-color: rgba(255,255,255,0.65);
+	}
+	
+	.hover-hl:hover {
+		background-color: rgba(255,255,255,0.90) !important;
+		cursor: pointer !important;
+		animation-name: SCALE-INFINITE;
+		animation-duration: 1.7s;
+	}
+	.hover-hl:hover {
+		background-color: rgba(255,255,255,0.90) !important;
+		cursor: pointer !important;
+		animation-name: SCALE-INFINITE;
+		animation-duration: 1.7s;
+	}
+    @-webkit-keyframes SCALE-INFINITE {
+        0% {
+            -ms-transform: scale(1.0, 1.0); /* IE 9 */
+            -webkit-transform: scale(1.0, 1.0); /* Safari */
+            transform: scale(1.0, 1.0); /* Standard syntax */
+        }
+		50% {
+            -ms-transform: scale(1.01, 1.01); /* IE 9 */
+            -webkit-transform: scale(1.01, 1.01); /* Safari */
+            transform: scale(1.01, 1.01); /* Standard syntax */
+		}
+        100% {
+            -ms-transform: scale(1.0, 1.0); /* IE 9 */
+            -webkit-transform: scale(1.0, 1.0); /* Safari */
+            transform: scale(1.0, 1.0); /* Standard syntax */
+        }
+    }
+	
+</style>
+<!--
 <div class="profile-box add-post md-whiteframe-1dp clear-bg glass-global">
 	<pre>
 		{{ vm.categoriesData | json }}
 	</pre>
 </div>
+-->

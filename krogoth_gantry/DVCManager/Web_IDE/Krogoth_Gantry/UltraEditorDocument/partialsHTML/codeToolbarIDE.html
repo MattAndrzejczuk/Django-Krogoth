@@ -1,10 +1,6 @@
 <!-- CONTENT TOOLBAR -->
 
-                <md-button class="md-icon-button sidenav-toggle" 
-						   ng-click="vm.toggleSidenav('sidenav')"
-                           aria-label="Toggle left sidenav">
-                    <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
-                </md-button>
+
 				
 				<h1 style="color: white" ng-if="vm.oldDebugInformation2">
                     <span>class:</span>
@@ -23,7 +19,17 @@
                 </h1>
 				
 				
-				
+                <button class="toolbar-button btn btn-modern" 
+						ng-click="vm.toggleSidenav('sidenav')"
+						ng-if="vm.sideNavLocked===false"
+                        aria-label="Toggle left sidenav">
+                    <i class="entypo entypo-menu ide-tool-btn" style="font-size:1.4em"></i>
+                </button>
+
+
+
+
+				<!--
                 <button class="toolbar-button" ng-click="vm.loadOSXDoc()">
 					<i class="entypo entypo-newspaper ide-tool-btn" style="font-size:1.4em"></i>
 					<md-tooltip>
@@ -34,7 +40,7 @@
                 <button class="toolbar-button" ng-click="vm.highlightSyntaxGetHtmlProperties()">			
 					<i class="entypo entypo-eye ide-tool-btn" style="font-size:1.4em"></i>
 					<md-tooltip>
-						Highlight HTML Syntax
+						Highlight All "ng-click"
 					</md-tooltip>
 				</button>
  
@@ -51,29 +57,42 @@
 						Highlight VMs
 					</md-tooltip>
 				</button>
-                <button class="toolbar-button" ng-click="vm.beautifyCode()">			
+                
+-->
+				<button class="toolbar-button" ng-click="vm.beautifyCode()">			
 					<i class="entypo entypo-switch ide-tool-btn" style="font-size:1.4em"></i>
 					<md-tooltip>
 						Reformat Code (beautify)
 					</md-tooltip>
 				</button> 
 
-
-				<input type="text" placeholder="Find String..." ng-model="vm.findStringForm">
-                <button class="toolbar-button" ng-click="vm.renameObjectSubmit()">
+				
+				<input type="text" placeholder="Highlight String..." ng-model="vm.findStringForm">
+                <button class="toolbar-button" ng-click="vm.highlightInputCustom()"> 
 					<i class="entypo entypo-search ide-tool-btn" style="font-size:1.4em"></i>
 					<md-tooltip>
-						Highlight Custom String
+						Highlight Input
 					</md-tooltip>
 				</button>
 
-				<input type="text" placeholder="Rename" ng-model="vm.renameObjectForm.new">
-                <button class="toolbar-button" ng-click="vm.renameObjectClick()">
-					<i class="entypo entypo-search ide-tool-btn" style="font-size:1.4em"></i>
+				<button class="toolbar-button" ng-click="vm.removeHighlights()">			
+					<i class="entypo entypo-switch ide-tool-btn" style="font-size:1.4em"></i>
 					<md-tooltip>
-						Rename Object
+						Remove Highlights
 					</md-tooltip>
-				</button>				
+				</button> 
+
+
+				<input type="text" 
+					   placeholder="Rename {{vm.openedDocTitle}}" 
+					   ng-model="vm.renameObjectForm.new" 
+					   ng-if="vm.openedDocTitle !== 'INVALID_FOR_RENAME'">
+                <button class="toolbar-button" ng-click="vm.renameObjectSubmit()" ng-if="vm.openedDocTitle !== 'INVALID_FOR_RENAME'">
+					<i class="entypo entypo-check ide-tool-btn" style="font-size:1.4em"></i>
+					<md-tooltip>
+						Rename Object Submit
+					</md-tooltip>
+				</button>
 				
             
             <!-- / CONTENT TOOLBAR -->

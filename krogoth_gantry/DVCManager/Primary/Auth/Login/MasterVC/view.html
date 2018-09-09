@@ -6,7 +6,7 @@
             </span>
         </div>
         <div class="title" class="md-background-fg" style="color:white;">
-            Welcome to {{ vm.name }}
+            Dominance of Azeroth
         </div>
         <div class="description" class="md-primary-fg" style="color:white;">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -30,7 +30,7 @@
                 krogoth_gantry requires login by default.
             </div>
 
-            <form name="loginForm" novalidate>
+            <form name="loginForm" novalidate ng-keypress="vm.didPressEnter($event, loginForm.$invalid || loginForm.$pristine)">
                 <md-input-container class="md-block" md-no-float>
                     <!--<input type="email" name="email" ng-model="vm.form.email" placeholder="Email"
                            translate translate-attr-placeholder="LOGIN_V2.EMAIL"
@@ -55,6 +55,7 @@
                            ng-model="vm.form.password"
                            required 
                            style="color:orange"
+						   ng-keypress="vm.didPressEnter($event)"
                            class="md-accent-fg">
                     <div ng-messages="loginForm.password.$error" role="alert">
                         <div ng-message="required">
@@ -72,7 +73,9 @@
                         <span class="md-background-fg md-hue-3">Remember Me</span>
                     </md-checkbox>
 
+					<!--
                     <a ui-sref="app.pages_auth_forgot-password" class="forgot-password">Forgot Password?</a>
+					-->
                 </div>
 
                 <md-button class="md-hover-button-amber-dark-bg" aria-label="LOG IN"

@@ -11,6 +11,7 @@
         document.getElementById("krogoth_gantryMetaText_01").innerHTML = 'ArmPrime: Login - (' + defaultTabName.replace('krogoth_gantry', '') + ')';
 
         vm.clickLogin = clickLogin;
+        vm.didPressEnter = didPressEnter;
 
         function clickLogin(isNotValid) {
             if (isNotValid === false) {
@@ -47,6 +48,13 @@
         }
 
 
+        function didPressEnter(e, isNotValid) {
+            $log.info(e);
+            //See notes about 'which' and 'key'
+            if (e.originalEvent.keyCode === 13) {
+                vm.clickLogin(isNotValid);
+            }
+        }
 
 
         /*----------------------------------*/

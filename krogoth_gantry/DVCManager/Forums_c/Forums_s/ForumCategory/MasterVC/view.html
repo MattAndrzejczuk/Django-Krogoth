@@ -1,4 +1,4 @@
-<!--<h1>{{ vm.threadsData.title }}</h1>-->
+<h1>{{ vm.category }}</h1>
 
 
 
@@ -39,10 +39,10 @@
 						 style="margin-top:5px;"
 						 layout="row"
 						 layout-align="space-between center"
-						 ng-repeat="thread in vm.threadsData.results | orderBy:'date_modified'"     
+						 ng-repeat="thread in vm.threadsData.results | orderBy:'-date_modified'"     
 						 ng-click="vm.openThread(thread.uid)"> 
 						<div flex="65">   
-							<strong>{{thread.title}}</strong>
+							<strong>{{thread.title}}</strong> 
 						</div>
 						<div flex="5">&nbsp;</div>
 						<div layout="row">							
@@ -64,14 +64,32 @@
 		background-color: rgba(255,255,255,0.90) !important;
 		cursor: pointer !important;
 		animation-name: SCALE-INFINITE;
-		animation-duration: 0.3s;
+		animation-duration: 0.7s;
 	}
+    @-webkit-keyframes SCALE-INFINITE {
+        0% {
+            -ms-transform: scale(1.0, 1.0); /* IE 9 */
+            -webkit-transform: scale(1.0, 1.0); /* Safari */
+            transform: scale(1.0, 1.0); /* Standard syntax */
+        }
+		50% {
+            -ms-transform: scale(1.01, 1.01); /* IE 9 */
+            -webkit-transform: scale(1.01, 1.01); /* Safari */
+            transform: scale(1.01, 1.01); /* Standard syntax */
+		}
+        100% {
+            -ms-transform: scale(1.0, 1.0); /* IE 9 */
+            -webkit-transform: scale(1.0, 1.0); /* Safari */
+            transform: scale(1.0, 1.0); /* Standard syntax */
+        }
+    }
 	
 </style>
 
+	<!--
 <div class="profile-box add-post md-whiteframe-1dp clear-bg glass-global">
-	<md-button ui-sref="app.NewThread">New Thread</md-button>
 	<pre>
 		{{ vm.threadsData | json }}
 	</pre>
 </div>
+-->
