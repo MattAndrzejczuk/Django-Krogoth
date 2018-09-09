@@ -777,7 +777,11 @@ save changes to filesystem using URL:
         }
 
         function removeHighlights() {
-            vm.editorModel.doc.setValue(vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode);
+            codeHighlightIDE.clearHighlights(vm.editorModel)
+                .then(function(coloredEditorModel) {
+                    vm.editorModel = coloredEditorModel;
+                });
+            ///vm.editorModel.doc.setValue(vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode);
         }
 
 

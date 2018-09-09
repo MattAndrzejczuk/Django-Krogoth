@@ -1,5 +1,13 @@
+.white-bg-new {
+	background-color: rgba(255,255,255,0.0);
+	color:white;
+}
 
 
+.bg-sunken {
+	background-color: rgba(0,0,0,0.2);
+	color:white;
+}
 
 /*GLOBALSTYLE*/
 

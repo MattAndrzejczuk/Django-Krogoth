@@ -23,7 +23,7 @@
 						ng-click="vm.toggleSidenav('sidenav')"
 						ng-if="vm.sideNavLocked===false"
                         aria-label="Toggle left sidenav">
-                    <i class="entypo entypo-menu ide-tool-btn" style="font-size:1.4em"></i>
+                    <i class="entypo entypo-menu ide-tool-btn" style="font-size:1.2em"></i>
                 </button>
 
 
@@ -56,11 +56,11 @@
 					<md-tooltip>
 						Highlight VMs
 					</md-tooltip>
-				</button>
+				</button> 
                 
 -->
 				<button class="toolbar-button" ng-click="vm.beautifyCode()">			
-					<i class="entypo entypo-switch ide-tool-btn" style="font-size:1.4em"></i>
+					<i class="entypo entypo-switch ide-tool-btn" style="font-size:1.2em"></i>
 					<md-tooltip>
 						Reformat Code (beautify)
 					</md-tooltip>
@@ -69,14 +69,14 @@
 				
 				<input type="text" placeholder="Highlight String..." ng-model="vm.findStringForm">
                 <button class="toolbar-button" ng-click="vm.highlightInputCustom()"> 
-					<i class="entypo entypo-search ide-tool-btn" style="font-size:1.4em"></i>
+					<i class="entypo entypo-search ide-tool-btn" style="font-size:1.2em"></i>
 					<md-tooltip>
 						Highlight Input
 					</md-tooltip>
 				</button>
 
 				<button class="toolbar-button" ng-click="vm.removeHighlights()">			
-					<i class="entypo entypo-switch ide-tool-btn" style="font-size:1.4em"></i>
+					<i class="entypo entypo-feather ide-tool-btn" style="font-size:1.2em"></i>
 					<md-tooltip>
 						Remove Highlights
 					</md-tooltip>
@@ -88,7 +88,7 @@
 					   ng-model="vm.renameObjectForm.new" 
 					   ng-if="vm.openedDocTitle !== 'INVALID_FOR_RENAME'">
                 <button class="toolbar-button" ng-click="vm.renameObjectSubmit()" ng-if="vm.openedDocTitle !== 'INVALID_FOR_RENAME'">
-					<i class="entypo entypo-check ide-tool-btn" style="font-size:1.4em"></i>
+					<i class="entypo entypo-check ide-tool-btn" style="font-size:1.2em"></i>
 					<md-tooltip>
 						Rename Object Submit
 					</md-tooltip>

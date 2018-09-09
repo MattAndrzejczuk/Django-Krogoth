@@ -9,6 +9,7 @@
         var service = {
             colorNgClick1: colorNgClick1,
             highlightCustom: highlightCustom,
+            clearHighlights: clearHighlights,
             highlightedStrings: []
         };
 
@@ -79,8 +80,8 @@
 
                 var temp = editorModel.getDoc().getLine(j);
 
-                $log.log('temp: ');
-                $log.log(temp);
+                ///$log.log('temp: ');
+                ///$log.log(temp);
 
                 var rgxp = new RegExp(customString);
 
@@ -89,21 +90,19 @@
                 if (codeLinesArray) {
 
 
-                    const codeLinesArray = temp.match(rgxp);
-
-                    $log.log('codeLinesArray: ');
-                    $log.log(codeLinesArray);
+                    ///$log.log('codeLinesArray: ');
+                    ///$log.log(codeLinesArray);
 
 
                     const count = codeLinesArray.length;
                     if (count) {
-                        $log.log('count: ');
-                        $log.log(count);
+                        ///$log.log('count: ');
+                        ///$log.log(count);
                         var lenOfThisMatch = 0;
                         if (codeLinesArray[0]) {
                             var lenOfThisMatch = codeLinesArray[0].length;
-                            $log.log(codeLinesArray[0] + " | " + lenOfThisMatch);
-                            $log.log("╚════> " + count);
+                            ///$log.log(codeLinesArray[0] + " | " + lenOfThisMatch);
+                            ///$log.log("╚════> " + count);
                         }
                         var step = 0;
                         for (var i = 0; i < count; i++) {
@@ -116,7 +115,7 @@
                                 "line": j,
                                 "ch": n + lenOfThisMatch
                             }, {
-                                "css": "color : #A459FF; font-weight:bold; background-color: rgba(0, 255, 80, 0.99);"
+                                "css": "background-color: rgba(0, 255, 80, 0.99);"
                             });
                             step += 1;
                         }
@@ -133,9 +132,87 @@
 
 
 
+        function clearHighlights(editorModel) {
+            ///service.highlightedStrings.push(customString);
+            $log.log('service.highlightedStrings: ');
+            $log.log(service.highlightedStrings);
+
+            var deferred = $q.defer();
+            $log.log("HIGHLIGHTING CUSTOM: " + service.highlightedStrings);
+            var sfx = "/static/gui_sfx/click_select_units.wav";
+            var audio = new Audio(sfx);
+            audio.play();
+            var lineCount = editorModel.getDoc().lineCount();
+
+            $(service.highlightedStrings).each(function(index, element) {
+                for (var j = 0; j < lineCount; j++) {
+
+                    var temp = editorModel.getDoc().getLine(j);
+
+                    $log.log('element: ');
+                    $log.log(element);
+
+                    var rgxp = new RegExp(element);
+
+
+                    const codeLinesArray = temp.match(rgxp);
+                    if (codeLinesArray) {
+
+
+                        ///$log.log('codeLinesArray: ');
+                        ///$log.log(codeLinesArray);
+
+
+                        const count = codeLinesArray.length;
+                        if (count) {
+                            ///$log.log('count: ');
+                            ///$log.log(count);
+                            var lenOfThisMatch = 0;
+                            if (codeLinesArray[0]) {
+                                var lenOfThisMatch = codeLinesArray[0].length;
+                                ///$log.log(codeLinesArray[0] + " | " + lenOfThisMatch);
+                                ///$log.log("╚════> " + count);
+                            }
+                            var step = 0;
+                            for (var i = 0; i < count; i++) {
+                                var n = temp.indexOf(element, step);
+                                step = n;
+                                editorModel.getDoc().markText({
+                                    "line": j,
+                                    "ch": n
+                                }, {
+                                    "line": j,
+                                    "ch": n + lenOfThisMatch
+                                }, {
+                                    "css": "background-color: rgba(0, 255, 80, 0.0);"
+                                });
+                                step += 1;
+                            }
+                        }
+
+
+                    }
+
+                }
+            });
+
+            service.highlightedStrings = [];
+            deferred.resolve(editorModel);
+            return deferred.promise;
+        }
+
 
 
 
         return service;
     }
 })();
+
+
+
+/*
+
+git update-index --assume-unchanged static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg
+git update-index --assume-unchanged static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg
+
+*/

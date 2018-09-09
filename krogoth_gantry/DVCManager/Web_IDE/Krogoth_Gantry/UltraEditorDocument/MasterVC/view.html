@@ -82,12 +82,12 @@
         </div>
         <!-- SIDENAV CONTENT -->
         <md-content
+				class="white-bg-new" 
                 style="padding: 0px; margin-top:2px"
-                class="white-bg"
                 flex 
 				ms-scroll>
             <!-- DEMO SIDENAV -->
-            <div ui-tree id="tree-root" data-drop-enabled="false" data-drag-enabled="false" class="white-bg">
+            <div ui-tree id="tree-root" data-drop-enabled="false" data-drag-enabled="false">
                 <!-- start slipsum code -->
                 <ol ui-tree-nodes
                     ng-model="vm.treeData"
@@ -109,7 +109,8 @@
     </md-sidenav>
     <!-- / SIDENAV -->
     <!-- CENTER -->
-    <div layout="column" flex class="white-bg">
+    <!--<div layout="column" flex class="white-bg">-->
+	<div layout="column" flex class="white-bg-new">
         <!-- CONTENT HEADER -->
         <div class="headerosx"  
              flex="5"
@@ -124,15 +125,15 @@
                     Go Back
                 </md-tooltip>
             </button> 
-			<div flex layout="row" layout-align="center center" hide-xs> 
+			<div flex layout="row" layout-align="start center" hide-xs> 
 
 				&nbsp;&nbsp;&nbsp;
 				<span class="h4">
 					<strong>{{ vm.finishedBreadCrumbsJson._1st.name }}</strong>
 				</span>
 				
-				<span layout-align="center center" style="margin-top:7px;padding-left:4px;padding-right:4px;"> 
-					<i class="entypo entypo-right-open">
+				<span layout-align="center center" style="margin-top:2px;padding-left:4px;padding-right:4px;"> 
+					<i class="entypo entypo-right-open-mini" style="font-size:1.2em">
 					</i>
 				</span>
 
@@ -140,13 +141,13 @@
 					<strong>{{ vm.finishedBreadCrumbsJson._2nd.name }}</strong>
 				</span>
 				
-				<span layout-align="center center" style="margin-top:7px;padding-left:4px;padding-right:4px;">
-					<i class="entypo entypo-right-open">
+				<span layout-align="center center" style="margin-top:3px;padding-left:4px;padding-right:4px;">
+					<i class="entypo entypo-right-open-mini" style="font-size:1.2em">
 					</i>
 				</span>
 
 				<span class="h4">
-					<strong>{{ vm.objectList.name }}</strong>
+					<strong style="margin-top:1px;">{{ vm.objectList.name }}</strong>
 				</span> 
 			</div>
 
