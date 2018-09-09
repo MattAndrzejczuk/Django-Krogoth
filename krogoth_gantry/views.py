@@ -54,7 +54,7 @@ class KrogothGantrySlaveViewControllerViewSet(viewsets.ModelViewSet):
     search_fields = ('^name', '^title')
 
 
-import os
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
