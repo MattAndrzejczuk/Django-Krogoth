@@ -6,6 +6,7 @@ from krogoth_gantry.management.commands.installdjangular import bcolors
 
 
 class AKFoundationSerializer(serializers.ModelSerializer):
+    custom_key_values = serializers.JSONField()
     #    class Meta:
     #        model = AKFoundationAbstract
     #        fields = '__all__'

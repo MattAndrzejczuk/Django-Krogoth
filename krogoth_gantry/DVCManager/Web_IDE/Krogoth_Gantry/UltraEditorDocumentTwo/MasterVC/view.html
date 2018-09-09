@@ -118,29 +118,30 @@
 			 layout="row"
 			 layout-align="start center"
 			 style="height: 22px; max-height: 22px; min-height: 22px">
-			<button class="toolbar-button" 
-					style="padding:0px; height:15px; width:15px; margin-left:8px;" 
-					ng-click="vm.goBackToCategory()"> 
-				<span class="entypo entypo-left-bold" style="font-size:1.1em"></span>
-				<md-tooltip>
-					Go Back
-				</md-tooltip>
-			</button> 
+
 			<span flex>
 
 				&nbsp;&nbsp;&nbsp;
 				<span class="h4">
-					{{ vm.finishedBreadCrumbsJson._1st.name }}
+					Open In API: 
 				</span>
 				<span class="mdi-12px badge badge-dark mdi mdi-chevron-right">
 				</span>
 				<span class="h4">
-					{{ vm.finishedBreadCrumbsJson._2nd.name }}
+					/krogoth_gantry/viewsets/AKFoundation/{{vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].id}}/
 				</span>
 				<span class="mdi-12px badge badge-dark mdi mdi-chevron-right">
 				</span>
 				<span class="h4">
-					{{ vm.objectList.name }}
+					<a class="toolbar-button" 
+					   style="padding:0px; height:16px; width:21px; margin-left:8px;" 
+					   target="_blank"
+					   href="/krogoth_gantry/viewsets/AKFoundation/{{vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].id}}/"> 
+						<i class="entypo entypo-cloud-thunder" style="font-size:1.1em;margin-left:2px;"></i>
+						<md-tooltip>
+							Open Link
+						</md-tooltip>
+					</a>
 				</span>
 			</span>
 

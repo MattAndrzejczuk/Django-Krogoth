@@ -15,10 +15,8 @@ save changes to filesystem using URL:
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
-    function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu,
-        TemplateCRUDClone01, DirectiveCRUDClone01, syntaxAnalyzePropertiesVMClone01,
-        $q, AKClassEditorComponentClone01, UltraEditorDefaultsClone01, GatherURIsAsyncClone01, fileNameChangerClone01, $mdDialog,
-        BatchRequestsAsyncClone01, SaveToSQLClone01, $mdSidenav, BreadCrumbsIDEClone01, $timeout, codeHighlightIDEClone01) {
+    function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu, AKClassEditorComponentClone01,
+        $q, UltraEditorDefaultsClone01, $mdDialog, SaveToSQLClone01, $mdSidenav, $timeout) {
         var vm = this;
 
         vm.codemirrorLoaded = codemirrorLoaded;
@@ -124,14 +122,12 @@ save changes to filesystem using URL:
             vm.loadedIndex = index;
             vm.loadedParentIndex = parentIndex;
 
-            if (vm.editorLoadedFirstDoc === true) {
-                vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode = vm.editorModel.doc.getValue();
-            }
+            //if (vm.editorLoadedFirstDoc === true) {
+            //    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode = vm.editorModel.doc.getValue();
+            //}
             vm.editorLoadedFirstDoc = true;
             vm.editorModel.doc.setValue(vm.treeData[parentIndex].nodes[index].sourceCode);
             vm.unsavedChangesExist = -1;
-
-
             const syntax = vm.treeData[parentIndex].nodes[index].syntax;
             const _class = vm.treeData[parentIndex].nodes[index].class;
             vm.editorModel.setOption("mode", syntax);
@@ -215,6 +211,7 @@ save changes to filesystem using URL:
             if (vm.loadedParentIndex !== -1 && vm.loadedIndex !== -1)
                 if (vm.unsavedChangesExist === 0) {
                     vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].hasUnsavedChanges = true;
+                    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode = vm.editorModel.doc.getValue();
                     vm.setBrowserTabEditMode(true);
                 }
             vm.unsavedChangesExist += 1;

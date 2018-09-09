@@ -8,7 +8,11 @@
         var service = {
             loadMasterInitializer: loadMasterInitializer,
             loadHTMLIncludeList: loadHTMLIncludeList,
-            loadKrogothCoreList: loadKrogothCoreList
+            loadKrogothCoreList: loadKrogothCoreList,
+            loadAdditionalNodes: loadAdditionalNodes,
+            needMore: false,
+            nextPage: "",
+            js_nodes: []
         };
 
         function loadMasterInitializer(selectedMasterId) {
@@ -89,24 +93,33 @@
         }
 
 
-        function loadKrogothCoreList() {
+
+        function loadAdditionalNodes(uri) {
             $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
             $log.log("    GET");
-            $log.log("    /krogoth_gantry/viewsets/AKFoundation/");
+            $log.log("    " + uri);
             $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: '/krogoth_gantry/viewsets/AKFoundation/'
+                url: uri
             }).then(function successCallback(response) {
                 var cores = response.data.results;
-                var returnNodes = [];
-                for (var i = 0; i < cores.length; i++) {
+                ///var returnNods = [];
+
+                service.needMore = false;
+
+                if (response.data.next) {
+                    service.needMore = true;
+                    service.nextPage = response.data.next;
+                }
+
+                $(cores).each(function(i, item_in) {
                     var item_in = cores[i];
                     var newNode = {
                         id: item_in.id,
                         parentIndex: 7,
-                        index: returnNodes.length,
+                        index: service.js_nodes.length,
                         title: item_in.unique_name,
                         name: item_in.uniquename,
                         class: item_in.last_name,
@@ -120,9 +133,71 @@
                         syntax: 'javascript',
                         icon: 'nodejs'
                     };
-                    returnNodes.push(newNode);
+                    service.js_nodes.push(newNode);
+                    $log.info("ADDING NODE " + i + ": " + item_in.first_name + item_in.last_name);
+                });
+
+                deferred.resolve(response.data.next);
+            }, function errorCallback(response) {
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+
+
+        function loadKrogothCoreList() {
+            $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+            $log.log("    GET");
+            $log.log("    /krogoth_gantry/viewsets/AKFoundation/");
+            $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+            var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: '/krogoth_gantry/viewsets/AKFoundation/'
+            }).then(function successCallback(response) {
+                var cores = response.data.results;
+                ///var returnNods = [];
+                service.needMore = false;
+
+                if (response.data.next) {
+                    service.needMore = true;
+                    service.nextPage = response.data.next;
                 }
-                deferred.resolve(returnNodes);
+
+                $(cores).each(function(i, item_in) {
+                    var item_in = cores[i];
+                    var newNode = {
+                        id: item_in.id,
+                        parentIndex: 7,
+                        index: service.js_nodes.length,
+                        title: item_in.unique_name,
+                        name: item_in.uniquename,
+                        class: item_in.last_name,
+                        canRemove: false,
+                        canEdit: true,
+                        isMaster: false,
+                        sourceCode: item_in.code,
+                        sourceKey: 'code',
+                        RESTfulId: item_in.id,
+                        RESTfulURI: "/krogoth_gantry/viewsets/AKFoundation/" + item_in.id + "/",
+                        syntax: 'javascript',
+                        icon: 'nodejs'
+                    };
+                    service.js_nodes.push(newNode);
+                    $log.info("ADDING NODE " + i + ": " + item_in.first_name + item_in.last_name);
+                });
+
+
+                service.loadAdditionalNodes(service.nextPage)
+                    .then(function(next_page) {
+                        service.nextPage = next_page;
+                        service.loadAdditionalNodes(service.nextPage)
+                            .then(function(next_page) {
+                                service.nextPage = next_page;
+                            });
+                    });
+
+                deferred.resolve(service.js_nodes);
             }, function errorCallback(response) {
                 deferred.reject(response);
             });

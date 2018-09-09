@@ -16,8 +16,15 @@
         };
 
         function saveDocument(treeData, newCode) {
-            var payload = {};
-            payload[treeData.sourceKey] = newCode;
+            var payload = {
+                code: newCode
+            };
+            $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+            $log.log("    PATCH");
+            $log.log("    " + treeData.RESTfulURI);
+            $log.log(payload);
+            $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+            ///payload[treeData.sourceKey] = newCode;
             var deferred = $q.defer();
             $http({
                 method: 'PATCH',
@@ -36,6 +43,7 @@
         }
 
         function getRESTfulModelName(usingName) {
+            /*
             $log.log(' ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ getRESTfulModelName');
             $log.log(usingName);
 
@@ -58,17 +66,21 @@
             } else {
                 return "SlaveViewController";
             }
+			*/
         }
 
         function makeid() {
+            /*
             var text = "";
             var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             for (var i = 0; i < 5; i++)
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
             return text;
+			*/
         }
 
         function createNew(treeRoot, newName) {
+            /*
             var payload = {};
             payload["title"] = newName + "_Untitled";
             payload["name"] = newName + "_" + makeid();
@@ -88,9 +100,11 @@
                 deferred.reject(response);
             });
             return deferred.promise;
+			*/
         }
 
         function addSiblingToMaster(siblings, newModelJson, djangoModel, masterId) {
+            /*
             $log.log(' - - - - - - - - - - - - - - - - - - ');
             $log.info('ADDING NEW COMPONENT TO MASTER: ');
             $log.debug('siblings:');
@@ -134,6 +148,7 @@
                 deferred.reject(response);
             });
             return deferred.promise;
+			*/
         }
 
         return service;
