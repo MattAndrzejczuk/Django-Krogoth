@@ -21,9 +21,39 @@
 
 
 
+<!-- SRC CODE MAPPER -->
+				<div class="console-window" ng-if="vm.consoleOpen" style="width: 2000px">
+				<input type="text" placeholder="Lookup Source Code..." ng-model="vm.srcMapInput">
+				<button class="btn btn-default" ng-click="vm.testGetMap()">FETCH CODE</button>
+					<button class="btn btn-default" ng-click="vm.consoleOpen = !vm.consoleOpen">close console</button>
+					<button class="btn btn-default" ng-click="vm.consoleMode = !vm.consoleMode">toggle code/mapping</button>
+					<pre style="color:limegreen"
+						 ng-if="vm.consoleMode">{{ vm.srcMap | json }}</pre>
+					<section ng-if="!vm.consoleMode" style="width: 2000px">
+						<pre style="color:yellow"
+							 >{{ vm.queryiedSrc }}</pre>
+						</pre>
+					</section>
+				</div>
+				<style>
+					.console-window {
+						position: fixed;
+						z-index: 7000;
+						top:200px;
+						left:100px;
+						width: 1000px !important;
+						height: 1200px;
+						background-color: rgba(0,0,0,0.85);
+					}
+				</style>
+<!--/SRC CODE MAPPER -->
 
-<div style="height: 22px; max-height: 22px; min-height: 22px; background-color:white"  
-	 class="headerosx" 
+
+
+
+
+<div style="height: 22px; max-height: 22px; min-height: 22px;"  
+	 class="heading-bar2" 
 	 layout="row">
 
 	<button class="btn btn-outline-primary" 
@@ -61,7 +91,7 @@
 
 		<!-- / SIDENAV HEADER -->
 		<div style="margin-top:1px" layout="row">
-			<span class="font-weight-700" ng-if="vm.objectList.name">
+			<span class="font-weight-700" ng-if="vm.objectList.name" style="color:white">
 				{{ vm.objectList.name }}
 			</span>
 			<span flex="50">&nbsp;</span>
@@ -83,17 +113,17 @@
 		<!-- SIDENAV CONTENT -->
 		<md-content
 					style="padding: 0px; margin-top:2px"
-					class="white-bg"
+					class="white-bg-new"
 					flex 
 					ms-scroll>
 			<!-- DEMO SIDENAV -->
-			<div ui-tree id="tree-root" data-drop-enabled="false" data-drag-enabled="false" class="white-bg">
+			<div ui-tree id="tree-root" data-drop-enabled="false" data-drag-enabled="false">
 				<!-- start slipsum code -->
 				<ol ui-tree-nodes
 					ng-model="vm.treeData"
 					layout="column"
 					layout-fill>
-					<li ng-repeat="node in vm.treeData"
+					<li ng-repeat="node in vm.treeData" 
 						ui-tree-node
 						ng-include="'/moho_extractor/NgIncludedHtml/?name=leftSideTreeNavClone01'"
 						ng-if="node.class !== 'MasterViewController' && node.class !== 'SlaveViewController' && node.canAdd !== true">
@@ -101,6 +131,12 @@
 					</li>
 				</ol> 
 				<!-- end slipsum code -->
+
+
+				<!-- SRC CODE MAPPER -->
+				<button class="btn btn-default" ng-click="vm.consoleOpen = !vm.consoleOpen">toggle console</button>
+				<button class="btn btn-default" ng-click="vm.loadOSXDoc();">init</button>
+				<!--/SRC CODE MAPPER -->
 			</div>
 			<!-- / DEMO SIDENAV -->
 
@@ -111,13 +147,13 @@
 	</md-sidenav>
 	<!-- / SIDENAV -->
 	<!-- CENTER -->
-	<div layout="column" flex class="white-bg">
+	<div layout="column" flex >
 		<!-- CONTENT HEADER -->
-		<div class="headerosx"  
+		<div class="glass-global" 
 			 flex="5"
 			 layout="row"
 			 layout-align="start center"
-			 style="height: 22px; max-height: 22px; min-height: 22px">
+			 style="height: 22px; max-height: 22px; min-height: 22px; color:white">
 
 			<span flex>
 
@@ -143,8 +179,14 @@
 						</md-tooltip>
 					</a>
 				</span>
+				<span flex="20">
+				</span>
+				<span>
+				  <md-switch ng-model="vm.muted" aria-label="Mute">
+					Mute Sound
+				  </md-switch>
+				</span>
 			</span>
-
 
 		</div>
 		<!-- / CONTENT HEADER -->
@@ -154,6 +196,7 @@
 
 			<!-- CONTENT TOOLBAR -->
 			<div layout="row"
+				 class="panel panel-heading"
 				 ng-include="'/moho_extractor/NgIncludedHtml/?name=codeToolbarIDEClone01'"
 				 layout-align="start center">
 			</div>
@@ -162,9 +205,7 @@
 
 			<!-- CONTENT -->
 			<md-content class="contentosx"
-						flex
-						ms-scroll
-						style="background-color: rgba(255,255,255,0.45);">
+						style="height:95%; background-color: rgba(0,0,0,0);">
 				<div class="container-fluid container-maverix ">
 					<ui-codemirror
 								   ui-codemirror-opts="vm.editorOptions"
@@ -196,6 +237,18 @@
 
 <style>
 
+	.bread_crubs_new {
+		padding: 3px !important;
+		font-size: 13px !important;
+		color: #39090a !important;
+		border: 1px solid #9b9b9b !important;
+		border-top: 1px solid #8e8e8e !important;
+		border-bottom: 1px solid #afafaf !important;
+		-moz-box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.2) !important;
+		box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.2) !important
+	}
+
+
 	.ide-tool-btn {
 
 		line-height: 1.1 !important;
@@ -221,9 +274,22 @@
 		font-size: 14px !important; 
 	}
 
+	div.heading-bar2 {
+		background-image: -o-linear-gradient(-89deg, #efeef1 0, #d5d9dc 100%);
+		background-image: -moz-linear-gradient(-89deg, #efeef1 0, #d5d9dc 100%);
+		background-image: -ms-linear-gradient(-89deg, #efeef1 0, #d5d9dc 100%);
+		background-image: linear-gradient(-179deg, #efeef1 0, #d5d9dc 100%);
+		border-bottom: 1px solid #c2c2c2;
+		height: 44px;
+		padding: 1px
+	}
+
 
 	/** OVERRIDE SELECTED TEXT HIGHLIGHT COLOR FOR THEMES: **/
-
+	.cm-s-isotope.CodeMirror {
+		background: rgba(0,0,0,0.50);
+		color: #e0e0e0;
+	}
 	/* isotope theme */
 	.cm-s-isotope div.CodeMirror-selected {
 		background: #0004FF !important;

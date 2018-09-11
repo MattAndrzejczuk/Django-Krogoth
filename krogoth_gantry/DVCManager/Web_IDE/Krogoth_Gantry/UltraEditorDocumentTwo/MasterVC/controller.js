@@ -48,48 +48,11 @@ save changes to filesystem using URL:
         vm.simplifiedTreeData = [];
         vm.toggleFolder = toggleFolder;
 
-        /*
 
-        vm.selectListItem = selectListItem;
-        vm.parallelRESTfulStart = parallelRESTfulStart;
-
-        /// REQUEST ALL DATA II.  💛
-        vm.finishedRESTfulResponses = [];
-        vm.parallelRESTfulReady = parallelRESTfulReady;
-        vm.parallelRESTfulAbort = parallelRESTfulAbort;
-        vm.parallelRESTfulCompleted = parallelRESTfulCompleted;
-        vm.parallelRESTfulServerError = parallelRESTfulServerError;
-
-        // Master View Controller Setup
-        vm.selectedMaster = 0;
-        vm.treeData = [];
-        vm.editorModel = {};
-        vm.objectList = {};
-        vm.messages = [];
-        vm.finishedRESTfulResponses = [];
-        vm.newComponentForm = {};
-        vm.dumpNode = {};
-        vm.servicesPendingRequest = [];
-        vm.directivesPendingRequest = [];
-        vm.slavesPendingRequest = [];
-        vm.pendingRESTfulRequests = [];
-        vm.loadedIndex = -1;
-        vm.loadedParentIndex = 7;
-
-        vm.editorLoadedFirstDoc = false;
-        vm.reloadData = reloadData;
-
-        vm.createNewComponentClick = createNewComponentClick;
-        vm.addNewComponentToMaster = addNewComponentToMaster;
+        vm.goBackToExplorerHome = goBackToExplorerHome;
 
 
-        vm.getTemplatesHTML = getTemplatesHTML;
-
-        vm.goBackToCategory = goBackToCategory;
-
-        ///vm.buildBreadCrumbs = buildBreadCrumbs;
-*/
-        vm.goBackToExplorerHome = goBackToExplorerHome
+        vm.muted = false;
 
 
         /// I.
@@ -113,11 +76,17 @@ save changes to filesystem using URL:
             AKClassEditorComponentClone01.loadKrogothCoreList()
                 .then(function(nodesForTree) {
                     vm.treeData[7].nodes = nodesForTree;
+                    vm.loadOSXDoc();
+                    vm.playSFX("startup");
                 });
         }
 
+        vm.cleanedOnce = false;
+
         function loadFileIntoEditor(parentIndex, index, scope) {
+            vm.cleanedOnce = false;
             $log.log("\n 🔵 loadFileIntoEditor( \n");
+            $log.info("EDITOR IS CLEAN: " + vm.editorModel.doc.isClean());
             vm.unsavedChangesExist = -1;
             vm.loadedIndex = index;
             vm.loadedParentIndex = parentIndex;
@@ -126,7 +95,17 @@ save changes to filesystem using URL:
             //    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode = vm.editorModel.doc.getValue();
             //}
             vm.editorLoadedFirstDoc = true;
-            vm.editorModel.doc.setValue(vm.treeData[parentIndex].nodes[index].sourceCode);
+
+            const srcCodeKey = parentIndex.toString() + "-" + index.toString();
+            const srcTitle = "_" + scope.title;
+            const key = srcCodeKey + srcTitle;
+            $log.log("making query...");
+            $log.info(key);
+            const src = vm.srcHolder[parseInt(vm.srcMap[key])];
+            vm.activeEditorKey = parseInt(vm.srcMap[key]);
+
+            vm.editorModel.doc.setValue(src);
+
             vm.unsavedChangesExist = -1;
             const syntax = vm.treeData[parentIndex].nodes[index].syntax;
             const _class = vm.treeData[parentIndex].nodes[index].class;
@@ -135,6 +114,8 @@ save changes to filesystem using URL:
             if (vm.customThemeMode === false) {
                 vm.setThemeBasedOnClass(_class);
             }
+            vm.editorModel.doc.markClean();
+            vm.playSFX("beep_new_line_data");
         }
 
         function setThemeBasedOnClass(_class) {
@@ -159,7 +140,20 @@ save changes to filesystem using URL:
 
         function saveEditorWorkToServer(parentIndex, index, node) {
             $log.log("\n 🔵 saveEditorWorkToServer( \n");
-            SaveToSQLClone01.saveDocument(node, vm.treeData[parentIndex].nodes[index].sourceCode)
+
+            $log.debug("parentIndex: " + parentIndex);
+            $log.debug("index: " + index);
+            $log.info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FULL NODE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            $log.debug(node);
+            $log.info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+
+
+            const srcCodeKey = parentIndex.toString() + "-" + index.toString();
+            const srcTitle = "_" + node.title;
+            const key = srcCodeKey + srcTitle;
+
+            SaveToSQLClone01.saveDocument(node, vm.srcHolder[parseInt(vm.srcMap[key])])
                 .then(function(savedWork) {
 
                     var pi = node.parentIndex;
@@ -184,11 +178,12 @@ save changes to filesystem using URL:
                     vm.treeData[pi].nodes[ni].hasUnsavedChanges = false;
                     vm.unsavedChangesExist = -1;
                     vm.setBrowserTabEditMode(false);
+                    vm.playSFX("info_alert");
                     $mdToast.show(
                         $mdToast.simple()
                         .textContent('Document Saved.')
                         .position('top right')
-                        .hideDelay(2000)
+                        .hideDelay(3000)
                     );
                 });
         }
@@ -203,17 +198,25 @@ save changes to filesystem using URL:
 
         function editorContentWillChange() {
             $log.log("\n 🔵 editorContentWillChange( \n");
+            $log.info("EDITOR IS CLEAN: " + vm.editorModel.doc.isClean());
             $log.info('unsavedChangesExist ' + vm.unsavedChangesExist);
         }
 
         function editorContentDidChange() {
+            if (vm.cleanedOnce === false) {
+                vm.cleanedOnce = true;
+                vm.editorModel.doc.markClean();
+            }
             $log.log("\n 🔵 editorContentDidChange( \n");
+            $log.info("EDITOR IS CLEAN: " + vm.editorModel.doc.isClean());
             if (vm.loadedParentIndex !== -1 && vm.loadedIndex !== -1)
-                if (vm.unsavedChangesExist === 0) {
+                if (vm.editorModel.doc.isClean() === false) {
                     vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].hasUnsavedChanges = true;
-                    vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode = vm.editorModel.doc.getValue();
+
                     vm.setBrowserTabEditMode(true);
                 }
+            vm.srcHolder[vm.activeEditorKey] = vm.editorModel.doc.getValue();
+            ///vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode = vm.editorModel.doc.getValue();
             vm.unsavedChangesExist += 1;
         }
 
@@ -280,24 +283,87 @@ save changes to filesystem using URL:
         }
 
 
+        /* - - -< SRC CODE MAPPER >- - - */
+        vm.activeEditorKey = "";
+        vm.testGetMap = testGetMap;
+        vm.srcMap = {};
+        vm.srcHolder = [];
+        vm.queryiedSrc = '';
+        vm.consoleMode = true;
+        vm.consoleOpen = false;
+        vm.loadedOnce = false;
 
         function loadOSXDoc() {
             $log.log("\n 🔵 loadOSXDoc( \n");
+            if (!vm.loadedOnce) {
+                if (null == vm.treeData || "object" != typeof vm.treeData) {} else {
+                    /*
+                    var copy = vm.treeData.constructor();
+                    for (var attr in vm.treeData) {
+                    	if (vm.treeData.hasOwnProperty(attr)) {
+                    		copy[attr] = vm.treeData[attr];
+                    	}
+                    }
+                    */
+                    ///vm.treeModalIsVisible = !vm.treeModalIsVisible;
+                    //vm.treeData = copy;
+                    for (var i = 0; i < vm.treeData.length; i++) {
+                        const nodeInRoot = vm.treeData[i];
+                        $log.debug(nodeInRoot);
 
-            vm.treeModalIsVisible = !vm.treeModalIsVisible;
-            const backup = vm.treeData;
-            vm.simplifiedTreeData = backup;
-            for (var i = 0; i < vm.simplifiedTreeData.length; i++) {
-                const nodeInRoot = vm.simplifiedTreeData[i];
-                $log.debug(nodeInRoot);
-                for (var j = 0; j < nodeInRoot.nodes.length; j++) {
-                    /// const nodeInCat = nodeInRoot[j];
-                    vm.simplifiedTreeData[i].nodes[j].sourceCode = "NAN";
+                        for (var j = 0; j < nodeInRoot.nodes.length; j++) {
+                            const srdId = i.toString() + "-" + j.toString(); ///vm.simplifiedTreeData[i].nodes[j].id.toString();
+                            const srcTitle = "_" + vm.treeData[i].nodes[j].title;
+                            const key = srdId + srcTitle;
+                            vm.srcMap[key] = vm.srcHolder.length.toString();
+                            const code = vm.treeData[i].nodes[j].sourceCode;
+                            vm.srcHolder.push(code);
+                            vm.treeData[i].nodes[j].sourceCode = "NAN";
+                        }
+                        vm.loadedOnce = true;
+                    }
                 }
             }
-
         }
 
+        /// ----- < GUI SFX > -----
+        vm.playSFX = playSFX;
+
+        function playSFX(wav) {
+            /// click_select_units
+            if (!vm.muted) {
+                switch (wav) {
+                    case "error":
+                        var audio = new Audio("/static/gui_sfx/kg_" + wav + ".wav");
+                        audio.play();
+                        break;
+                    case "info_alert":
+                        var audio = new Audio("/static/gui_sfx/kg_" + wav + ".mp3");
+                        audio.play();
+                        break;
+                    case "ping":
+                        var audio = new Audio("/static/gui_sfx/kg_" + wav + ".wav");
+                        audio.play();
+                        break;
+                    case "startup":
+                        var audio = new Audio("/static/gui_sfx/kg_" + wav + ".wav");
+                        audio.play();
+                        break;
+                    default:
+                        var audio = new Audio("/static/gui_sfx/" + wav + ".wav");
+                        audio.play();
+                        break;
+                        $log.log("...");
+                }
+            }
+        }
+        ///----- </GUI SFX > -----
+
+        function testGetMap() {
+            $log.info(vm.srcMapInput);
+            vm.queryiedSrc = vm.srcHolder[parseInt(vm.srcMap[vm.srcMapInput])];
+        }
+        /* - - -</ SRC CODE MAPPER >- - - */
 
 
         function toggleFolder(scope) {

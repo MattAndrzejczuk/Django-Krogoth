@@ -1,3 +1,5 @@
+/* ALL OF IT WORKS */
+
 (function () {
   'use strict';
 

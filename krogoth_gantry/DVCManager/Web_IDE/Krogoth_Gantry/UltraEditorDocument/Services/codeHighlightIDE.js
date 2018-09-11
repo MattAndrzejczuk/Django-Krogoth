@@ -5,7 +5,7 @@
         .factory('_DJANGULAR_SERVICE_NAME_', _DJANGULAR_SERVICE_NAME_);
 
     /** @ngInject */
-    function _DJANGULAR_SERVICE_NAME_($log, $http, $q) {
+    function _DJANGULAR_SERVICE_NAME_($log, $http, $q, $timeout) {
         var service = {
             colorNgClick1: colorNgClick1,
             highlightCustom: highlightCustom,
@@ -139,9 +139,7 @@
 
             var deferred = $q.defer();
             $log.log("HIGHLIGHTING CUSTOM: " + service.highlightedStrings);
-            var sfx = "/static/gui_sfx/click_select_units.wav";
-            var audio = new Audio(sfx);
-            audio.play();
+
             var lineCount = editorModel.getDoc().lineCount();
 
             $(service.highlightedStrings).each(function(index, element) {
@@ -186,6 +184,13 @@
                                 }, {
                                     "css": "background-color: rgba(0, 255, 80, 0.0);"
                                 });
+
+                                $timeout(function() {
+                                    const sfx = "/static/gui_sfx/click_select_units.wav";
+                                    const audio = new Audio(sfx);
+                                    audio.play();
+                                }, 50);
+
                                 step += 1;
                             }
                         }

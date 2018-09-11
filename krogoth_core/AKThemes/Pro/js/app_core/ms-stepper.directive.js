@@ -1,3 +1,4 @@
+/* hello */
 (function () {
   'use strict';
 

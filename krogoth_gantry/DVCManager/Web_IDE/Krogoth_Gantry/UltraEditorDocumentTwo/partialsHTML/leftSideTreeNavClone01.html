@@ -17,19 +17,18 @@
         </div>
         <span ng-if="node.icon"
 			  style="font-size:1.45em" 
-              class="mdi mdi-{{ node.icon }}"
-              style="color: rgba(255, 255, 255, 0.80)"></span>
+              class="mdi mdi-{{ node.icon }}"></span>
         <section>
-            <strong>
-                {{ node.title }}
+            <strong style="color: white">
+                {{ node.title }} 
             </strong>  
         </section>
         <div flex></div>
         <div> <!-- For Debugging, alert user that the indexes are off -->
-            <span class="badge badge-danger">
+            <span class="badge badge-danger" style="color: white">
                 {{ node.parentIndex }}
             </span>
-            <span class="badge badge-dark">
+            <span class="badge badge-dark" style="color: white">
                 {{ $index }}
             </span>
         </div>
@@ -49,7 +48,7 @@
             <button class="toolbar-button"
                     layout-wrap 
                     style="padding:0px; height:15px; width:15px"
-                    ng-click="vm.loadFileIntoEditor(node.parentIndex, node.index, this)">
+                    ng-click="vm.loadFileIntoEditor(node.parentIndex, $index, node)">
                 <span class="entypo entypo-pencil" style="font-size:1.1em" ></span>
                 <!--            <span class="mdi mdi-circle"></span>-->
                 <md-tooltip md-visible="demo.showTooltip">
@@ -65,13 +64,13 @@
                     ng-click="vm.createNewComponentClick($event, node)"
                     style="margin-right: 8px; padding:0px; height:25px">
                 <span style="font-size:1.4em" class="mdi mdi-plus"></span>
-                <md-tooltip md-visible="demo.showTooltip">
+                <md-tooltip md-visible="demo.showTooltip"> 
                     Add new component to {{ node.class }}
                 </md-tooltip>
             </button>
         </div>
     </md-whiteframe>
-    <ol data-nodrag ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}" ng-show="!collapsed" class="the-ol-drop">
-        <li ng-repeat="node in node.nodes" ui-tree-node data-nodrag ng-include="'nodes_renderer.html'">
+    <ol data-nodrag ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}" ng-show="!collapsed">
+        <li ng-repeat="node in node.nodes  | orderBy : -title" ui-tree-node data-nodrag ng-include="'nodes_renderer.html'">
         </li>
     </ol>

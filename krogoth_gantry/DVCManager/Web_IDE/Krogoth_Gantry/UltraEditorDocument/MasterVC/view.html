@@ -112,7 +112,7 @@
     <!--<div layout="column" flex class="white-bg">-->
 	<div layout="column" flex class="white-bg-new">
         <!-- CONTENT HEADER -->
-        <div class="headerosx"  
+        <div class="glass-global"   
              flex="5"
              layout="row"
 			 layout-align="start center"
@@ -160,17 +160,16 @@
 			
 			<!-- CONTENT TOOLBAR -->
             <div layout="row"
+				 class="panel panel-heading"
 				 ng-include="'/moho_extractor/NgIncludedHtml/?name=codeToolbarIDE'"
                  layout-align="start center">
 			</div>
             <!-- / CONTENT TOOLBAR -->
-			
+		
 			
             <!-- CONTENT -->
             <md-content class="contentosx minwidthfix"
-                        flex
-                        ms-scroll
-                        style="background-color: rgba(255,255,255,0.45);">
+                        style="height:95%; background-color: rgba(0,0,0,0);">
                 <div class="container-fluid container-maverix ">
                     <ui-codemirror
                             ui-codemirror-opts="vm.editorOptions"
@@ -201,11 +200,67 @@
 
 
 <style>
+    /* HTML */
+    .cm-s-ambiance.CodeMirror {
+		background: rgba(10,10,0,0.45) !important;
+    }
+	.cm-s-ambiance.CodeMirror, .cm-s-ambiance .CodeMirror-gutters { 
+		background-image: url("/static/textured_tiles/egg-shell.png") !important;
+	}
+	/* Services */
+	.cm-s-3024-night.CodeMirror {
+		background: rgba(0,5,40,0.45) !important;
+	}
+	.cm-s-3024-night.CodeMirror, .cm-s-3024-night .CodeMirror-gutters { 
+		background-image: url("/static/textured_tiles/navy.png") !important;
+	}
+
+	/* Controller */
+	.cm-s-colorforth.CodeMirror {
+		background: rgba(0,0,0,0.60) !important; 
+	}
+	.cm-s-colorforth.CodeMirror, .cm-s-colorforth .CodeMirror-gutters { 
+		background-image: url("/static/textured_tiles/concrete-wall-3.png") !important;
+	}
+
+	/* module */ 
+	.cm-s-night.CodeMirror {
+			background: rgba(5, 0, 16,0.60) !important;
+	}
+	.cm-s-night.CodeMirror, .cm-s-night .CodeMirror-gutters { 
+		background-image: url("/static/textured_tiles/dark-tire.png") !important;
+	
+	}
+
+	/* HTML TMPLs */
+
+	.cm-s-isotope.CodeMirror {
+		background: rgba(15,5,26,0.65) !important;
+		color: #e0e0e0;
+	}
+	.cm-s-isotope.CodeMirror, .cm-s-isotope .CodeMirror-gutters { 
+		background-image: url("/static/textured_tiles/p4.png") !important;
+	}
+	
+	/* StyleCSS icecoder*/
+    .cm-s-icecoder.CodeMirror {
+		background: rgba(10,10,0,0.45) !important;
+    }
+	.cm-s-icecoder.CodeMirror, .cm-s-icecoder .CodeMirror-gutters { 
+		background-image: url("/static/textured_tiles/egg-shell.png") !important;
+	}
+	
+	/* ThemeCSS vibrant-ink */
+    .cm-s-vibrant-ink.CodeMirror {
+		background: rgba(10,10,0,0.45) !important;
+    }
+	.cm-s-vibrant-ink.CodeMirror, .cm-s-vibrant-ink .CodeMirror-gutters { 
+		background-image: url("/static/textured_tiles/egg-shell.png") !important;
+	}
+	
 	
 	.ide-tool-btn {
-	
 		line-height: 0.75 !important;
-	
 	}
 	
     button:hover {
@@ -226,7 +281,13 @@
 		font-size: 14px !important; 
 	}
 	
+	
 
+	/* colorforth theme */
+
+
+
+	
 /** OVERRIDE SELECTED TEXT HIGHLIGHT COLOR FOR THEMES: **/
 	
     /* ambiance theme */
@@ -245,6 +306,6 @@
 	.cm-s-3024-night div.CodeMirror-selected {
 		background: #0087ff !important;
 	}
-	
+
 /** - - - - - **/
 </style>
