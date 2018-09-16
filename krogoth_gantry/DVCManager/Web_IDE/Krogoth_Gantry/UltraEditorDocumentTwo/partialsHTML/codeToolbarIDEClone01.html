@@ -58,7 +58,7 @@
 					</md-tooltip>
 				</button> 
 
-
+&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="text" placeholder="Find String..." ng-model="vm.findStringForm">
                 <button class="toolbar-button" ng-click="vm.renameObjectSubmit()">
 					<i class="entypo entypo-search ide-tool-btn" style="font-size:1.4em"></i>
@@ -66,14 +66,19 @@
 						Highlight Custom String
 					</md-tooltip>
 				</button>
-
+				&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="text" placeholder="Rename" ng-model="vm.renameObjectForm.new">
                 <button class="toolbar-button" ng-click="vm.renameObjectClick()">
 					<i class="entypo entypo-search ide-tool-btn" style="font-size:1.4em"></i>
 					<md-tooltip>
 						Rename Object
 					</md-tooltip>
-				</button>				
-				
+				</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<div>
+				  <md-switch ng-model="vm.muted" aria-label="Mute">
+					Mute Sound
+				  </md-switch>
+				</div>
             
             <!-- / CONTENT TOOLBAR -->

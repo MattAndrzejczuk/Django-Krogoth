@@ -16,7 +16,7 @@
                 var master = {
                     id: _masterVCID,
                     index: 0,
-                    title: 'Master Views',
+                    title: ' Master Views',
                     class: "MasterViewController",
                     nodes: [],
                     canRemove: false,
@@ -26,7 +26,7 @@
                 var styles = {
                     id: _masterVCID,
                     index: 1,
-                    title: 'CSS',
+                    title: ' CSS',
                     class: "MasterViewController",
                     nodes: [],
                     canRemove: false,
@@ -36,7 +36,7 @@
                 var slaves = {
                     id: _masterVCID,
                     index: 2,
-                    title: 'Slave Views',
+                    title: ' Slave Views',
                     class: "SlaveViewController",
                     nodes: [],
                     canRemove: false,
@@ -46,7 +46,7 @@
                 var direct = {
                     id: _masterVCID,
                     index: 3,
-                    title: 'Directives',
+                    title: ' Directives',
                     class: "Directive",
                     nodes: [],
                     canRemove: false,
@@ -56,7 +56,7 @@
                 var servic = {
                     id: _masterVCID,
                     index: 4,
-                    title: 'Services',
+                    title: ' Services',
                     class: "Service",
                     nodes: [],
                     canRemove: false,
@@ -66,7 +66,7 @@
                 var xtHTML = {
                     id: _masterVCID,
                     index: 5,
-                    title: 'HTML Templates',
+                    title: ' HTML Templates',
                     class: "Template",
                     nodes: [],
                     canRemove: false,
@@ -76,7 +76,7 @@
                 var xtraJS = {
                     id: _masterVCID,
                     index: 6,
-                    title: 'JavaScript Templates',
+                    title: ' JavaScript Templates',
                     nodes: [],
                     canRemove: false,
                     canEdit: false,
@@ -85,7 +85,7 @@
                 var core = {
                     id: _masterVCID,
                     index: 7,
-                    title: 'Krogoth Core',
+                    title: ' Krogoth Core',
                     nodes: [],
                     canRemove: false,
                     canEdit: false,

@@ -21,6 +21,7 @@
                 method: 'GET',
                 url: '/krogoth_gantry/viewsets/MasterViewController/' + selectedMasterId + '/'
             }).then(function successCallback(response) {
+                $log.log('/krogoth_gantry/viewsets/MasterViewController/' + selectedMasterId + '/');
                 returnedJsonFull = response.data;
                 for (var i = 0; i < response.data.djangular_service.length; i++) {
                     var item_in = response.data.djangular_service[i];
@@ -72,6 +73,9 @@
                         canRemove: true,
                         canEdit: true,
                         isMaster: false,
+                        isLoaded: false,
+                        wasSavedInOtherBrowser: false,
+                        openInOtherBrowser: false,
                         sourceCode: item_in.contents,
                         sourceKey: 'contents',
                         RESTfulId: item_in.id,
@@ -112,6 +116,9 @@
                         class: item_in.last_name,
                         canRemove: false,
                         canEdit: true,
+                        isLoaded: false,
+                        wasSavedInOtherBrowser: false,
+                        openInOtherBrowser: false,
                         isMaster: false,
                         sourceCode: item_in.code,
                         sourceKey: 'code',

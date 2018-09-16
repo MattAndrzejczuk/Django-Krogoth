@@ -1,0 +1,14 @@
+<span ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class==='NgIncludedHtml'">
+	<div>
+		Import This Partial Into Your Master/Slave ViewHTML 
+	</div>
+
+	<hljs language="html" class="source-code">
+		<span ng-include="'/moho_extractor/NgIncludedHtml/?name=HTML_TMPL_ID'"></span>
+	</hljs>
+	<h4 ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class='NgIncludedHtml'">
+		&lt;span
+		<span style="color:green">&nbsp;ng-include=</span>
+		<span style="color:red">"'/moho_extractor/NgIncludedHtml/?name={{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name.replace("/moho_extractor/NgIncludedHtml/?name=", "") }}'"</span>&gt;&lt;/span&gt;
+	</h4>
+</span>

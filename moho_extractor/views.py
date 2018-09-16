@@ -58,7 +58,7 @@ def krogoth_debug(msg):
 
 class IncludedHtmlMasterViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
-    queryset = IncludedHtmlMaster.objects.all()
+    queryset = IncludedHtmlMaster.objects.all().order_by('name')
     serializer_class = IncludedHtmlMasterSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('master_vc__name', )
@@ -67,7 +67,7 @@ class IncludedHtmlMasterViewSet(viewsets.ModelViewSet):
 
 class IncludedHtmlCoreViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
-    queryset = IncludedHtmlCoreTemplate.objects.all()
+    queryset = IncludedHtmlCoreTemplate.objects.all().order_by('name')
     serializer_class = IncludedHtmlCoreTemplateSerializer
 
 

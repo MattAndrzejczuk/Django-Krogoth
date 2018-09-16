@@ -58,7 +58,7 @@
 					</md-tooltip>
 				</button> 
                 
--->
+				-->
 				<button class="toolbar-button" ng-click="vm.beautifyCode()">			
 					<i class="entypo entypo-switch ide-tool-btn" style="font-size:1.2em"></i>
 					<md-tooltip>
@@ -66,6 +66,7 @@
 					</md-tooltip>
 				</button> 
 
+				<div flex="5"></div>
 				
 				<input type="text" placeholder="Highlight String..." ng-model="vm.findStringForm">
                 <button class="toolbar-button" ng-click="vm.highlightInputCustom()"> 
@@ -76,12 +77,24 @@
 				</button>
 
 				<button class="toolbar-button" ng-click="vm.removeHighlights()">			
-					<i class="entypo entypo-feather ide-tool-btn" style="font-size:1.2em"></i>
+					<i class="entypo entypo-cancel ide-tool-btn" style="font-size:1.2em"></i>
 					<md-tooltip>
 						Remove Highlights
 					</md-tooltip>
-				</button> 
+				</button>
+				<div flex="5"></div>
+ 
+				<div flex="5"></div>
+		
+                <md-button  ng-click="vm.openWallPaperMenu($mdMenu, $event)" ng-if="vm.openedDocTitle !== 'INVALID_FOR_RENAME'">
+					<i class="entypo entypo-window ide-tool-btn" style="font-size:1.2em"></i>
+					<md-tooltip>
+						Rename Object Submit
+					</md-tooltip>
+				</md-button>
 
+
+				<div flex="5"></div>
 
 				<input type="text" 
 					   placeholder="Rename {{vm.openedDocTitle}}" 

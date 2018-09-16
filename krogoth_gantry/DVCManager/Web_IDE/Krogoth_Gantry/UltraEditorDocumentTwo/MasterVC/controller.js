@@ -60,24 +60,56 @@ save changes to filesystem using URL:
             $log.log("\n 🔵 onInit() \n");
             vm.selectedMaster = $state.params.masterId;
             vm.createFirstTreeNodes();
+            vm.playSFX("startup");
             ///vm.buildBreadCrumbs();
         }
 
         function createFirstTreeNodes() {
+
             $log.log("\n 🔵 createFirstTreeNodes() \n");
             UltraEditorDefaultsClone01.populateBoilerplate(vm.selectedMaster).then(function(treeData) {
                 vm.treeData = treeData;
                 vm.getKrogothCoreParts();
             });
+
         }
 
         function getKrogothCoreParts() {
             $log.log("\n 🔵 getKrogothCoreParts() \n");
             AKClassEditorComponentClone01.loadKrogothCoreList()
                 .then(function(nodesForTree) {
+
+
+
+
                     vm.treeData[7].nodes = nodesForTree;
-                    vm.loadOSXDoc();
-                    vm.playSFX("startup");
+
+
+
+                    //$timeout(function() {
+
+
+
+
+                    vm.loadOSXDoc(function() {
+
+                        var audio = new Audio("/static/gui_sfx/kg_startup.wav");
+                        audio.load();
+                        audio.oncanplay = function() {
+                            audio.play();
+                            $log.log("\n AUDIO CAN PLAY \n");
+                        };
+                        audio.onended = function() {
+                            $log.log("\n AUDIO ENDED \n");
+                        };
+
+                    });
+                    /*
+                    $timeout(function() {
+                    	vm.playSFX("startup");
+                    }, 500);
+                    */
+                    //}, 1500);
                 });
         }
 
@@ -115,6 +147,7 @@ save changes to filesystem using URL:
                 vm.setThemeBasedOnClass(_class);
             }
             vm.editorModel.doc.markClean();
+
             vm.playSFX("beep_new_line_data");
         }
 
@@ -293,7 +326,7 @@ save changes to filesystem using URL:
         vm.consoleOpen = false;
         vm.loadedOnce = false;
 
-        function loadOSXDoc() {
+        function loadOSXDoc(callback) {
             $log.log("\n 🔵 loadOSXDoc( \n");
             if (!vm.loadedOnce) {
                 if (null == vm.treeData || "object" != typeof vm.treeData) {} else {
@@ -320,8 +353,9 @@ save changes to filesystem using URL:
                             vm.srcHolder.push(code);
                             vm.treeData[i].nodes[j].sourceCode = "NAN";
                         }
-                        vm.loadedOnce = true;
                     }
+                    vm.loadedOnce = true;
+                    callback();
                 }
             }
         }
@@ -339,15 +373,19 @@ save changes to filesystem using URL:
                         break;
                     case "info_alert":
                         var audio = new Audio("/static/gui_sfx/kg_" + wav + ".mp3");
+
                         audio.play();
                         break;
                     case "ping":
+
                         var audio = new Audio("/static/gui_sfx/kg_" + wav + ".wav");
                         audio.play();
                         break;
                     case "startup":
                         var audio = new Audio("/static/gui_sfx/kg_" + wav + ".wav");
-                        audio.play();
+                        audio.onplay = function() {
+                            audio.play();
+                        };
                         break;
                     default:
                         var audio = new Audio("/static/gui_sfx/" + wav + ".wav");

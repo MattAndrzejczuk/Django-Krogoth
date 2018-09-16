@@ -25,7 +25,7 @@ import json
 
 class KrogothGantryIconViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
-    queryset = KrogothGantryIcon.objects.all()
+    queryset = KrogothGantryIcon.objects.all().order_by('name')
     serializer_class = KrogothGantryIconSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('code',)
@@ -36,7 +36,7 @@ class KrogothGantryIconViewSet(viewsets.ModelViewSet):
 
 class KrogothGantryMasterViewControllerViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
-    queryset = KrogothGantryMasterViewController.objects.all()
+    queryset = KrogothGantryMasterViewController.objects.all().order_by('name')
     serializer_class = KrogothGantryMasterViewControllerSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('name', 'category', 'id')
@@ -48,7 +48,7 @@ class KrogothGantryMasterViewControllerViewSet(viewsets.ModelViewSet):
 
 class KrogothGantrySlaveViewControllerViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
-    queryset = KrogothGantrySlaveViewController.objects.all()
+    queryset = KrogothGantrySlaveViewController.objects.all().order_by('name')
     serializer_class = KrogothGantrySlaveViewControllerSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('^name', '^title')
@@ -60,7 +60,7 @@ class KrogothGantrySlaveViewControllerViewSet(viewsets.ModelViewSet):
 
 class KrogothGantryCategoryViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
-    queryset = KrogothGantryCategory.objects.all()
+    queryset = KrogothGantryCategory.objects.all().order_by('name')
     serializer_class = KrogothGantryCategorySerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('id', 'name', 'parent__id')
@@ -70,7 +70,7 @@ class KrogothGantryCategoryViewSet(viewsets.ModelViewSet):
 
 class KrogothGantryDirectiveViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
-    queryset = KrogothGantryDirective.objects.all()
+    queryset = KrogothGantryDirective.objects.all().order_by('name')
     serializer_class = KrogothGantryDirectiveSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('^name', '^title')
@@ -81,7 +81,7 @@ class KrogothGantryDirectiveViewSet(viewsets.ModelViewSet):
 
 class KrogothGantryServiceViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
-    queryset = KrogothGantryService.objects.all()
+    queryset = KrogothGantryService.objects.all().order_by('name')
     serializer_class = KrogothGantryServiceSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('^name', '^title')

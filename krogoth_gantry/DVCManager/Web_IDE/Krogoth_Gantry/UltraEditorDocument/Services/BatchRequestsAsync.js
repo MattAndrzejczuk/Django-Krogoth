@@ -42,6 +42,9 @@
                             RESTfulURI: '/krogoth_gantry/viewsets/Service/' + id_int + '/',
                             hasUnsavedChanges: false,
                             syntax: 'javascript',
+                            isLoaded: false,
+                            wasSavedInOtherBrowser: false,
+                            openInOtherBrowser: false,
                             icon: 'language-javascript'
                         });
                     } else if (name_str === "Directive") {
@@ -63,6 +66,9 @@
                             RESTfulURI: '/krogoth_gantry/viewsets/Directive/' + id_int + '/',
                             hasUnsavedChanges: false,
                             syntax: 'javascript',
+                            isLoaded: false,
+                            wasSavedInOtherBrowser: false,
+                            openInOtherBrowser: false,
                             icon: 'language-javascript'
                         });
                     } else if (name_str === "SlaveViewController") {
@@ -84,6 +90,9 @@
                             RESTfulURI: '/krogoth_gantry/viewsets/SlaveViewController/' + id_int + '/',
                             hasUnsavedChanges: false,
                             syntax: 'javascript',
+                            isLoaded: false,
+                            wasSavedInOtherBrowser: false,
+                            openInOtherBrowser: false,
                             icon: 'angularjs'
                         });
                         treeDataOld[2].nodes.push({
@@ -104,6 +113,9 @@
                             RESTfulURI: '/krogoth_gantry/viewsets/SlaveViewController/' + id_int + '/',
                             hasUnsavedChanges: false,
                             syntax: 'htmlmixed',
+                            isLoaded: false,
+                            wasSavedInOtherBrowser: false,
+                            openInOtherBrowser: false,
                             icon: 'language-javascript'
                         });
                     }

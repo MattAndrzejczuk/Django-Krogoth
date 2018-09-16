@@ -12,13 +12,12 @@ save changes to filesystem using URL:
 
 
 
-
 (function() {
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
     function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu,
-        TemplateCRUD, DirectiveCRUD, syntaxAnalyzePropertiesVM,
+        TemplateCRUD, DirectiveCRUD, syntaxAnalyzePropertiesVM, CustomKeyValuesEditor, EditorWebSocket,
         $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync, fileNameChanger, $mdDialog,
         BatchRequestsAsync, SaveToSQL, $mdSidenav, BreadCrumbsIDE, $timeout, codeHighlightIDE) {
         var vm = this;
@@ -43,7 +42,6 @@ save changes to filesystem using URL:
         vm.selectListItem = selectListItem;
         vm.loadFileIntoEditor = loadFileIntoEditor;
         vm.parallelRESTfulStart = parallelRESTfulStart;
-
 
         /// REQUEST ALL DATA II.  💛
         vm.finishedRESTfulResponses = [];
@@ -115,6 +113,8 @@ save changes to filesystem using URL:
         vm.highlightInputCustom = highlightInputCustom;
         vm.removeHighlights = removeHighlights;
 
+        vm.changeBgWallpaper = changeBgWallpaper;
+        vm.bg_image = 1;
 
 
         /// I.
@@ -151,10 +151,14 @@ save changes to filesystem using URL:
         function getMasterViewCtrlDetail() {
             AKClassEditorComponent.loadMasterInitializer(vm.selectedMaster)
                 .then(function(finishedProcess) {
+                    $log.info(" 🧡 GOT THE MASTER: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                    $log.debug(finishedProcess);
+                    $log.info(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                     vm.servicesPendingRequest = finishedProcess.services;
                     vm.directivesPendingRequest = finishedProcess.directives;
                     vm.slavesPendingRequest = finishedProcess.slaves;
                     vm.objectList = finishedProcess.objectList;
+
                     vm.getTemplatesHTML();
                     ///vm.getKrogothCoreParts();
 
@@ -232,8 +236,8 @@ save changes to filesystem using URL:
 
         /// <PROCESS RESPONSE INTO RAM III. > 💚
         function parallelRESTfulCompleted() {
-            $log.log('vm.finishedRESTfulResponses ~ ~ ~ ~ ~ ~ ~  ~~  ~~ ~~ ');
-            $log.log(vm.finishedRESTfulResponses);
+            $log.log(' 💚 vm.objectList ~ ~ ~ ~ ~ ~ ~  ~~  ~~ ~~ ');
+            $log.log(vm.objectList);
             const moduleJS = new AKEditorComponentMaster(
                 "ViewHTML",
                 vm.treeData[tMaste].nodes.length,
@@ -289,6 +293,8 @@ save changes to filesystem using URL:
                 'language-css3'
             );
             vm.treeData[tStyle].nodes.push(themestyleCSS);
+
+            EditorWebSocket.initializeWebSocket(vm.objectList.name);
         }
 
 
@@ -311,13 +317,16 @@ save changes to filesystem using URL:
             this.hasUnsavedChanges = false;
             this.syntax = syntax;
             this.icon = icon;
+            this.wasSavedInOtherBrowser = false;
+            this.openInOtherBrowser = false;
         }
         // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-
+        vm.cleanedOnce = false;
         /*  ⚡️  */
         function loadFileIntoEditor(parentIndex, index, scope) {
+            vm.cleanedOnce = false;
             vm.unsavedChangesExist = -1;
             if (vm.editorLoadedFirstDoc === true) {
                 vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode = vm.editorModel.doc.getValue();
@@ -338,11 +347,28 @@ save changes to filesystem using URL:
             }
 
 
+
             vm.editorModel.setOption("mode", syntax);
 
             if (vm.customThemeMode === false) {
                 vm.setThemeBasedOnClass(_class);
             }
+
+            vm.markAllAsUnloaded();
+            vm.treeData[parentIndex].nodes[index].isLoaded = true;
+        }
+
+        vm.markAllAsUnloaded = markAllAsUnloaded;
+
+        function markAllAsUnloaded() {
+            $log.info("NOW MARKING ALL AS UNLOADED!!!");
+            angular.forEach(vm.treeData, function(parentNode) {
+                $log.info("vm.treeData");
+                angular.forEach(parentNode.nodes, function(node) {
+                    $log.info("UNLOADING...");
+                    node.isLoaded = false;
+                });
+            });
         }
 
         vm.editorOptions = {
@@ -403,6 +429,15 @@ save changes to filesystem using URL:
                     var pi = node.parentIndex;
                     var ni = node.index;
 
+                    const wsMsg = {
+                        action: "save",
+                        info: {
+                            parentIndex: pi,
+                            nodeIndex: ni,
+                            mvcName: vm.objectList.name
+                        }
+                    }
+                    EditorWebSocket.sendMsg(wsMsg);
 
                     vm.loadedParentIndex = pi;
                     vm.loadedIndex = ni;
@@ -422,6 +457,7 @@ save changes to filesystem using URL:
                     vm.treeData[pi].nodes[ni].hasUnsavedChanges = false;
                     vm.unsavedChangesExist = -1;
                     vm.setBrowserTabEditMode(false);
+                    vm.sendWSMessageWithAction("save");
                     $mdToast.show(
                         $mdToast.simple()
                         .textContent('Document Saved.')
@@ -442,13 +478,21 @@ save changes to filesystem using URL:
         }
 
         function editorContentDidChange() {
-            if (vm.loadedParentIndex !== -1 && vm.loadedIndex !== -1)
+            if (vm.loadedParentIndex !== -1 && vm.loadedIndex !== -1) {
                 if (vm.unsavedChangesExist === 0) {
                     vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].hasUnsavedChanges = true;
                     vm.setBrowserTabEditMode(true);
+
+
                 }
-            vm.unsavedChangesExist += 1;
+                vm.unsavedChangesExist += 1;
+                vm.sendWSMessageWithAction("edit");
+            }
         }
+
+
+
+
 
         function parallelRESTfulServerError() {
             vm.messages.push("something failed: parallelRESTfulServerError");
@@ -782,6 +826,154 @@ save changes to filesystem using URL:
                     vm.editorModel = coloredEditorModel;
                 });
             ///vm.editorModel.doc.setValue(vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode);
+        }
+
+
+        function changeBgWallpaper() {
+            if (vm.bg_image === 3) {
+                vm.bg_image = 1;
+            } else {
+                ++vm.bg_image;
+            }
+
+        }
+
+        vm.sendWSMessageWithAction = sendWSMessageWithAction;
+
+        function sendWSMessageWithAction(action) {
+            const wsMsg = {
+                action: action,
+                info: {
+                    parentIndex: vm.loadedParentIndex,
+                    nodeIndex: vm.loadedIndex,
+                    mvcName: vm.objectList.name
+                }
+            }
+            EditorWebSocket.sendMsg(wsMsg);
+        }
+
+
+        /// - - - - - - <   DELEGATED FROM SERVICE   > - - - - - - - - 
+        vm.getWebSocketEditMessage = getWebSocketEditMessage;
+        EditorWebSocket.registerObserverCallback(getWebSocketEditMessage);
+        ////getWebSocketEditMessage is called from: service.notifyObservers();
+        function getWebSocketEditMessage(parentIndex, nodeIndex) {
+            $log.info(" 🍁 🍁 🍁 🍁 🍁 SERVICE DELEGATION WORKS ! ! !   ");
+            $log.log(parentIndex, nodeIndex);
+            vm.treeData[parentIndex].nodes[nodeIndex].openInOtherBrowser = true;
+        }
+        /// - - - - - - <   DELEGATED FROM SERVICE   > - - - - - - - - 
+
+        vm.getWebSocketSaveMessage = getWebSocketSaveMessage;
+        EditorWebSocket.registerObserver_Save_Callback(getWebSocketSaveMessage);
+
+        function getWebSocketSaveMessage(parentIndex, nodeIndex) {
+            $log.info(" 🌐 🌐 🌐 🌐 🌐 SERVICE DELEGATION WORKS ! ! !   ");
+            $log.log(parentIndex, nodeIndex);
+            vm.treeData[parentIndex].nodes[nodeIndex].openInOtherBrowser = false;
+            vm.treeData[parentIndex].nodes[nodeIndex].wasSavedInOtherBrowser = true;
+            var audio = new Audio('/static/gui_sfx/beep_surrender.wav');
+            audio.play();
+        }
+
+        /* - - -< SRC CODE MAPPER >- - - */
+        vm.activeEditorKey = "";
+        vm.testGetMap = testGetMap;
+        vm.srcMap = {};
+        vm.srcHolder = [];
+        vm.queryiedSrc = '';
+        vm.consoleMode = true;
+        vm.consoleOpen = false;
+        vm.loadedOnce = false;
+
+        function loadOSXDoc(callback) {
+            $log.log("\n 🔵 loadOSXDoc( \n");
+            if (!vm.loadedOnce) {
+                if (null == vm.treeData || "object" != typeof vm.treeData) {} else {
+                    /*
+                    var copy = vm.treeData.constructor();
+                    for (var attr in vm.treeData) {
+                    	if (vm.treeData.hasOwnProperty(attr)) {
+                    		copy[attr] = vm.treeData[attr];
+                    	}
+                    }
+                    */
+                    ///vm.treeModalIsVisible = !vm.treeModalIsVisible;
+                    //vm.treeData = copy;
+                    for (var i = 0; i < vm.treeData.length; i++) {
+                        const nodeInRoot = vm.treeData[i];
+                        $log.debug(nodeInRoot);
+
+                        for (var j = 0; j < nodeInRoot.nodes.length; j++) {
+                            const srdId = i.toString() + "-" + j.toString(); ///vm.simplifiedTreeData[i].nodes[j].id.toString();
+                            const srcTitle = "_" + vm.treeData[i].nodes[j].title;
+                            const key = srdId + srcTitle;
+                            vm.srcMap[key] = vm.srcHolder.length.toString();
+                            const code = vm.treeData[i].nodes[j].sourceCode;
+                            vm.srcHolder.push(code);
+                            vm.treeData[i].nodes[j].sourceCode = "NAN";
+                        }
+                    }
+                    vm.loadedOnce = true;
+                    callback();
+                }
+            }
+        }
+
+        /// ----- < GUI SFX > -----
+        vm.playSFX = playSFX;
+
+        function playSFX(wav) {
+            /// click_select_units
+            if (!vm.muted) {
+                switch (wav) {
+                    case "error":
+                        var audio = new Audio("/static/gui_sfx/kg_" + wav + ".wav");
+                        audio.play();
+                        break;
+                    case "info_alert":
+                        var audio = new Audio("/static/gui_sfx/kg_" + wav + ".mp3");
+
+                        audio.play();
+                        break;
+                    case "ping":
+
+                        var audio = new Audio("/static/gui_sfx/kg_" + wav + ".wav");
+                        audio.play();
+                        break;
+                    case "startup":
+                        var audio = new Audio("/static/gui_sfx/kg_" + wav + ".wav");
+                        audio.onplay = function() {
+                            audio.play();
+                        };
+                        break;
+                    default:
+                        var audio = new Audio("/static/gui_sfx/" + wav + ".wav");
+                        audio.play();
+                        break;
+                        $log.log("...");
+                }
+            }
+        }
+        ///----- </GUI SFX > -----
+
+        function testGetMap() {
+            $log.info(vm.srcMapInput);
+            vm.queryiedSrc = vm.srcHolder[parseInt(vm.srcMap[vm.srcMapInput])];
+        }
+        /* - - -</ SRC CODE MAPPER >- - - */
+
+
+
+
+        vm.dumpJsonTreeData = dumpJsonTreeData;
+
+        function dumpJsonTreeData() {
+            $log.log(" 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 ")
+
+            $log.info(vm.treeData);
+
+            $log.log(" 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 ")
         }
 
 

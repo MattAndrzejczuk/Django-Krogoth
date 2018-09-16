@@ -12,13 +12,16 @@
             saveDocument: saveDocument,
             getRESTfulModelName: getRESTfulModelName,
             addSiblingToMaster: addSiblingToMaster,
-            createNew: createNew
+            createNew: createNew,
+            masterMetaData: {}
         };
 
         function saveDocument(treeData, newCode) {
             var payload = {
                 code: newCode
             };
+            if (treeData.parentIndex === 0)
+                payload["custom_key_values"] = service.masterMetaData;
             $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
             $log.log("    PATCH");
             $log.log("    " + treeData.RESTfulURI);

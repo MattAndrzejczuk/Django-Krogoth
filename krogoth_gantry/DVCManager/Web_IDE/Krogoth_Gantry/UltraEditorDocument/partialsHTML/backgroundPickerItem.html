@@ -1,0 +1,4 @@
+<div ng-repeat="pane in panes" ng-class="{active:pane.selected}">
+	<a href="" ng-click="select(pane)" style="color:limegreen"> = {{pane.title}}</a>
+</div>
+<div class="tab-content" ng-transclude></div>
