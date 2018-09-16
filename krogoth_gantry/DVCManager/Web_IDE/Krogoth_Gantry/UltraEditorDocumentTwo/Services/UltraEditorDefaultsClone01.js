@@ -73,32 +73,43 @@
                     canEdit: false,
                     canAdd: true
                 };
-                var xtraJS = {
-                    id: _masterVCID,
-                    index: 6,
-                    title: 'JavaScript Templates',
-                    nodes: [],
-                    canRemove: false,
-                    canEdit: false,
-                    canAdd: true
-                };
+
+
+
                 var core = {
                     id: _masterVCID,
-                    index: 7,
+                    index: returnData.length,
                     title: 'Krogoth Core',
                     nodes: [],
                     canRemove: false,
                     canEdit: false,
                     canAdd: false
                 };
+                returnData.push(core);
+
+
+
+                var xtraJS = {
+                    id: _masterVCID,
+                    index: returnData.length,
+                    title: 'JavaScript Templates',
+                    nodes: [],
+                    canRemove: false,
+                    canEdit: false,
+                    canAdd: true
+                };
+                returnData.push(xtraJS);
+
+                /*
                 returnData.push(master);
                 returnData.push(styles);
                 returnData.push(slaves);
                 returnData.push(direct);
                 returnData.push(servic);
                 returnData.push(xtHTML);
-                returnData.push(xtraJS);
-                returnData.push(core);
+				*/
+
+
                 deferred.resolve(returnData);
             } catch (ex) {
                 deferred.reject(returnData);

@@ -9,7 +9,7 @@ from krogoth_core.serializers import AKFoundationSerializer
 
 
 class AKFoundationViewSet(viewsets.ModelViewSet):
-    queryset = AKFoundationAbstract.objects.all()
+    queryset = AKFoundationAbstract.objects.all().order_by('last_name')
     serializer_class = AKFoundationSerializer
     permission_classes = (AllowAny, )
     filter_backends = (filters.DjangoFilterBackend,)

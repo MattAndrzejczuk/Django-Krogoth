@@ -9,10 +9,13 @@
             loadMasterInitializer: loadMasterInitializer,
             loadHTMLIncludeList: loadHTMLIncludeList,
             loadKrogothCoreList: loadKrogothCoreList,
-            loadAdditionalNodes: loadAdditionalNodes,
+
+            addNodeToEditor: addNodeToEditor,
+            addNodeToEditorSet2: addNodeToEditorSet2,
             needMore: false,
             nextPage: "",
-            js_nodes: []
+            js_nodes: [],
+            js_nodes_2: []
         };
 
         function loadMasterInitializer(selectedMasterId) {
@@ -94,7 +97,7 @@
 
 
 
-        function loadAdditionalNodes(uri) {
+        function addNodeToEditorSet2(uri) {
             $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
             $log.log("    GET");
             $log.log("    " + uri);
@@ -118,7 +121,7 @@
                     var item_in = cores[i];
                     var newNode = {
                         id: item_in.id,
-                        parentIndex: 7,
+                        parentIndex: 1,
                         index: service.js_nodes.length,
                         title: item_in.unique_name,
                         name: item_in.uniquename,
@@ -133,11 +136,11 @@
                         syntax: 'javascript',
                         icon: 'nodejs'
                     };
-                    service.js_nodes.push(newNode);
-                    $log.info("ADDING NODE " + i + ": " + item_in.first_name + item_in.last_name);
+                    service.addNodeToEditorSet2(newNode);
+                    //$log.info("ADDING NODE " + i + ": " + item_in.first_name + item_in.last_name);
                 });
 
-                deferred.resolve(response.data.next);
+                deferred.resolve(service.js_nodes);
             }, function errorCallback(response) {
                 deferred.reject(response);
             });
@@ -151,9 +154,12 @@
             $log.log("    /krogoth_gantry/viewsets/AKFoundation/");
             $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
             var deferred = $q.defer();
+            var URL = '/krogoth_gantry/viewsets/AKFoundation/';
+            if (service.nextPage)
+                URL = service.nextPage;
             $http({
                 method: 'GET',
-                url: '/krogoth_gantry/viewsets/AKFoundation/'
+                url: URL
             }).then(function successCallback(response) {
                 var cores = response.data.results;
                 ///var returnNods = [];
@@ -166,11 +172,12 @@
 
                 $(cores).each(function(i, item_in) {
                     var item_in = cores[i];
+
                     var newNode = {
                         id: item_in.id,
-                        parentIndex: 7,
+                        parentIndex: 0,
                         index: service.js_nodes.length,
-                        title: item_in.unique_name,
+                        title: item_in.first_name,
                         name: item_in.uniquename,
                         class: item_in.last_name,
                         canRemove: false,
@@ -183,25 +190,37 @@
                         syntax: 'javascript',
                         icon: 'nodejs'
                     };
-                    service.js_nodes.push(newNode);
-                    $log.info("ADDING NODE " + i + ": " + item_in.first_name + item_in.last_name);
+                    service.addNodeToEditor(newNode);
+                    ///$log.info("ADDING NODE " + i + ": " + item_in.first_name + item_in.last_name);
                 });
-
-
-                service.loadAdditionalNodes(service.nextPage)
-                    .then(function(next_page) {
-                        service.nextPage = next_page;
-                        service.loadAdditionalNodes(service.nextPage)
-                            .then(function(next_page) {
-                                service.nextPage = next_page;
-                            });
-                    });
-
                 deferred.resolve(service.js_nodes);
             }, function errorCallback(response) {
                 deferred.reject(response);
             });
             return deferred.promise;
+        }
+
+
+        function addNodeToEditor(newNode) {
+            $log.info("[1]: " + newNode.class);
+            if (newNode.class === "controller")
+                newNode.icon = "pillar";
+            if (newNode.class === "constant")
+                newNode.icon = "react";
+            if (newNode.class === "filter")
+                newNode.icon = "layers-outline";
+            service.js_nodes.push(newNode);
+        }
+
+        function addNodeToEditorSet2(newNode) {
+            $log.info("[2]: " + newNode.class);
+            if (newNode.class === "controller")
+                newNode.icon = "pillar";
+            if (newNode.class === "constant")
+                newNode.icon = "react";
+            if (newNode.class === "filter")
+                newNode.icon = "layers-outline";
+            service.js_nodes_2.push(newNode);
         }
 
         return service;

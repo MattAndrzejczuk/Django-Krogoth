@@ -32,7 +32,7 @@ save changes to filesystem using URL:
 
         vm.$onInit = onInit;
         vm.createFirstTreeNodes = createFirstTreeNodes;
-        vm.getKrogothCoreParts = getKrogothCoreParts;
+
         vm.loadFileIntoEditor = loadFileIntoEditor;
         vm.editorContentWillChange = editorContentWillChange;
         vm.editorContentDidChange = editorContentDidChange;
@@ -47,6 +47,10 @@ save changes to filesystem using URL:
         vm.treeModalIsVisible = false;
         vm.simplifiedTreeData = [];
         vm.toggleFolder = toggleFolder;
+
+
+        vm.getKrogothCorePartsSet1 = getKrogothCorePartsSet1;
+        vm.getKrogothCorePartsSet2 = getKrogothCorePartsSet2;
 
 
         vm.goBackToExplorerHome = goBackToExplorerHome;
@@ -69,27 +73,31 @@ save changes to filesystem using URL:
             $log.log("\n 🔵 createFirstTreeNodes() \n");
             UltraEditorDefaultsClone01.populateBoilerplate(vm.selectedMaster).then(function(treeData) {
                 vm.treeData = treeData;
-                vm.getKrogothCoreParts();
+                vm.getKrogothCorePartsSet1();
             });
 
         }
 
-        function getKrogothCoreParts() {
-            $log.log("\n 🔵 getKrogothCoreParts() \n");
+        function getKrogothCorePartsSet1() {
+            $log.log("\n 🔵 getKrogothCorePartsSet1() \n");
             AKClassEditorComponentClone01.loadKrogothCoreList()
                 .then(function(nodesForTree) {
 
+                    vm.treeData[0].nodes = nodesForTree;
+                    //vm.treeData[1].nodes = nodesForTree_set2;
 
+                    vm.getKrogothCorePartsSet2();
 
+                });
+        }
 
-                    vm.treeData[7].nodes = nodesForTree;
+        function getKrogothCorePartsSet2() {
+            $log.log("\n 🔵 getKrogothCorePartsSet2() \n");
+            AKClassEditorComponentClone01.loadKrogothCoreList()
+                .then(function(nodesForTree) {
 
-
-
-                    //$timeout(function() {
-
-
-
+                    vm.treeData[1].nodes = nodesForTree;
+                    //vm.treeData[1].nodes = nodesForTree_set2;
 
                     vm.loadOSXDoc(function() {
 
@@ -104,12 +112,7 @@ save changes to filesystem using URL:
                         };
 
                     });
-                    /*
-                    $timeout(function() {
-                    	vm.playSFX("startup");
-                    }, 500);
-                    */
-                    //}, 1500);
+
                 });
         }
 
