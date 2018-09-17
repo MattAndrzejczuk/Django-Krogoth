@@ -1,11 +1,8 @@
-
-
-
 /*GLOBALSTYLE*/
 
 
 
-
+/*
     @media only screen and (max-width: 9000px) {
         md-content.md-default-theme.md-hue-2, md-content.md-hue-2 {
             background-size: 4000px 4000px !important;
@@ -255,7 +252,7 @@
             -webkit-transform: translateX(0%);
         }
     }
-
+*/
     @-webkit-keyframes SCALE-INFINITE {
         0% {
             -ms-transform: scale(1.0, 1.0); /* IE 9 */

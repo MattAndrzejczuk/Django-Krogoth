@@ -6,7 +6,7 @@
 					<button class="btn btn-default" ng-click="vm.consoleOpen = !vm.consoleOpen">close console</button>
 					<button class="btn btn-default" ng-click="vm.consoleMode = !vm.consoleMode">toggle code/mapping</button>
 					<pre style="color:limegreen"
-						 ng-if="vm.consoleMode">{{ vm.srcMap | json }}</pre>
+						 ng-if="vm.consoleMode">{{ vm.treeData | json }}</pre>
 					<section ng-if="!vm.consoleMode" style="width: 2000px">
 						<pre style="color:yellow"
 							 >{{ vm.queryiedSrc }}</pre>
@@ -56,18 +56,18 @@
 				md-is-locked-open="vm.sideNavLocked"
 				md-component-id="sidenav"
 				layout-fill
-				flex-xs="40"
-				flex-sm="30"
-				flex-md="30"
-				flex-lg="20"
-				flex-gt-lg="20"
+				flex-xs="30"
+				flex-sm="20"
+				flex-md="20"
+				flex-lg="15"
+				flex-gt-lg="10"
 				ms-sidenav-helper>
 		<!-- SIDENAV HEADER -->
 
 		<!-- / SIDENAV HEADER -->
 		<div style="margin-top:1px" layout="row">
-			<span class="font-weight-700" ng-if="vm.objectList.name" style="color:white">
-				{{ vm.objectList.name }}
+			<span class="font-weight-700" ng-if="vm.masterName" style="color:white">
+				{{ vm.masterName }}
 			</span>
 			<span flex="50">&nbsp;</span>
 			<button class="toolbar-button" 
@@ -109,37 +109,11 @@
 			
 			
 			<!-- IDE CONTROL PANEL -->
-			<div class="ide-ctrl-panel" layout-padding layout-margin>
-				<button class="toolbar-button"
-						layout-wrap 
-						style="padding:0px; height:20px; width:20px"
-						ng-click="vm.changeBgWallpaper()">
-					<span class="entypo entypo-air" style="font-size:1.1em" ></span>
-					<!--            <span class="mdi mdi-circle"></span>-->
-					<md-tooltip>
-						Change Editor Background Wallpaper
-					</md-tooltip>
-				</button>
-
-				<button class="toolbar-button"
-						layout-wrap 
-						style="padding:0px; height:20px; width:20px"
-						ng-click="vm.dumpJsonTreeData()">
-					<span class="entypo entypo-code" style="font-size:1.1em" ></span>
-					<!--            <span class="mdi mdi-circle"></span>-->
-					<md-tooltip>
-						dump json of tree data
-					</md-tooltip>
-				</button>
+			<div class="ide-ctrl-panel" layout-padding layout-margin 
+				 ng-include="'/moho_extractor/NgIncludedHtml/?name=controlPanel'">
 			</div>
 			<!-- / IDE CONTROL PANEL -->
 			
-			<!-- SRC CODE MAPPER -->
-			<div layout-padding layout-margin>
-				<button class="btn btn-default" ng-click="vm.consoleOpen = !vm.consoleOpen">toggle console</button>
-				<button class="btn btn-default" ng-click="vm.loadOSXDoc();">init</button>
-			</div>
-			<!--/SRC CODE MAPPER -->
 
 		</md-content>
 		<!-- / SIDENAV CONTENT -->
@@ -182,9 +156,16 @@
 			<i class="entypo entypo-right-open-mini" style="font-size:1.2em">
 			</i>
 		</span>
-
 		<span class="h4">
-			<strong style="margin-top:1px;">{{ vm.objectList.name }}</strong>
+			<strong>{{ vm.masterName }}</strong>
+		</span>
+		<span layout-align="center center" style="margin-top:3px;padding-left:4px;padding-right:4px;"
+			  ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name">
+			<i class="entypo entypo-right-open-mini" style="font-size:1.2em">
+			</i>
+		</span>
+		<span class="h4">
+			<strong style="margin-top:1px;">{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name }}</strong>
 		</span> 
 	</div>
 </div>

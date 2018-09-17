@@ -40,6 +40,7 @@
 
         vm.querySubCatsWithParent = querySubCatsWithParent;
         vm.openUltraEditorDocumentTwo = openUltraEditorDocumentTwo;
+        vm.saveInProgress = false;
 
 
         function onInit() {
@@ -162,6 +163,7 @@
 
         function saveUncommitedSQLToFilesystem() {
             //var deferred = $q.defer();
+            vm.saveInProgress = true;
             $http({
                 method: 'GET',
                 url: "/krogoth_admin/SaveSQLToFileSystem/"
@@ -170,6 +172,7 @@
                 //deferred.resolve(response.data);
                 vm.serverSideChanges = [];
                 vm.getUncommitedSQL();
+                vm.saveInProgress = false;
             }, function errorCallback(response) {
                 /// Fail
                 //deferred.reject(response);

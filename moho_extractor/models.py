@@ -33,10 +33,10 @@ class NgIncludedJs(PolymorphicModel):
 
 
 ## WARNING, CURRENTLY UNUSED:
-class IncludedJsMaster(NgIncludedJs):
-    master_vc = models.ForeignKey(KrogothGantryMasterViewController,
-                                  on_delete=models.CASCADE,
-                                  related_name='partial_js')
+# class IncludedJsMaster(NgIncludedJs):
+#     master_vc = models.ForeignKey(KrogothGantryMasterViewController,
+#                                   on_delete=models.CASCADE,
+#                                   related_name='partial_js')
 
 
 class IncludedHtmlCoreTemplate(NgIncludedHtml):

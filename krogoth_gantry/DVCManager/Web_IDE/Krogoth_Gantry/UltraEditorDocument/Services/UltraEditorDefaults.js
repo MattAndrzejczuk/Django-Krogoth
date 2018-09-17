@@ -67,7 +67,7 @@
                 var xtHTML = {
                     id: _masterVCID,
                     index: 5,
-                    title: ' HTML Templates',
+                    title: ' HTML ',
                     class: "Template",
                     nodes: [],
                     canRemove: false,
@@ -77,7 +77,7 @@
                 var xtraJS = {
                     id: _masterVCID,
                     index: 6,
-                    title: ' JavaScript Templates',
+                    title: ' JavaScript ',
                     nodes: [],
                     canRemove: false,
                     canEdit: false,
@@ -86,7 +86,7 @@
                 var core = {
                     id: _masterVCID,
                     index: 7,
-                    title: ' Krogoth Core',
+                    title: ' Settings',
                     nodes: [],
                     canRemove: false,
                     canEdit: false,

@@ -103,23 +103,25 @@
         vm.changeBgWallpaper = changeBgWallpaper;
         vm.bg_image = Math.floor(Math.random() * 9) + 1;
 
-
+        vm.welcomeSFX = new Audio("/static/gui_sfx/kg_startup.wav");
+        vm.welcomeSFX.load();
+        vm.masterName = ". . .";
         /// I.
         function onInit() {
             vm.selectedMaster = $state.params.masterId;
 
 
-            var audio = new Audio("/static/gui_sfx/kg_startup.wav");
-            audio.load();
-            audio.oncanplay = function() {
-                audio.play();
-                vm.buildBreadCrumbs();
-                vm.createFirstTreeNodes();
-            };
 
-            audio.onended = function() {
 
-            };
+            //vm.welcomeSFX.oncanplay = function() {
+            vm.welcomeSFX.play();
+            vm.buildBreadCrumbs();
+            vm.createFirstTreeNodes();
+            //};
+
+            //vm.welcomeSFX.onended = function() {
+
+            //};
         }
 
         function reloadData() {
@@ -155,6 +157,7 @@
                     vm.objectList = finishedProcess.objectList;
 
                     vm.getTemplatesHTML();
+                    vm.getTemplatesJS();
                     ///vm.getKrogothCoreParts();
 
                     /// III.
@@ -163,12 +166,24 @@
         }
 
         function getTemplatesHTML() {
-            Dependency.loadHTMLIncludeList(vm.objectList.name)
+            Dependency.loadTmplIncludeList(vm.objectList.name, "Html")
                 .then(function(htmlTemps) {
-                    $(htmlTemps.srcHTMLs).each(function(i, src) {
+                    $(htmlTemps.srcTMPLs).each(function(i, src) {
                         vm.forwardThisCode(src.parentIndex, src.index, src.srcCode, src.title);
                     });
                     vm.treeData[5].nodes = htmlTemps.returnNodes;
+                });
+        }
+
+        vm.getTemplatesJS = getTemplatesJS;
+
+        function getTemplatesJS() {
+            Dependency.loadTmplIncludeList(vm.objectList.name, "Js")
+                .then(function(jsTemps) {
+                    $(jsTemps.srcTMPLs).each(function(i, src) {
+                        vm.forwardThisCode(src.parentIndex, src.index, src.srcCode, src.title);
+                    });
+                    vm.treeData[6].nodes = jsTemps.returnNodes;
                 });
         }
 
@@ -283,9 +298,10 @@
                 'css',
                 'language-css3'
             );
+            vm.masterName = vm.objectList.name;
             vm.treeData[tStyle].nodes.push(themestyleCSS);
             vm.objectList = [];
-            EditorWebSocket.initializeWebSocket(vm.objectList.name);
+            EditorWebSocket.initializeWebSocket(vm.masterName);
         }
 
         /// < ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ DONT PUT SOURCE INTO UI TREE ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ >
@@ -558,7 +574,7 @@
                     vm.finishedBreadCrumbsJson._2nd = finishedBread[1];
                     vm.finishedBreadCrumbsJson._3rd = finishedBread[2];
                     var changeTabTitle = document.getElementById("browser_tab_text");
-                    changeTabTitle.innerHTML = " 🔨 " + vm.objectList.name;
+                    changeTabTitle.innerHTML = " 🔨 " + vm.masterName;
                 })
         }
 
@@ -651,7 +667,7 @@
         function renameObjectSubmit() {
             const _0 = vm.finishedBreadCrumbsJson._1st.name;
             const _1 = vm.finishedBreadCrumbsJson._2nd.name;
-            const _2 = vm.objectList.name;
+            const _2 = vm.masterName;
             const objectToRename = vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class;
             $log.debug("RENAME OBJECT DID FINISH SUBMIT");
             $log.debug(objectToRename);
@@ -728,7 +744,7 @@
                 const postPayload = {
                     "path_0": vm.finishedBreadCrumbsJson._1st.name,
                     "path_1": vm.finishedBreadCrumbsJson._2nd.name,
-                    "master_name": vm.objectList.name,
+                    "master_name": vm.masterName,
                     "index": treeRoot.nodes.length,
                     "new_name": new_name
                 };
@@ -788,18 +804,21 @@
         }
 
 
+        vm.highlightedPositions = [];
 
         function highlightInputCustom() {
             codeHighlightIDE.highlightCustom(vm.editorModel, vm.findStringForm)
-                .then(function(coloredEditorModel) {
-                    vm.editorModel = coloredEditorModel;
+                .then(function(completion) {
+                    vm.editorModel = completion.editorModel;
+                    vm.highlightedPositions = completion.positionOfHighlighted;
                 });
         }
 
         function removeHighlights() {
             codeHighlightIDE.clearHighlights(vm.editorModel)
-                .then(function(coloredEditorModel) {
-                    vm.editorModel = coloredEditorModel;
+                .then(function(completion) {
+                    vm.editorModel = completion.editorModel;
+                    vm.highlightedPositions = [];
                 });
             ///vm.editorModel.doc.setValue(vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode);
         }
@@ -821,7 +840,7 @@
                 info: {
                     parentIndex: vm.loadedParentIndex,
                     nodeIndex: vm.loadedIndex,
-                    mvcName: vm.objectList.name
+                    mvcName: vm.masterName
                 }
             }
             EditorWebSocket.sendMsg(wsMsg);

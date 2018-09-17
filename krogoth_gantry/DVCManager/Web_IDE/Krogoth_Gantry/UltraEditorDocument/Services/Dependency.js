@@ -184,15 +184,23 @@
 
 
 
-        function loadHTMLIncludeList(masterName) {
+        function loadHTMLIncludeList(masterName, tmplName) {
             $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
             $log.log("    GET");
-            $log.log("    /krogoth_gantry/viewsets/IncludedHtmlMaster/?master_vc__name=" + masterName);
+            $log.log("    /krogoth_gantry/viewsets/Included" + tmplName + "Master/?master_vc__name=" + masterName);
             $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+
+            var _syntax;
+            if (tmplName === "Html") {
+                _syntax = "htmlmixed";
+            } else {
+                _syntax = "javascript";
+            }
+
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: "/krogoth_gantry/viewsets/IncludedHtmlMaster/?master_vc__name=" + masterName
+                url: "/krogoth_gantry/viewsets/" + tmplName + "/?master_vc__name=" + masterName
             }).then(function successCallback(response) {
                 var htmls = response.data.results;
                 var r_ = {
@@ -204,7 +212,7 @@
                 for (var i = 0; i < htmls.length; i++) {
                     var item_in = htmls[i];
 
-                    var pi = 5;
+                    var pi = 6;
                     var i = r_.returnNodes.length;
                     var src = item_in.contents;
                     var title = item_in.name;
@@ -215,7 +223,7 @@
                         index: i,
                         title: title,
                         name: item_in.url_helper,
-                        class: "NgIncludedHtml",
+                        class: "NgIncluded" + tmplName,
                         canRemove: true,
                         canEdit: true,
                         isMaster: false,
@@ -225,14 +233,14 @@
                         sourceCode: src,
                         sourceKey: 'contents',
                         RESTfulId: item_in.id,
-                        RESTfulURI: "/krogoth_gantry/viewsets/IncludedHtmlMaster/" + item_in.id + "/",
-                        syntax: 'htmlmixed',
+                        RESTfulURI: "/krogoth_gantry/viewsets/Included" + tmplName + "Master/" + item_in.id + "/",
+                        syntax: _syntax,
                         icon: 'link-variant'
                     };
 
-                    var HTML = new ClassIsolatedSource(pi, i, src, title);
+                    var TMPL = new ClassIsolatedSource(pi, i, src, title);
 
-                    r_.srcHTMLs.push(HTML);
+                    r_.srcTMPLs.push(TMPL);
                     r_.returnNodes.push(newNode);
                 }
                 deferred.resolve(r_);

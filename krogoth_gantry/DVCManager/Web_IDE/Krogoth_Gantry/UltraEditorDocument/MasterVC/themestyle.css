@@ -1,5 +1,16 @@
 /* TESTED AND VERIFIED WITH LATEST VERSION */
 
+.statusbar {
+
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+	color: white;
+	
+}
+
+body {
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+}
+
 .parent-node-frame {
 	height: 25px;
     padding-top: 2px;
@@ -34,11 +45,11 @@ input.mvx-search {
 }
 .openedByOtherBrowser {
 	color: white;
-	background-color: rgb(255, 200, 5, 0.35);
+	background-color: rgb(255, 200, 5, 0.65);
 }
 .savedByOtherBrowser {
 	color: white;
-	background-color: rgb(255, 5, 25, 0.35) !important;
+	background-color: rgb(255, 5, 25, 0.65) !important;
 }
 
 

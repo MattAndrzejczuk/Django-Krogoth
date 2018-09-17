@@ -18,8 +18,10 @@
             payload.path_2 = path_2;
             payload.old_name = old;
             payload.new_name = new_;
+
             const uri = "/krogoth_admin/renameAngularJSTemplate/";
             $log.info(uri);
+            $log.info(payload);
             var deferred = $q.defer();
             $http({
                 method: 'POST',

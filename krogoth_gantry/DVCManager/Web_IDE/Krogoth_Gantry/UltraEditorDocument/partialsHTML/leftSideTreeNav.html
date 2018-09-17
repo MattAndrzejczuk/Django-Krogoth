@@ -21,7 +21,7 @@
               style="color: rgba(255, 255, 255, 0.80)"></span>
         <section ng-if="node.canRemove === true">
             <span class="badge badge-dark">
-                {{ node.title }}
+                {{ node.title | limitTo: 20 }}
             </span>
         </section>
         <section ng-if="node.canRemove === false">

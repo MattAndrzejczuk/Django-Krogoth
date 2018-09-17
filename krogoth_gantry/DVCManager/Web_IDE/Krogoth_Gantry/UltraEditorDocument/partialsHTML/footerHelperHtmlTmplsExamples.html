@@ -1,4 +1,4 @@
-<span ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class==='NgIncludedHtml'" layout-padding class="white-bg-new">
+<div ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class==='NgIncludedHtml'" layout-padding class="white-bg-new">
 	<!--
 	<div>
 		Import This Partial Into Your Master/Slave ViewHTML 
@@ -8,8 +8,9 @@
 	</hljs>
 	-->
 	<h4 ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class='NgIncludedHtml'">
-		&lt;span
+		<span style="color:white">&lt;span</span>
 		<span style="color:green">&nbsp;ng-include=</span>
-		<span style="color:red">"'/moho_extractor/NgIncludedHtml/?name={{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name.replace("/moho_extractor/NgIncludedHtml/?name=", "") }}'"</span>&gt;&lt;/span&gt;
+		<span style="color:red">"'/moho_extractor/NgIncludedHtml/?name={{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name.replace("/moho_extractor/NgIncludedHtml/?name=", "") }}'"</span>
+		<span style="color:white">&gt;&lt;/span&gt;</span>
 	</h4>
-</span>
+</div>

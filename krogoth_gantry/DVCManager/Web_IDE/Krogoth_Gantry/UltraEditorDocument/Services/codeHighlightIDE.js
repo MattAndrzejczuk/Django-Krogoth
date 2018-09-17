@@ -12,6 +12,7 @@
             highlightCustom: highlightCustom,
             clearHighlights: clearHighlights,
             highlightedStrings: [],
+            positionsOfHighlighted: [],
             playHighlightSfx: new Audio("/static/gui_sfx/kg_gui-11.wav"),
             playDeHighlightSfx: new Audio("/static/gui_sfx/kg_gui-10.wav")
         };
@@ -57,6 +58,7 @@
                     step += 1;
                 }
             }
+
             deferred.resolve(editorModel);
             return deferred.promise;
         }
@@ -118,9 +120,12 @@
                                 "css": "background-color: rgba(0, 255, 80, 0.59);"
                             });
 
+
+                            service.positionsOfHighlighted.push(j);
+
                             $timeout(function() {
                                 service.playHighlightSfx.play();
-                            }, 150);
+                            }, 50 + (i * 2));
 
                             step += 1;
                         }
@@ -130,7 +135,12 @@
                 }
 
             }
-            deferred.resolve(editorModel);
+            var results = {
+                editorModel: editorModel,
+                positionOfHighlighted: service.positionsOfHighlighted
+            };
+
+            deferred.resolve(results);
             return deferred.promise;
 
         }
@@ -192,7 +202,7 @@
 
                                 $timeout(function() {
                                     service.playDeHighlightSfx.play();
-                                }, 150);
+                                }, i * (2));
 
                                 step += 1;
                             }
@@ -203,9 +213,12 @@
 
                 }
             });
-
+            var results = {
+                editorModel: editorModel,
+                positionOfHighlighted: service.positionsOfHighlighted
+            };
             service.highlightedStrings = [];
-            deferred.resolve(editorModel);
+            deferred.resolve(results);
             return deferred.promise;
         }
 
