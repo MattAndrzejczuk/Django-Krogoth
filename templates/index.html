@@ -7,7 +7,7 @@
 
     <meta name="description"
           content="{{ description }}"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=0.75, maximum-scale=0.75"/>
     <!--<meta name="viewport" content="width=device-width, initial-scale=0.75, maximum-scale=0.75"/>-->
 
     <title id="browser_tab_text">{{ message }}</title>
@@ -188,9 +188,8 @@
                 opacity: 0;
             }
         }
-
     </style>
-    <!-- SPLASH SCREEN -->
+
     <ms-splash-screen id="splash-screen">
 
         <div class='loader'>
@@ -203,102 +202,20 @@
 
     </ms-splash-screen>
 
-    <!-- / SPLASH SCREEN
-        <a style="display: none" href="http://armprime.co/#!/home">
-            Arm Prime News, home of Total Annihilation Lazarus
-        </a>
-        <a style="display: none" href="http://armprime.co/#!/upcomingFeatures">
-            Creating Total Annihilation maps can take awhile. That's why we want to add a random map generator app within
-            Arm Prime.
-        </a>
-        <a style="display: none" href="http://armprime.co/#!/whatIsLaz">Total Annihilation Lazarus is a new web based mod
-            builder and conflict crusher for the 1997 classic Total Annihilation released by Cavedog entertainment.</a>
-        <a style="display: none" href="http://armprime.co/#!/projectStatus">Status of Total Annihilation mod editor</a>
-        <a style="display: none" href="http://armprime.co/#!/home">Latest news and updates</a>
-        <a style="display: none" href="http://armprime.co/#!/ArmPrimeAbout">About ArmPrime (for Total Annihilation)</a>
-        <a style="display: none" href="/static/sitemap.xml">sitemap</a>
-
-
-
-    <script>
-        var camera, scene, renderer;
-        var geometry, material, mesh;
-        init();
-        animate();
-        function init() {
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
-            camera.position.z = 1000;
-            scene = new THREE.Scene();
-            var light = new THREE.DirectionalLight(0xffffff);
-            light.position.set(0, 1, 1).normalize();
-            scene.add(light);
-            var texture = new THREE.TextureLoader().load("/static/textured_tiles/p1.png");
-            texture.wrapS = THREE.RepeatWrapping;
-            texture.wrapT = THREE.RepeatWrapping;
-            texture.repeat.set(4, 4);
-            geometry1 = new THREE.SphereBufferGeometry(64, 128, 128);
-            material1 = new THREE.MeshLambertMaterial({
-                ambient: 0x050505,
-                color: 0x0033ff,
-                specular: 0x555555,
-                shininess: 30,
-                map: texture
-            });
-            mesh1 = new THREE.Mesh(geometry1, material1);
-            mesh1.position.z = 50;
-            mesh1.texture = texture;
-            scene.add(mesh1);
-            geometry2 = new THREE.SphereGeometry(32, 50, 50);
-            material2 = new THREE.MeshPhongMaterial({
-                ambient: 0x050505,
-                color: 'rgb(0,50,0)',
-                specular: 0x555555,
-                shininess: 30,
-                map: texture
-            });
-            mesh2 = new THREE.Mesh(geometry2, material2);
-            mesh2.position.z = 50;
-            scene.add(mesh2);
-            renderer = new THREE.WebGLRenderer({
-                alpha: true
-            });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            var splash = document.getElementById('splash-screen');
-            renderer.domElement.style = "";
-            splash.appendChild(renderer.domElement);
-        }
-        function animate() {
-            requestAnimationFrame(animate);
-            var orbitRadius = 300;
-            var date;
-            date = Date.now() * 0.005;
-            mesh1.position.set(
-                Math.cos(date + 5) * orbitRadius,
-                Math.sin(date) * orbitRadius,
-                0
-            );
-            mesh2.position.set(
-                Math.cos(date) * orbitRadius,
-                Math.sin(date) * orbitRadius,
-                0
-            );
-            renderer.render(scene, camera);
-        }
-    </script>
-     -->
     <span style="display: none" id="krogoth_gantryMetaText_01">{{ version_build }}</span>
     <div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>
 
-    <!--
-    <ms-theme-options></ms-theme-options>
-    -->
-    <!-- build:js(src) scripts/vendor.js -->
-    <!-- bower:js -->
+
 
     <script src="/static/bower_components/jquery/dist/jquery.js"></script>
     <script src="/static/bower_components/api-check-7.5.5/api-check.js"></script>
     <script src="/static/bower_components/angular1.5/angular.js"></script>
-    <!--<script src="/static/bower_components/angular1.6/angular.min.js"></script>-->
+
+
+
+
+
+
 
     <script src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="/static/bower_components/angular-aria/angular-aria.js"></script>
@@ -378,7 +295,6 @@
     <script src="/static/bower_components/wip-image-zoom/dist/wip-image-zoom.js"></script>
     <script src="/static/bower_components/angular-django-rest-resource/angular-django-rest-resource.js"></script>
 
-
     <script src="/static/bower_components/ng-websocket/ng-websocket.js"></script>
     <script src="/static/bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="/static/bower_components/oclazyload/dist/ocLazyLoad.js"></script>
@@ -440,7 +356,9 @@
 
     <!--KrogothFoundation-->
     {% for com in core %}
+
         <script src="/moho_extractor/KrogothFoundation/?unique_name={{ com }}"></script>
+
     {% endfor %}
 
     <script src="/moho_extractor/KrogothFoundation/?unique_name=toolbarmodule"></script>

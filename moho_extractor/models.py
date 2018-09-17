@@ -64,6 +64,21 @@ class IncludedHtmlMaster(NgIncludedHtml):
         self.sys_path = saveToPath
         super(IncludedHtmlMaster, self).save(*args, **kwargs)
 
+
+class IncludedJsMaster(NgIncludedJs):
+    sys_path = models.CharField(max_length=256,
+                                default='/usr/src/app/')
+    master_vc = models.ForeignKey(KrogothGantryMasterViewController,
+                                  on_delete=models.CASCADE,
+                                  related_name='partial_js')
+
+    def save(self, *args, **kwargs):
+        saveToPath = self.master_vc.path_to_static + "partialsHTML/" + self.name
+        self.sys_path = saveToPath
+        super(IncludedJsMaster, self).save(*args, **kwargs)
+
+
+
 # class ReadyForFileSystemFrontend(models.Model):
 #     """Anything saved from the Web IDE needs to be recorded.
 #

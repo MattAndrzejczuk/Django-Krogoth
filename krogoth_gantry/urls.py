@@ -11,7 +11,7 @@ from krogoth_gantry.views import KrogothGantryMasterViewControllerViewSet, Krogo
 
 from krogoth_core.views import AKFoundationViewSet
 
-from moho_extractor.views import IncludedHtmlMasterViewSet, IncludedHtmlCoreViewSet
+from moho_extractor.views import IncludedHtmlMasterViewSet, IncludedHtmlCoreViewSet, IncludedJsMasterViewSet
 
 router.register(r'MasterViewController',
                 KrogothGantryMasterViewControllerViewSet)
@@ -24,7 +24,7 @@ router.register(r'Service', KrogothGantryServiceViewSet)
 
 router.register(r'IncludedHtmlMaster', IncludedHtmlMasterViewSet)
 router.register(r'IncludedHtmlCore', IncludedHtmlCoreViewSet)
-# router.register(r'NgIncludedJs', AKFoundationViewSet)
+router.register(r'IncludedJsMaster', IncludedJsMasterViewSet)
 
 router.register(r'AKFoundation', AKFoundationViewSet)
 

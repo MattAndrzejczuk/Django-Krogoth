@@ -1,23 +1,4 @@
-/* syntaxAnalyzePropertiesVM */
-
-/*
-
-Grabs all unique properties for the controller i.e.
-
-/// vm.firstProperty = foo
-/// vm.anotherProp = bar
-
-
-To give us the result:
-
-/// ["firstProperty", "anotherProp"]
-
-*/
-
-
-
-
-
+/* TESTED AND VERIFIED WITH LATEST VERSION */
 (function() {
     'use strict';
     angular

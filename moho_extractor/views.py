@@ -1,9 +1,10 @@
 from django.http import HttpResponse, JsonResponse
 
 from rest_framework.views import APIView
-from moho_extractor.serializers import IncludedHtmlMasterSerializer, IncludedHtmlCoreTemplateSerializer
+from moho_extractor.serializers import IncludedHtmlMasterSerializer, IncludedJsMasterSerializer, \
+    IncludedHtmlCoreTemplateSerializer
 
-from moho_extractor.models import NgIncludedHtml, IncludedHtmlMaster, IncludedHtmlCoreTemplate
+from moho_extractor.models import NgIncludedHtml, IncludedHtmlMaster, IncludedJsMaster, IncludedHtmlCoreTemplate
 from krogoth_gantry.models import KrogothGantryMasterViewController
 
 from rest_framework.authentication import TokenAuthentication
@@ -64,11 +65,21 @@ class IncludedHtmlMasterViewSet(viewsets.ModelViewSet):
     filter_fields = ('master_vc__name', )
 
 
+class IncludedJsMasterViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
+    queryset = IncludedJsMaster.objects.all().order_by('name')
+    serializer_class = IncludedHtmlMasterSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('master_vc__name',)
+
 
 class IncludedHtmlCoreViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
     queryset = IncludedHtmlCoreTemplate.objects.all().order_by('name')
     serializer_class = IncludedHtmlCoreTemplateSerializer
+
+
+
 
 
 
@@ -114,7 +125,8 @@ class KrogothFoundationView(APIView):
         unique_name = str(request.GET['unique_name'])
         js = AKFoundationAbstract.objects.get(unique_name=unique_name)
         ct = 'application/javascript'
-        body = js.code
+        body = js.code.replace("var vm = this",
+                               "console.log('DEPENDENCY CALLED: "+ unique_name +"');var vm = this")
 
         krogoth_debug('\033[91m')
         try:

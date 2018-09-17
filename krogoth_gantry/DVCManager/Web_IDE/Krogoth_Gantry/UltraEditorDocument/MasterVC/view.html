@@ -1,3 +1,33 @@
+<!-- TESTED AND VERIFIED WITH LATEST VERSION -->
+<!-- SRC CODE MAPPER -->
+				<div class="console-window" ng-if="vm.consoleOpen" style="width: 2000px">
+				<input type="text" placeholder="Lookup Source Code..." ng-model="vm.srcMapInput">
+				<button class="btn btn-default" ng-click="vm.testGetMap()">FETCH CODE</button>
+					<button class="btn btn-default" ng-click="vm.consoleOpen = !vm.consoleOpen">close console</button>
+					<button class="btn btn-default" ng-click="vm.consoleMode = !vm.consoleMode">toggle code/mapping</button>
+					<pre style="color:limegreen"
+						 ng-if="vm.consoleMode">{{ vm.srcMap | json }}</pre>
+					<section ng-if="!vm.consoleMode" style="width: 2000px">
+						<pre style="color:yellow"
+							 >{{ vm.queryiedSrc }}</pre>
+						</pre>
+					</section>
+				</div>
+				<style>
+					.console-window {
+						position: fixed;
+						z-index: 7000;
+						top:200px;
+						left:100px;
+						width: 1000px !important;
+						height: 1200px;
+						background-color: rgba(0,0,0,0.85);
+					}
+				</style>
+<!--/SRC CODE MAPPER -->
+
+
+
 <md-nav-bar style="height: 22px; max-height: 22px; min-height: 22px;"
 			class="heading-bar2"
 			layout="row">
@@ -79,7 +109,7 @@
 			
 			
 			<!-- IDE CONTROL PANEL -->
-			<div class="ide-ctrl-panel">
+			<div class="ide-ctrl-panel" layout-padding layout-margin>
 				<button class="toolbar-button"
 						layout-wrap 
 						style="padding:0px; height:20px; width:20px"
@@ -103,7 +133,13 @@
 				</button>
 			</div>
 			<!-- / IDE CONTROL PANEL -->
-
+			
+			<!-- SRC CODE MAPPER -->
+			<div layout-padding layout-margin>
+				<button class="btn btn-default" ng-click="vm.consoleOpen = !vm.consoleOpen">toggle console</button>
+				<button class="btn btn-default" ng-click="vm.loadOSXDoc();">init</button>
+			</div>
+			<!--/SRC CODE MAPPER -->
 
 		</md-content>
 		<!-- / SIDENAV CONTENT -->
@@ -159,7 +195,7 @@
 
 			<!-- CONTENT TOOLBAR -->
 			<div layout="row"
-				 class="panel panel-heading"
+				 class="kg-toolbar-bg"
 				 ng-include="'/moho_extractor/NgIncludedHtml/?name=codeToolbarIDE'"
 				 layout-align="start center">
 			</div>
@@ -168,6 +204,7 @@
 
 			<!-- CONTENT -->
 			<md-content class="contentosx minwidthfix md-no-flicker md-no-momentum codescrollbars"
+						id="positionTracker"
 						style="height:100%; background-color: rgba(0,0,0,0);">
 
 
@@ -186,128 +223,6 @@
 	<!-- / CENTER -->
 </div> 
 
-
-<style>
-	/* HTML */
-	.cm-s-ambiance.CodeMirror {
-		background: rgba(10,10,0,0.45) !important;
-	}
-	.cm-s-ambiance.CodeMirror, .cm-s-ambiance .CodeMirror-gutters { 
-		background-image: url("/static/textured_tiles/egg-shell.png") !important;
-	}
-	/* Services */
-	.cm-s-3024-night.CodeMirror {
-		background: rgba(0,5,40,0.45) !important;
-	}
-	.cm-s-3024-night.CodeMirror, .cm-s-3024-night .CodeMirror-gutters { 
-		background-image: url("/static/textured_tiles/navy.png") !important;
-	}
-
-	/* Controller */
-	.cm-s-colorforth.CodeMirror {
-		background: rgba(0,0,0,0.60) !important; 
-	}
-	.cm-s-colorforth.CodeMirror, .cm-s-colorforth .CodeMirror-gutters { 
-		background-image: url("/static/textured_tiles/concrete-wall-3.png") !important;
-	}
-
-	/* module */ 
-	.cm-s-night.CodeMirror {
-		background: rgba(5, 0, 16,0.60) !important;
-	}
-	.cm-s-night.CodeMirror, .cm-s-night .CodeMirror-gutters { 
-		background-image: url("/static/textured_tiles/dark-tire.png") !important;
-
-	}
-
-	/* HTML TMPLs */
-
-	.cm-s-isotope.CodeMirror {
-		background: rgba(15,5,26,0.65) !important;
-		color: #e0e0e0;
-	}
-	.cm-s-isotope.CodeMirror, .cm-s-isotope .CodeMirror-gutters { 
-		background-image: url("/static/textured_tiles/p4.png") !important;
-	}
-
-	/* StyleCSS icecoder*/
-	.cm-s-icecoder.CodeMirror {
-		background: rgba(10,10,0,0.45) !important;
-	}
-	.cm-s-icecoder.CodeMirror, .cm-s-icecoder .CodeMirror-gutters { 
-		background-image: url("/static/textured_tiles/egg-shell.png") !important;
-	}
-
-	/* ThemeCSS vibrant-ink */
-	.cm-s-vibrant-ink.CodeMirror {
-		background: rgba(10,10,0,0.45) !important;
-	}
-	.cm-s-vibrant-ink.CodeMirror, .cm-s-vibrant-ink .CodeMirror-gutters { 
-		background-image: url("/static/textured_tiles/egg-shell.png") !important;
-	}
-
-
-	.ide-tool-btn {
-		line-height: 0.75 !important;
-	}
-
-	button:hover {
-		color: black !important;
-	}
-	.CodeMirror {
-		font-style: normal;
-		font-variant: normal;
-		font-weight: 500; 
-		font-family: Ubuntu Mono !important; 
-		font-size: 14px !important; 
-	}	 
-	.CodeMirror-code {
-		font-style: normal;
-		font-variant: normal;
-		font-weight: 500; 
-		font-family: Ubuntu Mono !important; 
-		font-size: 14px !important; 
-	}
-
-
-
-	/* colorforth theme */
-
-	#content {margin: 0; height: 100%; overflow: hidden} 
-
-
-	/** OVERRIDE SELECTED TEXT HIGHLIGHT COLOR FOR THEMES: **/
-
-	/* ambiance theme */
-	.cm-s-ambiance div.CodeMirror-selected {
-		background: #0051ff !important;
-	}
-	/* isotope theme */
-	.cm-s-isotope div.CodeMirror-selected {
-		background: #0087ff !important;
-	}
-	/* colorforth theme */
-	.cm-s-colorforth div.CodeMirror-selected {
-		background: #0087ff !important;
-	}
-	/* 3024-night theme */
-	.cm-s-3024-night div.CodeMirror-selected {
-		background: #0087ff !important;
-	}
-	
-	.heading-bar2 {
-		background-image: -o-linear-gradient(-89deg, #efeef1 0, #d5d9dc 100%);
-		background-image: -moz-linear-gradient(-89deg, #efeef1 0, #d5d9dc 100%);
-		background-image: -ms-linear-gradient(-89deg, #efeef1 0, #d5d9dc 100%);
-		background-image: linear-gradient(-179deg, #efeef1 0, #d5d9dc 100%);
-		border-bottom: 1px solid #c2c2c2;
-		height: 44px;
-		padding: 1px
-	}
-
-
-	/** - - - - - **/
-</style>
 
 
 
@@ -331,14 +246,5 @@
 
 <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
 
-<span ng-if="vm.bg_image === 1" 
-	  ng-include= "'/moho_extractor/NgIncludedHtml/?name=Background_CSS'">
-</span>
-
-<span ng-if="vm.bg_image === 2" 
-	  ng-include= "'/moho_extractor/NgIncludedHtml/?name=Background_CSS_style_2'">
-</span>
-
-<span ng-if="vm.bg_image === 3" 
-	  ng-include= "'/moho_extractor/NgIncludedHtml/?name=Background_CSS_style_3'">
+<span ng-include= "'/moho_extractor/NgIncludedHtml/?name=AllBackgroundsCSS'">
 </span>

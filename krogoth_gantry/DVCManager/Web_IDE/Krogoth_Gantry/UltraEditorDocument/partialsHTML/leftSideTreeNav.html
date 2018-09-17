@@ -1,8 +1,8 @@
+<!-- TESTED AND VERIFIED WITH LATEST VERSION -->
 <md-divider></md-divider>
-    <md-whiteframe ui-tree-handle
-                   ng-class="{'md-whiteframe-1dp':node.canEdit === false,'blackbg':node.canEdit === true}"
+    <div ui-tree-handle
+                   ng-class="{'parent-node-frame':node.canEdit === false,'blackbg':node.canEdit === true}"
                    class="tree-node tree-node-content"  
-				   style="height:21px"
                    layout="row">
         <div ng-if="node.nodes && node.nodes.length > 0">
             <button class="toolbar-button" 
@@ -25,9 +25,9 @@
             </span>
         </section>
         <section ng-if="node.canRemove === false">
-            <strong>
-                {{ node.title }}
-            </strong>  
+            <span style="font-size:1.4em" class="font-weight-100">
+                &nbsp;{{ node.title }}
+            </span>  
         </section>
         <div flex></div>
         <div ng-if="node.index !== $index"> <!-- For Debugging, alert user that the indexes are off -->
@@ -40,9 +40,9 @@
         </div>
         <div ng-if="node.hasUnsavedChanges === true">
             <button class="toolbar-button"
-                    layout-wrap
+                    layout-wrap 
                     style="padding:0px; height:15px; width:15px"
-                    ng-click="vm.saveEditorWorkToServer(node)">
+                    ng-click="vm.saveEditorWorkToServer(node.parentIndex, $index, node)">
                 <span style="font-size:1.0em" class="entypo entypo-floppy"></span>
                 <!--            <span class="mdi mdi-circle"></span>-->
                 <md-tooltip md-visible="demo.showTooltip">
@@ -54,7 +54,7 @@
             <button class="toolbar-button"
                     layout-wrap 
                     style="padding:0px; height:15px; width:15px"
-                    ng-click="vm.loadFileIntoEditor(node.parentIndex, node.index, this)">
+                    ng-click="vm.loadFileIntoEditor(node.parentIndex, node.index, node)">
                 <span class="entypo entypo-pencil" style="font-size:1.1em" ></span>
                 <!--            <span class="mdi mdi-circle"></span>-->
                 <md-tooltip md-visible="demo.showTooltip">
@@ -84,7 +84,7 @@
                 </md-tooltip>
             </button>
         </div>
-    </md-whiteframe>  
+    </div>  
     <ol data-nodrag
 		ui-tree-nodes="" 
 		ng-model="node.nodes" 
@@ -98,20 +98,3 @@
 
         </li>
     </ol>
- 
-<style>
-	.loadedNodeFile {
-		background-color: rgba(0, 123, 255, 0.9);
-		color: white;
-	}
-	  
-	.openedByOtherBrowser {
-		background-color: rgba(255, 157, 2, 0.5);
-		color: white;
-	}
-	
-	.savedByOtherBrowser {
-		background-color: rgba(255, 44, 56, 0.5);
-		color: white;
-	}
-</style>

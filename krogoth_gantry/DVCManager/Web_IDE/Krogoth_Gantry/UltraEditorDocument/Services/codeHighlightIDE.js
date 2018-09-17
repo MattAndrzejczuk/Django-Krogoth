@@ -1,3 +1,4 @@
+/* TESTED AND VERIFIED WITH LATEST VERSION */
 (function() {
     'use strict';
     angular
@@ -10,7 +11,9 @@
             colorNgClick1: colorNgClick1,
             highlightCustom: highlightCustom,
             clearHighlights: clearHighlights,
-            highlightedStrings: []
+            highlightedStrings: [],
+            playHighlightSfx: new Audio("/static/gui_sfx/kg_gui-11.wav"),
+            playDeHighlightSfx: new Audio("/static/gui_sfx/kg_gui-10.wav")
         };
 
 
@@ -18,9 +21,9 @@
         function colorNgClick1(editorModel) {
             var deferred = $q.defer();
 
-            var sfx = "/static/gui_sfx/click_select_units.wav";
-            var audio = new Audio(sfx);
-            audio.play();
+            $timeout(function() {
+                service.playHighlightSfx.play();
+            }, 150);
 
 
             var lineCount = editorModel.getDoc().lineCount();
@@ -71,9 +74,6 @@
 
             var deferred = $q.defer();
             $log.log("HIGHLIGHTING CUSTOM: " + customString);
-            var sfx = "/static/gui_sfx/click_select_units.wav";
-            var audio = new Audio(sfx);
-            audio.play();
             var lineCount = editorModel.getDoc().lineCount();
 
             for (var j = 0; j < lineCount; j++) {
@@ -115,8 +115,13 @@
                                 "line": j,
                                 "ch": n + lenOfThisMatch
                             }, {
-                                "css": "background-color: rgba(0, 255, 80, 0.99);"
+                                "css": "background-color: rgba(0, 255, 80, 0.59);"
                             });
+
+                            $timeout(function() {
+                                service.playHighlightSfx.play();
+                            }, 150);
+
                             step += 1;
                         }
                     }
@@ -186,10 +191,8 @@
                                 });
 
                                 $timeout(function() {
-                                    const sfx = "/static/gui_sfx/click_select_units.wav";
-                                    const audio = new Audio(sfx);
-                                    audio.play();
-                                }, 50);
+                                    service.playDeHighlightSfx.play();
+                                }, 150);
 
                                 step += 1;
                             }

@@ -1,12 +1,11 @@
+/* TESTED AND VERIFIED WITH LATEST VERSION */
 (function() {
     'use strict';
     angular
         .module('app.FUSE_APP_NAME')
         .factory('_DJANGULAR_SERVICE_NAME_', _DJANGULAR_SERVICE_NAME_);
-
     /** @ngInject */
     function _DJANGULAR_SERVICE_NAME_($log, $http, $q) {
-
         var service = {
             renameTemplate: renameTemplate,
             createTemplate: createTemplate
@@ -38,13 +37,10 @@
             return deferred.promise;
         }
 
-
-
         function createTemplate(payload) {
-
             var deferred = $q.defer();
             const uri = "/krogoth_admin/createAngularJSTemplate/";
-
+            $log.log("POST --> [" + uri + "]");
             $http({
                 method: 'POST',
                 data: payload,
@@ -56,15 +52,11 @@
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
                 /// Fail
+                $log.log(response);
                 deferred.reject(response);
             });
-
-
             return deferred.promise;
         }
-
-
-
         return service;
     }
 })();

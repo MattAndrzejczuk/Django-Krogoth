@@ -141,6 +141,12 @@ class DynamicHTMLSlaveInjector(APIView):
         return HttpResponse(raw_html_response, content_type='text/html; charset=utf-8')
 
 
+
+
+
+
+
+
 class krogoth_gantryModelForm(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)

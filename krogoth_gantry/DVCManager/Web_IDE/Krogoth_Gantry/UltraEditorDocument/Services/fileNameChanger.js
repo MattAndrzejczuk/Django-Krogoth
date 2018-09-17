@@ -1,3 +1,4 @@
+/* TESTED AND VERIFIED WITH LATEST VERSION */
 (function() {
     'use strict';
     angular

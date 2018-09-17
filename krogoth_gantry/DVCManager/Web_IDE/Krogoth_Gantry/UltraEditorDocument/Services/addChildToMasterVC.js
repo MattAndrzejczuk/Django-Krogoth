@@ -1,1 +1,1 @@
-/* addChildToMasterVC Service */
+/* TESTED AND VERIFIED WITH LATEST VERSION */

@@ -1,3 +1,4 @@
+/* TESTED AND VERIFIED WITH LATEST VERSION */
 (function() {
     'use strict';
     angular
@@ -7,7 +8,6 @@
     function _DJANGULAR_SERVICE_NAME_($log, $http, $q) {
         var service = {
             loadMasterInitializer: loadMasterInitializer,
-            loadHTMLIncludeList: loadHTMLIncludeList,
             loadKrogothCoreList: loadKrogothCoreList
         };
 
@@ -48,49 +48,6 @@
             return deferred.promise;
         }
 
-
-        function loadHTMLIncludeList(masterName) {
-            $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
-            $log.log("    GET");
-            $log.log("    /krogoth_gantry/viewsets/IncludedHtmlMaster/?master_vc__name=" + masterName);
-            $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
-            var deferred = $q.defer();
-            $http({
-                method: 'GET',
-                url: "/krogoth_gantry/viewsets/IncludedHtmlMaster/?master_vc__name=" + masterName
-            }).then(function successCallback(response) {
-                var htmls = response.data.results;
-                var returnNodes = [];
-                for (var i = 0; i < htmls.length; i++) {
-                    var item_in = htmls[i];
-                    var newNode = {
-                        id: item_in.id,
-                        parentIndex: 5,
-                        index: returnNodes.length,
-                        title: item_in.name,
-                        name: item_in.url_helper,
-                        class: "NgIncludedHtml",
-                        canRemove: true,
-                        canEdit: true,
-                        isMaster: false,
-                        isLoaded: false,
-                        wasSavedInOtherBrowser: false,
-                        openInOtherBrowser: false,
-                        sourceCode: item_in.contents,
-                        sourceKey: 'contents',
-                        RESTfulId: item_in.id,
-                        RESTfulURI: "/krogoth_gantry/viewsets/IncludedHtmlMaster/" + item_in.id + "/",
-                        syntax: 'htmlmixed',
-                        icon: 'link-variant'
-                    };
-                    returnNodes.push(newNode);
-                }
-                deferred.resolve(returnNodes);
-            }, function errorCallback(response) {
-                deferred.reject(response);
-            });
-            return deferred.promise;
-        }
 
 
         function loadKrogothCoreList() {
