@@ -1,3 +1,4 @@
+/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
   'use strict';
 
@@ -16,7 +17,7 @@
     //////////
     /**
      * Resolve api
-     * @param action
+     * @param action   
      * @param parameters
      */
     function resolve(action, parameters) {

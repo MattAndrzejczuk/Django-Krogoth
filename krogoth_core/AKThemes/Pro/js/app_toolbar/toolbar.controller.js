@@ -1,3 +1,4 @@
+/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function() {
     'use strict';
 
@@ -6,7 +7,7 @@
         .controller('ToolbarController', ToolbarController);
 
     /** @ngInject */
-    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, $log,
+    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $mdToast, $log,
 								msNavigationService, $http, $cookies) {
         var vm = this;
 
@@ -91,7 +92,6 @@
             // Select the first status as a default
             vm.userStatus = vm.userStatusOptions[0];
             // Get the selected language directly from angular-translate module setting
-            vm.selectedLanguage = vm.languages[$translate.preferredLanguage()];
             vm.loadUser();
 
         }
@@ -109,8 +109,8 @@
                 vm.user = response.data;
 				$log.info("GOT THE USER LOGIN! ! !!");
 				$log.log(response.data);
-				$cookies.put("username", vm. user.username);
-				
+				$cookies.put("username", response.data.username);
+				$cookies.put("user_id", response.data.id);
             }, function errorCallback(response) {
                 $mdToast.show($mdToast.simple().textContent('Login is required.'));
             });

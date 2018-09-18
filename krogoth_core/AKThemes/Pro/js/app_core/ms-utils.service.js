@@ -1,3 +1,4 @@
+/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
   'use strict';
 
@@ -64,7 +65,7 @@
           subString: 'OmniWeb',
           versionSearch: 'OmniWeb/',
           identity: 'OmniWeb'
-        },
+        },   
         {
           string: $window.navigator.vendor,
           subString: 'Apple',

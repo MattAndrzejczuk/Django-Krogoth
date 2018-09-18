@@ -1,3 +1,4 @@
+/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
   'use strict';
 
@@ -47,7 +48,7 @@
      * Set active theme
      *
      * @param themeName
-     */
+     */   
     function setActiveTheme(themeName) {
       // If theme does not exist, fallback to the default theme
       if (angular.isUndefined(service.themes.list[themeName])) {

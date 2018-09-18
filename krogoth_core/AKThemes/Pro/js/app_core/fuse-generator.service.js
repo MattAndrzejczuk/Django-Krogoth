@@ -1,3 +1,4 @@
+/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
   'use strict';
 
@@ -35,7 +36,7 @@
       // Iterate through registered themes
       angular.forEach(registeredThemes, function (registeredTheme) {
         themes[registeredTheme.name] = {};
-
+   
         // Iterate through color types (primary, accent, warn & background)
         angular.forEach(registeredTheme.colors, function (colorType, colorTypeName) {
           themes[registeredTheme.name][colorTypeName] = {

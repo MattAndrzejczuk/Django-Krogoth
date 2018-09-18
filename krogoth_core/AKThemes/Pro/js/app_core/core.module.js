@@ -1,3 +1,4 @@
+/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
     'use strict';
 
@@ -12,13 +13,13 @@
                 'ngResource',
                 'ngSanitize',
                 'ngMaterial',
-                'pascalprecht.translate',
+                //'pascalprecht.translate',
                 'ui.router',
-                'ngFileUpload',
+                //'ngFileUpload',
                 'ui.codemirror',
                 'oc.lazyLoad',
                 'ui.tree',
-                'djangoRESTResources',
-                'formly'
+                //'djangoRESTResources',
+                //'formly'
             ]);
 })();

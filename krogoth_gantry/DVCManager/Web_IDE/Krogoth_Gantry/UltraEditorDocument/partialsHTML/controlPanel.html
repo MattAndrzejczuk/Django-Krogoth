@@ -1,23 +1,54 @@
-<div class="ide-ctrl-panel">
-				<button class="toolbar-button"
-						layout-wrap 
-						style="padding:0px; height:20px; width:20px"
-						ng-click="vm.changeBgWallpaper()">
-					<span class="entypo entypo-air" style="font-size:1.1em" ></span>
-					<!--            <span class="mdi mdi-circle"></span>-->
-					<md-tooltip>
-						Change Editor Background Wallpaper
-					</md-tooltip>
-				</button>
+<div class="ide-ctrl-panel" layout-margin>
+	<button class="toolbar-button"
+			layout-wrap 
+			style="padding:0px; height:20px; width:20px"
+			ng-click="vm.changeBgWallpaper()">
+		<span class="entypo entypo-air" style="font-size:1.1em" ></span>
+		<!--            <span class="mdi mdi-circle"></span>-->
+		<md-tooltip>
+			Change Editor Background Wallpaper
+		</md-tooltip>
+	</button>
 
-				<button class="toolbar-button"
-						layout-wrap 
-						style="padding:0px; height:20px; width:20px"
-						ng-click="vm.dumpJsonTreeData()">
-					<span class="entypo entypo-code" style="font-size:1.1em" ></span>
-					<!--            <span class="mdi mdi-circle"></span>-->
-					<md-tooltip>
-						dump json of tree data
-					</md-tooltip>
-				</button>
-			</div>
+	<button class="toolbar-button"
+			layout-wrap 
+			style="padding:0px; height:20px; width:20px"
+			ng-click="vm.dumpJsonTreeData()">
+		<span class="entypo entypo-code" style="font-size:1.1em" ></span>
+		<!--            <span class="mdi mdi-circle"></span>-->
+		<md-tooltip>
+			dump json of tree data
+		</md-tooltip>
+	</button>
+	
+	<button class="toolbar-button"
+			layout-wrap 
+			style="padding:0px; height:20px; width:20px"
+			ng-click="vm.saveScrollY()">
+		<span class="entypo entypo-target" style="font-size:1.1em" ></span>
+		<!--            <span class="mdi mdi-circle"></span>-->
+		<md-tooltip>
+			save current scroll position
+		</md-tooltip>
+	</button>
+	
+	<button class="toolbar-button"
+			layout-wrap 
+			style="padding:0px; height:20px; width:20px"
+			ng-click="vm.scrollToY()">
+		<span class="entypo entypo-magnet" style="font-size:1.1em" ></span>
+		<!--            <span class="mdi mdi-circle"></span>-->
+		<md-tooltip>
+			scroll to saved line
+		</md-tooltip>
+	</button>
+</div>
+
+ 
+<div class="panel" layout-margin ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title">
+	<span>
+	{{vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title | limitTo: 20}} : 
+		
+		{{ vm.scrollTopsSaved[vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title] | limitTo: 20}}
+	</span> 
+</div>

@@ -1,3 +1,4 @@
+/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
   'use strict';
 
@@ -6,24 +7,26 @@
     .config(config);
 
   /** @ngInject */
-  function config(uiGmapGoogleMapApiProvider, $translateProvider, $provide) {
+  function config() {
     // Put your common app configurations here
 
     // uiGmapgoogle-maps configuration
-    uiGmapGoogleMapApiProvider.configure({
+    //uiGmapGoogleMapApiProvider.configure({
       //    key: 'your api key',
-      v: '3.exp',
-      libraries: 'weather,geometry,visualization'
-    });
+    //  v: '3.exp',
+    //  libraries: 'weather,geometry,visualization'
+    //});
 
     // angular-translate configuration
+	  /*
     $translateProvider.useLoader('$translatePartialLoader', {
       urlTemplate: '{part}/i18n/{lang}.json'
     });
     $translateProvider.preferredLanguage('en');
     $translateProvider.useSanitizeValueStrategy('sanitize');
-
+*/
     // Text Angular options
+	  /*
     $provide.decorator('taOptions', [
       '$delegate', function (taOptions) {
         taOptions.toolbar = [
@@ -68,10 +71,10 @@
         taTools.insertImage.iconclass = 'icon-file-image-box';
         taTools.insertLink.iconclass = 'icon-link';
         taTools.insertVideo.iconclass = 'icon-filmstrip';
-
         return taTools;
       }
     ]);
+	  */
   }
 
 })();

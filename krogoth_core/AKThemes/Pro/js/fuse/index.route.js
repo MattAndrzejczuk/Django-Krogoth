@@ -1,3 +1,4 @@
+/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
     'use strict';
 
@@ -116,27 +117,21 @@
                         req.headers.Authorization = 'Token ' + sessionStorage.getItem('token');
                     } else {
                         /// No access tokens! 'responseError' below will resolve this issue.
-                        console.warn('Client Login Credentials Are Unavailable.');
-						req.headers.Authorization = 'Token ' + krogoth_injected['guest_token'];
+                        ///console.warn('Client Login Credentials Are Unavailable.');
+						///req.headers.Authorization = 'Token ' + krogoth_injected['guest_token'];
                     }
                     return req;
                 },
-                // optional
-                //                response: function(res) {
-                //                   console.debug('Got Some Kind of Response ! ! !');
-                //                  return res;
-                //              },
                 responseError: function (res) {
                     if (res.status === 401) {
                         /// Users without acess tokens will be properly redirected to login.
                         console.warn('Unauthorized Entry Detected.');
-                        window.location = "#!/Login_akdvc";
+                        window.location = "#!/Login";
 						if ($cookies.get('token')) {
 							$cookies.remove('token');
 						}
-						$cookies.put('token', krogoth_injected['guest_token']);
+						// $cookies.put('token', krogoth_injected['guest_token']);
                         return res;
-                        ///return $q.reject(res);
                     } else if (res.status === 401) {
                         alert('You have been throttled for making too many requests, try again later.');
                     } else {

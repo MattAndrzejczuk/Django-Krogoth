@@ -1,3 +1,4 @@
+/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
     'use strict';
     angular
@@ -7,11 +8,11 @@
     /** @ngInject */
     function akFrostedGlassDirective($interval) {
 
-		console.log('akFrostedGlass');
-        console.log('akFrostedGlass');
-        console.log('akFrostedGlass');
-        console.log('akFrostedGlass');
-        console.log('akFrostedGlass');
+		console.log(' ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ akFrostedGlass ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ');
+        console.log(' ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ akFrostedGlass ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ');
+        console.log(' ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ akFrostedGlass ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ');
+        console.log(' ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ akFrostedGlass ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ');
+        console.log(' ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ akFrostedGlass ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ');
 
 
         return {

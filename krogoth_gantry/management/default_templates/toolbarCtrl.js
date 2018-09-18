@@ -6,7 +6,7 @@
         .controller('ToolbarController', ToolbarController);
 
     /** @ngInject */
-    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService, $http, $cookies) {
+    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $mdToast, msNavigationService, $http, $cookies) {
         var vm = this;
 
         // Data
@@ -90,7 +90,7 @@
             // Select the first status as a default
             vm.userStatus = vm.userStatusOptions[0];
             // Get the selected language directly from angular-translate module setting
-            vm.selectedLanguage = vm.languages[$translate.preferredLanguage()];
+            //vm.selectedLanguage = vm.languages[$translate.preferredLanguage()];
             vm.loadUser();
 
         }
@@ -188,7 +188,7 @@
             }
 
             // Change the language
-            $translate.use(lang.code);
+            //$translate.use(lang.code);
         }
 
         /**

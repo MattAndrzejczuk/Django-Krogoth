@@ -106,6 +106,12 @@
         vm.welcomeSFX = new Audio("/static/gui_sfx/kg_startup.wav");
         vm.welcomeSFX.load();
         vm.masterName = ". . .";
+        vm.scrollTopsSaved = {};
+
+        vm.scrollToY = scrollToY;
+        vm.saveScrollY = saveScrollY;
+
+
         /// I.
         function onInit() {
             vm.selectedMaster = $state.params.masterId;
@@ -323,7 +329,7 @@
             this.id = -1;
             this.parentIndex = parentIndex;
             this.index = index;
-            this.name = -1;
+            this.name = _class;
             this.title = _class;
             this.class = _class;
             this.sourceCode = "MOVED"; //srcCode;
@@ -350,6 +356,8 @@
             $log.log("\n 🔵 loadFileIntoEditor( \n");
             $log.info("EDITOR IS CLEAN: " + vm.editorModel.doc.isClean());
             vm.unsavedChangesExist = -1;
+
+
             vm.loadedIndex = index;
             vm.loadedParentIndex = parentIndex;
             vm.editorLoadedFirstDoc = true;
@@ -444,6 +452,24 @@
             $log.info(document.getElementById("positionTracker").scrollTop);
         }
         ///----- </CURSOR CLICK > -----
+
+
+
+        function scrollToY() {
+            var pi = vm.loadedParentIndex;
+            var ni = vm.loadedIndex;
+            var topY = vm.scrollTopsSaved[vm.treeData[pi].nodes[ni].title];
+            document.getElementById("positionTracker").scrollTo(0, topY);
+        }
+
+
+        function saveScrollY() {
+            var pi = vm.loadedParentIndex;
+            var ni = vm.loadedIndex;
+            var topY = document.getElementById("positionTracker").scrollTop;
+            vm.scrollTopsSaved[vm.treeData[pi].nodes[ni].title] = topY;
+        }
+
 
         function saveEditorWorkToServer(parentIndex, index, node) {
             const srcCodeKey = parentIndex.toString() + "-" + index.toString();

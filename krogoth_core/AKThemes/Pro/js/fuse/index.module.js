@@ -1,3 +1,4 @@
+/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
   'use strict';
 
@@ -8,9 +9,9 @@
     .module('fuse', [
 
       // Common 3rd Party Dependencies
-      'uiGmapgoogle-maps',
-      'textAngular',
-      'xeditable',
+      //'uiGmapgoogle-maps',
+      // 'textAngular',
+      //'xeditable',
 
       // Core
       'app.core',

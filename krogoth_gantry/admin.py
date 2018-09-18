@@ -17,12 +17,12 @@ class KrogothGantryMasterViewControllerAdmin(admin.ModelAdmin):
          {
              'fields': (('name', 'title', 'icon',),
                         ('category', 'is_enabled'),
-                        ('themestyle_is_enabled', 'themestyle'),)
+                        ('themestyle_is_enabled',),)
          }
          ),
         ('Module Editor',
          {
-             'fields': ('module_js',)
+             'fields': ('module_js', 'themestyle',)
          }
          ),
         ('View Editor',

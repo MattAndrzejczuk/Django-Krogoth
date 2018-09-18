@@ -1,3 +1,4 @@
+/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function ()
 {
     'use strict';
@@ -7,8 +8,9 @@
         .config(config);
 
     /** @ngInject */
-    function config($translatePartialLoaderProvider)
+    function config()
     {
-        $translatePartialLoaderProvider.addPart('app/toolbar');
+
+		
     }
 })();

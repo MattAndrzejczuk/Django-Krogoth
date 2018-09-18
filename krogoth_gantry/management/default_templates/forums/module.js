@@ -2,7 +2,7 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME', ['flow']).config(config);
 
-    function config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider) {
+    function config($stateProvider,  msApiProvider, msNavigationServiceProvider) {
         $stateProvider
             .state('app.FUSE_APP_NAME', {
                 url: '/FUSE_APP_NAME',
@@ -41,7 +41,7 @@
     'use strict';
     angular.module('app.General', ['flow']).config(config);
 
-    function config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider) {
+    function config($stateProvider,  msApiProvider, msNavigationServiceProvider) {
         $stateProvider.state('app.General', {
             url: '/General',
             views: {

@@ -1,4 +1,4 @@
-// Load javascript file with controllers/directives/services
+/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 angular.module('Foo')
 .controller('Ctrl', function($scope, $rootScope, fooService) {
     $scope.msg = "It works! rootScope is " + $rootScope.$id +

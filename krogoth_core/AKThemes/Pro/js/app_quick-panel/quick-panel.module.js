@@ -1,3 +1,4 @@
+/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
   'use strict';
 
@@ -6,9 +7,8 @@
     .config(config);
 
   /** @ngInject */
-  function config($translatePartialLoaderProvider, msApiProvider) {
+  function config(msApiProvider) {
     // Translation
-    $translatePartialLoaderProvider.addPart('app/quick-panel');
 
     // Api
     msApiProvider.register('quickPanel.activities', ['/static/app/data/quick-panel/activities.json']);
