@@ -4,7 +4,7 @@
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
     function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu,
-        TemplateCRUD, DirectiveCRUD, syntaxAnalyzePropertiesVM, CustomKeyValuesEditor, EditorWebSocket,
+        TemplateCRUD, DirectiveCRUD, CustomKeyValuesEditor, EditorWebSocket,
         $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync, fileNameChanger, $mdDialog,
         Dependency, SaveToSQL, $mdSidenav, BreadCrumbsIDE, $timeout, codeHighlightIDE) {
         var vm = this;
@@ -85,10 +85,7 @@
         vm.setBrowserTabEditMode = setBrowserTabEditMode;
         vm.isDisplayingPropModal = false;
         vm.scannedVMs = [];
-        vm.scanAllVms = scanAllVms;
-        vm.highlightCollectedVMs = highlightCollectedVMs;
-        vm.highlightSyntax = highlightSyntax;
-        vm.highlightSyntaxGetHtmlProperties = highlightSyntaxGetHtmlProperties;
+
         vm.loadOSXDoc = loadOSXDoc;
         vm.treeModalIsVisible = false;
         vm.simplifiedTreeData = [];
@@ -171,27 +168,6 @@
                 });
         }
 
-        function getTemplatesHTML() {
-            Dependency.loadTmplIncludeList(vm.objectList.name, "Html")
-                .then(function(htmlTemps) {
-                    $(htmlTemps.srcTMPLs).each(function(i, src) {
-                        vm.forwardThisCode(src.parentIndex, src.index, src.srcCode, src.title);
-                    });
-                    vm.treeData[5].nodes = htmlTemps.returnNodes;
-                });
-        }
-
-        vm.getTemplatesJS = getTemplatesJS;
-
-        function getTemplatesJS() {
-            Dependency.loadTmplIncludeList(vm.objectList.name, "Js")
-                .then(function(jsTemps) {
-                    $(jsTemps.srcTMPLs).each(function(i, src) {
-                        vm.forwardThisCode(src.parentIndex, src.index, src.srcCode, src.title);
-                    });
-                    vm.treeData[6].nodes = jsTemps.returnNodes;
-                });
-        }
 
         /*   ⚡️   */
         function parallelRESTfulStart() {
@@ -305,6 +281,7 @@
                 'language-css3'
             );
             vm.masterName = vm.objectList.name;
+            vm.browserTabText = vm.masterName;
             vm.treeData[tStyle].nodes.push(themestyleCSS);
             vm.objectList = [];
             EditorWebSocket.initializeWebSocket(vm.masterName);
@@ -641,54 +618,29 @@
             $mdSidenav(sidenavId).toggle();
         }
 
-
-        /* ▽ ▽ ▽ RELOCATE ME TO A SEPARATE SERVICE ▽ ▽ ▽ */
-
-
-        function scanAllVms() {
-            /// const code = vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].sourceCode;
-            syntaxAnalyzePropertiesVM.getAllVms(vm.editorModel)
-                .then(function(detectedVMs) {
-                    vm.scannedVMs = detectedVMs;
-                });
-        }
-
-
-
-
-        function highlightSyntax() {
-            var lineCount = vm.editorModel.getDoc().lineCount();
-            for (var j = 0; j < lineCount; j++) {
-                var temp = vm.editorModel.getDoc().getLine(j);
-                var count = (temp.match(/Controller/g) || []).length;
-                var step = 0;
-                for (var i = 0; i < count; i++) {
-                    var n = temp.indexOf('Controller', step);
-                    step = n;
-                    vm.editorModel.getDoc().markText({
-                        "line": j,
-                        "ch": n
-                    }, {
-                        "line": j,
-                        "ch": n + 10
-                    }, {
-                        "css": "color : #A459FF; font-weight:bold;"
+        function getTemplatesHTML() {
+            Dependency.loadTmplIncludeList(vm.objectList.name, "Html")
+                .then(function(htmlTemps) {
+                    $(htmlTemps.srcTMPLs).each(function(i, src) {
+                        vm.forwardThisCode(src.parentIndex, src.index, src.srcCode, src.title);
                     });
-                }
-            }
-        }
-
-        function highlightSyntaxGetHtmlProperties() {
-            codeHighlightIDE.colorNgClick1(vm.editorModel)
-                .then(function(coloredEditorModel) {
-                    vm.editorModel = coloredEditorModel;
+                    vm.treeData[5].nodes = htmlTemps.returnNodes;
                 });
         }
 
-        function highlightCollectedVMs() {
-            syntaxAnalyzePropertiesVM.highlightCurrentDocument(vm.editorModel);
+        vm.getTemplatesJS = getTemplatesJS;
+
+        function getTemplatesJS() {
+            Dependency.loadTmplIncludeList(vm.objectList.name, "Js")
+                .then(function(jsTemps) {
+                    $(jsTemps.srcTMPLs).each(function(i, src) {
+                        vm.forwardThisCode(src.parentIndex, src.index, src.srcCode, src.title);
+                    });
+                    vm.treeData[6].nodes = jsTemps.returnNodes;
+                });
         }
-        /* △ △ △ RELOCATE ME TO A SEPARATE SERVICE △ △ △ */
+
+
 
         function renameObjectSubmit() {
             const _0 = vm.finishedBreadCrumbsJson._1st.name;
@@ -726,7 +678,7 @@
                         /// success
                     });
             } else if (objectToRename === "NgIncludedHtml") {
-                TemplateCRUD.renameTemplate(_0,
+                TemplateCRUD.renameJSTemplate(_0,
                         _1,
                         _2,
                         vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
@@ -736,6 +688,28 @@
                         $log.debug(didFinish);
                         vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name = vm.renameObjectForm.new;
                         vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title = vm.renameObjectForm.new;
+                        vm.renameObjectForm.new = "";
+                        /// success
+                    });
+            } else if (objectToRename === "NgIncludedJs") {
+                TemplateCRUD.renameJSTemplate(_0,
+                        _1,
+                        _2,
+                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
+                        vm.renameObjectForm.new)
+                    .then(function(didFinish) {
+                        //var i = vm.loadedParentIndex;
+                        //var j = vm.loadedIndex;
+                        $log.debug("The rename service operation finished on the server.");
+                        $log.debug(didFinish);
+                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name = vm.renameObjectForm.new;
+                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title = vm.renameObjectForm.new;
+
+                        //const srdId = i.toString() + "-" + j.toString();
+                        //const srcTitle = "_" + vm.treeData[i].nodes[j].title;
+                        //const key = srdId + srcTitle;
+                        //vm.srcMap[key] = vm.srcHolder.length.toString();
+
                         vm.renameObjectForm.new = "";
                         /// success
                     });
@@ -796,6 +770,15 @@
                 } else if (treeRoot.class === "Template") {
 
                     TemplateCRUD.createTemplate(postPayload)
+                        .then(function(newTreeNode) {
+                            $log.log("CREATE FINISHED");
+                            $log.debug(newTreeNode);
+                            const parentI = newTreeNode.parentIndex;
+                            vm.treeData[parentI].nodes.push(newTreeNode);
+                        });
+                } else if (treeRoot.class === "JavaScript") {
+
+                    TemplateCRUD.createJSTemplate(postPayload)
                         .then(function(newTreeNode) {
                             $log.log("CREATE FINISHED");
                             $log.debug(newTreeNode);

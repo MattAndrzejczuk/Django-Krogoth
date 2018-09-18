@@ -2,7 +2,8 @@ from django.conf.urls import url, include
 from rest_framework.routers import DefaultRouter
 from krogoth_admin.views import UncommitedSQLViewSet, SaveSQLToFileSystemView, CompileMVCsToStatic
 from krogoth_admin.views_filesystem import RenameService, CreateService, RenameDirective, \
-    CreateDirective, RenameTemplate, CreateTemplate, CreateNewMVCView
+    CreateDirective, RenameTemplate, CreateTemplate, CreateNewMVCView, RenameJavaScriptTemplate, \
+    CreateJavaScriptTemplate
 
 
 router = DefaultRouter()
@@ -26,4 +27,7 @@ urlpatterns = [
 
     url(r'^renameAngularJSTemplate/$', RenameTemplate.as_view(), name='Rename AngularJS Template'),
     url(r'^createAngularJSTemplate/$', CreateTemplate.as_view(), name='Create AngularJS Template'),
+
+    url(r'^renameJavaScriptTemplate/$', RenameTemplate.as_view(), name='Rename JavaScript Template'),
+    url(r'^createJavaScriptTemplate/$', CreateTemplate.as_view(), name='Create JavaScript Template'),
 ]

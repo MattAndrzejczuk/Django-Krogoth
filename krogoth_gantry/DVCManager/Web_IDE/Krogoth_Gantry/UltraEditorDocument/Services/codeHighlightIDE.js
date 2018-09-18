@@ -117,7 +117,7 @@
                                 "line": j,
                                 "ch": n + lenOfThisMatch
                             }, {
-                                "css": "background-color: rgba(0, 255, 80, 0.59);"
+                                "css": "border-radius: 1px; border: 1px solid rgba(0, 255, 80, 0.99);"
                             });
 
 
@@ -197,7 +197,7 @@
                                     "line": j,
                                     "ch": n + lenOfThisMatch
                                 }, {
-                                    "css": "background-color: rgba(0, 255, 80, 0.0);"
+                                    "css": "border: 1px solid rgba(0, 255, 80, 0.0);"
                                 });
 
                                 $timeout(function() {
@@ -221,6 +221,7 @@
             deferred.resolve(results);
             return deferred.promise;
         }
+
 
 
 
