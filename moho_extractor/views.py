@@ -68,7 +68,7 @@ class IncludedHtmlMasterViewSet(viewsets.ModelViewSet):
 class IncludedJsMasterViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
     queryset = IncludedJsMaster.objects.all().order_by('name')
-    serializer_class = IncludedHtmlMasterSerializer
+    serializer_class = IncludedJsMasterSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('master_vc__name',)
 

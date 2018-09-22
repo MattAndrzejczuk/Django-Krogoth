@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from moho_extractor.models import IncludedHtmlMaster, IncludedHtmlCoreTemplate
+from moho_extractor.models import IncludedHtmlMaster, IncludedHtmlCoreTemplate, IncludedJsMaster
 from krogoth_gantry.management.commands.installdjangular import bcolors
 from krogoth_gantry.views import AbstractKrogothSerializer
 from krogoth_admin.models import UncommitedSQL
@@ -53,10 +53,10 @@ class IncludedJsMasterSerializer(AbstractKrogothSerializer):
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
         logThis = UncommitedSQL(name=instance.name, edited_by=jawn_user, krogoth_class="IncludedJsMaster")
         logThis.save()
-        return IncludedHtmlMaster.objects.create(**validated_data)
+        return IncludedJsMaster.objects.create(**validated_data)
 
     class Meta:
-        model = IncludedHtmlMaster
+        model = IncludedJsMaster
         fields = '__all__'
 
 

@@ -418,7 +418,7 @@ class CreateJavaScriptTemplate(APIView):
             "index": index,
             "name": new_sql.name,
             "title": new_sql.name,
-            "class": "NgIncludedHtml",
+            "class": "NgIncludedJs",
             "nodes": 0,
             "canRemove": True,
             "canEdit": True,
@@ -427,7 +427,7 @@ class CreateJavaScriptTemplate(APIView):
             "sourceKey": "contents",
             "RESTfulId": new_sql.id,
             "RESTfulURI": "/krogoth_gantry/viewsets/IncludedJsMaster/" + str(new_sql.id) + "/",
-            "syntax": "htmlmixed",
+            "syntax": "javascript",
             "hasUnsavedChanges": False,
             "icon": "link-variant"
         }

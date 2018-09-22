@@ -28,6 +28,6 @@ urlpatterns = [
     url(r'^renameAngularJSTemplate/$', RenameTemplate.as_view(), name='Rename AngularJS Template'),
     url(r'^createAngularJSTemplate/$', CreateTemplate.as_view(), name='Create AngularJS Template'),
 
-    url(r'^renameJavaScriptTemplate/$', RenameTemplate.as_view(), name='Rename JavaScript Template'),
-    url(r'^createJavaScriptTemplate/$', CreateTemplate.as_view(), name='Create JavaScript Template'),
+    url(r'^renameJavaScriptTemplate/$', RenameJavaScriptTemplate.as_view(), name='Rename JavaScript Template'),
+    url(r'^createJavaScriptTemplate/$', CreateJavaScriptTemplate.as_view(), name='Create JavaScript Template'),
 ]
