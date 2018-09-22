@@ -1,5 +1,6 @@
 import os
 # from subprocess import DEVNULL, STDOUT, check_call
+import subprocess
 import time
 class bc:
     HEADER = '\033[95m'
@@ -41,8 +42,9 @@ parent_dir = os.path.abspath(os.path.join(cwd, os.pardir))
 OUTPUT_ENABLED = False
 
 def execute(cmd, always_display):
-    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    out, err = p.communicate()
+    #p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    #out, err = p.communicate()
+    os.system(cmd)
     if OUTPUT_ENABLED == True or always_display == "NEEDED":
         print(out.decode("utf-8"))
     print(always_display)
