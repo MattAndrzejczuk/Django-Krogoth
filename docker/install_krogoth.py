@@ -49,7 +49,7 @@ def execute(cmd, always_display):
 
 
 
-print(bc.bold + bc.blue + "INSTALLING KROGOTH " + parent_dir + bc.ENDC + bc.ENDC)
+print(bc.BOLD + bc.blue + "INSTALLING KROGOTH " + parent_dir + bc.ENDC + bc.ENDC)
 time.sleep(1)
 cmd = ("docker build -t mattjawn/armprime ./app/")
 execute(cmd, bc.yellow+"DOCKER BUILD"+bc.ENDC)
