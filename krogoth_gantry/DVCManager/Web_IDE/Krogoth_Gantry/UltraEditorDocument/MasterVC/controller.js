@@ -4,7 +4,7 @@
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
     function FUSE_APP_NAMEController($log, $scope, $http, $mdToast, $cookies, $state, $mdMenu,
-        TemplateCRUD, DirectiveCRUD, CustomKeyValuesEditor, EditorWebSocket,
+        TemplateCRUD, DirectiveCRUD, CustomKeyValuesEditor, EditorWebSocket, $ocLazyLoad, $location,
         $q, AKClassEditorComponent, UltraEditorDefaults, GatherURIsAsync, fileNameChanger, $mdDialog,
         Dependency, SaveToSQL, $mdSidenav, BreadCrumbsIDE, $timeout, codeHighlightIDE) {
         var vm = this;
@@ -42,10 +42,9 @@
         vm.treeData = [];
         vm.editorModel = {};
         vm.objectList = {};
-        vm.messages = [];
+        ///vm.messages = [];
         vm.finishedRESTfulResponses = [];
         vm.newComponentForm = {};
-        vm.dumpNode = {};
         vm.servicesPendingRequest = [];
         vm.directivesPendingRequest = [];
         vm.slavesPendingRequest = [];
@@ -56,11 +55,10 @@
         vm.editorLoadedFirstDoc = false;
         vm.reloadData = reloadData;
         vm.saveEditorWorkToServer = saveEditorWorkToServer;
-        vm.createNewComponentClick = createNewComponentClick;
-        vm.addNewComponentToMaster = addNewComponentToMaster;
+
+
 
         vm.createFirstTreeNodes = createFirstTreeNodes;
-        ///vm.getKrogothCoreParts = getKrogothCoreParts;
         vm.getTemplatesHTML = getTemplatesHTML;
 
         vm.goBackToCategory = goBackToCategory;
@@ -87,11 +85,6 @@
         vm.scannedVMs = [];
 
         vm.loadOSXDoc = loadOSXDoc;
-        vm.treeModalIsVisible = false;
-        vm.simplifiedTreeData = [];
-
-        vm.renameObjectForm = {};
-        vm.renameObjectSubmit = renameObjectSubmit;
 
         vm.openedDocTitle = "";
         vm.highlightInputCustom = highlightInputCustom;
@@ -108,13 +101,19 @@
         vm.scrollToY = scrollToY;
         vm.saveScrollY = saveScrollY;
 
+        vm.loadingIDE = true;
+
 
         /// I.
         function onInit() {
             vm.selectedMaster = $state.params.masterId;
 
 
-
+            vm.stateParameters = {
+                'categoryId': $state.params.selectedCategory,
+                'subCategoryId': $state.params.selectedSubCategory,
+                'masterId': $state.params.masterId
+            };
 
             //vm.welcomeSFX.oncanplay = function() {
             vm.welcomeSFX.play();
@@ -131,10 +130,9 @@
             vm.treeData = [];
             vm.editorModel = {};
             vm.objectList = {};
-            vm.messages = [];
+            ///vm.messages = [];
             vm.finishedRESTfulResponses = [];
             vm.newComponentForm = {};
-            vm.dumpNode = {};
             vm.servicesPendingRequest = [];
             vm.directivesPendingRequest = [];
             vm.slavesPendingRequest = [];
@@ -191,7 +189,7 @@
         }
 
         function parallelRESTfulAbort() {
-            vm.messages.push("something failed: parallelRESTfulAbort");
+            ///vm.messages.push("something failed: parallelRESTfulAbort");
         }
 
         /// 🧡 </INITIALIZATION I. >
@@ -203,7 +201,7 @@
 
         function parallelRESTfulReady() {
             var threads = [];
-            vm.messages.push("all done: parallelRESTfulReady");
+            ///vm.messages.push("all done: parallelRESTfulReady");
             for (var i = 0; i < vm.pendingRESTfulRequests.length; i++) {
                 var request_in = vm.pendingRESTfulRequests[i];
                 var cpuTaskX;
@@ -285,6 +283,7 @@
             vm.treeData[tStyle].nodes.push(themestyleCSS);
             vm.objectList = [];
             EditorWebSocket.initializeWebSocket(vm.masterName);
+            vm.loadingIDE = false;
         }
 
         /// < ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ DONT PUT SOURCE INTO UI TREE ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ >
@@ -335,8 +334,8 @@
             vm.unsavedChangesExist = -1;
 
 
-            vm.loadedIndex = index;
-            vm.loadedParentIndex = parentIndex;
+            vm.loadedIndex = scope.index;
+            vm.loadedParentIndex = scope.parentIndex;
             vm.editorLoadedFirstDoc = true;
             const srcCodeKey = parentIndex.toString() + "-" + index.toString();
             const srcTitle = "_" + scope.title;
@@ -347,8 +346,13 @@
             vm.activeEditorKey = parseInt(vm.srcMap[key]);
             vm.editorModel.doc.setValue(src);
             vm.unsavedChangesExist = -1;
-            const syntax = vm.treeData[parentIndex].nodes[index].syntax;
-            const _class = vm.treeData[parentIndex].nodes[index].class;
+            $log.log("vm.treeData[parentIndex].nodes[index]: ");
+            $log.info(vm.treeData[parentIndex].nodes[index]);
+            $log.log("parentIndex: " + parentIndex);
+            $log.log("index: " + index);
+            $log.log(scope);
+            const syntax = scope.syntax;
+            const _class = scope.class;
             vm.editorModel.setOption("mode", syntax);
             if (vm.customThemeMode === false) {
                 vm.setThemeBasedOnClass(_class);
@@ -419,6 +423,7 @@
 
         ///----- < CURSOR CLICK > -----
         function cursorActivity() {
+            /*
             console.log(" . . . . . . . . . getScrollInfo");
             $log.info(vm.editorModel.getScrollInfo());
             console.log(" . . . . . . . . . cursorCoords");
@@ -427,6 +432,7 @@
             $log.info(vm.editorModel.getViewport());
             console.log(" . . . . . . . . . scrollTop");
             $log.info(document.getElementById("positionTracker").scrollTop);
+			*/
         }
         ///----- </CURSOR CLICK > -----
 
@@ -515,7 +521,7 @@
 
 
         function parallelRESTfulServerError() {
-            vm.messages.push("something failed: parallelRESTfulServerError");
+            ///vm.messages.push("something failed: parallelRESTfulServerError");
         }
 
         vm.startStateTransition = startStateTransition;
@@ -553,7 +559,10 @@
         }
 
         /*  ⚡️  */
-        function toggleFolder(scope) {
+        function toggleFolder(scope, pi) {
+            $log.log("TOGGLE FOLDER: ");
+            $log.log(pi);
+            vm.treeData[pi].expanded = !vm.treeData[pi].expanded;
             scope.toggle();
         }
 
@@ -642,166 +651,7 @@
 
 
 
-        function renameObjectSubmit() {
-            const _0 = vm.finishedBreadCrumbsJson._1st.name;
-            const _1 = vm.finishedBreadCrumbsJson._2nd.name;
-            const _2 = vm.masterName;
-            const objectToRename = vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class;
-            $log.debug("RENAME OBJECT DID FINISH SUBMIT");
-            $log.debug(objectToRename);
-            if (objectToRename === "Service") {
-                fileNameChanger.renameService(_0,
-                        _1,
-                        _2,
-                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
-                        vm.renameObjectForm.new)
-                    .then(function(didFinish) {
-                        $log.debug("The rename service operation finished on the server.");
-                        $log.debug(didFinish);
-                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name = vm.renameObjectForm.new;
-                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title = vm.renameObjectForm.new;
-                        vm.renameObjectForm.new = "";
-                        /// success
-                    });
-            } else if (objectToRename === "Directive") {
-                DirectiveCRUD.renameDirective(_0,
-                        _1,
-                        _2,
-                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
-                        vm.renameObjectForm.new)
-                    .then(function(didFinish) {
-                        $log.debug("The rename service operation finished on the server.");
-                        $log.debug(didFinish);
-                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name = vm.renameObjectForm.new;
-                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title = vm.renameObjectForm.new;
-                        vm.renameObjectForm.new = "";
-                        /// success
-                    });
-            } else if (objectToRename === "NgIncludedHtml") {
-                TemplateCRUD.renameJSTemplate(_0,
-                        _1,
-                        _2,
-                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
-                        vm.renameObjectForm.new)
-                    .then(function(didFinish) {
-                        $log.debug("The rename service operation finished on the server.");
-                        $log.debug(didFinish);
-                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name = vm.renameObjectForm.new;
-                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title = vm.renameObjectForm.new;
-                        vm.renameObjectForm.new = "";
-                        /// success
-                    });
-            } else if (objectToRename === "NgIncludedJs") {
-                TemplateCRUD.renameJSTemplate(_0,
-                        _1,
-                        _2,
-                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name,
-                        vm.renameObjectForm.new)
-                    .then(function(didFinish) {
-                        //var i = vm.loadedParentIndex;
-                        //var j = vm.loadedIndex;
-                        $log.debug("The rename service operation finished on the server.");
-                        $log.debug(didFinish);
-                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name = vm.renameObjectForm.new;
-                        vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title = vm.renameObjectForm.new;
 
-                        //const srdId = i.toString() + "-" + j.toString();
-                        //const srcTitle = "_" + vm.treeData[i].nodes[j].title;
-                        //const key = srdId + srcTitle;
-                        //vm.srcMap[key] = vm.srcHolder.length.toString();
-
-                        vm.renameObjectForm.new = "";
-                        /// success
-                    });
-            }
-
-        }
-
-
-        /* ⬇︎ ⬇︎ ⬇︎ RELOCATE ME TO A SEPARATE SERVICE ⬇︎ ⬇︎ ⬇︎ */
-        function createNewComponentClick(ev, treeRoot) {
-            var siblings = treeRoot.nodes;
-
-            var djangoModelName = (treeRoot.class);
-            ///var djangoModelName = SaveToSQL.getRESTfulModelName(treeRoot.class);
-
-            $log.debug('---createNewComponentClick---');
-            $log.log("treeRoot: ");
-            $log.log(treeRoot);
-            $log.debug('TODO FINISH THIS PART ! ! !');
-
-            var confirm = $mdDialog.prompt()
-                .title('Create new ' + djangoModelName)
-                .textContent('Unique ' + djangoModelName + ' file name:')
-                .placeholder(djangoModelName + '.js')
-                .ariaLabel('Unique ' + djangoModelName + ' file name:')
-                .initialValue('')
-                .targetEvent(ev)
-                .ok('Ok')
-                .cancel('Cancel');
-            $mdDialog.show(confirm).then(function(new_name) {
-
-                const postPayload = {
-                    "path_0": vm.finishedBreadCrumbsJson._1st.name,
-                    "path_1": vm.finishedBreadCrumbsJson._2nd.name,
-                    "master_name": vm.masterName,
-                    "index": treeRoot.nodes.length,
-                    "new_name": new_name
-                };
-
-                if (djangoModelName === "Directive") {
-                    DirectiveCRUD.createDirective(postPayload)
-                        .then(function(newTreeNode) {
-                            $log.log("CREATE FINISHED");
-                            $log.debug(newTreeNode);
-                            const parentI = newTreeNode.parentIndex;
-                            vm.treeData[parentI].nodes.push(newTreeNode);
-                        });
-
-                } else if (djangoModelName === "Service") {
-                    fileNameChanger.createService(postPayload)
-                        .then(function(newTreeNode) {
-                            $log.log("CREATE FINISHED");
-                            $log.debug(newTreeNode);
-                            const parentI = newTreeNode.parentIndex;
-                            vm.treeData[parentI].nodes.push(newTreeNode);
-                        });
-
-                } else if (treeRoot.class === "Template") {
-
-                    TemplateCRUD.createTemplate(postPayload)
-                        .then(function(newTreeNode) {
-                            $log.log("CREATE FINISHED");
-                            $log.debug(newTreeNode);
-                            const parentI = newTreeNode.parentIndex;
-                            vm.treeData[parentI].nodes.push(newTreeNode);
-                        });
-                } else if (treeRoot.class === "JavaScript") {
-
-                    TemplateCRUD.createJSTemplate(postPayload)
-                        .then(function(newTreeNode) {
-                            $log.log("CREATE FINISHED");
-                            $log.debug(newTreeNode);
-                            const parentI = newTreeNode.parentIndex;
-                            vm.treeData[parentI].nodes.push(newTreeNode);
-                        });
-                }
-
-
-            }, function() {});
-
-
-        }
-
-        function addNewComponentToMaster(siblings, newNode, djangoModelName, masterId) {
-            SaveToSQL.addSiblingToMaster(siblings, newNode, djangoModelName, masterId)
-                .then(function(newNodeForTree) {
-                    $log.debug('newNodeForTree:');
-                    $log.log(newNodeForTree);
-                    $log.debug('TODO FINISH THIS PART ! ! !');
-                });
-        }
-        /* ⬆︎ ⬆︎ ⬆︎ RELOCATE ME TO A SEPARATE SERVICE ⬆︎ ⬆︎ ⬆︎ */
 
 
         function beautifyCode() {
@@ -979,8 +829,9 @@
 
 
 
+        # CreateRenameDependencies
 
-
+        # LazyLoadRefreshIDE
 
 
     }

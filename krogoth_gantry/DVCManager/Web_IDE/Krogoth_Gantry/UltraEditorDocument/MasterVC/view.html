@@ -1,29 +1,40 @@
+<div class='loader2' ng-if="vm.loadingIDE">
+	<div class='circle2'></div>
+	<div class='circle2'></div>
+	<div class='circle2'></div>
+	<div class='circle2'></div>
+	<div class='circle2'></div>
+</div>
+
+
+
+
 <!-- TESTED AND VERIFIED WITH LATEST VERSION -->
 <!-- SRC CODE MAPPER -->
-				<div class="console-window" ng-if="vm.consoleOpen" style="width: 2000px">
-				<input type="text" placeholder="Lookup Source Code..." ng-model="vm.srcMapInput">
-				<button class="btn btn-default" ng-click="vm.testGetMap()">FETCH CODE</button>
-					<button class="btn btn-default" ng-click="vm.consoleOpen = !vm.consoleOpen">close console</button>
-					<button class="btn btn-default" ng-click="vm.consoleMode = !vm.consoleMode">toggle code/mapping</button>
-					<pre style="color:limegreen"
-						 ng-if="vm.consoleMode">{{ vm.treeData | json }}</pre>
-					<section ng-if="!vm.consoleMode" style="width: 2000px">
-						<pre style="color:yellow"
-							 >{{ vm.queryiedSrc }}</pre>
-						</pre>
-					</section>
-				</div>
-				<style>
-					.console-window {
-						position: fixed;
-						z-index: 7000;
-						top:200px;
-						left:100px;
-						width: 1000px !important;
-						height: 1200px;
-						background-color: rgba(0,0,0,0.85);
-					}
-				</style>
+<div class="console-window" ng-if="vm.consoleOpen" style="width: 2000px">
+	<input type="text" placeholder="Lookup Source Code..." ng-model="vm.srcMapInput">
+	<button class="btn btn-default" ng-click="vm.testGetMap()">FETCH CODE</button>
+	<button class="btn btn-default" ng-click="vm.consoleOpen = !vm.consoleOpen">close console</button>
+	<button class="btn btn-default" ng-click="vm.consoleMode = !vm.consoleMode">toggle code/mapping</button>
+	<pre style="color:limegreen"
+		 ng-if="vm.consoleMode">{{ vm.treeData | json }}</pre>
+	<section ng-if="!vm.consoleMode" style="width: 2000px">
+		<pre style="color:yellow"
+			 >{{ vm.queryiedSrc }}</pre>
+		</pre>
+	</section>
+</div>
+<style>
+	.console-window {
+		position: fixed;
+		z-index: 7000;
+		top:200px;
+		left:100px;
+		width: 1000px !important;
+		height: 1200px;
+		background-color: rgba(0,0,0,0.85);
+	}
+</style>
 <!--/SRC CODE MAPPER -->
 
 
@@ -47,6 +58,22 @@
 	<span ng-if="-1 !== vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name">
 		{{vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name}}
 	</span>
+	
+	
+	
+	<button class="btn btn-outline-primary" 
+			style="padding:0px; height:18px; width:18px; margin-left:1px; margin-top:1px;"
+			ng-click="vm.startStateTransition()"> 
+		<span class="entypo entypo-ccw" 
+			  style="font-size:1.0em"></span>
+		<md-tooltip>
+			Reload This Page
+		</md-tooltip>
+	</button>
+	<span>
+		YO IT WORKS!!!
+	</span>
+	
 </md-nav-bar>
 
 
@@ -56,10 +83,10 @@
 				md-is-locked-open="vm.sideNavLocked"
 				md-component-id="sidenav"
 				layout-fill
-				flex-xs="30"
-				flex-sm="20"
-				flex-md="20"
-				flex-lg="15"
+				flex-xs="50"
+				flex-sm="35"
+				flex-md="25"
+				flex-lg="20"
 				flex-gt-lg="10"
 				ms-sidenav-helper>
 		<!-- SIDENAV HEADER -->
@@ -89,8 +116,7 @@
 		<md-content
 					class="white-bg-new" 
 					style="padding: 0px; margin-top:2px"
-					flex 
-					ms-scroll>
+					flex>
 			<!-- SOURCE CODE TREE SIDENAV -->
 			<div ui-tree id="tree-root" data-drop-enabled="false" data-drag-enabled="false">
 				<!-- start slipsum code -->
@@ -106,14 +132,14 @@
 				<!-- end slipsum code -->
 			</div>
 			<!-- / SOURCE CODE TREE SIDENAV -->
-			
+
 			CONTROL PANEL
 			<!-- IDE CONTROL PANEL -->
 			<div class="ide-ctrl-panel"
 				 ng-include="'/moho_extractor/NgIncludedHtml/?name=controlPanel'">
 			</div>
 			<!-- / IDE CONTROL PANEL -->
-			
+
 
 		</md-content>
 		<!-- / SIDENAV CONTENT -->
@@ -123,82 +149,123 @@
 	<!--<div layout="column" flex class="white-bg">-->
 	<div layout="column" flex>
 		<!-- CONTENT HEADER -->
-<div class="white-bg-new"   
-	 flex="5"
-	 layout="row"
-	 layout-align="start center"
-	 style="height: 22px; max-height: 22px; min-height: 22px">
-	<button class="toolbar-button" 
-			style="padding:0px; height:15px; width:15px; margin-left:8px;" 
-			ng-click="vm.goBackToCategory()"> 
-		<span class="entypo entypo-left-bold" style="font-size:1.1em"></span>
-		<md-tooltip>
-			Go Back
-		</md-tooltip>
-	</button> 
-	<div flex layout="row" layout-align="start center" hide-xs> 
+		<div class="white-bg-new"   
+			 flex="5"
+			 layout="row"
+			 layout-align="start center"
+			 style="height: 22px; max-height: 22px; min-height: 22px">
+			<button class="toolbar-button" 
+					style="padding:0px; height:15px; width:15px; margin-left:8px;" 
+					ng-click="vm.goBackToCategory()"> 
+				<span class="entypo entypo-left-bold" style="font-size:1.1em"></span>
+				<md-tooltip>
+					Go Back
+				</md-tooltip>
+			</button> 
+			<div flex layout="row" layout-align="start center" hide-xs> 
 
-		&nbsp;&nbsp;&nbsp;
-		<span class="h4">
-			<strong>{{ vm.finishedBreadCrumbsJson._1st.name }}</strong>
-		</span>
+				&nbsp;&nbsp;&nbsp;
+				<span class="h4">
+					<strong>{{ vm.finishedBreadCrumbsJson._1st.name }}</strong>
+				</span>
 
-		<span layout-align="center center" style="margin-top:2px;padding-left:4px;padding-right:4px;"> 
-			<i class="entypo entypo-right-open-mini" style="font-size:1.2em">
-			</i>
-		</span>
+				<span layout-align="center center" style="margin-top:2px;padding-left:4px;padding-right:4px;"> 
+					<i class="entypo entypo-right-open-mini" style="font-size:1.2em">
+					</i>
+				</span>
 
-		<span class="h4">
-			<strong>{{ vm.finishedBreadCrumbsJson._2nd.name }}</strong>
-		</span>
+				<span class="h4">
+					<strong>{{ vm.finishedBreadCrumbsJson._2nd.name }}</strong>
+				</span>
 
-		<span layout-align="center center" style="margin-top:3px;padding-left:4px;padding-right:4px;">
-			<i class="entypo entypo-right-open-mini" style="font-size:1.2em">
-			</i>
-		</span>
-		<span class="h4">
-			<strong>{{ vm.masterName }}</strong>
-		</span>
-		<span layout-align="center center" style="margin-top:3px;padding-left:4px;padding-right:4px;"
-			  ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name">
-			<i class="entypo entypo-right-open-mini" style="font-size:1.2em">
-			</i>
-		</span>
-		<span class="h4">
-			<strong style="margin-top:1px;">{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name }}</strong>
-		</span> 
-	</div>
-</div>
-		<!-- / CONTENT HEADER -->
-		<!-- CONTENT CARD -->
-		<div class="content-card" layout="column" flex >
+				<span layout-align="center center" style="margin-top:3px;padding-left:4px;padding-right:4px;">
+					<i class="entypo entypo-right-open-mini" style="font-size:1.2em">
+					</i>
+				</span>
+				<span class="h4">
+					<strong>{{ vm.masterName }}</strong>
+				</span>
+				<span layout-align="center center" style="margin-top:3px;padding-left:4px;padding-right:4px;"
+					  ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name">
+					<i class="entypo entypo-right-open-mini" style="font-size:1.2em">
+					</i>
+				</span>
+				<span class="h4">
+					<strong style="margin-top:1px;">{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name }}</strong>
+				</span> 
+			</div>
 
 
+
+
+
+		</div>
+		
 			<!-- CONTENT TOOLBAR -->
 			<div layout="row"
 				 class="kg-toolbar-bg"
+				 style="min-height:29px"
 				 ng-include="'/moho_extractor/NgIncludedHtml/?name=codeToolbarIDE'"
 				 layout-align="start center">
 			</div>
 			<!-- / CONTENT TOOLBAR -->
+		<!-- / CONTENT HEADER -->
+		<!-- CONTENT CARD -->
+		<!--
+<div class="content-card" layout="column" flex >
+-->
 
 
-			<!-- CONTENT  md-no-flicker md-no-momentum  -->
-			<md-content class="contentosx minwidthfix codescrollbars"
-						id="positionTracker"
-						style="height:95%; background-color: rgba(0,0,0,0);">
+<div>
+		<md-tabs auto-Resize-Code-Editor>
+			<md-tab label="one" >
+
+				<md-content class="codescrollbars" 
+							id="positionTracker"
+							style="background-color: rgba(0,0,0,0);">
+					<!-- CONTENT  md-no-flicker md-no-momentum  -->
 
 
-				<!-- MAIN CODE MIRROR IDE TEXT EDITOR -->
-				<span  ng-include= "'/moho_extractor/NgIncludedHtml/?name=uiCodeMirrorEditor'"></span>
-				<!--/MAIN CODE MIRROR IDE TEXT EDITOR -->
 
-			</md-content>
-			<div  ng-include= "'/moho_extractor/NgIncludedHtml/?name=uiCodeMirrorFooter'"></div>
-			<span ng-include= "'/moho_extractor/NgIncludedHtml/?name=footerHelperHtmlTmplsExamples'">
-			</span> 
-			<!-- / CONTENT -->
+					<!-- MAIN CODE MIRROR IDE TEXT EDITOR -->
+					<span  ng-include= "'/moho_extractor/NgIncludedHtml/?name=uiCodeMirrorEditor'"></span>
+					<!--/MAIN CODE MIRROR IDE TEXT EDITOR -->
+
+				</md-content>
+				<!-- / CONTENT -->
+
+
+
+
+			</md-tab>
+			<md-tab label="two">
+				<div class="md-padding">
+					II
+					<!-- II. CONTENT -->
+
+				</div>
+			</md-tab>
+			<md-tab label="three">
+				<div class="md-padding">
+					III
+					<!-- III. CONTENT -->
+
+				</div>
+			</md-tab>
+		</md-tabs>	
 		</div>
+		<div  ng-include= "'/moho_extractor/NgIncludedHtml/?name=uiCodeMirrorFooter'"></div>
+		<span ng-include= "'/moho_extractor/NgIncludedHtml/?name=footerHelperHtmlTmplsExamples'"></span>			
+
+		<!--
+</div>
+-->
+
+
+
+
+
+
 		<!-- / CONTENT CARD -->
 	</div>
 	<!-- / CENTER -->
@@ -219,11 +286,13 @@
 <span ng-include="'/moho_extractor/NgIncludedHtml/?name=codeMirrorCSSImporter'"></span>
 
 <!-- Import window modal HTML: -->
+<!-- 
 <span ng-if="vm.treeModalIsVisible" ng-include= "'/moho_extractor/NgIncludedHtml/?name=editorModalTmpls'"></span>
-
+-->
 <!-- VM property viewer: -->
+<!-- 
 <span ng-include="'/moho_extractor/NgIncludedHtml/?name=controllerVmProperties'"></span>
-
+-->
 
 <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
 

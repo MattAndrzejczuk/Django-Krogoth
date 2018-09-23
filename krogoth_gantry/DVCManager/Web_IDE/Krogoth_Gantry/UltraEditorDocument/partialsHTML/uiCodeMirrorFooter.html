@@ -1,8 +1,10 @@
-<div class="white-bg-new" layout-padding layout="row">	
-	<span class="statusbar">
+<div class="white-bg-new" layout-padding layout="row" ng-class="{'not_expanded_s':vm.hideStatusBar, 'expanded_s':!vm.hideStatusBar}">
+
+	<span class="statusbar" >
 		Highlighted: {{vm.highlightedPositions}}
 	</span>
-	<br><br><br>
+	<span display-Browser-Size ></span>
+	<span>Background {{vm.bg_image}}</span>
 <!--
 	<div class="white-bg-new" kg-drop-down-parent>
 		<kg-Drop-Down-Child  title="Hello">

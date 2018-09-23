@@ -64,11 +64,7 @@
 				Save All To Filesystem
 			</button>
 		</div>
-		<!-- Unsaved Frontend -->
-		<span ng-if"!vm.saveInProgress" 
-			  ng-include= "'/moho_extractor/NgIncludedHtml/?name=unsavedFrontendSidebar'">
-		</span>
-		<!--/Unsaved Frontend -->
+		
         <div class='loader2' ng-if="vm.saveInProgress">
             <div class='circle2'></div>
             <div class='circle2'></div>
@@ -76,6 +72,13 @@
             <div class='circle2'></div>
             <div class='circle2'></div>
         </div>
+		
+		<!-- Unsaved Frontend -->
+		<span ng-hide"vm.saveInProgress" 
+			  ng-include= "'/moho_extractor/NgIncludedHtml/?name=unsavedFrontendSidebar'">
+		</span>
+		<!--/Unsaved Frontend -->
+
 
 	</div>
 

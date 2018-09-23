@@ -41,6 +41,8 @@ class UncommitedSQL(models.Model):
             return more_than_zero(len(cls.objects.filter(name=name)))
         elif krogoth_class == "IncludedHtmlMaster":
             return more_than_zero(len(cls.objects.filter(name=name)))
+        elif krogoth_class == "IncludedJsMaster":
+            return more_than_zero(len(cls.objects.filter(name=name)))
         elif krogoth_class == "AKFoundation":
             return more_than_zero(len(cls.objects.filter(name=name)))
         else:

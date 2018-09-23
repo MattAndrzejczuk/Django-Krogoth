@@ -3,7 +3,7 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME', ['flow']).config(config);
 
-    function config($stateProvider, msApiProvider, msNavigationServiceProvider) {
+    function config($stateProvider, msApiProvider, msNavigationServiceProvider, $ocLazyLoadProvider) {
         $stateProvider
             .state('app.FUSE_APP_NAME', {
                 url: '/FUSE_APP_NAME/:categoryId/:subCategoryId/:masterId',
@@ -18,6 +18,11 @@
                     }
                 }
             });
+
+        $ocLazyLoadProvider.config({
+            events: true
+        });
+
         // .state('app.FUSE_APP_NAME.slave', {
         //     url: '/edit/:documentType/:documentId',
         //     views: {
@@ -38,7 +43,7 @@
                     icon: 'FUSE_APP_ICON',
                     state: 'app.FUSE_APP_NAME',
                     weight: 10
-                });
+                });  vm.lazyModulePrefix
         */
     }
 })();

@@ -195,19 +195,31 @@
                 url: "/krogoth_gantry/viewsets/Included" + ext + "Master/?master_vc__name=" + masterName
             }).then(function successCallback(response) {
                 var htmls = response.data.results;
+
                 var r_ = {
                     returnNodes: [],
                     srcTMPLs: []
                 };
                 //var srcToPass = [];
                 //var returnNodes = [];
+                var syntax = "htmlmixed";
+                var pi = 5;
+                if (ext === "Js") {
+                    syntax = "javascript";
+                    pi = 6;
+                }
+                $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ syntax ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+                $log.log(syntax);
+
                 for (var i = 0; i < htmls.length; i++) {
                     var item_in = htmls[i];
 
-                    var pi = 5;
+
                     var i = r_.returnNodes.length;
                     var src = item_in.contents;
                     var title = item_in.name;
+
+
 
                     var newNode = {
                         id: item_in.id,
@@ -226,7 +238,7 @@
                         sourceKey: 'contents',
                         RESTfulId: item_in.id,
                         RESTfulURI: "/krogoth_gantry/viewsets/Included" + ext + "Master/" + item_in.id + "/",
-                        syntax: 'htmlmixed',
+                        syntax: syntax,
                         icon: 'link-variant'
                     };
 

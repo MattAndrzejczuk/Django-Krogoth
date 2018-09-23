@@ -2,7 +2,7 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME', ['flow']).config(config);
 
-    function config($stateProvider,  msApiProvider, msNavigationServiceProvider) {
+    function config($stateProvider, msApiProvider, msNavigationServiceProvider) {
         $stateProvider
             .state('app.FUSE_APP_NAME', {
                 url: '/FUSE_APP_NAME/:categoryId',

@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from krogoth_gantry.models import KrogothGantryMasterViewController
-from moho_extractor.models import IncludedHtmlMaster, IncludedHtmlCoreTemplate
+from moho_extractor.models import IncludedHtmlMaster, IncludedHtmlCoreTemplate, IncludedJsMaster
 from krogoth_core.models import AKFoundationAbstract
 
 from krogoth_admin.models import UncommitedSQL
@@ -152,6 +152,23 @@ class Command(BaseCommand):
                         self.stdout.write(self.style.ERROR("IncludedHtmlMaster FAILED TO SAVE TO FILESYSTEM"))
                         UncommitedSQL.report_failure(for_record_named=tmpl.name, error_info=(str(e)) + " IncludedHtmlMaster")
 
+            tmplsJS = IncludedJsMaster.objects.filter(master_vc=app.id)
+            for tmpl in tmplsJS:
+                if UncommitedSQL.does_exist(name=tmpl.name, krogoth_class="IncludedJsMaster"):
+                    try:
+                        basedir = os.path.dirname(static_root + "partialsJS/")
+                        if not os.path.exists(basedir):
+                            os.makedirs(basedir)
+                        d1 = static_root + "partialsJS/" + tmpl.name + ".js"
+                        text_file = open(d1, "w")
+                        text_file.write(tmpl.contents)
+                        text_file.close()
+                        self.stdout.write(self.style.SUCCESS(d1))
+                        UncommitedSQL.finish_and_remove(name=tmpl.name)
+                    except Exception as e:
+                        self.stdout.write(self.style.ERROR("IncludedJsMaster FAILED TO SAVE TO FILESYSTEM"))
+                        UncommitedSQL.report_failure(for_record_named=tmpl.name,
+                                                     error_info=(str(e)) + " IncludedJsMaster")
 
             coreJSFiles = AKFoundationAbstract.objects.all()
             for fuse in coreJSFiles:

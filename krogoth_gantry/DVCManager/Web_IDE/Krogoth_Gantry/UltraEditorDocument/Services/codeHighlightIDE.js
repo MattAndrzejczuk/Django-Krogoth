@@ -65,6 +65,8 @@
 
 
 
+        // vm.|HIGHLIGHT| = someFunc;
+        /// (?<=vm.)(.*?)(?=\ )
 
 
 

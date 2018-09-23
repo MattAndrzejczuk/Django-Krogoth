@@ -2,14 +2,23 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
-    function FUSE_APP_NAMEController($log, $state, $ocLazyLoad) {
+    function FUSE_APP_NAMEController($log, $state, $ocLazyLoad, $scope) {
         var vm = this;
         vm.$onInit = onInit;
         vm.viewName = 'FUSE_APP_NAME';
         vm.viewDidLoad = viewDidLoad;
 
         vm.initLazyModule = initLazyModule;
+        vm.initTokenizedLazyModule = initTokenizedLazyModule;
         vm.stateGoToLazy = stateGoToLazy;
+        vm.initAndGo = initAndGo;
+        vm.redirectAfterLoading = redirectAfterLoading;
+
+        vm.unloadedMasterName = "LAZYMVC_UNLOADED";
+        vm.moduleTokenPrefix = "app." + vm.unloadedMasterName;
+
+        vm.redirectEnabled = false;
+        vm.log = log;
 
         function onInit() {
             console.log('FUSE_APP_NAME did finish loading');
@@ -21,15 +30,46 @@
         }
 
         function initLazyModule() {
-            $ocLazyLoad.load('/krogoth_gantry/DynamicJavaScriptInjector/?name=LAZYMVC_UNLOADED&ov=file.js');
-            $('<p>Finished Lazy Loading: LAZYMVC_UNLOADED</p><br>').appendTo('ak-main');
+            $ocLazyLoad.load('/krogoth_gantry/DynamicJavaScriptInjector/?name=' + vm.unloadedMasterName + '&ov=file.js');
+            vm.log(vm.unloadedMasterName);
+        }
+
+        function initTokenizedLazyModule() {
+            vm.redirectEnabled = false;
+            $ocLazyLoad.load('/krogoth_gantry/DynamicJavaScriptInjector/?name=' + vm.unloadedMasterName + '&lazy=' + vm.lazyToken + '&ov=file.js');
+            vm.log(vm.lazyToken);
+        }
+
+        function initAndGo() {
+            vm.redirectEnabled = true;
+            $ocLazyLoad.load('/krogoth_gantry/DynamicJavaScriptInjector/?name=' + vm.unloadedMasterName + '&lazy=' + vm.lazyToken + '&ov=file.js');
+            $state.go('app.' + vm.unloadedMasterName + vm.lazyToken);
+        }
+
+        $scope.$on('ocLazyLoad.moduleLoaded', function(e, module) {
+            const validAutoRedirect = vm.moduleTokenPrefix + vm.lazyToken;
+            if (validAutoRedirect === module.toString()) {
+                vm.redirectAfterLoading(validAutoRedirect);
+            }
+        });
+
+        function redirectAfterLoading(validAutoRedirect) {
+            if (vm.redirectEnabled)
+                $state.go(validAutoRedirect);
         }
 
         function stateGoToLazy() {
-            $state.go("app.LAZYMVC_UNLOADED");
+            $state.go('app.' + vm.unloadedMasterName);
+        }
+
+
+
+        function log(info) {
+            $('<p>Loaded: ' + info + '.</p><br>').appendTo('ak-main');
         }
     }
 })();
+
 
 // Name:
 // LAZYMVC_THING

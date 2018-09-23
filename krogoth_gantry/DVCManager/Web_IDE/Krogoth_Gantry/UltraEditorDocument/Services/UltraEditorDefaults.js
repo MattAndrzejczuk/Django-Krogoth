@@ -20,6 +20,7 @@
                     title: ' Master Views',
                     class: "MasterViewController",
                     nodes: [],
+                    expanded: true,
                     canRemove: false,
                     canEdit: false,
                     canAdd: false
@@ -30,6 +31,7 @@
                     title: ' CSS',
                     class: "MasterViewController",
                     nodes: [],
+                    expanded: true,
                     canRemove: false,
                     canEdit: false,
                     canAdd: false
@@ -40,6 +42,7 @@
                     title: ' Slave Views',
                     class: "SlaveViewController",
                     nodes: [],
+                    expanded: true,
                     canRemove: false,
                     canEdit: false,
                     canAdd: false
@@ -50,6 +53,7 @@
                     title: ' Directives',
                     class: "Directive",
                     nodes: [],
+                    expanded: true,
                     canRemove: false,
                     canEdit: false,
                     canAdd: true
@@ -60,6 +64,7 @@
                     title: ' Services',
                     class: "Service",
                     nodes: [],
+                    expanded: true,
                     canRemove: false,
                     canEdit: false,
                     canAdd: true
@@ -70,6 +75,7 @@
                     title: ' HTML ',
                     class: "Template",
                     nodes: [],
+                    expanded: true,
                     canRemove: false,
                     canEdit: false,
                     canAdd: true
@@ -78,7 +84,9 @@
                     id: _masterVCID,
                     index: 6,
                     title: ' JavaScript ',
+                    class: "TemplateJS",
                     nodes: [],
+                    expanded: true,
                     canRemove: false,
                     canEdit: false,
                     canAdd: true
@@ -88,6 +96,7 @@
                     index: 7,
                     title: ' Settings',
                     nodes: [],
+                    expanded: true,
                     canRemove: false,
                     canEdit: false,
                     canAdd: false

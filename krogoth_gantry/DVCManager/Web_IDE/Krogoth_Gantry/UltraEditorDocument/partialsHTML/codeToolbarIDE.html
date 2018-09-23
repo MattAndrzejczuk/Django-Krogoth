@@ -1,22 +1,4 @@
 <!-- CONTENT TOOLBAR -->
-
-
-				
-				<h1 style="color: white" ng-if="vm.oldDebugInformation2">
-                    <span>class:</span>
-                    <span class="h1 badge badge-primary">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class }}
-					</span>
-                    <span>name:</span>
-                    <span class="h1 badge badge-success">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].name }}
-					</span>
-                    <span ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title !== vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class">title:</span>
-                    <span class="h1 badge badge-danger"
-                          ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title !== vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].class">
-						{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title }}
-					</span>
-                </h1>
 				
 				
                 <button class="toolbar-button btn btn-modern ide-toolbar-btn" 
@@ -26,8 +8,8 @@
                     <i class="entypo entypo-menu ide-tool-btn" style="font-size:1.2em"></i>
                 </button>
 
-
   
+	<button class="toolbar-button btn btn-modern ide-toolbar-btn" ng-click="vm.hideStatusBar = !vm.hideStatusBar">toggle</button>
 
 				<!--
                 <button class="toolbar-button" ng-click="vm.loadOSXDoc()">
@@ -83,7 +65,7 @@
 						</md-tooltip>
 					</button>
 				</div>
-				<div flex="25"></div>
+				<div flex="20"></div>
 
 		
 

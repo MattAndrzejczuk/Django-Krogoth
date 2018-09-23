@@ -13,7 +13,7 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME', ['flow']).config(config);
 
-    function config($stateProvider,  msApiProvider, msNavigationServiceProvider) {
+    function config($stateProvider, msApiProvider, msNavigationServiceProvider, $ocLazyLoadProvider) {
         $stateProvider
             .state('app.FUSE_APP_NAME', {
                 url: '/FUSE_APP_NAME',
@@ -32,6 +32,11 @@
             state: 'app.FUSE_APP_NAME',
             weight: 3
         });
+
+        $ocLazyLoadProvider.config({
+            events: true
+        });
+
         _DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_
     }
 })();

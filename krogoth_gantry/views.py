@@ -93,8 +93,18 @@ class DynamicJavaScriptInjector(APIView):
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
         name = request.GET['name']
-        raw_js = master_compiler(username=request.user.username)
-        js_response = raw_js.compiled_raw(named=name)
+        lazy_token = ""
+        lazy_args = []
+        raw_js = ""
+        js_response = ""
+
+        if 'lazy' in request.GET:
+            lazy_token = request.GET['lazy']
+            raw_js = master_compiler(username=request.user.username)
+            js_response = raw_js.compiled_raw(named=[name, lazy_token]).replace("_LAZY_TOKEN_", lazy_token)
+        else:
+            raw_js = master_compiler(username=request.user.username)
+            js_response = raw_js.compiled_raw(named=name)
         return HttpResponse(js_response, content_type='application/javascript; charset=utf-8')
 
 

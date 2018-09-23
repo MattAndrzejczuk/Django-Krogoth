@@ -1,7 +1,7 @@
 ## Ubuntu 16.04 recommended
 
-django==1.11.16
-djangorestframework==3.8.2
+django==1.11.15
+djangorestframework==3.6.3
 markdown==2.6.9
 django-filter==1.1.0
 django-rest-auth==0.9.2

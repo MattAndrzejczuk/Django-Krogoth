@@ -7,7 +7,7 @@
         <div ng-if="node.nodes && node.nodes.length > 0">
             <button class="toolbar-button" 
 					style="padding:0px; height:20px; width:20px"
-                    ng-click="vm.toggleFolder(this)">
+                    ng-click="vm.toggleFolder(this, $index)">
                 <span
                     style="font-size:1.2em; margin-top:3px"
                     ng-class="{'entypo entypo-right-open-mini': collapsed,'entypo entypo-down-open-mini': !collapsed}">
@@ -50,7 +50,7 @@
                 </md-tooltip>
             </button>
         </div>
-        <div ng-if="node.canEdit === true" flex="10">
+        <div ng-if="node.canEdit === true" flex="10" ng-show="vm.treeData[node.parentIndex].expanded">
             <button class="toolbar-button"
                     layout-wrap 
                     style="padding:0px; height:15px; width:15px"
@@ -85,11 +85,11 @@
             </button>
         </div>
     </div>  
+<!-- ng-class="{hidden: collapsed }"  -->
     <ol data-nodrag
 		ui-tree-nodes="" 
 		ng-model="node.nodes" 
-		ng-class="{hidden: collapsed }" 
-		ng-show="!collapsed">
+		ng-class="{'not_expanded_s':collapsed, 'expanded_s':!collapsed }">
         <li ng-repeat="node in node.nodes" 
 			ng-class="{ 'loadedNodeFile': (node.isLoaded === true), 'openedByOtherBrowser': (node.openInOtherBrowser), 'savedByOtherBrowser': (node.wasSavedInOtherBrowser) }"
 			ui-tree-node 

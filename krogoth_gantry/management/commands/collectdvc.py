@@ -231,7 +231,7 @@ class Command(BaseCommand):
                                         except:
                                             pass
                                         service = KrogothGantryService.objects.get_or_create(name=srv[:-3])
-                                        service[0].title = srv + '_Service'
+                                        service[0].title = srv[:-3]  # + '_Service'
                                         service[0].service_js = str_srv
                                         service[0].save()
                                         _mvc[0].djangular_service.add(service[0])
@@ -249,7 +249,7 @@ class Command(BaseCommand):
                                         except:
                                             pass
                                         directive = KrogothGantryDirective.objects.get_or_create(name=drec[:-3])
-                                        directive[0].title = drec + '_Directive'
+                                        directive[0].title = drec[:-3]# + '_Directive'
                                         directive[0].directive_js = str_drec
                                         directive[0].save()
                                         _mvc[0].djangular_directive.add(directive[0])

@@ -5,6 +5,8 @@ import json
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from krogoth_gantry.models import KrogothGantryCategory, KrogothGantryMasterViewController
+from moho_extractor.models import NgIncludedJs
+import jsbeautifier
 
 
 class master_compiler(APIView):
@@ -19,14 +21,30 @@ class master_compiler(APIView):
 
 
 
-    def compiled_raw(self, named: str) -> str:
-        name = named
+    def compiled_raw(self, named) -> str:
+
+        lazy_token = ""
+        if isinstance(named, list):
+            name = named[0]
+            lazy_token = named[1]
+            print("NAME: " + name)
+            print("LAZY TOKEN: " + lazy_token)
+        else:
+            name = named
         application = KrogothGantryMasterViewController.objects.get(name=name)
         raw_js_services_and_directives = ''
         djangular_services = application.djangular_service.all()
         djangular_directives = application.djangular_directive.all()
         compiled_slave = application.compileModuleSlaves
         clean_js_slate = '\n\n\n\n\n\n\t /* ════════════' + application.title + '════════════ */\n\n'
+
+        app_ctrl = application.controller_js
+        for js in application.partial_js.all():
+            app_ctrl = app_ctrl.replace("# "+js.name, "\n/*~ ~ ~ ~ ~ ~" + js.name + "~ ~ ~ ~ ~ ~*/\n"+
+                                        js.contents+ "\n/*~/~/~/~/~/~" + js.name + "~/~/~/~/~/~*/\n" + "\n")
+
+        app_ctrl = jsbeautifier.beautify(app_ctrl)
+
         if name == 'home':
             processed_cats = ''
             for cat in KrogothGantryCategory.objects.all():
@@ -51,10 +69,10 @@ class master_compiler(APIView):
                     processed_cats += p04 + p03 + p02 + p01 + p0 + p1 + p2 + p3 + p4 + p5
             cat_contain = compiled_slave['module_with_injected_navigation'].replace('_KROGOTH_CATEGORIES_', processed_cats)
             clean_js_slate += ' \n /* MASTER MODULE */ \n' + cat_contain + \
-                              ' \n /* MASTER CONTROLLER */ \n' + application.controller_js
+                              ' \n /* MASTER CONTROLLER */ \n' + app_ctrl
         else:
             clean_js_slate += ' \n /* MASTER MODULE */ \n' + compiled_slave['module_with_injected_navigation'] + \
-                              ' \n /* MASTER CONTROLLER */ \n' + application.controller_js
+                              ' \n /* MASTER CONTROLLER */ \n' + app_ctrl
         clean_js_slate += '\n /* SLAVE CONTROLLER */ \n' + compiled_slave['slave_controllers_js']
 
         for service in djangular_services:
@@ -71,7 +89,13 @@ class master_compiler(APIView):
                                                   "_DJANGULAR_DIRECTIVE_TITLE_", directive.title)
             raw_js_services_and_directives += '\n'
         clean_js_slate += raw_js_services_and_directives
-        parsed1 = clean_js_slate.replace('FUSE_APP_NAME', application.name.replace(' ', '_'))
+        fuse_app_name = application.name.replace(' ', '_') + lazy_token
+        parsed1 = clean_js_slate.replace('FUSE_APP_NAME', fuse_app_name)
+        if len(lazy_token) > 0:
+            base_uri = '/krogoth_gantry/DynamicHTMLInjector/?name='
+            mvc_view = base_uri + fuse_app_name
+            mvc_view_fixed = base_uri + application.name.replace(' ', '_') + "&tmpl=" + lazy_token + ".HTML"
+            parsed1 = parsed1.replace(mvc_view, mvc_view_fixed)
         parsed2 = parsed1.replace('FUSE_APP_TITLE', application.title).replace('FUSE_APP_SLAVE_NAME', application.name + 'Slave')
         parsed3 = parsed2.replace('FUSE_APP_ICON', application.icon.prefix + ' ' + application.icon.code)
         parsed4 = parsed3.replace('NAV_HEADER', application.category.name.replace(' ', '_'))
