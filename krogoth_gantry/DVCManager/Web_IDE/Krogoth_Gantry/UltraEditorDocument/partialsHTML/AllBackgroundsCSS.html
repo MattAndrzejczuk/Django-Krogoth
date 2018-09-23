@@ -24,6 +24,93 @@
 	*/
 </style>
 
+<span ng-if="!vm.aeroMode">
+	<style>
+			@media only screen and (max-width: 9000px) {
+			md-content.md-default-theme.md-hue-2, md-content.md-hue-2,.opaque-global,md-sidenav,
+			kg-drop-down-child,md-toolbar,glass-global,glass-test,body {
+				background-size: 3840px 2160px !important;
+				background-image: url('') !important;
+				background-repeat: no-repeat;
+				background-position: left top;
+				background-attachment: fixed !important;
+				color: white;
+			}
+			.white-bg-new {
+				background-size: 3840px 2160px !important;
+				background-image: url('') !important;
+				background-repeat: no-repeat;
+				background-position: left top;
+				background-attachment: fixed !important;
+				color: black;
+				background-color: rgba(100,100,100,1);
+			}
+		}
+		@media only screen and (max-width: 2880px) and (max-height: 1620px) {
+			md-content.md-default-theme.md-hue-2, md-content.md-hue-2,.opaque-global,md-sidenav,
+			kg-drop-down-child,md-toolbar,glass-global,glass-test,body {
+				background-size: 2880px 1620px !important;
+				background-image: url('') !important;
+				background-repeat: no-repeat;
+				background-position: left top;
+				background-attachment: fixed !important;
+				color: white;
+			}
+			.white-bg-new {
+				background-size: 2880px 1620px !important;
+				background-image: url('') !important;
+				background-repeat: no-repeat;
+				background-position: left top;
+				background-attachment: fixed !important;
+				color: white;
+				background-color: rgba(100,100,100,1);
+			}
+		}	
+		@media only screen and (max-width: 1920px) and (max-height: 1080px) {
+			md-content.md-default-theme.md-hue-2, md-content.md-hue-2,.opaque-global,md-sidenav,
+			kg-drop-down-child,md-toolbar,glass-global,glass-test,body {
+				background-size: 1920px 1080px !important;
+				background-image: url('') !important;
+				background-repeat: no-repeat;
+				background-position: left top;
+				background-attachment: fixed !important;
+				color: white;
+			}
+			.white-bg-new {
+				background-size: 1920px 1080px !important;
+				background-image: url('') !important;
+				background-repeat: no-repeat;
+				background-position: left top;
+				background-attachment: fixed !important;
+				color: black;
+				background-color: rgba(100,100,100,1);
+			}			
+		}
+		@media only screen and (max-width: 1440px) and (max-height: 810px) {
+			md-content.md-default-theme.md-hue-2, md-content.md-hue-2,.opaque-global,md-sidenav,
+			kg-drop-down-child,md-toolbar,glass-global,glass-test,body {
+				background-size: 1440px 810px !important;
+				background-image: url('') !important;
+				background-repeat: no-repeat;
+				background-position: left top;
+				background-attachment: fixed !important;
+				color: white;
+			}
+						.white-bg-new {
+				background-size: 1440px 810px !important;
+				background-image: url('') !important;
+				background-repeat: no-repeat;
+				background-position: left top;
+				background-attachment: fixed !important;
+				color: black;
+							background-color: rgba(100,100,100,1);
+			}
+		}
+		</style>
+</span>
+
+<span ng-if="vm.aeroMode">
+
 <!--  WALLPAPER VARIATION 1  -->
 <span ng-if="vm.bg_image === 1">
 	<style>
@@ -761,5 +848,7 @@
             }
         }
 	</style>
+</span>
+	
 </span>
 <!--/ WALLPAPER VARIATION 8  -->

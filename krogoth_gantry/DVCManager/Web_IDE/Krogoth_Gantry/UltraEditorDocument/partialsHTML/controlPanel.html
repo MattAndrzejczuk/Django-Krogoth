@@ -13,6 +13,17 @@
 	<button class="toolbar-button"
 			layout-wrap 
 			style="padding:0px; height:20px; width:20px"
+			ng-click="vm.aeroMode = !vm.aeroMode">
+		<span class="entypo entypo-battery" style="font-size:1.1em" ></span>
+		<!--            <span class="mdi mdi-circle"></span>-->
+		<md-tooltip>
+			Change Editor Background Wallpaper
+		</md-tooltip>
+	</button>	
+	
+	<button class="toolbar-button"
+			layout-wrap 
+			style="padding:0px; height:20px; width:20px"
 			ng-click="vm.dumpJsonTreeData()">
 		<span class="entypo entypo-code" style="font-size:1.1em" ></span>
 		<!--            <span class="mdi mdi-circle"></span>-->

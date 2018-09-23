@@ -102,6 +102,7 @@
         vm.saveScrollY = saveScrollY;
 
         vm.loadingIDE = true;
+        vm.aeroMode = true;
 
 
         /// I.
