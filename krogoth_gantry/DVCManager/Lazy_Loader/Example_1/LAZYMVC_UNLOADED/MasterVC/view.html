@@ -19,7 +19,7 @@
 </style>
 
 
-<section style="background-color: rgba(255,255,255,0.0);">
+<section style="background-color: rgba(255,255,255,0.0);" class="firstPanel">
 	<div class="content">
 		<div class="container-fluid container-maverix panel " >
 			<div class="sub-nav-content-container  panel-heading">
@@ -37,52 +37,65 @@
 				</p>	
 				</div>
 			</div>
-			
-			
+				
 			<div class=" sub-nav-content-container panel-body" 
 				 layout-align="space-between stretch"
 				 layout-padding
 				 layout-margin>
 
-				
-				
-				
-				
-				<!--   API CALL 1   -->
-				<p class="nfo">
-					RESTful Forms
-				</p>		
-				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
-					<input type="text" placeholder="uid" ng-model="vm.input_uid"/>
-				</div>	
+				<!--   API CALL 1   -->		
 				<div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
 					<button ng-click="vm.getKGDataByUID()" class="btn btn-default">GET GenericKGData</button>
 					<label class="ui-label">
 						Get one Generic KGData by it's unique identifier "uid"
 					</label>
 				</div>
+				<p class="nfo">
+					{{vm.uri_1}}
+				</p>
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<input type="text" placeholder="uid" ng-model="vm.input_uid"/>
+				</div>	
 				<div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
 					<pre>
 						{{ vm.singleKGData }}
 					</pre>
 				</div>
-				<!-- / API CALL 1 / -->
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				<!--   MVC RELOADER   -->
 				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
 					<md-divider></md-divider>
 				</div>
+				<!-- / API CALL 1 / -->
+
+				<!--   API CALL 2   -->			
+				<div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
+					<button ng-click="vm.postKGData()" class="btn btn-default">POST GenericKGData</button>
+					<label class="ui-label">
+						Make a new one.
+					</label>
+				</div>
+				<p class="nfo">
+					{{vm.uri_2}}
+				</p>
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<input type="text" placeholder="uid" ng-model="vm.input_uid_post"/>
+				</div>
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<input type="text" placeholder="header JSON" ng-model="vm.input_header_post"/>
+				</div>
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<input type="text" placeholder="contents JSON" ng-model="vm.input_contents_post"/>
+				</div>
+				<div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
+					<pre>
+						{{ vm.createdKGDataResponse }}
+					</pre>
+				</div>
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<md-divider></md-divider>
+				</div>
+				<!-- / API CALL 2 / -->
+
+				<!--   MVC RELOADER   -->
 				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
 					<input type="text" placeholder="Unique Name For New MVC" ng-model="vm.lazyToken"/>
 				</div>				
@@ -96,15 +109,7 @@
 
 				</ak-main>
 				<!-- / MVC RELOADER / -->
-				
-				
-				
 			</div>			
-
-			
-			
-			
-			
 		</div>
 	</div>
 </section>

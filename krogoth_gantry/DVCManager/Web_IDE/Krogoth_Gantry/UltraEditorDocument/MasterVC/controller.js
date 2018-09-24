@@ -282,9 +282,21 @@
             vm.masterName = vm.objectList.name;
             vm.browserTabText = vm.masterName;
             vm.treeData[tStyle].nodes.push(themestyleCSS);
-            vm.objectList = [];
             EditorWebSocket.initializeWebSocket(vm.masterName);
             vm.loadingIDE = false;
+            vm.cleanUpRAM();
+        }
+
+        vm.cleanUpRAM = cleanUpRAM;
+
+        function cleanUpRAM() {
+            vm.objectList = [];
+            vm.finishedRESTfulResponses = [];
+            vm.newComponentForm = {};
+            vm.servicesPendingRequest = [];
+            vm.directivesPendingRequest = [];
+            vm.slavesPendingRequest = [];
+            vm.pendingRESTfulRequests = [];
         }
 
         /// < ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ DONT PUT SOURCE INTO UI TREE ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ >

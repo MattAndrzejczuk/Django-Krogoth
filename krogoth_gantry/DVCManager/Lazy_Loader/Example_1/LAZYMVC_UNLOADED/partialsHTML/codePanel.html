@@ -1,3 +1,175 @@
-/* codePanel IncludedHtmlMaster */
+<section style="background-color: rgba(255,255,255,0.0);" class="secondPanel">
+	<div class="content">
+		<div class="container-fluid container-maverix panel " >
+			<div class="sub-nav-content-container  panel-heading">
+				<div layout-padding layout-margin>
+					<h1 style="margin-top: 10px">
+						{{vm.viewName}}
+					</h1>
+				</div>
+				<div layout-padding layout-margin>
+					<h3 style="margin-top: 10px">
+						Generic KGData Test Flight Area
+					</h3>
+				<p>
+					Json interface located in moho_extractor.
+				</p>	
+				</div>
+			</div>
+				
+			<div class=" sub-nav-content-container panel-body" 
+				 layout-align="space-between stretch"
+				 layout-padding
+				 layout-margin>
 
-<h4> krogoth_gantry Error: There is nothing here yet! </h4>
+				<!--   API CALL 1   -->		
+				<div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
+					<button ng-click="vm.getKGDataByUID()" class="btn btn-default">GET GenericKGData</button>
+					<label class="ui-label">
+						Get one Generic KGData by it's unique identifier "uid"
+					</label>
+				</div>
+				<p class="nfo">
+					{{vm.uri_1}}
+				</p>
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<input type="text" placeholder="uid" ng-model="vm.input_uid"/>
+				</div>	
+				<div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
+					<pre>
+						{{ vm.singleKGData }}
+					</pre>
+				</div>
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<md-divider></md-divider>
+				</div>
+				<!-- / API CALL 1 / -->
+
+				<!--   API CALL 2   -->			
+				<div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
+					<button ng-click="vm.postKGData()" class="btn btn-default">POST GenericKGData</button>
+					<label class="ui-label">
+						Make a new one.
+					</label>
+				</div>
+				<p class="nfo">
+					{{vm.uri_2}}
+				</p>
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<input type="text" placeholder="uid" ng-model="vm.input_uid_post"/>
+				</div>
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<input type="text" placeholder="header JSON" ng-model="vm.input_header_post"/>
+				</div>
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<input type="text" placeholder="contents JSON" ng-model="vm.input_contents_post"/>
+				</div>
+				<div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
+					<pre>
+						{{ vm.createdKGDataResponse }}
+					</pre>
+				</div>
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<md-divider></md-divider>
+				</div>
+				<!-- / API CALL 2 / -->
+
+				<!--   MVC RELOADER   -->
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<input type="text" placeholder="Unique Name For New MVC" ng-model="vm.lazyToken"/>
+				</div>				
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between stretch">
+					<button  ng-click="vm.initAndGo()" class="btn btn-modern">Reload Page</button>
+					<label class="ui-label">
+						Load Custom MVC Then Open
+					</label>
+				</div>				
+				<ak-main layout-padding layout-margin>
+
+				</ak-main>
+				<!-- / MVC RELOADER / -->
+			</div>			
+		</div>
+	</div>
+</section>
+
+
+<style>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	.secondPanel {
+		transform: scale(0.0, 1.0);
+		-webkit-transform: scale(0.0, 1.0);
+		-moz-transform: scale(0.0, 1.0);
+		-o-transform: scale(0.0, 1.0);
+		-ms-transform: scale(0.0, 1.0);
+		transform: translate(300px, 0px);
+		-webkit-transform: translate(300px, 0px);
+		-moz-transform: translate(300px, 0px);
+		-o-transform: translate(300px, 0px);
+		-ms-transform: translate(300px, 0px);
+	}
+
+	.secondPanel.startShow {
+		transform: scale(0.0, 1.0);
+		-webkit-transform: scale(0.0, 1.0);
+		-moz-transform: scale(0.0, 1.0);
+		-o-transform: scale(0.0, 1.0);
+		-ms-transform: scale(0.0, 1.0);
+		transform: translate(300px, 0px);
+		-webkit-transform: translate(300px, 0px);
+		-moz-transform: translate(300px, 0px);
+		-o-transform: translate(300px, 0px);
+		-ms-transform: translate(300px, 0px);
+	}
+	
+	
+	
+	
+	
+	.firstPanel {
+		transform: scale(1.0, 1.0);
+		-webkit-transform: scale(1.0, 1.0);
+		-moz-transform: scale(1.0, 1.0);
+		-o-transform: scale(1.0, 1.0);
+		-ms-transform: scale(1.0, 1.0);
+	}
+
+	.firstPanel.startHide {
+		background: #0084ff;
+		color: #fff;
+		margin-top: 590px;
+		width: 200px;
+		transform: scale(0.0, 1.0);
+		-webkit-transform: scale(0.0, 1.0);
+		-moz-transform: scale(0.0, 1.0);
+		-o-transform: scale(0.0, 1.0);
+		-ms-transform: scale(0.0, 1.0);
+		transform: translate(-300px, 0px);
+		-webkit-transform: translate(-300px, 0px);
+		-moz-transform: translate(-300px, 0px);
+		-o-transform: translate(-300px, 0px);
+		-ms-transform: translate(-300px, 0px);
+	}
+
+	
+	
+	
+
+	
+	
+	
+	
+	
+
+</style>
