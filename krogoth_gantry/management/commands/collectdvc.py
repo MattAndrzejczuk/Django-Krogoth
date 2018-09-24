@@ -5,7 +5,7 @@ import codecs
 import os
 from scss import Compiler
 import json
-from moho_extractor.models import IncludedHtmlMaster
+from moho_extractor.models import IncludedHtmlMaster, IncludedJsMaster
 
 from krogoth_gantry.management.commands.installdjangular import bcolors
 import random
@@ -190,6 +190,32 @@ class Command(BaseCommand):
                                         newIncludeHTML[0].contents = rawHtml
                                         newIncludeHTML[0].save()
                                         print("TOTAL PARTIALS: " + str(len(IncludedHtmlMaster.objects.all())))
+
+                            partial_JSs_path = 'krogoth_gantry/DVCManager/' + dvc + '/partialsJS'
+                            if os.path.isdir(partial_JSs_path):
+                                jss = os.listdir(partial_JSs_path)
+                                if len(os.listdir(partial_JSs_path)) >= 1:
+                                    for js in jss:
+                                        if js == ".DS_Store":
+                                            continue
+                                        rawJs = ""
+                                        pathJS = partial_JSs_path + "/" + js
+                                        try:
+                                            rawJs = codecs.open(pathJS, 'r').read()
+                                            self.stdout.write(self.style.SUCCESS(" ✅  Successfully loaded file: " + pathJS))
+                                        except:
+                                            rawJs = ""
+                                            self.stdout.write(self.style.ERROR("Skipping file: " + pathJS))
+                                        js_name = js
+                                        if js[-5:].lower() == ".js":
+                                            js_name = js[:-5]
+                                        newIncludeJS = IncludedJsMaster.objects.get_or_create(
+                                            name=(js_name),
+                                            master_vc=_mvc[0])
+                                        newIncludeJS[0].sys_path = pathJS
+                                        newIncludeJS[0].contents = rawJs
+                                        newIncludeJS[0].save()
+                                        print("TOTAL PARTIALS: " + str(len(IncludedJsMaster.objects.all())))
 
                             # clean_catagory = catagory.replace(' ', '').replace('-', '')
                             # clean_subcatagory = subcatagory.replace(' ', '').replace('-', '')

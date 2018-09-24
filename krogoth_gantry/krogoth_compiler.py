@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from krogoth_gantry.models import KrogothGantryCategory, KrogothGantryMasterViewController
 from moho_extractor.models import NgIncludedJs
 import jsbeautifier
-
+from colors import ink
 
 class master_compiler(APIView):
     authentication_classes = (TokenAuthentication,)
@@ -40,10 +40,14 @@ class master_compiler(APIView):
 
         app_ctrl = application.controller_js
         for js in application.partial_js.all():
-            app_ctrl = app_ctrl.replace("# "+js.name, "\n/*~ ~ ~ ~ ~ ~" + js.name + "~ ~ ~ ~ ~ ~*/\n"+
-                                        js.contents+ "\n/*~/~/~/~/~/~" + js.name + "~/~/~/~/~/~*/\n" + "\n")
+            no_ext = js.name.replace(".js", "")
+            ink.pgreen(application.name + ":")
+            ink.pblue(no_ext + "\n")
 
-        app_ctrl = jsbeautifier.beautify(app_ctrl)
+            app_ctrl = app_ctrl.replace("# "+no_ext, "\n/*~ ~ ~ ~ ~ ~" + no_ext + "~ ~ ~ ~ ~ ~*/\n"+
+                                        js.contents+ "\n/*~/~/~/~/~/~" + no_ext + "~/~/~/~/~/~*/\n" + "\n")
+
+        #app_ctrl = jsbeautifier.beautify(app_ctrl)
 
         if name == 'home':
             processed_cats = ''
