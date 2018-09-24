@@ -1,6 +1,21 @@
 <!-- TESTED AND VERIFIED WITH LATEST VERSION -->
 <md-divider></md-divider>
+        <div ng-if="collapsed && node.nodes.length > 0">
+            <button class="toolbar-button" 
+					style="padding:0px; height:20px; width:20px"
+                    ng-click="vm.toggleFolder(this, $index)">
+                <span
+                    style="font-size:1.2em; margin-top:3px"
+                    ng-class="{'entypo entypo-right-open-mini': collapsed,'entypo entypo-down-open-mini': !collapsed}">
+                </span>
+                <md-tooltip>Browse {{ node.title }}</md-tooltip>
+            </button>
+            <span class="badge badge-dark">
+                {{ node.title | limitTo: 20 }}
+            </span>
+        </div>
     <div ui-tree-handle
+		 ng-if="!collapsed"
                    ng-class="{'parent-node-frame':node.canEdit === false,'blackbg':node.canEdit === true}"
                    class="tree-node tree-node-content"  
                    layout="row">

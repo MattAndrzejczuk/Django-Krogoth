@@ -30,70 +30,75 @@
 				</div>
 				<div layout-padding layout-margin>
 					<h3 style="margin-top: 10px">
-						Dynamic Mode
+						Generic KGData Test Flight Area
 					</h3>
-				</div>
-				<div layout-padding layout-margin>
 				<p>
-					Instead of loading every single AngularJS component during the initial
-					bootstrap sequence, load the module only when the user needs it, dynamically.
-				</p>		
+					Json interface located in moho_extractor.
+				</p>	
 				</div>
-
 			</div>
+			
 			
 			<div class=" sub-nav-content-container panel-body" 
 				 layout-align="space-between stretch"
 				 layout-padding
 				 layout-margin>
-				
-				<p class="nfo">
-					Once loaded, you should see the newly loaded Krogoth Master View Controller appear in the 
-					navigation under: Lazy_Loader - Example_1 - LOADED DYNAMICALLY
-				</p>		
-				
-				<div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
 
-					<button ng-click="vm.stateGoToLazy()" class="btn btn-primary">Enter Dynamic State</button>
-					<label class="ui-label">
-						Go to hardcoded MVC, assuming that it's been loaded.
-					</label>
-				</div>
 				
-				<div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
-					
-					<button ng-click="vm.initLazyModule()" class="btn btn-default">Load Module Dynamically</button>
-					<label class="ui-label">
-						Load a hardcoded MVC
-					</label>
-					
-				</div>
+				
+				
+				
+				<!--   API CALL 1   -->
+				<p class="nfo">
+					RESTful Forms
+				</p>		
 				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
-					<md-divider>
+					<input type="text" placeholder="uid" ng-model="vm.input_uid"/>
+				</div>	
+				<div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
+					<button ng-click="vm.getKGDataByUID()" class="btn btn-default">GET GenericKGData</button>
+					<label class="ui-label">
+						Get one Generic KGData by it's unique identifier "uid"
+					</label>
+				</div>
+				<div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
+					<pre>
+						{{ vm.singleKGData }}
+					</pre>
+				</div>
+				<!-- / API CALL 1 / -->
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!--   MVC RELOADER   -->
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<md-divider></md-divider>
 				</div>
 				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
 					<input type="text" placeholder="Unique Name For New MVC" ng-model="vm.lazyToken"/>
 				</div>				
 				<div layout-padding layout-margin class="custom-menu" layout-align="space-between stretch">
-					
-					<button  ng-click="vm.initTokenizedLazyModule()" class="btn btn-capsule">Load Tokenized Lazy MVC</button>
-					<label class="ui-label">
-						Load Custom MVC
-					</label>
-					
-				</div>
-				<div layout-padding layout-margin class="custom-menu" layout-align="space-between stretch">
-					<button  ng-click="vm.initAndGo()" class="btn btn-modern">Load Tokenized Then Redirect</button>
+					<button  ng-click="vm.initAndGo()" class="btn btn-modern">Reload Page</button>
 					<label class="ui-label">
 						Load Custom MVC Then Open
 					</label>
-
 				</div>				
-				
-				
 				<ak-main layout-padding layout-margin>
 
 				</ak-main>
+				<!-- / MVC RELOADER / -->
+				
+				
+				
 			</div>			
 
 			

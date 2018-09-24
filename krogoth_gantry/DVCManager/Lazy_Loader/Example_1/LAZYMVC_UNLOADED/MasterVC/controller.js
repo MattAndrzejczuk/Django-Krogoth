@@ -2,75 +2,32 @@
     'use strict';
     angular.module('app.FUSE_APP_NAME').controller('FUSE_APP_NAMEController', FUSE_APP_NAMEController);
 
-    function FUSE_APP_NAMEController($log, $state, $ocLazyLoad, $scope) {
+    function FUSE_APP_NAMEController($log, $state, $ocLazyLoad, $scope, $http, $q, $timeout) {
         var vm = this;
         vm.$onInit = onInit;
         vm.viewName = 'FUSE_APP_NAME';
-        vm.viewDidLoad = viewDidLoad;
 
-        vm.initLazyModule = initLazyModule;
-        vm.stateGoToLazy = stateGoToLazy;
-
-
-        vm.initTokenizedLazyModule = initTokenizedLazyModule;
-        vm.initAndGo = initAndGo;
-        vm.redirectAfterLoading = redirectAfterLoading;
-
-        vm.unloadedMasterName = "LAZYMVC_UNLOADED";
-        vm.moduleTokenPrefix = "app." + vm.unloadedMasterName;
-
-        vm.redirectEnabled = false;
-        vm.log = log;
+        vm.REST_GenericKGData_GetOneOrCreate = "/moho_extractor/GenericKGData_GetOneOrCreate/?uid=";
 
 
 
-        function onInit() {
-            console.log('FUSE_APP_NAME did finish loading');
-            vm.viewDidLoad();
+        function getDjangularMasterViewControllers() {
+            var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: vm.REST_GenericKGData_GetOneOrCreate + vm.input_uid
+            }).then(function successCallback(response) {
+                /// Success
+                deferred.resolve(response.data);
+            }, function errorCallback(response) {
+                /// Fail
+                deferred.reject(response);
+            });
+            return deferred.promise;
         }
 
-        function viewDidLoad() {
-            $('<p>Newly Loaded Dynamic Master View Controllers Will Appear Below.</p><br>').appendTo('ak-main');
-        }
+        # lazyLoadableComponents
 
-        function initLazyModule() {
-            $ocLazyLoad.load('/krogoth_gantry/DynamicJavaScriptInjector/?name=' + vm.unloadedMasterName + '&ov=file.js');
-            vm.log(vm.unloadedMasterName);
-        }
-
-        function initTokenizedLazyModule() {
-            vm.redirectEnabled = false;
-            $ocLazyLoad.load('/krogoth_gantry/DynamicJavaScriptInjector/?name=' + vm.unloadedMasterName + '&lazy=' + vm.lazyToken + '&ov=file.js');
-            vm.log(vm.lazyToken);
-        }
-
-        function initAndGo() {
-            vm.redirectEnabled = true;
-            $ocLazyLoad.load('/krogoth_gantry/DynamicJavaScriptInjector/?name=' + vm.unloadedMasterName + '&lazy=' + vm.lazyToken + '&ov=file.js');
-            $state.go('app.' + vm.unloadedMasterName + vm.lazyToken);
-        }
-
-        $scope.$on('ocLazyLoad.moduleLoaded', function(e, module) {
-            const validAutoRedirect = vm.moduleTokenPrefix + vm.lazyToken;
-            if (validAutoRedirect === module.toString()) {
-                vm.redirectAfterLoading(validAutoRedirect);
-            }
-        });
-
-        function redirectAfterLoading(validAutoRedirect) {
-            if (vm.redirectEnabled)
-                $state.go(validAutoRedirect);
-        }
-
-        function stateGoToLazy() {
-            $state.go('app.' + vm.unloadedMasterName);
-        }
-
-
-
-        function log(info) {
-            $('<p>Loaded: ' + info + '.</p><br>').appendTo('ak-main');
-        }
     }
 })();
 

@@ -83,6 +83,7 @@ class IncludedHtmlCoreViewSet(viewsets.ModelViewSet):
 
 
 
+
 class NgIncludedHtmlView(APIView):
     #authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)

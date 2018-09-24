@@ -3,6 +3,8 @@ import jsbeautifier
 from polymorphic.models import PolymorphicModel
 # Create your models here.
 from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryCategory
+from django.contrib.postgres.fields import JSONField
+
 
 
 class NgIncludedHtml(PolymorphicModel):
@@ -83,16 +85,11 @@ class IncludedJsMaster(NgIncludedJs):
 
 
 
-# class ReadyForFileSystemFrontend(models.Model):
-#     """Anything saved from the Web IDE needs to be recorded.
-#
-#     Helps speed up backupdvc a bit and more importantly, reminds you
-#     save the Database copy permanently to the filesystem.
-#     """
-# modified_time = models.DateTimeField(auto_now_add=True)
-# absolute_path = models.CharField(primary_key=True,
-#                                  max_length=279,
-#                                  default="/usr/src/app/")
-# title = models.CharField(max_length=279)
-# name = models.CharField(max_length=279)
-# is_unsaved = models.BooleanField(default=True)
+
+class GenericKGData(models.Model):
+    uid = models.CharField(max_length=150, unique=True)
+    category_one = models.CharField(max_length=150, default="GENERIC")
+    category_two = models.CharField(max_length=150, default="GENERIC")
+    date_created = models.DateTimeField(auto_now_add=True)
+    header = JSONField()
+    contents = JSONField()
