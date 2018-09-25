@@ -50,11 +50,12 @@ CCD = {
 from jawn.settings import DEBUG
 def krogoth_debug(msg):
     if DEBUG == True:
-        try:
-            print(CCD[4] + '[MohoExtractor]' + CCD[0], end=CCD[10] + " >>> " + CCD[0])
-            print(str(msg), end="\n")
-        except:
-            pass
+        pass
+        # try:
+        #     print(CCD[4] + '[MohoExtractor]' + CCD[0], end=CCD[10] + " >>> " + CCD[0])
+        #     print(str(msg), end="\n")
+        # except:
+        #     pass
 
 
 class IncludedHtmlMasterViewSet(viewsets.ModelViewSet):

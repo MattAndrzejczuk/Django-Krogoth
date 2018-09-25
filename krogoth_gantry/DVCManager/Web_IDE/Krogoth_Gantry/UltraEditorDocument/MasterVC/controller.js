@@ -104,6 +104,27 @@
         vm.loadingIDE = true;
         vm.aeroMode = true;
 
+        vm.buttonCoolingDownWallpaper = false;
+        vm.startCoolDownWallpaper = startCoolDownWallpaper;
+
+
+        function startCoolDownWallpaper() {
+            vm.buttonCoolingDownWallpaper = true;
+            $timeout(function() {
+                vm.buttonCoolingDownWallpaper = false;
+            }, 900);
+        }
+
+        function changeBgWallpaper() {
+            if (vm.buttonCoolingDownWallpaper === false) {
+                vm.startCoolDownWallpaper();
+                if (vm.bg_image === 9) {
+                    vm.bg_image = 1;
+                } else {
+                    ++vm.bg_image;
+                }
+            }
+        }
 
         /// I.
         function onInit() {
@@ -696,13 +717,7 @@
         }
 
 
-        function changeBgWallpaper() {
-            if (vm.bg_image === 9) {
-                vm.bg_image = 1;
-            } else {
-                ++vm.bg_image;
-            }
-        }
+
 
         vm.sendWSMessageWithAction = sendWSMessageWithAction;
 
@@ -821,6 +836,9 @@
 
 
         vm.dumpJsonTreeData = dumpJsonTreeData;
+
+        /* - - - - - */
+
 
         function dumpJsonTreeData() {
             $log.log(" 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 🍊 TREE DATA OBJECT: ");

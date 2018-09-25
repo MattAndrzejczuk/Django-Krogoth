@@ -1,3 +1,5 @@
+"""
+
 
 from django.core.management.base import BaseCommand
 
@@ -122,3 +124,5 @@ class Command(BaseCommand):
             print("show_repo_1")
             # print("diss_repo_1")
             pass
+"""
+

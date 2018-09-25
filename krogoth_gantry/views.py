@@ -112,7 +112,6 @@ class DynamicHTMLInjector(APIView):
     # authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
     def get(self, request, format=None):
-        print('🧡🧡🧡🧡🧡🧡🧡🧡🧡🧡️')
         name = request.GET['name']
         application = KrogothGantryMasterViewController.objects.get(name=name)
 
@@ -173,7 +172,7 @@ class krogoth_gantryModelForm(APIView):
         json_dict = json.loads(serialized_obj)
         finalResponse = ''
         i = 0
-        print('️💚💚💚💚💚💚💚💚💚💚')
+
         for key, value in json_dict[0]['fields'].items():
 
             filterCategory = 'ng-hide="filter.cbOther === false"'

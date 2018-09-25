@@ -89,8 +89,8 @@ urlpatterns = [
     url(r'^api/', include('kbot_lab.urls')),
     url(r'^kbot_lab/', include('kbot_lab.urls')),
     url(r'^admin_a9k/', admin.site.urls),
-    url(r'^LazarusIV/', include('LazarusIV.urls')),
-    url(r'^LazarusV/', include('LazarusV.urls')),
+    #url(r'^LazarusIV/', include('LazarusIV.urls')),
+    #url(r'^LazarusV/', include('LazarusV.urls')),
 
     url(r'^moho_extractor/', include('moho_extractor.urls')),
     url(r'^krogoth_gantry/', include('krogoth_gantry.urls')),

@@ -45,8 +45,9 @@ def execute(cmd, always_display):
     # p = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     # out, err = p.communicate()
     os.system(cmd)
-    if OUTPUT_ENABLED == True or always_display == "NEEDED":
-        print(out.decode("utf-8"))
+    os.system('clear')
+    #if OUTPUT_ENABLED == True or always_display == "NEEDED":
+    #    print(out.decode("utf-8"))
     print(always_display)
 
 
@@ -59,13 +60,13 @@ db_args = "-e POSTGRES_USER=jawn -d -p 8091:5432 postgres"
 db_pw = "58bdf87d93a3f325574900aa2f5626e3844a903ffb64bed152ae124d2e79aab9"
 cmd = ("docker run --name armprime-postgres -e POSTGRES_PASSWORD="+db_pw+" "+ db_args)
 
-execute(cmd, bc.yellow + "DOCKER RUNNING Postgres" + bc.ENDC)
+execute(cmd, bc.yellow + cmd + bc.ENDC)
 cmd = ("docker run -d -p 7070:6379 --name=armprime-redis redis")
-execute(cmd, bc.yellow + "DOCKER RUNNING Redis" + bc.ENDC)
+execute(cmd, bc.yellow + cmd + bc.ENDC)
 cmd = ('docker run -d -p 80:80 -v "'+parent_dir+'":/usr/src/app/ --link armprime-postgres:postgres --link armprime-redis:redis --name=armprime mattjawn/armprime')
-execute(cmd, bc.yellow + "DOCKER RUNNING Django" + bc.ENDC)
+execute(cmd, bc.yellow + cmd + bc.ENDC)
 cmd = ('clear')
-execute(cmd, bc.yellow + "DOCKER RUNs finished " + bc.ENDC)
+execute(cmd, bc.yellow + cmd + bc.ENDC)
 
 
 # print(bc.pink + "INSTALLING KROGOTH: " + parent_dir + bc.ENDC)
@@ -73,10 +74,10 @@ execute(cmd, bc.yellow + "DOCKER RUNs finished " + bc.ENDC)
 
 cmd = ('docker exec -it armprime pip3 install django-redis==4.8.0')
 execute(cmd, bc.purple+"install django-redis"+bc.ENDC)
-cmd = ('docker exec -it armprime apt-get install -y -qq nodejs')
-execute(cmd, bc.purple+"nodejs"+bc.ENDC)
-cmd = ('docker exec -it armprime apt-get install -qq npm')
-execute(cmd, bc.purple+"npm"+bc.ENDC)
+# cmd = ('docker exec -it armprime apt-get install -y -qq nodejs')
+# execute(cmd, bc.purple+"nodejs"+bc.ENDC)
+# cmd = ('docker exec -it armprime apt-get install -qq npm')
+# execute(cmd, bc.purple+"npm"+bc.ENDC)
 cmd = ('sleep 1')
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
 cmd = ('docker exec armprime-redis redis-cli config set notify-keyspace-events KEA')

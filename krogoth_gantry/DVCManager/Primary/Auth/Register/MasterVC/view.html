@@ -1,4 +1,4 @@
-<div id="register-v2" layout="row" layout-align="start">
+<div id="register-v2" layout="row" layout-align="start" class="glass_bg">
     <div id="register-v2-intro" flex hide show-gt-sm>
         <div class="logo">
 			<span>
@@ -17,8 +17,8 @@
         </div>
     </div>
 
-    <div id="register-v2-form-wrapper" class="flex-scrollable md-blue-grey-900-bg" layout="column" flex ms-scroll>
-        <div id="register-v2-form" class="md-blue-grey-900-bg">
+    <div id="register-v2-form-wrapper" class="flex-scrollable glass_bg" layout="column" flex ms-scroll>
+        <div id="register-v2-form" class="md-background-bg">
 
 
             <div class="logo" hide-gt-sm>
@@ -36,7 +36,7 @@
             <form name="registerForm" novalidate>
                 <md-input-container class="md-block" md-no-float>
                     <label class="md-primary-fg md-hue-2">Username</label>
-                    <input name="username" ng-model="vm.form.username" class="md-accent-fg"
+                    <input name="username" ng-model="vm.form.username" class="md-accent-fg"  style="color:orange"
                            required ng-pattern="/^[a-zA-Z0-9]*$/">
                     <div ng-messages="registerForm.username.$error" role="alert">
                         <div ng-message="required">
@@ -50,7 +50,7 @@
 
                 <md-input-container class="md-block" md-no-float>
                     <label class="md-primary-fg md-hue-2">Email Address</label>
-                    <input type="email" name="email" ng-model="vm.form.email" class="md-accent-fg"
+                    <input type="email" name="email" ng-model="vm.form.email" class="md-accent-fg"  style="color:orange"
                            ng-pattern="/^.+@.+\..+$/" required>
                     <div ng-messages="registerForm.email.$error" role="alert" multiple>
                         <div ng-message="required">
@@ -64,7 +64,7 @@
 
                 <md-input-container class="md-block" md-no-float>
                     <label class="md-primary-fg md-hue-2">Password</label>
-                    <input type="password" name="password" ng-model="vm.form.password" class="md-accent-fg"
+                    <input type="password" name="password" ng-model="vm.form.password" class="md-accent-fg"  style="color:orange"
                            required>
                     <div ng-messages="registerForm.password.$error" role="alert">
                         <div ng-message="required">
@@ -75,7 +75,7 @@
 
                 <md-input-container class="md-block" md-no-float>
                     <label class="md-primary-fg md-hue-2">Password (Confirm)</label>
-                    <input type="password" name="passwordConfirm" ng-model="vm.form.passwordConfirm"
+                    <input type="password" name="passwordConfirm" ng-model="vm.form.passwordConfirm"  style="color:orange"
                            class="md-accent-fg"
                            required ng-pattern="\b{{vm.form.password}}\b">
                     <div ng-messages="registerForm.passwordConfirm.$error" role="alert">
@@ -111,4 +111,3 @@
         </div>
     </div>
 </div>
-
