@@ -1,32 +1,32 @@
 /* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
-  'use strict';
+	'use strict';
 
-  angular
-    .module('fuse')
-    .config(config);
+	angular
+		.module('fuse')
+		.config(config);
 
-  /** @ngInject */
-  function config() {
-    // Put your common app configurations here
+	/** @ngInject */
+	function config() {
+		// Put your common app configurations here
 
-    // uiGmapgoogle-maps configuration
-    //uiGmapGoogleMapApiProvider.configure({
-      //    key: 'your api key',
-    //  v: '3.exp',
-    //  libraries: 'weather,geometry,visualization'
-    //});
+		// uiGmapgoogle-maps configuration
+		//uiGmapGoogleMapApiProvider.configure({
+		//    key: 'your api key',
+		//  v: '3.exp',
+		//  libraries: 'weather,geometry,visualization'
+		//});
 
-    // angular-translate configuration
-	  /*
+		// angular-translate configuration
+		/*
     $translateProvider.useLoader('$translatePartialLoader', {
       urlTemplate: '{part}/i18n/{lang}.json'
     });
     $translateProvider.preferredLanguage('en');
     $translateProvider.useSanitizeValueStrategy('sanitize');
 */
-    // Text Angular options
-	  /*
+		// Text Angular options
+		/*
     $provide.decorator('taOptions', [
       '$delegate', function (taOptions) {
         taOptions.toolbar = [
@@ -75,6 +75,6 @@
       }
     ]);
 	  */
-  }
+	}
 
 })();

@@ -1,35 +1,35 @@
 /* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
-  'use strict';
+	'use strict';
 
-  angular
-    .module('app.core')
-    .config(config);
+	angular
+		.module('app.core')
+		.config(config);
 
-  /** @ngInject */
-  function config($ariaProvider, $logProvider, msScrollConfigProvider, fuseConfigProvider) {
-    // Enable debug logging
-    $logProvider.debugEnabled(true);
+	/** @ngInject */
+	function config($ariaProvider, $logProvider, msScrollConfigProvider, fuseConfigProvider) {
+		// Enable debug logging
+		$logProvider.debugEnabled(true);
 
-    /*eslint-disable */
+		/*eslint-disable */
 
-    // ng-aria configuration
-    $ariaProvider.config({
-      tabindex: false
-    });
+		// ng-aria configuration
+		$ariaProvider.config({
+			tabindex: false
+		});
 
-    // Fuse theme configurations
-    fuseConfigProvider.config({
-      'disableCustomScrollbars': false,
-      'disableCustomScrollbarsOnMobile': true,
-      'disableMdInkRippleOnMobile': true
-    });
+		// Fuse theme configurations
+		fuseConfigProvider.config({
+			'disableCustomScrollbars': false,
+			'disableCustomScrollbarsOnMobile': false,
+			'disableMdInkRippleOnMobile': false
+		});
 
-    // msScroll configuration
-    msScrollConfigProvider.config({
-      wheelPropagation: true
-    });
+		// msScroll configuration
+		msScrollConfigProvider.config({
+			wheelPropagation: true
+		});
 
-    /*eslint-enable */
-  }
+		/*eslint-enable */
+	}
 })();

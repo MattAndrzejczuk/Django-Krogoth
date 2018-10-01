@@ -1,35 +1,35 @@
 /* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('fuse')
-        .factory('api', apiService);
+	angular
+		.module('fuse')
+		.factory('api', apiService);
 
-    /** @ngInject */
-    function apiService($resource) {
+	/** @ngInject */
+	function apiService($resource) {
 
 
-        var api = {};
+		var api = {};
 
-        // Base Url
-        api.baseUrl = 'app/data/';
+		// Base Url
+		api.baseUrl = 'app/data/';
 
-        api.example = {
-            list: $resource('/LazarusIV/ContentSubmission/NotificationItemViewSet/'),
-            getById: $resource('/LazarusIV/ContentSubmission/NotificationItemViewSet/:id', {id: '@id'})
-        };
+		api.example = {
+			list: $resource('/LazarusIV/ContentSubmission/NotificationItemViewSet/'),
+			getById: $resource('/LazarusIV/ContentSubmission/NotificationItemViewSet/:id', {id: '@id'})
+		};
 
 		api.exampleOneAKRESTfulFruit = {
-            list: $resource('/api/__ExamplesFruit/'),
-            getById: $resource('/api/__ExamplesFruit/:id', {id: '@id'})
-        };
+			list: $resource('/api/__ExamplesFruit/'),
+			getById: $resource('/api/__ExamplesFruit/:id', {id: '@id'})
+		};
 
 		api.blog = {
 			list: $resource('/api/__ExamplesFruit/')
 		}
 
-        /**
+		/**
          * You can use this service to define your API urls. The "api" service
          * is designed to work in parallel with "apiResolver" service which you can
          * find in the "app/core/services/api-resolver.service.js" file.
@@ -196,14 +196,14 @@
          */
 
 
-        /**
+		/**
          * Here you can find all the definitions that the Demo Project requires
          *
          * If you wish to use this method, you can create your API definitions
          * in a similar way.
          */
 
-        /*
+		/*
          api.dashboard = {
          project  : $resource(api.baseUrl + 'dashboard/project/data.json'),
          server   : $resource(api.baseUrl + 'dashboard/server/data.json'),
@@ -268,7 +268,7 @@
 
          */
 
-        return api;
-    }
+		return api;
+	}
 
 })();

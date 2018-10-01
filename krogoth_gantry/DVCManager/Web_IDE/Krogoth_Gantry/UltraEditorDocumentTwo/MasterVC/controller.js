@@ -84,36 +84,51 @@ save changes to filesystem using URL:
                 .then(function(nodesForTree) {
 
                     vm.treeData[0].nodes = nodesForTree;
+                    vm.treeData[1].nodes = AKClassEditorComponentClone01.html_nodes;
+
+                    AKClassEditorComponentClone01.loadHTMLCoreList()
+                        .then(function(htmlNodes) {
+
+                            vm.loadOSXDoc(function() {
+                                var audio = new Audio("/static/gui_sfx/kg_startup.wav");
+                                audio.load();
+                                audio.oncanplay = function() {
+                                    audio.play();
+                                    $log.log("\n AUDIO CAN PLAY \n");
+                                };
+                                audio.onended = function() {
+                                    $log.log("\n AUDIO ENDED \n");
+                                };
+                            });
+
+
+
+                        });
+
+
                     //vm.treeData[1].nodes = nodesForTree_set2;
 
-                    vm.getKrogothCorePartsSet2();
+
 
                 });
         }
 
         function getKrogothCorePartsSet2() {
+
             $log.log("\n 🔵 getKrogothCorePartsSet2() \n");
             AKClassEditorComponentClone01.loadKrogothCoreList()
                 .then(function(nodesForTree) {
 
-                    vm.treeData[1].nodes = nodesForTree;
+                    vm.treeData[0].nodes = nodesForTree;
                     //vm.treeData[1].nodes = nodesForTree_set2;
 
                     vm.loadOSXDoc(function() {
 
-                        var audio = new Audio("/static/gui_sfx/kg_startup.wav");
-                        audio.load();
-                        audio.oncanplay = function() {
-                            audio.play();
-                            $log.log("\n AUDIO CAN PLAY \n");
-                        };
-                        audio.onended = function() {
-                            $log.log("\n AUDIO ENDED \n");
-                        };
 
                     });
 
                 });
+
         }
 
         vm.cleanedOnce = false;
@@ -122,6 +137,10 @@ save changes to filesystem using URL:
             vm.cleanedOnce = false;
             $log.log("\n 🔵 loadFileIntoEditor( \n");
             $log.info("EDITOR IS CLEAN: " + vm.editorModel.doc.isClean());
+
+            $log.info("vm.srcHolder: ");
+            $log.log(vm.srcHolder);
+
             vm.unsavedChangesExist = -1;
             vm.loadedIndex = index;
             vm.loadedParentIndex = parentIndex;
@@ -150,9 +169,25 @@ save changes to filesystem using URL:
                 vm.setThemeBasedOnClass(_class);
             }
             vm.editorModel.doc.markClean();
-
+            vm.markAllAsUnloaded();
             vm.playSFX("beep_new_line_data");
+            vm.treeData[parentIndex].nodes[index].isLoaded = true;
         }
+
+        vm.markAllAsUnloaded = markAllAsUnloaded;
+
+        function markAllAsUnloaded() {
+            $log.info("NOW MARKING ALL AS UNLOADED!!!");
+            angular.forEach(vm.treeData, function(parentNode) {
+                $log.info("vm.treeData");
+                angular.forEach(parentNode.nodes, function(node) {
+                    $log.info("UNLOADING...");
+                    node.isLoaded = false;
+                });
+            });
+        }
+
+
 
         function setThemeBasedOnClass(_class) {
             $log.log("\n 🔵 setThemeBasedOnClass( \n");
@@ -189,39 +224,78 @@ save changes to filesystem using URL:
             const srcTitle = "_" + node.title;
             const key = srcCodeKey + srcTitle;
 
-            SaveToSQLClone01.saveDocument(node, vm.srcHolder[parseInt(vm.srcMap[key])])
-                .then(function(savedWork) {
+            if (parentIndex === 1) {
+                ///saveHtmlCore	
+                SaveToSQLClone01.saveHtmlCore(node, vm.srcHolder[parseInt(vm.srcMap[key])])
+                    .then(function(savedWork) {
 
-                    var pi = node.parentIndex;
-                    var ni = node.index;
+                        var pi = node.parentIndex;
+                        var ni = node.index;
 
 
-                    vm.loadedParentIndex = pi;
-                    vm.loadedIndex = ni;
-                    var key = vm.treeData[pi].nodes[ni].sourceKey;
-                    $log.info(key);
-                    $log.info("HERE's OUR SAVED WORK: ");
-                    $log.info(savedWork[key]);
+                        vm.loadedParentIndex = pi;
+                        vm.loadedIndex = ni;
+                        var key = vm.treeData[pi].nodes[ni].sourceKey;
+                        $log.info(key);
+                        $log.info("HERE's OUR SAVED WORK: ");
+                        $log.info(savedWork[key]);
 
-                    if (savedWork[key]) {
-                        vm.treeData[pi].nodes[ni].sourceCode = savedWork.sourceCode;
-                    } else if (key === "contents") {
-                        vm.treeData[pi].nodes[ni].sourceCode = savedWork;
-                    } else {
+                        if (savedWork[key]) {
+                            vm.treeData[pi].nodes[ni].sourceCode = savedWork.sourceCode;
+                        } else if (key === "contents") {
+                            vm.treeData[pi].nodes[ni].sourceCode = savedWork;
+                        } else {
 
-                    }
-                    ///vm.loadFileIntoEditor(pi, ni, node);
-                    vm.treeData[pi].nodes[ni].hasUnsavedChanges = false;
-                    vm.unsavedChangesExist = -1;
-                    vm.setBrowserTabEditMode(false);
-                    vm.playSFX("info_alert");
-                    $mdToast.show(
-                        $mdToast.simple()
-                        .textContent('Document Saved.')
-                        .position('top right')
-                        .hideDelay(3000)
-                    );
-                });
+                        }
+                        ///vm.loadFileIntoEditor(pi, ni, node);
+                        vm.treeData[pi].nodes[ni].hasUnsavedChanges = false;
+                        vm.unsavedChangesExist = -1;
+                        vm.setBrowserTabEditMode(false);
+                        vm.playSFX("info_alert");
+                        $mdToast.show(
+                            $mdToast.simple()
+                            .textContent('Document Saved.')
+                            .position('top right')
+                            .hideDelay(3000)
+                        );
+                    });
+            } else {
+                SaveToSQLClone01.saveDocument(node, vm.srcHolder[parseInt(vm.srcMap[key])])
+                    .then(function(savedWork) {
+
+                        var pi = node.parentIndex;
+                        var ni = node.index;
+
+
+                        vm.loadedParentIndex = pi;
+                        vm.loadedIndex = ni;
+                        var key = vm.treeData[pi].nodes[ni].sourceKey;
+                        $log.info(key);
+                        $log.info("HERE's OUR SAVED WORK: ");
+                        $log.info(savedWork[key]);
+
+                        if (savedWork[key]) {
+                            vm.treeData[pi].nodes[ni].sourceCode = savedWork.sourceCode;
+                        } else if (key === "contents") {
+                            vm.treeData[pi].nodes[ni].sourceCode = savedWork;
+                        } else {
+
+                        }
+                        ///vm.loadFileIntoEditor(pi, ni, node);
+                        vm.treeData[pi].nodes[ni].hasUnsavedChanges = false;
+                        vm.unsavedChangesExist = -1;
+                        vm.setBrowserTabEditMode(false);
+                        vm.playSFX("info_alert");
+                        $mdToast.show(
+                            $mdToast.simple()
+                            .textContent('Document Saved.')
+                            .position('top right')
+                            .hideDelay(3000)
+                        );
+                    });
+            }
+
+
         }
 
 

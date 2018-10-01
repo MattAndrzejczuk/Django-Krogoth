@@ -10,6 +10,7 @@
 
         var service = {
             saveDocument: saveDocument,
+            saveHtmlCore: saveHtmlCore,
             getRESTfulModelName: getRESTfulModelName,
             addSiblingToMaster: addSiblingToMaster,
             createNew: createNew,
@@ -20,6 +21,7 @@
             var payload = {
                 code: newCode
             };
+            $log.info("PATCH ~> " + treeData.RESTfulURI);
             if (treeData.parentIndex === 0)
                 payload["custom_key_values"] = service.masterMetaData;
             $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
@@ -44,6 +46,39 @@
             });
             return deferred.promise;
         }
+
+        function saveHtmlCore(treeData, newCode) {
+            var payload = {
+                contents: newCode
+            };
+            $log.info("PATCH ~> " + treeData.RESTfulURI);
+            if (treeData.parentIndex === 0)
+                payload["custom_key_values"] = service.masterMetaData;
+            $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+            $log.log("    PATCH");
+            $log.log("    " + treeData.RESTfulURI);
+            $log.log(payload);
+            $log.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+            ///payload[treeData.sourceKey] = newCode;
+            var deferred = $q.defer();
+            $http({
+                method: 'PATCH',
+                data: payload,
+                url: treeData.RESTfulURI
+            }).then(function successCallback(response) {
+                /// Success
+                $log.info(" 💾 Work has been saved 💾 ");
+                $log.log(response.data);
+                deferred.resolve(response.data);
+            }, function errorCallback(response) {
+                /// Fail
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+
+
+
 
         function getRESTfulModelName(usingName) {
             /*
