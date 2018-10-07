@@ -9,6 +9,8 @@
         vm.viewDidLoad = viewDidLoad;
 
         vm.initLazyModule = initLazyModule;
+        vm.initLazyCanvasDemoModule = initLazyCanvasDemoModule;
+
         vm.initTokenizedLazyModule = initTokenizedLazyModule;
         vm.stateGoToLazy = stateGoToLazy;
         vm.initAndGo = initAndGo;
@@ -32,6 +34,11 @@
         function initLazyModule() {
             $ocLazyLoad.load('/krogoth_gantry/DynamicJavaScriptInjector/?name=' + vm.unloadedMasterName + '&ov=file.js');
             vm.log(vm.unloadedMasterName);
+        }
+
+        function initLazyCanvasDemoModule() {
+            const dvc_name = "HTML_To_Canvas";
+            $ocLazyLoad.load('/krogoth_gantry/DynamicJavaScriptInjector/?name=' + dvc_name + '&ov=file.js');
         }
 
         function initTokenizedLazyModule() {

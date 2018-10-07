@@ -20,7 +20,7 @@
 			Change Editor Background Wallpaper
 		</md-tooltip>
 	</button>	
-	
+
 	<button class="toolbar-button"
 			layout-wrap 
 			style="padding:0px; height:20px; width:20px"
@@ -31,7 +31,7 @@
 			dump json of tree data
 		</md-tooltip>
 	</button>
-	
+
 	<button class="toolbar-button"
 			layout-wrap 
 			style="padding:0px; height:20px; width:20px"
@@ -42,7 +42,7 @@
 			save current scroll position
 		</md-tooltip>
 	</button>
-	
+
 	<button class="toolbar-button"
 			layout-wrap 
 			style="padding:0px; height:20px; width:20px"
@@ -55,11 +55,83 @@
 	</button>
 </div>
 
- 
+
 <div class="panel" layout-margin ng-if="vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title">
 	<span>
-	{{vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title | limitTo: 20}} : 
-		
+		{{vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title | limitTo: 20}} : 
+
 		{{ vm.scrollTopsSaved[vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex].title] | limitTo: 20}}
 	</span> 
+</div>
+
+
+<md-input-container>
+	<label>{{vm.codeFont}}</label>
+	<md-select ng-model="vm.codeFont" ng-click="vm.reloadSavedFonts()">
+		<md-option ng-repeat="opt in vm.uniqueArray">{{opt}}</md-option>
+	</md-select>
+</md-input-container>
+
+<md-input-container>
+	<label>{{vm.size}} Font Size</label>
+	<md-select ng-model="vm.size" ng-click="vm.reloadSavedFonts()">
+		<md-option ng-repeat="opt in vm.sizes">{{opt}}</md-option>
+	</md-select>
+</md-input-container>
+
+
+<div ng-if="vm.size === '1'">
+.CodeMirror-code {
+font-size: 9px !important;
+}
+</div>
+<div ng-if="vm.size === '2'">
+.CodeMirror-code {
+font-size: 10px !important;
+}
+</div>
+<div ng-if="vm.size === '3'">
+.CodeMirror-code {
+font-size: 11px !important;
+}
+</div>
+<div ng-if="vm.size === '4'">
+.CodeMirror-code {
+font-size: 12px !important;
+}
+</div>
+<div ng-if="vm.size === 5">
+.CodeMirror-code {
+font-size: 13px !important;
+}
+</div>
+<div ng-if="vm.size === 6">
+.CodeMirror-code {
+font-size: 14px !important;
+}
+</div>
+<div ng-if="vm.size === 7">
+.CodeMirror-code {
+font-size: 15px !important;
+}
+</div>
+<div ng-if="vm.size === 8">
+.CodeMirror-code {
+font-size: 16px !important;
+}
+</div>
+<div ng-if="vm.size === 9">
+.CodeMirror-code {
+font-size: 17px !important;
+}
+</div>
+<div ng-if="vm.size === 10">
+.CodeMirror-code {
+font-size: 18px !important;
+}
+</div>
+<div ng-if="vm.size === 11">
+.CodeMirror-code {
+font-size: 19px !important;
+}
 </div>

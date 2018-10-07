@@ -14,7 +14,8 @@
             highlightedStrings: [],
             positionsOfHighlighted: [],
             playHighlightSfx: new Audio("/static/gui_sfx/kg_gui-11.wav"),
-            playDeHighlightSfx: new Audio("/static/gui_sfx/kg_gui-10.wav")
+            playDeHighlightSfx: new Audio("/static/gui_sfx/kg_gui-10.wav"),
+            establishedStyle: "border-radius: 1px; border: 1px solid rgba(0, 255, 80, 0.99);"
         };
 
 
@@ -216,6 +217,7 @@
                 positionOfHighlighted: service.positionsOfHighlighted
             };
             service.highlightedStrings = [];
+            service.positionsOfHighlighted = [];
             deferred.resolve(results);
             return deferred.promise;
         }

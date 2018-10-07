@@ -32,7 +32,7 @@
             });
 			*/
 
-            stopTime = $interval(updateTime, 6000);
+            stopTime = $interval(updateTime, 3000);
 
             // listen on DOM destroy (removal) event, and cancel the next UI update
             // to prevent updating time after the DOM element was removed.
@@ -40,8 +40,6 @@
                 $interval.cancel(stopTime);
             });
         }
-
-
 
 
 

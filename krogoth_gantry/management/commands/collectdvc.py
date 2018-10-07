@@ -44,12 +44,7 @@ class Command(BaseCommand):
         i = 0
         for gantry in gantry_catagories:
             i += 1
-
             if gantry[0] != '.' and gantry != 'MiscDVC':
-
-                # catagory = gantry
-
-
                 cat_host_obj = cat
                 cats_exist = KrogothGantryCategory.objects.filter(name=gantry)
                 if len(cats_exist) < 1:
@@ -58,7 +53,6 @@ class Command(BaseCommand):
                                                          title=gantry.replace('_',' '),
                                                          icon=star[0])
                     cat_host_obj.save()
-
 
                 krogoth_subcats = os.listdir('krogoth_gantry/DVCManager/' + gantry)
                 for subcats in krogoth_subcats:
@@ -81,17 +75,9 @@ class Command(BaseCommand):
                                                             icon=star2[0], parent=cat_host_obj)
                         cat_sub_obj.save()
 
-
-                    # make icon from code
-
-
-
-
-
                     djangular_dvcs = os.listdir('krogoth_gantry/DVCManager/' + gantry + '/' + subcats)
                     num_weight = 5
                     for dvc in djangular_dvcs:
-
                         if dvc[0] == '.':
                             continue
                         elif dvc[-4:].lower() == 'json':

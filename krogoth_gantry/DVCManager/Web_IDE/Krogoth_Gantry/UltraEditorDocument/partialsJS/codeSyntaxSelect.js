@@ -1,0 +1,252 @@
+vm.codeIDEStyle = [
+	'JMH Typewriter mono', 
+	'CamingoCode', 
+	'NK57 Monospace Cd Bk', 
+	'NK57 Monospace Ex Sb', 
+	'Liberation Mono', 
+	'CamingoCode', 
+	'NK57 Monospace Se Lt', 
+	'FreeSans', 
+	'NK57 Monospace Ex Lt', 
+	'JMH Typewriter mono', 
+	'JMH Typewriter mono Fine Under', 
+	'NK57 Monospace Sc Lt', 
+	'NK57 Monospace Cd Sb', 
+	'NK57 Monospace Ex Lt', 
+	'CamingoCode', 
+	'NK57 Monospace Sc Bk', 
+	'CamingoCode', 
+	'JMH Typewriter mono Over', 
+	'Bitstream Vera Sans Mono', 
+	'HydrogenType', 
+	'NK57 Monospace Bk', 
+	'NK57 Monospace Sc Sb', 
+	'Liberation Mono', 
+	'JMH Typewriter mono Fine Cross', 
+	'Sometype Mono', 
+	'NK57 Monospace Se Rg', 
+	'BPmono', 
+	'JMH Typewriter mono Over', 
+	'Hack', 
+	'Fira Mono', 
+	'JMH Typewriter mono Under', 
+	'Bitstream Vera Sans Mono', 
+	'BPmono', 
+	'NK57 Monospace Se Sb', 
+	'JMH Typewriter mono Fine Under', 
+	'JMH Typewriter mono Fine', 
+	'CamingoCode', 
+	'NK57 Monospace Cd Eb', 
+	'NK57 Monospace Se Eb', 
+	'NK57 Monospace Ex Bk', 
+	'NK57 Monospace Eb', 
+	'NK57 Monospace Se Rg', 
+	'NK57 Monospace Lt', 
+	'Anonymous', 
+	'Digital-7 Mono', 
+	'FreeMono', 
+	'JMH Typewriter mono Black Under', 
+	'JMH Typewriter mono Black Over', 
+	'JMH Typewriter mono', 
+	'Fira Mono', 
+	'NK57 Monospace Ex Rg', 
+	'Inconsolata', 
+	'JMH Typewriter mono Cross', 
+	'NK57 Monospace Cd Eb', 
+	'NK57 Monospace Se Rg', 
+	'JMH Typewriter mono Black Over', 
+	'NK57 Monospace Rg', 
+	'Bitstream Vera Sans Mono', 
+	'NK57 Monospace Cd Lt', 
+	'NK57 Monospace Se Lt', 
+	'FreeSerif', 
+	'Digital-7 Mono', 
+	'Share Tech Mono', 
+	'NK57 Monospace Ex Rg', 
+	'Unispace', 
+	'Bitstream Vera Sans Mono', 
+	'Unispace', 
+	'NK57 Monospace Ex Eb', 
+	'NK57 Monospace Sc Rg', 
+	'BPmono', 
+	'NK57 Monospace Se Eb', 
+	'NK57 Monospace Sc Eb', 
+	'FreeMono', 
+	'JMH Typewriter mono Over', 
+	'NovaMono', 
+	'NK57 Monospace Sc Rg', 
+	'Liberation Mono', 
+	'JMH Typewriter mono Fine Over', 
+	'Hack', 
+	'JMH Typewriter mono Cross', 
+	'NinePin', 
+	'Sometype Mono', 
+	'NK57 Monospace Lt', 
+	'Courier Prime Code', 
+	'JMH Typewriter mono Black Under', 
+	'Bitstream Vera Sans Mono', 
+	'NK57 Monospace Se Rg', 
+	'BPmono', 
+	'JMH Typewriter mono Fine Over', 
+	'Bitstream Vera Sans Mono', 
+	'FreeSans', 
+	'NK57 Monospace Cd Rg', 
+	'Anonymous Pro', 
+	'Bitstream Vera Sans Mono', 
+	'JMH Typewriter mono Under', 
+	'JMH Typewriter mono', 
+	'Hack', 
+	'BPmonoStencil', 
+	'CamingoCode', 
+	'Liberation Mono', 
+	'BPmono', 
+	'FreeSans', 
+	'NK57 Monospace Se Bk', 
+	'Sometype Mono', 
+	'CamingoCode', 
+	'Courier Prime Code', 
+	'NK57 Monospace Sc Sb', 
+	'BPmono', 
+	'NK57 Monospace Sc Bk', 
+	'Inconsolata', 
+	'NK57 Monospace Bk', 
+	'NK57 Monospace Se Sb', 
+	'NK57 Monospace Cd Rg', 
+	'NK57 Monospace Ex Eb', 
+	'JMH Typewriter mono Cross', 
+	'Hack', 
+	'Digital-7', 
+	'JMH Typewriter mono Fine', 
+	'JMH Typewriter mono Black Cross', 
+	'NK57 Monospace Sb', 
+	'Bitstream Vera Sans Mono', 
+	'JMH Typewriter mono Under', 
+	'NK57 Monospace Se Bk', 
+	'NK57 Monospace Ex Rg', 
+	'JMH Typewriter mono', 
+	'Fira Mono', 
+	'JMH Typewriter mono Black Cross', 
+	'Droid Sans Mono', 
+	'JMH Typewriter mono Under', 
+	'Unispace', 
+	'JMH Typewriter mono', 
+	'Ubuntu Mono', 
+	'FreeSerif', 
+	'Larabiefont Rg', 
+	'NK57 Monospace Sc Rg', 
+	'Anonymous Pro', 
+	'Sometype Mono', 
+	'FreeSerif', 
+	'NK57 Monospace Cd Sb', 
+	'NK57 Monospace Cd Rg', 
+	'CamingoCode', 
+	'Sometype Mono', 
+	'FreeSerif', 
+	'JMH Typewriter mono Over', 
+	'NK57 Monospace Ex Bk', 
+	'NK57 Monospace Eb', 
+	'Sometype Mono', 
+	'NK57 Monospace Cd Lt', 
+	'Anonymous Pro', 
+	'NK57 Monospace Sc Eb', 
+	'Ubuntu Mono', 
+	'Unispace', 
+	'NK57 Monospace Sb', 
+	'NK57 Monospace Rg', 
+	'NK57 Monospace Rg', 
+	'NK57 Monospace Rg', 
+	'NK57 Monospace Cd Rg', 
+	'Digital-7', 
+	'NK57 Monospace Sc Lt', 
+	'JMH Typewriter mono Cross', 
+	'NK57 Monospace Ex Rg', 
+	'NK57 Monospace Sc Rg', 
+	'Ubuntu Mono', 
+	'NK57 Monospace Ex Sb', 
+	'NK57 Monospace Cd Bk', 
+	'JMH Typewriter mono Fine Cross', 
+	'Ubuntu Mono', 
+	'FreeMono', 
+	'FreeSans', 
+	'Source Code Pro', 
+	'Source Code Pro', 
+	'Source Code Pro', 
+	'Fira Mono', 
+	'Source Code Pro', 
+	'Source Code Pro', 
+	'Fantasque Sans Mono', 
+	'Fira Mono', 
+	'Source Code Pro', 
+	'Dotrice', 
+	'Dotrice', 
+	'Dotrice', 
+	'Source Code Pro', 
+	'Sometype Mono', 
+	'Source Code Pro', 
+	'Source Code Pro', 
+	'Dotrice', 
+	'Sometype Mono', 
+	'Dotrice', 
+	'Dotrice', 
+	'Sometype Mono', 
+	'Sometype Mono', 
+	'Fira Mono', 
+	'Fira Mono', 
+	'Fantasque Sans Mono', 
+	'Fira Mono', 
+	'Source Code Pro', 
+	'Sometype Mono', 
+	'Fantasque Sans Mono', 
+	'Source Code Pro', 
+	'Sometype Mono', 
+	'Fantasque Sans Mono', 
+	'Fira Mono', 
+	'CamingoCode', 
+	'Fira Mono'
+];
+
+
+
+vm.sizes = [1,2,3,4,5,6,7,8,9,10,11]
+
+vm.uniqueArray = [];
+
+for (let oldName of vm.codeIDEStyle) {
+	let isUnique = true;
+	for (let finalName of vm.uniqueArray) {
+		if (finalName === oldName) {
+			isUnique = false;
+		}
+	}
+	if (isUnique) {
+		vm.uniqueArray.push(oldName);
+	}
+}
+
+vm.reloadSavedFonts = reloadSavedFonts;
+function reloadSavedFonts() {
+	$log.info("SAVING editorFontSize " + vm.size);
+	$cookies.put('editorFontSize', vm.size);
+	$log.info("SAVING editorFontType " + vm.codeFont);
+	$cookies.put('editorFontType', vm.codeFont);
+}
+
+vm.loadFontSettingsCookies = loadFontSettingsCookies;
+
+function loadFontSettingsCookies() {
+	if ($cookies.get('editorFontSize')) {
+		$log.info("USING FONT SIZE FROM COOKIES..."+$cookies.get('editorFontSize'));
+		vm.size = $cookies.get('editorFontSize');
+	} else {
+		$log.info("USING DEFAULT FONT SIZE FROM COOKIES...");
+		vm.size = '5';
+	}
+
+	if ($cookies.get('editorFontType')) {
+		$log.info("USING FONT TYPEFACE FROM COOKIES..."+$cookies.get('editorFontType'));
+		vm.codeFont = vm.uniqueArray[parseInt($cookies.get('editorFontType'))];
+	} else {
+		$log.info("USING DEFAULT TYPEFACE FROM COOKIES...");
+		vm.codeFont = vm.uniqueArray[0];
+	}
+}

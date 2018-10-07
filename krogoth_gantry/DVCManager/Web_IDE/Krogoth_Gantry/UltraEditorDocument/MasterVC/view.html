@@ -225,7 +225,9 @@
 
 
 					<!-- MAIN CODE MIRROR IDE TEXT EDITOR -->
-					<span  ng-include= "'/moho_extractor/NgIncludedHtml/?name=uiCodeMirrorEditor'"></span>
+					<span ng-style="vm.codeIDEStyle" 
+						  ng-include= "'/moho_extractor/NgIncludedHtml/?name=uiCodeMirrorEditor'">
+					</span>
 					<!--/MAIN CODE MIRROR IDE TEXT EDITOR -->
 
 				</md-content>
@@ -236,9 +238,16 @@
 
 			</md-tab>
 			<md-tab label="two">
-				<div class="md-padding">
+				<div class="md-padding" id="renderedConsole">
 					II
 					<!-- II. CONTENT -->
+                    
+                    
+                    <span
+					ng-include= "'/moho_extractor/NgIncludedHtml/?name=DisplayRAM'">
+                                                                                           </span>
+                    
+                    
 
 				</div>
 			</md-tab>
@@ -246,7 +255,9 @@
 				<div class="md-padding">
 					III
 					<!-- III. CONTENT -->
-
+                    <span
+					ng-include= "'/moho_extractor/NgIncludedHtml/?name=extraCodeMirrorIDE'">
+                                                                                           </span>
 				</div>
 			</md-tab>
 		</md-tabs>	

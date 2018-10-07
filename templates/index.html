@@ -82,6 +82,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="/static/app/index.css"/>
     <link rel="stylesheet" href="/static/fonts/myriad.css"/>
+    <link rel="stylesheet" href="/static/fonts/monofonts.css"/>
 
     <!-- endinject -->
     <!-- endbuild -->
@@ -518,7 +519,15 @@
                 color: black;
                 transition: all 0.8s;
             }
-
+            .palewhite-bg-new {
+                background-size: 3840px 2160px;
+                background-image: url('/static/assets/Main-BG-WhiteGBlur-LOWREZ.jpg');
+                background-repeat: no-repeat;
+                background-position: left top;
+                background-attachment: fixed;
+                color: black;
+                transition: all 0.8s;
+            }
             .white-bg-new {
                 background-size: 3840px 2160px;
                 background-image: url('/static/assets/Main-BG-GBlur-LOWREZ.jpg');
@@ -550,7 +559,15 @@
                 color: black;
                 transition: all 0.8s;
             }
-
+            .palewhite-bg-new {
+                background-size: 2880px 1620px;
+                background-image: url('/static/assets/Main-BG-WhiteGBlur-LOWREZ.jpg');
+                background-repeat: no-repeat;
+                background-position: left top;
+                background-attachment: fixed;
+                color: black;
+                transition: all 0.8s;
+            }
             .white-bg-new {
                 background-size: 2880px 1620px;
                 background-image: url('/static/assets/Main-BG-GBlur-LOWREZ.jpg');
@@ -582,7 +599,15 @@
                 color: black;
                 transition: all 0.8s;
             }
-
+            .palewhite-bg-new {
+                background-size: 1920px 1080px;
+                background-image: url('/static/assets/Main-BG-WhiteGBlur-LOWREZ.jpg');
+                background-repeat: no-repeat;
+                background-position: left top;
+                background-attachment: fixed;
+                color: black;
+                transition: all 0.8s;
+            }
             .white-bg-new {
                 background-size: 1920px 1080px;
                 background-image: url('/static/assets/Main-BG-GBlur-LOWREZ.jpg');
@@ -614,7 +639,15 @@
                 transition: all 0.8s;
                 color: black;
             }
-
+            .palewhite-bg-new {
+                background-size: 1440px 810px;
+                background-image: url('/static/assets/Main-BG-WhiteGBlur-LOWREZ.jpg');
+                background-repeat: no-repeat;
+                background-position: left top;
+                background-attachment: fixed;
+                transition: all 0.8s;
+                color: black;
+            }
             .white-bg-new {
                 background-size: 1440px 810px;
                 background-image: url('/static/assets/Main-BG-GBlur-LOWREZ.jpg');
@@ -781,8 +814,78 @@
 
 
 
+<!-- OS X CUSTOM STYLE -->
+<style>
+
+	.kg-btn {
+
+		border-radius: 4px;
+		border: 1px solid #979797;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		height: 21px;
+
+		font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+		color: #000000;
+		font-size: 13px;
+		line-height: 19px;
+
+		display: inline-block;
+
+	}
+
+	.kg-btn-primary {
+		border-top-color: #595b71;
+		border-bottom-color: #515268;
+		border-left-color: #56586f;
+		border-right-color: #56586f;
+		background-image: -webkit-gradient(
+			linear,
+			left bottom,
+			left top,
+			color-stop(0, #D3F7FD),
+			color-stop(0.5, #87C5FB),
+			color-stop(0.5, #A1D1F9),
+			color-stop(1, #D4E9FC)
+		);
+		background-image: -moz-linear-gradient(
+			center bottom,
+			#D3F7FD 0%,
+			#87C5FB 50%,
+			#A1D1F9 50%,
+			#D4E9FC 100%
+		);
+		-webkit-animation-name: blinking;
+		-webkit-animation-timing-function: ease-in-out;
+		-webkit-animation-iteration-count: infinite;
+		-webkit-animation-duration: 1s;
+		-moz-animation-name: blinking;
+		-moz-animation-timing-function: ease-in-out;
+		-moz-animation-iteration-count: infinite;
+		-moz-animation-duration: 1s;
+		animation-name: blinking;
+		animation-timing-function: ease-in-out;
+		animation-iteration-count: infinite;
+		animation-duration: 1s;
 
 
+	}
+
+
+
+	.kg-btn-primary:active {
+		background-color: #EDEDED;
+		background-image: none;
+
+		/* Rectangle 20: */
+		background-image: -o-linear-gradient(0deg, #A1C5EB 0%, #649FEC 46%, #4191EC 53%, #94C4EB 100%);
+		background-image: -moz-linear-gradient(0deg, #A1C5EB 0%, #649FEC 46%, #4191EC 53%, #94C4EB 100%);
+		background-image: -ms-linear-gradient(0deg, #A1C5EB 0%, #649FEC 46%, #4191EC 53%, #94C4EB 100%);
+		background-image: linear-gradient(0deg, #A1C5EB 0%, #649FEC 46%, #4191EC 53%, #94C4EB 100%);
+		border: 1px solid #557BC8;
+	}
+
+</style>
 
 
 
@@ -48659,6 +48762,10 @@ md-dialog.event-calendar-dialog {
     transition: transform 0.3s ease-in-out 0.1s, -webkit-transform 0.3s ease-in-out 0.1s;
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg); }
+
+
+
+
 
 @media only screen and (min-width: 960px) {
   .ms-navigation-folded #layout-vertical-navigation-fullwidth-toolbar-2 #toolbar .navigation-fold-toggle md-icon {

@@ -85,7 +85,7 @@
                         id: item_in.id,
                         parentIndex: 0,
                         index: service.js_nodes.length,
-                        title: item_in.first_name,
+                        title: item_in.first_name + " " + item_in.last_name,
                         name: item_in.uniquename,
                         class: item_in.last_name,
                         canRemove: false,

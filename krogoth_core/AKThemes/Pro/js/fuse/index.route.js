@@ -41,7 +41,7 @@
 
 
         // Get active layout
-        var layoutStyle = $cookies.get('layoutStyle') || 'verticalNavigation';
+        var layoutStyle = $cookies.get('layoutStyle') || 'verticalNavigationFullwidthToolbar2';
 
         var layouts = {
             verticalNavigation: {
@@ -132,8 +132,6 @@
 						}
 						// $cookies.put('token', krogoth_injected['guest_token']);
                         return res;
-                    } else if (res.status === 401) {
-                        alert('You have been throttled for making too many requests, try again later.');
                     } else {
                         console.warn('$httpProvider Interceptor has detected a server error!!!');
                         return res;

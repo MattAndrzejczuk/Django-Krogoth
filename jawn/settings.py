@@ -34,7 +34,7 @@ STATIC_KROGOTH_MODE = False
 
 # Application definition
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 40,
+    'PAGE_SIZE': 80,
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
     ),

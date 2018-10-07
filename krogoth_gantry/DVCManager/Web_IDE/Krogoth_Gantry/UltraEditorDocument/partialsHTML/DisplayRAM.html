@@ -1,0 +1,61 @@
+<section>
+   
+<h1 style="color:white">
+    <span class="rd-x">vm</span>
+    <span>.</span>
+	<span class="rd-m">srcMap</span>
+</h1>
+
+<pre style="color:white">
+                    	{{ vm.srcMap | json }}
+                    </pre>
+
+
+<h1>
+    <span class="rd-x">vm</span>
+    <span>.</span>
+	<span class="rd-m">treeData</span>
+    <span>[</span>
+    <span class="rd-x">vm</span>
+    <span>.</span>
+    <span class="rd-s">loadedParentIndex</span>
+    <span>]</span>
+	<span>.</span>
+    <span class="rd-u">nodes</span>
+    <span>[</span>
+    <span class="rd-x">vm</span>
+    <span>.</span>
+    <span class="rd-z">loadedIndex</span>
+    <span>]</span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</h1>
+
+<pre style="color:white">
+                    	{{ vm.treeData[vm.loadedParentIndex].nodes[vm.loadedIndex] | json }}
+                    </pre>
+</section>
+<style>
+    h1 > span {
+    color: white
+    }
+    .rd-m {
+    color: #00A0FF; /* blue */
+    }
+    .rd-s {
+    color: #23FF83; /* green */
+    }
+    .rd-u {
+    color: #FFC300; /* gold */
+    }
+    .rd-x {
+    color: #D31895; /* magenta */
+    }
+    .rd-z {
+    color: #FF0014; /* red */
+    }
+</style>

@@ -1,0 +1,49 @@
+<button class="btn kgosx btn-modern" ng-click="vm.clearWebSocketConsole()">
+    delete socket log
+</button>
+
+<button class="btn kgosx btn-modern" ng-click="vm.reloadWebSocketConsole()">
+    refresh socket messages
+</button>
+
+
+
+<button ng-click="vm.loadCodeIntoXtraEditor()" class="btn btn-default">
+    Load Code Here
+</button>
+
+
+<button class="btn kgosx btn-primary">
+    primary
+    </button>
+<button class="btn kgosx btn-capsule">
+    capsule
+    </button>
+<button class="btn kgosx btn-sm">
+    btn sm
+    </button>
+<button class="btn kgosx btn-lg">
+    btn lg
+    </button>
+<button class="btn kgosx btn-on-grey">
+    btn on grey
+    </button>
+<button class="btn kgosx btn-modern">
+    btn modern
+</button>
+<button class="kgosx toolbar-button">
+    toolbar-button
+</button>
+
+
+<ui-codemirror 
+			   ui-codemirror-opts="vm.xtraCodeMirrorEditorOptions"
+			   ui-codemirror="{onLoad:vm.launchXtraCodeMirror}">
+</ui-codemirror>
+    
+    <style>
+        .kgosx {
+        	padding-left:6px;
+            padding-right:6px;
+        }
+    </style>

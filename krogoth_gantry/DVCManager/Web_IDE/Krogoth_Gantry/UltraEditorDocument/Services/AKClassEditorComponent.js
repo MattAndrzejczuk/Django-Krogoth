@@ -8,7 +8,8 @@
     function _DJANGULAR_SERVICE_NAME_($log, $http, $q) {
         var service = {
             loadMasterInitializer: loadMasterInitializer,
-            loadKrogothCoreList: loadKrogothCoreList
+            loadKrogothCoreList: loadKrogothCoreList,
+            reloadSelected: reloadSelected
         };
 
         function loadMasterInitializer(selectedMasterId) {
@@ -92,6 +93,34 @@
             });
             return deferred.promise;
         }
+
+
+
+
+
+
+
+
+        function reloadSelected(URI, key) {
+            let deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: URI
+            }).then(function successCallback(response) {
+                $log.log(response.data);
+                deferred.resolve(response.data[key]);
+            }, function errorCallback(response) {
+                deferred.reject(response);
+            });
+        }
+
+
+
+
+
+
+
+
 
         return service;
     }

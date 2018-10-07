@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
+// Distributed under an MIT license: https://codemirror.net/LICENSE
 
 (function() {
   var mode = CodeMirror.getMode({indentUnit: 2}, "jsx")
@@ -10,6 +10,9 @@
 
   MT("openclose",
      "([bracket&tag <][tag foo][bracket&tag >]hello [atom &amp;][bracket&tag </][tag foo][bracket&tag >][operator ++])")
+
+  MT("openclosefragment",
+     "([bracket&tag <><][tag foo][bracket&tag >]hello [atom &amp;][bracket&tag </][tag foo][bracket&tag ></>][operator ++])")
 
   MT("attr",
      "([bracket&tag <][tag foo] [attribute abc]=[string 'value'][bracket&tag >]hello [atom &amp;][bracket&tag </][tag foo][bracket&tag >][operator ++])")
@@ -32,6 +35,9 @@
 
   MT("preserve_js_context",
      "[variable x] [operator =] [string-2 `quasi${][bracket&tag <][tag foo][bracket&tag />][string-2 }quoted`]")
+
+  MT("string_interpolation",
+    "[variable x] [operator =] [string-2 `quasi<code>${] [number 10] [string-2 }</code>`]")
 
   MT("line_comment",
      "([bracket&tag <][tag foo] [comment // hello]",

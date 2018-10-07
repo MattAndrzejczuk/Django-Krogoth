@@ -21,20 +21,17 @@
         const tXtrJS = 6;
         ///renameObjectClick
         vm.$onInit = onInit;
-        vm.getMasterViewCtrlDetail = getMasterViewCtrlDetail;
+
 
         vm.editorContentWillChange = editorContentWillChange;
         vm.editorContentDidChange = editorContentDidChange;
 
         vm.selectListItem = selectListItem;
         vm.loadFileIntoEditor = loadFileIntoEditor;
-        vm.parallelRESTfulStart = parallelRESTfulStart;
+
 
         /// REQUEST ALL DATA II.  💛
         vm.finishedRESTfulResponses = [];
-        vm.parallelRESTfulReady = parallelRESTfulReady;
-        vm.parallelRESTfulAbort = parallelRESTfulAbort;
-        vm.parallelRESTfulCompleted = parallelRESTfulCompleted;
         vm.parallelRESTfulServerError = parallelRESTfulServerError;
 
         // Master View Controller Setup
@@ -45,20 +42,24 @@
         ///vm.messages = [];
         vm.finishedRESTfulResponses = [];
         vm.newComponentForm = {};
+        vm.finishedBreadCrumbsJson = {};
         vm.servicesPendingRequest = [];
         vm.directivesPendingRequest = [];
+        vm.scannedVMs = [];
         vm.slavesPendingRequest = [];
         vm.pendingRESTfulRequests = [];
+        vm.masterName = ". . .";
+        vm.scrollTopsSaved = {};
         vm.loadedIndex = -1;
         vm.loadedParentIndex = -1;
 
         vm.editorLoadedFirstDoc = false;
-        vm.reloadData = reloadData;
+
         vm.saveEditorWorkToServer = saveEditorWorkToServer;
 
 
 
-        vm.createFirstTreeNodes = createFirstTreeNodes;
+
         vm.getTemplatesHTML = getTemplatesHTML;
 
         vm.goBackToCategory = goBackToCategory;
@@ -76,13 +77,13 @@
         vm.remove = remove;
         vm.toggleFolder = toggleFolder;
         vm.newSubItem = newSubItem;
-        vm.finishedBreadCrumbsJson = {};
+
         vm.browserTabEmoji = " 🔨 ";
         vm.browserTabText = "Krogoth Editor";
         vm.setBrowserTabText = setBrowserTabText;
         vm.setBrowserTabEditMode = setBrowserTabEditMode;
         vm.isDisplayingPropModal = false;
-        vm.scannedVMs = [];
+
 
         vm.loadOSXDoc = loadOSXDoc;
 
@@ -95,8 +96,7 @@
 
         vm.welcomeSFX = new Audio("/static/gui_sfx/kg_startup.wav");
         vm.welcomeSFX.load();
-        vm.masterName = ". . .";
-        vm.scrollTopsSaved = {};
+
 
         vm.scrollToY = scrollToY;
         vm.saveScrollY = saveScrollY;
@@ -106,6 +106,20 @@
 
         vm.buttonCoolingDownWallpaper = false;
         vm.startCoolDownWallpaper = startCoolDownWallpaper;
+
+
+
+
+
+
+
+        # codeSyntaxSelect
+
+        # EditorStartupSequences
+
+        # extraCodeMirrorIDECtrls
+
+        # WebSocketMethods
 
 
         function startCoolDownWallpaper() {
@@ -146,178 +160,6 @@
             //vm.welcomeSFX.onended = function() {
 
             //};
-        }
-
-        function reloadData() {
-            vm.treeData = [];
-            vm.editorModel = {};
-            vm.objectList = {};
-            ///vm.messages = [];
-            vm.finishedRESTfulResponses = [];
-            vm.newComponentForm = {};
-            vm.servicesPendingRequest = [];
-            vm.directivesPendingRequest = [];
-            vm.slavesPendingRequest = [];
-            vm.pendingRESTfulRequests = [];
-            vm.createFirstTreeNodes();
-        }
-
-        function createFirstTreeNodes() {
-            UltraEditorDefaults.populateBoilerplate(vm.selectedMaster).then(function(treeData) {
-                vm.treeData = treeData;
-                vm.getMasterViewCtrlDetail();
-
-            });
-        }
-
-        /// II.
-        function getMasterViewCtrlDetail() {
-            AKClassEditorComponent.loadMasterInitializer(vm.selectedMaster)
-                .then(function(finishedProcess) {
-                    vm.servicesPendingRequest = finishedProcess.services;
-                    vm.directivesPendingRequest = finishedProcess.directives;
-                    vm.slavesPendingRequest = finishedProcess.slaves;
-                    vm.objectList = finishedProcess.objectList;
-
-                    vm.getTemplatesHTML();
-                    vm.getTemplatesJS();
-                    ///vm.getKrogothCoreParts();
-
-                    /// III.
-                    vm.parallelRESTfulStart();
-                });
-        }
-
-
-        /*   ⚡️   */
-        function parallelRESTfulStart() {
-            var cpuTask1 = GatherURIsAsync.async(vm.servicesPendingRequest, "Service")()
-                .then(function(list) {
-                    Array.prototype.push.apply(vm.pendingRESTfulRequests, list);
-                });
-            var cpuTask2 = GatherURIsAsync.async(vm.directivesPendingRequest, "Directive")()
-                .then(function(list) {
-                    Array.prototype.push.apply(vm.pendingRESTfulRequests, list);
-                });
-            var cpuTask3 = GatherURIsAsync.async(vm.slavesPendingRequest, "SlaveViewController")()
-                .then(function(list) {
-                    Array.prototype.push.apply(vm.pendingRESTfulRequests, list);
-                });
-            $q.all([cpuTask1,
-                    cpuTask2,
-                    cpuTask3
-                ])
-                .then(vm.parallelRESTfulReady, vm.parallelRESTfulAbort);
-        }
-
-        function parallelRESTfulAbort() {
-            ///vm.messages.push("something failed: parallelRESTfulAbort");
-        }
-
-        /// 🧡 </INITIALIZATION I. >
-
-
-        /// <REQUEST ALL DATA II. > 💛
-
-
-
-        function parallelRESTfulReady() {
-            var threads = [];
-            ///vm.messages.push("all done: parallelRESTfulReady");
-            for (var i = 0; i < vm.pendingRESTfulRequests.length; i++) {
-                var request_in = vm.pendingRESTfulRequests[i];
-                var cpuTaskX;
-                cpuTaskX = Dependency.async(request_in.id, request_in.class, vm.treeData)()
-                    .then(function(list) {
-                        vm.treeData = list[0];
-                        vm.finishedRESTfulResponses = list[1];
-                        vm.forwardThisCode(list[2].parentIndex,
-                            list[2].index,
-                            list[2].srcCode,
-                            list[2].title);
-                    });
-                threads.push(cpuTaskX);
-            }
-            $q.all(threads)
-                .then(vm.parallelRESTfulCompleted, vm.parallelRESTfulServerError);
-        }
-        /// 💛 </REQUEST ALL DATA II. >
-
-
-        /// <PROCESS RESPONSE INTO RAM III. > 💚
-        function parallelRESTfulCompleted() {
-            const moduleJS = new AKEditorComponentMaster(
-                "ViewHTML", /* _class */
-                vm.treeData[tMaste].nodes.length, /* index */
-                0, /* parentIndex */
-                vm.objectList.view_html, /* sourceCode */
-                'view_html', /* sourceKey */
-                vm.treeData[tMaste].id, /* restId */
-                'htmlmixed', /* syntax */
-                'language-html5' /* icon */
-            );
-            vm.treeData[tMaste].nodes.push(moduleJS);
-            const ctrlJS = new AKEditorComponentMaster(
-                "ModuleJS",
-                vm.treeData[tMaste].nodes.length,
-                0,
-                vm.objectList.module_js,
-                'module_js',
-                vm.treeData[tMaste].id,
-                'javascript',
-                'angular'
-            );
-            vm.treeData[tMaste].nodes.push(ctrlJS);
-            const viewHTML = new AKEditorComponentMaster(
-                "ControllerJS",
-                vm.treeData[tMaste].nodes.length,
-                0,
-                vm.objectList.controller_js,
-                'controller_js',
-                vm.treeData[tMaste].id,
-                'javascript',
-                'angularjs'
-            );
-            vm.treeData[tMaste].nodes.push(viewHTML);
-            const styleCSS = new AKEditorComponentMaster(
-                "StyleCSS",
-                vm.treeData[tStyle].nodes.length,
-                1,
-                vm.objectList.style_css,
-                'style_css',
-                vm.treeData[tStyle].id,
-                'css',
-                'language-css3'
-            );
-            vm.treeData[tStyle].nodes.push(styleCSS);
-            const themestyleCSS = new AKEditorComponentMaster(
-                "ThemeCSS",
-                vm.treeData[tStyle].nodes.length,
-                1,
-                vm.objectList.themestyle,
-                'themestyle',
-                vm.treeData[tStyle].id,
-                'css',
-                'language-css3'
-            );
-            vm.masterName = vm.objectList.name;
-            vm.browserTabText = vm.masterName;
-            vm.treeData[tStyle].nodes.push(themestyleCSS);
-            EditorWebSocket.initializeWebSocket(vm.masterName);
-            vm.loadingIDE = false;
-            vm.cleanUpRAM();
-        }
-
-        vm.cleanUpRAM = cleanUpRAM;
-
-        function cleanUpRAM() {
-            vm.objectList = [];
-            vm.finishedRESTfulResponses = [];
-            vm.newComponentForm = {};
-            vm.servicesPendingRequest = [];
-            vm.directivesPendingRequest = [];
-            vm.slavesPendingRequest = [];
-            vm.pendingRESTfulRequests = [];
         }
 
         /// < ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ DONT PUT SOURCE INTO UI TREE ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ >
@@ -411,12 +253,12 @@
         }
 
         vm.editorOptions = {
-            lineWrapping: true,
+            lineWrapping: false,
             lineNumbers: true,
             mode: "javascript",
             theme: "colorforth",
             indentUnit: 4,
-            indentWithTabs: true
+            indentWithTabs: false
         };
 
         function setThemeBasedOnClass(_class) {
@@ -523,6 +365,7 @@
                         .position('top right')
                         .hideDelay(3000)
                     );
+                    vm.sendWSMessageWithAction("save");
                 });
         }
 
@@ -719,42 +562,7 @@
 
 
 
-        vm.sendWSMessageWithAction = sendWSMessageWithAction;
 
-        function sendWSMessageWithAction(action) {
-            const wsMsg = {
-                action: action,
-                info: {
-                    parentIndex: vm.loadedParentIndex,
-                    nodeIndex: vm.loadedIndex,
-                    mvcName: vm.masterName
-                }
-            }
-            EditorWebSocket.sendMsg(wsMsg);
-        }
-        /* - - -< SRC CODE MAPPER >- - - */
-
-        /// - - - - - - <   DELEGATED FROM SERVICE   > - - - - - - - - 
-        vm.getWebSocketEditMessage = getWebSocketEditMessage;
-        EditorWebSocket.registerObserverCallback(getWebSocketEditMessage);
-        ////getWebSocketEditMessage is called from: service.notifyObservers();
-        function getWebSocketEditMessage(parentIndex, nodeIndex) {
-            $log.info(" 🍁 🍁 🍁 🍁 🍁 SERVICE DELEGATION WORKS ! ! !   ");
-            $log.log(parentIndex, nodeIndex);
-            vm.treeData[parentIndex].nodes[nodeIndex].openInOtherBrowser = true;
-        }
-        /// - - - - - - < / DELEGATED FROM SERVICE   > - - - - - - - - 
-        vm.getWebSocketSaveMessage = getWebSocketSaveMessage;
-        EditorWebSocket.registerObserver_Save_Callback(getWebSocketSaveMessage);
-
-        function getWebSocketSaveMessage(parentIndex, nodeIndex) {
-            $log.info(" 🌐 🌐 🌐 🌐 🌐 SERVICE DELEGATION WORKS ! ! !   ");
-            $log.log(parentIndex, nodeIndex);
-            vm.treeData[parentIndex].nodes[nodeIndex].openInOtherBrowser = false;
-            vm.treeData[parentIndex].nodes[nodeIndex].wasSavedInOtherBrowser = true;
-            var audio = new Audio('/static/gui_sfx/beep_surrender.wav');
-            audio.play();
-        }
 
 
         vm.activeEditorKey = "";
