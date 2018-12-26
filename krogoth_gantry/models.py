@@ -1,5 +1,5 @@
 from django.db import models
-import jsbeautifier
+# import jsbeautifier
 import codecs
 from jawn.settings import BASE_DIR
 from polymorphic.models import PolymorphicModel
@@ -36,7 +36,7 @@ class KrogothGantryService(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.service_js = jsbeautifier.beautify(self.service_js)
+        self.service_js = self.service_js
         super(KrogothGantryService, self).save(*args, **kwargs)
 
 #     _____________________________________
@@ -51,7 +51,7 @@ class KrogothGantryDirective(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.directive_js = jsbeautifier.beautify(self.directive_js)
+        self.directive_js = self.directive_js
         super(KrogothGantryDirective, self).save(*args, **kwargs)
 
 #     _______________________________________________
@@ -68,7 +68,7 @@ class KrogothGantrySlaveViewController(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.controller_js = jsbeautifier.beautify(self.controller_js)
+        self.controller_js = self.controller_js
         super(KrogothGantrySlaveViewController, self).save(*args, **kwargs)
 
 #     ________________________________
@@ -253,8 +253,8 @@ class KrogothGantryMasterViewController(PolymorphicModel):
 
 
     def save(self, *args, **kwargs):
-        self.module_js = jsbeautifier.beautify(self.module_js)
-        self.controller_js = jsbeautifier.beautify(self.controller_js)
+        self.module_js = self.module_js
+        self.controller_js = self.controller_js
         super(KrogothGantryMasterViewController, self).save(*args, **kwargs)
 
 
