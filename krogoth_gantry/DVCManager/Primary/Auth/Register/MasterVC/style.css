@@ -1,5 +1,5 @@
 #register-v2 #register-v2-form-wrapper {
-    background-image: url('/static/assets/Default-BG-BlackGBlur-LOWREZ.jpg');
+    background-image: url('/static/assets/Default-BG-BlackGBlur-LOWREZ.jpg') !important;
     background-repeat: no-repeat;
     background-position: top left;
     background-attachment: fixed;
@@ -11,7 +11,7 @@
 }
 
 .glass_bg {
-    background-image: url('/static/assets/Default-BG-BlackGBlur-LOWREZ.jpg');
+    background-image: url('/static/assets/Default-BG-BlackGBlur-LOWREZ.jpg') !important;
     background-repeat: no-repeat;
     background-position: top left;
     background-attachment: fixed;
@@ -21,21 +21,21 @@
 #register-v2 {
     height: 100%;
     overflow: hidden;
-    background-image: url('/static/assets/Default-BG-Opaque-LOWREZ.jpg');
+    background-image: url('/static/assets/Default-BG-Opaque-LOWREZ.jpg') !important;
     background-repeat: no-repeat;
     background-position: top left;
     background-color: rgba(0, 0, 0, 0) !important;
 }
 
 .multi_bg_example_opaque {
-    background-image: url('/static/assets/Default-BG-Opaque-LOWREZ.jpg');
+    background-image: url('/static/assets/Default-BG-Opaque-LOWREZ.jpg') !important;
     background-repeat: no-repeat;
     background-position: top left;
     background-color: rgba(0, 0, 0, 0) !important;
 }
 
 .multi_bg_example_glass {
-    background-image: url('/static/assets/Default-BG-BlackGBlur-LOWREZ.jpg');
+    background-image: url('/static/assets/Default-BG-BlackGBlur-LOWREZ.jpg') !important;
     background-repeat: no-repeat;
     background-position: top left;
     background-attachment: fixed;
