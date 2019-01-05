@@ -5,6 +5,7 @@ from krogoth_admin.views_filesystem import RenameService, CreateService, RenameD
     CreateDirective, RenameTemplate, CreateTemplate, CreateNewMVCView, RenameJavaScriptTemplate, \
     CreateJavaScriptTemplate
 
+from krogoth_admin.views_dashboard import getRam, getProcesses, getProcessesDummy, getStorage, getCPUInfo, getUpTime
 
 router = DefaultRouter()
 router.register(r'UncommitedSQL', UncommitedSQLViewSet)
@@ -33,12 +34,12 @@ urlpatterns = [
 
 
     # DASHBOARD
-    url(r'^ram/$', views.getRam.as_view(), name='ram'),
-    url(r'^processes/$', views.getProcesses.as_view(), name='processes'),
-    url(r'^processesDummy/$', views.getProcessesDummy.as_view(), name='processesDummy'),
-    url(r'^storage/$', views.getStorage.as_view(), name='processes'),
-    url(r'^cpuinfo/$', views.getCPUInfo.as_view(), name='processes'),
-    url(r'^uptime/$', views.getUpTime.as_view(), name='processes'),
+    url(r'^ram/$', getRam.as_view(), name='ram'),
+    url(r'^processes/$', getProcesses.as_view(), name='processes'),
+    url(r'^processesDummy/$', getProcessesDummy.as_view(), name='processesDummy'),
+    url(r'^storage/$', getStorage.as_view(), name='processes'),
+    url(r'^cpuinfo/$', getCPUInfo.as_view(), name='processes'),
+    url(r'^uptime/$', getUpTime.as_view(), name='processes'),
 ]
 
 

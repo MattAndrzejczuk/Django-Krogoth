@@ -1,17 +1,7 @@
-# MAIN
-from django.shortcuts import render
-
 from django.http import HttpResponse
 from django.template import loader
-
-from django.contrib.auth.models import User, Group
-
-from rest_framework import viewsets, generics
-from cinicraft_home.serializers import GroupSerializer
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
-# Create your views here.
 from subprocess import Popen, PIPE
 import platform
 
