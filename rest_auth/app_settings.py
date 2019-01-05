@@ -1,4 +1,4 @@
-0from django.conf import settings
+from django.conf import settings
 
 from rest_auth.serializers import (
     TokenSerializer as DefaultTokenSerializer,
