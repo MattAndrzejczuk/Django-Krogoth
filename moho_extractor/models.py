@@ -34,7 +34,7 @@ class NgIncludedJs(PolymorphicModel):
             example = "#" + self.name
             self.contents = "/* "+ boilerplate + example +" */"
         #self.contents = jsbeautifier.beautify(self.contents)
-        self.contents = self.contents.replace("# ", "#")
+        # self.contents = self.contents.replace("# ", "#")
         super(NgIncludedJs, self).save(*args, **kwargs)
 
 

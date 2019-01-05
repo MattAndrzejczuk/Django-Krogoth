@@ -100,6 +100,10 @@ RUN ln -s /usr/src/supervisor-app.conf /etc/supervisor/conf.d/
 RUN pip install -r /usr/src/app/requirements.txt
 #RUN python -c "print('\033[31m[\033[0m\033[92mAPP_DOCKERFILE\033[0m 🐳 \033[31m]\033[0m\033[34m>>> \033[0m\033[0m\033[32m              RUN pip install -r /usr/src/app/requirements.txt         \033[0m')"
 
+#RUN touch "/etc/update-motd.d/50-ip-address"
+#RUN echo "#!/bin/bash" >> "/etc/update-motd.d/50-ip-address"
+#RUN echo "zsh" >> "zsh"
+
 
 EXPOSE 80 443
 #RUN python -c "print('\033[31m[\033[0m\033[92mAPP_DOCKERFILE\033[0m 🐳 \033[31m]\033[0m\033[34m>>> \033[0m\033[0m\033[32m              EXPOSE 80 443         \033[0m')"

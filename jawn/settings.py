@@ -257,7 +257,7 @@ try:
 except:
     print('Django initialized, but the version is unknown... wtf?')
 
-
+print("RC Soon")
 
 
 # print("POSTGRES: ")

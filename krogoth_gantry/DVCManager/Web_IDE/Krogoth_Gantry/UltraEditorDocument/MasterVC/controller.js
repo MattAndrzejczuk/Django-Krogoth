@@ -113,13 +113,13 @@
 
 
 
-        # codeSyntaxSelect
+        #KGcodeSyntaxSelect
 
-        # EditorStartupSequences
+        #KGEditorStartupSequences
 
-        # extraCodeMirrorIDECtrls
+        #KGextraCodeMirrorIDECtrls
 
-        # WebSocketMethods
+        #KGWebSocketMethods
 
 
         function startCoolDownWallpaper() {
@@ -668,9 +668,9 @@
 
 
 
-        #CreateRenameDependencies
+        #KGCreateRenameDependencies
 
-        #LazyLoadRefreshIDE
+        #KGLazyLoadRefreshIDE
 
 
     }

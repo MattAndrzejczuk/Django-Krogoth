@@ -10,3 +10,8 @@ class UncommitedSQLAdmin(admin.ModelAdmin):
 
 
 admin.site.register(UncommitedSQL, UncommitedSQLAdmin)
+
+
+
+
+

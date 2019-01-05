@@ -38,14 +38,17 @@ class master_compiler(APIView):
         compiled_slave = application.compileModuleSlaves
         clean_js_slate = '\n\n\n\n\n\n\t /* ════════════' + application.title + '════════════ */\n\n'
 
+
+        ink.pyellow("COMPILING SOMETHING NOW...")
         app_ctrl = application.controller_js
         for js in application.partial_js.all():
             no_ext = js.name.replace(".js", "")
             ink.pgreen(application.name + ":")
             ink.pblue(no_ext + "\n")
 
-            app_ctrl = app_ctrl.replace("# "+no_ext, "\n/*~ ~ ~ ~ ~ ~" + no_ext + "~ ~ ~ ~ ~ ~*/\n"+
-                                        js.contents+ "\n/*~/~/~/~/~/~" + no_ext + "~/~/~/~/~/~*/\n" + "\n")
+            ink.pcyan("\n⚙️\n#KG" + no_ext + "\n")
+            app_ctrl = app_ctrl.replace("#KG" + no_ext, "\n/*~ ~ ~ ~ ~ ~" + no_ext + "~ ~ ~ ~ ~ ~*/\n" +
+                                        js.contents + "\n/*~/~/~/~/~/~" + no_ext + "~/~/~/~/~/~*/\n" + "\n")
 
         #app_ctrl = jsbeautifier.beautify(app_ctrl)
 
@@ -75,19 +78,19 @@ class master_compiler(APIView):
             clean_js_slate += ' \n /* MASTER MODULE */ \n' + cat_contain + \
                               ' \n /* MASTER CONTROLLER */ \n' + app_ctrl
         else:
-            clean_js_slate += ' \n /* MASTER MODULE */ \n' + compiled_slave['module_with_injected_navigation'] + \
-                              ' \n /* MASTER CONTROLLER */ \n' + app_ctrl
+            clean_js_slate += ' \n /* ┈┈┈┈┈┈┈┈┈ MASTER MODULE ┈┈┈┈┈┈┈┈┈ */ \n' + compiled_slave['module_with_injected_navigation'] + \
+                              ' \n /* ┈┈┈┈┈┈┈┈┈ MASTER CONTROLLER ┈┈┈┈┈┈┈┈┈ */ \n' + app_ctrl
         clean_js_slate += '\n /* SLAVE CONTROLLER */ \n' + compiled_slave['slave_controllers_js']
 
         for service in djangular_services:
-            raw_js_services_and_directives += '\n /* COMPILED SERVICE */ \n' + \
+            raw_js_services_and_directives += '\n /* ┈┈┈┈┈┈┈┈┈ COMPILED SERVICE ┈┈┈┈┈┈┈┈┈ */ \n' + \
                                               service.service_js.replace('_DJANGULAR_SERVICE_NAME_',
                                                                          service.name).replace(
                                                   '_DJANGULAR_SERVICE_TITLE_', service.title)
             raw_js_services_and_directives += '\n'
 
         for directive in djangular_directives:
-            raw_js_services_and_directives += '\n /* COMPILED DIRECTIVE */ \n' + \
+            raw_js_services_and_directives += '\n /* ┈┈┈┈┈┈┈┈┈ COMPILED DIRECTIVE  ┈┈┈┈┈┈┈┈┈ */ \n' + \
                                               directive.directive_js.replace('_DJANGULAR_DIRECTIVE_NAME_',
                                                                              directive.name).replace(
                                                   "_DJANGULAR_DIRECTIVE_TITLE_", directive.title)

@@ -49,3 +49,27 @@ class ink:
         print(cls.pink, end="")
         print(log, end="")
         print(cls.ENDC, end="")
+
+    @classmethod
+    def pyellow(cls, log):
+        print(cls.yellow, end="")
+        print(log, end="")
+        print(cls.ENDC, end="")
+
+    @classmethod
+    def porange(cls, log):
+        print(cls.orange, end="")
+        print(log, end="")
+        print(cls.ENDC, end="")
+
+    @classmethod
+    def pcyan(cls, log):
+        print(cls.cyan, end="")
+        print(log, end="")
+        print(cls.ENDC, end="")
+
+    @classmethod
+    def pbluelight(cls, log):
+        print(cls.blue, end="")
+        print(log, end="")
+        print(cls.ENDC, end="")
