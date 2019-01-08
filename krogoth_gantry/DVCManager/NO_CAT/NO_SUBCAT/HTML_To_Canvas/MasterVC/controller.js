@@ -9,7 +9,7 @@
         vm.viewDidLoad = viewDidLoad;
         vm.click = click;
 
-        # html2canvas
+        #KGhtml2canvas
 
 
         function onInit() {

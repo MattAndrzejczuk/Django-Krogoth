@@ -45,10 +45,10 @@ def execute(cmd, always_display):
     # p = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     # out, err = p.communicate()
     os.system(cmd)
-    os.system('clear')
+    # os.system('clear')
     #if OUTPUT_ENABLED == True or always_display == "NEEDED":
     #    print(out.decode("utf-8"))
-    print(always_display)
+    # print(always_display)
 
 
 
