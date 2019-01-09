@@ -65,7 +65,7 @@ cmd = ("docker run -d -p 7070:6379 --name=armprime-redis redis")
 execute(cmd, bc.yellow + cmd + bc.ENDC)
 cmd = ('docker run -d -p 80:80 -v "'+parent_dir+'":/usr/src/app/ --link armprime-postgres:postgres --link armprime-redis:redis --name=armprime mattjawn/armprime')
 execute(cmd, bc.yellow + cmd + bc.ENDC)
-cmd = ('clear')
+#cmd = ('clear')
 execute(cmd, bc.yellow + cmd + bc.ENDC)
 
 
