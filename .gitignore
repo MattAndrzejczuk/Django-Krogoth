@@ -11,6 +11,15 @@
 **/LazarusIV/migrations/
 **/LazarusV/migrations/
 
+
+chat/migrations/0001_initial.py
+krogoth_3rdparty_api/migrations/0001_initial.py
+krogoth_core/migrations/0001_initial.py
+krogoth_examples/migrations/0001_initial.py
+krogoth_social/migrations/0001_initial.py
+moho_extractor/migrations/0001_initial.py
+
+
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
