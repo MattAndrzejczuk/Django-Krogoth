@@ -4,6 +4,10 @@ from chat.models import JawnUser
 from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantrySlaveViewController, \
     KrogothGantryService, KrogothGantryDirective
 from krogoth_gantry.management.commands.installdjangular import bcolors
+from polymorphic.models import PolymorphicModel
+
+
+# from conn
 
 
 def more_than_zero(length: int):
@@ -69,3 +73,38 @@ class UncommitedSQL(models.Model):
         if len(pre_existing) > 0:
             pre_existing.first().delete()
         super(UncommitedSQL, self).save(*args, **kwargs)
+
+
+INSTANCE_TYPES = (
+    ('view', 'View'),
+    ('url', 'URL'),
+    ('model', 'Model'),
+)
+
+
+class KrogothAppTrace(models.Model):
+    instance_class = models.CharField(max_length=45,
+                                      choices=INSTANCE_TYPES,
+                                      help_text="Keep track of all Krogoth Python functions and classes being used.")
+    name = models.CharField(max_length=65)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+
+CONSOLE_LEVELS = (
+    ('log', 'Log'),
+    ('info', 'Info'),
+    ('debug', 'Debug'),
+    ('warn', 'Warn'),
+    ('error', 'Error'),
+)
+
+
+class KrogothServerConsole(PolymorphicModel):
+    console_type = models.CharField(max_length=125, choices=CONSOLE_LEVELS)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+
+# class KrogothServerLoggedJSON(KrogothServerConsole):
+#     content = models.J
+class KrogothServerLoggedText(KrogothServerConsole):
+    content = models.TextField()
