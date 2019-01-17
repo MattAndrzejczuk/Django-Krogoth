@@ -87,6 +87,10 @@
             }).then(function successCallback(response) {
                 //deferred.resolve(response.data);
                 vm.masters = response.data;
+                vm.addCatMenuIsOpen = false;
+                vm.objectList = [];
+                vm.mvcCatOptions = [];
+                vm.getCategories();
             }, function errorCallback(response) {
                 //deferred.reject(response);
             });
