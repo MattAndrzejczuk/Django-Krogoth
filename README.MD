@@ -1,31 +1,64 @@
-#__Krogoth__
+# Krogoth
 
-# DON'T BE A DICK PUBLIC LICENSE
+> Version 0.9.x, January 2019
 
-> Version 0.8, May 2018
+> Copyright (C) 2019 Gantry
 
-> Copyright (C) 2018 Core Prime
 
-Everyone is permitted to copy and distribute verbatim or modified
-copies of this license document.
 
-> KROGOTH LICENSE
-> TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 
-1. Do whatever you like with the original work, just don't be a dick.
 
-   Being a dick includes - but is not limited to - the following instances:
 
- 1a. Outright copyright infringement - Don't just copy this and change the name.
- 1b. Selling the unmodified original with no work done what-so-ever, that's REALLY being a dick.
- 1c. Modifying the original work to contain hidden harmful content. That would make you a PROPER dick.
 
-2. If you become rich through modifications, related works/services, or supporting the original work,
-share the love. Only a dick would make loads off this work and not buy the original work's
-creator(s) a pint.
+## Manual Installation
 
-3. Code is provided with no warranty. Using somebody else's code and bitching when it goes wrong makes
-you a DONKEY dick. Fix the problem yourself. A non-dick would submit the fix back.
+### Ubuntu 16.04
+
+### 
+```
+
+git clone https://cinicraft@bitbucket.org/cinicraft/arm-prime.git
+cd arm-prime/docker
+mkdir -p /usr/src/app
+mkdir -p /usr/src/volatile/static
+mkdir -p /usr/src/persistent/media
+cd app
+cp requirements.txt /usr/src/app/
+
+apt-get install -y build-essential git \
+python3 python3-dev python3-setuptools \
+nginx supervisor \
+postgresql-client libpq-dev \
+sqlite3 && rm -rf /var/lib/apt/lists/*
+
+apt-get update
+
+apt install -y software-properties-common python3-pip
+
+pip3 install --upgrade pip
+
+pip3 install uwsgi
+
+apt-get update
+
+
+```
+
+## Preparing NGINX
+
+```
+
+add-apt-repository -y ppa:nginx/stable
+echo "daemon off;" >> /etc/nginx/nginx.conf
+export DJANGO_SETTINGS_MODULE="rcrfbackend.settings"
+rm /etc/nginx/sites-enabled/default
+ln -s /usr/src/nginx-app.conf /etc/nginx/sites-enabled/
+ln -s /usr/src/supervisor-app.conf /etc/supervisor/conf.d/
+pip3 install -r /usr/src/app/requirements.txt 
+supervisord 
+```
+
+
 
 ---
 
