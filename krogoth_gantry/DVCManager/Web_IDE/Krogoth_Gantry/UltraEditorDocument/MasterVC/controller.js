@@ -263,7 +263,7 @@
 
         function setThemeBasedOnClass(_class) {
             if (_class === "ViewHTML") {
-                vm.editorModel.setOption("theme", "ambiance");
+                vm.editorModel.setOption("theme", "rubyblue");
             } else if (_class === "ControllerJS") {
                 vm.editorModel.setOption("theme", "colorforth");
             } else if (_class === "ModuleJS") {

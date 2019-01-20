@@ -17,8 +17,9 @@
             console.log('FUSE_APP_NAME did finish loading');
         }
         
-        /*
-
+        
+        
+        
         // Data
         vm.dashboardData = {
             "widget1": {
@@ -410,12 +411,12 @@
                 var lastIndex = vm.dashboardData.widget4.chart[0].values.length - 1,
                     x = vm.dashboardData.widget4.chart[0].values[lastIndex].x;
 
-                //
-                 //Emulate constant data flow
-                //
-                 //@param min
-                 //@param max
-                 //
+                /**
+                 * Emulate constant data flow
+                 *
+                 * @param min
+                 * @param max
+                 */
                 function latencyTicker(min, max) {
                     // Increase the x value
                     x++;
@@ -521,12 +522,12 @@
                 var lastIndex = vm.dashboardData.widget6.chart[0].values.length - 1,
                     x = vm.dashboardData.widget6.chart[0].values[lastIndex].x;
 
-                //
-                // Emulate constant data flow
-                //
-                // @param min
-                // @param max
-                 //
+                /**
+                 * Emulate constant data flow
+                 *
+                 * @param min
+                 * @param max
+                 */
                 function cpuTicker(min, max) {
                     // Increase the x value
                     x = x + 5;
@@ -598,10 +599,14 @@
         vm.widget6.init();
 
 
-*/
-
-
-
+        
+        
+        
+        
+        
+        
+        
+        
 
 
     }
