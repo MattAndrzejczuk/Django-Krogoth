@@ -1,6 +1,8 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
+
 from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantrySlaveViewController, \
     KrogothGantryService, KrogothGantryDirective
+
 
 # python3 manage.py print_djangularmastervc 1
 # f = open('krogoth_gantry/management/default_templates/base_controller.js', 'r')
@@ -72,7 +74,6 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.SUCCESS(app.name + '_directive'))
                     self.stdout.write(self.style.WARNING(
                         "krogoth_gantry/management/backups/" + app.name + str(app.id) + ".directive" + ".js"))
-
             else:
                 djangularApp = KrogothGantryMasterViewController.objects.get(id=mvc_id)
                 self.stdout.write("", ending='\n\n')

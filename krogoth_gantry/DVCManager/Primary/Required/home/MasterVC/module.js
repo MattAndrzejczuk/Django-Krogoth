@@ -27,11 +27,6 @@
             icon: "entypo entypo-book-open",
             weight: 8
         });
-        msNavigationServiceProvider.saveItem("ASSETS.TEXTURES", {
-            title: "Terrain Types",
-            icon: "entypo entypo-palette",
-            weight: 0
-        });
 
 
         /*

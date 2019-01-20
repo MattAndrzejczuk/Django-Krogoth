@@ -31,5 +31,23 @@ RUN rm /etc/nginx/sites-enabled/default
 RUN ln -s /usr/src/nginx-app.conf /etc/nginx/sites-enabled/
 RUN ln -s /usr/src/supervisor-app.conf /etc/supervisor/conf.d/
 RUN pip install -r /usr/src/app/requirements.txt
-EXPOSE 80 443
+
+RUN apt install -y wget
+RUN apt install -y zsh
+RUN sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
+RUN pip install django-redis==4.8.0
+
+RUN rm -R /usr/src/app/chat/migrations
+RUN rm -R /usr/src/app/krogoth_3rdparty_api/migrations
+RUN rm -R /usr/src/app/krogoth_examples/migrations
+RUN rm -R /usr/src/app/krogoth_admin/migrations
+RUN rm -R /usr/src/app/krogoth_apps/migrations
+RUN rm -R /usr/src/app/krogoth_social/migrations
+RUN rm -R /usr/src/app/moho_extractor/migrations
+RUN rm -R /usr/src/app/kbot_lab/migrations
+
+RUN sed -i -e 's/miloshadzic/tonotdo/g' ~/.zshrc
+
+EXPOSE 80 443 22
 CMD ["supervisord", "-n"]

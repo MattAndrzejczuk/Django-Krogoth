@@ -1,9 +1,10 @@
+import platform
+from subprocess import Popen, PIPE
+
 from django.http import HttpResponse
 from django.template import loader
-from rest_framework.views import APIView
 from rest_framework.response import Response
-from subprocess import Popen, PIPE
-import platform
+from rest_framework.views import APIView
 
 
 def index(request):
@@ -241,14 +242,13 @@ class getProcesses(APIView):  # ps aux
                        "START": "",
                        "TIME": "", }
             for col in row:
-                if col != '':
-                    if i < 11:
-                        context[getColName(i)] = col
-                        if i == 3 and is_number(col) == True:
-                            sumOfCPU += float(col.strip())
-                        elif i == 4 and is_number(col) == True:
-                            sumOfRAM += float(col.strip())
-                        i += 1
+                if col != '' and i < 11:
+                    context[getColName(i)] = col
+                    if i == 3 and is_number(col) == True:
+                        sumOfCPU += float(col.strip())
+                    elif i == 4 and is_number(col) == True:
+                        sumOfRAM += float(col.strip())
+                    i += 1
             i = 1
             finalWrapper['Processes'].append(context)
             finalWrapper['CPU_Usage'] = sumOfCPU
@@ -407,8 +407,8 @@ class getProcessesNew(APIView):  # ps aux
         rowUser = {"value": "", "classes": ""}
         rowAvgIO = {"value": "", "classes": ""}
         rowAvgCPU = {"value": "", "classes": ""}
-        rowAvgMem = {"value": "", "classes": ""}
-        rows = [rowName, rowUser, rowAvgIO, rowAvgCPU, rowAvgMem]
+        row_avg_mem = {"value": "", "classes": ""}
+        rows = [rowName, rowUser, rowAvgIO, rowAvgCPU, row_avg_mem]
 
         finalWrapper = {"title": "Process Explorer",
                         "table": columns,

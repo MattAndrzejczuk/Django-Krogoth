@@ -232,7 +232,7 @@ try:
     print('\033[95mDjango REST Framework ' + str(rest_framework.VERSION) + '\033[0m')
 
     # GET LAZARUS BUILD VERSION:
-    bash_cmd = ['git', 'rev-list', '--count', 'master']
+    bash_cmd = ['git', 'rev-list', '--count', 'HEAD']
     get_build_cmd = str(subprocess.check_output(bash_cmd))
     current_build_1 = ''
     current_build_2 = ''
