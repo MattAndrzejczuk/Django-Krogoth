@@ -11,10 +11,10 @@
 """
 
 import os
-import subprocess
-from django.core.mail import *
 import socket
+import subprocess
 
+from django.core.mail import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -83,9 +83,6 @@ INSTALLED_APPS = (
     'rest_auth',
     'rest_framework_swagger',
     'chat',
-    #'LazarusIII',
-    #'LazarusIV',
-    #'LazarusV',
     'krogoth_core',
     'krogoth_apps',
     'moho_extractor',
