@@ -13,14 +13,7 @@ from krogoth_gantry.serializers import AbstractKrogothSerializer, KrogothGantryM
 from rest_framework import viewsets, serializers, generics, filters
 import subprocess
 import django_filters.rest_framework
-# from django.core import serializers
-
-
-
-
 import json
-
-
 
 
 class KrogothGantryIconViewSet(viewsets.ModelViewSet):
@@ -31,9 +24,7 @@ class KrogothGantryIconViewSet(viewsets.ModelViewSet):
     search_fields = ('code',)
 
 
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 class KrogothGantryMasterViewControllerViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
     queryset = KrogothGantryMasterViewController.objects.all().order_by('name')
@@ -42,17 +33,13 @@ class KrogothGantryMasterViewControllerViewSet(viewsets.ModelViewSet):
     filter_fields = ('name', 'category', 'id')
 
 
-
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 class KrogothGantrySlaveViewControllerViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
     queryset = KrogothGantrySlaveViewController.objects.all().order_by('name')
     serializer_class = KrogothGantrySlaveViewControllerSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('^name', '^title')
-
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

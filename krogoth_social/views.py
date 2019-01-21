@@ -15,20 +15,6 @@ import random
 import json
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class ForumThreadCategoryViewSet(viewsets.ModelViewSet):
     queryset = ForumThreadCategory.objects.all()
     serializer_class = ForumThreadCategorySerializer
@@ -51,14 +37,6 @@ class ForumThreadReplyViewSet(viewsets.ModelViewSet):
     filter_fields = ('author', 'parent',)
 
 
-
-
-
-
-
-
-
-
 class AKThreadCategoryViewSet(viewsets.ModelViewSet):
     queryset = AKThreadCategory.objects.all()
     serializer_class = AKThreadCategorySerializer
@@ -67,13 +45,13 @@ class AKThreadCategoryViewSet(viewsets.ModelViewSet):
     filter_fields = ('uid',)
     
 
-
 class AKThreadViewSet(viewsets.ModelViewSet):
      queryset = AKThread.objects.all()
      serializer_class = AKThreadSerializer
      permission_classes = (AllowAny,)
      filter_backends = (filters.DjangoFilterBackend,)
      filter_fields = ('author', 'parent', 'category',)
+
 
 class AKThreadListView(generics.ListAPIView):
     queryset = AKThread.objects.all()
@@ -148,30 +126,3 @@ class manual_post_reply(generics.CreateAPIView):
                       is_deleted=_is_deleted, parent=_p, content=_content, type=_type, likes=0, text_body=_text_body, uid=str(random.randint(0,999999)))
         _r.save()
         return JsonResponse("ITS GOOD " , content_type='application/json; charset=utf-8', safe=False)
-"""
-
-
-
-    uid = models.CharField(max_length=249, primary_key=True)
-    title = models.CharField(max_length=257, default='new post')
-    author = models.ForeignKey(JawnUser, on_delete=models.CASCADE, null=True, blank=True)
-    pub_date = models.DateTimeField(auto_now_add=True)
-    date_modified = models.DateTimeField(null=True, blank=True)
-    
-    is_deleted = models.BooleanField(default=False)
-    category = models.ForeignKey(AKThreadCategory, on_delete=models.CASCADE, related_name="ak_threads", null=True, blank=True)
-    parent = models.ForeignKey('AKThread', on_delete=models.CASCADE, null=True, blank=True, related_name="broodling")
-    content = models.TextField(default="")
-    type = models.CharField(max_length=40, default="text", choices=SOCIAL_MEDIA_THREAD_KINDS)
-    text_body = models.TextField()
-    likes = models.IntegerField(default=0)
-
-{
-"title":"better work nigger",
-"author":"CiniCraft",
-"parent":"sfdvsdfv",
-"content":"HELLO HELLO HELLO",
-"type":"text"
-}
-
-"""

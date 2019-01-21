@@ -98,18 +98,6 @@ def index(request):
 
 
 
-class GooglePlusOAuthCallbackView(APIView):
-
-    permission_classes = (AllowAny,)
-
-    def get(self, request, format=None):
-        msg = "There's nothing here yet..."
-        return Response(
-            msg,
-            status=200
-        )
-
-
 
 class LoginView(GenericAPIView):
     """
@@ -132,21 +120,16 @@ class LoginView(GenericAPIView):
         # ACTIVATE REDIS CONNECITON
         c = StrictRedis(connection_pool=redis_connection_pool)
 
-
-
         self.user = self.serializer.validated_data['user']
         self.token, created = self.token_model.objects.get_or_create(
             user=self.user)
 
         # SERIALIZE JAWN USER FOR WRITING TO REDIS
-        jawn_user = JawnUser.get_or_create_jawn_user(username=self.user.username) #JawnUser.objects.get(base_user=self.user)
+        jawn_user = JawnUser.get_or_create_jawn_user(username=self.user.username)
         j = JawnUserSerializer(jawn_user, context=self.get_serializer_context())
         json = JSONRenderer().render(j.data)
-
         # This is where we write to the Redis Store
         c.set('tokens:' + self.token.key, json.decode("utf-8"))
-
-
         if getattr(settings, 'REST_SESSION_LOGIN', True):
             login(self.request, self.user)
 

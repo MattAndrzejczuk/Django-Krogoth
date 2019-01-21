@@ -24,17 +24,7 @@ class ForumThreadOPAdmin(admin.ModelAdmin):
 
 class ForumThreadReplyAdmin(admin.ModelAdmin):
     list_display = ('uid', 'author', 'date_modified', 'not_deleted',)
-#
-# class ForumPostAdmin(admin.ModelAdmin):
-#     list_display = ('title', 'id', 'pub_date')
-#
-# class ForumReplyAdmin(admin.ModelAdmin):
-#     list_display = ('id', 'body', 'pub_date')
-#
-#
-# admin.site.register(ForumReply, ForumReplyAdmin)
+
 admin.site.register(ForumThreadCategory, ForumThreadCategoryAdmin)
 admin.site.register(ForumThreadOP, ForumThreadOPAdmin)
-
-
 admin.site.register(ForumThreadReply, ForumThreadReplyAdmin)
