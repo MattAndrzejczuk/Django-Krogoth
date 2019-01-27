@@ -31,6 +31,3 @@ python-twitter==3.3
 djadmin==1.1.6
 
 
--e https://github.com/MattAndrzejczuk/pyflection.git#egg=pyflection
--e https://github.com/MattAndrzejczuk/pyink.git#egg=pyink
--e https://github.com/MattAndrzejczuk/colored_json_print.git#egg=colored_json_print
