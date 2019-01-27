@@ -21,7 +21,6 @@ router.register(r'ForumThreadCategory', ForumThreadCategoryViewSet, 'Forum Threa
 router.register(r'ForumThreadOP', ForumThreadOPViewSet, 'Forum Thread OP')
 router.register(r'ForumThreadReply', ForumThreadReplyViewSet, 'Forum Thread Reply')
 
-
 urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^AKThreadListView/$', AKThreadListView.as_view()),

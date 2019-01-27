@@ -7,9 +7,6 @@ from moho_extractor.models import IncludedHtmlMaster, IncludedJsMaster
 
 
 
-
-
-
 class NgIncludedJsAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'url_helper', )
     search_fields = ['name']
@@ -78,8 +75,5 @@ class NgIncludedHtmlAdmin(admin.ModelAdmin):
             'all': ('/static/codemirror.css', '/static/colorforth.css', '/static/dracula.css',)
         }
 
-
-# admin.site.register(AngularFuseApplication, AngularFuseApplicationAdmin)
-# admin.site.register(FuseAppComponent, FuseAppComponentAdmin)
 admin.site.register(IncludedHtmlMaster, NgIncludedHtmlAdmin)
 admin.site.register(IncludedJsMaster, NgIncludedJsAdmin)

@@ -32,7 +32,6 @@ class AKThreadCategory(models.Model):
     def __str__(self):
         return self.uid
 
-
 class AKThread(PolymorphicModel):
     uid = models.CharField(max_length=249, primary_key=True)
     title = models.CharField(max_length=257, default='new post')
@@ -44,15 +43,6 @@ class AKThread(PolymorphicModel):
     parent = models.ForeignKey('AKThread', on_delete=models.CASCADE, null=True, blank=True, related_name="broodling")
     content = models.TextField(default="")
 
-#     def save(self, *args, **kwargs):
-#         if self.title is not "REPLY":
-#             count = len(AKThread.objects.all())
-#             seed = str(random.randint(0,999999))
-#             p1 = self.title
-#             self.uid = ''.join(e for e in p1 if e.isalnum()) + "_" + str(self.totalThreads)
-#             self.date_modified = datetime.now()
-#         super(AKThread, self).save(*args, **kwargs)
-        
     @property
     def is_reply(self):
 	    return self.parent is not None
@@ -80,9 +70,6 @@ class AKThreadSocialMedia(AKThread):
     type = models.CharField(max_length=40, default="text", choices=SOCIAL_MEDIA_THREAD_KINDS)
     text_body = models.TextField()
     likes = models.IntegerField(default=0)
-
-
-
 
 class ForumThreadCategory(models.Model):
     uid = models.CharField(max_length=249, primary_key=True)
@@ -130,13 +117,7 @@ class ForumThreadReply(models.Model):
         return self.author.base_user.username
 
 
-
-
-#class AKThreadArticle(AKThread):
-
-
 # DEFAULTS:
-
 try:
     sampleCat = AKThreadCategory.objects.filter(title="Sample Threads")
     if len(sampleCat) < 1:

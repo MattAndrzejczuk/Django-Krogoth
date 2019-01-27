@@ -89,6 +89,7 @@ urlpatterns = [
     url(r'^api/', include('kbot_lab.urls')),
     url(r'^kbot_lab/', include('kbot_lab.urls')),
     url(r'^admin_a9k/', admin.site.urls),
+    url(r'^djadmin/', include('djadmin.urls')),
     #url(r'^LazarusIV/', include('LazarusIV.urls')),
     #url(r'^LazarusV/', include('LazarusV.urls')),
 

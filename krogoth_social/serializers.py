@@ -15,14 +15,6 @@ from krogoth_gantry.management.commands.installdjangular import bcolors
 # Create your views here.
 
 
-
-
-
-
-
-
-
-
 class ForumThreadCategorySerializer(serializers.ModelSerializer):
     uid = serializers.ReadOnlyField()
 
@@ -33,7 +25,6 @@ class ForumThreadCategorySerializer(serializers.ModelSerializer):
 class ForumThreadOPSerializer(serializers.ModelSerializer):
     uid = serializers.ReadOnlyField()
     author = JawnUserSerializer(read_only=True)
-
 
     class Meta:
         model = ForumThreadOP
@@ -70,28 +61,6 @@ class ForumThreadReplySerializer(serializers.ModelSerializer):
         new = ForumThreadReply.objects.create(**validated_data)
         return new
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class AKThreadChildReplySerializer(serializers.Serializer):
     title = serializers.CharField(read_only=True)
     pub_date = serializers.DateTimeField(read_only=True)
@@ -102,16 +71,12 @@ class AKThreadListField(serializers.RelatedField):
         ser = AKThreadChildReplySerializer(value)
         return (ser.data)
 
-
-
-
 class AKThreadCategorySerializer(serializers.ModelSerializer):
     pub_date = serializers.DateTimeField(read_only=True)
     ak_threads = AKThreadListField(many=True, read_only=True)
     class Meta:
         model = AKThreadCategory
         fields = ('uid', 'description', 'title', 'ak_threads', 'pub_date', )
-
 
 class AKThreadParentSerializer(serializers.ListSerializer):
     pub_date = serializers.DateTimeField(read_only=True)
@@ -121,8 +86,6 @@ class AKThreadParentSerializer(serializers.ListSerializer):
         model = AKThread
         category = AKThreadCategorySerializer
         fields = ('title', 'parent', 'author', 'category', 'pub_date', 'uid', 'date_modified', 'author_name',)
-
-
 
 # - - - - - - - - - - - - - - -
 class AKThreadSerializer(serializers.ModelSerializer):
@@ -152,14 +115,9 @@ class AKThreadSocialMediaSerializer(serializers.ModelSerializer):
         new = AKThread.objects.create(title=validated_data['title'],author=validated_data['author'],category=validated_data['category'],content=validated_data['content'],uid=finalize,pub_date=datetime.now(),)
         return new
 
-
 class AKThreadReplySocialMediaSerializer(serializers.ModelSerializer):
-    
     class Meta:
         model = AKThreadSocialMedia
         category = AKThreadCategorySerializer
         parent = AKThreadParentSerializer
         fields = ('title', 'parent', 'author', 'category', 'pub_date', 'content', 'likes', 'type')
-
-
-

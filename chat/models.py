@@ -71,7 +71,6 @@ class TextMessage(Message):
     text = models.TextField(max_length=1000)
 
 
-
 class LinkMessage(Message):
     CHOICES = (('link', 'link'),)
     type = models.CharField(max_length=50, default='link', choices=CHOICES)
@@ -106,7 +105,6 @@ class RegionManager(models.Manager):
         return region
 
 
-
 class Region(models.Model):
     name = models.CharField(max_length=150)
     coordinates_long = models.FloatField()
@@ -133,7 +131,6 @@ class PrivateMessageRelationships(models.Model):
     channel = models.OneToOneField(Channel, related_name='channel', on_delete=models.CASCADE)
     user_recipient = models.ForeignKey(User, related_name='user_recipient', on_delete=models.CASCADE)
     user_sender = models.ForeignKey(User, related_name='user_sender', on_delete=models.CASCADE)
-    channel_name = models.CharField(max_length=150) # may need to remove this later.
 
 
 def get_flickr_url(lat, long, type, accuracy='11'):
@@ -201,49 +198,19 @@ def get_flickr_url(lat, long, type, accuracy='11'):
             image_secret = str(data['photos']['photo'][i]['secret'])
             flickrImageID = image_id
         except IndexError:
-            #if "aerial" in text_:
-            #if lat_ == '{$num_lat$}':
-            #    text_ = 'outdoors'
             long_ += 1
             lat_ -= 1
-            
-            """
-            print('THE EXCEPTION HAS BEEN TRIGGERED!')
-            print('THE EXCEPTION HAS BEEN TRIGGERED!')
-            print('THE EXCEPTION HAS BEEN TRIGGERED!')
-            print('THE EXCEPTION HAS BEEN TRIGGERED!')
-            print(data)
-            print('THE EXCEPTION HAS BEEN TRIGGERED!')
-            print('THE EXCEPTION HAS BEEN TRIGGERED!')
-            print('THE EXCEPTION HAS BEEN TRIGGERED!')
-            print('THE EXCEPTION HAS BEEN TRIGGERED!')
-            """
             text_=''
             strurl = url_+'&api_key='+API_key+'&tags='+text_+'&format='+format_
             request = urlopen(strurl)
             response = request.read().decode("utf-8")
             data = json.loads(response)
-            """
-            print('EXCEPTION TRIGGERED AGAIN!!!')
-            print('EXCEPTION TRIGGERED AGAIN!!!')
-            print('EXCEPTION TRIGGERED AGAIN!!!')
-            print(data)
-            print('EXCEPTION TRIGGERED AGAIN!!!')
-            print('EXCEPTION TRIGGERED AGAIN!!!')
-            print('EXCEPTION TRIGGERED AGAIN!!!')
-            """
-            #print(response)
-            #print(data)
             farm_id = str(data['photos']['photo'][i]['farm'])
             server_id = str(data['photos']['photo'][i]['server'])
             image_id = str(data['photos']['photo'][i]['id'])
             image_secret = str(data['photos']['photo'][i]['secret'])
         flickrURL = 'https://farm'+farm_id+'.staticflickr.com/'+server_id+'/'+image_id+'_'+image_secret+'.jpg'
-        #print(flickrURL)
-        
         returnValue = {"flickrURL":flickrURL, "flickrURLLarge":get_flickr_url_large(flickrImageID)}
-        
-        #return flickrURL <-Legacy Version, Uncomment to activate
         return returnValue
     
     
