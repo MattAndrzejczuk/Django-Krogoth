@@ -1,94 +1,69 @@
-/* Base16 Atelier Forest Dark - Theme */
-/* by Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/forest) */
+/* Base16 Atelier Seaside Dark - Theme */
+/* by Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/seaside) */
 /* Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16) */
 
-/* Atelier-Forest Comment */
-.hljs-comment {
-  color: #9c9491;
+/* Atelier-Seaside Comment */
+.hljs-comment,
+.hljs-quote {
+    color: #198700;
 }
 
-/* Atelier-Forest Red */
+/* Atelier-Seaside Red */
 .hljs-variable,
+.hljs-template-variable,
 .hljs-attribute,
 .hljs-tag,
-.hljs-regexp,
 .hljs-name,
-.ruby .hljs-constant,
-.xml .hljs-tag .hljs-title,
-.xml .hljs-pi,
-.xml .hljs-doctype,
-.html .hljs-doctype,
-.css .hljs-id,
-.css .hljs-class,
-.css .hljs-pseudo {
-  color: #f22c40;
+.hljs-regexp,
+.hljs-link,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+    color: #e6193c;
 }
 
-/* Atelier-Forest Orange */
+/* Atelier-Seaside Orange */
 .hljs-number,
-.hljs-preprocessor,
+.hljs-meta,
 .hljs-built_in,
+.hljs-builtin-name,
 .hljs-literal,
-.hljs-params,
-.hljs-constant {
-  color: #df5320;
+.hljs-type,
+.hljs-params {
+    color: #8a82ff;
 }
 
-/* Atelier-Forest Yellow */
-.ruby .hljs-class .hljs-title,
-.css .hljs-rule .hljs-attribute {
-  color: #c38418;
-}
-
-/* Atelier-Forest Green */
+/* Atelier-Seaside Green */
 .hljs-string,
-.hljs-value,
-.hljs-inheritance,
-.hljs-header,
-.ruby .hljs-symbol,
-.xml .hljs-cdata {
-  color: #7b9726;
+.hljs-symbol,
+.hljs-bullet {
+    color: #ff5b00;
 }
 
-/* Atelier-Forest Aqua */
+/* Atelier-Seaside Blue */
 .hljs-title,
-.css .hljs-hexcolor {
-  color: #3d97b8;
+.hljs-section {
+    color: #008dff;
 }
 
-/* Atelier-Forest Blue */
-.hljs-function,
-.python .hljs-decorator,
-.python .hljs-title,
-.ruby .hljs-function .hljs-title,
-.ruby .hljs-title .hljs-keyword,
-.perl .hljs-sub,
-.javascript .hljs-title,
-.coffeescript .hljs-title {
-  color: #407ee7;
-}
-
-/* Atelier-Forest Purple */
+/* Atelier-Seaside Purple */
 .hljs-keyword,
-.javascript .hljs-function {
-  color: #6666ea;
+.hljs-selector-tag {
+    color: #ff0082;
 }
 
 .hljs {
   display: block;
   overflow-x: auto;
-  background: #1b1918;
-  color: #a8a19f;
+    background: #131513;
+    color: #d4feff;
   padding: 0.5em;
-  -webkit-text-size-adjust: none;
 }
 
-.coffeescript .javascript,
-.javascript .xml,
-.tex .hljs-formula,
-.xml .javascript,
-.xml .vbscript,
-.xml .css,
-.xml .hljs-cdata {
-  opacity: 0.5;
+.hljs-emphasis {
+    font-style: italic;
+}
+
+.hljs-strong {
+    font-weight: bold;
 }

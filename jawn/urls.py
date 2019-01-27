@@ -1,13 +1,10 @@
 from django.conf.urls import url, include
+from django.contrib import admin
 from rest_framework.routers import DefaultRouter
+
 from chat.views import UserViewSet, JawnUserViewSet, ImageMessageViewSet, TextMessageViewSet, ChannelViewSet, \
     MessageViewSet, PrivateMessageRelationshipSet, RegionViewSet, LinkMessageViewSet, YouTubeMessageViewSet
-from django.contrib import admin
 from rest_auth.views import index
-
-
-
-
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet, 'User')
@@ -89,14 +86,12 @@ urlpatterns = [
     url(r'^api/', include('kbot_lab.urls')),
     url(r'^kbot_lab/', include('kbot_lab.urls')),
     url(r'^admin_a9k/', admin.site.urls),
-    url(r'^djadmin/', include('djadmin.urls')),
-    #url(r'^LazarusIV/', include('LazarusIV.urls')),
-    #url(r'^LazarusV/', include('LazarusV.urls')),
+    # url(r'^djadmin/', include('djadmin.urls')),
+
 
     url(r'^moho_extractor/', include('moho_extractor.urls')),
     url(r'^krogoth_gantry/', include('krogoth_gantry.urls')),
     url(r'^krogoth_admin/', include('krogoth_admin.urls')),
-    # url(r'^Forum/', include('krogoth_social.urls')),
 
 
     url(r'^ThirdParty/', include('krogoth_3rdparty_api.urls')),

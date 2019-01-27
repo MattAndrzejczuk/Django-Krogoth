@@ -1,3 +1,6 @@
+<!--
+krogoth_core/AKThemes/Pro/html/directives
+-->
 <div class="ms-stepper-horizontal">
     <div class="ms-stepper-navigation-wrapper">
         <div class="ms-stepper-navigation" layout="row" layout-align="center center">
@@ -12,7 +15,7 @@
                 <span ng-if="!MsStepper.isStepValid(step.stepNumber) || MsStepper.isStepOptional(step.stepNumber)">
                     {{$index + 1}}
                 </span>
-                <span ng-if="MsStepper.isStepValid(step.stepNumber) && !MsStepper.isStepOptional(step.stepNumber)">
+                    <span ng-if="MsStepper.isStepValid(step.stepNumber) && !MsStepper.isStepOptional(step.stepNumber)">
                     <i class="icon icon-check s18"></i>
                 </span>
                 </div>

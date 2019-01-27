@@ -1,4 +1,3 @@
-/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
   'use strict';
 
@@ -178,15 +177,12 @@
       require: ['form', '^msFormWizard'],
       compile: function (tElement) {
         tElement.addClass('ms-form-wizard-form');
-
         return function postLink(scope, iElement, iAttrs, ctrls) {
           var formCtrl = ctrls[0],
             MsFormWizardCtrl = ctrls[1];
-
           MsFormWizardCtrl.registerForm(formCtrl);
         };
       }
     };
   }
-
 })();

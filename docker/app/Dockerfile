@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --upgrade pip
 RUN pip install wheel
-RUN pip install setuptools==36.6.0
+RUN pip install setuptools
 RUN pip install uwsgi
 RUN apt-get update
 RUN apt-get install -y software-properties-common python3-software-properties
