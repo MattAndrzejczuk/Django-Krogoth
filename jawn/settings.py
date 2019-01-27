@@ -94,12 +94,10 @@ INSTALLED_APPS = (
     'kbot_lab',
     'krogoth_examples',
     'django_extensions',
-    'djadmin',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'djadmin.middleware.DJMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

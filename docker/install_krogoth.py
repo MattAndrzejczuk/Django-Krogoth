@@ -49,9 +49,15 @@ def execute(cmd, always_display):
     # print(always_display)
 
 
+print(bc.BOLD + bc.blue + "DESTORYING PREVIOUS KROGOTH " + parent_dir + bc.ENDC + bc.ENDC)
+time.sleep(2)
 
-print(bc.BOLD + bc.blue + "INSTALLING KROGOTH " + parent_dir + bc.ENDC + bc.ENDC)
-time.sleep(1)
+"""
+    'docker stop $(docker ps -aq)'
+    'echo " ☠️ "'
+    'docker rm $(docker ps -aq)'
+"""
+
 cmd = ("docker build -t mattjawn/armprime ./app/")
 execute(cmd, bc.yellow+"DOCKER BUILD"+bc.ENDC)
 db_args = "-e POSTGRES_USER=jawn -d -p 8091:5432 postgres"

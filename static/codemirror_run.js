@@ -2,11 +2,11 @@ window.onload = function () {
 
     console.log('CODEMIRROR INITIALIZING... ');
 
-    var txt_js_module = document.getElementById('id_js_module');
-    var txt_js_controller = document.getElementById('id_js_controller');
-    var txt_html_main = document.getElementById('id_html_main');
+    let txt_js_module = document.getElementById('id_js_module');
+    let txt_js_controller = document.getElementById('id_js_controller');
+    let txt_html_main = document.getElementById('id_html_main');
 
-    var editor1 = CodeMirror.fromTextArea(txt_js_module, {
+    let editor1 = CodeMirror.fromTextArea(txt_js_module, {
         lineNumbers: true,
         mode: "javascript",
         theme: "colorforth",
@@ -15,7 +15,7 @@ window.onload = function () {
     });
 
 
-    var editor2 = CodeMirror.fromTextArea(txt_js_controller, {
+    let editor2 = CodeMirror.fromTextArea(txt_js_controller, {
         lineNumbers: true,
         mode: "javascript",
         theme: "colorforth",
@@ -24,7 +24,7 @@ window.onload = function () {
     });
 
 
-    var editor3 = CodeMirror.fromTextArea(txt_html_main, {
+    let editor3 = CodeMirror.fromTextArea(txt_html_main, {
         lineNumbers: true,
         mode: "htmlmixed",
         theme: "dracula",

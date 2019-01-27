@@ -2,15 +2,15 @@ window.onload = function () {
 
     console.log('CODEMIRROR INITIALIZING... ');
 
-    var txt_js_module = document.getElementById('id_module_js');
-    var txt_js_controller = document.getElementById('id_controller_js');
-    var txt_html_main = document.getElementById('id_view_html');
-    var txt_style_main = document.getElementById('id_style_css');
+    let txt_js_module = document.getElementById('id_module_js');
+    let txt_js_controller = document.getElementById('id_controller_js');
+    let txt_html_main = document.getElementById('id_view_html');
+    let txt_style_main = document.getElementById('id_style_css');
 
 
-    var txt_style_themestyle = document.getElementById('id_themestyle');
+    let txt_style_themestyle = document.getElementById('id_themestyle');
 
-    var editor1 = CodeMirror.fromTextArea(txt_js_module, {
+    let editor1 = CodeMirror.fromTextArea(txt_js_module, {
         lineNumbers: true,
         mode: "javascript",
         theme: "colorforth",
@@ -19,7 +19,7 @@ window.onload = function () {
     });
 
 
-    var editor2 = CodeMirror.fromTextArea(txt_js_controller, {
+    let editor2 = CodeMirror.fromTextArea(txt_js_controller, {
         lineNumbers: true,
         mode: "javascript",
         theme: "colorforth",
@@ -28,7 +28,7 @@ window.onload = function () {
     });
 
 
-    var editor3 = CodeMirror.fromTextArea(txt_html_main, {
+    let editor3 = CodeMirror.fromTextArea(txt_html_main, {
         lineNumbers: true,
         mode: "htmlmixed",
         theme: "dracula",
@@ -36,7 +36,7 @@ window.onload = function () {
         indentWithTabs: true
     });
 
-    var editor4 = CodeMirror.fromTextArea(txt_style_main, {
+    let editor4 = CodeMirror.fromTextArea(txt_style_main, {
         lineNumbers: true,
         mode: "css",
         theme: "colorforth",
@@ -44,7 +44,7 @@ window.onload = function () {
         indentWithTabs: true
     });
 
-    var editor5 = CodeMirror.fromTextArea(txt_style_themestyle, {
+    let editor5 = CodeMirror.fromTextArea(txt_style_themestyle, {
         lineNumbers: true,
         mode: "css",
         theme: "dracula",

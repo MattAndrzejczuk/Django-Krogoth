@@ -2,10 +2,10 @@ window.onload = function () {
 
     console.log('CODEMIRROR INITIALIZING... ');
 
-    var txt_html_main = document.getElementById('id_code');
-    var txt_json = document.getElementById('id_custom_key_values');
+    let txt_html_main = document.getElementById('id_code');
+    let txt_json = document.getElementById('id_custom_key_values');
 
-    var editor3 = CodeMirror.fromTextArea(txt_html_main, {
+    let editor3 = CodeMirror.fromTextArea(txt_html_main, {
         lineNumbers: true,
         mode: "javascript",
         theme: "colorforth",
@@ -13,7 +13,7 @@ window.onload = function () {
         indentWithTabs: true
     });
 
-    var editor2 = CodeMirror.fromTextArea(txt_json, {
+    let editor2 = CodeMirror.fromTextArea(txt_json, {
         lineNumbers: true,
         mode: "javascript",
         theme: "dracula",

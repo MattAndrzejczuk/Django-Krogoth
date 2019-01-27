@@ -3,10 +3,10 @@ window.onload = function () {
     console.log('CODEMIRROR INITIALIZING... ');
 
 
-    var txt_js_controller = document.getElementById('id_service_js');
+    let txt_js_controller = document.getElementById('id_service_js');
 
 
-    var editor2 = CodeMirror.fromTextArea(txt_js_controller, {
+    let editor2 = CodeMirror.fromTextArea(txt_js_controller, {
         lineNumbers: true,
         mode: "javascript",
         theme: "colorforth",
