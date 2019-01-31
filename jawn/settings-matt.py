@@ -83,7 +83,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
-    'chat',
+    'krogoth_chat',
     #'LazarusIII',
     #'LazarusIV',
     #'LazarusV',
@@ -91,7 +91,7 @@ INSTALLED_APPS = (
     'moho_extractor',
     'krogoth_gantry',
     'krogoth_social',
-    'djangular_dashboard',
+    'krogoth_dashboard',
     'django_filters',
     'kbot_lab',
     'django_extensions',
@@ -160,7 +160,7 @@ MEDIA_URL = '/media/'
 SITE_ID = 2
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'chat.serializers.GetUserSerializer',
+    'USER_DETAILS_SERIALIZER': 'krogoth_chat.serializers.GetUserSerializer',
 }
 APPEND_SLASH = True
 

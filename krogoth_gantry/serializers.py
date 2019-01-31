@@ -5,7 +5,7 @@ from krogoth_gantry.models import KrogothGantrySlaveViewController, \
     KrogothGantryIcon, KrogothGantryCategory, KrogothGantryMasterViewController, KrogothGantryDirective, \
     KrogothGantryService, AKGantryMasterViewController
 from jawn.settings import BASE_DIR
-from chat.models import JawnUser
+from krogoth_chat.models import JawnUser
 from krogoth_gantry.helpers.os_directory import MoveToNewDirectory
 from krogoth_gantry.management.commands.installdjangular import bcolors
 

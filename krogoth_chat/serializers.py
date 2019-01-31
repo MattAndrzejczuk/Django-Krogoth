@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from chat.models import *
+from krogoth_chat.models import *
 from django.contrib.auth.models import User
 from ws4redis.redis_store import RedisMessage
 from ws4redis.publisher import RedisPublisher

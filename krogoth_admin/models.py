@@ -1,5 +1,5 @@
 from django.db import models
-from chat.models import JawnUser
+from krogoth_chat.models import JawnUser
 # Create your models here.
 from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantrySlaveViewController, \
     KrogothGantryService, KrogothGantryDirective

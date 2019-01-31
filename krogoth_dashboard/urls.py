@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from djangular_dashboard import views
+from krogoth_dashboard import views
 
 
 

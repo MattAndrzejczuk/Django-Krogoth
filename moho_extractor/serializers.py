@@ -3,7 +3,7 @@ from moho_extractor.models import IncludedHtmlMaster, IncludedHtmlCoreTemplate, 
 from krogoth_gantry.management.commands.installdjangular import bcolors
 from krogoth_gantry.views import AbstractKrogothSerializer
 from krogoth_admin.models import UncommitedSQL
-from chat.models import JawnUser
+from krogoth_chat.models import JawnUser
 
 
 class IncludedHtmlMasterSerializer(AbstractKrogothSerializer):

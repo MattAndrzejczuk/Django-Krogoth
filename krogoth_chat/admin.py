@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from chat.models import Channel, Message, JawnUser, TextMessage
+from krogoth_chat.models import Channel, Message, JawnUser, TextMessage
 
 
 class MessageAdmin(admin.ModelAdmin):

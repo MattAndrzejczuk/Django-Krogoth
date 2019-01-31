@@ -8,7 +8,7 @@ from krogoth_social.serializers import AKThreadCategorySerializer, AKThreadSeria
 from rest_framework.views import APIView
 from datetime import datetime
 from django.http import HttpResponse, JsonResponse
-from chat.models import JawnUser
+from krogoth_chat.models import JawnUser
 from rest_framework.decorators import api_view
 from rest_framework import generics
 import random

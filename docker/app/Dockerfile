@@ -1,5 +1,7 @@
 FROM django:python3
 
+RUN apt-get update
+RUN apt-get -y upgrade
 
 
 RUN mkdir -p /usr/src/app
@@ -38,7 +40,7 @@ RUN sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/maste
 
 RUN pip install django-redis==4.8.0
 
-RUN rm -R /usr/src/app/chat/migrations
+RUN rm -R /usr/src/app/krogoth_chat/migrations
 RUN rm -R /usr/src/app/krogoth_3rdparty_api/migrations
 RUN rm -R /usr/src/app/krogoth_examples/migrations
 RUN rm -R /usr/src/app/krogoth_admin/migrations

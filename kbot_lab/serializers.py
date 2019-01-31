@@ -5,7 +5,7 @@ __author__ = 'Matt Andrzejczuk'
 from rest_framework import serializers
 from rest_framework.exceptions import NotAuthenticated
 from kbot_lab.models import KBNanolatheExampleUpload, KBNanolatheAbstractBlueprint, KBNanolatheExamplePlain
-from chat.models import JawnUser
+from krogoth_chat.models import JawnUser
 from django.contrib.auth.models import AnonymousUser
 
 

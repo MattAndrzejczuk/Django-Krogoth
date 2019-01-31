@@ -76,24 +76,30 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'django.contrib.sites',
+    'django_extensions',
     'ws4redis',
     'rest_framework_docs',
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_auth',
+    
     'rest_framework_swagger',
-    'chat',
-    'krogoth_core',
-    'moho_extractor',
-    'krogoth_gantry',
-    'krogoth_3rdparty_api',
-    'krogoth_social',
-    'krogoth_admin',
-    'djangular_dashboard',
     'django_filters',
+    
+    'krogoth_chat',
     'kbot_lab',
+    'krogoth_3rdparty_api',
+    
+    'krogoth_admin',
+    'krogoth_core',
+    'krogoth_dashboard',
     'krogoth_examples',
-    'django_extensions',
+    
+    'krogoth_gantry',
+    
+    'krogoth_social',
+    'moho_extractor',
+    'rest_auth',
+    
 )
 
 MIDDLEWARE_CLASSES = (
@@ -164,7 +170,7 @@ MEDIA_URL = '/media/'
 SITE_ID = 2
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'chat.serializers.GetUserSerializer',
+    'USER_DETAILS_SERIALIZER': 'krogoth_chat.serializers.GetUserSerializer',
 }
 APPEND_SLASH = True
 

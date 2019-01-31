@@ -1,5 +1,8 @@
 import os
 # from subprocess import DEVNULL, STDOUT, check_call
+import threading
+from subprocess import Popen, PIPE
+
 import time
 class bc:
     HEADER = '\033[95m'
@@ -42,11 +45,33 @@ OUTPUT_ENABLED = False
 
 def execute(cmd, always_display):
     # out, err = p.communicate()
-    os.system(cmd)
+    
     # os.system('clear')
     #if OUTPUT_ENABLED == True or always_display == "NEEDED":
     #    print(out.decode("utf-8"))
-    # print(always_display)
+    time.sleep(1)
+    print(bc.purple + "RUNNING COMMAND: " + bc.ENDC + bc.green + always_display + bc.ENDC)
+    
+    os.system(cmd)
+    
+    
+def dispatch_background_thread_collectstatic():
+    print(bc.cyan + "AUTO COLLECTING STATIC, " + bc.ENDC + bc.lightblue + "DISPATCHED NEW THREAD" + bc.ENDC)
+    p = Popen(['ls', '-la'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    output, err = p.communicate(b"")
+    print(bc.yellow + " COLLECT STATIC REQUESTED: " + bc.ENDC + bc.blue + str(err) + bc.ENDC)
+    
+#TODO: Python MUST be upgraded to latest.
+def upgrade_python3():
+    """
+    tar -xf /usr/src/app/docker/Python37.tar.xz  -C /usr/src/app/py3
+    /usr/src/app/docker/py3
+    ./configure
+    python -c 'print(" \033[31m INSTALLING PYTHON 3.7 \033[0m ")'
+    make
+    make install
+    """
+
 
 
 print(bc.BOLD + bc.blue + "DESTORYING PREVIOUS KROGOTH " + parent_dir + bc.ENDC + bc.ENDC)
@@ -94,36 +119,46 @@ execute(cmd, bc.lightblue+cmd+bc.ENDC)
 cmd = ('docker exec -it armprime-postgres useradd -p $(openssl passwd -1 123123) jawn')
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
 cmd = ("docker exec -it --user jawn armprime-postgres psql jawn -c 'create extension hstore;'")
-#cmd = ("docker exec -it armprime-postgres psql -U jawn postgres -c 'create extension hstore;'")
-# execute(cmd, bc.lightblue+cmd+bc.ENDC)
-# cmd = ('sleep 1')
-# execute(cmd, bc.lightblue+cmd+bc.ENDC)
-# cmd = ('rm -R ../chat/migrations')
-# execute(cmd, bc.lightblue+cmd+bc.ENDC)
-# cmd = ('rm -R ../krogoth_3rdparty_api/migrations')
-# execute(cmd, bc.lightblue+cmd+bc.ENDC)
-# cmd = ('rm -R ../krogoth_examples/migrations')
-# execute(cmd, bc.lightblue+cmd+bc.ENDC)
-# cmd = ('rm -R ../krogoth_admin/migrations')
-# execute(cmd, bc.lightblue+cmd+bc.ENDC)
-# cmd = ('rm -R ../krogoth_apps/migrations')
-# execute(cmd, bc.lightblue+cmd+bc.ENDC)
-# cmd = ('rm -R ../krogoth_social/migrations')
-# execute(cmd, bc.lightblue+cmd+bc.ENDC)
-# cmd = ('rm -R ../moho_extractor/migrations')
-# execute(cmd, bc.lightblue+cmd+bc.ENDC)
-# cmd = ('rm -R ../kbot_lab/migrations')
-# execute(cmd, bc.lightblue+cmd+bc.ENDC)
-# cmd = ('rm -R ../LazarusIII/migrations')
-# execute(cmd, bc.lightblue+cmd+bc.ENDC)
-# cmd = ('rm -R ../LazarusIV/migrations')
-# execute(cmd, bc.lightblue+cmd+bc.ENDC)
-# cmd = ('rm -R ../LazarusV/migrations')
+
+cmd = ('sleep 1')
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
-cmd = ('docker exec -it armprime ./manage.py makemigrations chat krogoth_3rdparty_api krogoth_examples krogoth_apps krogoth_social moho_extractor krogoth_gantry krogoth_core krogoth_admin')
+cmd = ('rm -R ../chat/migrations')
+execute(cmd, bc.lightblue+cmd+bc.ENDC)
+cmd = ('rm -R ../krogoth_3rdparty_api/migrations')
+execute(cmd, bc.lightblue+cmd+bc.ENDC)
+cmd = ('rm -R ../krogoth_examples/migrations')
+execute(cmd, bc.lightblue+cmd+bc.ENDC)
+cmd = ('rm -R ../krogoth_admin/migrations')
+execute(cmd, bc.lightblue+cmd+bc.ENDC)
+cmd = ('rm -R ../krogoth_apps/migrations')
+execute(cmd, bc.lightblue+cmd+bc.ENDC)
+cmd = ('rm -R ../krogoth_social/migrations')
+execute(cmd, bc.lightblue+cmd+bc.ENDC)
+cmd = ('rm -R ../moho_extractor/migrations')
+execute(cmd, bc.lightblue+cmd+bc.ENDC)
+cmd = ('rm -R ../kbot_lab/migrations')
+execute(cmd, bc.lightblue+cmd+bc.ENDC)
+
+"""
+
+
+    krogoth_chat kbot_lab krogoth_3rdparty_api krogoth_admin krogoth_core krogoth_dashboard krogoth_examples krogoth_gantry krogoth_social moho_extractor rest_auth
+
+
+"""
+
+cmd = ('sleep 1')
+execute(cmd, bc.lightblue+cmd+bc.ENDC)
+
+execute(cmd, bc.lightblue+cmd+bc.ENDC)
+cmd = ('docker exec -it armprime ./manage.py makemigrations')
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
 cmd = ('docker exec -it armprime ./manage.py migrate')
 execute(cmd, bc.lightgreen+cmd+bc.ENDC)
+
+cmd = ('sleep 2')
+execute(cmd, bc.lightblue+cmd+bc.ENDC)
+
 cmd = ('docker exec -it armprime ./manage.py installdjangular')
 execute(cmd, bc.lightgreen+cmd+bc.ENDC)
 cmd = ('sleep 1')

@@ -2,8 +2,8 @@ __version__ = '0.6.98'
 __author__ = 'Matt Andrzejczuk'
 
 from rest_framework import serializers, exceptions
-from chat.models import JawnUser
-from chat.serializers import JawnUserSerializer
+from krogoth_chat.models import JawnUser
+from krogoth_chat.serializers import JawnUserSerializer
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from django.shortcuts import render
 from krogoth_social.models import AKThreadCategory, AKThread, AKThreadSocialMedia, \

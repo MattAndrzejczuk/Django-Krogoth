@@ -116,7 +116,7 @@
         function refreshProcesses() {
             $http({
                 method: 'GET',
-                url: '/djangular_dashboard/processesDummy?format=json'
+                url: '/krogoth_dashboard/processesDummy?format=json'
             }).then(function successCallback(response) {
 
                 vm.refreshing = true;
@@ -233,7 +233,7 @@
         $interval(function() {
             $http({
                 method: 'GET',
-                url: '/djangular_dashboard/ram?format=json'
+                url: '/krogoth_dashboard/ram?format=json'
             }).then(function successCallback(response) {
                 // console.log(response.data.free);
 
@@ -336,7 +336,7 @@
 
         $http({
             method: 'GET',
-            url: '/djangular_dashboard/cpuinfo?format=json'
+            url: '/krogoth_dashboard/cpuinfo?format=json'
         }).then(function successCallback(response) {
             vm.infoCPU.cache_size = response.data.cache_size;
             vm.infoCPU.cores = response.data.cores;
@@ -349,7 +349,7 @@
         $interval(function() {
             $http({
                 method: 'GET',
-                url: '/djangular_dashboard/storage?format=json'
+                url: '/krogoth_dashboard/storage?format=json'
             }).then(function successCallback(response) {
                 vm.widget2["title"] = response.data['data'][0];
                 vm.widget2["value"]["used"] = response.data['data'][2];
@@ -449,7 +449,7 @@
         $interval(function() {
             $http({
                 method: 'GET',
-                url: '/djangular_dashboard/uptime?format=json'
+                url: '/krogoth_dashboard/uptime?format=json'
             }).then(function successCallback(response) {
                 vm.widget5["title"] = "System Uptime";
                 vm.widget5["value"] = response.data.secs;

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from krogoth_core.models import AKFoundationAbstract
-from chat.models import JawnUser
+from krogoth_chat.models import JawnUser
 from krogoth_admin.models import UncommitedSQL
 from krogoth_gantry.management.commands.installdjangular import bcolors
 

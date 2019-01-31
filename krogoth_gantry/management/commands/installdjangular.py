@@ -272,7 +272,7 @@ class Command(BaseCommand):
         user.is_superuser=False
         user.is_staff=False
         user.save()
-        from chat.models import JawnUser
+        from krogoth_chat.models import JawnUser
         ju = JawnUser(base_user=user)
         ju.save()
         from rest_framework.authtoken.models import Token

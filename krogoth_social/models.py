@@ -2,7 +2,7 @@ __version__ = '0.6.98'
 __author__ = 'Matt Andrzejczuk'
 
 from django.db import models
-from chat.models import JawnUser
+from krogoth_chat.models import JawnUser
 from polymorphic.models import PolymorphicModel
 from random import *
 from datetime import datetime
