@@ -119,10 +119,10 @@ execute(cmd, bc.lightblue+cmd+bc.ENDC)
 cmd = ('docker exec -it armprime-postgres useradd -p $(openssl passwd -1 123123) jawn')
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
 cmd = ("docker exec -it --user jawn armprime-postgres psql jawn -c 'create extension hstore;'")
-
+execute(cmd, bc.lightblue+cmd+bc.ENDC)
 cmd = ('sleep 1')
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
-cmd = ('rm -R ../chat/migrations')
+cmd = ('rm -R ../krogoth_chat/migrations')
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
 cmd = ('rm -R ../krogoth_3rdparty_api/migrations')
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
@@ -151,9 +151,9 @@ cmd = ('sleep 1')
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
 
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
-cmd = ('docker exec -it armprime ./manage.py makemigrations')
+cmd = ('docker exec -it armprime ./manage.py makemigrations krogoth_core moho_extractor krogoth_3rdparty_api krogoth_admin krogoth_social kbot_lab krogoth_chat krogoth_examples kbot_lab krogoth_gantry')
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
-cmd = ('docker exec -it armprime ./manage.py migrate')
+cmd = ('docker exec -it armprime ./manage.py migrate krogoth_core moho_extractor krogoth_3rdparty_api krogoth_admin krogoth_social kbot_lab krogoth_chat krogoth_examples kbot_lab krogoth_gantry')
 execute(cmd, bc.lightgreen+cmd+bc.ENDC)
 
 cmd = ('sleep 2')
@@ -171,7 +171,7 @@ cmd = ('sleep 2')
 execute(cmd, bc.lightgreen + "INSTALLATION COMPLETED" + bc.ENDC)
 execute(cmd, bc.lightgreen + "CREATING SUPER USER: " + bc.ENDC)
 os.system('docker exec -it armprime ./manage.py createsuperuser')
-
+# moho_extractor rest_auth kbot_lab
 
 
 
@@ -181,7 +181,7 @@ carrot = '\033[91m' + ">" + '\033[0m'
 print(
     '\033[36m' + "Preferences " + carrot + " Build, Execution, Deployment " + carrot + "  Console " + carrot + "  Django Console" + '\033[0m')
 
-os.system('sleep 1')
+os.system('sleepm 1')
 print('\033[95m' + "GENERATED KROGOTH ENVIRONMENT " + '\033[0m')
 
 red = '\033[31m'
