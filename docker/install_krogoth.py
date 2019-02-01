@@ -1,9 +1,9 @@
 import os
+import time
 # from subprocess import DEVNULL, STDOUT, check_call
-import threading
 from subprocess import Popen, PIPE
 
-import time
+
 class bc:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -153,7 +153,7 @@ execute(cmd, bc.lightblue+cmd+bc.ENDC)
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
 cmd = ('docker exec -it armprime ./manage.py makemigrations krogoth_core moho_extractor krogoth_3rdparty_api krogoth_admin krogoth_social kbot_lab krogoth_chat krogoth_examples kbot_lab krogoth_gantry')
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
-cmd = ('docker exec -it armprime ./manage.py migrate krogoth_core moho_extractor krogoth_3rdparty_api krogoth_admin krogoth_social kbot_lab krogoth_chat krogoth_examples kbot_lab krogoth_gantry')
+cmd = ('docker exec -it armprime ./manage.py migrate')
 execute(cmd, bc.lightgreen+cmd+bc.ENDC)
 
 cmd = ('sleep 2')
