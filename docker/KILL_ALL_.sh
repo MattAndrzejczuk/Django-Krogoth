@@ -2,7 +2,7 @@
 
 
 
-echo "  ☠️  WARNING ☠️  "
+echo "  ☠️  \033[91m DANGER ZONE \033[91m ☠️  "
 #echo "Stop and remove all running containers? (y/n)"
 #read answer
 #if echo "$answer" | grep -iq "^y" ;then
@@ -23,7 +23,7 @@ echo "  ☠️  WARNING ☠️  "
 #else
 #    echo "Cancelled."
 #fi
-
+########################################################################################################################
 
 echo "Stop and remove all running containers? (y/n)"
 read answer
@@ -35,3 +35,5 @@ if echo "$answer" | grep -iq "^y" ;then
 else
     echo "Cancelled."
 fi
+
+
