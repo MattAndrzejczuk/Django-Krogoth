@@ -2,7 +2,7 @@
 
 
 
-echo "  ☠️  \033[91m DANGER ZONE \033[91m ☠️  "
+echo "\033[5m☠\033[91m DANGER ZONE \033[0m☠\033[0m"
 #echo "Stop and remove all running containers? (y/n)"
 #read answer
 #if echo "$answer" | grep -iq "^y" ;then
@@ -25,15 +25,23 @@ echo "  ☠️  \033[91m DANGER ZONE \033[91m ☠️  "
 #fi
 ########################################################################################################################
 
-echo "Stop and remove all running containers? (y/n)"
-read answer
-if echo "$answer" | grep -iq "^y" ;then
-    docker stop $(docker ps -aq)
-    python -c 'print(" \033[32m TERMINATED. \033[0m ")'
-    docker rm $(docker ps -aq)
-    python -c 'print(" \033[32m DESTROYED. \033[0m ")'
-else
-    echo "Cancelled."
-fi
 
 
+
+
+#echo "Stop and remove all running containers? (y/n)"
+#read answer
+#if echo "$answer" | grep -iq "^y" ;then
+#    docker stop $(docker ps -aq)
+#    python -c 'print(" \033[32m TERMINATED. \033[0m ")'
+#    docker rm $(docker ps -aq)
+#    python -c 'print(" \033[32m DESTROYED. \033[0m ")'
+#else
+#    echo "Cancelled."
+#fi
+
+
+docker stop $(docker ps -aq)
+python -c 'print(" \033[93m TERMINATED. \033[0m ")'
+docker rm $(docker ps -aq)
+python -c 'print(" \033[33m DESTROYED. \033[0m ")'

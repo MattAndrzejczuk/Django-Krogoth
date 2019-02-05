@@ -1,7 +1,7 @@
 FROM django:python3
 
 RUN apt-get update
-RUN apt-get -y wget
+RUN apt-get install -y wget
 
 
 RUN mkdir -p /usr/src/app

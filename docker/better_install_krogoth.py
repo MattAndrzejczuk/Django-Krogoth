@@ -31,32 +31,100 @@ class bc:
     pink = '\033[95m'
     lightcyan = '\033[96m'
 
+def cstr(i) -> str:
+    return '\033['+str(i)+'m'
 
-class Installaton():
+
+class AKInstallation():
 
     def __init__(self):
         print("installation obj called...")
 
     @classmethod
+    def print_terminal_input(cls, args):
+        loop = 0
+        for cmd in args:
+            if loop == 0:
+                print(bc.green + cmd + bc.ENDC, end='')
+            else:
+                print(bc.purple + cmd + bc.ENDC, end='')
+            if len(args) == loop + 1:
+                print(";")
+            loop += 1
+
+
+    @classmethod
     def execute(cls, cmd, installation_phase):
         """
-        Run a command in the terminal.
+        runs a terminal command and waits for completion to then print all output at once.
 
+        :param cmd: the full terminal command
+        :param installation_phase: the current command number (1,2,3,4,...x)
+        :return: void
         """
 
-        time.sleep(1)
+
         args = cmd.split(" ")
-        print(bc.purple + "RUNNING COMMAND: " + bc.ENDC + bc.green + str(args) + bc.ENDC)
+        cls.print_terminal_input(args)
 
         proc = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
-        output = proc.communicate(timeout=15)
+        output, err = proc.communicate("")
 
-        user_input = input("continue? (y, n)       (yo - yes and print output)")
-        if user_input.upper() != "Y":
-            exit()
-        elif user_input == "yo":
-            print(bc.blue + str(output) + bc.ENDC)
-            time.sleep(1)
+        term_reply = output.decode('utf-8')
+        term_errors = err.decode('utf-8')
+
+
+        print(cstr(104) + cstr(37) + term_reply + cstr(0) + cstr(0))
+
+
+        if len(term_errors) > 1 and args[0] != 'rm':
+            print(cstr(107) + cstr(91) + term_errors + cstr(0) + cstr(0))
+            os.system("say 'Warning, " + args[0] + " error.'")
+            # user_input = input("continue installation anyway? (y, n)")
+            # if user_input.upper() == "N":
+
+        # for line in term_reply:
+        #     try:
+        #         print(bc.lightblue + line + bc.ENDC, end='')
+        #     except:
+        #         pass
+        # for line in term_errors:
+        #     try:
+        #         print(bc.red + line.decode('UTF-8') + bc.ENDC, end='')
+        #     except:
+        #         pass
+
+
+
+
+
+    @classmethod
+    def show_realtime_out(cls, proc: Popen):
+        """
+        prints output in realtime
+
+        :param proc: Popen with stdout
+        :return: void
+        """
+        for line in proc.stdout:
+            print(bc.cyan + line.decode('UTF-8') + bc.ENDC, end='')
+
+    @classmethod
+    def execute_realtime_out(cls, cmd: str, installation_phase):
+        """
+        runs a terminal command and gets all output in realtime.
+
+        :param cmd: the full terminal command
+        :param installation_phase: the current command number (1,2,3,4,...x)
+        :return: void
+        """
+
+        args = cmd.split(" ")
+        cls.print_terminal_input(cmd)
+        proc = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
+        cls.show_realtime_out(proc)
+        proc.wait(999)
+
 
     @classmethod
     def destroy_docker(cls):
@@ -70,9 +138,9 @@ class Installaton():
 
 WORK_DIR = os.getcwd()
 PARENT_DIRPATH = os.path.abspath(os.path.join(WORK_DIR, os.pardir))
-installer = Installaton()
+installer = AKInstallation()
 
-print("WORKING IN " + bc.lightblue + WORK_DIR + bc.ENDC)
+print(bc.lightblue + "WORKING IN " + bc.ENDC + bc.pink + WORK_DIR + bc.ENDC)
 
 DOCKER_SQL_CONTAINERNAME = "postgres"
 SQL_USER = "jawn"
@@ -86,90 +154,83 @@ SQL_ARGS = "-e POSTGRES_USER=" + \
            DOCKER_SQL_CONTAINERNAME
 
 
+os.system('say -v Karen "welcome."')
+
 
 print(bc.BOLD + bc.blue + "DESTORYING PREVIOUS KROGOTH " + PARENT_DIRPATH + bc.ENDC + bc.ENDC)
-time.sleep(1)
 installer.destroy_docker()
-
-cmd = ("docker build -t mattjawn/armprime ./app/")
-installer.execute(cmd, bc.yellow + "DOCKER BUILD" + bc.ENDC)
+o = input("...")
+cmd_n01 = ("docker build -t mattjawn/armprime ./app/")
+installer.execute_realtime_out(cmd_n01, "")
 
 db_args = "-e POSTGRES_USER=jawn -d -p 8091:5432 postgres"
 db_pw = "58bdf87d93a3f325574900aa2f5626e3844a903ffb64bed152ae124d2e79aab9"
 
-cmd = ("docker run --name armprime-postgres -e POSTGRES_PASSWORD=" + SQL_PASS + " " + SQL_ARGS)
-Installaton.execute(cmd, cmd)
+cmd_n02 = ("docker run --name armprime-postgres -e POSTGRES_PASSWORD=" + SQL_PASS + " " + SQL_ARGS)
+AKInstallation.execute_realtime_out(cmd_n02, cmd_n02)
 
-cmd = ("docker run -d -p 7070:6379 --name=armprime-redis redis")
-Installaton.execute(cmd, cmd)
+cmd_n03 = ("docker run -d -p 7070:6379 --name=armprime-redis redis")
+AKInstallation.execute_realtime_out(cmd_n03, cmd_n03)
 
-cmd = (
+cmd_n04 = (
         'docker run -d -p 80:80 -v "' + PARENT_DIRPATH + '":/usr/src/app/ --link armprime-postgres:postgres --link armprime-redis:redis --name=armprime mattjawn/armprime')
-Installaton.execute(cmd, cmd)
+AKInstallation.execute_realtime_out(cmd_n04, cmd_n04)
 
-cmd1 = ('docker exec armprime-redis redis-cli config set notify-keyspace-events KEA')
-Installaton.execute(cmd1, "armprime-redis")
+cmd_n05 = ('docker exec armprime-redis redis-cli config set notify-keyspace-events KEA')
+AKInstallation.execute_realtime_out(cmd_n05, "armprime-redis")
 
 # CREATE USER 'jawn' with pass: '123123'
-cmd = ('docker exec -it armprime-postgres useradd -p $(openssl passwd -1 123123) jawn')
-Installaton.execute(cmd, cmd)
+cmd_n06 = ('docker exec -it armprime-postgres useradd -p $(openssl passwd -1 123123) jawn')
+AKInstallation.execute_realtime_out(cmd_n06, cmd_n06)
 
-cmd = ("docker exec -it --user jawn armprime-postgres psql jawn -c 'create extension hstore;'")
-Installaton.execute(cmd, cmd)
+cmd_n07 = ("docker exec -it --user jawn armprime-postgres psql jawn -c 'create extension hstore;'")
+AKInstallation.execute_realtime_out(cmd_n07, cmd_n07)
 
 
 
 
 ### ---====== remove previous migrations ======---
-cmd = ('sleep 1')
-Installaton.execute(cmd, cmd)
+cmd_n09 = ('rm -R ../krogoth_chat/migrations')
+AKInstallation.execute_realtime_out(cmd_n09, cmd_n09)
 
-cmd = ('rm -R ../krogoth_chat/migrations')
-Installaton.execute(cmd, cmd)
+cmd_n10 = ('rm -R ../krogoth_3rdparty_api/migrations')
+AKInstallation.execute_realtime_out(cmd_n10, cmd_n10)
 
-cmd = ('rm -R ../krogoth_3rdparty_api/migrations')
-Installaton.execute(cmd, cmd)
+cmd_n11 = ('rm -R ../krogoth_examples/migrations')
+AKInstallation.execute_realtime_out(cmd_n11, cmd_n11)
 
-cmd = ('rm -R ../krogoth_examples/migrations')
-Installaton.execute(cmd, cmd)
+cmd_n12 = ('rm -R ../krogoth_admin/migrations')
+AKInstallation.execute_realtime_out(cmd_n12, cmd_n12)
 
-cmd = ('rm -R ../krogoth_admin/migrations')
-Installaton.execute(cmd, cmd)
+cmd_n13 = ('rm -R ../krogoth_apps/migrations')
+AKInstallation.execute_realtime_out(cmd_n13, cmd_n13)
 
-cmd = ('rm -R ../krogoth_apps/migrations')
-Installaton.execute(cmd, cmd)
+cmd_n14 = ('rm -R ../krogoth_social/migrations')
+AKInstallation.execute_realtime_out(cmd_n14, cmd_n14)
 
-cmd = ('rm -R ../krogoth_social/migrations')
-Installaton.execute(cmd, cmd)
+cmd_n15 = ('rm -R ../moho_extractor/migrations')
+AKInstallation.execute_realtime_out(cmd_n15, cmd_n15)
 
-cmd = ('rm -R ../moho_extractor/migrations')
-Installaton.execute(cmd, cmd)
+cmd_n16 = ('rm -R ../kbot_lab/migrations')
+AKInstallation.execute_realtime_out(cmd_n16, cmd_n16)
 
-cmd = ('rm -R ../kbot_lab/migrations')
-Installaton.execute(cmd, cmd)
-
-cmd = ('sleep 1')
-Installaton.execute(cmd, cmd)
 
 
 
 ### ---====== make new migrations ======---
-cmd = (
+cmd_n18 = (
     'docker exec -it armprime ./manage.py makemigrations krogoth_core moho_extractor krogoth_3rdparty_api krogoth_admin krogoth_social kbot_lab krogoth_chat krogoth_examples kbot_lab krogoth_gantry')
-Installaton.execute(cmd, cmd)
+AKInstallation.execute_realtime_out(cmd_n18, cmd_n18)
 
-cmd = ('docker exec -it armprime ./manage.py migrate')
-Installaton.execute(cmd, bc.lightgreen + cmd)
-
-cmd = ('sleep 2')
-Installaton.execute(cmd, cmd)
+cmd_n19 = ('docker exec -it armprime ./manage.py migrate')
+AKInstallation.execute_realtime_out(cmd_n19, bc.lightgreen + cmd_n19)
 
 
 
 
 ### ---====== install krogoth gantry units ======---
-cmd = ('docker exec -it armprime ./manage.py installdjangular')
-Installaton.execute(cmd, bc.lightgreen + cmd)
+cmd_n21 = ('docker exec -it armprime ./manage.py installdjangular')
+AKInstallation.execute_realtime_out(cmd_n21, bc.lightgreen + cmd_n21)
 
 print(bc.lightgreen + "./manage.py collectdvc" + bc.ENDC)
 ak_install = ['docker', 'exec', '-it', 'armprime', './manage.py', 'collectdvc']
@@ -183,10 +244,6 @@ with Popen(static_col, stdin=PIPE, stdout=PIPE, stderr=PIPE) as proc:
 
 
 ### ---====== install global fuse units ======---
-Installaton.execute(cmd, "Installing Default Templates" + bc.ENDC)
-cmd = ('sleep 2')
-Installaton.execute(cmd, bc.lightgreen + "INSTALLATION COMPLETED" + bc.ENDC)
-Installaton.execute(cmd, bc.lightgreen + "CREATING SUPER USER: " + bc.ENDC)
 
 
 ### ---====== fin ======---
