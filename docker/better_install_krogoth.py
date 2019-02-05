@@ -41,18 +41,32 @@ class AKInstallation():
         print("installation obj called...")
 
     @classmethod
-    def print_terminal_input(cls, args):
+    def print_array_line(cls, args):
         loop = 0
+        color1 = bc.green
+        end1 = bc.ENDC
+        color2 = bc.blue
+        if type(args) == str:
+            color1 = bc.WARNING + bc.BOLD
+            end1 = bc.ENDC + bc.ENDC
+            args = args.split(" ")
+        odd = True
         for cmd in args:
             if loop == 0:
-                print(bc.green + cmd + bc.ENDC, end='')
+                print(color1 + cmd + end1, end=' ')
             else:
-                print(bc.purple + cmd + bc.ENDC, end='')
+                if odd == True:
+                    odd = not odd
+                    color2 = bc.pink
+                else:
+                    color2 = bc.blue
+                print(color2 + cmd + end1, end=' ')
             if len(args) == loop + 1:
-                print(";")
+                print("")
             loop += 1
 
 
+            
     @classmethod
     def execute(cls, cmd, installation_phase):
         """
@@ -65,8 +79,9 @@ class AKInstallation():
 
 
         args = cmd.split(" ")
-        cls.print_terminal_input(args)
+        cls.print_array_line(args)
 
+        print(args)
         proc = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
         output, err = proc.communicate("")
 
@@ -120,10 +135,10 @@ class AKInstallation():
         """
 
         args = cmd.split(" ")
-        cls.print_terminal_input(cmd)
+        cls.print_array_line(cmd)
         proc = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
         cls.show_realtime_out(proc)
-        proc.wait(999)
+
 
 
     @classmethod
@@ -159,7 +174,7 @@ os.system('say -v Karen "welcome."')
 
 print(bc.BOLD + bc.blue + "DESTORYING PREVIOUS KROGOTH " + PARENT_DIRPATH + bc.ENDC + bc.ENDC)
 installer.destroy_docker()
-o = input("...")
+
 cmd_n01 = ("docker build -t mattjawn/armprime ./app/")
 installer.execute_realtime_out(cmd_n01, "")
 
