@@ -57,13 +57,13 @@ RUN pip install -r /usr/src/app/requirements.txt
 RUN pip install django-extensions==2.1.4
 RUN pip install django-redis==4.8.0
 
-RUN rm -R /usr/src/app/krogoth_chat/migrations
-RUN rm -R /usr/src/app/krogoth_3rdparty_api/migrations
-RUN rm -R /usr/src/app/krogoth_examples/migrations
-RUN rm -R /usr/src/app/krogoth_admin/migrations
-RUN rm -R /usr/src/app/krogoth_social/migrations
-RUN rm -R /usr/src/app/moho_extractor/migrations
-RUN rm -R /usr/src/app/kbot_lab/migrations
+#RUN rm -R /usr/src/app/krogoth_chat/migrations
+#RUN rm -R /usr/src/app/krogoth_3rdparty_api/migrations
+#RUN rm -R /usr/src/app/krogoth_examples/migrations
+#RUN rm -R /usr/src/app/krogoth_admin/migrations
+#RUN rm -R /usr/src/app/krogoth_social/migrations
+#RUN rm -R /usr/src/app/moho_extractor/migrations
+#RUN rm -R /usr/src/app/kbot_lab/migrations
 
 RUN sed -i -e 's/miloshadzic/tonotdo/g' ~/.zshrc
 

@@ -3,6 +3,7 @@ import time
 from subprocess import Popen, PIPE
 import subprocess
 
+
 class bc:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -154,7 +155,7 @@ class InstallationRuntime():
         cmd_n01: str = "docker build -t mattjawn/armprime ./app/"
         cmd_n02: str = "docker run --name " + DOCKER_SQL_NAME + " " + SQL_ARGS
         cmd_n03: str = "docker run -d -p 7070:6379 --name=armprime-redis redis"
-        cmd_n04 = 'docker run -d -p 80:80 -v "' + PARENT_DIRPATH + \
+        cmd_n04: str = 'docker run -d -p 80:80 -v "' + PARENT_DIRPATH + \
                   '":/usr/src/app/ --link armprime-postgres:postgres --link armprime-redis:redis --name=armprime mattjawn/armprime'
         cmd_n05: str = 'docker exec armprime-redis redis-cli config set notify-keyspace-events KEA'
         cmd_n06: str = 'docker exec -it armprime-postgres useradd -p $(openssl passwd -1 123123) jawn'
@@ -171,12 +172,36 @@ class InstallationRuntime():
         cmd_n19: str = 'docker exec -it armprime ./manage.py migrate'
         cmd_n21: str = 'docker exec -it armprime ./manage.py installdjangular'
 
-        os.system('say -v Karen "welcome."')
 
+        ORDERED_COMMANDS.append(cmd_n01)
+        ORDERED_COMMANDS.append(cmd_n02)
+        ORDERED_COMMANDS.append(cmd_n03)
+        ORDERED_COMMANDS.append(cmd_n04)
+        ORDERED_COMMANDS.append(cmd_n05)
+        ORDERED_COMMANDS.append(cmd_n06)
+        ORDERED_COMMANDS.append(cmd_n07)
+        ORDERED_COMMANDS.append(cmd_n09)
+        ORDERED_COMMANDS.append(cmd_n10)
+        ORDERED_COMMANDS.append(cmd_n11)
+        ORDERED_COMMANDS.append(cmd_n12)
+        ORDERED_COMMANDS.append(cmd_n13)
+        ORDERED_COMMANDS.append(cmd_n14)
+        ORDERED_COMMANDS.append(cmd_n15)
+        ORDERED_COMMANDS.append(cmd_n16)
+        ORDERED_COMMANDS.append(cmd_n18)
+        ORDERED_COMMANDS.append(cmd_n19)
+        ORDERED_COMMANDS.append(cmd_n21)
+
+
+        for cmd in ORDERED_COMMANDS:
+            print(bc.green + cmd + bc.ENDC)
+
+        wait = input('ready?')
+
+        os.system('say -v Karen "welcome."')
 
         installer.destroy_docker()
         installer.execute_realtime_out(cmd_n01, "")
-
 
         AKInstallation.execute_realtime_out(cmd_n02, 2)
         AKInstallation.execute_realtime_out(cmd_n03, 3)
@@ -219,5 +244,6 @@ class InstallationRuntime():
 
         ### ---====== fin ======---
         os.system('docker exec -it armprime ./manage.py createsuperuser')
+
 
 InstallationRuntime()
