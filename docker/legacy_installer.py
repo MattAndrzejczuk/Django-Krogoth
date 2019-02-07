@@ -81,7 +81,7 @@ class AKInstallation():
         :param installation_phase: the current command number (1,2,3,4,...x)
         :return: void
         """
-        args = cmd.split(" ")
+        args = cmd
         cls.print_array_line(args)
         print(args)
         proc = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
@@ -99,7 +99,7 @@ class AKInstallation():
             print(cstr(0))
 
     @classmethod
-    def execute_realtime_out(cls, cmd: str, installation_phase):
+    def execute_realtime_out(cls, cmd: list, installation_phase):
         """
         runs a terminal command and gets all output in realtime.
 
@@ -107,15 +107,38 @@ class AKInstallation():
         :param installation_phase: the current command number (1,2,3,4,...x)
         :return: void
         """
+        print(cstr(91) + "╔═════════════════════════")
+        print("║ ", end=cstr(0))
+        for c in cmd:
+            if c == "docker":
+                print(bc.green, end="")
+            elif c == "exec":
+                print(bc.blue, end="")
+            elif c == "-it":
+                print(bc.yellow, end="")
+            elif c == "-p":
+                print(bc.cyan, end="")
+            elif c[0:8] == "armprime":
+                print(bc.red, end="")
+            else:
+                print(bc.purple, end="")
+            print(c, end=" ")
+            print(bc.ENDC, end="")
+        print(cstr(91) + "\n╠═════════════════════════", end=cstr(0))
         try:
-            args = cmd.split(" ")
-            with Popen(args, stdout=PIPE, bufsize=1, universal_newlines=True) as p:
+            args = cmd
+            with Popen(args, stdout=PIPE) as p:
+                print(cstr(91) + "\n║ ", end=cstr(0))
                 for line in p.stdout:
-                    print(line, end='')
-            inp = input("press [ENTER] to skip.")
+                    if installation_phase > 99:
+                        print(".", end="")
+                    else:
+                        print(line.decode("utf-8").replace("\n", "\n"), end='')
+            inp = input("press \033[35m[ENTER]\033[0m to skip.")
         except:
-            print(cstr(31) + "CAUSE OF THE TERMINAL CMD FAILURE: " + cstr(0))
+            print(cstr(91) + "║ " + cstr(0) + cstr(31) + "CAUSE OF THE TERMINAL CMD FAILURE: " + cstr(0))
             print(cmd)
+        print(cstr(91) + "╚═════════════════════════" + cstr(0))
 
     @classmethod
     def destroy_docker(cls):
@@ -147,55 +170,70 @@ class InstallationRuntime():
                    SQL_PRIVATE_PORT + " " + \
                    DOCKER_SQL_NAME
 
-        MIGRATIONS_PT_1 = "krogoth_core moho_extractor krogoth_3rdparty_api krogoth_admin"
-        MIGRATIONS_PT_2 = " krogoth_social kbot_lab krogoth_chat krogoth_examples kbot_lab krogoth_gantry"
-        MAKE_MIGRATIONS = MIGRATIONS_PT_1 + MIGRATIONS_PT_2
-
         ORDERED_COMMANDS = []
 
-        cmd_n01: str = "docker build -t mattjawn/armprime ./app/"
-        cmd_n02: str = "docker run --name " + DOCKER_SQL_NAME + " " + SQL_ARGS
-        cmd_n03: str = "docker run -d -p 7070:6379 --name=armprime-redis redis"
-        cmd_n04: str = 'docker run -d -p 80:80 -v "' + PARENT_DIRPATH + \
-                  '":/usr/src/app/ --link armprime-postgres:postgres --link armprime-redis:redis --name=armprime mattjawn/armprime'
-        cmd_n05: str = 'docker exec armprime-redis redis-cli config set notify-keyspace-events KEA'
-        cmd_n06: str = 'docker exec -it armprime-postgres useradd -p $(openssl passwd -1 123123) jawn'
-        cmd_n07: str = "docker exec -it --user jawn armprime-postgres psql jawn -c 'create extension hstore;'"
-        cmd_n09: str = 'rm -R "../krogoth_chat/migrations"'
-        cmd_n10: str = 'rm -R "../krogoth_3rdparty_api/migrations"'
-        cmd_n11: str = 'rm -R "../krogoth_examples/migrations"'
-        cmd_n12: str = 'rm -R "../krogoth_admin/migrations"'
-        cmd_n13: str = 'rm -R "../krogoth_apps/migrations"'
-        cmd_n14: str = 'rm -R "../krogoth_social/migrations"'
-        cmd_n15: str = 'rm -R "../moho_extractor/migrations"'
-        cmd_n16: str = 'rm -R "../kbot_lab/migrations"'
-        cmd_n18: str = 'docker exec -it armprime ./manage.py makemigrations ' + MAKE_MIGRATIONS
-        cmd_n19: str = 'docker exec -it armprime ./manage.py migrate'
-        cmd_n21: str = 'docker exec -it armprime ./manage.py installdjangular'
+        cmd_n01 = ['docker', 'build', '-t', 'mattjawn/armprime', './app/']
+        cmd_n02 = ['docker',
+                   'run',
+                   '--name',
+                   'armprime-postgres',
+                   '-e',
+                   'POSTGRES_USER=jawn',
+                   '-e',
+                   'POSTGRES_PASSWORD=xzxzf87d93a3f325574900aa2f5626e3844a903ffb64bed152ae124d2e79xzxz',
+                   '-d',
+                   '-p',
+                   '8091:5432',
+                   'postgres']
 
+        cmd_n03 = ['docker', 'run', '-d', '-p', '7070:6379', '--name=armprime-redis', 'redis']
+        pp = PARENT_DIRPATH + ':/usr/src/app/'
+        cmd_n04 = ['docker', 'run', '-d', '-p', '80:80', '-v', pp, '--link', 'armprime-postgres:postgres', '--link',
+                   'armprime-redis:redis', '--name=armprime', 'mattjawn/armprime']
+        cmd_n05 = ['docker', 'exec', 'armprime-redis', 'redis-cli', 'config', 'set', 'notify-keyspace-events', 'KEA']
+        cmd_n06 = ['docker', 'exec', '-it', 'armprime-postgres', 'useradd', '-p', '$(openssl passwd -1 123123)', 'jawn']
+        cmd_n07 = ['sh', 'create_psql_extensions.sh']
 
-        ORDERED_COMMANDS.append(cmd_n01)
-        ORDERED_COMMANDS.append(cmd_n02)
-        ORDERED_COMMANDS.append(cmd_n03)
-        ORDERED_COMMANDS.append(cmd_n04)
-        ORDERED_COMMANDS.append(cmd_n05)
-        ORDERED_COMMANDS.append(cmd_n06)
-        ORDERED_COMMANDS.append(cmd_n07)
-        ORDERED_COMMANDS.append(cmd_n09)
-        ORDERED_COMMANDS.append(cmd_n10)
-        ORDERED_COMMANDS.append(cmd_n11)
-        ORDERED_COMMANDS.append(cmd_n12)
-        ORDERED_COMMANDS.append(cmd_n13)
-        ORDERED_COMMANDS.append(cmd_n14)
-        ORDERED_COMMANDS.append(cmd_n15)
-        ORDERED_COMMANDS.append(cmd_n16)
-        ORDERED_COMMANDS.append(cmd_n18)
-        ORDERED_COMMANDS.append(cmd_n19)
-        ORDERED_COMMANDS.append(cmd_n21)
+        cmd_n08 = ['rm', '-R', '"../krogoth_gantry/migrations"']
+        cmd_n09 = ['rm', '-R', '"../krogoth_chat/migrations"']
+        cmd_n10 = ['rm', '-R', '"../krogoth_3rdparty_api/migrations"']
+        cmd_n11 = ['rm', '-R', '"../krogoth_examples/migrations"']
+        cmd_n12 = ['rm', '-R', '"../krogoth_admin/migrations"']
+        cmd_n13 = ['rm', '-R', '"../krogoth_apps/migrations"']
+        cmd_n14 = ['rm', '-R', '"../krogoth_social/migrations"']
+        cmd_n15 = ['rm', '-R', '"../moho_extractor/migrations"']
+        cmd_n16 = ['rm', '-R', '"../kbot_lab/migrations"']
 
+        MIGRATIONS = ['krogoth_chat', 'krogoth_core', 'moho_extractor', 'krogoth_3rdparty_api', 'krogoth_admin',
+                      'krogoth_social', 'kbot_lab', 'krogoth_examples', 'kbot_lab', 'krogoth_gantry']
+        cmd_n18 = ['docker', 'exec', '-it', 'armprime', './manage.py', 'makemigrations'] + MIGRATIONS
+        cmd_n18_1 = ['docker', 'exec', '-it', 'armprime', './manage.py', 'makemigrations']
+        cmd_n19 = ['docker', 'exec', '-it', 'armprime', './manage.py', 'migrate']
+        cmd_n21 = ['docker', 'exec', '-it', 'armprime', './manage.py', 'installdjangular']
+        ak_install = ['docker', 'exec', '-it', 'armprime', './manage.py', 'collectdvc']
+        static_col = ['docker', 'exec', '-it', 'armprime', './manage.py', 'collectstatic']
 
-        for cmd in ORDERED_COMMANDS:
-            print(bc.green + cmd + bc.ENDC)
+        # ORDERED_COMMANDS.append(cmd_n01)
+        # ORDERED_COMMANDS.append(cmd_n02)
+        # ORDERED_COMMANDS.append(cmd_n03)
+        # ORDERED_COMMANDS.append(cmd_n04)
+        # ORDERED_COMMANDS.append(cmd_n05)
+        # ORDERED_COMMANDS.append(cmd_n06)
+        # ORDERED_COMMANDS.append(cmd_n07)
+        # ORDERED_COMMANDS.append(cmd_n08)
+        # ORDERED_COMMANDS.append(cmd_n09)
+        # ORDERED_COMMANDS.append(cmd_n10)
+        # ORDERED_COMMANDS.append(cmd_n11)
+        # ORDERED_COMMANDS.append(cmd_n12)
+        # ORDERED_COMMANDS.append(cmd_n13)
+        # ORDERED_COMMANDS.append(cmd_n14)
+        # ORDERED_COMMANDS.append(cmd_n15)
+        # ORDERED_COMMANDS.append(cmd_n16)
+        # ORDERED_COMMANDS.append(cmd_n18)
+        # ORDERED_COMMANDS.append(cmd_n18_1)
+        # ORDERED_COMMANDS.append(cmd_n19)
+        # ORDERED_COMMANDS.append(cmd_n21)
+
 
         wait = input('ready?')
 
@@ -203,18 +241,15 @@ class InstallationRuntime():
 
         installer.destroy_docker()
         installer.execute_realtime_out(cmd_n01, "")
-
         AKInstallation.execute_realtime_out(cmd_n02, 2)
         AKInstallation.execute_realtime_out(cmd_n03, 3)
-
         AKInstallation.execute_realtime_out(cmd_n04, 4)
-        AKInstallation.execute_realtime_out(cmd_n05, "armprime-redis")
-
-        # CREATE USER 'jawn' with pass: '123123'
+        AKInstallation.execute_realtime_out(cmd_n05, 5)
         AKInstallation.execute_realtime_out(cmd_n06, 6)
+        AKInstallation.execute_realtime_out(cmd_n08, 8)
         AKInstallation.execute_realtime_out(cmd_n07, 7)
-
         ### ---====== remove previous migrations ======---
+        AKInstallation.execute_realtime_out(cmd_n08, 8)
         AKInstallation.execute_realtime_out(cmd_n09, 9)
         AKInstallation.execute_realtime_out(cmd_n10, 10)
         AKInstallation.execute_realtime_out(cmd_n11, 11)
@@ -223,23 +258,15 @@ class InstallationRuntime():
         AKInstallation.execute_realtime_out(cmd_n14, 14)
         AKInstallation.execute_realtime_out(cmd_n15, 15)
         AKInstallation.execute_realtime_out(cmd_n16, 16)
-
         ### ---====== make new migrations ======---
         AKInstallation.execute_realtime_out(cmd_n18, 17)
         AKInstallation.execute_realtime_out(cmd_n19, 18)
-
         ### ---====== install krogoth gantry units ======---
         AKInstallation.execute_realtime_out(cmd_n21, 19)
 
-        print(bc.lightgreen + "./manage.py collectdvc" + bc.ENDC)
-        ak_install = ['docker', 'exec', '-it', 'armprime', './manage.py', 'collectdvc']
-        with Popen(ak_install, stdin=PIPE, stdout=PIPE, stderr=PIPE) as proc:
-            proc.communicate(b"")
+        AKInstallation.execute_realtime_out(ak_install, 100)
+        AKInstallation.execute_realtime_out(static_col, 101)
 
-        print(bc.lightgreen + "./manage.py collectstatic" + bc.ENDC)
-        static_col = ['docker', 'exec', '-it', 'armprime', './manage.py', 'collectstatic']
-        with Popen(static_col, stdin=PIPE, stdout=PIPE, stderr=PIPE) as proc:
-            proc.communicate(b"")
 
         ### ---====== install global fuse units ======---
 

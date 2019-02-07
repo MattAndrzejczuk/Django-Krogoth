@@ -98,7 +98,7 @@ class AKInstallation():
             print(cstr(0))
 
     @classmethod
-    def execute_realtime_out(cls, cmd: str, installation_phase):
+    def execute_realtime_out(cls, cmd: list, installation_phase):
         """
         runs a terminal command and gets all output in realtime.
 
@@ -146,31 +146,44 @@ class InstallationRuntime():
                    SQL_PRIVATE_PORT + " " + \
                    DOCKER_SQL_NAME
 
-        MIGRATIONS_PT_1 = "krogoth_core moho_extractor krogoth_3rdparty_api krogoth_admin"
-        MIGRATIONS_PT_2 = " krogoth_social kbot_lab krogoth_chat krogoth_examples kbot_lab krogoth_gantry"
-        MAKE_MIGRATIONS = MIGRATIONS_PT_1 + MIGRATIONS_PT_2
 
-        ORDERED_COMMANDS = []
+        cmd_n01 = ['docker', 'build', '-t', 'mattjawn/armprime', './app/']
+        cmd_n02 = ['docker',
+                   'run',
+                   '--name',
+                   'armprime-postgres',
+                   '-e',
+                   'POSTGRES_USER=jawn',
+                   '-d',
+                   '-p',
+                   'POSTGRES_PASSWORD=xzxzf87d93a3f325574900aa2f5626e3844a903ffb64bed152ae124d2e79xzxz',
+                   '8091:5432',
+                   'armprime-postgres']
 
-        cmd_n01: str = "docker build -t mattjawn/armprime ./app/"
-        cmd_n02: str = "docker run --name " + DOCKER_SQL_NAME + " " + SQL_ARGS
-        cmd_n03: str = "docker run -d -p 7070:6379 --name=armprime-redis redis"
-        cmd_n04 = 'docker run -d -p 80:80 -v "' + PARENT_DIRPATH + \
-                  '":/usr/src/app/ --link armprime-postgres:postgres --link armprime-redis:redis --name=armprime mattjawn/armprime'
-        cmd_n05: str = 'docker exec armprime-redis redis-cli config set notify-keyspace-events KEA'
-        cmd_n06: str = 'docker exec -it armprime-postgres useradd -p $(openssl passwd -1 123123) jawn'
-        cmd_n07: str = "docker exec -it --user jawn armprime-postgres psql jawn -c 'create extension hstore;'"
-        cmd_n09: str = 'rm -R "../krogoth_chat/migrations"'
-        cmd_n10: str = 'rm -R "../krogoth_3rdparty_api/migrations"'
-        cmd_n11: str = 'rm -R "../krogoth_examples/migrations"'
-        cmd_n12: str = 'rm -R "../krogoth_admin/migrations"'
-        cmd_n13: str = 'rm -R "../krogoth_apps/migrations"'
-        cmd_n14: str = 'rm -R "../krogoth_social/migrations"'
-        cmd_n15: str = 'rm -R "../moho_extractor/migrations"'
-        cmd_n16: str = 'rm -R "../kbot_lab/migrations"'
-        cmd_n18: str = 'docker exec -it armprime ./manage.py makemigrations ' + MAKE_MIGRATIONS
-        cmd_n19: str = 'docker exec -it armprime ./manage.py migrate'
-        cmd_n21: str = 'docker exec -it armprime ./manage.py installdjangular'
+        cmd_n03 = ['docker', 'run', '-d', '-p', '7070:6379', '--name=armprime-redis', 'redis']
+        pp = '"' + PARENT_DIRPATH + '":/usr/src/app/'
+        cmd_n04 = ['docker', 'run', '-d', '-p', '80:80', '-v', pp, '--link', 'armprime-postgres:postgres', '--link',
+                   'armprime-redis:redis', '--name=armprime', 'mattjawn/armprime']
+        cmd_n05 = ['docker', 'exec', 'armprime-redis', 'redis-cli', 'config', 'set', 'notify-keyspace-events', 'KEA']
+        cmd_n06 = ['docker', 'exec', '-it', 'armprime-postgres', 'useradd', '-p', '$(openssl passwd -1 123123)', 'jawn']
+        cmd_n07 = ["docker", "exec", "-it", "--user", "jawn", "armprime-postgres", "psql", "jawn", "-c",
+                   "'create extension hstore;'"]
+
+        cmd_n09 = 'rm -R "../krogoth_chat/migrations"'
+        cmd_n10 = 'rm -R "../krogoth_3rdparty_api/migrations"'
+        cmd_n11 = 'rm -R "../krogoth_examples/migrations"'
+        cmd_n12 = 'rm -R "../krogoth_admin/migrations"'
+        cmd_n13 = 'rm -R "../krogoth_apps/migrations"'
+        cmd_n14 = 'rm -R "../krogoth_social/migrations"'
+        cmd_n15 = 'rm -R "../moho_extractor/migrations"'
+        cmd_n16 = 'rm -R "../kbot_lab/migrations"'
+
+        MIGRATIONS = ['krogoth_chat', 'krogoth_core', 'moho_extractor', 'krogoth_3rdparty_api', 'krogoth_admin',
+                      'krogoth_social', 'kbot_lab', 'krogoth_examples', 'kbot_lab', 'krogoth_gantry']
+        cmd_n18 = ['docker', 'exec', '-it', 'armprime', './manage.py', 'makemigrations'] + MIGRATIONS
+
+        cmd_n19 = ['docker exec -it armprime ./manage.py migrate']
+        cmd_n21 = ['docker', 'exec', '-it', 'armprime', './manage.py', 'installdjangular']
 
         os.system('say -v Karen "welcome."')
 
@@ -190,14 +203,14 @@ class InstallationRuntime():
         AKInstallation.execute_realtime_out(cmd_n07, 7)
 
         ### ---====== remove previous migrations ======---
-        AKInstallation.execute_realtime_out(cmd_n09, 9)
-        AKInstallation.execute_realtime_out(cmd_n10, 10)
-        AKInstallation.execute_realtime_out(cmd_n11, 11)
-        AKInstallation.execute_realtime_out(cmd_n12, 12)
-        AKInstallation.execute_realtime_out(cmd_n13, 13)
-        AKInstallation.execute_realtime_out(cmd_n14, 14)
-        AKInstallation.execute_realtime_out(cmd_n15, 15)
-        AKInstallation.execute_realtime_out(cmd_n16, 16)
+        # AKInstallation.execute_realtime_out(cmd_n09, 9)
+        # AKInstallation.execute_realtime_out(cmd_n10, 10)
+        # AKInstallation.execute_realtime_out(cmd_n11, 11)
+        # AKInstallation.execute_realtime_out(cmd_n12, 12)
+        # AKInstallation.execute_realtime_out(cmd_n13, 13)
+        # AKInstallation.execute_realtime_out(cmd_n14, 14)
+        # AKInstallation.execute_realtime_out(cmd_n15, 15)
+        # AKInstallation.execute_realtime_out(cmd_n16, 16)
 
         ### ---====== make new migrations ======---
         AKInstallation.execute_realtime_out(cmd_n18, 17)
