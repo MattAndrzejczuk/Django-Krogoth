@@ -142,11 +142,12 @@ class InstallationRuntime():
         SQL_PRIVATE_PORT = "5432"
         SQL_ARGS = "-e POSTGRES_USER=" + \
                    SQL_USER + " -d -p " + \
+                   "POSTGRES_PASSWORD=" + SQL_PASS + \
                    SQL_PUBLIC_PORT + ":" + \
                    SQL_PRIVATE_PORT + " " + \
                    DOCKER_SQL_NAME
 
-        MIGRATIONS_PT_1 = " krogoth_core moho_extractor krogoth_3rdparty_api krogoth_admin"
+        MIGRATIONS_PT_1 = "krogoth_core moho_extractor krogoth_3rdparty_api krogoth_admin"
         MIGRATIONS_PT_2 = " krogoth_social kbot_lab krogoth_chat krogoth_examples kbot_lab krogoth_gantry"
         MAKE_MIGRATIONS = MIGRATIONS_PT_1 + MIGRATIONS_PT_2
 
