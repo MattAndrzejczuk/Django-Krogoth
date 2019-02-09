@@ -10,43 +10,42 @@
 
 
 
-## Manual Installation
+## Manual Installation on *Ubuntu 18.04*
 
-### Ubuntu 16.04
 
-### 
+
+#### Prerequisits
+```bash
+apt-get install -y python3 python3-dev python3-setuptools \ 
+    nginx supervisor postgresql-client 
+    
+apt-get install -y build-essential git libpq-dev sqlite3 build-essential git \
+    software-properties-common python3-software-properties python3-pip
+apt-get update
+
+rm -rf /var/lib/apt/lists/*
 ```
 
-git clone https://cinicraft@bitbucket.org/cinicraft/arm-prime.git
-cd arm-prime/docker
+
+```bash
+pip3 install --upgrade pip
+pip3 install uwsgi
+```
+
+
+#### 
+```bash
 mkdir -p /usr/src/app
 mkdir -p /usr/src/volatile/static
 mkdir -p /usr/src/persistent/media
-cd app
-cp requirements.txt /usr/src/app/
 
-apt-get install -y build-essential git \
-python3 python3-dev python3-setuptools \
-nginx supervisor \
-postgresql-client libpq-dev \
-sqlite3 && rm -rf /var/lib/apt/lists/*
-
-apt-get update
-
-apt install -y software-properties-common python3-pip
-
-pip3 install --upgrade pip
-
-pip3 install uwsgi
-
-apt-get update
-
-
+git clone https://cinicraft@bitbucket.org/cinicraft/arm-prime.git
+cp -R arm-prime/* /usr/src/app/.
 ```
 
 ## Preparing NGINX
 
-```
+```bash
 
 add-apt-repository -y ppa:nginx/stable
 echo "daemon off;" >> /etc/nginx/nginx.conf

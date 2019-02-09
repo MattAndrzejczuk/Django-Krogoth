@@ -152,6 +152,11 @@ class AKInstallation():
 class InstallationRuntime():
 
     def __init__(self):
+
+
+        self.install_all_in_one = True
+
+
         WORK_DIR = os.getcwd()
         PARENT_DIRPATH = os.path.abspath(os.path.join(WORK_DIR, os.pardir))
         installer = AKInstallation()

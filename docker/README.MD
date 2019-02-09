@@ -1,29 +1,28 @@
 # INSTALLING THE FULL STACK 
-### Krogoth Setup For Docker
 
-#### Contents
-    1. Getting Started 
-    2. Installation Components
+#### Installation Methods
+    1. All-In-One (easier)
+    2. Dedicated Servers (better performance)
 
 If you want to deploy a full krogoth stack immediately with all included features,
 just run the command below and wait for the images to finish downloading. 
 
-## Getting Started
-Run the installer with python3:
-#### macOS
+### Krogoth All-In-One
+##### docker required
+
+Run `install_all_in_one.py` and follow the prompt's instructions:
 ```bash
-my-host-os$ python3 install_krogoth.py
-```
-#### Ubuntu
-* root permissions may be required on most Linux distributions.*
-```bash
-my-host-os$ sudo python3 install_krogoth.py
+$ python3 install_all_in_one.py
 ```
 
-## Installatioh Components
+all-in-one is ideal if you'd just like to install everything now and get 
+started right away.
 
-The installation of Krogoth goes through the phases listed below:
+____
 
-    1. Create docker container with Django/NGINX
-    2. Create a Redis docker container
-    3. 
+### Krogoth Dedicated Servers
+
+```bash
+$ sudo python3 install_dedicated_pt1.py
+```
+
