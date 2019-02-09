@@ -1,8 +1,11 @@
 FROM django:python3
 
 RUN apt-get update
+RUN apt-get -y upgrade
+RUN apt-get -y dist-upgrade
 RUN apt-get install -y wget
-
+RUN pip3 install --upgrade pip
+RUN pip3 install django==1.11.18
 
 RUN mkdir -p /usr/src/app
 RUN mkdir -p /usr/src/volatile/static
@@ -17,15 +20,15 @@ RUN apt-get install -y build-essential libpq-dev libssl-dev openssl libffi-dev z
 
 RUN mkdir -p /usr/src/tmp
 WORKDIR /usr/src/tmp
-## MANUALLY INSTALL PYTHON3
-    #RUN wget 'https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tar.xz'
-    #RUN apt-get update
-    #RUN mkdir pysrc_37
-    #RUN tar -xf '/usr/src/tmp/Python-3.7.2.tar.xz'  -C /usr/src/tmp/pysrc_37
-    #WORKDIR /usr/src/tmp/pysrc_37/Python-3.7.2
-    #RUN ./configure --enable-optimizations
-    #RUN make
-    #RUN make install
+# MANUALLY INSTALL PYTHON3
+RUN wget 'https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tar.xz'
+RUN apt-get update
+RUN mkdir pysrc_37
+RUN tar -xf '/usr/src/tmp/Python-3.7.2.tar.xz'  -C /usr/src/tmp/pysrc_37
+WORKDIR /usr/src/tmp/pysrc_37/Python-3.7.2
+RUN ./configure
+RUN make
+RUN make install
 
 WORKDIR /usr/src/app
 COPY requirements.txt /usr/src/app/
@@ -43,6 +46,7 @@ RUN pip install --upgrade pip
 RUN pip install wheel
 RUN pip install setuptools
 RUN pip install uwsgi
+RUN pip install django-extensions
 RUN apt-get update
 RUN apt-get install -y software-properties-common python3-software-properties
 RUN add-apt-repository -y ppa:nginx/stable
@@ -54,7 +58,7 @@ RUN ln -s /usr/src/nginx-app.conf /etc/nginx/sites-enabled/
 RUN ln -s /usr/src/supervisor-app.conf /etc/supervisor/conf.d/
 RUN pip install -r /usr/src/app/requirements.txt
 
-RUN pip install django-extensions
+
 RUN pip install django-redis
 
 #RUN rm -R /usr/src/app/krogoth_chat/migrations

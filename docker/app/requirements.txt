@@ -28,6 +28,6 @@ pyScss==1.3.5
 python-twitter==3.3
 uwsgi
 
--e https://github.com/MattAndrzejczuk/pyflection.git#egg=pyflection
--e https://github.com/MattAndrzejczuk/pyink.git#egg=pyink
--e https://github.com/MattAndrzejczuk/colored_json_print.git#egg=colored_json_print
+-e git://github.com/MattAndrzejczuk/pyflection.git#egg=pyflection
+-e git://github.com/MattAndrzejczuk/pyink.git#egg=pyink
+-e git://github.com/MattAndrzejczuk/colored_json_print.git#egg=colored_json_print
