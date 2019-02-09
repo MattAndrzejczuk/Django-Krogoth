@@ -220,7 +220,7 @@ class InstallationRuntime():
         wait = input('ready?')
 
         installer.destroy_docker()
-        installer.execute_realtime_out(cmd_n01, "")
+        installer.execute_realtime_out(cmd_n01, 1)
         # AKInstallation.execute_realtime_out(cmd_n02, 2)
         # AKInstallation.execute_realtime_out(cmd_n03, 3)
         # AKInstallation.execute_realtime_out(cmd_n04, 4)
