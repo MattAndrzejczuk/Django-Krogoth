@@ -1,5 +1,5 @@
 # coding=utf-8
-__version__ = '0.6.98'
+__version__ = '0.9.43'
 __author__ = 'Matt Andrzejczuk'
 from django.db import models
 from polymorphic.models import PolymorphicModel
@@ -58,11 +58,6 @@ class AKFoundationAbstract(PolymorphicModel):
     #     return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
 
 
-def to_js(b: bool) -> str:
-    if b == True:
-        return 'true'
-    else:
-        return 'false'
 
 
 # config.provider.js
@@ -258,7 +253,6 @@ class AKFoundationToolbar(AKFoundationAbstract):
         return codecs.open(self.path + self.get_filename + self.get_file_ext, 'r').read()
 
 class AKBowerComponent(models.Model):
-
     package_name = models.CharField(max_length=250)
     package_version = models.CharField(max_length=50)
     url = models.CharField(max_length=251)
@@ -266,7 +260,6 @@ class AKBowerComponent(models.Model):
 
 
 class AKCustomDependency(models.Model):
-
     package_name = models.CharField(max_length=250)
     package_version = models.CharField(max_length=50)
     url = models.CharField(max_length=251)

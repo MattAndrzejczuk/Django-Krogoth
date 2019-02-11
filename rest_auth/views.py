@@ -212,11 +212,6 @@ class UserDetailsView(RetrieveUpdateAPIView):
     serializer_class = UserDetailsSerializer
     permission_classes = (IsAuthenticated,)
 
-
-
-    # def get_object(self):
-    #     return self.request.user
-
     def get(self, request, format=None):
         print('CURRENT USER: ')
         print('is_staff: ')

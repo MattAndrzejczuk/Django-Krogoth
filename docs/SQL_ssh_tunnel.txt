@@ -1,0 +1,7 @@
+
+
+On the local host, SSH to the remote host:
+    $ ssh -v -L 9000:localhost:8000 eliot@my.remotehost.com
+
+On the remote host, run the Django dev server:
+    eliot@my.remotehost.com:/path/to/my/django/project$ python manage.py runserver 0.0.0.0:8000

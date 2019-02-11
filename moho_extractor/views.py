@@ -90,9 +90,6 @@ class NgIncludedHtmlView(APIView):
     permission_classes = (AllowAny,)
 
     def get(self, request, format=None):
-        krogoth_debug('\033[92m')
-        krogoth_debug(request.GET)
-        krogoth_debug('\033[0m')
         name = str(request.GET['name'])
         error = ""
         try:
@@ -130,7 +127,6 @@ class KrogothFoundationView(APIView):
         body = js.code.replace("var vm = this",
                                "console.log('DEPENDENCY CALLED: "+ unique_name +"');var vm = this")
 
-        krogoth_debug('\033[91m')
         try:
             if js.custom_key_values is not None:
                 for key, value in js.custom_key_values.items():
@@ -140,9 +136,10 @@ class KrogothFoundationView(APIView):
                     print(obj)
                     body = body.replace(p1,
                                         'krogoth_injected=' + json.dumps(obj) + ';')
-            krogoth_debug('\033[0m')
-        except:
-            krogoth_debug('BOOM!')
+
+        except Exception as e:
+            print("\033[92m CRITICAL ERROR: KrogothFoundationView \033[0m", end=" ~> \033[94m")
+            print(e, end="\033[0m")
         if unique_name == 'indexmodule':
             all_djangular = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
             my_apps = ''
@@ -177,12 +174,10 @@ import json
 from urllib.request import urlopen
 
 def get_json_from_dogs_ceo(url: str) -> str:
-    krogoth_debug('\033[92m' + url + '\033[0m')
     webURL = urlopen(url)
     data = webURL.read()
     encoding = webURL.info().get_content_charset('utf-8')
     obj = json.loads(data.decode(encoding))
-    krogoth_debug(json.dumps(obj, indent=2, sort_keys=True))
     return obj
 
 

@@ -1,6 +1,6 @@
 """
 
- * KROGOTH v0.6.98
+ * KROGOTH v0.9.43
  * Copyright (C) 2017 Matt Andrzejczuk < matt@jawn.it >
 
  * KROGOTH can not be copied and/or distributed without the express

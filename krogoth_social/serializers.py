@@ -1,4 +1,4 @@
-__version__ = '0.6.98'
+__version__ = '0.9.43'
 __author__ = 'Matt Andrzejczuk'
 
 from rest_framework import serializers, exceptions

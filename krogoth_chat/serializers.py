@@ -3,10 +3,8 @@ from krogoth_chat.models import *
 from django.contrib.auth.models import User
 from ws4redis.redis_store import RedisMessage
 from ws4redis.publisher import RedisPublisher
-from rest_framework.authtoken.models import Token
 from rest_framework.renderers import JSONRenderer
-from django.forms import ValidationError
-from django.db import connection
+
 
 class JSONSerializerField(serializers.Field):
     """ Serializer for JSONField -- required to make field writable"""
@@ -112,11 +110,9 @@ class TextMessageSerializer(serializers.ModelSerializer):
         for key in validated_data.keys():
             setattr(instance, key, validated_data[key])
         instance.save()
-
         j = TextMessageSerializer(instance, context=self.context)
-        json = JSONRenderer().render(j.data)
-        message = RedisMessage(json.decode("utf-8"))
-
+        _json = JSONRenderer().render(j.data)
+        message = RedisMessage(_json.decode("utf-8"))
         RedisPublisher(facility=instance.channel, broadcast=True).publish_message(message)
         return instance
 
@@ -135,7 +131,6 @@ class LinkMessageSerializer(serializers.ModelSerializer):
                   'organization',
                   'jawn_user',
                   )
-        #depth = 1
 
     def create(self, validated_data):
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
@@ -162,7 +157,6 @@ class YouTubeMessageSerializer(serializers.ModelSerializer):
                   'youtube_id',
                   'jawn_user',
                   )
-        #depth = 1
 
     def create(self, validated_data):
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
@@ -195,27 +189,19 @@ class MessageSerializer(serializers.ModelSerializer):
 
 
 class ChannelSerializer(serializers.ModelSerializer):
-    # messages = MessageSerializer(many=True, read_only=True,)
-
-    #messages = serializers.SerializerMethodField('get_messages_ordered')
-
     def get_messages_ordered(self, channel):
         qset = Message.objects.filter(channel=channel).order_by('-date_posted')
         serialized_data = MessageSerializer(qset, many=True, read_only=True, context=self.context)
         return serialized_data.data
 
-
     class Meta:
         model = Channel
         fields = ('id', 'name', 'description', 'created', 'creator', )
-        #depth = 1
+
 
 
 
 class ChannelListSerializer(serializers.ModelSerializer):
-
-
-
     class Meta:
         model = Channel
         fields =  ('id', 'name', 'description', 'created', 'creator',)
@@ -232,7 +218,6 @@ class PrivateMessageSerializer(serializers.ModelSerializer):
 class RegionSerializer(serializers.ModelSerializer):
     total_channels = serializers.SerializerMethodField(read_only=True)
     google_json = JSONSerializerField()
-
     def get_total_channels(self, data):
         #print(data)
         return None
@@ -263,7 +248,6 @@ class LinkMessageSerializer(serializers.ModelSerializer):
                   'organization',
                   'jawn_user',
                   )
-        #depth = 1
 
     def create(self, validated_data):
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)

@@ -7,9 +7,7 @@ from krogoth_gantry.management.commands.installdjangular import bcolors
 
 class AKFoundationSerializer(serializers.ModelSerializer):
     custom_key_values = serializers.JSONField()
-    #    class Meta:
-    #        model = AKFoundationAbstract
-    #        fields = '__all__'
+
     class Meta:
         model = AKFoundationAbstract
         fields = '__all__'
@@ -21,8 +19,8 @@ class AKFoundationSerializer(serializers.ModelSerializer):
         for key in validated_data.keys():
             setattr(instance, key, validated_data[key])
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
-        logThis = UncommitedSQL(name=instance.unique_name, edited_by=jawn_user, krogoth_class="NgIncludedHtml")
-        logThis.save()
+        log_sql = UncommitedSQL(name=instance.unique_name, edited_by=jawn_user, krogoth_class="NgIncludedHtml")
+        log_sql.save()
         instance.save()
         return instance
 
@@ -31,7 +29,7 @@ class AKFoundationSerializer(serializers.ModelSerializer):
               str(type(self)) +
               " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
-        logThis = UncommitedSQL(name=instance.unique_name, edited_by=jawn_user, krogoth_class="NgIncludedHtml")
-        logThis.save()
+        log_sql = UncommitedSQL(name=validated_data['unique_name'], edited_by=jawn_user, krogoth_class="NgIncludedHtml")
+        log_sql.save()
         return AKFoundationAbstract.objects.create(**validated_data)
 

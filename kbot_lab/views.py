@@ -1,5 +1,5 @@
 # coding=utf-8
-__version__ = '0.6.98'
+__version__ = '0.9.43'
 __author__ = 'Matt Andrzejczuk'
 from rest_framework import viewsets, filters, renderers, status
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated

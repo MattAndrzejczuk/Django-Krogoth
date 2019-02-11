@@ -107,7 +107,7 @@ class AKInstallation():
         :param installation_phase: the current command number (1,2,3,4,...x)
         :return: void
         """
-        print(cstr(91) + "╔═════════════════════════")
+        print(cstr(91) + "╔══════════════════════════════════════════════════")
         print("║ ", end=cstr(0))
         for c in cmd:
             if c == "docker":
@@ -124,7 +124,7 @@ class AKInstallation():
                 print(bc.purple, end="")
             print(c, end=" ")
             print(bc.ENDC, end="")
-        print(cstr(91) + "\n╠═════════════════════════", end=cstr(0))
+        print(cstr(91) + "\n╠══════════════════════════════════════════════════", end=cstr(0))
         try:
             args = cmd
             with Popen(args, stdout=PIPE) as p:
@@ -133,12 +133,14 @@ class AKInstallation():
                     if installation_phase > 99:
                         print(".", end="")
                     else:
-                        print(line.decode("utf-8").replace("\n", "\n"), end='')
+                        outstr1 = line.decode("utf-8").replace("\n", "\n")
+                        outstr2 = outstr1.replace(" : RUN ", cstr(91) + " : RUN " + cstr(0))
+                        print(cstr(92) + '<◈═══◘▸' + cstr(0), end=cstr(33) + outstr2)
             inp = input("press \033[35m[ENTER]\033[0m to skip.")
         except:
             print(cstr(91) + "║ " + cstr(0) + cstr(31) + "CAUSE OF THE TERMINAL CMD FAILURE: " + cstr(0))
             print(cmd)
-        print(cstr(91) + "╚═════════════════════════" + cstr(0))
+        print(cstr(91) + "╚══════════════════════════════════════════════════" + cstr(0))
 
     @classmethod
     def destroy_docker(cls):
@@ -152,11 +154,7 @@ class AKInstallation():
 class InstallationRuntime():
 
     def __init__(self):
-
-
         self.install_all_in_one = True
-
-
         WORK_DIR = os.getcwd()
         PARENT_DIRPATH = os.path.abspath(os.path.join(WORK_DIR, os.pardir))
         installer = AKInstallation()
@@ -242,6 +240,8 @@ class InstallationRuntime():
 
         wait = input('ready?')
 
+        dexec = ['docker', 'exec', '-it', 'armprime', 'pip3', 'install', '-r', 'requirements.txt']
+
         installer.destroy_docker()
         AKInstallation.execute_realtime_out(cmd_n01, 1)
         AKInstallation.execute_realtime_out(cmd_n02, 2)
@@ -261,12 +261,12 @@ class InstallationRuntime():
         AKInstallation.execute_realtime_out(cmd_n14, 14)
         AKInstallation.execute_realtime_out(cmd_n15, 15)
         AKInstallation.execute_realtime_out(cmd_n16, 16)
+        AKInstallation.execute_realtime_out(dexec, 16)
         ### ---====== make new migrations ======---
         AKInstallation.execute_realtime_out(cmd_n18, 17)
         AKInstallation.execute_realtime_out(cmd_n19, 18)
         ### ---====== install krogoth gantry units ======---
         AKInstallation.execute_realtime_out(cmd_n21, 19)
-
         AKInstallation.execute_realtime_out(ak_install, 100)
         AKInstallation.execute_realtime_out(static_col, 101)
 
