@@ -1,4 +1,5 @@
 FROM django:python3
+RUN apt-get update
 
 RUN mkdir -p /usr/src/app
 RUN mkdir -p /usr/src/volatile/static
@@ -12,20 +13,24 @@ RUN apt-get install -y wget
 RUN apt-get install -y nano
 RUN pip3 install --upgrade pip
 
-RUN apt-get install -y build-essential
-RUN apt-get install -y libpq-dev
-RUN apt-get install -y libssl-dev
-RUN apt-get install -y openssl
-RUN apt-get install -y libffi-dev
-RUN apt-get install -y zlib1g-dev
-RUN apt-get install -y software-properties-common
-RUN apt-get install -y git
-RUN apt-get install -y python3
-RUN apt-get install -y python3-dev python3-setuptools python3-software-properties
-RUN apt-get install -y python3-pip
-RUN add-apt-repository -y ppa:nginx/stable
+RUN apt-get install -y --no-install-recommends build-essential
+RUN apt-get install -y --no-install-recommends libpq-dev
+RUN apt-get install -y --no-install-recommends libssl-dev
+RUN apt-get install -y --no-install-recommends openssl
+RUN apt-get install -y --no-install-recommends libffi-dev
+RUN apt-get install -y --no-install-recommends zlib1g-dev
+RUN apt-get install -y --no-install-recommends software-properties-common
+RUN apt-get install -y --no-install-recommends git
+RUN apt-get install -y --no-install-recommends python3
+RUN apt-get install -y --no-install-recommends python3-dev python3-setuptools python3-software-properties
+RUN apt-get install -y --no-install-recommends python3-pip
+#RUN add-apt-repository -y ppa:nginx/stable
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends nginx
+RUN apt-get install -y --no-install-recommends supervisor
+RUN apt-get install -y --no-install-recommends postgresql-client
+RUN apt-get install -y --no-install-recommends sqlite3
 
-RUN apt-get update && apt-get install -y nginx supervisor postgresql-client sqlite3
 
 # USE WHEN INSTALLER HAS ISSUES:
 #	--no-install-recommends

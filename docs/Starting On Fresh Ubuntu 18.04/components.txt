@@ -1,0 +1,11 @@
+sudo apt-get install -y build-essential && \
+ sudo apt-get install -y libpq-dev && \
+ sudo apt-get install -y libssl-dev && \
+ sudo apt-get install -y openssl && \ 
+ sudo apt-get install -y libffi-dev && \ 
+ sudo apt-get install -y zlib1g-dev && \ 
+ sudo apt-get install -y software-properties-common && \ 
+ sudo apt-get install -y git && \ 
+ sudo apt-get install -y python3 && \ 
+ sudo apt-get install -y python3-dev python3-setuptools python3-software-properties && \ 
+ sudo apt-get install -y python3-pip

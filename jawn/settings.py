@@ -227,7 +227,8 @@ SESSION_REDIS_PORT = os.environ["REDIS_PORT_6379_TCP_PORT"]
 
 # Krogoth Initialization.
 # don't touch this, it just prints version info for Python and Django.
-DJANGULAR_STATIC = 'krogoth_gantryStaticFiles'
+KROGOTH_TRACE = True
+
 import django
 import rest_framework
 try:

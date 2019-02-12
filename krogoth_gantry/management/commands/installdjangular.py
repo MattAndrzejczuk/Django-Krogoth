@@ -9,6 +9,8 @@ from krogoth_core.models import *
 import jsbeautifier
 from django.db import IntegrityError
 import json
+from jawn.console_printer import CentralCheckpoint
+from utils.debug.trace import krogoth_trace_class
 
 #  READ JS & HTML FILES AS A STRING LIKE SO:
 #     f = open('static/app/toolbar/toolbar.controller.js', 'r')
@@ -68,7 +70,10 @@ class Command(BaseCommand):
         print('installing icons...')
         install = IconsInstaller()
         print('icons installed!')
+
+
         def output_console(msg: str):
+            CentralCheckpoint.log('output_console', [msg])
             if os.path.isfile(msg) == True:
                 # print('dependency loaded... \033[32m' + msg + '\033[0m')
                 pass
@@ -76,7 +81,9 @@ class Command(BaseCommand):
                 # print('\033[31mNOT FOUND: ' + msg + '\033[0m')
                 raise IOError()
 
+
         def create_html_view(named: str, at: str, file_name: str, os_path: str):
+            CentralCheckpoint.log('create_html_view', [named, at, file_name, os_path])
 
             # print(bcolors().OKGREEN + 'CREATED...' + (at + named) + bcolors().ENDC)
             try:
@@ -91,9 +98,9 @@ class Command(BaseCommand):
             except:
                 print('\033[31mNOT FOUND: ' + named + '\033[0m')
 
+
         def get_source_class(kind: str, angular_duty: str, path: str):
-            # print(kind)
-            # print(angular_duty)
+            CentralCheckpoint.log('get_source_class', [kind, angular_duty, path])
             new_js = AKFoundationAbstract()
             if kind == 'altDate':
                 new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js', path=path)
@@ -272,9 +279,11 @@ class Command(BaseCommand):
         user.is_superuser=False
         user.is_staff=False
         user.save()
+
         from krogoth_chat.models import JawnUser
         ju = JawnUser(base_user=user)
         ju.save()
+
         from rest_framework.authtoken.models import Token
         token, created = Token.objects.get_or_create(user=user)
         ajsindex = AKFoundationIndex.objects.get(unique_name='indexroute')
