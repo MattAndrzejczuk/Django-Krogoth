@@ -37,6 +37,32 @@ def cstr(i) -> str:
     return '\033[' + str(i) + 'm'
 
 
+def make_timestamp() -> str:
+
+    hh = time.localtime().tm_hour.__str__()
+    mm = time.localtime().tm_min.__str__()
+    ss = time.localtime().tm_sec.__str__()
+    dd = time.localtime().tm_mday.__str__()
+    MM = time.localtime().tm_mon.__str__()
+    YY = time.localtime().tm_year.__str__()
+
+    ts = hh+":"+mm+":"+ss+"__"+dd+"_"+MM+"_"+YY
+
+    return ts
+
+
+def log_error(pout: list, cmd):
+    try:
+        if os.path.exists("../logs"):
+            t = make_timestamp()
+            with open("../logs/" + t, "w") as file:
+                file.writelines([str(cmd)] + pout)
+            file.close()
+            print('\033[93m logged to: \033[0m ../logs/' + t)
+    except:
+        print('\033[35m Couldn\'t save error output to ./../logs \033[0m')
+
+
 class AKInstallation():
 
     def __init__(self):
@@ -128,6 +154,7 @@ class AKInstallation():
         try:
             args = cmd
             with Popen(args, stdout=PIPE) as p:
+                log_buffer = []
                 print(cstr(91) + "\n║ ", end=cstr(0))
                 for line in p.stdout:
                     if installation_phase > 99:
@@ -136,6 +163,12 @@ class AKInstallation():
                         outstr1 = line.decode("utf-8").replace("\n", "\n")
                         outstr2 = outstr1.replace(" : RUN ", cstr(91) + " : RUN " + cstr(0))
                         print(cstr(92) + '<◈═══◘▸' + cstr(0), end=cstr(33) + outstr2)
+                    log_buffer.append(line.decode("utf-8"))
+                p.communicate("", 100)
+                exitcode = p.returncode
+                if exitcode != 0:
+                    print("\033[41mUnexpected Error\033[0m", end="")
+                    print("\033[5m\033[0m")
             inp = input("press \033[35m[ENTER]\033[0m to skip.")
         except:
             print(cstr(91) + "║ " + cstr(0) + cstr(31) + "CAUSE OF THE TERMINAL CMD FAILURE: " + cstr(0))
@@ -216,6 +249,8 @@ class InstallationRuntime():
         ak_install = ['docker', 'exec', '-it', 'armprime', './manage.py', 'collectdvc']
         static_col = ['docker', 'exec', '-it', 'armprime', './manage.py', 'collectstatic']
 
+        get_pyink = ['docker','exec','-it','armprime',"pip","install","git+https://github.com/MattAndrzejczuk/pyink.git"]
+
         # ORDERED_COMMANDS.append(cmd_n01)
         # ORDERED_COMMANDS.append(cmd_n02)
         # ORDERED_COMMANDS.append(cmd_n03)
@@ -252,15 +287,16 @@ class InstallationRuntime():
         AKInstallation.execute_realtime_out(cmd_n08, 8)
         AKInstallation.execute_realtime_out(cmd_n07, 7)
         ### ---====== remove previous migrations ======---
-        AKInstallation.execute_realtime_out(cmd_n08, 8)
-        AKInstallation.execute_realtime_out(cmd_n09, 9)
-        AKInstallation.execute_realtime_out(cmd_n10, 10)
-        AKInstallation.execute_realtime_out(cmd_n11, 11)
-        AKInstallation.execute_realtime_out(cmd_n12, 12)
-        AKInstallation.execute_realtime_out(cmd_n13, 13)
-        AKInstallation.execute_realtime_out(cmd_n14, 14)
-        AKInstallation.execute_realtime_out(cmd_n15, 15)
-        AKInstallation.execute_realtime_out(cmd_n16, 16)
+        AKInstallation.execute_realtime_out(get_pyink, 8)
+        AKInstallation.execute_realtime_out(cmd_n08, -1)
+        AKInstallation.execute_realtime_out(cmd_n09, -1)
+        AKInstallation.execute_realtime_out(cmd_n10, -1)
+        AKInstallation.execute_realtime_out(cmd_n11, -1)
+        AKInstallation.execute_realtime_out(cmd_n12, -1)
+        AKInstallation.execute_realtime_out(cmd_n13, -1)
+        AKInstallation.execute_realtime_out(cmd_n14, -1)
+        AKInstallation.execute_realtime_out(cmd_n15, -1)
+        AKInstallation.execute_realtime_out(cmd_n16, -1)
         AKInstallation.execute_realtime_out(dexec, 16)
         ### ---====== make new migrations ======---
         AKInstallation.execute_realtime_out(cmd_n18, 17)

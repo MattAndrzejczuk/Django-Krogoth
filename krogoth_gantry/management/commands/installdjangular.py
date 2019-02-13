@@ -7,7 +7,7 @@ import os
 from krogoth_gantry.icons_installer import IconsInstaller
 from krogoth_core.models import *
 from django.db import IntegrityError
-from jawn.console_printer import CentralCheckpoint
+# from jawn.console_printer import CentralCheckpoint
 from krogoth_core.ak_theme_meta import MetaGenerator
 
 
@@ -66,7 +66,7 @@ class Command(BaseCommand):
 
 
         def create_html_view(named: str, at: str, file_name: str, os_path: str):
-            CentralCheckpoint.log('create_html_view', [named, at, file_name, os_path])
+            # CentralCheckpoint.log('create_html_view', [named, at, file_name, os_path])
 
             # print(bcolors().OKGREEN + 'CREATED...' + (at + named) + bcolors().ENDC)
             try:
@@ -83,7 +83,7 @@ class Command(BaseCommand):
 
 
         def get_source_class(kind: str, angular_duty: str, path: str):
-            CentralCheckpoint.log('get_source_class', [kind, angular_duty, path])
+            # CentralCheckpoint.log('get_source_class', [kind, angular_duty, path])
             new_js = AKFoundationAbstract()
             if kind == 'altDate':
                 new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js', path=path)

@@ -1,0 +1,1 @@
+python3 manage.py makemigrations krogoth_chat krogoth_core moho_extractor krogoth_3rdparty_api krogoth_admin krogoth_social kbot_lab krogoth_examples kbot_lab krogoth_gantry

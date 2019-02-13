@@ -81,7 +81,7 @@
             });
             return deferred.promise;
         }
-        #lazyLoadableComponents
+        #KGlazyLoadableComponents
 
     }
 })();

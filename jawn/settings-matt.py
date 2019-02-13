@@ -8,24 +8,13 @@
 
  * December 14th, 2017
 
-
-
-EXEC WITH:
-
-	python3 manage.py shell --settings=jawn.settings_nodocker
-
-
-PRE-INSTALLATION:
-	$ sudo apt-get install postgresql-client python3-psycopg2
-
-
 """
 
 import os
-import subprocess
-from django.core.mail import *
 import socket
+import subprocess
 
+from django.core.mail import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -34,16 +23,24 @@ SECRET_KEY = '-ic*v=-p%!6#0ki%kj2l&@4e_a_j!7xm7g9wmxu%8f$9xj*2ht'
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 
+
+
+# App will serve frontend from '/static/compiled' rather than slowly generating
+# frontend code dynamically. Use True for production.
+STATIC_KROGOTH_MODE = False
+
+
+
+
 # Application definition
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 20,
+    'PAGE_SIZE': 80,
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
-        # 'rest_framework.authentication.TokenAuthentication',
-
+        # 'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
         # 'rest_framework.authentication.SessionAuthentication',
         ),
     'DEFAULT_FILTER_BACKENDS': (
@@ -79,24 +76,32 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'django.contrib.sites',
+    'django_extensions',
+    'ws4redis',
     'rest_framework_docs',
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_auth',
-    'krogoth_chat',
-    #'LazarusIII',
-    #'LazarusIV',
-    #'LazarusV',
-    'krogoth_core',
-    'moho_extractor',
-    'krogoth_gantry',
-    'krogoth_social',
-    'krogoth_dashboard',
+
+    'rest_framework_swagger',
     'django_filters',
+
+    'krogoth_chat',
     'kbot_lab',
-    'django_extensions',
+    'krogoth_3rdparty_api',
+
+    'krogoth_admin',
+    'krogoth_core',
+    'krogoth_dashboard',
+    'krogoth_examples',
+
+    'krogoth_gantry',
+
+    'krogoth_social',
+    'moho_extractor',
+    'rest_auth',
 
 )
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -107,6 +112,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 )
+
 ROOT_URLCONF = 'jawn.urls'
 TEMPLATES = [
     {
@@ -127,16 +133,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'jawn.wsgi.application'
 
 
+POSTGRES_ENV_POSTGRES_PASSWORD = "123123"
+POSTGRES_ENV_POSTGRES_USER = "romulus"
+POSTGRES_PORT_5432_TCP_ADDR = "localhost"
+POSTGRES_PORT_5432_TCP_PORT = "5432"
 
-
+db_name = 'romulus'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': db_name,
+        'USER': POSTGRES_ENV_POSTGRES_USER,
+        'PASSWORD': POSTGRES_ENV_POSTGRES_PASSWORD,
+        'HOST': POSTGRES_PORT_5432_TCP_ADDR,
+        'PORT': POSTGRES_PORT_5432_TCP_PORT,
     }
 }
-
-
 
 
 LANGUAGE_CODE = 'en-us'
@@ -144,6 +156,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
 
 # static files:
 STATIC_URL = '/static/'
@@ -168,11 +181,66 @@ APPEND_SLASH = True
 
 
 
+REDIS_PORT_6379_TCP_ADDR = "localhost"
+REDIS_PORT_6379_TCP_PORT = "6379"
+
+# <WebSocket Config>
+#    - WebSocket messages are stored in a Redis DB, not in PostgreSQL DB.
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://" + REDIS_PORT_6379_TCP_ADDR + ":" + REDIS_PORT_6379_TCP_PORT + "/0",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "SERIALIZER": "django_redis.serializers.json.JSONSerializer",
+        }
+    }
+}
+WEBSOCKET_URL = '/ws/'
+# JavaScript mode will assume user access token is not in header of socket connection.
+JAVASCRIPT_MODE = True
+WS4REDIS_EXPIRE = 2
+WS4REDIS_HEARTBEAT = '--heartbeat--'
+WS4REDIS_PREFIX = 'demo'
+### DEFAULTS:
+# WS4REDIS_CONNECTION = getattr(settings, 'WS4REDIS_CONNECTION', {
+#     'host': 'localhost',
+#     'port': 6379,
+#     'db': 0,
+#     'password': None,
+# })
+
+WS4REDIS_CONNECTION = {
+    'host': REDIS_PORT_6379_TCP_ADDR,
+    'port': REDIS_PORT_6379_TCP_PORT,
+    'db': 0,
+    'password': None,
+}
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS_PREFIX = 'session'
+SESSION_REDIS_HOST = REDIS_PORT_6379_TCP_ADDR
+SESSION_REDIS_PORT = REDIS_PORT_6379_TCP_PORT
+# </WebSocket Config>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Krogoth Initialization.
 # don't touch this, it just prints version info for Python and Django.
-DJANGULAR_STATIC = 'krogoth_gantryStaticFiles'
+KROGOTH_TRACE = True
+
 import django
 import rest_framework
 try:
@@ -182,7 +250,7 @@ try:
     print('\033[95mDjango REST Framework ' + str(rest_framework.VERSION) + '\033[0m')
 
     # GET LAZARUS BUILD VERSION:
-    bash_cmd = ['git', 'rev-list', '--count', 'master']
+    bash_cmd = ['git', 'rev-list', '--count', 'HEAD']
     get_build_cmd = str(subprocess.check_output(bash_cmd))
     current_build_1 = ''
     current_build_2 = ''
@@ -194,15 +262,23 @@ try:
     if current_build_2 == '00':
         current_build_2 = '0'
     else:
-        rm_0s = current_build_2.replace('01', '1').replace('02', '2').replace('03', '3').replace('04', '4')
-        current_build_2 = rm_0s.replace('05', '5').replace('06', '6').replace('07', '7').replace('08', '8').replace(
-            '09', '9')
+        rm_0s = current_build_2.replace('10', '1').replace('20', '2').replace('30', '3').replace('40', '4')
+        current_build_2 = rm_0s.replace('50', '5').replace('60', '6').replace('70', '7').replace('80', '8').replace(
+            '90', '9')
 
     APP_VERSION = current_build_1[:3] + "." + current_build_2
-    print('\033[1m\033[32mArmPrime ' + APP_VERSION + ' \033[0m\033[0m')
+    print('\033[1m\033[32mKrogoth ' + APP_VERSION + ' \033[0m\033[0m')
     print()
 except:
     print('Django initialized, but the version is unknown... wtf?')
 
+print("RC Soon")
+
+
+# print("POSTGRES: ")
+# print(os.environ["POSTGRES_ENV_POSTGRES_USER"])
+# print(os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"])
+# print(os.environ["POSTGRES_PORT_5432_TCP_ADDR"])
+# print(os.environ["POSTGRES_PORT_5432_TCP_PORT"])
 
 
