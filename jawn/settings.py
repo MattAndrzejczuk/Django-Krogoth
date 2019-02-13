@@ -198,12 +198,24 @@ JAVASCRIPT_MODE = True
 WS4REDIS_EXPIRE = 2
 WS4REDIS_HEARTBEAT = '--heartbeat--'
 WS4REDIS_PREFIX = 'demo'
+
+
+### DEFAULTS:
+# WS4REDIS_CONNECTION = getattr(settings, 'WS4REDIS_CONNECTION', {
+#     'host': 'localhost',
+#     'port': 6379,
+#     'db': 0,
+#     'password': None,
+# })
+
 WS4REDIS_CONNECTION = {
     'host': os.environ["REDIS_PORT_6379_TCP_ADDR"],
     'port': os.environ["REDIS_PORT_6379_TCP_PORT"],
     'db': 0,
     'password': None,
 }
+
+
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_PREFIX = 'session'
 SESSION_REDIS_HOST = os.environ["REDIS_PORT_6379_TCP_ADDR"]
@@ -233,6 +245,7 @@ import django
 import rest_framework
 try:
     print('')
+    print('\033[35m Python %s on %s \033[0m' % (sys.version, sys.platform))
     print('\033[35mInitializing Django ' +
           str(django.VERSION[0]) + '.' + str(django.VERSION[1]) + '.' + str(django.VERSION[2]) + '\033[0m')
     print('\033[95mDjango REST Framework ' + str(rest_framework.VERSION) + '\033[0m')

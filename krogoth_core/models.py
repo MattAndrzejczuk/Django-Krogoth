@@ -52,12 +52,6 @@ class AKFoundationAbstract(PolymorphicModel):
             print('AKFoundationAbstract is missing a property.'); raise EnvironmentError()
         return self.ext
 
-    # @property
-    # def as_frontend_response(self) -> str:
-    #     print('retrieving ' + self.get_filename)
-    #     return codecs.open(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + self.get_filename + self.get_file_ext, 'r').read()
-
-
 
 
 # config.provider.js

@@ -94,6 +94,7 @@ class KrogothGantryIcon(models.Model):
             self.prefix = "FA"
         elif "entypo-" in c:
             self.prefix = "ENTYPO"
+        print('.', end='')
         super(KrogothGantryIcon, self).save(*args, **kwargs)
 
 #     ____________________________________

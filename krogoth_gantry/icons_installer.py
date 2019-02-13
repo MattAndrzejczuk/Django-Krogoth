@@ -3,7 +3,8 @@ from krogoth_gantry.models import KrogothGantryIcon
 
 
 class IconsInstaller:
-    def __init__(self):
+    @classmethod
+    def make(cls):
         icon = KrogothGantryIcon(prefix='MDI', code='mdi mdi-access-point')
         icon.save()
         icon = KrogothGantryIcon(prefix='MDI', code='mdi mdi-access-point-network')

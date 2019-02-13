@@ -6,15 +6,9 @@ from jawn.settings import BASE_DIR
 import os
 from krogoth_gantry.icons_installer import IconsInstaller
 from krogoth_core.models import *
-import jsbeautifier
 from django.db import IntegrityError
-import json
 from jawn.console_printer import CentralCheckpoint
-from utils.debug.trace import krogoth_trace_class
-
-#  READ JS & HTML FILES AS A STRING LIKE SO:
-#     f = open('static/app/toolbar/toolbar.controller.js', 'r')
-#     f = open('static/app/toolbar/toolbar.module.js', 'r')
+from krogoth_core.ak_theme_meta import MetaGenerator
 
 
 class bcolors:
@@ -41,7 +35,7 @@ class bcolors:
     lightred = '\033[91m'
     lightgreen = '\033[92m'
 
-from krogoth_core.ak_theme_meta import meta_generator
+
 
 def getkrogoth_gantryBuild():
     # GET LAZARUS BUILD VERSION:
@@ -68,18 +62,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         print('installing icons...')
-        install = IconsInstaller()
-        print('icons installed!')
-
-
-        def output_console(msg: str):
-            CentralCheckpoint.log('output_console', [msg])
-            if os.path.isfile(msg) == True:
-                # print('dependency loaded... \033[32m' + msg + '\033[0m')
-                pass
-            else:
-                # print('\033[31mNOT FOUND: ' + msg + '\033[0m')
-                raise IOError()
+        IconsInstaller.make()
 
 
         def create_html_view(named: str, at: str, file_name: str, os_path: str):
@@ -88,7 +71,7 @@ class Command(BaseCommand):
             # print(bcolors().OKGREEN + 'CREATED...' + (at + named) + bcolors().ENDC)
             try:
                 new_ng = IncludedHtmlCoreTemplate(name=named,file_name=file_name,os_path=os_path)
-                meta_data = meta_generator.determine_meta_data(filename=file_name)
+                meta_data = MetaGenerator.determine_meta_data(filename=file_name)
                 new_ng.meta_kind_0 = meta_data[0]
                 new_ng.meta_kind_1 = meta_data[1]
                 new_ng.meta_kind_2 = meta_data[2]
