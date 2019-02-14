@@ -9,7 +9,7 @@
  * December 14th, 2017
 
 """
-
+print('\033[34m\033[1mLoading Krogoth Settings...\033[0m\033[0m')
 import os
 import socket
 import subprocess
@@ -240,15 +240,15 @@ SESSION_REDIS_PORT = os.environ["REDIS_PORT_6379_TCP_PORT"]
 # Krogoth Initialization.
 # don't touch this, it just prints version info for Python and Django.
 KROGOTH_TRACE = True
-
+import sys
 import django
 import rest_framework
 try:
-    print('')
+
     print('\033[35m Python %s on %s \033[0m' % (sys.version, sys.platform))
-    print('\033[35mInitializing Django ' +
-          str(django.VERSION[0]) + '.' + str(django.VERSION[1]) + '.' + str(django.VERSION[2]) + '\033[0m')
-    print('\033[95mDjango REST Framework ' + str(rest_framework.VERSION) + '\033[0m')
+    print('\033[35mInitializing Django \033[1m' +
+          str(django.VERSION[0]) + '.' + str(django.VERSION[1]) + '.' + str(django.VERSION[2]) + '\033[0m\033[0m')
+    print('\033[95mDjango REST Framework \033[1m' + str(rest_framework.VERSION) + '\033[0m\033[0m')
 
     # GET LAZARUS BUILD VERSION:
     bash_cmd = ['git', 'rev-list', '--count', 'HEAD']
@@ -271,7 +271,7 @@ try:
     print('\033[1m\033[32mKrogoth ' + APP_VERSION + ' \033[0m\033[0m')
     print()
 except:
-    print('Django initialized, but the version is unknown... wtf?')
+    print('\033[31mDjango initialized, but the version is unknown... wtf?\033[0m')
 
 print("RC Soon")
 
