@@ -108,3 +108,8 @@ class KrogothServerConsole(PolymorphicModel):
 #     content = models.J
 class KrogothServerLoggedText(KrogothServerConsole):
     content = models.TextField()
+
+class KrogothServerLoggedModel(models.Model):
+    app_name = models.CharField(max_length=255)
+    class_name = models.CharField(max_length=255)
+

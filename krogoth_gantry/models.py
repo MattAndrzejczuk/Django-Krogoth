@@ -6,6 +6,10 @@ from polymorphic.models import PolymorphicModel
 
 
 
+from krogoth_admin.global_tasks import LogUsage
+
+
+
 DEFAULT_CONTROLLER = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/MasterVC/controller.js', 'r').read()
 DEFAULT_MODULE = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/MasterVC/module.js', 'r').read()
 DEFAULT_MASTERVIEW = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/MasterVC/view.html', 'r').read()
@@ -33,9 +37,11 @@ class KrogothGantryService(models.Model):
     service_js = models.TextField(default=DEFAULT_SERVICE)
 
     def __str__(self):
+        LogUsage("krogoth_gantry", "KrogothGantryService", "__str__")
         return self.name
 
     def save(self, *args, **kwargs):
+        LogUsage("krogoth_gantry", "KrogothGantryService", "save")
         self.service_js = self.service_js
         super(KrogothGantryService, self).save(*args, **kwargs)
 
@@ -48,9 +54,11 @@ class KrogothGantryDirective(models.Model):
     directive_js = models.TextField(default=DEFAULT_DIRECTIVE)
 
     def __str__(self):
+        LogUsage("krogoth_gantry", "KrogothGantryDirective", "__str__")
         return self.name
 
     def save(self, *args, **kwargs):
+        LogUsage("krogoth_gantry", "KrogothGantryDirective", "save")
         self.directive_js = self.directive_js
         super(KrogothGantryDirective, self).save(*args, **kwargs)
 
@@ -65,9 +73,11 @@ class KrogothGantrySlaveViewController(models.Model):
     view_html = models.TextField(default=DEFAULT_MASTERVIEW)
 
     def __str__(self):
+        LogUsage("krogoth_gantry", "KrogothGantrySlaveViewController", "__str__")
         return self.name
 
     def save(self, *args, **kwargs):
+        LogUsage("krogoth_gantry", "KrogothGantrySlaveViewController", "save")
         self.controller_js = self.controller_js
         super(KrogothGantrySlaveViewController, self).save(*args, **kwargs)
 
@@ -84,9 +94,11 @@ class KrogothGantryIcon(models.Model):
                               choices=ICON_TYPES,
                               help_text="The icon type, i.e. font awesome, material design, etc...")
     def __str__(self):
+        LogUsage("krogoth_gantry", "KrogothGantryIcon", "__str__")
         return self.code
 
     def save(self, *args, **kwargs):
+        LogUsage("krogoth_gantry", "KrogothGantryIcon", "save")
         c = self.code.lower()
         if "mdi " in c:
             self.prefix = "MDI"
@@ -107,9 +119,11 @@ class KrogothGantryCategory(PolymorphicModel):
     weight = models.IntegerField(default=3)
     parent = models.ForeignKey('KrogothGantryCategory', on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
+        LogUsage("krogoth_gantry", "KrogothGantryCategory", "__str__")
         return self.name
     @classmethod
     def get_or_create_catagory(cls, named: str, titled: str):
+        LogUsage("krogoth_gantry", "KrogothGantryCategory", "get_or_create_catagory")
         catagory_exists = cls.objects.filter(name=named, title=titled)
         if len(catagory_exists) > 0:
             return catagory_exists.first()
@@ -124,7 +138,6 @@ from django.utils.html import format_html
 
 class KrogothGantryMasterViewController(PolymorphicModel):
     name = models.CharField(max_length=50, unique=True)
-
     title = models.CharField(max_length=55,
                              default='Untitled krogoth_gantry Application',
                              help_text='Cosmetic display name for this app in the primary navigation view')
@@ -134,15 +147,12 @@ class KrogothGantryMasterViewController(PolymorphicModel):
                              blank=True)
     category = models.ForeignKey(KrogothGantryCategory,
                                  on_delete=models.CASCADE)
-
     module_js = models.TextField(default=DEFAULT_MODULE)
     controller_js = models.TextField(default=DEFAULT_CONTROLLER)
     view_html = models.TextField(default=DEFAULT_MASTERVIEW)
     style_css = models.TextField(default='/**/')
-
     themestyle_is_enabled = models.BooleanField(default=True)
     themestyle = models.TextField(default=DEFAULT_STYLETHEME)
-
     is_enabled = models.BooleanField(default=True,
                                      help_text='When disabled, this javascript code and html code will not be loaded.')
     djangular_service = models.ManyToManyField(KrogothGantryService, 
@@ -161,23 +171,27 @@ class KrogothGantryMasterViewController(PolymorphicModel):
     path_to_static = models.CharField(default='NOT_SET', max_length=125)
     is_lazy = models.BooleanField(default=False,
                                   help_text='If lazy, this master view controller will not load until accessed.')
-    
-        
+
+
         
     @property
     def get_theme_style(self):
+        LogUsage("krogoth_gantry", "KrogothGantryMasterViewController", "get_theme_style")
         if self.themestyle_is_enabled == True:
             return self.themestyle
         else:
             return '/*THEMESTYLE_DISABLED*/'
     def icon_as_html(self):
+        LogUsage("krogoth_gantry", "KrogothGantryMasterViewController", "icon_as_html")
         color = 'style=color:black'
         return format_html('<i {} class="mdi mdi-{}"> </i>', color, self.icon)
 
     def __str__(self):
+        LogUsage("krogoth_gantry", "KrogothGantryMasterViewController", "__str__")
         return self.title
 
     def get_module_js_compiled(self, old_module: str):
+        LogUsage("krogoth_gantry", "KrogothGantryMasterViewController", "get_module_js_compiled")
         subcat = ''
         cat = ''
         if self.category is not None:
@@ -185,20 +199,22 @@ class KrogothGantryMasterViewController(PolymorphicModel):
                 cat = self.category.parent.name
             subcat = self.category.name
 
-        if cat == "NO_CAT":
-            cat_set = old_module.replace('AK_NAVCAT_KROGOTH.', "")
-        else:
-            cat_set = old_module.replace('AK_NAVCAT_KROGOTH', cat)
+        # if cat == "NO_CAT":
+        #     cat_set = old_module.replace('AK_NAVCAT_KROGOTH.', "")
+        # else:
+        #     cat_set = old_module.replace('AK_NAVCAT_KROGOTH', cat)
+        # if subcat == "NO_SUBCAT":
+        #     subcat_set = cat_set.replace('AK_SUBCATAGORY_KROGOTH.', "")
+        # else:
+        #     subcat_set = cat_set.replace('AK_SUBCATAGORY_KROGOTH', subcat)
 
-        if subcat == "NO_SUBCAT":
-            subcat_set = cat_set.replace('AK_SUBCATAGORY_KROGOTH.', "")
-        else:
-            subcat_set = cat_set.replace('AK_SUBCATAGORY_KROGOTH', subcat)
-
+        cat_set = old_module.replace('AK_NAVCAT_KROGOTH', cat)
+        subcat_set = cat_set.replace('AK_SUBCATAGORY_KROGOTH', subcat)
         return subcat_set
 
     @property
     def compileModuleSlaves(self):
+        LogUsage("krogoth_gantry", "KrogothGantryMasterViewController", "compileModuleSlaves")
         djangular_slaves = self.djangular_slave_vc.all()
         slave_controllers_js = ''
         slave__states = []
@@ -254,8 +270,9 @@ class KrogothGantryMasterViewController(PolymorphicModel):
 
 
     def save(self, *args, **kwargs):
-        self.module_js = self.module_js
-        self.controller_js = self.controller_js
+        # self.module_js = self.module_js
+        # self.controller_js = self.controller_js
+        LogUsage("krogoth_gantry", "KrogothGantryMasterViewController", "save")
         super(KrogothGantryMasterViewController, self).save(*args, **kwargs)
 
 

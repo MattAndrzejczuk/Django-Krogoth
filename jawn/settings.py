@@ -9,7 +9,7 @@
  * December 14th, 2017
 
 """
-print('\033[34m\033[1mLoading Krogoth Settings...\033[0m\033[0m')
+print('\033[94m\033[1mLoading Krogoth Settings...\033[0m\033[0m')
 import os
 import socket
 import subprocess
@@ -99,7 +99,7 @@ INSTALLED_APPS = (
     'krogoth_social',
     'moho_extractor',
     'rest_auth',
-    
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -245,7 +245,7 @@ import django
 import rest_framework
 try:
 
-    print('\033[35m Python %s on %s \033[0m' % (sys.version, sys.platform))
+    print('\033[35mPython %s\033[0m' % (str(sys.version)[0:6]))
     print('\033[35mInitializing Django \033[1m' +
           str(django.VERSION[0]) + '.' + str(django.VERSION[1]) + '.' + str(django.VERSION[2]) + '\033[0m\033[0m')
     print('\033[95mDjango REST Framework \033[1m' + str(rest_framework.VERSION) + '\033[0m\033[0m')

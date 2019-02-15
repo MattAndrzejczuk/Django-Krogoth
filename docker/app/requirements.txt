@@ -27,7 +27,7 @@ blockchain==1.4.0
 pyScss==1.3.5
 python-twitter==3.3
 uwsgi
-django-prometheus
+
 
 
 #-e git://github.com/MattAndrzejczuk/pyflection.git#egg=pyflection

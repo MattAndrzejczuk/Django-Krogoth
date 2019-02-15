@@ -1,9 +1,7 @@
 from krogoth_3rdparty_api.models import BaseCallbackEndpoint
 import twitter
-
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-
 from rest_framework.views import APIView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny

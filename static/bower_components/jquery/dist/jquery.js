@@ -3856,6 +3856,7 @@ jQuery.readyException = function( error ) {
 	console.log('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -');
 	console.log(error);
 	console.log('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -');
+	$('<style>body {background-color:black!important;}</style>').appendTo('body');
 	window.setTimeout( function() {
 		throw error;
 	} );
