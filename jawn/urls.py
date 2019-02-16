@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 
 from krogoth_chat.views import UserViewSet, JawnUserViewSet, ImageMessageViewSet, TextMessageViewSet, ChannelViewSet, \
     MessageViewSet, PrivateMessageRelationshipSet, RegionViewSet, LinkMessageViewSet, YouTubeMessageViewSet
-from rest_auth.views import index
+from krogoth_core.views import index
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet, 'User')

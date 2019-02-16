@@ -1,4 +1,4 @@
-
+import os
 
 def print_env_vars():
     print(

@@ -2,10 +2,9 @@ from django.conf.urls import url, include
 from krogoth_gantry import views
 from krogoth_gantry import viewseditor
 from rest_framework.routers import DefaultRouter
-# from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 
-from krogoth_gantry.views import KrogothGantryMasterViewControllerViewSet, KrogothGantrySlaveViewControllerViewSet, \
+from krogoth_gantry.viewsets import KrogothGantryMasterViewControllerViewSet, KrogothGantrySlaveViewControllerViewSet, \
     KrogothGantryIconViewSet, \
     KrogothGantryCategoryViewSet, KrogothGantryDirectiveViewSet, KrogothGantryServiceViewSet
 
@@ -51,9 +50,7 @@ urlpatterns = [
     url(r'^SlaveViewControllerEditorDetail/',
         viewseditor.SlaveViewControllerEditorDetailView.as_view(),
         name='Slave View Controller Editor Detail'),
-    url(r'^krogoth_gantryModelForm/',
-        views.krogoth_gantryModelForm.as_view(),
-        name='krogoth_gantry Model Form'),
+
 
     url(r'^viewsets/', include(router.urls)),
 ]

@@ -13,8 +13,9 @@ class KrogothGantryIconSerializer(serializers.ModelSerializer):
     class Meta:
         model = KrogothGantryIcon
         fields = '__all__'
-class AbstractKrogothSerializer(serializers.ModelSerializer):
 
+
+class AbstractKrogothSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         for key in validated_data.keys():
             setattr(instance, key, validated_data[key])

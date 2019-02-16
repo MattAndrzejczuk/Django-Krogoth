@@ -1,5 +1,4 @@
 from django.db import models
-# import jsbeautifier
 import codecs
 from jawn.settings import BASE_DIR
 from polymorphic.models import PolymorphicModel
@@ -94,11 +93,9 @@ class KrogothGantryIcon(models.Model):
                               choices=ICON_TYPES,
                               help_text="The icon type, i.e. font awesome, material design, etc...")
     def __str__(self):
-        LogUsage("krogoth_gantry", "KrogothGantryIcon", "__str__")
         return self.code
 
     def save(self, *args, **kwargs):
-        LogUsage("krogoth_gantry", "KrogothGantryIcon", "save")
         c = self.code.lower()
         if "mdi " in c:
             self.prefix = "MDI"
