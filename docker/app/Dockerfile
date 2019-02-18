@@ -52,9 +52,9 @@ COPY . /usr/src
 #RUN pip3 install django==1.11.18
 RUN pip3 install wheel
 RUN pip3 install setuptools
-#RUN pip3 install uwsgi
+RUN pip3 install uwsgi
 RUN pip3 install django-extensions
-#RUN pip3 install django-redis
+RUN pip3 install django-redis
 RUN pip3 install --no-cache-dir -r /usr/src/app/requirements.txt
 
 

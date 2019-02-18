@@ -4,7 +4,6 @@ import codecs
 import subprocess
 from jawn.settings import BASE_DIR
 import os
-from krogoth_gantry.icons_installer import IconsInstaller
 from krogoth_core.models import *
 from django.db import IntegrityError
 # from jawn.console_printer import CentralCheckpoint
@@ -60,10 +59,6 @@ class Command(BaseCommand):
     #     parser.add_argument('mvc_id', nargs="+", type=int)
 
     def handle(self, *args, **options):
-
-        print('installing icons...')
-        IconsInstaller.make()
-
 
         def create_html_view(named: str, at: str, file_name: str, os_path: str):
             # CentralCheckpoint.log('create_html_view', [named, at, file_name, os_path])

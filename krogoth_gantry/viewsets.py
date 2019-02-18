@@ -1,22 +1,14 @@
 
 
-from krogoth_gantry.models import KrogothGantryIcon, KrogothGantryCategory, \
+from krogoth_gantry.models import KrogothGantryCategory, \
     KrogothGantryDirective, KrogothGantryService
 from krogoth_gantry.serializers import KrogothGantryMasterViewControllerSerializer, \
-    KrogothGantryIconSerializer, KrogothGantrySlaveViewControllerSerializer, \
+    KrogothGantrySlaveViewControllerSerializer, \
     KrogothGantryCategorySerializer, KrogothGantryMasterViewController, \
     KrogothGantryDirectiveSerializer, KrogothGantryServiceSerializer, \
     KrogothGantrySlaveViewController
 from rest_framework import viewsets, filters
 from rest_framework.permissions import AllowAny
-
-
-class KrogothGantryIconViewSet(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
-    queryset = KrogothGantryIcon.objects.all().order_by('name')
-    serializer_class = KrogothGantryIconSerializer
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('code',)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

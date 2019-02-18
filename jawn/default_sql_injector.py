@@ -100,7 +100,6 @@ def populateDefaultSQL(base_dir):
             newDVC.html_main = viewHtml
             newDVC.js_controller = controllerJs
             newDVC.js_module = moduleJs
-            newDVC.icon = app['icon']
     printkrogoth_gantryStatusOnLaunch(first_time_run)
 
 

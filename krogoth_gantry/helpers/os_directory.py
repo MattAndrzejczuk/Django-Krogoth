@@ -1,5 +1,6 @@
-import os, errno
+import os
 from krogoth_gantry.management.commands.installdjangular import bcolors
+
 
 class MoveToNewDirectory(object):
     def __init__(self, old_path: str, new_path: str):

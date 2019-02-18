@@ -2,29 +2,23 @@ from django.conf.urls import url, include
 from krogoth_gantry import views
 from krogoth_gantry import viewseditor
 from rest_framework.routers import DefaultRouter
-router = DefaultRouter()
-
 from krogoth_gantry.viewsets import KrogothGantryMasterViewControllerViewSet, KrogothGantrySlaveViewControllerViewSet, \
-    KrogothGantryIconViewSet, \
     KrogothGantryCategoryViewSet, KrogothGantryDirectiveViewSet, KrogothGantryServiceViewSet
-
 from krogoth_core.views import AKFoundationViewSet
-
 from moho_extractor.views import IncludedHtmlMasterViewSet, IncludedHtmlCoreViewSet, IncludedJsMasterViewSet
 
+
+router = DefaultRouter()
 router.register(r'MasterViewController',
                 KrogothGantryMasterViewControllerViewSet)
 router.register(r'SlaveViewController',
                 KrogothGantrySlaveViewControllerViewSet)
-router.register(r'Icon', KrogothGantryIconViewSet)
 router.register(r'Category', KrogothGantryCategoryViewSet)
 router.register(r'Directive', KrogothGantryDirectiveViewSet)
 router.register(r'Service', KrogothGantryServiceViewSet)
-
 router.register(r'IncludedHtmlMaster', IncludedHtmlMasterViewSet)
 router.register(r'IncludedHtmlCore', IncludedHtmlCoreViewSet)
 router.register(r'IncludedJsMaster', IncludedJsMasterViewSet)
-
 router.register(r'AKFoundation', AKFoundationViewSet)
 
 
@@ -50,7 +44,5 @@ urlpatterns = [
     url(r'^SlaveViewControllerEditorDetail/',
         viewseditor.SlaveViewControllerEditorDetailView.as_view(),
         name='Slave View Controller Editor Detail'),
-
-
     url(r'^viewsets/', include(router.urls)),
 ]

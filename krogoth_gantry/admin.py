@@ -1,6 +1,6 @@
 from django.contrib import admin
 from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryService, KrogothGantryDirective, \
-    KrogothGantrySlaveViewController, KrogothGantryIcon, KrogothGantryCategory, \
+    KrogothGantrySlaveViewController, KrogothGantryCategory, \
     AKGantryMasterViewController
 
 
@@ -15,7 +15,7 @@ class KrogothGantryMasterViewControllerAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Properties',
          {
-             'fields': (('name', 'title', 'icon',),
+             'fields': (('name', 'title',),
                         ('category', 'is_enabled'),
                         ('themestyle_is_enabled',),)
          }
@@ -162,16 +162,11 @@ class KrogothGantrySlaveViewControllerAdmin(admin.ModelAdmin):
         }
 
 
-class KrogothGantryIconAdmin(admin.ModelAdmin):
-    list_display = ('id', 'code',)
-    search_fields = ['code']
-
-
 class KrogothGantryCategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name',)
 
 
-admin.site.register(KrogothGantryIcon, KrogothGantryIconAdmin)
+
 admin.site.register(KrogothGantryCategory, KrogothGantryCategoryAdmin)
 
 admin.site.register(KrogothGantryMasterViewController, KrogothGantryMasterViewControllerAdmin)

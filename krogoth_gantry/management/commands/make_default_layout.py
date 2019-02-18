@@ -1,11 +1,11 @@
 # coding=utf-8
-__version__ = '0.9.43'
-__author__ = 'Matt Andrzejczuk'
-from django.core.management.base import BaseCommand, CommandError
-from moho_extractor.models import NgIncludedJs, NgIncludedHtml
-from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryIcon, KrogothGantryService, \
-    KrogothGantryCategory, KrogothGantrySlaveViewController
-import codecs
+# __version__ = '0.9.43'
+# __author__ = 'Matt Andrzejczuk'
+# from django.core.management.base import BaseCommand, CommandError
+# from moho_extractor.models import NgIncludedJs, NgIncludedHtml
+# from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantryIcon, KrogothGantryService, \
+#     KrogothGantryCategory, KrogothGantrySlaveViewController
+# import codecs
 
 
 #  READ JS & HTML FILES AS A STRING LIKE SO:
@@ -14,13 +14,10 @@ import codecs
 
 
 
-class Command(BaseCommand):
-
-    help = 'prints the toolbar module and controller.'
-    def handle(self, *args, **options):
-
-        print("make_default_layout command is deprecated.")
-
+# class Command(BaseCommand):
+#     help = 'prints the toolbar module and controller.'
+#     def handle(self, *args, **options):
+#         print("make_default_layout command is deprecated.")
         # self.stdout.write(self.style.SUCCESS(''))
         # ctrl = open('krogoth_gantry/management/default_templates/toolbarCtrl.js', 'r')
         # module = open('krogoth_core/AKThemes/Pro/js/app_toolbar/toolbar.module.js', 'r')
