@@ -1,4 +1,4 @@
-# import uwsgi
+import uwsgi
 import gevent.select
 from ws4redis.exceptions import WebSocketError
 from ws4redis.wsgi_server import WebsocketWSGIServer
