@@ -11,39 +11,10 @@
 
         /* jshint validthis: true */
         var service = {
-            getList: getList,
             postNewObject: postNewObject,
-            deleteObject: deleteObject,
-            getManyToManyKeys: getManyToManyKeys,
-            putEditedObject: putEditedObject
+            putEditedObject: putEditedObject,
+            deleteObject: deleteObject
         };
-
-
-        function getListFilteredByBreed() {
-            var deferred = $q.defer();
-            $http({
-                method: 'GET',
-                url: '/api/breeds/list',
-            }).then(function successCallback(response) {
-                deferred.resolve(response.data);
-            }, function errorCallback(response) {
-                deferred.reject(response);
-            });
-            return deferred.promise;
-        }
-
-        function getListAllDogs() {
-            var deferred = $q.defer();
-            $http({
-                method: 'GET',
-                url: '/api/breeds/list/all',
-            }).then(function successCallback(response) {
-                deferred.resolve(response.data);
-            }, function errorCallback(response) {
-                deferred.reject(response);
-            });
-            return deferred.promise;
-        }
 
 
         function postNewObject(objectJson) {

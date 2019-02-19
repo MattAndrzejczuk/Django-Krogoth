@@ -1,7 +1,7 @@
 # Matt Andrzejczuk (c) 2018
 # MIT License
 
-from Krogoth_Utils.pyink import ink
+from utils.pyink import ink
 from pygments import highlight
 from pygments.lexers import JsonLexer
 from pygments.formatters import TerminalFormatter

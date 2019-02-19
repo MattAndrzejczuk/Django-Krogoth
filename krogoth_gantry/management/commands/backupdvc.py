@@ -173,7 +173,7 @@ class Command(BaseCommand):
             coreJSFiles = AKFoundationAbstract.objects.all()
             for fuse in coreJSFiles:
                 try:
-                    if UncommitedSQL.does_exist(name=fuse.unique_name, krogoth_class="AKFoundation"):
+                    if UncommitedSQL.does_exist(name=fuse.unique_name, krogoth_class="NgIncludedHtmlCore"):
                         d1 = fuse.path + fuse.first_name + "." + fuse.last_name + fuse.ext
                         text_file = open(d1, "w")
                         text_file.write(fuse.code)

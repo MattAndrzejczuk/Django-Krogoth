@@ -1,12 +1,12 @@
 """
 
- * KROGOTH v0.9.43
- * Copyright (C) 2017 Matt Andrzejczuk < matt@jawn.it >
+ * KROGOTH v0.9.53
+ * Copyright (C) 2019 Matt Andrzejczuk < matt@jawn.it >
 
  * KROGOTH can not be copied and/or distributed without the express
  * permission of Matt Andrzejczuk.
 
- * December 14th, 2017
+ * February, 2019
 
 """
 print('\033[94m\033[1mLoading Krogoth Settings...\033[0m\033[0m')

@@ -11,27 +11,17 @@
                         templateUrl: '/krogoth_gantry/DynamicHTMLInjector/?name=FUSE_APP_NAME',
                         controller: 'FUSE_APP_NAMEController as vm'
                     }
-                },
-                resolve: {
-                    Blog: function(apiResolver) {
-                        return apiResolver.resolve('blog.list@get');
-                    }
                 }
-            })
+            });
 
-
-        msApiProvider.register('exampleOneAKRESTfulFruit.list', ['/api/__ExamplesFruit/']);
-
-
-        _DJANGULAR_SLAVE_VC_INJECTION_POINT_;
         /* krogoth_gantry Slave VCs automatically injected here. */
-        _DJANGULAR_SLAVE_MSAPI_INJECTION_POINT_
+        _DJANGULAR_SLAVE_MSAPI_INJECTION_POINT_ /*OverrideNavStart*/
         msNavigationServiceProvider.saveItem('AK_NAVCAT_KROGOTH.AK_SUBCATAGORY_KROGOTH.FUSE_APP_NAME', {
             title: 'FUSE_APP_TITLE',
             icon: 'FUSE_APP_ICON',
             state: 'app.FUSE_APP_NAME',
             weight: 3
-        });
+        }); /*OverrideNavEnd*/
         _DJANGULAR_SLAVE_NAV_SERVICE_INJECTIONS_
     }
 })();
