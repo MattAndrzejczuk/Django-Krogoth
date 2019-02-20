@@ -16,7 +16,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: '/api/breed/type/images/random?breed=' + dogBreed
+                url: '/krogoth_3rdparty_api/api/breed/type/images/random?breed=' + dogBreed
             }).then(function successCallback(response) {
                 $log.log(response.data);
                 deferred.resolve(response.data);
@@ -30,7 +30,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: '/api/breeds/list/all/'
+                url: '/krogoth_3rdparty_api/api/breeds/list/all/'
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
