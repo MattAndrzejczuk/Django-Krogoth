@@ -159,7 +159,7 @@ class Command(BaseCommand):
                         basedir = os.path.dirname(static_root + "partialsJS/")
                         if not os.path.exists(basedir):
                             os.makedirs(basedir)
-                        d1 = static_root + "partialsJS/" + tmpl.name + ".js"
+                        d1 = static_root + "partialsJS/" + tmpl.name 
                         text_file = open(d1, "w")
                         text_file.write(tmpl.contents)
                         text_file.close()

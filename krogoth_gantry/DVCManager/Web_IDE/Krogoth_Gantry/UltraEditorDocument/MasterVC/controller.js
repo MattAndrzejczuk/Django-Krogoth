@@ -409,6 +409,8 @@
 
 
         function selectListItem(id) {
+            console.log("HELLO HELLO HELLO");
+            console.log("HELLO HELLO HELLO");
             const destination = "app.FUSE_APP_NAME.slave";
             const cargo = {
                 "categoryId": id
@@ -417,6 +419,7 @@
         }
 
         function goBackToCategory() {
+            console.log("HELLO HELLO HELLO");
             const destination = "app.UltraEditorSubCategory.slave";
             const cargo = {
                 'categoryId': vm.finishedBreadCrumbsJson._1st.id,

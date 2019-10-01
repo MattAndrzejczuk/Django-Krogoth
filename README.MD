@@ -1,17 +1,43 @@
 # Krogoth
 
-> Version 0.9.x, January 2019
+> Version 0.9.x, September 2019
 
 > Copyright (C) 2019 Gantry
 
 
 
 
+## Quickstart On *Ubuntu 18.04* With Docker
+> Last Updated: October 1st, 2019 
+
+For simplicity, this guide will use a vanilla Ubuntu 18.04 droplet from Digital Ocean.
+
+1. Clone the repo:
+
+    `root@ubuntu:~# git clone git@bitbucket.org:cinicraft/krogoth.git`
+
+2. Update packages:
+
+    `root@ubuntu:~# apt-get update`
+
+3. Remove old versions of docker:
+
+    `apt-get remove docker docker-engine docker.io`
+
+4. Install docker:
+
+    `apt install docker.io`
+5. (optional) automatically have docker run during OS startup: 
+
+    `sudo systemctl start docker`
+    `sudo systemctl enable docker`
 
 
-
+#
+#
+#
 ## Manual Installation on *Ubuntu 18.04*
-
+> Last Updated: January 16th, 2019 
 
 
 #### Prerequisits
