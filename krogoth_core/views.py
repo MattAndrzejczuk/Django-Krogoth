@@ -14,6 +14,8 @@ from django.template import loader
 from django.http import HttpResponse
 from jawn.settings import STATIC_KROGOTH_MODE, APP_VERSION
 
+from moho_extractor.dj_views import load_custom_css, load_krogoth_css, load_background_css, \
+    load_core_css, load_core_elements_css
 
 class AKFoundationViewSet(viewsets.ModelViewSet):
     queryset = AKFoundationAbstract.objects.all().order_by('last_name')
@@ -71,6 +73,13 @@ def index(request):
         "splash_logo_bg_color": splash_logo_bg_color,
         "width": width,
         "main_bg_color": main_bg_color,
-        "font_color": font_color
+        "font_color": font_color,
+        "load_custom_css": load_custom_css(),
+        "load_krogoth_css": load_krogoth_css(),
+        "load_background_css": load_background_css(),
+        "load_core_css": load_core_css(),
+        "load_core_elements_css": load_core_elements_css(),
     }
     return HttpResponse(template.render(context, request))
+
+
