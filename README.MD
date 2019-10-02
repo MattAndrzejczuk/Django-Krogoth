@@ -27,12 +27,21 @@ For simplicity, this guide will use a vanilla Ubuntu 18.04 droplet from Digital 
 4. Install docker:
 
     `apt install docker.io`
+    
 5. (optional) automatically have docker run during OS startup: 
 
     `sudo systemctl start docker`
+    
     `sudo systemctl enable docker`
 
+6. Navigate to the docker directory
 
+    `cd docker`
+    
+7. Run the installer, follow on screen instructions. (installation may take awhile)
+
+    `cd docker`
+    
 #
 #
 #
