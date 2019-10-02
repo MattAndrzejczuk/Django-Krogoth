@@ -3,7 +3,7 @@ from django.forms import TextInput, Textarea
 from django.db import models
 
 # Register your models here.
-from moho_extractor.models import IncludedHtmlMaster, IncludedJsMaster
+from moho_extractor.models import IncludedHtmlMaster, IncludedJsMaster, IncludedHtmlCoreTemplate
 
 
 
@@ -76,4 +76,5 @@ class NgIncludedHtmlAdmin(admin.ModelAdmin):
         }
 
 admin.site.register(IncludedHtmlMaster, NgIncludedHtmlAdmin)
+admin.site.register(IncludedHtmlCoreTemplate, NgIncludedHtmlAdmin)
 admin.site.register(IncludedJsMaster, NgIncludedJsAdmin)

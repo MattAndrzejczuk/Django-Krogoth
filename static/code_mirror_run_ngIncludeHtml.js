@@ -11,7 +11,7 @@ window.onload = function () {
     let editor3 = CodeMirror.fromTextArea(txt_html_main, {
         lineNumbers: true,
         mode: "htmlmixed",
-        theme: "dracula",
+        theme: "colorforth",
         indentUnit: 4,
         indentWithTabs: true
     });

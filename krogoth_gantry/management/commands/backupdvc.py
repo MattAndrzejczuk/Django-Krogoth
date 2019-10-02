@@ -173,7 +173,7 @@ class Command(BaseCommand):
             coreJSFiles = AKFoundationAbstract.objects.all()
             for fuse in coreJSFiles:
                 try:
-                    if UncommitedSQL.does_exist(name=fuse.unique_name, krogoth_class="NgIncludedHtmlCore"):
+                    if UncommitedSQL.does_exist(name=fuse.unique_name, krogoth_class="AKFoundation"):
                         d1 = fuse.path + fuse.first_name + "." + fuse.last_name + fuse.ext
                         text_file = open(d1, "w")
                         text_file.write(fuse.code)
@@ -182,4 +182,20 @@ class Command(BaseCommand):
                         UncommitedSQL.finish_and_remove(name=fuse.unique_name)
                 except Exception as e:
                     self.stdout.write(self.style.ERROR("AKFoundation FAILED TO SAVE TO FILESYSTEM"))
-                    UncommitedSQL.report_failure(for_record_named=fuse.unique_name, error_info=(str(e)) + " AKFoundation")
+                    UncommitedSQL.report_failure(for_record_named=fuse.unique_name,
+                                                 error_info=(str(e)) + " AKFoundation")
+
+            coreHTMLs = IncludedHtmlCoreTemplate.objects.all()
+            for html in coreHTMLs:
+                if UncommitedSQL.does_exist(name=html.name, krogoth_class="NgIncludedHtmlCore"):
+                    try:
+                        filep = html.os_path + "'" + html.file_name + "'"
+                        sys_file = open(filep, "w")
+                        sys_file.write(html.contents)
+                        sys_file.close()
+                        self.stdout.write(self.style.SUCCESS(filep))
+                        UncommitedSQL.finish_and_remove(name=html.name)
+                    except Exception as e:
+                        self.stdout.write(self.style.ERROR("NgIncludedHtmlCore FAILED TO SAVE TO FILESYSTEM"))
+                        UncommitedSQL.report_failure(for_record_named=html.unique_name,
+                                                     error_info=(str(e)) + " NgIncludedHtmlCore")
