@@ -35,6 +35,7 @@
         gtag('config', 'UA-107036799-1');
     </script>
 
+
     {% verbatim %}
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -74,110 +75,18 @@
           rel='stylesheet' type='text/css'/>
 
 </head>
-<body>
-<!--[if lt IE 10]>
-<p class="browsehappy">
-    You are using an <strong>outdated</strong> browser. Please
-    <a href="http://browsehappy.com/">upgradeyour browser</a>
-    to improve your experience.
-</p>
-<![endif]-->
+<body md-theme="{{vm.themes.active.name}}"
+      md-theme-watch
+      ng-controller="IndexController as vm"
+      style="background-color: rgba(0, 0, 0, 0) !important;"
+      class="{{state.current.bodyClass || ''}} multi_bg_example_opaque">
 
-<style md-theme="{{vm.themes.active.name}}"
-       md-theme-watch
-       ng-controller="IndexController as vm"
-       style="background-color: rgba(0, 0, 0, 0) !important;"
-       class="{{state.current.bodyClass || ''}} multi_bg_example_opaque">
 
-    <script type="text/javascript" src="/static/bower_components/threejs/three.min.js"></script>
 
-    <style>
-        body {
-            background: #111;
-        }
+<script type="text/javascript" src="/static/bower_components/threejs/three.min.js"></script>
 
-        .loader {
-            position: relative;
-            top: 25%;
-            left: 5%;
-            width: 10%;
-            margin: auto;
-        }
 
-        .loader .circle {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            opacity: 0;
-            transform: rotate(225deg);
-            animation-iteration-count: infinite;
-            animation-name: orbit;
-            animation-duration: 5.5s;
-        }
-
-        .loader .circle:after {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 8px;
-            background: #fff;
-            /* Pick a color */
-        }
-
-        .loader .circle:nth-child(2) {
-            animation-delay: 200ms;
-        }
-
-        .loader .circle:nth-child(3) {
-            animation-delay: 500ms;
-        }
-
-        .loader .circle:nth-child(4) {
-            animation-delay: 800ms;
-        }
-
-        .loader .circle:nth-child(5) {
-            animation-delay: 1100ms;
-        }
-
-        @keyframes orbit {
-            0% {
-                transform: rotate(225deg);
-                opacity: 1;
-                animation-timing-function: ease-out;
-            }
-            7% {
-                transform: rotate(345deg);
-                animation-timing-function: linear;
-            }
-            30% {
-                transform: rotate(455deg);
-                animation-timing-function: ease-in-out;
-            }
-            39% {
-                transform: rotate(690deg);
-                animation-timing-function: linear;
-            }
-            70% {
-                transform: rotate(815deg);
-                opacity: 1;
-                animation-timing-function: ease-out;
-            }
-            75% {
-                transform: rotate(945deg);
-                animation-timing-function: ease-out;
-            }
-            76% {
-                transform: rotate(945deg);
-            }
-            100% {
-                transform: rotate(945deg);
-            }
-        }
-    </style>
-
-    <ms-splash-screen id="splash-screen">
+    <ms-splash-screen id="splash-screen" style="background: rgba(10, 10, 15, 1.0);">
         <div class='loader'>
             <div class='circle'></div>
             <div class='circle'></div>
@@ -305,9 +214,6 @@
     <script type="text/javascript" src="/static/codemirror/addon/hint/javascript-hint.js"></script>
 
 
-    <!--<script src="/static/app/main/sample/sample.module.js"></script>-->
-    <!--<script src="/static/app/main/sample/sample.controller.js"></script>-->
-
     {% endverbatim %}
 
 
@@ -352,42 +258,16 @@
 
     <p id="krogoth_gantryVersion" style="display: none">{{ version_build }}</p>
 
-</body>
 
 
-<link href="/static/artcss/Inconsolata.css" rel="stylesheet">
 
+<link href="/static/artcss/Inconsolata.css" rel="stylesheet"/>
 
-<!-- START OF BASIC THEME CUSTOM PROPERTIES -->
-
-<!--  -->
-
-
-{% verbatim %}
-
-{% endverbatim %}
-
-
+{{ load_krogoth_css }}
 {{   load_custom_css }}
-{{   load_krogoth_css }}
 {{   load_background_css }}
 {{   load_core_css }}
 {{   load_core_elements_css }}
 
-<style>
-    /**
- *  Do not remove this comments bellow. It's the markers used by wiredep to inject
- *  sass dependencies when defined in the bower.json of your dependencies
- */
-
-
-    #layout-horizontal-navigation #content-container #content {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
-
-</style>
+</body>
 </html>
