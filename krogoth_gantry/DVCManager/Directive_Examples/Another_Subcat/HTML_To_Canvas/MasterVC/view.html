@@ -1,9 +1,26 @@
 <h1>{{ vm.viewName }}</h1>
 
-<button ng-click="vm.click()">
-    CAVASIZE ME
-</button>
+
+<div class="content-card md-whiteframe-2dp" layout-padding layout-margin>
+
+
+    <span class="md-headline">Take A Screenshot And Render It</span>
+
+    <section class="timeline-tab" flex>
+
+        <div>
+        <span>Press the Canvasize Me button and a screenshot of the left sidenav will be rendered below.</span>
+        <small>This won't work on mobile since the left side nav is closed.</small>
+        </div>
+
+        <md-button ng-click="vm.click()">
+            CAVASIZE ME
+        </md-button>
+
+
+    </section>
+</div>
 
 <div id="CANVAS_PLC" style="width:240; height:1214">
-    
+
 </div>

@@ -23,7 +23,7 @@
             <!-- DEMO SIDENAV -->
             <div>
                 <!-- start slipsum code -->
-                <h3>Uuummmm, this is a tasty burger!</h3>
+                <h3 color:black>Uuummmm, this is a tasty burger!</h3>
 
                 <!-- end slipsum code -->
             </div>
@@ -41,7 +41,7 @@
         <!-- CONTENT HEADER -->
         <div class="header" layout="row">
             <div>
-                <span class="h2 white-fg">Left sidenav with independent scroll</span>
+                <span class="md-display-3" style="color:white">Asynchronous Image Loading As Base64</span>
             </div>
         </div>
         <!-- / CONTENT HEADER -->
@@ -54,16 +54,14 @@
                  layout="row"
                  layout-align="start center"
                  style="color:black">
-                <p>
-                    Loading &amp; Saving a 30+ MB Image to Local Storage
-                </p>
+                <span class="md-headline">This Example Will Load A Colossal 30+MB Image And Render It Smoothly</span>
             </div>
             <!-- / CONTENT TOOLBAR -->
 
             <!-- CONTENT -->
             <md-content class="content glass-test" flex ms-scroll>
                 <!-- DEMO CONTENT -->
-                <div layout="row">
+                <div layout="column">
                     <!-- start slipsum code -->
                     <div layout="column" layout-wrap>
                         <p>
@@ -73,32 +71,49 @@
                             use extreme-quality media in the GUI by recycling it from the user's
                             hard disk storage.ngh
                         </p>
-                        <md-button class="md-primary" ng-click="vm.series()">
-                            Download In Background
-                        </md-button>
+                        <strong style="color:black">Async Messages:</strong>
+                        <div layout="row">
+                            <div>
+                                <p>Button will trigger GET request to: <strong>/moho_extractor/LoadFileAsBase64?name=</strong></p>
+                                <p>Django view logic can be edited at <i>/moho_extractor/views.py</i> with the class named <b>LoadFileAsBase64View</b></p>
+                                <p>
+                                	The interesting thing about this example code is that images or any other type of file could be loaded
+                                    by using the WebSockets which are included to work out of the box for the Krogoth Framework.
+                                </p>
+                            </div>
+                            <div layout="column" layout-margin>
+                                <md-input-container>
+                                    <label>Title</label>
+                                    <input ng-model="vm.imageName">
+                                </md-input-container>
+                                <md-button class="md-primary md-raised" ng-click="vm.series()">
+                                    Download In Background
+                                </md-button>
+                            </div>
+                        </div>
                     </div>
                     <!-- end slipsum code -->
                     <div layout="column" layout-wrap>
                         <md-card>
-                            <strong>Async Messages:</strong>
+                            <strong style="color:black">Async Messages:</strong>
                             <div>
-                                <pre>{{ vm.asyncmessages }}</pre>
+                                <pre style="color:blue">{{ vm.asyncmessages }}</pre>
                             </div>
                         </md-card>
                         <md-card>
-                            <strong>Success Messages:</strong>
+                            <strong style="color:black">Success Messages:</strong>
                             <div>
-                                <pre>{{ vm.asyncsuccessLog }}</pre>
+                                <pre style="color:blue">{{ vm.asyncsuccessLog }}</pre>
                             </div>
                         </md-card>
                         <md-card>
-                            <strong>Fail Messages:</strong>
+                            <strong style="color:black">Fail Messages:</strong>
                             <div>
-                                <pre>{{ vm.asyncfailLog }}</pre>
+                                <pre style="color:blue">{{ vm.asyncfailLog }}</pre>
                             </div>
                         </md-card>
                         <md-card>
-                            <strong>Image:</strong>
+                            <strong style="color:black">Image:</strong>
                             <img width="{{vm.imageWidth}}" ng-src="{{ vm.base64Image }}">
                         </md-card>
                     </div>

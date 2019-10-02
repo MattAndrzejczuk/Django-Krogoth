@@ -189,10 +189,11 @@ class Command(BaseCommand):
             for html in coreHTMLs:
                 if UncommitedSQL.does_exist(name=html.name, krogoth_class="NgIncludedHtmlCore"):
                     try:
-                        filep = html.os_path + "'" + html.file_name + "'"
+                        filep = html.os_path + html.file_name
                         sys_file = open(filep, "w")
                         sys_file.write(html.contents)
                         sys_file.close()
+                        print(html.name)
                         self.stdout.write(self.style.SUCCESS(filep))
                         UncommitedSQL.finish_and_remove(name=html.name)
                     except Exception as e:

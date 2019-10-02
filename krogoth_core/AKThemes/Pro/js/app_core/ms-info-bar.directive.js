@@ -14,7 +14,7 @@
             restrict   : 'E',
             scope      : {},
             transclude : true,
-            templateUrl: 'app/core/directives/ms-info-bar/ms-info-bar.html',
+            templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-info-bar.html',
             link       : function (scope, iElement)
             {
                 var body = $document.find('body'),

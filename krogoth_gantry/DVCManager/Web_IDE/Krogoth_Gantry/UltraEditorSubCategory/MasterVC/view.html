@@ -69,7 +69,7 @@
 									  layout-wrap
 									  onaftersave="vm.updateTitle(tile)"
 									  layout="column">
-									Display Title: <b>{{ tile.title }}</b>
+									<span style="color:rgb(25,5,25)">Display Title:<span> <b style="color:black">{{ tile.title }}</b>
 
 								</span>
 							</div>
@@ -80,8 +80,8 @@
                                   layout-align="center center"
                                   onaftersave="vm.updateName(tile)">				
 									Identifier Name: 
-								<strong>{{ tile.name }}</strong>
-									<md-tooltip>
+								<strong style="color:black">{{ tile.name }}</strong>
+									<md-tooltip >
 										click to edit the unique name
 									</md-tooltip>
 							</span>

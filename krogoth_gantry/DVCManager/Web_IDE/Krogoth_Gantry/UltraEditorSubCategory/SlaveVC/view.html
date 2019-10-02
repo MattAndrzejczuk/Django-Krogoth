@@ -53,7 +53,7 @@
                                   layout-margin
                                   layout-align="center center"
                                   onaftersave="vm.updateName(tile)">
-								<strong>{{ tile.name }}</strong>
+								<strong style="color:black">{{ tile.name }}</strong>
 							</span>
                         </div>
                     </div>
@@ -66,6 +66,7 @@
                     <span editable-text="tile.title"
                           layout-wrap
                           onaftersave="vm.updateTitle(tile)"
+                          style="color:black"
                           layout="column">
                         {{ tile.title }}
                     </span>

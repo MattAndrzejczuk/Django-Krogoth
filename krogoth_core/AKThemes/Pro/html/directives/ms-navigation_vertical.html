@@ -1,5 +1,8 @@
 <!--
 krogoth_core/AKThemes/Pro/html/directives
+
+REQUIRED FOR RC
+
 -->
 <ul>
     <li ng-repeat="node in vm.navigation" ms-navigation-node="node"
@@ -8,6 +11,7 @@ krogoth_core/AKThemes/Pro/html/directives
 </ul>
 
 <!-- Nested navigation template -->
+
 <script type="text/ng-template" id="navigation-nested.html">
 
     <div ms-navigation-item layout="row" ng-if="!vm.isHidden()">
@@ -36,4 +40,5 @@ krogoth_core/AKThemes/Pro/html/directives
     </ul>
 
 </script>
+
 <!-- / Nested navigation template -->

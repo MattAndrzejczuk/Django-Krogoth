@@ -17,6 +17,8 @@
 
         vm.cacheImageInCookies = cacheImageInCookies;
         vm.deleteImageFromCookies = cacheImageInCookies;
+        
+        vm.imageName = "EpicPlanet_1.png";
 
         function cacheImageInCookies() {
 
@@ -73,7 +75,7 @@
                 if (id === 'dispatch_task1') {
                     $http({
                         method: 'GET',
-                        url: '/moho_extractor/LoadFileAsBase64?name=EpicPlanet_1.png'
+                        url: '/moho_extractor/LoadFileAsBase64?name=' + vm.imageName
                     }).then(function successCallback(response) {
                         vm.asyncmessages.push(id + ' has completed');
                         vm.base64Data = response.data;
