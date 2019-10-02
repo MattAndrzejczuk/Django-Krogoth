@@ -25,9 +25,7 @@ krogoth_core/AKThemes/Pro/html/layouts
             <md-icon class="s18" md-font-icon="icon-backburger"></md-icon>
         </md-button>
 
-        <ms-shortcuts></ms-shortcuts>
 
-        <div class="toolbar-separator"></div>
     </div>
 
     <div layout="row" layout-align="start center">
@@ -56,7 +54,7 @@ krogoth_core/AKThemes/Pro/html/layouts
                 </md-button>
 
                 <md-menu-content width="3">
-<!--
+                    <!--
 					<md-menu-item class="md-indent" ui-sref="app.UltraEditorBrowse" ng-if="{{ vm.user['is_staff'] }}">
                         <md-icon md-font-icon="icon-account" class="icon"></md-icon>
                         <md-button>Open Web IDE</md-button>
@@ -72,16 +70,16 @@ krogoth_core/AKThemes/Pro/html/layouts
                                  ng-style="{'color': vm.userStatus.color }" class="icon"></md-icon>
                         <md-menu id="user-status-menu">
                             <md-button ng-click="$mdOpenMenu()" class="status" ng-class="vm.userStatus.class">
-                                {{vm.userStatus.title}}
+                                {{ vm.userStatus.title }}
                             </md-button>
                             <md-menu-content width="2">
                                 <md-menu-item class="status md-indent"
                                               ng-class="{'selected': status === vm.userStatus}"
                                               ng-repeat="status in vm.userStatusOptions">
-                                    <md-icon md-font-icon="{{status.icon}}" ng-style="{'color': status.color }"
+                                    <md-icon md-font-icon="{{ status.icon }}" ng-style="{'color': status.color }"
                                              class="icon"></md-icon>
                                     <md-button ng-click="vm.setUserStatus(status)">
-                                        {{status.title}}
+                                        {{ status.title }}
                                     </md-button>
                                 </md-menu-item>
                             </md-menu-content>
@@ -105,28 +103,16 @@ krogoth_core/AKThemes/Pro/html/layouts
 
         <div class="toolbar-separator"></div>
 
-        <md-menu id="language-menu" md-offset="0 72" md-position-mode="target-right target">
-            <md-button class="language-button" ng-click="$mdOpenMenu()"
-                       aria-label="Language" md-menu-origin md-menu-align-target>
-                <div layout="row" layout-align="center center">
-                    <img class="flag" ng-src="assets/images/flags/{{vm.selectedLanguage.flag}}.png">
-                    <span class="iso">{{vm.selectedLanguage.code}}</span>
-                </div>
-            </md-button>
 
-            <md-menu-content width="3" id="language-menu-content">
-                <md-menu-item ng-repeat="(iso, lang) in vm.languages">
-                    <md-button ng-click="vm.changeLanguage(lang)" aria-label="{{lang.title}}">
-                        <span layout="row" layout-align="start center">
-                            <img class="flag" ng-src="assets/images/flags/{{lang.flag}}.png">
-                            <span>{{lang.title}}</span>
-                        </span>
-                    </md-button>
-                </md-menu-item>
-            </md-menu-content>
-        </md-menu>
+        <md-button class="md-icon-button"
+                   hide show-gt-sm
+                   ng-if="vm.user['is_staff']"
+                   ng-click="vm.navToUltraEditorBrowse()">
+            <md-icon class="s18" md-font-icon="icon-server-network"></md-icon>
+        </md-button>
 
         <div class="toolbar-separator"></div>
+
 
         <md-button id="quick-panel-toggle" class="md-icon-button" ng-click="vm.toggleSidenav('quick-panel')"
                    aria-label="Toggle quick panel">

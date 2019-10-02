@@ -1,5 +1,5 @@
 /* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8,7 +8,7 @@
 
     /** @ngInject */
     function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $mdToast, $log,
-								msNavigationService, $http, $cookies) {
+                               msNavigationService, $http, $cookies) {
         var vm = this;
 
         // Data
@@ -70,7 +70,20 @@
         vm.searchResultClick = searchResultClick;
         vm.loadUser = loadUser;
         vm.webApplicationBuild = document.getElementById("krogoth_gantryVersion").innerHTML.replace('krogoth_gantry ', '');
-        $timeout(function() {
+        vm.navToUltraEditorBrowse = navToUltraEditorBrowse;
+
+
+        /// for super users, shortcut to IDE:
+        function navToUltraEditorBrowse() {
+            if (vm.user["is_staff"]) {
+                const destination = "app.UltraEditorBrowse";
+                const cargo = {};
+                $state.go(destination, cargo);
+            }
+        }
+
+
+        $timeout(function () {
             if (document.getElementById("showBuildVersion"))
                 (document.getElementById("showBuildVersion").innerHTML) = 'ArmPrime v' + vm.webApplicationBuild;
         }, 3000);
@@ -107,10 +120,10 @@
                 url: '/rest-auth/user/'
             }).then(function successCallback(response) {
                 vm.user = response.data;
-				$log.info("GOT THE USER LOGIN! ! !!");
-				$log.log(response.data);
-				$cookies.put("username", response.data.username);
-				$cookies.put("user_id", response.data.id);
+                $log.info("GOT THE USER LOGIN! ! !!");
+                $log.log(response.data);
+                $cookies.put("username", response.data.username);
+                $cookies.put("user_id", response.data.id);
             }, function errorCallback(response) {
                 $mdToast.show($mdToast.simple().textContent('Login is required.'));
             });
@@ -150,7 +163,7 @@
                     url: '/rest-auth/logout/'
                 }).then(function successCallback(response) {
                     $cookies.remove('token');
-					$cookies.remove('username');
+                    $cookies.remove('username');
                     $state.go('app.Login');
                 }, function errorCallback(response) {
                     $mdToast.show($mdToast.simple().textContent('Unexpected server error: /rest-auth/logout/'));
@@ -236,7 +249,7 @@
             // list. Not exactly a good thing to do but it's
             // for demo purposes.
             if (query) {
-                navigation = navigation.filter(function(item) {
+                navigation = navigation.filter(function (item) {
                     if (angular.lowercase(item.title).search(angular.lowercase(query)) > -1) {
                         return true;
                     }
@@ -244,7 +257,7 @@
             }
 
             // Fake service delay
-            $timeout(function() {
+            $timeout(function () {
                 deferred.resolve(navigation);
             }, 1000);
 
