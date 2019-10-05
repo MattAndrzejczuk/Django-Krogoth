@@ -83,8 +83,10 @@ save changes to filesystem using URL:
             AKClassEditorComponentClone01.loadKrogothCoreList()
                 .then(function(nodesForTree) {
 
-                    vm.treeData[0].nodes = nodesForTree;
+                
+                    vm.treeData[0].nodes = nodesForTree.js_nodes;
                     vm.treeData[1].nodes = AKClassEditorComponentClone01.html_nodes;
+                	vm.treeData[2].nodes = nodesForTree.js_directive_nodes;
 
                     AKClassEditorComponentClone01.loadHTMLCoreList()
                         .then(function(htmlNodes) {

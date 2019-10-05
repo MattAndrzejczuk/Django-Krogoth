@@ -12,6 +12,7 @@
 
             addNodeToEditor: addNodeToEditor,
             js_nodes: [],
+            js_directive_nodes: [],
             html_nodes: []
         };
 
@@ -45,7 +46,7 @@
                         RESTfulId: item_in.id,
                         RESTfulURI: "/krogoth_gantry/viewsets/IncludedHtmlCore/" + item_in.id + "/",
                         syntax: 'htmlmixed',
-                        icon: 'link-variant'
+                        icon: 'file-document'
                     };
                     service.html_nodes.push(newNode);
                 }
@@ -101,7 +102,7 @@
                     service.addNodeToEditor(newNode);
                     ///$log.info("ADDING NODE " + i + ": " + item_in.first_name + item_in.last_name);
                 });
-                deferred.resolve(service.js_nodes);
+                deferred.resolve({"js_nodes":service.js_nodes, "js_directive_nodes":service.js_directive_nodes});
             }, function errorCallback(response) {
                 deferred.reject(response);
             });
@@ -111,13 +112,49 @@
 
         function addNodeToEditor(newNode) {
             $log.info("[1]: " + newNode.class);
-            if (newNode.class === "controller")
+            if (newNode.class === "controller"){
                 newNode.icon = "pillar";
-            if (newNode.class === "constant")
+                service.js_nodes.push(newNode);
+            }
+            else if (newNode.class === "constant"){
                 newNode.icon = "react";
-            if (newNode.class === "filter")
-                newNode.icon = "layers-outline";
-            service.js_nodes.push(newNode);
+                service.js_nodes.push(newNode);
+            }
+            else if (newNode.class === "filter"){
+                newNode.icon = "filter";
+                service.js_nodes.push(newNode);
+            }
+            else if (newNode.class === "directive"){
+                newNode.icon = "buffer";
+                newNode.parentIndex = 2;
+                service.js_directive_nodes.push(newNode);
+            }
+            else if (newNode.class === "config"){
+                newNode.icon = "flask";
+                service.js_nodes.push(newNode);
+            }
+            else if (newNode.class === "service"){
+                newNode.icon = "chip";
+                service.js_nodes.push(newNode);
+            }
+            else if (newNode.class === "module"){
+                newNode.icon = "dna";
+                service.js_nodes.push(newNode);
+            }
+            else if (newNode.class === "provider"){
+                newNode.icon = "creation";
+                service.js_nodes.push(newNode);
+            }
+            else if (newNode.class === "route"){
+                newNode.icon = "sitemap";
+                service.js_nodes.push(newNode);
+            }
+            else if (newNode.class === "run"){
+                newNode.icon = "desktop-mac";
+                service.js_nodes.push(newNode);
+            }
+            ///sitemap
+
         }
 
 

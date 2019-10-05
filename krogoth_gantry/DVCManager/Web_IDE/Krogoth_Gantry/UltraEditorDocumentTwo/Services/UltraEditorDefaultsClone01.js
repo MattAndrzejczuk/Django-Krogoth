@@ -13,69 +13,9 @@
             var deferred = $q.defer();
             var returnData = [];
             try {
-                var master = {
-                    id: _masterVCID,
-                    index: 0,
-                    title: 'Master Views',
-                    class: "MasterViewController",
-                    nodes: [],
-                    canRemove: false,
-                    canEdit: false,
-                    canAdd: false
-                };
-                var styles = {
-                    id: _masterVCID,
-                    index: 1,
-                    title: 'CSS',
-                    class: "MasterViewController",
-                    nodes: [],
-                    canRemove: false,
-                    canEdit: false,
-                    canAdd: false
-                };
-                var slaves = {
-                    id: _masterVCID,
-                    index: 2,
-                    title: 'Slave Views',
-                    class: "SlaveViewController",
-                    nodes: [],
-                    canRemove: false,
-                    canEdit: false,
-                    canAdd: false
-                };
-                var direct = {
-                    id: _masterVCID,
-                    index: 3,
-                    title: 'Directives',
-                    class: "Directive",
-                    nodes: [],
-                    canRemove: false,
-                    canEdit: false,
-                    canAdd: true
-                };
-                var servic = {
-                    id: _masterVCID,
-                    index: 4,
-                    title: 'Services',
-                    class: "Service",
-                    nodes: [],
-                    canRemove: false,
-                    canEdit: false,
-                    canAdd: true
-                };
-                var xtHTML = {
-                    id: _masterVCID,
-                    index: 5,
-                    title: 'HTML Templates',
-                    class: "Template",
-                    nodes: [],
-                    canRemove: false,
-                    canEdit: false,
-                    canAdd: true
-                };
 
-
-
+                
+                
                 var core = {
                     id: _masterVCID,
                     index: returnData.length,
@@ -87,28 +27,36 @@
                 };
                 returnData.push(core);
 
-
-
+                
+                
                 var xtraJS = {
                     id: _masterVCID,
                     index: returnData.length,
-                    title: 'JavaScript Templates',
+                    title: 'HTML Templates',
                     nodes: [],
                     canRemove: false,
                     canEdit: false,
-                    canAdd: true
+                    canAdd: false
                 };
                 returnData.push(xtraJS);
 
-                /*
-                returnData.push(master);
-                returnData.push(styles);
-                returnData.push(slaves);
-                returnData.push(direct);
-                returnData.push(servic);
-                returnData.push(xtHTML);
-				*/
-
+                
+                
+                var directives = {
+                    id: _masterVCID,
+                    index: returnData.length,
+                    title: 'Directives',
+                    nodes: [],
+                    canRemove: false,
+                    canEdit: false,
+                    canAdd: false
+                };
+                returnData.push(directives);
+                
+                
+                
+                
+                
 
                 deferred.resolve(returnData);
             } catch (ex) {
