@@ -1,4 +1,4 @@
-/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
+/* ~ ~ ~ ~ ~ ~ ~ ~ NAVIGATION MODULE ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
   'use strict';
 
@@ -12,3 +12,7 @@
   }
 
 })();
+
+/*
+THIS IS BEING REMOVED
+*/

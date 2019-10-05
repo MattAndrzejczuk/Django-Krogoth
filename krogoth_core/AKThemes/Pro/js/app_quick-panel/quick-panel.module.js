@@ -17,3 +17,7 @@
     msApiProvider.register('quickPanel.notes', ['/static/app/data/quick-panel/notes.json']);
   }
 })();
+
+/*
+THIS IS BEING REMOVED
+*/

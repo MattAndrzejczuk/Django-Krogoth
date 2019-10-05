@@ -1,4 +1,7 @@
-/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
+/*
+THIS IS BEING REMOVED
+*/
+/* ~ ~ ~ ~ ~ ~ ~ ~ INDEX MODULE ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {
   'use strict';
 
