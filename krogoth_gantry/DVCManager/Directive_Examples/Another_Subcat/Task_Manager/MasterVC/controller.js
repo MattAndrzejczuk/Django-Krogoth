@@ -15,11 +15,18 @@
 
         function viewDidLoad() {
             console.log('FUSE_APP_NAME did finish loading');
+
         }
+
+
+
         
         
         
         
+        
+
+
         // Data
         vm.dashboardData = {
             "widget1": {
@@ -131,8 +138,8 @@
                 };
 
                 vm.ramUsage = response.data.RAM_Usage.toFixed(2);
-                vm['widget6']['chart'][0]['values'].shift();
-                vm['widget6']['chart'][0]['values'].push(newValue);
+                vm.widget6.chart.data[0].values.shift();
+                vm.widget6.chart.data[0].values.push(newValue);
                 vm.cpuX += 15;
 
 
@@ -599,14 +606,14 @@
         vm.widget6.init();
 
 
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
 
 
     }

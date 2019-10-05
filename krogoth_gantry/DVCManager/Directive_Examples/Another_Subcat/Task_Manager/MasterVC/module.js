@@ -1,7 +1,7 @@
 (function ()
 {
 	'use strict';
-	angular.module('app.FUSE_APP_NAME', ['flow']).config(config);
+	angular.module('app.FUSE_APP_NAME', ['flow', 'nvd3']).config(config);
 
 	function config($stateProvider,  msApiProvider, msNavigationServiceProvider) {
 	$stateProvider
