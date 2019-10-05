@@ -8,9 +8,14 @@
 
         vm.toastMsg = '';
 
+        vm.RESTfulJSONPayload = {};
+
 
         vm.$onInit = onInit;
         vm.$onDestroy = onDestroy;
+
+
+        vm.postNewObject = postNewObject;
 
 
         function onInit() {
@@ -20,7 +25,18 @@
         function onDestroy() {
 
         }
-        
-        
+
+        function postNewObject() {
+            RESTfulModelVII.postNewObject(vm.RESTfulJSONPayload.image)
+                .then(function(response){
+                $mdToast.show({
+                    template: '<md-toast>image was uploaded.</md-toast>',
+                    hideDelay: 2000,
+                    position: 'bottom right'
+                });
+                vm.RESTfulJSONPayload = {};
+            });
+        }
+
     }
 })();

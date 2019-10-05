@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.views import APIView
 from moho_extractor.serializers import IncludedHtmlMasterSerializer, IncludedJsMasterSerializer, \
     IncludedHtmlCoreTemplateSerializer
-
+import json
 from moho_extractor.models import NgIncludedHtml, IncludedHtmlMaster, IncludedJsMaster, IncludedHtmlCoreTemplate
 from krogoth_gantry.models import KrogothGantryMasterViewController
 

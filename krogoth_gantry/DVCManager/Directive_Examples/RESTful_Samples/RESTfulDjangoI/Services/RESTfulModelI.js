@@ -48,7 +48,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'DELETE',
-                url: '/api/__ExamplesTextLabel/' + objectId + ''
+                url: '/api/__ExamplesFruit/' + objectId + ''
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
