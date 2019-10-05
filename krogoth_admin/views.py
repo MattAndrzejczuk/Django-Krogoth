@@ -23,6 +23,13 @@ class SaveSQLToFileSystemView(APIView):
         return Response({"result": "success"}, status=200)
 
 
+class CollectStatic(APIView):
+
+    def get(self, request, format=None):
+        os.system("./manage.py collectstatic --no-input")
+        return Response({"result": "success"}, status=200)
+
+
 class CompileMVCsToStatic(APIView):
     # permission_classes = (IsAdminUser, )
     def get(self, request, format=None):

@@ -1,70 +1,63 @@
 <md-toolbar>
-	<div class="md-toolbar-tools">
-		<div class="md-display-1" style="color:white">Select Catagory</div>
-		<div>
-			<button class="btn btn-outline-primary" ng-click="vm.openUltraEditorDocumentTwo()">
-				Krogoth Core Editor
-			</button>
-		</div>
-	</div>
+    <div class="md-toolbar-tools">
+        <div class="md-display-1" style="color:white">Select Catagory</div>
+        <div>
+            <button class="btn btn-outline-primary" ng-click="vm.openUltraEditorDocumentTwo()">
+                Krogoth Core Editor
+            </button>
+        </div>
+    </div>
 </md-toolbar>
 <span>
-	&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
 </span>
 <div layout="row">
 
-	<span>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-	</span>
+    <span>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+    </span>
 
-	<div flex ng-cloak>
-		<md-grid-list
-					  md-cols="1" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="3" md-cols-gt-lg="4"
-					  md-row-height-gt-md="1:1" md-row-height="1:1"
-					  md-gutter="18px" md-gutter-gt-sm="14px">
-			<md-grid-tile ng-repeat="tile in vm.objectList"
-						  ng-mouseenter="tile.hidden = false"
-						  ng-mouseleave="tile.hidden = true"
-						  md-rowspan="1"
-						  md-colspan="1"
-						  md-colspan-sm="1"
-						  md-colspan-xs="1"
-						  class="blur-content-primary"
-						  style="border-radius:25px"
-						  md-whiteframe="3">
+    <div flex ng-cloak>
+        <md-grid-list
+                      md-cols="1" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="3" md-cols-gt-lg="4"
+                      md-row-height-gt-md="1:1" md-row-height="1:1"
+                      md-gutter="18px" md-gutter-gt-sm="14px">
+            <md-grid-tile ng-repeat="tile in vm.objectList"
+                          ng-mouseenter="tile.hidden = false"
+                          ng-mouseleave="tile.hidden = true"
+                          md-rowspan="1"
+                          md-colspan="1"
+                          md-colspan-sm="1"
+                          md-colspan-xs="1"
+                          class="blur-content-primary"
+                          style="border-radius:25px"
+                          md-whiteframe="3">
 
-				<!-- Category Tile -->
-				<span ng-if="tile.name !== 'AddMVC'"
-					  ng-include= "'/moho_extractor/NgIncludedHtml/?name=categoryTileBrowser'">
-				</span>
-				<!--/Category Tile -->
+                <!-- Category Tile -->
+                <span ng-if="tile.name !== 'AddMVC'"
+                      ng-include= "'/moho_extractor/NgIncludedHtml/?name=categoryTileBrowser'">
+                </span>
+                <!--/Category Tile -->
 
-				<!-- Add MVC Tile -->
-				<span ng-if="tile.name === 'AddMVC'"
-					  ng-include= "'/moho_extractor/NgIncludedHtml/?name=addTileMVCMain'">
-				</span>
-				<!--/Add MVC Tile -->
-			</md-grid-tile>
-		</md-grid-list>
-	</div>
-
-
-
-
-	<span>
-		&nbsp;&nbsp;&nbsp;
-	</span>
+                <!-- Add MVC Tile -->
+                <span ng-if="tile.name === 'AddMVC'"
+                      ng-include= "'/moho_extractor/NgIncludedHtml/?name=addTileMVCMain'">
+                </span>
+                <!--/Add MVC Tile -->
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
 
 
 
-	<div flex="30" flex-sm="30" flex-xs="30">
-		<div layout="row" layout-margin layout-padding>
-			<!--<span flex="5">&nbsp;</span>-->
-			<button class="btn btn-outline-primary" ng-click="vm.saveUncommitedSQLToFilesystem()" ng-if="vm.serverSideChanges.length > 0">
-				Save All To Filesystem
-			</button>
-		</div>
-		
+
+    <span>
+        &nbsp;&nbsp;&nbsp;
+    </span>
+
+
+
+    <div flex="30" flex-sm="30" flex-xs="30">
         <div class='loader2' ng-if="vm.saveInProgress">
             <div class='circle2'></div>
             <div class='circle2'></div>
@@ -72,104 +65,116 @@
             <div class='circle2'></div>
             <div class='circle2'></div>
         </div>
-		
-		<!-- Unsaved Frontend -->
-		<span ng-hide"vm.saveInProgress" 
-			  ng-include= "'/moho_extractor/NgIncludedHtml/?name=unsavedFrontendSidebar'">
-		</span>
-		<!--/Unsaved Frontend -->
+        <div ng-if="!vm.saveInProgress">
+            <div layout="row" layout-margin layout-padding>
+                <!--<span flex="5">&nbsp;</span>-->
+                <button class="btn btn-outline-primary" ng-click="vm.saveUncommitedSQLToFilesystem()" 
+                        ng-if="vm.serverSideChanges.length > 0">
+                    Save All To Filesystem
+                </button>
+                <button class="btn btn-outline-primary" ng-click="vm.djangoCollectStatic()">
+                    Django Collect Static
+                </button>
+            </div>
 
 
-	</div>
+            <!-- Unsaved Frontend -->
+            <span ng-if="!vm.saveInProgress || vm.serverSideChanges.length > 0" 
+                  ng-include= "'/moho_extractor/NgIncludedHtml/?name=unsavedFrontendSidebar'">
+            </span>
+            <!--/Unsaved Frontend -->
+
+        </div>
+    </div>
 
 
 
 
-	<span>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-	</span>
+    <span>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+    </span>
 
 
 </div>
 
 
 <span ng-if="vm.addCatMenuIsOpen"
-	  ng-include= "'/moho_extractor/NgIncludedHtml/?name=browseIDEBottomSheet'"></span>
+      ng-include= "'/moho_extractor/NgIncludedHtml/?name=browseIDEBottomSheet'"></span>
 
 
-    <style>
-        .loader2 {
-            position: relative;
-            top: 1%;
-            left: 1%;
-            width: 10%;
-            margin: auto;
-        }
-        .loader2 .circle2 {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            opacity: 0;
+<style>
+    .loader2 {
+        position: relative;
+        top: 1%;
+        left: 1%;
+        width: 10%;
+        margin: auto;
+    }
+    .loader2 .circle2 {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        opacity: 0;
+        transform: rotate(225deg);
+        animation-iteration-count: infinite;
+        animation-name: orbit2;
+        animation-duration: 5.5s;
+    }
+    .loader2 .circle2:after {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 8px;
+        background: #fff;
+        /* Pick a color */
+    }
+    .loader2 .circle2:nth-child(2) {
+        animation-delay: 200ms;
+    }
+    .loader2 .circle2:nth-child(3) {
+        animation-delay: 500ms;
+    }
+    .loader2 .circle2:nth-child(4) {
+        animation-delay: 800ms;
+    }
+    .loader2 .circle2:nth-child(5) {
+        animation-delay: 1100ms;
+    }
+    @keyframes orbit2 {
+        0% {
             transform: rotate(225deg);
-            animation-iteration-count: infinite;
-            animation-name: orbit2;
-            animation-duration: 5.5s;
+            opacity: 1;
+            animation-timing-function: ease-out;
         }
-        .loader2 .circle2:after {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 8px;
-            background: #fff;
-            /* Pick a color */
+        7% {
+            transform: rotate(345deg);
+            animation-timing-function: linear;
         }
-        .loader2 .circle2:nth-child(2) {
-            animation-delay: 200ms;
+        30% {
+            transform: rotate(455deg);
+            animation-timing-function: ease-in-out;
         }
-        .loader2 .circle2:nth-child(3) {
-            animation-delay: 500ms;
+        39% {
+            transform: rotate(690deg);
+            animation-timing-function: linear;
         }
-        .loader2 .circle2:nth-child(4) {
-            animation-delay: 800ms;
+        70% {
+            transform: rotate(815deg);
+            opacity: 1;
+            animation-timing-function: ease-out;
         }
-        .loader2 .circle2:nth-child(5) {
-            animation-delay: 1100ms;
+        75% {
+            transform: rotate(945deg);
+            animation-timing-function: ease-out;
         }
-        @keyframes orbit2 {
-            0% {
-                transform: rotate(225deg);
-                opacity: 1;
-                animation-timing-function: ease-out;
-            }
-            7% {
-                transform: rotate(345deg);
-                animation-timing-function: linear;
-            }
-            30% {
-                transform: rotate(455deg);
-                animation-timing-function: ease-in-out;
-            }
-            39% {
-                transform: rotate(690deg);
-                animation-timing-function: linear;
-            }
-            70% {
-                transform: rotate(815deg);
-                opacity: 1;
-                animation-timing-function: ease-out;
-            }
-            75% {
-                transform: rotate(945deg);
-                animation-timing-function: ease-out;
-            }
-            76% {
-                transform: rotate(945deg);
-                opacity: 0;
-            }
-            100% {
-                transform: rotate(945deg);
-                opacity: 0;
-            }
+        76% {
+            transform: rotate(945deg);
+            opacity: 0;
         }
-    </style>
+        100% {
+            transform: rotate(945deg);
+            opacity: 0;
+        }
+    }
+</style>

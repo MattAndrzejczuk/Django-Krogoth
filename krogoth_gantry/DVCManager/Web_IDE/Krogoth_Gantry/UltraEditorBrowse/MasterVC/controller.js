@@ -61,6 +61,7 @@
 
         vm.submitCreateNewMVC = submitCreateNewMVC;
         vm.saveUncommitedSQLToFilesystem = saveUncommitedSQLToFilesystem;
+        vm.djangoCollectStatic = djangoCollectStatic;
 
         function openBottomSheet() {
             vm.addCatMenuIsOpen = !vm.addCatMenuIsOpen;
@@ -176,6 +177,23 @@
                 //deferred.resolve(response.data);
                 vm.serverSideChanges = [];
                 vm.getUncommitedSQL();
+                vm.saveInProgress = false;
+            }, function errorCallback(response) {
+                /// Fail
+                //deferred.reject(response);
+            });
+            //return deferred.promise;
+        }
+        
+        function djangoCollectStatic() {
+            //var deferred = $q.defer();
+            vm.saveInProgress = true;
+            $http({
+                method: 'GET',
+                url: "/krogoth_admin/CollectStatic/"
+            }).then(function successCallback(response) {
+                /// Success
+                //deferred.resolve(response.data);
                 vm.saveInProgress = false;
             }, function errorCallback(response) {
                 /// Fail
