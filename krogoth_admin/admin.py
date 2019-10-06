@@ -1,5 +1,5 @@
 from django.contrib import admin
-from krogoth_admin.models import UncommitedSQL
+from krogoth_admin.models import UncommitedSQL, KrogothVisitorTracking
 
 
 
@@ -9,9 +9,10 @@ class UncommitedSQLAdmin(admin.ModelAdmin):
     search_fields = ['name', 'krogoth_class']
 
 
+class KrogothAppTraceAdmin(admin.ModelAdmin):
+    list_display = ('remote_addr','username','date_created',)
+    search_fields = ['remote_addr', 'username']
+
+
 admin.site.register(UncommitedSQL, UncommitedSQLAdmin)
-
-
-
-
-
+admin.site.register(KrogothVisitorTracking, KrogothAppTraceAdmin)

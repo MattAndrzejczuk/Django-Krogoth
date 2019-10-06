@@ -1,101 +1,118 @@
-<md-toolbar>
-    <div class="md-toolbar-tools">
-        <div class="md-display-1" style="color:white">Select Catagory</div>
-        <div>
-            <button class="btn btn-outline-primary" ng-click="vm.openUltraEditorDocumentTwo()">
-                Krogoth Core Editor
-            </button>
+<div id="typography" class="page-layout simple tabbed doc-page" layout="column">
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="column" layout-align="center start">
+        <div class="breadcrumb" layout="row" layout-align="start center">
+            <md-icon md-font-icon="icon-home" class="s16" style="color:white"></md-icon>
+            <md-icon md-font-icon="icon-chevron-right" class="s16 separator" style="color:white"></md-icon>
+            <span class="parent" style="color:white">Krogoth Editor</span>
         </div>
+
+        <div class="title" style="color:white">Select Category</div>
     </div>
-</md-toolbar>
-<span>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-</span>
-<div layout="row">
+    <!-- / HEADER -->
 
-    <span>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-    </span>
+    <!-- CONTENT -->
+    <div class="content">
 
-    <div flex ng-cloak>
-        <md-grid-list
-                      md-cols="1" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="3" md-cols-gt-lg="4"
-                      md-row-height-gt-md="1:1" md-row-height="1:1"
-                      md-gutter="18px" md-gutter-gt-sm="14px">
-            <md-grid-tile ng-repeat="tile in vm.objectList"
-                          ng-mouseenter="tile.hidden = false"
-                          ng-mouseleave="tile.hidden = true"
-                          md-rowspan="1"
-                          md-colspan="1"
-                          md-colspan-sm="1"
-                          md-colspan-xs="1"
-                          class="blur-content-primary"
-                          style="border-radius:25px"
-                          md-whiteframe="3">
+        <md-tabs md-dynamic-height>
 
-                <!-- Category Tile -->
-                <span ng-if="tile.name !== 'AddMVC'"
-                      ng-include= "'/moho_extractor/NgIncludedHtml/?name=categoryTileBrowser'">
-                </span>
-                <!--/Category Tile -->
+            <!-- TAB 1 -->
+            <md-tab label="AngularJS Editor">
+                <div class="md-title" style="color:white">Core Framework Tools</div>
+                <div class="card md-whiteframe-4dp" layout="column">
+                    <div>
+                        <button class="btn btn-outline-primary" ng-click="vm.openUltraEditorDocumentTwo()">
+                            Krogoth Core Editor
+                        </button>
+                    </div>
+                </div>
 
-                <!-- Add MVC Tile -->
-                <span ng-if="tile.name === 'AddMVC'"
-                      ng-include= "'/moho_extractor/NgIncludedHtml/?name=addTileMVCMain'">
-                </span>
-                <!--/Add MVC Tile -->
-            </md-grid-tile>
-        </md-grid-list>
+                <div class="md-title" style="color:white">
+                    AngularJS App Explorer
+                </div>
+                <div flex ng-cloak>
+                    <md-grid-list
+                                  md-cols="1" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="3" md-cols-gt-lg="4"
+                                  md-row-height-gt-md="1:1" md-row-height="1:1"
+                                  md-gutter="18px" md-gutter-gt-sm="14px">
+                        <md-grid-tile ng-repeat="tile in vm.objectList"
+                                      ng-mouseenter="tile.hidden = false"
+                                      ng-mouseleave="tile.hidden = true"
+                                      md-rowspan="1"
+                                      md-colspan="1"
+                                      md-colspan-sm="1"
+                                      md-colspan-xs="1"
+                                      class="blur-content-primary"
+                                      style="border-radius:25px"
+                                      md-whiteframe="3">
+
+                            <!-- Category Tile -->
+                            <span ng-if="tile.name !== 'AddMVC'"
+                                  ng-include= "'/moho_extractor/NgIncludedHtml/?name=categoryTileBrowser'">
+                            </span>
+                            <!--/Category Tile -->
+
+                            <!-- Add MVC Tile -->
+                            <span ng-if="tile.name === 'AddMVC'"
+                                  ng-include= "'/moho_extractor/NgIncludedHtml/?name=addTileMVCMain'">
+                            </span>
+                            <!--/Add MVC Tile -->
+                        </md-grid-tile>
+                    </md-grid-list>
+                </div>
+            </md-tab>
+
+            <!-- TAB 2 -->
+            <md-tab label="Unsaved Source Code">
+                
+                <div class='loader2' ng-if="vm.saveInProgress">
+                    <div class='circle2'></div>
+                    <div class='circle2'></div>
+                    <div class='circle2'></div>
+                    <div class='circle2'></div>
+                    <div class='circle2'></div>
+                </div>
+                <div ng-if="!vm.saveInProgress" class="card md-whiteframe-4dp">
+                    <div layout="row" layout-margin layout-padding>
+                        <!--<span flex="5">&nbsp;</span>-->
+                        <button class="btn btn-outline-primary" ng-click="vm.saveUncommitedSQLToFilesystem()" 
+                                ng-if="vm.serverSideChanges.length > 0">
+                            Save All To Filesystem
+                        </button>
+                        <button class="btn btn-outline-primary" ng-click="vm.djangoCollectStatic()">
+                            Django Collect Static
+                        </button>
+                    </div>
+
+
+                    <!-- Unsaved Frontend -->
+                    <span ng-if="!vm.saveInProgress || vm.serverSideChanges.length > 0" 
+                          ng-include= "'/moho_extractor/NgIncludedHtml/?name=unsavedFrontendSidebar'">
+                    </span>
+                    <!--/Unsaved Frontend -->
+
+                </div>
+            </md-tab>
+
+            <!-- TAB 3 -->
+            <!--
+            <md-tab label="Blockquotes & Lists">
+            </md-tab>
+			-->
+            
+            <!-- TAB 4 -->
+            <!--
+            <md-tab label="Helpers">
+            </md-tab>
+			-->
+            
+        </md-tabs>
     </div>
-
-
-
-
-    <span>
-        &nbsp;&nbsp;&nbsp;
-    </span>
-
-
-
-    <div flex="30" flex-sm="30" flex-xs="30">
-        <div class='loader2' ng-if="vm.saveInProgress">
-            <div class='circle2'></div>
-            <div class='circle2'></div>
-            <div class='circle2'></div>
-            <div class='circle2'></div>
-            <div class='circle2'></div>
-        </div>
-        <div ng-if="!vm.saveInProgress">
-            <div layout="row" layout-margin layout-padding>
-                <!--<span flex="5">&nbsp;</span>-->
-                <button class="btn btn-outline-primary" ng-click="vm.saveUncommitedSQLToFilesystem()" 
-                        ng-if="vm.serverSideChanges.length > 0">
-                    Save All To Filesystem
-                </button>
-                <button class="btn btn-outline-primary" ng-click="vm.djangoCollectStatic()">
-                    Django Collect Static
-                </button>
-            </div>
-
-
-            <!-- Unsaved Frontend -->
-            <span ng-if="!vm.saveInProgress || vm.serverSideChanges.length > 0" 
-                  ng-include= "'/moho_extractor/NgIncludedHtml/?name=unsavedFrontendSidebar'">
-            </span>
-            <!--/Unsaved Frontend -->
-
-        </div>
-    </div>
-
-
-
-
-    <span>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-    </span>
-
-
+    <!-- / CONTENT -->
 </div>
+
+
 
 
 <span ng-if="vm.addCatMenuIsOpen"

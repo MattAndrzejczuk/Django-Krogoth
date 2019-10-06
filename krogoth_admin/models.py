@@ -84,6 +84,14 @@ INSTANCE_TYPES = (
 )
 
 
+class KrogothVisitorTracking(models.Model):
+    remote_port = models.CharField(max_length=24, default="NONE")
+    http_user_agent = models.CharField(max_length=355, default='UNKNOWN')
+    remote_addr = models.CharField(max_length=100, default='NO_HOST')
+    date_created = models.DateTimeField(auto_now_add=True)
+    username = models.CharField(max_length=100, default="ANONYMOUS")
+
+
 class KrogothAppTrace(models.Model):
     instance_class = models.CharField(max_length=45,
                                       choices=INSTANCE_TYPES,

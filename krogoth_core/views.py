@@ -17,6 +17,8 @@ from jawn.settings import STATIC_KROGOTH_MODE, APP_VERSION
 from moho_extractor.dj_views import load_custom_css, load_krogoth_css, load_background_css, \
     load_core_css, load_core_elements_css
 
+from krogoth_admin.models import KrogothVisitorTracking
+
 class AKFoundationViewSet(viewsets.ModelViewSet):
     queryset = AKFoundationAbstract.objects.all().order_by('last_name')
     serializer_class = AKFoundationSerializer
@@ -34,6 +36,19 @@ def index(request):
     width = 250
     main_bg_color = 'darkolive'
     font_color = 'black'
+
+
+    try:
+        usr = 'ANONYMOUS'
+        if request.user:
+            usr = request.user.username
+        count_this = KrogothVisitorTracking(remote_addr=request.META['REMOTE_ADDR'],
+                                            remote_port=request.META['REMOTE_PORT'],
+                                            http_user_agent=request.META['HTTP_USER_AGENT'],
+                                            username=usr)
+        count_this.save()
+    except:
+        print('\n\n\nFAILED TO TRACE\n\n\n')
 
     KrogothGantryMasterViewControllers = []
     if STATIC_KROGOTH_MODE == False:
