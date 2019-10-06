@@ -22,7 +22,7 @@ def _wrap_users(users, request):
     try:
         request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
     except:
-        print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+        print('\033[92m' + '2 NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
 
 
     result = set()
@@ -47,7 +47,7 @@ def _wrap_groups(groups, request):
     try:
         request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
     except:
-        print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+        print('\033[92m' + '3 NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
 
     for g in groups:
         if g is SELF and request and request.user and request.user.is_authenticated():
@@ -108,6 +108,7 @@ class RedisStore(object):
     datastore.
     """
     _expire = settings.WS4REDIS_EXPIRE
+    _system_message = False
 
     def __init__(self, connection):
         self._connection = connection
@@ -153,7 +154,11 @@ class RedisStore(object):
         try:
             request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
         except:
-            print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+            if self._system_message == True:
+                request.user = User.objects.get(id=1)
+                print('\033[91m' + 'SERVER SYSTEM MESSAGE.' + '\033[0m')
+            else:
+                print('\033[92m' + '4 NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
 
         channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user)
         # channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility,
@@ -210,7 +215,7 @@ class RedisStore(object):
         try:
             request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
         except:
-            print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+            print('\033[92m' + '5 NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
 
         channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility, user=request.user)
         # channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility,
@@ -235,7 +240,11 @@ class RedisStore(object):
         try:
             request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
         except:
-            print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+            if self._system_message == True:
+                request.user = User.objects.get(id=1)
+                print('\033[91m' + 'SERVER SYSTEM MESSAGE.' + '\033[0m')
+            else:
+                print('\033[92m' + '6 NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
         channel = '{prefix}broadcast:{facility}:typing:{user}'.format(prefix=prefix, facility=facility, user=request.user)
 
         # channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility,
@@ -256,7 +265,11 @@ class RedisStore(object):
         try:
             request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
         except:
-            print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+            if self._system_message == True:
+                request.user = User.objects.get(id=1)
+                print('\033[91m' + 'SERVER SYSTEM MESSAGE.' + '\033[0m')
+            else:
+                print('\033[92m' + '7 NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
         channel = '{prefix}broadcast:{facility}:typing:{user}'.format(prefix=prefix, facility=facility, user=request.user)
 
         # channel = '{prefix}broadcast:{facility}:chatroom:{user}'.format(prefix=prefix, facility=facility,
@@ -276,7 +289,11 @@ class RedisStore(object):
         try:
             request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
         except:
-            print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+            if self._system_message == True:
+                request.user = User.objects.get(id=1)
+                print('\033[91m' + 'SERVER SYSTEM MESSAGE.' + '\033[0m')
+            else:
+                print('\033[92m' + '8 NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
 
 
         if broadcast is True:

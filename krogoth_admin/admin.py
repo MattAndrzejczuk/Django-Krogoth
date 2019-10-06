@@ -10,7 +10,7 @@ class UncommitedSQLAdmin(admin.ModelAdmin):
 
 
 class KrogothAppTraceAdmin(admin.ModelAdmin):
-    list_display = ('remote_addr','username','date_created',)
+    list_display = ('remote_addr','username','date_created','http_user_agent',)
     search_fields = ['remote_addr', 'username']
 
 

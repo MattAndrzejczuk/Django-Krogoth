@@ -78,7 +78,7 @@ class RedisSubscriber(RedisStore):
             request.user = User.objects.get(id=Token.objects.get(key=request.COOKIES['token']).user_id)
             username = request.user.username
         except:
-            print('\033[92m' + ' NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
+            print('\033[92m' + '1 NOT AUTHENTICATED! cookie with key "token" is not authenticated.' + '\033[0m')
             print(request.user)
             print('\033[95m')
             print(request.COOKIES)
@@ -96,6 +96,7 @@ class RedisSubscriber(RedisStore):
         }
         self._publishers = set()
         for key in self._get_message_channels(request=request, facility=facility, **audience):
+            print('for key in self._get_message_channels \033[96m' + str(key) + '\033[0m')
             self._publishers.add(key)
 
         # initialize subscribers
@@ -106,7 +107,7 @@ class RedisSubscriber(RedisStore):
             'broadcast': 'subscribe-broadcast' in channels,
         }
         self._subscription = self._connection.pubsub()
-        print(audience)
+        print('audience: \033[92m' + str(audience) + '\033[0m')
         ### SUBSCRIBE TO THE CURRENT REGIONS CHATROOMS ONLY TO GET INFORMATION ON CHATROOMS
         ### FOR NOW, I WILL ONLY SEND THE CLIENT LIST OF PEOPLE PER CHATROOM IN REAL TIME
 
@@ -114,7 +115,7 @@ class RedisSubscriber(RedisStore):
         ##      subscribe to all keys in this loop
         self._subscription.subscribe('{prefix}broadcast:{facility}:chatroom'.format(prefix=prefix, facility=facility))
         for key in self._get_message_channels(request=request, facility=facility, **audience):
-            print(key)
+            print('for key in self._get_message_channels \033[95m' + str(key) + '\033[0m')
             self._subscription.psubscribe('*' + key + '*')
             self._subscription.subscribe(key)
 
