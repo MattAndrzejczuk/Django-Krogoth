@@ -92,6 +92,7 @@ class KrogothVisitorTracking(models.Model):
     username = models.CharField(max_length=100, default="ANONYMOUS")
 
 
+
 class KrogothAppTrace(models.Model):
     instance_class = models.CharField(max_length=45,
                                       choices=INSTANCE_TYPES,

@@ -126,7 +126,7 @@
                     if (res.status === 401) {
                         /// Users without acess tokens will be properly redirected to login.
                         console.warn('Unauthorized Entry Detected.');
-                        window.location = "#!/Login";
+                        //window.location = "#!/Login";
 						if ($cookies.get('token')) {
 							$cookies.remove('token');
 						}

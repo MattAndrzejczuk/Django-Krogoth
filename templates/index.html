@@ -37,42 +37,7 @@
 
 
     {% verbatim %}
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-
-    <link rel='stylesheet' href='/static/bower_components/chartist/dist/chartist.min.css'/>
-    <link rel='stylesheet' href='/static/bower_components/angular-datatables/dist/css/angular-datatables.css'/>
-    <link rel='stylesheet'
-          href='/static/bower_components/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css'/>
-    <link rel='stylesheet' href='/static/bower_components/nvd3/build/nv.d3.css'/>
-    <link rel='stylesheet' href='/static/bower_components/fullcalendar/dist/fullcalendar.css'/>
-    <link rel='stylesheet' href='/static/bower_components/angular-ui-tree/dist/angular-ui-tree.css'/>
-    <link rel='stylesheet' href='/static/bower_components/angular-xeditable/dist/css/xeditable.css'/>
-    <link rel='stylesheet' href='/static/bower_components/c3/c3.css'/>
-    <link rel='stylesheet' href='/static/bower_components/datatables/media/css/jquery.dataTables.css'/>
-    <link rel='stylesheet' href='/static/bower_components/highlightjs/styles/default.css'/>
-    <link rel='stylesheet' href='/static/bower_components/moment-picker/dist/angular-moment-picker.min.css'/>
-    <link rel='stylesheet' href='/static/bower_components/perfect-scrollbar/css/perfect-scrollbar.css'/>
-    <link rel='stylesheet' href='/static/bower_components/textAngular/dist/textAngular.css'/>
-    <link rel='stylesheet' href='/static/bower_components/wip-image-zoom/dist/wip-image-zoom.css'/>
-    <link rel='stylesheet' href='/static/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css'/>
-
-    <!-- VERIFIED AND USED BY WEB IDE --- 02-27-2019-->
-    <link rel="stylesheet" href="/static/codemirror.css"/>
-    <link rel="stylesheet" href="/static/colorforth.css"/>
-    <link rel="stylesheet" href="/static/dracula.css"/>
-    <link rel="stylesheet" href="/static/codemirror/theme/ambiance.css"/>
-    <link rel="stylesheet" href="/static/codemirror/theme/erlang-dark.css"/>
-
-
-    <link rel="stylesheet" href="/static/jkcarousel/jk-carousel.min.css"/>
-
-<!--
-    <link rel="stylesheet" href="/static/app/index.css"/>-->
-    <link rel="stylesheet" href="/static/fonts/myriad.css"/>
-    <link rel="stylesheet" href="/static/fonts/monofonts.css"/>
-    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700italic,700,900,900italic'
-          rel='stylesheet' type='text/css'/>
 
 </head>
 <body md-theme="{{vm.themes.active.name}}"
@@ -82,192 +47,220 @@
       class="{{state.current.bodyClass || ''}} multi_bg_example_opaque">
 
 
-
-<script type="text/javascript" src="/static/bower_components/threejs/three.min.js"></script>
-
-
-    <ms-splash-screen id="splash-screen" style="background: rgba(10, 10, 15, 1.0);">
-        <div class='loader'>
-            <div class='circle'></div>
-            <div class='circle'></div>
-            <div class='circle'></div>
-            <div class='circle'></div>
-            <div class='circle'></div>
-        </div>
-    </ms-splash-screen>
+<!-- <script type="text/javascript" src="/static/bower_components/threejs/three.min.js"></script> -->
 
 
-    <span style="display: none" id="krogoth_gantryMetaText_01">{{ version_build }}</span>
-    <div id="main" class="animate-fade-in-out" ui-view="main" layout="column"></div>
+<ms-splash-screen id="splash-screen" style="background: rgba(10, 10, 15, 1.0);">
+    <div class='loader'>
+        <div class='circle'></div>
+        <div class='circle'></div>
+        <div class='circle'></div>
+        <div class='circle'></div>
+        <div class='circle'></div>
+    </div>
+</ms-splash-screen>
 
 
-    <script src="/static/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/static/bower_components/api-check-7.5.5/api-check.js"></script>
+<span style="display: none" id="krogoth_gantryMetaText_01">{{ version_build }}</span>
+<div id="main" class="animate-fade-in-out" ui-view="main" layout="column"></div>
 
 
-    <script src="/static/bower_components/angular1.7/angular.min.js"></script>
-    <script src="/static/bower_components/angular1.7/angular-aria.min.js"></script>
-    <script src="/static/bower_components/angular1.7/angular-cookies.min.js"></script>
-    <script src="/static/bower_components/angular1.7/angular-animate.min.js"></script>
-    <script src="/static/bower_components/angular1.7/angular-messages.min.js"></script>
-    <script src="/static/bower_components/angular1.7/angular-resource.min.js"></script>
-    <script src="/static/bower_components/angular1.7/angular-sanitize.min.js"></script>
-    <script src="/static/bower_components/angular1.7/angular-touch.min.js"></script>
+<script src="/static/bower_components/jquery/dist/jquery.js"></script>
+<script src="/static/bower_components/api-check-7.5.5/api-check.js"></script>
 
 
-    <script src="/static/bower_components/chart.js/dist/Chart.js"></script>
-    <script src="/static/bower_components/angular-chart.js/dist/angular-chart.js"></script>
-    <script src="/static/bower_components/chartist/dist/chartist.min.js"></script>
-    <script src="/static/bower_components/angular-chartist.js/dist/angular-chartist.js"></script>
-    <script src="/static/bower_components/datatables.net/js/jquery.dataTables.js"></script>
-    <script src="/static/bower_components/angular-datatables/dist/angular-datatables.js"></script>
-    <script src="/static/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
-    <script src="/static/bower_components/angular-datatables/dist/plugins/colreorder/angular-datatables.colreorder.js"></script>
-    <script src="/static/bower_components/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.js"></script>
-    <script src="/static/bower_components/angular-datatables/dist/plugins/light-columnfilter/angular-datatables.light-columnfilter.js"></script>
-    <script src="/static/bower_components/angular-datatables/dist/plugins/colvis/angular-datatables.colvis.js"></script>
-    <script src="/static/bower_components/angular-datatables/dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.js"></script>
-    <script src="/static/bower_components/angular-datatables/dist/plugins/fixedheader/angular-datatables.fixedheader.js"></script>
-    <script src="/static/bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js"></script>
-    <script src="/static/bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools.js"></script>
-    <script src="/static/bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js"></script>
-    <script src="/static/bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.js"></script>
-    <script src="/static/bower_components/angular-native-dragdrop/draganddrop.js"></script>
-    <script src="/static/bower_components/jsPlumb/dist/js/jsPlumb-2.0.5.js"></script>
-    <script src="/static/bower_components/moment/moment.js"></script>
-    <script src="/static/bower_components/angular-moment/angular-moment.js"></script>
-    <script src="/static/bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
-    <script src="/static/bower_components/lodash/lodash.js"></script>
-    <script src="/static/bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
-    <script src="/static/bower_components/angular-material/angular-material.js"></script>
-    <script src="/static/bower_components/d3/d3.js"></script>
-    <script src="/static/bower_components/nvd3/build/nv.d3.js"></script>
-    <script src="/static/bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
-    <script src="/static/bower_components/humanize-duration/humanize-duration.js"></script>
-    <script src="/static/bower_components/angular-timer/dist/angular-timer.js"></script>
-    <script src="/static/bower_components/angular-translate/angular-translate.js"></script>
-    <script src="/static/bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
-    <script src="/static/bower_components/fullcalendar/dist/fullcalendar.js"></script>
-    <script src="/static/bower_components/angular-ui-calendar/src/calendar.js"></script>
-    <script src="/static/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="/static/bower_components/jquery-ui/jquery-ui.js"></script>
-    <script src="/static/bower_components/angular-ui-sortable/sortable.js"></script>
-    <script src="/static/bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
-    <script src="/static/bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-    <script src="/static/bower_components/c3/c3.js"></script>
-    <script src="/static/bower_components/c3-angular/c3-angular.min.js"></script>
-    <script src="/static/bower_components/css-element-queries/src/ElementQueries.js"></script>
-    <script src="/static/bower_components/css-element-queries/src/ResizeSensor.js"></script>
-    <script src="/static/bower_components/datatables/media/js/jquery.dataTables.js"></script>
-    <script src="/static/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
-    <script src="/static/bower_components/highlightjs/highlight.pack.js"></script>
-    <script src="/static/bower_components/ev-emitter/ev-emitter.js"></script>
-    <script src="/static/bower_components/imagesloaded/imagesloaded.js"></script>
-    <script src="/static/bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-    <script src="/static/bower_components/mobile-detect/mobile-detect.js"></script>
-    <script src="/static/bower_components/moment-picker/dist/angular-moment-picker.min.js"></script>
-    <script src="/static/bower_components/moment-range/dist/moment-range.js"></script>
-    <script src="/static/bower_components/flow.js/dist/flow.js"></script>
-    <script src="/static/bower_components/ng-flow/dist/ng-flow.js"></script>
-    <script src="/static/bower_components/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-    <script src="/static/bower_components/Sortable/Sortable.js"></script>
-    <script src="/static/bower_components/Sortable/ng-sortable.js"></script>
-    <script src="/static/bower_components/rangy/rangy-core.js"></script>
-    <script src="/static/bower_components/rangy/rangy-classapplier.js"></script>
-    <script src="/static/bower_components/rangy/rangy-highlighter.js"></script>
-    <script src="/static/bower_components/rangy/rangy-selectionsaverestore.js"></script>
-    <script src="/static/bower_components/rangy/rangy-serializer.js"></script>
-    <script src="/static/bower_components/rangy/rangy-textrange.js"></script>
+<script src="/static/bower_components/angular1.7/angular.min.js"></script>
+<script src="/static/bower_components/angular1.7/angular-aria.min.js"></script>
+<script src="/static/bower_components/angular1.7/angular-cookies.min.js"></script>
+<script src="/static/bower_components/angular1.7/angular-animate.min.js"></script>
+<script src="/static/bower_components/angular1.7/angular-messages.min.js"></script>
+<script src="/static/bower_components/angular1.7/angular-resource.min.js"></script>
+<script src="/static/bower_components/angular1.7/angular-sanitize.min.js"></script>
+<script src="/static/bower_components/angular1.7/angular-touch.min.js"></script>
 
 
-    <script src="/static/bower_components/textAngular/dist/textAngular.js"></script>
-    <script src="/static/bower_components/textAngular/dist/textAngular-sanitize.js"></script>
-    <script src="/static/bower_components/textAngular/dist/textAngularSetup.js"></script>
-
-    <script src="/static/bower_components/wip-image-zoom/dist/wip-image-zoom.js"></script>
-    <script src="/static/bower_components/angular-django-rest-resource/angular-django-rest-resource.js"></script>
-
-    <script src="/static/bower_components/ng-websocket/ng-websocket.js"></script>
-    <script src="/static/bower_components/ng-file-upload/ng-file-upload.js"></script>
-    <script src="/static/bower_components/oclazyload/dist/ocLazyLoad.js"></script>
-
-    <script src="/static/bower_components/angular-formly/formly.js"></script>
-
-
-    <script src="/static/jkcarousel/jk-carousel.min.js"></script>
-
-    <script type="text/javascript" src="/static/codemirror/angular/ui-codemirror.js"></script>
-    <script type="text/javascript" src="/static/codemirror/lib/codemirror.js"></script>
-
-    <script type="text/javascript" src="/static/codemirror/mode/xml/xml.js"></script>
-    <script type="text/javascript" src="/static/codemirror/mode/htmlmixed/htmlmixed.js"></script>
-    <script type="text/javascript" src="/static/codemirror/mode/htmlembedded/htmlembedded.js"></script>
-    <script type="text/javascript" src="/static/codemirror/mode/javascript/javascript.js"></script>
-    <script type="text/javascript" src="/static/codemirror/mode/css/css.js"></script>
-
-    <script type="text/javascript" src="/static/codemirror/addon/edit/matchtags.js"></script>
-    <script type="text/javascript" src="/static/codemirror/addon/edit/closebrackets.js"></script>
-    <script type="text/javascript" src="/static/codemirror/addon/edit/continuelist.js"></script>
-    <script type="text/javascript" src="/static/codemirror/addon/edit/matchbrackets.js"></script>
-    <script type="text/javascript" src="/static/codemirror/addon/edit/matchtags.js"></script>
-    <script type="text/javascript" src="/static/codemirror/addon/edit/trailingspace.js"></script>
-    <script type="text/javascript" src="/static/codemirror/addon/hint/javascript-hint.js"></script>
-
-
-    {% endverbatim %}
-
-
-    <!-- Compiled Frontend Goes: /static/compiled/ -->
-    <!--KrogothGantryMasterViewControllers-->
-    {% for fuse_app in KrogothGantryMasterViewControllers %}
-        <script src="{{ fuse_app }}"></script>
-    {% endfor %}
-
-
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=quick-panelmodule"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=coremodule"></script>
-
-
-    <!--KrogothFoundation-->
-    {% for com in core %}
-        <script src="/moho_extractor/KrogothFoundation/?unique_name={{ com }}"></script>
-    {% endfor %}
-
-
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=toolbarmodule"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=toolbarcontroller"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=navigationmodule"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=navigationcontroller"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=quick-panelcontroller"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=indexmodule"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=maincontroller"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=corerun"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=coreconfig"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=indexrun"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=indexroute"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=indexcontroller"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=indexconstants"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=indexconfig"></script>
-    <script src="/moho_extractor/KrogothFoundation/?unique_name=indexapi"></script>
+<script src="/static/bower_components/chart.js/dist/Chart.min.js"></script>
+<script src="/static/bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+<script src="/static/bower_components/chartist/dist/chartist.min.js"></script>
+<script src="/static/bower_components/angular-chartist.js/dist/angular-chartist.min.js"></script>
+<script src="/static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/bower_components/angular-datatables/dist/angular-datatables.min.js"></script>
+<script src="/static/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.min.js"></script>
+<script src="/static/bower_components/angular-datatables/dist/plugins/colreorder/angular-datatables.colreorder.min.js"></script>
+<script src="/static/bower_components/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.min.js"></script>
+<script src="/static/bower_components/angular-datatables/dist/plugins/light-columnfilter/angular-datatables.light-columnfilter.min.js"></script>
+<script src="/static/bower_components/angular-datatables/dist/plugins/colvis/angular-datatables.colvis.min.js"></script>
+<script src="/static/bower_components/angular-datatables/dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.min.js"></script>
+<script src="/static/bower_components/angular-datatables/dist/plugins/fixedheader/angular-datatables.fixedheader.min.js"></script>
+<script src="/static/bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.min.js"></script>
+<script src="/static/bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools.min.js"></script>
+<script src="/static/bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.min.js"></script>
+<script src="/static/bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.min.js"></script>
+<script src="/static/bower_components/angular-native-dragdrop/draganddrop.min.js"></script>
+<script src="/static/bower_components/jsPlumb/dist/js/jsPlumb-2.0.5.js"></script>
+<script src="/static/bower_components/moment/moment.js"></script>
+<script src="/static/bower_components/angular-moment/angular-moment.min.js"></script>
+<script src="/static/bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+<script src="/static/bower_components/lodash/lodash.js"></script>
+<!-- <script src="/static/bower_components/angular-google-maps/dist/angular-google-maps.js"></script> -->
+<script src="/static/bower_components/angular-material/angular-material.min.js"></script>
+<script src="/static/bower_components/d3/d3.min.js"></script>
+<script src="/static/bower_components/nvd3/build/nv.d3.min.js"></script>
+<script src="/static/bower_components/angular-nvd3/dist/angular-nvd3.min.js"></script>
+<script src="/static/bower_components/humanize-duration/humanize-duration.js"></script>
+<script src="/static/bower_components/angular-timer/dist/angular-timer.min.js"></script>
+<script src="/static/bower_components/angular-translate/angular-translate.min.js"></script>
+<script src="/static/bower_components/angular-translate-loader-partial/angular-translate-loader-partial.min.js"></script>
+<script src="/static/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="/static/bower_components/angular-ui-calendar/src/calendar.js"></script>
+<script src="/static/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="/static/bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="/static/bower_components/angular-ui-sortable/sortable.min.js"></script>
+<script src="/static/bower_components/angular-ui-tree/dist/angular-ui-tree.min.js"></script>
+<script src="/static/bower_components/angular-xeditable/dist/js/xeditable.min.js"></script>
+<script src="/static/bower_components/c3/c3.min.js"></script>
+<script src="/static/bower_components/c3-angular/c3-angular.min.js"></script>
+<script src="/static/bower_components/css-element-queries/src/ElementQueries.js"></script>
+<script src="/static/bower_components/css-element-queries/src/ResizeSensor.js"></script>
+<script src="/static/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="/static/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
+<script src="/static/bower_components/highlightjs/highlight.pack.min.js"></script>
+<script src="/static/bower_components/ev-emitter/ev-emitter.js"></script>
+<script src="/static/bower_components/imagesloaded/imagesloaded.js"></script>
+<script src="/static/bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+<script src="/static/bower_components/mobile-detect/mobile-detect.min.js"></script>
+<script src="/static/bower_components/moment-picker/dist/angular-moment-picker.min.js"></script>
+<script src="/static/bower_components/moment-range/dist/moment-range.min.js"></script>
+<script src="/static/bower_components/flow.js/dist/flow.min.js"></script>
+<script src="/static/bower_components/ng-flow/dist/ng-flow.min.js"></script>
+<script src="/static/bower_components/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
+<script src="/static/bower_components/Sortable/Sortable.min.js"></script>
+<script src="/static/bower_components/Sortable/ng-sortable.js"></script>
+<script src="/static/bower_components/rangy/rangy-core.min.js"></script>
+<script src="/static/bower_components/rangy/rangy-classapplier.min.js"></script>
+<script src="/static/bower_components/rangy/rangy-highlighter.min.js"></script>
+<script src="/static/bower_components/rangy/rangy-selectionsaverestore.min.js"></script>
+<script src="/static/bower_components/rangy/rangy-serializer.min.js"></script>
+<script src="/static/bower_components/rangy/rangy-textrange.min.js"></script>
 
 
+<script src="/static/bower_components/textAngular/dist/textAngular.min.js"></script>
+<script src="/static/bower_components/textAngular/dist/textAngular-sanitize.min.js"></script>
+<script src="/static/bower_components/textAngular/dist/textAngularSetup.js"></script>
+
+<script src="/static/bower_components/wip-image-zoom/dist/wip-image-zoom.min.js"></script>
+<script src="/static/bower_components/angular-django-rest-resource/angular-django-rest-resource.js"></script>
+
+<script src="/static/bower_components/ng-websocket/ng-websocket.js"></script>
+<script src="/static/bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+<script src="/static/bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+
+<script src="/static/bower_components/angular-formly/formly.js"></script>
 
 
-    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
+<script src="/static/jkcarousel/jk-carousel.min.js"></script>
+
+<script type="text/javascript" src="/static/codemirror/angular/ui-codemirror.js"></script>
+<script type="text/javascript" src="/static/codemirror/lib/codemirror.js"></script>
+
+<script type="text/javascript" src="/static/codemirror/mode/xml/xml.js"></script>
+<script type="text/javascript" src="/static/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script type="text/javascript" src="/static/codemirror/mode/htmlembedded/htmlembedded.js"></script>
+<script type="text/javascript" src="/static/codemirror/mode/javascript/javascript.js"></script>
+<script type="text/javascript" src="/static/codemirror/mode/css/css.js"></script>
+
+<script type="text/javascript" src="/static/codemirror/addon/edit/matchtags.js"></script>
+<script type="text/javascript" src="/static/codemirror/addon/edit/closebrackets.js"></script>
+<script type="text/javascript" src="/static/codemirror/addon/edit/continuelist.js"></script>
+<script type="text/javascript" src="/static/codemirror/addon/edit/matchbrackets.js"></script>
+<script type="text/javascript" src="/static/codemirror/addon/edit/matchtags.js"></script>
+<script type="text/javascript" src="/static/codemirror/addon/edit/trailingspace.js"></script>
+<script type="text/javascript" src="/static/codemirror/addon/hint/javascript-hint.js"></script>
 
 
-    <p id="krogoth_gantryVersion" style="display: none">{{ version_build }}</p>
+{% endverbatim %}
 
 
+<!-- Compiled Frontend Goes: /static/compiled/ -->
+<!--KrogothGantryMasterViewControllers-->
+{% for fuse_app in KrogothGantryMasterViewControllers %}
+    <script src="{{ fuse_app }}"></script>
+{% endfor %}
 
 
-<link href="/static/artcss/Inconsolata.css" rel="stylesheet"/>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=quick-panelmodule"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=coremodule"></script>
+
+
+<!--KrogothFoundation-->
+{% for com in core %}
+    <script src="/moho_extractor/KrogothFoundation/?unique_name={{ com }}"></script>
+{% endfor %}
+
+
+<script src="/moho_extractor/KrogothFoundation/?unique_name=toolbarmodule"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=toolbarcontroller"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=navigationmodule"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=navigationcontroller"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=quick-panelcontroller"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=indexmodule"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=maincontroller"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=corerun"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=coreconfig"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=indexrun"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=indexroute"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=indexcontroller"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=indexconstants"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=indexconfig"></script>
+<script src="/moho_extractor/KrogothFoundation/?unique_name=indexapi"></script>
+
+
+<link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
+
+
+<p id="krogoth_gantryVersion" style="display: none">{{ version_build }}</p>
+
+
+<link href="/static/fonts/entypo.css" rel="stylesheet"/>
+<link rel='stylesheet' href='/static/bower_components/chartist/dist/chartist.min.css'/>
+<link rel='stylesheet' href='/static/bower_components/angular-datatables/dist/css/angular-datatables.css'/>
+<link rel='stylesheet'
+      href='/static/bower_components/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css'/>
+<link rel='stylesheet' href='/static/bower_components/nvd3/build/nv.d3.css'/>
+<link rel='stylesheet' href='/static/bower_components/fullcalendar/dist/fullcalendar.css'/>
+<link rel='stylesheet' href='/static/bower_components/angular-ui-tree/dist/angular-ui-tree.css'/>
+<link rel='stylesheet' href='/static/bower_components/angular-xeditable/dist/css/xeditable.css'/>
+<link rel='stylesheet' href='/static/bower_components/c3/c3.css'/>
+<link rel='stylesheet' href='/static/bower_components/datatables/media/css/jquery.dataTables.css'/>
+<link rel='stylesheet' href='/static/bower_components/highlightjs/styles/default.css'/>
+<link rel='stylesheet' href='/static/bower_components/moment-picker/dist/angular-moment-picker.min.css'/>
+<link rel='stylesheet' href='/static/bower_components/perfect-scrollbar/css/perfect-scrollbar.css'/>
+<link rel='stylesheet' href='/static/bower_components/textAngular/dist/textAngular.css'/>
+<link rel='stylesheet' href='/static/bower_components/wip-image-zoom/dist/wip-image-zoom.css'/>
+<link rel='stylesheet' href='/static/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css'/>
+
+<!-- VERIFIED AND USED BY WEB IDE --- 02-27-2019-->
+<link rel="stylesheet" href="/static/codemirror.css"/>
+<link rel="stylesheet" href="/static/colorforth.css"/>
+<link rel="stylesheet" href="/static/dracula.css"/>
+<link rel="stylesheet" href="/static/codemirror/theme/ambiance.css"/>
+<link rel="stylesheet" href="/static/codemirror/theme/erlang-dark.css"/>
+
+
+<link rel="stylesheet" href="/static/jkcarousel/jk-carousel.min.css"/>
+
+<!--
+    <link rel="stylesheet" href="/static/app/index.css"/>-->
+<link rel="stylesheet" href="/static/fonts/myriad.css"/>
+
+<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700italic,700,900,900italic'
+      rel='stylesheet' type='text/css'/>
 
 {{ load_krogoth_css }}
-{{   load_custom_css }}
-{{   load_background_css }}
-{{   load_core_css }}
-{{   load_core_elements_css }}
+{{ load_custom_css }}
+{{ load_background_css }}
+{{ load_core_css }}
+{{ load_core_elements_css }}
 
 </body>
 </html>
