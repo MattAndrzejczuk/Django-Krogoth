@@ -1,9 +1,8 @@
 
 import os
-from django.shortcuts import render
 
-from krogoth_gantry.models import KrogothGantryMasterViewController
-from krogoth_core.models import AKFoundationAbstract, AKBowerComponent
+from krogoth_gantry.models.gantry_models import KrogothGantryMasterViewController
+from krogoth_core.models import AKBowerComponent
 
 from rest_framework import viewsets, filters
 from rest_framework.permissions import AllowAny, IsAdminUser
@@ -14,10 +13,10 @@ from django.template import loader
 from django.http import HttpResponse
 from jawn.settings import STATIC_KROGOTH_MODE, APP_VERSION
 
-from moho_extractor.dj_views import load_custom_css, load_krogoth_css, load_background_css, \
+from krogoth_gantry.views.middleware.dj_tmpl_rendered import load_custom_css, load_krogoth_css, load_background_css, \
     load_core_css, load_core_elements_css
 
-from krogoth_admin.models import KrogothVisitorTracking
+from krogoth_gantry.models.krogoth_manager import KrogothVisitorTracking
 
 class AKFoundationViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminUser]

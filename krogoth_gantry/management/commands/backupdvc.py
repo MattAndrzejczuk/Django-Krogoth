@@ -1,9 +1,9 @@
-from django.core.management.base import BaseCommand, CommandError
-from krogoth_gantry.models import KrogothGantryMasterViewController
-from moho_extractor.models import IncludedHtmlMaster, IncludedHtmlCoreTemplate, IncludedJsMaster
+from django.core.management.base import BaseCommand
+from krogoth_gantry.models.gantry_models import KrogothGantryMasterViewController
+from krogoth_gantry.models.moho_extractor_models import IncludedHtmlMaster, IncludedHtmlCoreTemplate, IncludedJsMaster
 from krogoth_core.models import AKFoundationAbstract
 
-from krogoth_admin.models import UncommitedSQL
+from krogoth_gantry.models.krogoth_manager import UncommitedSQL
 
 import os
 

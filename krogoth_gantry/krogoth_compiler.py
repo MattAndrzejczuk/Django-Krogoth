@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from krogoth_gantry.models import KrogothGantryCategory, KrogothGantryMasterViewController
+from rest_framework.permissions import AllowAny
+from krogoth_gantry.models.gantry_models import KrogothGantryCategory, KrogothGantryMasterViewController
 from colors import ink
 
 

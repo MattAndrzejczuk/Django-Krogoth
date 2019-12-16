@@ -88,16 +88,12 @@ INSTALLED_APPS = (
     'krogoth_chat',
     'kbot_lab',
     'krogoth_3rdparty_api',
-    
-    'krogoth_admin',
+
     'krogoth_core',
-    'krogoth_dashboard',
-    'krogoth_examples',
     
     'krogoth_gantry',
     
     'krogoth_social',
-    'moho_extractor',
     'rest_auth',
 
 )

@@ -1,5 +1,5 @@
-from django.core.management.base import BaseCommand, CommandError
-from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantrySlaveViewController, \
+from django.core.management.base import BaseCommand
+from krogoth_gantry.models.gantry_models import KrogothGantryMasterViewController, KrogothGantrySlaveViewController, \
     KrogothGantryService, KrogothGantryDirective
 
 # python3 manage.py backupdjangular

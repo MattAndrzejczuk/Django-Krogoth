@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from krogoth_gantry.models import KrogothGantryMasterViewController, KrogothGantrySlaveViewController, \
+from krogoth_gantry.models.gantry_models import KrogothGantryMasterViewController, KrogothGantrySlaveViewController, \
     KrogothGantryService, KrogothGantryDirective
 
 

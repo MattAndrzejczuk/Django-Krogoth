@@ -21,7 +21,7 @@ router.register(r'link-messages', LinkMessageViewSet)
 router.register(r'youtube-messages', YouTubeMessageViewSet)
 router.register(r'youtube', YouTubeMessageViewSet)
 
-from krogoth_examples.views import FruitViewSet, TextLabelViewSet, ManufacturerViewSet, CarViewSet, \
+from krogoth_gantry.views.example_views import FruitViewSet, TextLabelViewSet, ManufacturerViewSet, CarViewSet, \
     ToppingViewSet, PizzaViewSet, HotelViewSet, OccupantViewSet, \
     BasicImageUploadViewSet, BasicFileUploadViewSet
 
@@ -48,9 +48,9 @@ registered = [
     url(r'^admin_a9k/', admin.site.urls),
     # url(r'^djadmin/', include('djadmin.urls')),
     
-    url(r'^moho_extractor/', include('moho_extractor.urls')),
-    url(r'^krogoth_gantry/', include('krogoth_gantry.urls')),
-    url(r'^krogoth_admin/', include('krogoth_admin.urls')),
+    url(r'^moho_extractor/', include('krogoth_gantry.routes.urls_akthemes')),
+    url(r'^krogoth_gantry/', include('krogoth_gantry.routes.urls_mvc_and_ide')),
+    url(r'^krogoth_admin/', include('krogoth_gantry.routes.urls_manager')),
     
     url(r'^ThirdParty/', include('krogoth_3rdparty_api.urls')),
     url(r'^krogoth_social/', include('krogoth_social.urls')),
@@ -65,7 +65,7 @@ registered = [
     url(r'^accounts/', include('allauth.urls')),
     
     # Admin stuff
-    url(r'^krogoth_dashboard/', include('krogoth_dashboard.urls')),
+    url(r'^krogoth_dashboard/', include('krogoth_gantry.routes.resource_dashboard_urls')),
     
     url(r'^$', index),
 ]

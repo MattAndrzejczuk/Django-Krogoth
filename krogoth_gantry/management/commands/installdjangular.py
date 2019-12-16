@@ -1,8 +1,6 @@
-from django.core.management.base import BaseCommand, CommandError
-from moho_extractor.models import NgIncludedHtml, IncludedHtmlCoreTemplate
-import codecs
+from django.core.management.base import BaseCommand
+from krogoth_gantry.models.moho_extractor_models import IncludedHtmlCoreTemplate
 import subprocess
-from jawn.settings import BASE_DIR
 import os
 from krogoth_core.models import *
 from django.db import IntegrityError

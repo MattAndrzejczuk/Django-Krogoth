@@ -1,11 +1,11 @@
 from django.core.management.base import BaseCommand
-from krogoth_gantry.models import KrogothGantryService, \
+from krogoth_gantry.models.gantry_models import KrogothGantryService, \
     KrogothGantryCategory, KrogothGantrySlaveViewController, KrogothGantryDirective, AKGantryMasterViewController
 import codecs
 import os
 from scss import Compiler
 import json
-from moho_extractor.models import IncludedHtmlMaster, IncludedJsMaster
+from krogoth_gantry.models.moho_extractor_models import IncludedHtmlMaster, IncludedJsMaster
 
 
 class Command(BaseCommand):

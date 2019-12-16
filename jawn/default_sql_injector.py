@@ -1,5 +1,4 @@
-from moho_extractor.models import AngularFuseApplication, NgIncludedHtml
-
+from krogoth_gantry.models.moho_extractor_models import AngularFuseApplication
 
 DJANGULAR_ROOT = '/usr/src/app/krogoth_gantryStaticFiles'
 
