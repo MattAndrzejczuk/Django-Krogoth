@@ -6,7 +6,7 @@ from krogoth_gantry.models import KrogothGantryMasterViewController
 from krogoth_core.models import AKFoundationAbstract, AKBowerComponent
 
 from rest_framework import viewsets, filters
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAdminUser
 from krogoth_core.models import AKFoundationAbstract
 from krogoth_core.serializers import AKFoundationSerializer
 
@@ -20,6 +20,7 @@ from moho_extractor.dj_views import load_custom_css, load_krogoth_css, load_back
 from krogoth_admin.models import KrogothVisitorTracking
 
 class AKFoundationViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAdminUser]
     queryset = AKFoundationAbstract.objects.all().order_by('last_name')
     serializer_class = AKFoundationSerializer
     permission_classes = (AllowAny, )

@@ -17,14 +17,14 @@ class UncommitedSQLViewSet(viewsets.ModelViewSet):
 
 # Services
 class SaveSQLToFileSystemView(APIView):
-
+    permission_classes = (IsAdminUser,)
     def get(self, request, format=None):
         os.system("./manage.py backupdvc")
         return Response({"result": "success"}, status=200)
 
 
 class CollectStatic(APIView):
-
+    permission_classes = (IsAdminUser,)
     def get(self, request, format=None):
         os.system("./manage.py collectstatic --no-input")
         return Response({"result": "success"}, status=200)

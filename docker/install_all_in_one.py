@@ -169,7 +169,7 @@ class AKInstallation():
                 if exitcode != 0:
                     print("\033[41mUnexpected Error\033[0m", end="")
                     print("\033[5m\033[0m")
-            inp = input("press \033[35m[ENTER]\033[0m to skip.")
+            #inp = input("press \033[35m[ENTER]\033[0m to skip.")
         except:
             print(cstr(91) + "║ " + cstr(0) + cstr(31) + "CAUSE OF THE TERMINAL CMD FAILURE: " + cstr(0))
             print(cmd)
@@ -184,7 +184,7 @@ class AKInstallation():
         os.system(cmd)
 
 
-class InstallationRuntime():
+class InstallationRuntime:
 
     def __init__(self):
         self.install_all_in_one = True
@@ -273,7 +273,7 @@ class InstallationRuntime():
         # ORDERED_COMMANDS.append(cmd_n21)
 
 
-        wait = input('ready?')
+        # wait = input('ready?')
 
         dexec = ['docker', 'exec', '-it', 'armprime', 'pip3', 'install', '-r', 'requirements.txt']
 

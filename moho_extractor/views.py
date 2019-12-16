@@ -9,7 +9,7 @@ from krogoth_gantry.models import KrogothGantryMasterViewController
 
 
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework import viewsets, filters
 CCD = {
     0: '\033[0m',  # end
@@ -60,7 +60,7 @@ def krogoth_debug(msg):
 
 
 class IncludedHtmlMasterViewSet(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAdminUser,)
     queryset = IncludedHtmlMaster.objects.all().order_by('name')
     serializer_class = IncludedHtmlMasterSerializer
     filter_backends = (filters.DjangoFilterBackend,)
@@ -68,7 +68,7 @@ class IncludedHtmlMasterViewSet(viewsets.ModelViewSet):
 
 
 class IncludedJsMasterViewSet(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAdminUser,)
     queryset = IncludedJsMaster.objects.all().order_by('name')
     serializer_class = IncludedJsMasterSerializer
     filter_backends = (filters.DjangoFilterBackend,)
@@ -76,7 +76,7 @@ class IncludedJsMasterViewSet(viewsets.ModelViewSet):
 
 
 class IncludedHtmlCoreViewSet(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAdminUser,)
     queryset = IncludedHtmlCoreTemplate.objects.all().order_by('name')
     serializer_class = IncludedHtmlCoreTemplateSerializer
 

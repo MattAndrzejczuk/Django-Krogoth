@@ -6,12 +6,12 @@ from moho_extractor.models import IncludedHtmlMaster, IncludedJsMaster
 from jawn.settings import BASE_DIR
 import json
 import os
-
+from rest_framework.permissions import IsAdminUser
 
 
 # Generate New MVC
 class CreateNewMVCView(APIView):
-
+    permission_classes = [IsAdminUser]
     def create_directory(self, named: str):
         sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/" + named
         print(sys_path)
@@ -130,7 +130,7 @@ class CreateNewMVCView(APIView):
 
 # Services
 class RenameService(APIView):
-    #permission_classes = (IsAdminUser)
+    permission_classes = [IsAdminUser]
     def post(self, request, format=None):
         path_0 = str(request.data["path_0"])
         path_1 = str(request.data["path_1"])
@@ -154,6 +154,7 @@ class RenameService(APIView):
         return Response({"result": "success"}, status=200)
 
 class CreateService(APIView):
+    permission_classes = [IsAdminUser]
     def post(self, request, format=None):
         path_0 = str(request.data["path_0"])
         path_1 = str(request.data["path_1"])
@@ -198,7 +199,7 @@ class CreateService(APIView):
 
 # Directives
 class RenameDirective(APIView):
-    # permission_classes = (IsAdminUser)
+    permission_classes = [IsAdminUser]
     def post(self, request, format=None):
         path_0 = str(request.data["path_0"])
         path_1 = str(request.data["path_1"])
@@ -219,7 +220,7 @@ class RenameDirective(APIView):
         return Response({"result": "success"}, status=200)
 
 class CreateDirective(APIView):
-    # permission_classes = (IsAdminUser)
+    permission_classes = [IsAdminUser]
     def post(self, request, format=None):
         path_0 = str(request.data["path_0"])
         path_1 = str(request.data["path_1"])
@@ -264,7 +265,7 @@ class CreateDirective(APIView):
 
 # HTML Templates
 class RenameTemplate(APIView):
-    # permission_classes = (IsAdminUser)
+    permission_classes = [IsAdminUser]
     def post(self, request, format=None):
         path_0 = str(request.data["path_0"])
         path_1 = str(request.data["path_1"])
@@ -290,6 +291,7 @@ class RenameTemplate(APIView):
         return Response({"result": "success"}, status=200)
 
 class CreateTemplate(APIView):
+    permission_classes = [IsAdminUser]
     def post(self, request, format=None):
         path_0 = str(request.data["path_0"])
         path_1 = str(request.data["path_1"])
@@ -336,7 +338,7 @@ class CreateTemplate(APIView):
 
 # JavaScript Templates
 class RenameJavaScriptTemplate(APIView):
-    # permission_classes = (IsAdminUser)
+    permission_classes = [IsAdminUser]
     def post(self, request, format=None):
         path_0 = str(request.data["path_0"])
         path_1 = str(request.data["path_1"])
@@ -362,6 +364,7 @@ class RenameJavaScriptTemplate(APIView):
         return Response({"result": "success"}, status=200)
 
 class CreateJavaScriptTemplate(APIView):
+    permission_classes = [IsAdminUser]
     def post(self, request, format=None):
         path_0 = str(request.data["path_0"])
         path_1 = str(request.data["path_1"])

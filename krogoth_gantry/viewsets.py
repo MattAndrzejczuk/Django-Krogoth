@@ -8,12 +8,12 @@ from krogoth_gantry.serializers import KrogothGantryMasterViewControllerSerializ
     KrogothGantryDirectiveSerializer, KrogothGantryServiceSerializer, \
     KrogothGantrySlaveViewController
 from rest_framework import viewsets, filters
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAdminUser
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 class KrogothGantryMasterViewControllerViewSet(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAdminUser,)
     queryset = KrogothGantryMasterViewController.objects.all().order_by('name')
     serializer_class = KrogothGantryMasterViewControllerSerializer
     filter_backends = (filters.DjangoFilterBackend,)
@@ -22,7 +22,7 @@ class KrogothGantryMasterViewControllerViewSet(viewsets.ModelViewSet):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 class KrogothGantrySlaveViewControllerViewSet(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAdminUser,)
     queryset = KrogothGantrySlaveViewController.objects.all().order_by('name')
     serializer_class = KrogothGantrySlaveViewControllerSerializer
     filter_backends = (filters.SearchFilter,)
@@ -31,7 +31,7 @@ class KrogothGantrySlaveViewControllerViewSet(viewsets.ModelViewSet):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 class KrogothGantryCategoryViewSet(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAdminUser,)
     queryset = KrogothGantryCategory.objects.all().order_by('name')
     serializer_class = KrogothGantryCategorySerializer
     filter_backends = (filters.DjangoFilterBackend,)
@@ -40,7 +40,7 @@ class KrogothGantryCategoryViewSet(viewsets.ModelViewSet):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 class KrogothGantryDirectiveViewSet(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAdminUser,)
     queryset = KrogothGantryDirective.objects.all().order_by('name')
     serializer_class = KrogothGantryDirectiveSerializer
     filter_backends = (filters.SearchFilter,)
@@ -49,7 +49,7 @@ class KrogothGantryDirectiveViewSet(viewsets.ModelViewSet):
 
 
 class KrogothGantryServiceViewSet(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAdminUser,)
     queryset = KrogothGantryService.objects.all().order_by('name')
     serializer_class = KrogothGantryServiceSerializer
     filter_backends = (filters.SearchFilter,)
