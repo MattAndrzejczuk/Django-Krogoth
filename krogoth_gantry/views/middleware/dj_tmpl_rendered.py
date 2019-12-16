@@ -18,7 +18,7 @@ def example_view(request):
 # * * * * *
 # Any new global CSS customizations should be added here.
 # Edit the CSS document at:
-# krogoth_core/AKThemes/Pro/html/layouts/CSS_CustomGlobals.html
+# static/web/core/html/layouts/CSS_CustomGlobals.html
 
 def load_custom_css():
     css = IncludedHtmlCoreTemplate.objects.get(name="CSS_CustomGlobals.html")

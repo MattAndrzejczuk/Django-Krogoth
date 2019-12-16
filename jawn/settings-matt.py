@@ -173,7 +173,7 @@ MEDIA_URL = '/media/'
 SITE_ID = 2
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'krogoth_chat.serializers.GetUserSerializer',
+    'USER_DETAILS_SERIALIZER': 'krogoth_gantry.functions.serializers_chat.GetUserSerializer',
 }
 APPEND_SLASH = True
 

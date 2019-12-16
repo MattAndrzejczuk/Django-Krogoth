@@ -1,8 +1,6 @@
 from django.db import models
-from krogoth_chat.models import JawnUser
+from krogoth_gantry.models.models_chat import JawnUser
 # Create your models here.
-from krogoth_gantry.models.gantry_models import KrogothGantryMasterViewController, KrogothGantrySlaveViewController, \
-    KrogothGantryService, KrogothGantryDirective
 from krogoth_gantry.management.commands.installdjangular import bcolors
 from polymorphic.models import PolymorphicModel
 

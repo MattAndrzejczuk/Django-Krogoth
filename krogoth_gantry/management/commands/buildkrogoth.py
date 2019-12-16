@@ -1,6 +1,6 @@
 import os
 
-files = os.listdir('krogoth_core/AKThemes/Pro/')
+files = os.listdir('static/web/core/')
 for file in files:
     arr = file.split('.')
     print('- - - - - - - - - - - ' + str(len(arr)))

@@ -13,7 +13,7 @@ from rest_framework.permissions import IsAdminUser
 class CreateNewMVCView(APIView):
     permission_classes = [IsAdminUser]
     def create_directory(self, named: str):
-        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/" + named
+        sys_path = BASE_DIR + "/static/web/app/" + named
         print(sys_path)
         if (os.path.isdir(sys_path)):
             pass
@@ -21,7 +21,7 @@ class CreateNewMVCView(APIView):
             os.makedirs(sys_path)
 
     def create_subdirectory(self, named: str, within: str):
-        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/" + within + "/" + named
+        sys_path = BASE_DIR + "/static/web/app/" + within + "/" + named
         print(sys_path)
         if (os.path.isdir(sys_path)):
             pass
@@ -30,7 +30,7 @@ class CreateNewMVCView(APIView):
         pass
 
     def create_master_file(self, named: str, ext: str, with_contents: str, category: str, subcategory: str, kind: str) -> str:
-        p1 = BASE_DIR + "/krogoth_gantry/DVCManager/" + category + "/" + subcategory
+        p1 = BASE_DIR + "/static/web/app/" + category + "/" + subcategory
         sys_path = p1 + "/" + named + "/MasterVC/" + kind + "." + ext
         print(sys_path)
         if not os.path.exists(p1 + "/" + named + "/MasterVC/"):
@@ -46,14 +46,14 @@ class CreateNewMVCView(APIView):
         return p1 + "/" + named + "/"
 
     def create_subcat_json_file(self, json_dump: str, category: str, subcategory: str):
-        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/" + category + "/" + subcategory + "/subcat.json"
+        sys_path = BASE_DIR + "/static/web/app/" + category + "/" + subcategory + "/subcat.json"
         print(sys_path)
         f = open(sys_path, "w+")
         f.write(json_dump)
         f.close()
 
     def create_cat_json_file(self, json_dump: str, category: str):
-        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/" + category + "/category.json"
+        sys_path = BASE_DIR + "/static/web/app/" + category + "/category.json"
         print(sys_path)
         f = open(sys_path, "w+")
         f.write(json_dump)
@@ -139,7 +139,7 @@ class RenameService(APIView):
         old_name = str(request.data["old_name"])
         new_name = str(request.data["new_name"])
 
-        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
+        sys_path = BASE_DIR + "/static/web/app/"
         sql_path = path_0 + "/" + path_1 + "/" + path_2 + "/Services/"
 
         old_path = sys_path + sql_path + old_name + ".js"
@@ -161,7 +161,7 @@ class CreateService(APIView):
         index = int(request.data["index"])
         master_name = str(request.data["master_name"])
         new_name = str(request.data["new_name"])
-        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
+        sys_path = BASE_DIR + "/static/web/app/"
         sql_path = path_0 + "/" + path_1 + "/" + master_name + "/Services/"
         if not os.path.isdir(sys_path + sql_path):
             os.makedirs(sys_path + sql_path)
@@ -206,7 +206,7 @@ class RenameDirective(APIView):
         path_2 = str(request.data["path_2"])
         old_name = str(request.data["old_name"])
         new_name = str(request.data["new_name"])
-        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
+        sys_path = BASE_DIR + "/static/web/app/"
         sql_path = path_0 + "/" + path_1 + "/" + path_2 + "/Directives/"
         old_path = sys_path + sql_path + old_name + ".js"
         new_path = sys_path + sql_path + new_name + ".js"
@@ -227,7 +227,7 @@ class CreateDirective(APIView):
         index = int(request.data["index"])
         master_name = str(request.data["master_name"])
         new_name = str(request.data["new_name"])
-        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
+        sys_path = BASE_DIR + "/static/web/app/"
         sql_path = path_0 + "/" + path_1 + "/" + master_name + "/Directives/"
         if not os.path.isdir(sys_path + sql_path):
             os.makedirs(sys_path + sql_path)
@@ -277,7 +277,7 @@ class RenameTemplate(APIView):
             old_name = str(request.data["old_name"])
         old_name = str(request.data["old_name"]).split("?name=")[1]
         new_name = str(request.data["new_name"])
-        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
+        sys_path = BASE_DIR + "/static/web/app/"
         sql_path = path_0 + "/" + path_1 + "/" + path_2 + "/partialsHTML/"
         old_path = sys_path + sql_path + old_name + ".html"
         new_path = sys_path + sql_path + new_name + ".html"
@@ -298,7 +298,7 @@ class CreateTemplate(APIView):
         index = int(request.data["index"])
         master_name = str(request.data["master_name"])
         new_name = str(request.data["new_name"])
-        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
+        sys_path = BASE_DIR + "/static/web/app/"
         sql_path = path_0 + "/" + path_1 + "/" + master_name + "/partialsHTML/"
         if not os.path.isdir(sys_path + sql_path):
             os.makedirs(sys_path + sql_path)
@@ -350,7 +350,7 @@ class RenameJavaScriptTemplate(APIView):
             old_name = str(request.data["old_name"])
         old_name = str(request.data["old_name"]).split("?name=")[1]
         new_name = str(request.data["new_name"])
-        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
+        sys_path = BASE_DIR + "/static/web/app/"
         sql_path = path_0 + "/" + path_1 + "/" + path_2 + "/partialsJS/"
         old_path = sys_path + sql_path + old_name + ".js"
         new_path = sys_path + sql_path + new_name + ".js"
@@ -371,7 +371,7 @@ class CreateJavaScriptTemplate(APIView):
         index = int(request.data["index"])
         master_name = str(request.data["master_name"])
         new_name = str(request.data["new_name"])
-        sys_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
+        sys_path = BASE_DIR + "/static/web/app/"
         sql_path = path_0 + "/" + path_1 + "/" + master_name + "/partialsJS/"
         if not os.path.isdir(sys_path + sql_path):
             os.makedirs(sys_path + sql_path)

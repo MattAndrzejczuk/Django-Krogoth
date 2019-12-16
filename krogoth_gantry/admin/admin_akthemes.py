@@ -19,25 +19,25 @@ class NgIncludedJsAdmin(admin.ModelAdmin):
 
     class Media:
         js = (
-            '/static/codemirror/lib/codemirror.js',
+            '/static/fixtures/lib/codemirror.js',
 
-            '/static/codemirror/mode/xml/xml.js',
-            '/static/codemirror/mode/htmlmixed/htmlmixed.js',
-            '/static/codemirror/mode/javascript/javascript.js',
+            '/static/fixtures/mode/xml/xml.js',
+            '/static/fixtures/mode/htmlmixed/htmlmixed.js',
+            '/static/fixtures/mode/javascript/javascript.js',
 
-            '/static/codemirror/addon/edit/matchtags.js',
-            '/static/codemirror/addon/edit/closebrackets.js',
-            '/static/codemirror/addon/edit/continuelist.js',
-            '/static/codemirror/addon/edit/matchbrackets.js',
-            '/static/codemirror/addon/edit/matchtags.js',
-            '/static/codemirror/addon/edit/trailingspace.js',
+            '/static/fixtures/addon/edit/matchtags.js',
+            '/static/fixtures/addon/edit/closebrackets.js',
+            '/static/fixtures/addon/edit/continuelist.js',
+            '/static/fixtures/addon/edit/matchbrackets.js',
+            '/static/fixtures/addon/edit/matchtags.js',
+            '/static/fixtures/addon/edit/trailingspace.js',
 
-            '/static/codemirror/addon/hint/javascript-hint.js',
+            '/static/fixtures/addon/hint/javascript-hint.js',
 
             '/static/code_mirror_run_ngInclude.js',
         )
         css = {
-            'all': ('/static/codemirror.css', '/static/colorforth.css', '/static/dracula.css',)
+            'all': ('/static/fixtures.css', '/static/colorforth.css', '/static/dracula.css',)
         }
 
 
@@ -54,25 +54,25 @@ class NgIncludedHtmlAdmin(admin.ModelAdmin):
 
     class Media:
         js = (
-            '/static/codemirror/lib/codemirror.js',
+            '/static/fixtures/lib/codemirror.js',
 
-            '/static/codemirror/mode/xml/xml.js',
-            '/static/codemirror/mode/htmlmixed/htmlmixed.js',
-            '/static/codemirror/mode/javascript/javascript.js',
+            '/static/fixtures/mode/xml/xml.js',
+            '/static/fixtures/mode/htmlmixed/htmlmixed.js',
+            '/static/fixtures/mode/javascript/javascript.js',
 
-            '/static/codemirror/addon/edit/matchtags.js',
-            '/static/codemirror/addon/edit/closebrackets.js',
-            '/static/codemirror/addon/edit/continuelist.js',
-            '/static/codemirror/addon/edit/matchbrackets.js',
-            '/static/codemirror/addon/edit/matchtags.js',
-            '/static/codemirror/addon/edit/trailingspace.js',
+            '/static/fixtures/addon/edit/matchtags.js',
+            '/static/fixtures/addon/edit/closebrackets.js',
+            '/static/fixtures/addon/edit/continuelist.js',
+            '/static/fixtures/addon/edit/matchbrackets.js',
+            '/static/fixtures/addon/edit/matchtags.js',
+            '/static/fixtures/addon/edit/trailingspace.js',
 
-            '/static/codemirror/addon/hint/javascript-hint.js',
+            '/static/fixtures/addon/hint/javascript-hint.js',
 
             '/static/code_mirror_run_ngIncludeHtml.js',
         )
         css = {
-            'all': ('/static/codemirror.css', '/static/colorforth.css', '/static/dracula.css',)
+            'all': ('/static/fixtures.css', '/static/colorforth.css', '/static/dracula.css',)
         }
 
 admin.site.register(IncludedHtmlMaster, NgIncludedHtmlAdmin)

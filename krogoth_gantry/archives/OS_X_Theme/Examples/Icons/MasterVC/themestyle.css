@@ -6,7 +6,7 @@
     @media only screen and (max-width: 9000px) {
         md-content.md-default-theme.md-hue-2, md-content.md-hue-2 {
             background-size: 4000px 4000px !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
             background-repeat: no-repeat;
             background-position: left top;
             background-attachment: fixed !important;
@@ -14,7 +14,7 @@
 
         .opaque-global {
             background-size: 4000px 4000px !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
             background-repeat: no-repeat;
             background-position: left top;
             background-attachment: fixed !important;
@@ -22,7 +22,7 @@
 
         md-sidenav {
             background-size: 4000px 4000px !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
             background-repeat: no-repeat;
             background-position: left top;
             background-attachment: fixed !important;
@@ -30,7 +30,7 @@
 
         md-toolbar {
             background-size: 4000px 4000px !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
             background-repeat: no-repeat;
             background-position: left top;
             background-attachment: fixed !important;
@@ -40,19 +40,19 @@
             background-attachment: fixed !important;
             background-size: 4000px 4000px !important;
             background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
         }
 
         .glass-test {
             background-attachment: fixed !important;
             background-size: 4000px 4000px !important;
             background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
         }
 
         body {
             background-size: 4000px 4000px !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
             background-repeat: no-repeat;
             background-position: left top;
             background-attachment: fixed !important;
@@ -63,28 +63,28 @@
     @media only screen and (max-width: 3000px) {
         md-content.md-default-theme.md-hue-2, md-content.md-hue-2 {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
             background-size: 3000px 3000px !important;
             background-position: left top;
         }
 
         .opaque-global {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
             background-size: 3000px 3000px !important;
             background-position: left top;
         }
 
         md-sidenav {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
             background-size: 3000px 3000px !important;
             background-position: left top;
         }
 
         md-toolbar {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
             background-size: 3000px 3000px;
             background-position: left top;
         }
@@ -92,12 +92,12 @@
         .glass-global {
             background-size: 3000px 3000px !important;
             background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
         }
 
         body {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
             background-size: 3000px 3000px !important;
             background-position: left top;
         }
@@ -106,7 +106,7 @@
             background-attachment: fixed !important;
             background-size: 3000px 3000px !important;
             background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
         }
     }
 
@@ -114,28 +114,28 @@
 
         md-sidenav {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
             background-size: 2000px 2000px !important;
             background-position: left top;
         }
 
         md-toolbar {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
             background-size: 2000px 2000px !important;
             background-position: left top;
         }
 
         md-content.md-default-theme.md-hue-2, md-content.md-hue-2 {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
             background-size: 2000px 2000px !important;
             background-position: left top;
         }
 
         .opaque-global {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
             background-size: 2000px 2000px !important;
             background-position: left top;
         }
@@ -144,19 +144,19 @@
             background-attachment: fixed !important;
             background-size: 2000px 2000px !important;
             background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
         }
 
         .glass-test {
             background-attachment: fixed !important;
             background-size: 2000px 2000px !important;
             background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
         }
 
         body {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
             background-size: 2000px 2000px !important;
             background-position: left top;
         }
@@ -167,28 +167,28 @@
 
         md-sidenav {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
             background-size: 1024px 1024px !important;
             background-position: left top;
         }
 
         md-toolbar {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
             background-size: 1024px 1024px !important;
             background-position: left top;
         }
 
         md-content.md-default-theme.md-hue-2, md-content.md-hue-2 {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
             background-size: 1024px 1024px !important;
             background-position: left top;
         }
 
         .opaque-global {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-opaque-3k.jpg') !important;
             background-size: 1024px 1024px !important;
             background-position: left top;
         }
@@ -197,19 +197,19 @@
             background-attachment: fixed !important;
             background-size: 1024px 1024px !important;
             background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
         }
 
         .glass-test {
             background-attachment: fixed !important;
             background-size: 1024px 1024px !important;
             background-position: left top;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
         }
 
         body {
             background-attachment: fixed !important;
-            background-image: url('/static/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
+            background-image: url('/static/styles/fancy_bgs/EPIC_Planet-3-blur-3k.jpg') !important;
             background-size: 1024px 1024px !important;
             background-position: left top;
         }

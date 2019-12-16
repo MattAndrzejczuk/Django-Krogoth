@@ -2,9 +2,9 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 
-from krogoth_chat.views import UserViewSet, JawnUserViewSet, ImageMessageViewSet, TextMessageViewSet, ChannelViewSet, \
+from krogoth_gantry.views.views_chat import UserViewSet, JawnUserViewSet, ImageMessageViewSet, TextMessageViewSet, ChannelViewSet, \
     MessageViewSet, PrivateMessageRelationshipSet, RegionViewSet, LinkMessageViewSet, YouTubeMessageViewSet
-from krogoth_core.views import index
+from krogoth_gantry.views.index_and_akfoundation import index
 
 
 
@@ -53,7 +53,7 @@ registered = [
     url(r'^krogoth_admin/', include('krogoth_gantry.routes.urls_manager')),
     
     url(r'^ThirdParty/', include('krogoth_3rdparty_api.urls')),
-    url(r'^krogoth_social/', include('krogoth_social.urls')),
+    url(r'^krogoth_social/', include('krogoth_gantry.routes.urls_forums')),
     
     # user auth, forgot_password, reset pass, etc..
     url(r'^api/', include(router.urls)),

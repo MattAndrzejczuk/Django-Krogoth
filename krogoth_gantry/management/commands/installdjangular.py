@@ -2,10 +2,10 @@ from django.core.management.base import BaseCommand
 from krogoth_gantry.models.moho_extractor_models import IncludedHtmlCoreTemplate
 import subprocess
 import os
-from krogoth_core.models import *
+from krogoth_gantry.models.core_models import *
 from django.db import IntegrityError
 # from jawn.console_printer import CentralCheckpoint
-from krogoth_core.ak_theme_meta import MetaGenerator
+from krogoth_gantry.management.ak_theme_meta import MetaGenerator
 
 
 class bcolors:
@@ -163,16 +163,16 @@ class Command(BaseCommand):
             elif kind == 'AKCustom':
                 new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
             else:
-                self.stdout.write(BASE_DIR + '/krogoth_core/AKThemes/Pro/' + bcolors().WARNING + (
+                self.stdout.write(BASE_DIR + '/static/web/core/' + bcolors().WARNING + (
                         'UNKNOWN...' + kind + '.' + angular_duty) + bcolors().ENDC)
 
             try:
                 if type(new_js) is not AKFoundationAbstract:
                     new_js.is_selected_theme = True
-                    new_js.theme = BASE_DIR + '/krogoth_core/AKThemes/Pro/'
+                    new_js.theme = BASE_DIR + '/static/web/core/'
                     new_js.code = new_js.as_frontend_response
                     new_js.unique_name = kind + angular_duty + ''  # str(len(AKFoundationAbstract.objects.all())) + 'v1'
-                    # print(bcolors.purple + BASE_DIR + '/krogoth_core/AKThemes/Pro/' + new_js.get_filename + new_js.get_file_ext)
+                    # print(bcolors.purple + BASE_DIR + '/static/web/core/' + new_js.get_filename + new_js.get_file_ext)
                     new_js.save()
                     self.stdout.write(bcolors().OKGREEN + 'CREATED...' + path + (
                             new_js.get_filename + new_js.ext) + bcolors().ENDC)
@@ -184,9 +184,8 @@ class Command(BaseCommand):
 
             # print('dependency saved.')
 
-        name = 'Pro'
-        print('Installing AngularJS Frontend Theme: ' + name + '\n')
-        path = BASE_DIR + '/krogoth_core/AKThemes/' + name + '/'
+
+        path = BASE_DIR + '/static/web/core/'
 
         key_paths_js = {
             0: path + 'js/app_core/',
@@ -256,7 +255,7 @@ class Command(BaseCommand):
         user.is_staff=False
         user.save()
 
-        from krogoth_chat.models import JawnUser
+        from krogoth_gantry.models.models_chat import JawnUser
         ju = JawnUser(base_user=user)
         ju.save()
 

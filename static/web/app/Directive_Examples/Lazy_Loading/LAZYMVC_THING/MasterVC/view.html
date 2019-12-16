@@ -1,0 +1,239 @@
+<style>
+
+	.toolbarTopWindow {
+
+		border-bottom: solid 1px #686868;
+		background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2U0ZTRlNCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2I4YjdiOCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+		background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e4e4e4), color-stop(100%, #b8b7b8));
+		background: -moz-linear-gradient(#e4e4e4, #b8b7b8);
+		background: -webkit-linear-gradient(#e4e4e4, #b8b7b8);
+		background: linear-gradient(#e4e4e4, #b8b7b8);
+		-moz-box-shadow: #f1f1f1 0 1px inset;
+		-webkit-box-shadow: #f1f1f1 0 1px inset;
+		box-shadow: #f1f1f1 0 1px inset;
+		-moz-border-radius: 6px 6px 0 0;
+		-webkit-border-radius: 6px;
+		border-radius: 6px 6px 0 0;
+	}
+	
+            .white-bg-new {
+                background-image: url('/static/styles/assets/Main-BG-WhiteGBlur-LOWREZ.jpg') !important;
+				background-position:0px 0px!important;
+                transition: all 0.3s;
+            }
+
+</style>
+
+
+<section style="background-color: rgba(255,255,255,0.0);">
+	<div class="content">
+		<div class="container-fluid container-maverix panel white-bg-new" ak-frosted-glass style=" padding:0px">
+			<div class="sub-nav-content-container  panel-heading">
+				<div layout-padding layout-margin>
+					<h1 style="margin-top: 10px">
+						Lazy Loader Example
+					</h1>
+				</div>
+				<div layout-padding layout-margin>
+				<p>
+					Instead of loading every single AngularJS component during the initial
+					bootstrap sequence, load the module only when the user needs it, dynamically.
+				</p>		
+				</div>
+
+			</div>
+			
+			<div class=" sub-nav-content-container panel-body" 
+				 style="background-color: rgba(255,255,255,0.8); margin:0px"
+				 layout-align="space-between stretch"
+				 layout-padding
+				 layout-margin>
+				
+				<p class="nfo">
+					Once loaded, you should see the newly loaded Krogoth Master View Controller appear in the 
+					navigation under: Lazy_Loader - Example_1 - LOADED DYNAMICALLY
+				</p>		
+				
+				<div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
+
+					<button ng-click="vm.stateGoToLazy()" class="btn btn-primary">Enter Dynamic State</button>
+					<label class="ui-label">
+						Go to hardcoded MVC, assuming that it's been loaded.
+					</label>
+				</div>
+				
+				<div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
+					
+					<button ng-click="vm.initLazyModule()" class="btn btn-default">Load Module Dynamically</button>
+					<label class="ui-label">
+						Load a hardcoded MVC
+					</label>
+				</div>
+                <div layout-padding layout-margin class="custom-menu variation2" layout-align="space-between end">
+					
+					<button ng-click="vm.initLazyCanvasDemoModule()" class="btn btn-default">Load Module Dynamically</button>
+					<label class="ui-label">
+						Load a giant module (HTML Screenshot Canvasizer)
+					</label>
+					
+				</div>
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<md-divider>
+				</div>
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between center">
+					<input type="text" placeholder="Unique Name For New MVC" ng-model="vm.lazyToken"/>
+				</div>				
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between stretch">
+					
+					<button  ng-click="vm.initTokenizedLazyModule()" class="btn btn-capsule">Load Tokenized Lazy MVC</button>
+					<label class="ui-label">
+						Load Custom MVC
+					</label>
+					
+				</div>
+				<div layout-padding layout-margin class="custom-menu" layout-align="space-between stretch">
+					<button  ng-click="vm.initAndGo()" class="btn btn-modern">Load Tokenized Then Redirect</button>
+					<label class="ui-label">
+						Load Custom MVC Then Open
+					</label>
+
+				</div>				
+				
+				
+				<ak-main layout-padding layout-margin>
+
+				</ak-main>
+					
+					
+					
+                    
+                    <h2>What is Maverix?</h2>
+
+                    <p class="indent">
+                        Maverix is a maccish bootstrap theme and application boilerplate. It gives your
+                        web-apps a
+                        native look and feel and bundles.
+                    </p>
+
+                    <p class="indent">
+                        It is perfect to be used for apps that are based on HTML App Containers such as:
+                    </p>
+                    <hr/>
+
+                    <h2>Design Decisions</h2>
+                    <div class="indent">
+                        <h3>Closest possible to native</h3>
+                        <p>All controls and Elements are carefully designed to perfectly fit into the native mac
+                            environment.</p>
+
+                        <h3>Non Responsive (for now...)</h3>
+
+                        <p>Desktop Apps don't need to run on thousands of different devices and
+                            viewports. You are the master of setting a minimum-viewport and the app won't get smaller
+                            than
+                            this. If
+                            you
+                            are
+                            using Maverix Theme in a traditional web-app it is also okay for Admin Backends that don't
+                            need
+                            responsive
+                            layout.
+                        </p>
+
+                        <h3>Built on Bootstrap and Less</h3>
+
+                        <p>Twitters Bootstrap comes bundled with tons of useful styles and add ons and
+                            allows beginners and masters to get started quickly (grid positioning, etc.). The maverix
+                            styles
+                            are
+                            enhancing bootstrap and are written
+                        </p>
+
+                        <h3>Webkit first</h3>
+
+                        <p>
+                            Maverix Theme is primarily made to enable app container based web-apps to look like native
+                            OS X
+                            Apps.
+                            So webkit is the primary engine when releasing new components. However this doesn't mean
+                            that
+                            other
+                            browsers
+                            are totally unsupported. Maverix Theme is tested on Safari, Firefox and Chrome on OS X.
+                        </p>
+                        <hr/>
+                    </div>
+
+                    <h2>Bundled with AngularJS</h2>
+
+                    <p class="indent">is one of the best Javascript App
+                        Frameworks
+                        available today and so Maverix Theme comes bundled with AngularJS including fully working
+                        routing to
+                        get you
+                        started fast. Anyways, AngularJS usage is optional.</p>
+
+                    <hr/>
+                    <h2>Roadmap</h2>
+
+                    <div class="indent">
+
+                        <span>Bugfix requests are priority one.</span><br>
+                        <span>So webkit is the primary engine when releasing new components.
+                            However this doesn't mean that other browsers are totally unsupported.</span><br>
+                        <span>Bugfix requests are priority one.</span><br>
+                        <span>Bugfix requests are priority one.</span><br>
+                        <span>Bugfix requests are priority one.</span><br>
+
+                    </div>
+
+                    <hr/>
+                    <h2>Bugs & Feature Requests</h2>
+                    <p class="indent">Use the
+                        You can also reach out to me via Mail
+                        or Twitter</p>
+                    <hr/>
+                    <h2>Feedback</h2>
+                    <p class="indent">
+                        Feedback is always welcome.
+                    </p>
+
+
+                    <div class="indent">
+
+                        <span>Bugfix requests are priority one.</span><br>
+                        <span>So webkit is the primary engine when releasing new components.
+                            However this doesn't mean that other browsers are totally unsupported.</span><br>
+                        <span>Bugfix requests are priority one.</span><br>
+                        <span>Bugfix requests are priority one.</span><br>
+                        <span>Bugfix requests are priority one.</span><br>
+
+
+                    </div>
+
+                    <div>
+
+                        <md-input-container>
+                            <label style="padding-bottom: 8px">Title</label>
+                            <input ng-model="user.title" type="text" class="form-control" >
+                        </md-input-container>
+
+                        <md-input-container>
+                            <label style="padding-bottom: 8px">Email</label>
+                            <input ng-model="user.email" type="email" class="form-control" >
+                        </md-input-container>
+
+                    </div>
+
+
+					
+					
+			</div>			
+
+			
+			
+			
+			
+		</div>
+	</div>
+</section>

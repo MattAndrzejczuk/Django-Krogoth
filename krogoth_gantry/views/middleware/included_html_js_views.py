@@ -112,7 +112,7 @@ class NgIncludedHtmlView(APIView):
 
 
 
-from krogoth_core.models import AKFoundationAbstract
+from krogoth_gantry.models.core_models import AKFoundationAbstract
 
 
 class KrogothFoundationView(APIView):

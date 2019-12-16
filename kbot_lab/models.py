@@ -3,7 +3,7 @@ __version__ = '0.9.53'
 __author__ = 'Matt Andrzejczuk'
 from django.db import models
 from polymorphic.models import PolymorphicModel
-from krogoth_chat.models import JawnUser
+from krogoth_gantry.models.models_chat import JawnUser
 from kbot_lab.abstract_models import KBNanolatheAbstractBlueprint, KBNanolatheUploadAbstract, KBNanolatheThreadAbstract
 
 

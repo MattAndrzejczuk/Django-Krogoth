@@ -3,7 +3,7 @@ from krogoth_gantry.views.middleware import viewseditor, front_injector
 from rest_framework.routers import DefaultRouter
 from krogoth_gantry.views.middleware.viewsets import KrogothGantryMasterViewControllerViewSet, KrogothGantrySlaveViewControllerViewSet, \
     KrogothGantryCategoryViewSet, KrogothGantryDirectiveViewSet, KrogothGantryServiceViewSet
-from krogoth_core.views import AKFoundationViewSet
+from krogoth_gantry.views.index_and_akfoundation import AKFoundationViewSet
 from krogoth_gantry.views.middleware.included_html_js_views import IncludedHtmlMasterViewSet, IncludedHtmlCoreViewSet, IncludedJsMasterViewSet
 
 

@@ -3,11 +3,7 @@ __version__ = '0.9.53'
 __author__ = 'Matt Andrzejczuk'
 
 from rest_framework import serializers
-from rest_framework.exceptions import NotAuthenticated
 from kbot_lab.models import KBNanolatheExampleUpload, KBNanolatheAbstractBlueprint, KBNanolatheExamplePlain
-from krogoth_chat.models import JawnUser
-from django.contrib.auth.models import AnonymousUser
-
 
 
 class KBNanolatheAbstractSerializer(serializers.ModelSerializer):

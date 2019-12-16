@@ -8,8 +8,8 @@ from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
 from rest_framework.authtoken.models import Token
 from rest_framework.generics import RetrieveUpdateAPIView
-from krogoth_chat.models import JawnUser
-from krogoth_chat.serializers import JawnUserSerializer
+from krogoth_gantry.models.models_chat import JawnUser
+from krogoth_gantry.functions.serializers_chat import JawnUserSerializer
 from rest_framework.renderers import JSONRenderer
 from redis import ConnectionPool, StrictRedis
 from jawn import settings as redis_settings

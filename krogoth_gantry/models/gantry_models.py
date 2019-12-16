@@ -4,15 +4,15 @@ from jawn.settings import BASE_DIR
 from polymorphic.models import PolymorphicModel
 from django.utils.html import format_html
 
-DEFAULT_CONTROLLER = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/MasterVC/controller.js', 'r').read()
-DEFAULT_MODULE = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/MasterVC/module.js', 'r').read()
-DEFAULT_MASTERVIEW = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/MasterVC/view.html', 'r').read()
-DEFAULT_STYLETHEME = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/MasterVC/themestyle.css', 'r').read()
-DEFAULT_SLAVE_CONTROLLER = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/SlaveVC/controller.js',
+DEFAULT_CONTROLLER = codecs.open(BASE_DIR + '/static/web/app/MiscDVC/MasterVC/controller.js', 'r').read()
+DEFAULT_MODULE = codecs.open(BASE_DIR + '/static/web/app/MiscDVC/MasterVC/module.js', 'r').read()
+DEFAULT_MASTERVIEW = codecs.open(BASE_DIR + '/static/web/app/MiscDVC/MasterVC/view.html', 'r').read()
+DEFAULT_STYLETHEME = codecs.open(BASE_DIR + '/static/web/app/MiscDVC/MasterVC/themestyle.css', 'r').read()
+DEFAULT_SLAVE_CONTROLLER = codecs.open(BASE_DIR + '/static/web/app/MiscDVC/SlaveVC/controller.js',
                                        'r').read()
-DEFAULT_SERVICE = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/Services/MiscExampleService.js',
+DEFAULT_SERVICE = codecs.open(BASE_DIR + '/static/web/app/MiscDVC/Services/MiscExampleService.js',
                               'r').read()
-DEFAULT_DIRECTIVE = codecs.open(BASE_DIR + '/krogoth_gantry/DVCManager/MiscDVC/Directives/miscDirective.js', 'r').read()
+DEFAULT_DIRECTIVE = codecs.open(BASE_DIR + '/static/web/app/MiscDVC/Directives/miscDirective.js', 'r').read()
 
 
 #     ___________________________________

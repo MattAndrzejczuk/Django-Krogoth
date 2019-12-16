@@ -35,7 +35,7 @@ class Command(BaseCommand):
             cat = KrogothGantryCategory.objects.get(name='DVCManager')
 
         log_last_path = ''
-        gantry_catagories = os.listdir('krogoth_gantry/DVCManager')
+        gantry_catagories = os.listdir('static/web/app')
         i = 0
         for gantry in gantry_catagories:
             i += 1
@@ -47,12 +47,12 @@ class Command(BaseCommand):
                                                          title=gantry.replace('_',' '))
                     cat_host_obj.save()
 
-                krogoth_subcats = os.listdir('krogoth_gantry/DVCManager/' + gantry)
+                krogoth_subcats = os.listdir('static/web/app/' + gantry)
                 for subcats in krogoth_subcats:
                     if subcats[0] == '.':
                         continue
                     elif subcats[-4:].lower() == 'json':
-                        with open('krogoth_gantry/DVCManager/' + gantry + '/' + subcats) as json_data:
+                        with open('static/web/app/' + gantry + '/' + subcats) as json_data:
                             d = json.load(json_data)
                             cat_host_obj.weight = d['weight']
                             cat_host_obj.save()
@@ -65,13 +65,13 @@ class Command(BaseCommand):
                                                             parent=cat_host_obj)
                         cat_sub_obj.save()
 
-                    djangular_dvcs = os.listdir('krogoth_gantry/DVCManager/' + gantry + '/' + subcats)
+                    djangular_dvcs = os.listdir('static/web/app/' + gantry + '/' + subcats)
                     num_weight = 5
                     for dvc in djangular_dvcs:
                         if dvc[0] == '.':
                             continue
                         elif dvc[-4:].lower() == 'json':
-                            with open('krogoth_gantry/DVCManager/' + gantry + '/' + subcats + '/' + dvc) as json_data:
+                            with open('static/web/app/' + gantry + '/' + subcats + '/' + dvc) as json_data:
                                 d = json.load(json_data)
                                 cat_sub_obj.weight = d['weight']
                                 try:
@@ -85,20 +85,20 @@ class Command(BaseCommand):
                         has_services = False
                         has_directives = False
 
-                        components = os.listdir('krogoth_gantry/DVCManager/' + dvc)
-                        serv_path = 'krogoth_gantry/DVCManager/' + dvc + '/Services'
+                        components = os.listdir('static/web/app/' + dvc)
+                        serv_path = 'static/web/app/' + dvc + '/Services'
                         if os.path.isdir(serv_path):
                             if len(os.listdir(serv_path)) >= 1:
                                 has_services = True
-                        direc_path = 'krogoth_gantry/DVCManager/' + dvc + '/Directives'
+                        direc_path = 'static/web/app/' + dvc + '/Directives'
                         if os.path.isdir(direc_path):
                             if len(os.listdir(direc_path)) >= 1:
                                 has_directives = True
-                        slave_path = 'krogoth_gantry/DVCManager/' + dvc + '/SlaveVC'
+                        slave_path = 'static/web/app/' + dvc + '/SlaveVC'
                         if os.path.isdir(slave_path):
                             if len(os.listdir(slave_path)) >= 1:
                                 has_slave = True
-                        master_path = 'krogoth_gantry/DVCManager/' + dvc + '/MasterVC'
+                        master_path = 'static/web/app/' + dvc + '/MasterVC'
                         if os.path.isdir(master_path):
                             if len(os.listdir(master_path)) >= 1:
                                 has_master = True
@@ -111,26 +111,26 @@ class Command(BaseCommand):
 
 
                             not_lazy = True
-                            _AKLazyTxt = 'krogoth_gantry/DVCManager/' + dvc + '/LAZY.txt'
+                            _AKLazyTxt = 'static/web/app/' + dvc + '/LAZY.txt'
                             if os.path.isfile(_AKLazyTxt):
                                 print("LAZY CREATING....")
-                                print('krogoth_gantry/DVCManager/' + dvc + '/LAZY.txt')
+                                print('static/web/app/' + dvc + '/LAZY.txt')
                                 not_lazy = False
-                            _AKTitleTxt = 'krogoth_gantry/DVCManager/' + dvc + '/Title.txt'
+                            _AKTitleTxt = 'static/web/app/' + dvc + '/Title.txt'
                             if os.path.exists(_AKTitleTxt):
                                 title = codecs.open(_AKTitleTxt, 'r').read()
-                            _AKStyleCSSMVC = 'krogoth_gantry/DVCManager/' + dvc + '/MasterVC/style.css'
+                            _AKStyleCSSMVC = 'static/web/app/' + dvc + '/MasterVC/style.css'
                             if os.path.exists(_AKStyleCSSMVC):
                                 style = codecs.open(_AKStyleCSSMVC, 'r').read()
-                            if os.path.exists('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/style.scss'):
-                                rawcode = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/MasterVC/style.scss',
+                            if os.path.exists('static/web/app/' + dvc + '/MasterVC/style.scss'):
+                                rawcode = codecs.open('static/web/app/' + dvc + '/MasterVC/style.scss',
                                                       'r').read()
                                 compiled = Compiler().compile_string(rawcode)
                                 style += compiled
 
-                            _AKStyleModuleMVC = 'krogoth_gantry/DVCManager/' + dvc + '/MasterVC/module.js'
-                            _AKStyleCtrlMVC = 'krogoth_gantry/DVCManager/' + dvc + '/MasterVC/controller.js'
-                            _AKStyleViewMVC = 'krogoth_gantry/DVCManager/' + dvc + '/MasterVC/view.html'
+                            _AKStyleModuleMVC = 'static/web/app/' + dvc + '/MasterVC/module.js'
+                            _AKStyleCtrlMVC = 'static/web/app/' + dvc + '/MasterVC/controller.js'
+                            _AKStyleViewMVC = 'static/web/app/' + dvc + '/MasterVC/view.html'
                             str_View = codecs.open(_AKStyleViewMVC, 'r').read()
                             str_Module = codecs.open(_AKStyleModuleMVC, 'r').read()
                             str_Controller = codecs.open(_AKStyleCtrlMVC,
@@ -139,7 +139,7 @@ class Command(BaseCommand):
                                                                                       title=title, category=cat_sub_obj,
                                                                                       is_enabled=not_lazy)
 
-                            partial_HTMLs_path = 'krogoth_gantry/DVCManager/' + dvc + '/partialsHTML'
+                            partial_HTMLs_path = 'static/web/app/' + dvc + '/partialsHTML'
                             if os.path.isdir(partial_HTMLs_path):
                                 htmls = os.listdir(partial_HTMLs_path)
                                 if len(os.listdir(partial_HTMLs_path)) >= 1:
@@ -165,7 +165,7 @@ class Command(BaseCommand):
                                         newIncludeHTML[0].save()
                                         print("TOTAL PARTIALS: " + str(len(IncludedHtmlMaster.objects.all())))
 
-                            partial_JSs_path = 'krogoth_gantry/DVCManager/' + dvc + '/partialsJS'
+                            partial_JSs_path = 'static/web/app/' + dvc + '/partialsJS'
                             if os.path.isdir(partial_JSs_path):
                                 jss = os.listdir(partial_JSs_path)
                                 if len(os.listdir(partial_JSs_path)) >= 1:
@@ -193,7 +193,7 @@ class Command(BaseCommand):
 
                             # clean_catagory = catagory.replace(' ', '').replace('-', '')
                             # clean_subcatagory = subcatagory.replace(' ', '').replace('-', '')
-                            _mvc[0].path_to_static = 'krogoth_gantry/DVCManager/' + dvc + '/'
+                            _mvc[0].path_to_static = 'static/web/app/' + dvc + '/'
                             _mvc[0].style_css = style
                             _mvc[0].view_html = str_View
                             _mvc[0].controller_js = str_Controller
@@ -208,10 +208,10 @@ class Command(BaseCommand):
                                     pass
                                 svc = KrogothGantrySlaveViewController.objects.get_or_create(name=name_pk + 'Slave')
                                 svc[0].title = name_pk + '_Slave' + str(i)
-                                log_last_path = 'krogoth_gantry/DVCManager/' + dvc + '/SlaveVC/view.html'
-                                str_slaveV = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/SlaveVC/view.html',
+                                log_last_path = 'static/web/app/' + dvc + '/SlaveVC/view.html'
+                                str_slaveV = codecs.open('static/web/app/' + dvc + '/SlaveVC/view.html',
                                                          'r').read()
-                                str_slaveC = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/SlaveVC/controller.js',
+                                str_slaveC = codecs.open('static/web/app/' + dvc + '/SlaveVC/controller.js',
                                                          'r').read()
                                 svc[0].view_html = str_slaveV
                                 svc[0].controller_js = str_slaveC
@@ -219,11 +219,11 @@ class Command(BaseCommand):
                                 _mvc[0].djangular_slave_vc.add(svc[0])
 
                             if has_services == True:
-                                srv_files = os.listdir('krogoth_gantry/DVCManager/' + dvc + '/Services')
+                                srv_files = os.listdir('static/web/app/' + dvc + '/Services')
                                 for srv in srv_files:
                                     if srv[0] != '.':  # ignore hidden OS files
-                                        log_last_path = 'krogoth_gantry/DVCManager/' + dvc + '/Services/' + srv
-                                        str_srv = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/Services/' + srv,
+                                        log_last_path = 'static/web/app/' + dvc + '/Services/' + srv
+                                        str_srv = codecs.open('static/web/app/' + dvc + '/Services/' + srv,
                                                               'r').read()
                                         try:
                                             KrogothGantryService.objects.get(name=srv[:-3]).delete()
@@ -237,11 +237,11 @@ class Command(BaseCommand):
                                         _mvc[0].djangular_service.add(service[0])
 
                             if has_directives == True:
-                                drec_files = os.listdir('krogoth_gantry/DVCManager/' + dvc + '/Directives')
+                                drec_files = os.listdir('static/web/app/' + dvc + '/Directives')
                                 for drec in drec_files:
                                     if drec[0] != '.':  # ignore hidden OS files
-                                        log_last_path = 'krogoth_gantry/DVCManager/' + dvc + '/Directives/' + drec
-                                        str_drec = codecs.open('krogoth_gantry/DVCManager/' + dvc + '/Directives/' + drec,
+                                        log_last_path = 'static/web/app/' + dvc + '/Directives/' + drec
+                                        str_drec = codecs.open('static/web/app/' + dvc + '/Directives/' + drec,
                                                                'r').read()
                                         try:
                                             KrogothGantryDirective.objects.get(name=drec[:-3]).delete()

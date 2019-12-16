@@ -20,7 +20,7 @@
 #         print("make_default_layout command is deprecated.")
         # self.stdout.write(self.style.SUCCESS(''))
         # ctrl = open('krogoth_gantry/management/default_templates/toolbarCtrl.js', 'r')
-        # module = open('krogoth_core/AKThemes/Pro/js/app_toolbar/toolbar.module.js', 'r')
+        # module = open('static/web/core/js/app_toolbar/toolbar.module.js', 'r')
         # jsLayout = codecs.open('krogoth_gantry/management/default_templates/mainHtmlLayout.js', 'r')
         # jsColorThemesConstants = codecs.open('krogoth_gantry/management/default_templates/colorThemesConstants.js', 'r')
         # htmlMain = codecs.open('krogoth_gantry/management/default_templates/layoutMain.html', 'r')

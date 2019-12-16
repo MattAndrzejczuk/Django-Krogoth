@@ -4,7 +4,7 @@ from krogoth_gantry.models.gantry_models import KrogothGantrySlaveViewController
     KrogothGantryCategory, KrogothGantryMasterViewController, KrogothGantryDirective, \
     KrogothGantryService, AKGantryMasterViewController
 from jawn.settings import BASE_DIR
-from krogoth_chat.models import JawnUser
+from krogoth_gantry.models.models_chat import JawnUser
 from krogoth_gantry.helpers.os_directory import MoveToNewDirectory
 from krogoth_gantry.management.commands.installdjangular import bcolors
 
@@ -87,16 +87,16 @@ class KrogothGantryCategorySerializer(AbstractKrogothSerializer):
         if instance.parent is None:
             is_subcat = False
         if is_subcat:
-            filter_refs = "krogoth_gantry/DVCManager/" + instance.parent.name + "/" + instance.name
+            filter_refs = "static/web/app/" + instance.parent.name + "/" + instance.name
             old_references = AKGantryMasterViewController.objects.filter(path_to_static__icontains=filter_refs)
 
         for key in validated_data.keys():
             setattr(instance, key, validated_data[key])
             if is_subcat:
                 if str(key) == 'name':
-                    replacement_path_part = "krogoth_gantry/DVCManager/" + instance.parent.name + "/" + validated_data[
+                    replacement_path_part = "static/web/app/" + instance.parent.name + "/" + validated_data[
                         'name']
-                    dvc_path = BASE_DIR + "/krogoth_gantry/DVCManager/"
+                    dvc_path = BASE_DIR + "/static/web/app/"
                     old = dvc_path + instance.parent.name + "/" + old_name
                     new = dvc_path + instance.parent.name + "/" + validated_data['name']
                     MoveToNewDirectory(old_path=old, new_path=new)
