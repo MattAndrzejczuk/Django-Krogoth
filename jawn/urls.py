@@ -41,13 +41,7 @@ urlpatterns = []
 
 registered = [
     
-
-    url(r'^api/', include('kbot_lab.urls')),
-    url(r'^kbot_lab/', include('kbot_lab.urls')),
-    
     url(r'^admin_a9k/', admin.site.urls),
-    # url(r'^djadmin/', include('djadmin.urls')),
-    
     url(r'^moho_extractor/', include('krogoth_gantry.routes.urls_akthemes')),
     url(r'^krogoth_gantry/', include('krogoth_gantry.routes.urls_mvc_and_ide')),
     url(r'^krogoth_admin/', include('krogoth_gantry.routes.urls_manager')),

@@ -48,8 +48,7 @@ class GenericKGData_GetOneOrCreate(APIView):
     # permission_classes = (AllowAny,)
 
     def get(self, request, format=None):
-        ink.ppink('APIView : ')
-        ink.pblue('AllDataMVC')
+
         if PARAM_na in request.GET:
             token = str(request.GET[PARAM_na])
             kg = GenericKGData.objects.filter(uid=token)

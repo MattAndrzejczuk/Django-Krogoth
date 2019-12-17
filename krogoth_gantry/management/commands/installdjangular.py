@@ -4,7 +4,6 @@ import subprocess
 import os
 from krogoth_gantry.models.core_models import *
 from django.db import IntegrityError
-# from jawn.console_printer import CentralCheckpoint
 from krogoth_gantry.management.ak_theme_meta import MetaGenerator
 
 

@@ -7,12 +7,12 @@ from django.http import HttpResponse
 from django.template import Context, Template
 from krogoth_gantry.models.moho_extractor_models import IncludedHtmlCoreTemplate
 
+
 def example_view(request):
     template = Template('My name is, {{ name }}!')
     context = Context({'name': 'Gilang'})
     rendered = template.render(context)
     return HttpResponse(rendered)
-
 
 
 # * * * * *
@@ -25,8 +25,7 @@ def load_custom_css():
     template = Template(css.contents)
     context = Context({"foo1": "bar1"})
     rendered = template.render(context)
-    return (rendered)
-
+    return rendered
 
 
 # * * * * *
@@ -37,7 +36,7 @@ def load_krogoth_css():
     template = Template(css.contents)
     context = Context({"foo1": "bar1"})
     rendered = template.render(context)
-    return (rendered)
+    return rendered
 
 
 def load_background_css():
@@ -45,8 +44,7 @@ def load_background_css():
     template = Template(css.contents)
     context = Context({"foo1": "bar1"})
     rendered = template.render(context)
-    return (rendered)
-
+    return rendered
 
 
 # * * * * *
@@ -57,7 +55,7 @@ def load_core_css():
     template = Template(css.contents)
     context = Context({"foo1": "bar1"})
     rendered = template.render(context)
-    return (rendered)
+    return rendered
 
 
 def load_core_elements_css():
@@ -65,5 +63,5 @@ def load_core_elements_css():
     template = Template(css.contents)
     context = Context({"foo1": "bar1"})
     rendered = template.render(context)
-    return (rendered)
+    return rendered
 

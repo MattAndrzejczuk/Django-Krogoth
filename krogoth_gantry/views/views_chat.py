@@ -9,8 +9,6 @@ import django_filters
 from django.db import connection
 
 
-
-
 class ChannelFilter(django_filters.FilterSet):
     # name = django_filters.CharFilter(name="name", lookup_type="startswith")
     region = django_filters.CharFilter(name="name", lookup_type="startswith")
@@ -18,6 +16,7 @@ class ChannelFilter(django_filters.FilterSet):
     class Meta:
         model = Channel
         fields = ['created', 'name', 'id', 'creator', 'region']
+
 
 class UserViewSet(viewsets.ModelViewSet):
 
@@ -28,6 +27,7 @@ class UserViewSet(viewsets.ModelViewSet):
         # allow non-authenticated user to create via POST
         return (permissions.AllowAny() if self.request.method == 'POST'
                 else permissions.IsAuthenticated()),
+
 
 class JawnUserViewSet(viewsets.ModelViewSet):
 
@@ -69,13 +69,11 @@ class LinkMessageViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, )
 
 
-
 class YouTubeMessageViewSet(viewsets.ModelViewSet):
 
     queryset = YouTubeMessage.objects.all()
     serializer_class = YouTubeMessageSerializer
     permission_classes = (permissions.IsAuthenticated, )
-
 
 
 class ChannelViewSet(viewsets.ModelViewSet):
@@ -109,12 +107,14 @@ class ChannelList(generics.ListAPIView):
     filter_fields = ('name', 'id', 'creator',)
     filter_class = ChannelFilter
 
+
 class RegionFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(name="name")
 
     class Meta:
         model = Region
         fields = ['name']
+
 
 class RegionViewSet(viewsets.ModelViewSet):
     serializer_class = RegionSerializer
@@ -131,6 +131,7 @@ class PrivateMessageRelationshipSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, )
     filter_backends = (filters.DjangoFilterBackend, )
     filter_fields = ('user_recipient', 'user_sender', )
+
 
 class LinkMessageViewSet(viewsets.ModelViewSet):
 

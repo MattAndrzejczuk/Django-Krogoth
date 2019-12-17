@@ -84,7 +84,6 @@ INSTALLED_APPS = (
     
     'rest_framework_swagger',
     'django_filters',
-    'kbot_lab',
     'krogoth_3rdparty_api',
     
     'krogoth_gantry',

@@ -7,7 +7,9 @@ from krogoth_gantry.krogoth_compiler import master_compiler
 
 
 class DynamicJavaScriptInjector(APIView):
-    authentication_classes = (TokenAuthentication,)
+    # authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+
     def get(self, request, format=None):
         name = request.GET['name']
 
