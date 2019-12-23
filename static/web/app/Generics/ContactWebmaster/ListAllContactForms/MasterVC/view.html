@@ -1,0 +1,72 @@
+<h1>{{ vm.viewName }}</h1>
+
+<div layout="row">
+    <div flex="10"></div>
+    <div flex style="background-color:white;" md-whiteframe>
+        <div layout="row">
+            <div>
+                Total Contact Form Submissions: <span>{{ vm.submissions.length }}</span>
+            </div>
+            <div>
+                <md-switch ng-model="vm.showArchived" aria-label="Show Archived">
+                    Show Archived
+                </md-switch>
+            </div>
+        </div>
+
+        <div layout="column" layout-padding ng-if="!vm.notFound">
+
+            <div ng-repeat="item in vm.submissions">
+                <div layout="row" 
+                     class="list-item"
+                     layout-align="space-around center"
+                     ng-if="(item.is_hidden === false || vm.showArchived === true)">
+                    <div><md-button ng-click="vm.openURI(item.id)">{{item.title}}</md-button></div>
+                    <div><small>{{item.pub_date | date:"MM/dd/yyyy 'at' h:mma"}}</small></div>
+                    <div ng-if="item.was_read === false"><span class="label alert">unread</span></div>
+                    <div ng-if="item.is_hidden === true"><span class="label dark">archived</span></div>
+                </div>
+                
+            </div>
+
+        </div>
+
+
+    </div>
+    <div flex="10"></div>
+</div>
+
+<style>
+
+
+    .list-item {
+      border-style: solid;
+	  border-width: 1px 0px 0px 0px;
+    }
+    
+    .label {
+        color:white;
+        background-color:rgb(155, 155, 155);
+        padding: 5px;
+        margin:3px;
+        border-radius: 8px;
+    }
+
+
+    .alert {
+        background-color:rgb(255,55,55);
+    }
+
+    .main {
+        background-color:rgb(55,55,255);
+    }
+
+    .success {
+        background-color:rgb(55,175,55);
+    }
+
+    .dark {
+        background-color:rgb(55,55,55);
+    }
+
+</style>

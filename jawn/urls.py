@@ -60,7 +60,11 @@ registered = [
     
     # Admin stuff
     url(r'^krogoth_dashboard/', include('krogoth_gantry.routes.resource_dashboard_urls')),
-    
+
+
+    # generics
+    url(r'^generic/', include('krogoth_gantry.routes.urls_generic_features')),
+
     url(r'^$', index),
 ]
 

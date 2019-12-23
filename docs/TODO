@@ -1,5 +1,0 @@
-##### Cleanup / Refactoring 
-- rest_auth & moho_extractor has functions that should be organized elsewhere.
-
-##### Try to iconify all files and folders
- 

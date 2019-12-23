@@ -46,16 +46,6 @@ CCD = {
     18: '\033[91m',  # red
 }
 
-from jawn.settings import DEBUG
-def krogoth_debug(msg):
-    if DEBUG == True:
-        pass
-        # try:
-        #     print(CCD[4] + '[MohoExtractor]' + CCD[0], end=CCD[10] + " >>> " + CCD[0])
-        #     print(str(msg), end="\n")
-        # except:
-        #     pass
-
 
 class IncludedHtmlMasterViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminUser,)
@@ -77,11 +67,6 @@ class IncludedHtmlCoreViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminUser,)
     queryset = IncludedHtmlCoreTemplate.objects.all().order_by('name')
     serializer_class = IncludedHtmlCoreTemplateSerializer
-
-
-
-
-
 
 
 class NgIncludedHtmlView(APIView):

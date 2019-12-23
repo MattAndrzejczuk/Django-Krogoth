@@ -1,0 +1,49 @@
+<h1>{{ vm.viewName }}</h1>
+
+<div layout="row">
+    <div flex="10"></div>
+    <div flex style="background-color:white;" md-whiteframe>
+        <div layout="column" layout-padding>
+            <md-input-container>
+                <label>Subject</label>
+                <input required ng-model="vm.formData.title">
+            </md-input-container>
+
+            <md-input-container>
+                <label>Your Email</label>
+                <input required 
+                       type="email" 
+                       name="sender" 
+                       ng-model="vm.formData.sender"
+                       maxlength="120" 
+                       ng-pattern="/^.+@.+\..+$/"/>
+
+                <div ng-messages="vm.formData.sender.$error" role="alert">
+                    <div ng-message-exp="['required', 'maxlength', 'pattern']">
+                        A valid email address is required.
+                    </div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Your message you'd like to send to the web master</label>
+                <textarea required 
+                          name="sender" 
+                          ng-model="vm.formData.body">
+                </textarea>
+                <div ng-messages="vm.formData.sender.$error" role="alert">
+                    <div ng-message-exp="['required']">
+                        Your message content is required.
+                    </div>
+                </div>
+            </md-input-container>
+            <div>
+                <md-button ng-click="vm.submitForm()" type="submit">Submit</md-button>
+            </div>
+            <div>
+                <pre>{{vm.debugResult | json}}</pre>
+            </div>
+        </div>
+    </div>
+    <div flex="10"></div>
+</div>

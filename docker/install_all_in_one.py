@@ -240,8 +240,7 @@ class InstallationRuntime:
         cmd_n15 = ['rm', '-R', '"../moho_extractor/migrations"']
         cmd_n16 = ['rm', '-R', '"../kbot_lab/migrations"']
 
-        MIGRATIONS = ['krogoth_chat', 'krogoth_core', 'moho_extractor', 'krogoth_3rdparty_api', 'krogoth_admin',
-                      'krogoth_social', 'kbot_lab', 'krogoth_examples', 'kbot_lab', 'krogoth_gantry']
+        MIGRATIONS = ['krogoth_gantry']
         cmd_n18 = ['docker', 'exec', '-it', 'armprime', './manage.py', 'makemigrations'] + MIGRATIONS
         cmd_n18_1 = ['docker', 'exec', '-it', 'armprime', './manage.py', 'makemigrations']
         cmd_n19 = ['docker', 'exec', '-it', 'armprime', './manage.py', 'migrate']
@@ -288,15 +287,15 @@ class InstallationRuntime:
         AKInstallation.execute_realtime_out(cmd_n07, 7)
         ### ---====== remove previous migrations ======---
         AKInstallation.execute_realtime_out(get_pyink, 8)
-        AKInstallation.execute_realtime_out(cmd_n08, -1)
-        AKInstallation.execute_realtime_out(cmd_n09, -1)
-        AKInstallation.execute_realtime_out(cmd_n10, -1)
-        AKInstallation.execute_realtime_out(cmd_n11, -1)
-        AKInstallation.execute_realtime_out(cmd_n12, -1)
-        AKInstallation.execute_realtime_out(cmd_n13, -1)
-        AKInstallation.execute_realtime_out(cmd_n14, -1)
-        AKInstallation.execute_realtime_out(cmd_n15, -1)
-        AKInstallation.execute_realtime_out(cmd_n16, -1)
+        # AKInstallation.execute_realtime_out(cmd_n08, -1)
+        # AKInstallation.execute_realtime_out(cmd_n09, -1)
+        # AKInstallation.execute_realtime_out(cmd_n10, -1)
+        # AKInstallation.execute_realtime_out(cmd_n11, -1)
+        # AKInstallation.execute_realtime_out(cmd_n12, -1)
+        # AKInstallation.execute_realtime_out(cmd_n13, -1)
+        # AKInstallation.execute_realtime_out(cmd_n14, -1)
+        # AKInstallation.execute_realtime_out(cmd_n15, -1)
+        # AKInstallation.execute_realtime_out(cmd_n16, -1)
         AKInstallation.execute_realtime_out(dexec, 16)
         ### ---====== make new migrations ======---
         AKInstallation.execute_realtime_out(cmd_n18, 17)
