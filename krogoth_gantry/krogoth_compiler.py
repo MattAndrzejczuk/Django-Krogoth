@@ -68,23 +68,26 @@ class master_compiler(APIView):
             clean_js_slate += ' \n /* MASTER MODULE */ \n' + cat_contain + \
                               ' \n /* MASTER CONTROLLER */ \n' + app_ctrl
         else:
-            clean_js_slate += ' \n /* ┈┈┈┈┈┈┈┈┈ MASTER MODULE ┈┈┈┈┈┈┈┈┈ */ \n' + compiled_slave['module_with_injected_navigation'] + \
+            clean_js_slate += ' \n /* ┈┈┈┈┈┈┈┈┈ MASTER MODULE ┈┈┈┈┈┈┈┈┈ */ \n' + \
+                              compiled_slave['module_with_injected_navigation'] + \
                               ' \n /* ┈┈┈┈┈┈┈┈┈ MASTER CONTROLLER ┈┈┈┈┈┈┈┈┈ */ \n' + app_ctrl
         clean_js_slate += '\n /* SLAVE CONTROLLER */ \n' + compiled_slave['slave_controllers_js']
 
         for service in djangular_services:
             raw_js_services_and_directives += '\n /* ┈┈┈┈┈┈┈┈┈ COMPILED SERVICE ┈┈┈┈┈┈┈┈┈ */ \n' + \
                                               service.service_js.replace('_DJANGULAR_SERVICE_NAME_',
-                                                                         service.name).replace(
+                                                                         service.name+lazy_token).replace(
                                                   '_DJANGULAR_SERVICE_TITLE_', service.title)
             raw_js_services_and_directives += '\n'
+            clean_js_slate = clean_js_slate.replace(service.name, service.name+lazy_token)
 
         for directive in djangular_directives:
             raw_js_services_and_directives += '\n /* ┈┈┈┈┈┈┈┈┈ COMPILED DIRECTIVE  ┈┈┈┈┈┈┈┈┈ */ \n' + \
                                               directive.directive_js.replace('_DJANGULAR_DIRECTIVE_NAME_',
-                                                                             directive.name).replace(
+                                                                             directive.name+lazy_token).replace(
                                                   "_DJANGULAR_DIRECTIVE_TITLE_", directive.title)
             raw_js_services_and_directives += '\n'
+            clean_js_slate = clean_js_slate.replace(directive.name, directive.name + lazy_token)
         clean_js_slate += raw_js_services_and_directives
         fuse_app_name = application.name.replace(' ', '_') + lazy_token
         parsed1 = clean_js_slate.replace('FUSE_APP_NAME', fuse_app_name)
@@ -93,7 +96,8 @@ class master_compiler(APIView):
             mvc_view = base_uri + fuse_app_name
             mvc_view_fixed = base_uri + application.name.replace(' ', '_') + "&tmpl=" + lazy_token + ".HTML"
             parsed1 = parsed1.replace(mvc_view, mvc_view_fixed)
-        parsed2 = parsed1.replace('FUSE_APP_TITLE', application.title).replace('FUSE_APP_SLAVE_NAME', application.name + 'Slave')
+        parsed2 = parsed1.replace('FUSE_APP_TITLE', application.title).replace('FUSE_APP_SLAVE_NAME', application.name
+                                                                               + 'Slave')
         parsed3 = parsed2.replace('FUSE_APP_ICON', ' mdi mdi-circle')
         parsed4 = parsed3.replace('NAV_HEADER', application.category.name.replace(' ', '_'))
         try:

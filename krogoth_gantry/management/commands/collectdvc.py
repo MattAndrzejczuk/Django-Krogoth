@@ -136,7 +136,8 @@ class Command(BaseCommand):
                             str_Controller = codecs.open(_AKStyleCtrlMVC,
                                                          'r').read()
                             _mvc = AKGantryMasterViewController.objects.get_or_create(name=name_pk,
-                                                                                      title=title, category=cat_sub_obj,
+                                                                                      title=title,
+                                                                                      category=cat_sub_obj,
                                                                                       is_enabled=not_lazy)
 
                             partial_HTMLs_path = 'static/web/app/' + dvc + '/partialsHTML'
@@ -150,7 +151,8 @@ class Command(BaseCommand):
                                         pathHTML = partial_HTMLs_path + "/" + html
                                         try:
                                             rawHtml = codecs.open(pathHTML, 'r').read()
-                                            self.stdout.write(self.style.SUCCESS(" ✅  Successfully loaded file: " + pathHTML))
+                                            self.stdout.write(self.style.SUCCESS(" ✅  Successfully loaded file: " +
+                                                                                 pathHTML))
                                         except:
                                             rawHtml = ""
                                             self.stdout.write(self.style.ERROR("Skipping file: " + pathHTML))
@@ -176,7 +178,8 @@ class Command(BaseCommand):
                                         pathJS = partial_JSs_path + "/" + js
                                         try:
                                             rawJs = codecs.open(pathJS, 'r').read()
-                                            self.stdout.write(self.style.SUCCESS(" ✅  Successfully loaded file: " + pathJS))
+                                            self.stdout.write(self.style.SUCCESS(" ✅  Successfully loaded file: " +
+                                                                                 pathJS))
                                         except:
                                             rawJs = ""
                                             self.stdout.write(self.style.ERROR("Skipping file: " + pathJS))
