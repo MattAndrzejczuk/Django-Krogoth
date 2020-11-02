@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
 from krogoth_3rdparty_api.views import GenericCallbackURIView
-from krogoth_3rdparty_api.twitter_api import UserTimelineTest
+# from krogoth_3rdparty_api.twitter_api import UserTimelineTest
 
 from krogoth_3rdparty_api.views import RESTfulProxy_AllBreeds, RESTfulProxy_RandomDogImage, RESTfulProxy_AllDogs, \
     RESTfulProxy_ListImagesForBreed, RESTfulProxy_GetImageForSpecificBreedAndSubBreed, \
@@ -15,9 +15,9 @@ urlpatterns = [
     # UNIVERSAL:
     url(r'^GenericCallbackURI/', GenericCallbackURIView.as_view(), name='Generic Callback URI'),
     # TWITTER:
-    url(r'^Twitter/<str:action>/<str:main_param>/', UserTimelineTest.as_view(), name='User Timeline Test'),
+    # url(r'^Twitter/<str:action>/<str:main_param>/', UserTimelineTest.as_view(), name='User Timeline Test'),
     # BLOCKCHAIN:
-    url(r'^Blockchain/MakeWallet', UserTimelineTest.as_view(), name='User Timeline Test'),
+    # url(r'^Blockchain/MakeWallet', UserTimelineTest.as_view(), name='User Timeline Test'),
 
     # - - - - - - - DOG API - - - - - - - -
     url(r'^api/breeds/list/all/',
