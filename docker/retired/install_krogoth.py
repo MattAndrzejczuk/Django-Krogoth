@@ -113,7 +113,7 @@ cmd = ('docker exec armprime-redis redis-cli config set notify-keyspace-events K
 execute(cmd, bc.lightblue+"armprime-redis"+bc.ENDC)
 
 cmd = ("echo 'creating psql extension hstore...'")
-execute(cmd, bc.lightblue+"creating psql extension hstore..."+bc.ENDC)
+# execute(cmd, bc.lightblue+"creating psql extension hstore..."+bc.ENDC)
 
 cmd = ('sleep 1')
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
@@ -122,7 +122,7 @@ execute(cmd, bc.lightblue+cmd+bc.ENDC)
 cmd = ('docker exec -it armprime-postgres useradd -p $(openssl passwd -1 123123) jawn')
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
 
-cmd = ("docker exec -it --user jawn armprime-postgres psql jawn -c 'create extension hstore;'")
+# cmd = ("docker exec -it --user jawn armprime-postgres psql jawn -c 'create extension hstore;'")
 execute(cmd, bc.lightblue+cmd+bc.ENDC)
 
 cmd = ('sleep 1')

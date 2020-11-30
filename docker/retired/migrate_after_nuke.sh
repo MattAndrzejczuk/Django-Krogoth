@@ -4,5 +4,5 @@ docker exec -it armprime ./manage.py migrate
 
 echo "You will need to add these to core and gantry krogoth apps:"
 echo " ...  "
-echo "from django.contrib.postgres.operations import HStoreExtension"
+#echo "from django.contrib.postgres.operations import HStoreExtension"
 echo "docker exec -it armprime ./manage.py migrate"

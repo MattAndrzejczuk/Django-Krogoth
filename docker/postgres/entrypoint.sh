@@ -1,8 +1,8 @@
 #!/bin/bash
-set -e
+# set -e
 
-psql -v ON_ERROR_STOP=1 --username "postgres" <<-EOSQL
-    psql jawn -c 'create extension hstore;'
-EOSQL
+# psql -v ON_ERROR_STOP=1 --username "postgres" <<-EOSQL
+#    psql jawn -c 'create extension hstore;'
+# EOSQL
 
 

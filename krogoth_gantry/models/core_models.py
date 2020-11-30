@@ -4,7 +4,7 @@ __author__ = 'Matt Andrzejczuk'
 from django.db import models
 from polymorphic.models import PolymorphicModel
 import codecs
-from django.contrib.postgres.fields import HStoreField
+# from django.contrib.postgres.fields import HStoreField
 from jawn.settings import BASE_DIR
 
 # Create your models here.
@@ -29,7 +29,7 @@ class AKFoundationAbstract(PolymorphicModel):
     theme = models.CharField(max_length=90,
                              default=BASE_DIR + '/static/web/core/')
     is_selected_theme = models.BooleanField(default=False)
-    custom_key_values = HStoreField(null=True, blank=True)
+    # custom_key_values = HStoreField(null=True, blank=True)
 
 
 

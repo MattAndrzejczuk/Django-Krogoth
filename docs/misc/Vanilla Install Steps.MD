@@ -28,7 +28,7 @@ ssh -L 3333:127.0.0.1:<remote mysql port> <username>@<remote host> -N
 ```bash
 pip install django-redis    ///maybe useless
 redis-cli config set notify-keyspace-events KEA
-sudo -u postgres psql -U postgres postgres -c 'create extension hstore;'
+# sudo -u postgres psql -U postgres postgres -c 'create extension hstore;'
 python3 manage.py makemigrations chat krogoth_3rdparty_api krogoth_examples krogoth_apps krogoth_social moho_extractor krogoth_gantry krogoth_core krogoth_admin
 python3 manage.py makemigrations
 python3 manage.py migrate
