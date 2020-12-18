@@ -14,7 +14,8 @@ krogoth_social/migrations/*
 moho_extractor/migrations/*
 Release.key
 rest_auth/migrations/*
-
+env/*
+mbp_env/*
 
 
 krogoth_chat/migrations/0001_initial.py
@@ -721,3 +722,4 @@ venv/lib/python3.7/site-packages/typing-3.6.6.dist-info/
 venv/lib/python3.7/site-packages/typing.py
 venv/lib/python3.7/site-packages/ws4redis/
 venv/pyvenv.cfg
+db.sqlite3
