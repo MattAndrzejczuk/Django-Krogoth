@@ -21,3 +21,4 @@ django_extensions
 pyScss
 uwsgi
 django-allauth
+psycopg2

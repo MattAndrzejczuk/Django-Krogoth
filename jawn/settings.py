@@ -46,13 +46,9 @@ except:
     POSTGRES_PORT_5432_TCP_ADDR = '172.17.0.2'
     POSTGRES_PORT_5432_TCP_PORT = '5432'
 
-
 # App will serve frontend from '/static/compiled' rather than slowly generating
 # frontend code dynamically. Use True for production.
 STATIC_KROGOTH_MODE = False
-
-
-
 
 # Application definition
 REST_FRAMEWORK = {
@@ -97,6 +93,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django.contrib.postgres',
+
     'django.contrib.sites',
     'django_filters',
     'django_extensions',
@@ -108,18 +107,14 @@ INSTALLED_APPS = (
     # 'allauth.socialaccount',
     # 'rest_framework_swagger',
     # 'krogoth_3rdparty_api',
-
     'krogoth_gantry',
     'rest_auth',
-
 )
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-
     'django.contrib.messages.middleware.MessageMiddleware',
-
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -143,51 +138,41 @@ TEMPLATES = [
         },
     },
 ]
+# USE WITH DOCKER ONLY:
 WSGI_APPLICATION = 'jawn.wsgi.application'
+# USE WITHOUT DOCKER:
+# WSGI_APPLICATION = 'jawn.wsgi_no_docker.application'
 
-
-
-
-# db_name = 'jawn'
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': db_name,
-#         'USER': os.environ["POSTGRES_ENV_POSTGRES_USER"],
-#         'PASSWORD': os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"],
-#         'HOST': os.environ["POSTGRES_PORT_5432_TCP_ADDR"],
-#         'PORT': os.environ["POSTGRES_PORT_5432_TCP_PORT"],
-#     }
-# }
-
-
+db_name = 'jawn'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR + '/db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': db_name,
+        'USER': POSTGRES_ENV_POSTGRES_USER,
+        'PASSWORD': POSTGRES_ENV_POSTGRES_PASSWORD,
+        'HOST': POSTGRES_PORT_5432_TCP_ADDR,
+        'PORT': POSTGRES_PORT_5432_TCP_PORT,
     }
 }
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR + '/db.sqlite3',
+#     }
+# }
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
-
-# static files:
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' # static files
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 STATIC_ROOT = ('/usr/src/volatile/static/')
-
-# user uploads root path:
-MEDIA_ROOT = '/usr/src/persistent/media/'
+MEDIA_ROOT = '/usr/src/persistent/media/' # user uploads root path
 MEDIA_URL = '/media/'
-
-# other
 SITE_ID = 2
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 REST_AUTH_SERIALIZERS = {
@@ -196,17 +181,12 @@ REST_AUTH_SERIALIZERS = {
 APPEND_SLASH = True
 
 
-
-
-
-
-
 # <WebSocket Config>
 #    - WebSocket messages are stored in a Redis DB, not in PostgreSQL DB.
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://" + os.environ["REDIS_PORT_6379_TCP_ADDR"] + ":" + os.environ["REDIS_PORT_6379_TCP_PORT"] + "/0",
+        "LOCATION": "redis://" + SESSION_REDIS_HOST + ":" + SESSION_REDIS_PORT + "/0",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "SERIALIZER": "django_redis.serializers.json.JSONSerializer",
@@ -220,7 +200,6 @@ WS4REDIS_EXPIRE = 2
 WS4REDIS_HEARTBEAT = '--heartbeat--'
 WS4REDIS_PREFIX = 'demo'
 
-
 ### DEFAULTS:
 # WS4REDIS_CONNECTION = getattr(settings, 'WS4REDIS_CONNECTION', {
 #     'host': 'localhost',
@@ -228,17 +207,9 @@ WS4REDIS_PREFIX = 'demo'
 #     'db': 0,
 #     'password': None,
 # })
-
-
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_PREFIX = 'session'
-
 # </WebSocket Config>
-
-
-
-
-
 
 WS4REDIS_CONNECTION = {
     'host': SESSION_REDIS_HOST,
@@ -246,16 +217,6 @@ WS4REDIS_CONNECTION = {
     'db': 0,
     'password': None,
 }
-
-
-
-
-
-
-
-
-
-
 
 KROGOTH_TRACE = True
 import sys

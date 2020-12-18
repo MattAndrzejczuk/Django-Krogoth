@@ -21,3 +21,4 @@ django-redis
 django_extensions
 pyScss
 uwsgi
+psycopg2

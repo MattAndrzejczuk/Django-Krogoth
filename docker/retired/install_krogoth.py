@@ -61,16 +61,6 @@ def dispatch_background_thread_collectstatic():
     output, err = p.communicate(b"")
     print(bc.yellow + " COLLECT STATIC REQUESTED: " + bc.ENDC + bc.blue + str(err) + bc.ENDC)
     
-#TODO: Python MUST be upgraded to latest.
-def upgrade_python3():
-    """
-    tar -xf /usr/src/app/docker/Python37.tar.xz  -C /usr/src/app/py3
-    /usr/src/app/docker/py3
-    ./configure
-    python -c 'print(" \033[31m INSTALLING PYTHON 3.7 \033[0m ")'
-    make
-    make install
-    """
 
 
 
