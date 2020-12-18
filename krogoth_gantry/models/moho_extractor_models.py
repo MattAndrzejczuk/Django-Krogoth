@@ -2,7 +2,6 @@ from django.db import models
 from polymorphic.models import PolymorphicModel
 # Create your models here.
 from krogoth_gantry.models.gantry_models import KrogothGantryMasterViewController
-from django.contrib.postgres.fields import JSONField
 
 
 
@@ -90,5 +89,5 @@ class GenericKGData(models.Model):
     category_one = models.CharField(max_length=150, default="GENERIC")
     category_two = models.CharField(max_length=150, default="GENERIC")
     date_created = models.DateTimeField(auto_now_add=True)
-    header = JSONField()
-    contents = JSONField()
+    header = models.TextField()
+    contents = models.TextField()

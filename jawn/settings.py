@@ -25,6 +25,28 @@ ALLOWED_HOSTS = ['*']
 
 
 
+SESSION_REDIS_HOST = ''
+SESSION_REDIS_PORT = ''
+POSTGRES_ENV_POSTGRES_USER = ''
+POSTGRES_ENV_POSTGRES_PASSWORD = ''
+POSTGRES_PORT_5432_TCP_ADDR = ''
+POSTGRES_PORT_5432_TCP_PORT = ''
+try:
+    SESSION_REDIS_HOST = os.environ["REDIS_PORT_6379_TCP_ADDR"]
+    SESSION_REDIS_PORT = os.environ["REDIS_PORT_6379_TCP_PORT"]
+    POSTGRES_ENV_POSTGRES_USER = os.environ["POSTGRES_ENV_POSTGRES_USER"]
+    POSTGRES_ENV_POSTGRES_PASSWORD = os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"]
+    POSTGRES_PORT_5432_TCP_ADDR = os.environ["POSTGRES_PORT_5432_TCP_ADDR"]
+    POSTGRES_PORT_5432_TCP_PORT = os.environ["POSTGRES_PORT_5432_TCP_PORT"]
+except:
+    SESSION_REDIS_HOST = '172.17.0.3'
+    SESSION_REDIS_PORT = '6379'
+    POSTGRES_ENV_POSTGRES_USER = 'jawn'
+    POSTGRES_ENV_POSTGRES_PASSWORD = 'xzxzf87d93a3f325574900aa2f5626e3844a903ffb64bed152ae124d2e79xzxz'
+    POSTGRES_PORT_5432_TCP_ADDR = '172.17.0.2'
+    POSTGRES_PORT_5432_TCP_PORT = '5432'
+
+
 # App will serve frontend from '/static/compiled' rather than slowly generating
 # frontend code dynamically. Use True for production.
 STATIC_KROGOTH_MODE = False
@@ -34,7 +56,8 @@ STATIC_KROGOTH_MODE = False
 
 # Application definition
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 80,
+    'PAGE_SIZE': 100,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
     ),
@@ -42,9 +65,8 @@ REST_FRAMEWORK = {
         # 'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
         # 'rest_framework.authentication.SessionAuthentication',
-        ),
-    'DEFAULT_FILTER_BACKENDS': (
-        'rest_framework.filters.DjangoFilterBackend',),
+    ),
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
     # 'DEFAULT_THROTTLE_CLASSES': (
     #     'rest_framework.throttling.ScopedRateThrottle',
     #     'rest_framework.throttling.AnonRateThrottle',
@@ -60,13 +82,14 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 INSTALLED_APPS = (
-    'suit',
+    # 'suit',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.instagram',
     'allauth.socialaccount.providers.twitter',
+
     'polymorphic',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -74,33 +97,34 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.postgres',
     'django.contrib.sites',
+    'django_filters',
     'django_extensions',
     'ws4redis',
     'rest_framework_docs',
     'rest_framework',
     'rest_framework.authtoken',
-    
-    'rest_framework_swagger',
-    'django_filters',
-    'krogoth_3rdparty_api',
-    
+
+    # 'allauth.socialaccount',
+    # 'rest_framework_swagger',
+    # 'krogoth_3rdparty_api',
+
     'krogoth_gantry',
     'rest_auth',
 
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+
+    'django.contrib.messages.middleware.MessageMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-)
+]
 
 ROOT_URLCONF = 'jawn.urls'
 TEMPLATES = [
@@ -124,15 +148,23 @@ WSGI_APPLICATION = 'jawn.wsgi.application'
 
 
 
-db_name = 'jawn'
+# db_name = 'jawn'
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': db_name,
+#         'USER': os.environ["POSTGRES_ENV_POSTGRES_USER"],
+#         'PASSWORD': os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"],
+#         'HOST': os.environ["POSTGRES_PORT_5432_TCP_ADDR"],
+#         'PORT': os.environ["POSTGRES_PORT_5432_TCP_PORT"],
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': db_name,
-        'USER': os.environ["POSTGRES_ENV_POSTGRES_USER"],
-        'PASSWORD': os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"],
-        'HOST': os.environ["POSTGRES_PORT_5432_TCP_ADDR"],
-        'PORT': os.environ["POSTGRES_PORT_5432_TCP_PORT"],
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR + '/db.sqlite3',
     }
 }
 
@@ -197,18 +229,10 @@ WS4REDIS_PREFIX = 'demo'
 #     'password': None,
 # })
 
-WS4REDIS_CONNECTION = {
-    'host': os.environ["REDIS_PORT_6379_TCP_ADDR"],
-    'port': os.environ["REDIS_PORT_6379_TCP_PORT"],
-    'db': 0,
-    'password': None,
-}
-
 
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_PREFIX = 'session'
-SESSION_REDIS_HOST = os.environ["REDIS_PORT_6379_TCP_ADDR"]
-SESSION_REDIS_PORT = os.environ["REDIS_PORT_6379_TCP_PORT"]
+
 # </WebSocket Config>
 
 
@@ -216,6 +240,12 @@ SESSION_REDIS_PORT = os.environ["REDIS_PORT_6379_TCP_PORT"]
 
 
 
+WS4REDIS_CONNECTION = {
+    'host': SESSION_REDIS_HOST,
+    'port': SESSION_REDIS_PORT,
+    'db': 0,
+    'password': None,
+}
 
 
 
@@ -226,47 +256,42 @@ SESSION_REDIS_PORT = os.environ["REDIS_PORT_6379_TCP_PORT"]
 
 
 
-# Krogoth Initialization.
-# don't touch this, it just prints version info for Python and Django.
+
 KROGOTH_TRACE = True
 import sys
 import django
 import rest_framework
 try:
-
     print('\033[35mPython %s\033[0m' % (str(sys.version)[0:6]))
-    print('\033[35mInitializing Django \033[1m' +
+    print('\033[36mInitializing Django \033[1m' +
           str(django.VERSION[0]) + '.' + str(django.VERSION[1]) + '.' + str(django.VERSION[2]) + '\033[0m\033[0m')
-    print('\033[95mDjango REST Framework \033[1m' + str(rest_framework.VERSION) + '\033[0m\033[0m')
-
-    # GET LAZARUS BUILD VERSION:
+    print('\033[94mDjango REST Framework \033[1m' + str(rest_framework.VERSION) + '\033[0m\033[0m')
     bash_cmd = ['git', 'rev-list', '--count', 'HEAD']
     get_build_cmd = str(subprocess.check_output(bash_cmd))
     current_build_1 = ''
     current_build_2 = ''
-    try:
-        current_build_1 = ('0.' + str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", "")) + '.'
-        current_build_2 = (str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", ""))[1:]
-    except:
-        print('failed to check version!!!')
-    if current_build_2 == '00':
-        current_build_2 = '0'
+    v1 = ''
+    v2 = ''
+    v3 = ''
+    total_commits = int(subprocess.check_output(bash_cmd).decode('utf-8').removesuffix('\n'))
+    if total_commits >= 1000:
+        as_str = str(total_commits)
+        v1 = as_str[:1]
+        v2 = as_str[1:2]
+        v3 = as_str[2:]
     else:
-        rm_0s = current_build_2.replace('10', '1').replace('20', '2').replace('30', '3').replace('40', '4')
-        current_build_2 = rm_0s.replace('50', '5').replace('60', '6').replace('70', '7').replace('80', '8').replace(
+        as_str = str(total_commits)
+        v3 = as_str[1:]
+        v2 = as_str[:1]
+        v1 = '0'
+    if v3 == '00':
+        v3 = '0'
+    else:
+        rm_0s = v3.replace('10', '1').replace('20', '2').replace('30', '3').replace('40', '4')
+        v3 = rm_0s.replace('50', '5').replace('60', '6').replace('70', '7').replace('80', '8').replace(
             '90', '9')
-
-    APP_VERSION = current_build_1[:3] + "." + current_build_2
-    print('\033[1m\033[32mKrogoth ' + APP_VERSION + ' \033[0m\033[0m')
+    APP_VERSION = v1 + '.' + v2 + '.' + v3
+    print('\033[1m\033[92mKrogoth ' + APP_VERSION + ' \033[0m\033[0m')
     print()
 except:
-    print('\033[31mDjango initialized, but the version is unknown... wtf?\033[0m')
-
-print("RC Soon")
-
-
-# print("POSTGRES: ")
-# print(os.environ["POSTGRES_ENV_POSTGRES_USER"])
-# print(os.environ["POSTGRES_ENV_POSTGRES_PASSWORD"])
-# print(os.environ["POSTGRES_PORT_5432_TCP_ADDR"])
-# print(os.environ["POSTGRES_PORT_5432_TCP_PORT"])
+    print('\033[31mDjango initialized, but the version is unknown...\033[0m')

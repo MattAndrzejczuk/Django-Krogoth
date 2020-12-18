@@ -1,21 +1,30 @@
-<h1>{{ vm.viewName }}</h1>
+<div layout="row" layout-align="center center" style="height:100px;">
+			&nbsp;
+        </div>
 
 <div layout="row">
     <div flex="10"></div>
-    <div flex style="background-color:white;" md-whiteframe>
+    <div flex style="background-color:white;" md-whiteframe layout-margin>
+
+        <div layout="row" layout-align="center center" layout-padding>
+			<span class="md-display-2" ng-if="vm.messageUI === ''">Contact Us</span>
+			<div ng-if="vm.messageUI !== ''">
+                <span class="md-display-2">Thank you.</span>
+            </div>
+        </div>
         <div layout="column" layout-padding>
-            <md-input-container>
+            <md-input-container  ng-if="vm.messageUI === ''">
                 <label>Subject</label>
                 <input required ng-model="vm.formData.title">
             </md-input-container>
 
-            <md-input-container>
+            <md-input-container  ng-if="vm.messageUI === ''">
                 <label>Your Email</label>
-                <input required 
-                       type="email" 
-                       name="sender" 
+                <input required
+                       type="email"
+                       name="sender"
                        ng-model="vm.formData.sender"
-                       maxlength="120" 
+                       maxlength="120"
                        ng-pattern="/^.+@.+\..+$/"/>
 
                 <div ng-messages="vm.formData.sender.$error" role="alert">
@@ -25,10 +34,10 @@
                 </div>
             </md-input-container>
 
-            <md-input-container>
-                <label>Your message you'd like to send to the web master</label>
-                <textarea required 
-                          name="sender" 
+            <md-input-container  ng-if="vm.messageUI === ''">
+                <label>Please enter any questions or concerns here.</label>
+                <textarea required
+                          name="sender"
                           ng-model="vm.formData.body">
                 </textarea>
                 <div ng-messages="vm.formData.sender.$error" role="alert">
@@ -37,11 +46,25 @@
                     </div>
                 </div>
             </md-input-container>
-            <div>
-                <md-button ng-click="vm.submitForm()" type="submit">Submit</md-button>
+            <div layout="row" layout-align="center center">
+                <md-button ng-click="vm.submitForm()"
+                           class="md-button md-primary md-raised"
+                           type="submit"
+                           ng-if="vm.shouldHideBtn === false">
+                    Submit</md-button>
             </div>
-            <div>
-                <pre>{{vm.debugResult | json}}</pre>
+            <div ng-if="vm.messageUI !== ''">
+                <div style="height:80px"></div>
+            </div>
+
+            <div ng-if="vm.messageUI !== ''">
+                <span class="md-display-1"></span>
+
+                <span>{{vm.messageUI}}</span>
+
+            </div>
+            <div ng-if="vm.messageUI !== ''">
+                <span style="height:100px"></span>
             </div>
         </div>
     </div>

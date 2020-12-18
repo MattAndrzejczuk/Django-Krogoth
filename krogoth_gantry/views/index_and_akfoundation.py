@@ -4,11 +4,14 @@ import os
 from krogoth_gantry.models.gantry_models import KrogothGantryMasterViewController
 from krogoth_gantry.models.core_models import AKBowerComponent
 
-from rest_framework import viewsets, filters
+
+from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAdminUser
 from krogoth_gantry.models.core_models import AKFoundationAbstract
 from krogoth_gantry.functions.akfoundation import AKFoundationSerializer
+from django_filters.rest_framework import DjangoFilterBackend
 
+from rest_framework.viewsets import ModelViewSet
 from django.template import loader
 from django.http import HttpResponse
 from jawn.settings import STATIC_KROGOTH_MODE, APP_VERSION
@@ -18,12 +21,12 @@ from krogoth_gantry.views.middleware.dj_tmpl_rendered import load_custom_css, lo
 
 from krogoth_gantry.models.krogoth_manager import KrogothVisitorTracking
 
-class AKFoundationViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAdminUser]
+class AKFoundationViewSet(ModelViewSet):
+    # permission_classes = [IsAdminUser]
     queryset = AKFoundationAbstract.objects.all().order_by('last_name')
     serializer_class = AKFoundationSerializer
     permission_classes = (AllowAny, )
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = [DjangoFilterBackend]
     filter_fields = ('unique_name', 'first_name', 'last_name', 'ext', )
 
 

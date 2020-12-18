@@ -1,4 +1,9 @@
-FROM django:python3
+FROM python:3
+
+ENV PYTHON_VERSION=3.9.0
+ENV PYTHON_PIP_VERSION=20.2.3
+
+
 RUN apt-get update
 
 RUN mkdir -p /usr/src/app

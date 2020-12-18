@@ -5,16 +5,16 @@ from rest_framework.permissions import AllowAny
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 
-from allauth.account.views import SignupView, ConfirmEmailView
+# from allauth.account.views import SignupView, ConfirmEmailView
 from allauth.account.utils import complete_signup
-from allauth.account import app_settings
+# from allauth.account import app_settings
 
 from rest_auth.app_settings import TokenSerializer
 from rest_auth.registration.serializers import SocialLoginSerializer
 from rest_auth.views import LoginView
 
 
-class RegisterView(APIView, SignupView):
+class RegisterView(APIView):
     """
     Accepts the credentials and creates a new user
     if user does not exist already
@@ -74,7 +74,7 @@ class RegisterView(APIView, SignupView):
         return Response(self.form.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class VerifyEmailView(APIView, ConfirmEmailView):
+class VerifyEmailView(APIView):
 
     permission_classes = (AllowAny,)
     allowed_methods = ('POST', 'OPTIONS', 'HEAD')

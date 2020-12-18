@@ -7,6 +7,9 @@ import json
 from krogoth_gantry.models.moho_extractor_models import NgIncludedHtml, IncludedHtmlMaster, IncludedJsMaster, IncludedHtmlCoreTemplate
 from krogoth_gantry.models.gantry_models import KrogothGantryMasterViewController
 
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics
+
 from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework import viewsets, filters
 CCD = {
@@ -51,7 +54,7 @@ class IncludedHtmlMasterViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminUser,)
     queryset = IncludedHtmlMaster.objects.all().order_by('name')
     serializer_class = IncludedHtmlMasterSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = [DjangoFilterBackend]
     filter_fields = ('master_vc__name', )
 
 
@@ -59,7 +62,7 @@ class IncludedJsMasterViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminUser,)
     queryset = IncludedJsMaster.objects.all().order_by('name')
     serializer_class = IncludedJsMasterSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = [DjangoFilterBackend]
     filter_fields = ('master_vc__name',)
 
 

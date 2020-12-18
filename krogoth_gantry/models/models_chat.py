@@ -3,7 +3,7 @@ from polymorphic.models import PolymorphicModel
 from django.contrib.auth.models import User
 import json
 from urllib.request import urlopen
-from django.contrib.postgres.fields import JSONField
+
 
 # Create your models here.
 class JawnUser(models.Model):
@@ -111,7 +111,7 @@ class Region(models.Model):
     coordinates_lat = models.FloatField()
     flickr_image = models.CharField(max_length=150, null=True)
     flickr_image_large = models.CharField(max_length=150, null=True)
-    google_json = JSONField()
+    google_json = models.TextField(default='{}')
 
 
     objects = RegionManager()

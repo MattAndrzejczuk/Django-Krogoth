@@ -54,12 +54,17 @@ class Command(BaseCommand):
             ink.pblue(kind)
             if kind == 'controller':
                 SaveMasterCtrlJS(name=name, path=path)
+                ink.pgreen('SaveMasterCtrlJS')
             elif kind == 'module':
                 SaveMasterModuleJS(name=name, path=path)
+                ink.pgreen('SaveMasterModuleJS')
             elif kind == 'view':
                 SaveMasterViewHTML(name=name, path=path)
+                ink.pgreen('SaveMasterViewHTML')
             elif kind == 'directive':
                 SaveDirectiveJS(name=name, path=path)
+                ink.pgreen('SaveDirectiveJS')
             elif kind == 'service':
                 SaveServiceJS(name=name, path=path)
+                ink.pgreen('SaveServiceJS')
         print()

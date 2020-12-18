@@ -2,8 +2,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 
-from krogoth_gantry.views.views_chat import UserViewSet, JawnUserViewSet, ImageMessageViewSet, TextMessageViewSet, ChannelViewSet, \
-    MessageViewSet, PrivateMessageRelationshipSet, RegionViewSet, LinkMessageViewSet, YouTubeMessageViewSet
+from krogoth_gantry.views.views_chat import UserViewSet, JawnUserViewSet
 from krogoth_gantry.views.index_and_akfoundation import index
 
 
@@ -11,15 +10,15 @@ from krogoth_gantry.views.index_and_akfoundation import index
 router = DefaultRouter()
 router.register(r'users', UserViewSet, 'User')
 router.register(r'jawn-users', JawnUserViewSet, 'Jawn User')
-router.register(r'image-messages', ImageMessageViewSet, 'Image Message')
-router.register(r'text-messages', TextMessageViewSet, 'Text Message')
-router.register(r'channels', ChannelViewSet, 'Channel')
-router.register(r'messages', MessageViewSet, 'Message')
-router.register(r'private-message-relationships', PrivateMessageRelationshipSet, 'Private Message')
-router.register(r'regions', RegionViewSet, 'Region')
-router.register(r'link-messages', LinkMessageViewSet)
-router.register(r'youtube-messages', YouTubeMessageViewSet)
-router.register(r'youtube', YouTubeMessageViewSet)
+# router.register(r'image-messages', ImageMessageViewSet, 'Image Message')
+# router.register(r'text-messages', TextMessageViewSet, 'Text Message')
+# router.register(r'channels', ChannelViewSet, 'Channel')
+# router.register(r'messages', MessageViewSet, 'Message')
+# router.register(r'private-message-relationships', PrivateMessageRelationshipSet, 'Private Message')
+# router.register(r'regions', RegionViewSet, 'Region')
+# router.register(r'link-messages', LinkMessageViewSet)
+# router.register(r'youtube-messages', YouTubeMessageViewSet)
+# router.register(r'youtube', YouTubeMessageViewSet)
 
 from krogoth_gantry.views.example_views import FruitViewSet, TextLabelViewSet, ManufacturerViewSet, CarViewSet, \
     ToppingViewSet, PizzaViewSet, HotelViewSet, OccupantViewSet, \
@@ -46,7 +45,7 @@ registered = [
     url(r'^krogoth_gantry/', include('krogoth_gantry.routes.urls_mvc_and_ide')),
     url(r'^krogoth_admin/', include('krogoth_gantry.routes.urls_manager')),
     
-    url(r'^ThirdParty/', include('krogoth_3rdparty_api.urls')),
+    # url(r'^ThirdParty/', include('krogoth_3rdparty_api.urls')),
     url(r'^krogoth_social/', include('krogoth_gantry.routes.urls_forums')),
     
     # user auth, forgot_password, reset pass, etc..

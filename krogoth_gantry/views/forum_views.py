@@ -10,6 +10,7 @@ from datetime import datetime
 from django.http import HttpResponse, JsonResponse
 from krogoth_gantry.models.models_chat import JawnUser
 from rest_framework import generics
+from django_filters.rest_framework import DjangoFilterBackend
 import random
 
 
@@ -23,7 +24,7 @@ class ForumThreadOPViewSet(viewsets.ModelViewSet):
     queryset = ForumThreadOP.objects.all()
     serializer_class = ForumThreadOPSerializer
     permission_classes = (IsAuthenticated,)
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = [DjangoFilterBackend]
     filter_fields = ('author', 'category',)
 
 
@@ -31,7 +32,7 @@ class ForumThreadReplyViewSet(viewsets.ModelViewSet):
     queryset = ForumThreadReply.objects.all()
     serializer_class = ForumThreadReplySerializer
     permission_classes = (IsAuthenticated,)
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = [DjangoFilterBackend]
     filter_fields = ('author', 'parent',)
 
 
@@ -39,7 +40,7 @@ class AKThreadCategoryViewSet(viewsets.ModelViewSet):
     queryset = AKThreadCategory.objects.all()
     serializer_class = AKThreadCategorySerializer
     permission_classes = (AllowAny,)
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = [DjangoFilterBackend]
     filter_fields = ('uid',)
     
 
@@ -47,7 +48,7 @@ class AKThreadViewSet(viewsets.ModelViewSet):
      queryset = AKThread.objects.all()
      serializer_class = AKThreadSerializer
      permission_classes = (AllowAny,)
-     filter_backends = (filters.DjangoFilterBackend,)
+     filter_backends = [DjangoFilterBackend]
      filter_fields = ('author', 'parent', 'category',)
 
 
@@ -63,14 +64,14 @@ class AKThreadSocialMediaViewSet(viewsets.ModelViewSet):
     queryset = AKThreadSocialMedia.objects.filter(parent=None)
     serializer_class = AKThreadSocialMediaSerializer
     permission_classes = (AllowAny,)
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = [DjangoFilterBackend]
     filter_fields = ('author', 'parent', 'category',)
 
 class AKThreadSocialMediaReplyViewSet(viewsets.ModelViewSet):
     queryset = AKThreadSocialMedia.objects.filter(title="REPLY")
     serializer_class = AKThreadReplySocialMediaSerializer
     permission_classes = (AllowAny,)
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = [DjangoFilterBackend]
     filter_fields = ('author', 'parent', 'category',)
 
 
