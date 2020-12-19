@@ -3,6 +3,9 @@
 
 A Django Project with powerful capabilities out of the box made for rapid single page application development.
 
+
+![alt text](https://raw.githubusercontent.com/MattAndrzejczuk/Django-Krogoth/master/krogoth.png)
+
 ## Quickstart On *Ubuntu*
 
 #### ( **1** ) - Python3 Prerequisits 
