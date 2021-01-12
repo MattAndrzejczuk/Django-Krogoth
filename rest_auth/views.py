@@ -39,22 +39,21 @@ class LoginView(GenericAPIView):
     token_model = Token
     response_serializer = TokenSerializer
 
-    def login(self):
-        # ACTIVATE REDIS CONNECITON
-        c = StrictRedis(connection_pool=redis_connection_pool)
-
-        self.user = self.serializer.validated_data['user']
-        self.token, created = self.token_model.objects.get_or_create(
-            user=self.user)
-
-        # SERIALIZE JAWN USER FOR WRITING TO REDIS
-        jawn_user = JawnUser.get_or_create_jawn_user(username=self.user.username)
-        j = JawnUserSerializer(jawn_user, context=self.get_serializer_context())
-        json = JSONRenderer().render(j.data)
-        # This is where we write to the Redis Store
-        c.set('tokens:' + self.token.key, json.decode("utf-8"))
-        if getattr(settings, 'REST_SESSION_LOGIN', True):
-            login(self.request, self.user)
+    ### REMOVED AFTER DJANGO 1.10 UPGRADED TO DJANGO 3.0:
+    # def login(self):
+        ### ACTIVATE REDIS CONNECITON
+        # c = StrictRedis(connection_pool=redis_connection_pool)
+        # self.user = self.serializer.validated_data['user']
+        # self.token, created = self.token_model.objects.get_or_create(
+        #     user=self.user)
+        ### SERIALIZE JAWN USER FOR WRITING TO REDIS
+        # jawn_user = JawnUser.get_or_create_jawn_user(username=self.user.username)
+        # j = JawnUserSerializer(jawn_user, context=self.get_serializer_context())
+        # json = JSONRenderer().render(j.data)
+        ### This is where we write to the Redis Store
+        # c.set('tokens:' + self.token.key, json.decode("utf-8"))
+        # if getattr(settings, 'REST_SESSION_LOGIN', True):
+        #     login(self.request, self.user)
 
     def get_response(self):
         return Response(
@@ -64,7 +63,10 @@ class LoginView(GenericAPIView):
     def post(self, request, *args, **kwargs):
         self.serializer = self.get_serializer(data=self.request.data)
         self.serializer.is_valid(raise_exception=True)
-        self.login()
+        self.user = self.serializer.validated_data['user']
+        self.token, created = self.token_model.objects.get_or_create(
+            user=self.user)
+        # self.login()
         return self.get_response()
 
 
