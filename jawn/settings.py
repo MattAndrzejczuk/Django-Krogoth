@@ -39,8 +39,9 @@ try:
     POSTGRES_PORT_5432_TCP_ADDR = os.environ["POSTGRES_PORT_5432_TCP_ADDR"]
     POSTGRES_PORT_5432_TCP_PORT = os.environ["POSTGRES_PORT_5432_TCP_PORT"]
 except:
-    SESSION_REDIS_HOST = '172.17.0.3'
-    SESSION_REDIS_PORT = '6379'
+    print("")
+    SESSION_REDIS_HOST = '127.0.0.1'
+    SESSION_REDIS_PORT = '7070'
     POSTGRES_ENV_POSTGRES_USER = 'jawn'
     POSTGRES_ENV_POSTGRES_PASSWORD = 'xzxzf87d93a3f325574900aa2f5626e3844a903ffb64bed152ae124d2e79xzxz'
     POSTGRES_PORT_5432_TCP_ADDR = '172.17.0.2'
@@ -58,9 +59,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        # 'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
     # 'DEFAULT_THROTTLE_CLASSES': (
@@ -184,13 +185,18 @@ APPEND_SLASH = True
 # <WebSocket Config>
 #    - WebSocket messages are stored in a Redis DB, not in PostgreSQL DB.
 CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://" + SESSION_REDIS_HOST + ":" + SESSION_REDIS_PORT + "/0",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            "SERIALIZER": "django_redis.serializers.json.JSONSerializer",
-        }
+    # "default": {
+    #     "BACKEND": "django_redis.cache.RedisCache",
+    #     "LOCATION": "redis://" + SESSION_REDIS_HOST + ":" + SESSION_REDIS_PORT + "/0",
+    #     "OPTIONS": {
+    #         "CLIENT_CLASS": "django_redis.client.DefaultClient",
+    #         "SERIALIZER": "django_redis.serializers.json.JSONSerializer",
+    #     }
+    # }
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'default-locmemcache',
+        'TIMEOUT': 5,  # seconds
     }
 }
 WEBSOCKET_URL = '/ws/'

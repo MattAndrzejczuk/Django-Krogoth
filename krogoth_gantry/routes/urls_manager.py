@@ -1,4 +1,5 @@
-from django.conf.urls import url, include
+from django.conf.urls import include
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 from krogoth_gantry.views.manager_tasks import UncommitedSQLViewSet, SaveSQLToFileSystemView, CompileMVCsToStatic, CollectStatic
 from krogoth_gantry.views.manager_filesystem import RenameService, CreateService, RenameDirective, \
@@ -12,25 +13,25 @@ router.register(r'UncommitedSQL', UncommitedSQLViewSet)
 # SaveSQLToFileSystemView
 
 urlpatterns = [
-    url(r'^KrogothAdministration/', include(router.urls)),
+    path('KrogothAdministration/', include(router.urls)),
 
-    url(r'^SaveSQLToFileSystem/$', SaveSQLToFileSystemView.as_view(), name='Save SQL To File System'),
-    url(r'^CollectStatic/$', CollectStatic.as_view(), name='Collect Static Files'),
-    url(r'^Compile/$', CompileMVCsToStatic.as_view(), name='Compile All MVCs'),
+    path('SaveSQLToFileSystem/', SaveSQLToFileSystemView.as_view(), name='Save SQL To File System'),
+    path('CollectStatic/', CollectStatic.as_view(), name='Collect Static Files'),
+    path('Compile/', CompileMVCsToStatic.as_view(), name='Compile All MVCs'),
 
-    url(r'^createNewMasterViewController/$', CreateNewMVCView.as_view(), name='Create New MVC View'),
+    path('createNewMasterViewController/', CreateNewMVCView.as_view(), name='Create New MVC View'),
 
-    url(r'^renameAngularJSService/$', RenameService.as_view(), name='Rename AngularJS Service'),
-    url(r'^createAngularJSService/$', CreateService.as_view(), name='Create AngularJS Service'),
+    path('renameAngularJSService/', RenameService.as_view(), name='Rename AngularJS Service'),
+    path('createAngularJSService/', CreateService.as_view(), name='Create AngularJS Service'),
 
-    url(r'^renameAngularJSDirective/$', RenameDirective.as_view(), name='Rename AngularJS Directive'),
-    url(r'^createAngularJSDirective/$', CreateDirective.as_view(), name='Create AngularJS Directive'),
+    path('renameAngularJSDirective/', RenameDirective.as_view(), name='Rename AngularJS Directive'),
+    path('createAngularJSDirective/', CreateDirective.as_view(), name='Create AngularJS Directive'),
 
-    url(r'^renameAngularJSTemplate/$', RenameTemplate.as_view(), name='Rename AngularJS Template'),
-    url(r'^createAngularJSTemplate/$', CreateTemplate.as_view(), name='Create AngularJS Template'),
+    path('renameAngularJSTemplate/', RenameTemplate.as_view(), name='Rename AngularJS Template'),
+    path('createAngularJSTemplate/', CreateTemplate.as_view(), name='Create AngularJS Template'),
 
-    url(r'^renameJavaScriptTemplate/$', RenameJavaScriptTemplate.as_view(), name='Rename JavaScript Template'),
-    url(r'^createJavaScriptTemplate/$', CreateJavaScriptTemplate.as_view(), name='Create JavaScript Template'),
+    path('renameJavaScriptTemplate/', RenameJavaScriptTemplate.as_view(), name='Rename JavaScript Template'),
+    path('createJavaScriptTemplate/', CreateJavaScriptTemplate.as_view(), name='Create JavaScript Template'),
 
 
 

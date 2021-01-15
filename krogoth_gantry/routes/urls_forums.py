@@ -1,7 +1,5 @@
-
-
-
-from django.conf.urls import url, include
+from django.conf.urls import include
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 from krogoth_gantry.views.forum_views import AKThreadViewSet, AKThreadCategoryViewSet, AKThreadSocialMediaViewSet, AKThreadListView, \
     AKThreadSocialMediaReplyViewSet, manual_post_method, \
@@ -22,8 +20,8 @@ router.register(r'ForumThreadOP', ForumThreadOPViewSet, 'Forum Thread OP')
 router.register(r'ForumThreadReply', ForumThreadReplyViewSet, 'Forum Thread Reply')
 
 urlpatterns = [
-    url(r'^api/', include(router.urls)),
-    url(r'^AKThreadListView/$', AKThreadListView.as_view()),
-    url(r'^manual_post_method/$', manual_post_method.as_view()),
-    url(r'^manual_post_reply/$', manual_post_reply.as_view()),
+    path('api/', include(router.urls)),
+    path('AKThreadListView/', AKThreadListView.as_view()),
+    path('manual_post_method/', manual_post_method.as_view()),
+    path('manual_post_reply/', manual_post_reply.as_view()),
 ]

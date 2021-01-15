@@ -1,4 +1,5 @@
 from django.conf.urls import url, include
+from django.urls import path
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 
@@ -10,15 +11,7 @@ from krogoth_gantry.views.index_and_akfoundation import index
 router = DefaultRouter()
 router.register(r'users', UserViewSet, 'User')
 router.register(r'jawn-users', JawnUserViewSet, 'Jawn User')
-# router.register(r'image-messages', ImageMessageViewSet, 'Image Message')
-# router.register(r'text-messages', TextMessageViewSet, 'Text Message')
-# router.register(r'channels', ChannelViewSet, 'Channel')
-# router.register(r'messages', MessageViewSet, 'Message')
-# router.register(r'private-message-relationships', PrivateMessageRelationshipSet, 'Private Message')
-# router.register(r'regions', RegionViewSet, 'Region')
-# router.register(r'link-messages', LinkMessageViewSet)
-# router.register(r'youtube-messages', YouTubeMessageViewSet)
-# router.register(r'youtube', YouTubeMessageViewSet)
+
 
 from krogoth_gantry.views.example_views import FruitViewSet, TextLabelViewSet, ManufacturerViewSet, CarViewSet, \
     ToppingViewSet, PizzaViewSet, HotelViewSet, OccupantViewSet, \
@@ -40,29 +33,29 @@ urlpatterns = []
 
 registered = [
     
-    url(r'^admin_a9k/', admin.site.urls),
-    url(r'^moho_extractor/', include('krogoth_gantry.routes.urls_akthemes')),
-    url(r'^krogoth_gantry/', include('krogoth_gantry.routes.urls_mvc_and_ide')),
-    url(r'^krogoth_admin/', include('krogoth_gantry.routes.urls_manager')),
+    path('admin_a9k/', admin.site.urls),
+    path('moho_extractor/', include('krogoth_gantry.routes.urls_akthemes')),
+    path('krogoth_gantry/', include('krogoth_gantry.routes.urls_mvc_and_ide')),
+    path('krogoth_admin/', include('krogoth_gantry.routes.urls_manager')),
     
     # url(r'^ThirdParty/', include('krogoth_3rdparty_api.urls')),
-    url(r'^krogoth_social/', include('krogoth_gantry.routes.urls_forums')),
+    path('krogoth_social/', include('krogoth_gantry.routes.urls_forums')),
     
     # user auth, forgot_password, reset pass, etc..
-    url(r'^api/', include(router.urls)),
+    path('api/', include(router.urls)),
     
     # url(r'^api/channel-list/', ChannelList.as_view()),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^rest-auth/', include('rest_auth.urls')),
-    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
-    url(r'^accounts/', include('allauth.urls')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('rest-auth/', include('rest_auth.urls')),
+    path('rest-auth/registration/', include('rest_auth.registration.urls')),
+    path('accounts/', include('allauth.urls')),
     
     # Admin stuff
-    url(r'^krogoth_dashboard/', include('krogoth_gantry.routes.resource_dashboard_urls')),
+    path('krogoth_dashboard/', include('krogoth_gantry.routes.resource_dashboard_urls')),
 
 
     # generics
-    url(r'^generic/', include('krogoth_gantry.routes.urls_generic_features')),
+    path('generic/', include('krogoth_gantry.routes.urls_generic_features')),
 
     url(r'^$', index),
 ]

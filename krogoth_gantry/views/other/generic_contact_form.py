@@ -1,4 +1,3 @@
-from rest_framework.views import APIView
 from django.http import HttpResponse, JsonResponse
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.views import APIView
@@ -8,8 +7,8 @@ CONTENT_TYPE = 'application/json; charset=utf-8'
 
 
 class GenericContactViewCreate(APIView):
-    authentication_classes = (AllowAny,)
-
+    # authentication_classes = (AllowAny,)
+    permission_classes = [AllowAny, ]
     def post(self, request, format=None):
 
         title = request.data["title"]
@@ -25,10 +24,9 @@ class GenericContactViewCreate(APIView):
 
 
 class GenericContactViewListAll(APIView):
-    authentication_classes = (IsAdminUser,)
-
+    # authentication_classes = (IsAdminUser,)
+    permission_classes = [IsAdminUser,]
     def get(self, request, format=None):
-
         forms = GenericContactForm.objects.all().order_by('-pub_date')
         response = {'items': []}
         for form in forms:
@@ -40,12 +38,12 @@ class GenericContactViewListAll(APIView):
             element['was_read'] = form.was_read
             element['is_hidden'] = form.is_hidden
             response['items'].append(element)
-
         return JsonResponse(response, content_type=CONTENT_TYPE, safe=False)
 
 
+
 class GenericContactViewDetail(APIView):
-    authentication_classes = (IsAdminUser,)
+    permission_classes = [IsAdminUser,]
 
     def get(self, request, *args, **kwargs):
         id = kwargs.get('id', '-1')
