@@ -1,0 +1,362 @@
+<section class="bg-section-primary">
+
+
+    <!-- EXAMPLE BLOCK 1 -->
+    <article layout="column" layout-align="space-between stretch" class="core-base" flex>
+
+        <div layout="row" layout-xs="column" class="shell" flex="20">
+            <div flex="" class="lpanel">
+                I'm above on mobile, and to the left on larger devices.
+            </div>
+            <div flex="" class="rpanel">
+                I'm below on mobile, and to the right on larger devices.
+            </div>
+        </div>
+        <div layout="row" layout-xs="column" class="shell" flex="40">
+            <div flex="" class="lpanel">
+                I'm above on mobile, and to the left on larger devices.
+            </div>
+            <div flex="" class="rpanel">
+                I'm below on mobile, and to the right on larger devices.
+            </div>
+        </div>
+
+        <div layout="row" layout-xs="column" class="shell"  flex="10">
+            <div flex="" class="lpanel">
+                I'm above on mobile, and to the left on larger devices.
+            </div>
+            <div flex="" class="rpanel">
+                I'm below on mobile, and to the right on larger devices.
+                <md-button ng-click="vm.lazyReloadThisCtrl()">lazy reload</md-button>
+            </div>
+        </div>
+
+    </article>
+
+
+
+    <!-- EXAMPLE BLOCK 2 -->
+    <div layout="row" layout-wrap="">
+        <span class="md-display-1">Overriding Responsive Flex Directives</span>
+    </div>
+
+    <div layout="row" layout-wrap="">
+        <div flex="100" flex-gt-sm="33" class="bg-demo-01">
+            flex 100% on mobile, <br>and 33% on gt-sm devices.
+        </div>
+        <div flex="100" flex-gt-sm="66"class="bg-demo-04">
+            flex 100% on mobile, <br>and 66% on gt-sm devices.
+        </div>
+        <div flex="100" flex-md="50" flex-gt-md="25"class="bg-demo-02">
+            flex 100% on mobile, 50% on md, and 25% on gt-md devices.
+        </div>
+        <div flex="100" flex-md="50" flex-gt-md="25"class="bg-demo-03">
+            flex 100% on mobile, 50% on md, and 25% on gt-md devices.
+        </div>
+        <div flex="100" flex-md="50" flex-gt-md="25"class="bg-demo-04">
+            flex 100% on mobile, 50% on md, and 25% on gt-md devices.
+        </div>
+        <div flex="100" flex-md="50" flex-gt-md="25"class="bg-alt-01">
+            flex 100% on mobile, 50% on md, and 25% on gt-md devices.
+        </div>
+    </div>
+
+
+
+    <!-- EXAMPLE BLOCK 3 -->
+    <div layout="row" layout-wrap="">
+        <span class="md-display-1"class="bg-alt-02">Use of Responsive Flex Directives within Responsive Layouts</span>
+    </div>
+
+    <div layout="column" layout-gt-sm="row">
+        <div flex-gt-sm="33"class="bg-alt-03">
+            column layout on mobile, <br>flex 33% on gt-sm devices.
+        </div>
+        <div flex-gt-sm="66"class="bg-alt-04">
+            column layout on mobile, <br>flex 66% on gt-sm devices.
+        </div>
+    </div>
+
+
+
+    <!-- EXAMPLE BLOCK X -->
+    <div layout="row" layout-wrap="">
+        <span class="md-display-1">Other Flex Values</span>
+    </div>
+    <div layout="row" layout-wrap="">
+        <div flex="none"class="bg-demo-01">
+            [flex="none"]
+        </div>
+        <div flex=""class="bg-demo-02">
+            [flex]
+        </div>
+        <div flex="nogrow"class="bg-demo-03">
+            [flex="nogrow"]
+        </div>
+        <div flex="grow"class="bg-demo-04">
+            [flex="grow"]
+        </div>
+        <div flex="initial"class="bg-alt-01">
+            [flex="initial"]
+        </div>
+        <div flex="auto"class="bg-alt-02">
+            [flex="auto"]
+        </div>
+        <div flex="noshrink"class="bg-demo-01">
+            [flex="noshrink"]
+        </div>
+        <div flex="0"class="bg-demo-02">
+            [flex="0"]
+        </div>
+    </div>
+
+
+    <!-- EXAMPLE BLOCK X -->
+    <div layout="row" layout-wrap="">
+        <span class="md-display-1">  Flex-Order Directive </span>
+    </div>
+    <div layout="row">
+        <div flex="" flex-order="-1"class="bg-demo-03">
+            <p>[flex-order="-1"]</p>
+        </div>
+        <div flex="" flex-order="1" flex-order-gt-md="3"class="bg-demo-04">
+            <p hide-gt-md="">[flex-order="1"]</p>
+            <p hide="" show-gt-md="">[flex-order-gt-md="3"]</p>
+        </div>
+        <div flex="" flex-order="2"class="bg-alt-01">
+            <p>[flex-order="2"]</p>
+        </div>
+        <div flex="" flex-order="3" flex-order-gt-md="1"class="bg-alt-02">
+            <p hide-gt-md="">[flex-order="3"]</p>
+            <p hide="" show-gt-md="">[flex-order-gt-md="1"]</p>
+        </div>
+    </div>
+
+
+    <!-- EXAMPLE BLOCK X -->
+    <div layout="row" layout-wrap="">
+        <span class="md-display-1"> Flex-Offset Directive </span>
+    </div>
+    <div layout="row">
+        <div flex="66" flex-offset="15"class="bg-alt-03">
+            [flex-offset="15"]
+            [flex="66"]
+        </div>
+        <div flex=""class="bg-alt-04">
+            [flex]
+        </div>
+    </div>
+
+
+
+<!-- - - - - - - - EMPTY SPACER - - - - - - - -->
+<div layout="row" layout-fill="" style="min-height: 104px;"class="glass-test" >
+    <div flex=""  ak-frosted-glass> 
+		- - - - - -
+    </div>
+</div>
+
+    <!-- EXAMPLE BLOCK X -->
+    <div layout="row" layout-wrap="">
+        <span class="md-display-1" class="bg-demo-01">  Layout Margin, Padding, and Fill </span>
+    </div>
+    <div layout="row" layout-margin="">
+        <div flex="" class="bg-demo-02">Parent layout and this element have margins.</div>
+    </div>
+    <div layout="row" layout-padding="">
+        <div flex="" class="bg-demo-03">Parent layout and this element have padding.</div>
+    </div>
+    <div layout="row" layout-fill="" style="min-height: 224px;">
+        <div flex="" class="bg-demo-04">Parent layout is set to fill available space.</div>
+    </div>
+    <div layout="row" layout-padding="" layout-margin="" layout-fill="" style="min-height: 224px;">
+        <div flex="" class="bg-alt-01">I am using all three at once.</div>
+    </div>
+</section>
+
+
+<!-- - - - - - - - EMPTY SPACER - - - - - - - -->
+<div layout="row" layout-fill="" style="min-height: 104px;" >
+    <div flex="" class="bg-section-transparent" ak-frosted-glass> 
+        <span class="md-display-4">COOL TRICK TO DO FULL HEIGHT OF BROWSER WINDOW</span>
+    </div>
+</div>
+
+
+<section class="bg-section-primary">
+
+    <!-- EXAMPLE BLOCK X -->
+    <div layout="row" layout-wrap="">
+        <span class="md-display-1"> Wrap  </span>
+    </div>   
+    <div layout="row" layout-wrap="">
+        <div flex="33" class="bg-demo-01">[flex=33]</div>
+        <div flex="66" class="bg-demo-02">[flex=66]</div>
+        <div flex="66" class="bg-demo-03">[flex=66]</div>
+        <div flex="33" class="bg-demo-04">[flex=33]</div>
+        <div flex="33" class="bg-alt-01">[flex=33]</div>
+        <div flex="33" class="bg-alt-02">[flex=33]</div>
+        <div flex="33" class="bg-alt-03">[flex=33]</div>
+    </div>
+
+    <!-- EXAMPLE BLOCK X -->
+    <div layout="row">
+        <span class="md-display-1">  No Wrap  </span>
+    </div>    
+    <div layout="row" layout-wrap="">
+        <div flex="33"class="bg-demo-01">[flex=33]</div>
+        <div flex="66"class="bg-demo-02">[flex=66]</div>
+        <div flex="66"class="bg-demo-03">[flex=66]</div>
+        <div flex="33"class="bg-demo-04">[flex=33]</div>
+        <div flex="33"class="bg-alt-01">[flex=33]</div>
+        <div flex="33"class="bg-alt-02">[flex=33]</div>
+        <div flex="33"class="bg-alt-03">[flex=33]</div>
+    </div>    
+
+    <!-- EXAMPLE BLOCK X -->
+    <div layout="row" layout-wrap="">
+        <span class="md-display-1">  Hide And Show Directives  </span>
+    </div>    
+    <div layout="row">
+        <div hide="" show-gt-sm="" flex=""class="bg-demo-01">
+            Only show on gt-sm devices.
+        </div>
+        <div hide-gt-sm="" flex=""class="bg-demo-02">
+            Shown on small and medium.<br>
+            Hidden on gt-sm devices.
+        </div>
+        <div show="" hide-gt-md="" flex=""class="bg-demo-03">
+            Shown on small and medium size devices.<br>
+            Hidden on gt-md devices.
+        </div>
+        <div hide="" show-md="" flex=""class="bg-demo-04">
+            Shown on medium size devices only.
+        </div>
+        <div hide="" show-gt-lg="" flex=""class="bg-alt-01">
+            Shown on devices larger than 1200px wide only.
+        </div>
+    </div>
+
+    <!-- EXAMPLE BLOCK X -->
+    <div layout="row" layout-wrap="">
+        <span class="md-display-1"> IE11 - Layout Column, 0px Height   </span>
+    </div>    
+    <div flex="" layout="column">
+        <div flex=""class="bg-alt-02">
+            11111<br>11111<br>11111
+        </div>
+
+        <div flex=""class="bg-alt-03">
+            22222<br>22222<br>22222
+        </div>
+
+        <div flex="" class="bg-alt-04">
+            33333<br>33333<br>33333
+        </div>
+    </div>
+
+
+
+
+
+    <!-- EXAMPLE BLOCK X -->
+    <div layout="row" layout-wrap="">
+        <span class="md-display-1">   </span>
+    </div>    
+
+
+
+    <!-- EXAMPLE BLOCK X -->
+    <div layout="row" layout-wrap="">
+        <span class="md-display-1">   </span>
+    </div>    
+
+
+    <!-- EXAMPLE BLOCK X -->
+    <div layout="row" layout-wrap="">
+        <span class="md-display-1">   </span>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+</section>
+
+
+<style>
+    .bg-section-primary {
+        color:#FFFFFF;
+        /*background-color:#312c51;*/
+    }
+    .bg-section-transparent {
+        color:#FFFFFF;
+        background-color:rgba(0,10,50,0.6);
+    }
+    .bg-demo-01 {
+        color:#FFFFFF;
+        background-color:#150485;
+    }
+    .bg-demo-02 {
+        color:#FFFFFF;
+        background-color:#590995;
+    }
+    .bg-demo-03 {
+        color:#FFFFFF;
+        background-color:#c62a88;
+    }
+    .bg-demo-04 {
+        background-color:#433d3c;
+    }
+    .bg-alt-01 {
+        color:#FFFFFF;
+        background-color:#3c3b5c;
+    }
+    .bg-alt-02 {
+        color:#FFFFFF;
+        background-color:#d53939;
+    }
+    .bg-alt-03 {
+        background-color:#e27802;
+    }
+    .bg-alt-04 {
+        color:#FFFFFF;
+        background-color:#7b3c59;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .core-base {
+        background-color:rgba(255,0,0,0.5);
+    }
+    .shell {
+        background-color:rgba(255,55,255,0.5);
+        min-height:100px !important;
+    }
+    .lpanel { 
+        background-color:rgba(255,255,55,0.5);
+    }
+    .rpanel {
+
+        background-color:rgba(70,255,255,0.5);
+
+    }
+</style>
