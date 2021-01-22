@@ -33,7 +33,7 @@
                 </div>
                 <div flex ng-cloak>
                     <md-grid-list
-                                  md-cols="1" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="3" md-cols-gt-lg="4"
+                                  md-cols="2" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="6" md-cols-gt-lg="7"
                                   md-row-height-gt-md="1:1" md-row-height="1:1"
                                   md-gutter="18px" md-gutter-gt-sm="14px">
                         <md-grid-tile ng-repeat="tile in vm.objectList"
@@ -43,9 +43,8 @@
                                       md-colspan="1"
                                       md-colspan-sm="1"
                                       md-colspan-xs="1"
-                                      class="blur-content-primary"
-                                      style="border-radius:25px"
-                                      md-whiteframe="3">
+                                      class="md-toolbar md-sidenav glass-global glass-test black-bg-new "
+                                      style="border-radius:25px">
 
                             <!-- Category Tile -->
                             <span ng-if="tile.name !== 'AddMVC'"

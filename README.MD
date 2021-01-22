@@ -6,7 +6,27 @@ A Django Project with powerful capabilities out of the box made for rapid single
 
 ![alt text](https://raw.githubusercontent.com/MattAndrzejczuk/Django-Krogoth/master/krogoth.png)
 
-## Quickstart On *Ubuntu*
+----
+## Quickstart On *Ubuntu 16*
+### Install Docker
+```bash
+$ apt-get install -y apt-transport-https 
+
+$ apt-get install -y ca-certificates 
+$ apt-get install -y curl 
+$ apt-get install -y gnupg-agent 
+$ apt-get install -y software-properties-common
+
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+$ apt-get update
+$ apt-get install docker-ce docker-ce-cli containerd.io
+```
+----
+
+
+
+
 
 #### ( **1** ) - Python3 Prerequisits 
 
@@ -51,3 +71,18 @@ To write changes to the included components, here's some examples:
  `./manage.py pushup --path "static/web/app/Directive_Examples/Another_Subcat/Element_With_Events/Directives/movieForm.js" --name "movieForm" --kind directive`
 
  `./manage.py pushup --path "static/web/app/Directive_Examples/RESTful_Samples/RESTfulModelI/Services/RESTfulModelI.js" --name "RESTfulModelI" --kind service` 
+
+
+
+#### Creating New MVC Gantry
+```stylus
+- [22/Jan/2021 22:10:54] "POST /krogoth_admin/createNewMasterViewController/ HTTP/1.1" 201 20
+- [22/Jan/2021 22:10:54] "GET /krogoth_gantry/viewsets/Category/ HTTP/1.1" 200 1412
+```
+
+##### TODO: Add These Demos
+https://tutorialzine.com/2012/02/apple-like-login-form
+https://demo.tutorialzine.com/2012/02/apple-like-login-form/
+
+https://paulrhayes.com/experiments/cube/multiCubes.html
+https://github.com/fofr/paulrhayes.com-experiments/blob/master/cube/index.html

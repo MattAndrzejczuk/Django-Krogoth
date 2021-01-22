@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-
+import os
 from rest_framework.views import APIView
 from krogoth_gantry.functions.edit_core import IncludedHtmlMasterSerializer, IncludedJsMasterSerializer, \
     IncludedHtmlCoreTemplateSerializer
@@ -92,7 +92,10 @@ class NgIncludedHtmlView(APIView):
         except Exception as e:
 
             error += str(e) + " \n"
-            html = '<div> <h1>Fatal Error</h1> <p>Unable to load HTML: <b>' + name + '</b> </p> </div>'
+            html = '<div> <h1>Fatal Error</h1> <p>Unable to load HTML: <b>' + \
+                   name + \
+                   " TRACE: krogoth_gantry/views/middleware/included_html_js_views.py" + \
+                   '</b> </p> </div>'
             html += '<script>alert("fatal krogoth_gantry error, unable to load HTML view: ' + name + \
                     ' due to: ' + error + '");</script>'
             html += '<h2>' + error + '</h2>'
@@ -145,14 +148,16 @@ class LoadFileAsBase64View(APIView):
     permission_classes = (AllowAny,)
     def get(self, request):
         name = request.GET['name']
-        path = BASE_DIR + '/static/fancy_bgs/' + name
-        # if os.path.isfile(path) == True:
-        #     pass
-        # else:
-        #     raise IOError()
-        with open(path, "rb") as image_file:
-            encoded_string = base64.b64encode(image_file.read())
-            return HttpResponse(content_type='text/plain', content=encoded_string)
+
+        path = BASE_DIR + '/static/styles/fancy_bgs/' + name
+        if os.path.isfile(path) == True:
+            with open(path, "rb") as image_file:
+                encoded_string = base64.b64encode(image_file.read())
+                return HttpResponse(content_type='text/plain', content=encoded_string)
+        else:
+            msg = "FAILED TO LOAD FILE AT PATH: " + path
+            return HttpResponse(content_type='text/plain', content=msg)
+
 
 
 
