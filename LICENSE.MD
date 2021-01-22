@@ -1,8 +1,7 @@
-# DON'T BE A DICK PUBLIC LICENSE
+### DON'T BE A DICK PUBLIC LICENSE
 
 > Version 0.8, May 2018
 
-> Copyright (C) 2018 Core Prime
 
 Everyone is permitted to copy and distribute verbatim or modified
 copies of this license document.
