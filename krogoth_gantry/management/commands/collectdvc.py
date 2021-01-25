@@ -105,39 +105,46 @@ class Command(BaseCommand):
 
 
                         if has_master == True:
-                            style = '/**/'
+                            _style = '/**/'
+                            _theme = '/**/'
                             title = 'Untitled'
+                            _AKLazyTxt = 'static/web/app/' + dvc + '/LAZY.txt'
+                            _AKTitleTxt = 'static/web/app/' + dvc + '/Title.txt'
+                            ABSOLUTE_PATH_SCSS_STYLE_____ = 'static/web/app/' + dvc + '/MasterVC/style.scss'
+                            ABSOLUTE_PATH_CSS_STYLE______ = 'static/web/app/' + dvc + '/MasterVC/style.css'
+                            ABSOLUTE_PATH_SCSS_THEMESTYLE = 'static/web/app/' + dvc + '/MasterVC/themestyle.scss'
+                            ABSOLUTE_PATH_CSS_THEMESTYLE_ = 'static/web/app/' + dvc + '/MasterVC/themestyle.css'
+                            _AKStyleModuleMVC = 'static/web/app/' + dvc + '/MasterVC/module.js'
+                            _AKStyleCtrlMVC = 'static/web/app/' + dvc + '/MasterVC/controller.js'
+                            _AKStyleViewMVC = 'static/web/app/' + dvc + '/MasterVC/view.html'
                             # subcatagory = ''
 
 
                             not_lazy = True
-                            _AKLazyTxt = 'static/web/app/' + dvc + '/LAZY.txt'
                             if os.path.isfile(_AKLazyTxt):
-                                print("LAZY CREATING....")
-                                print('static/web/app/' + dvc + '/LAZY.txt')
+                                # ------ ----- ----- print("LAZY CREATING....")
+                                # ------ ----- ----- print('static/web/app/' + dvc + '/LAZY.txt')
                                 not_lazy = False
-                            _AKTitleTxt = 'static/web/app/' + dvc + '/Title.txt'
                             if os.path.exists(_AKTitleTxt):
                                 title = codecs.open(_AKTitleTxt, 'r').read()
-                            _AKStyleCSSMVC = 'static/web/app/' + dvc + '/MasterVC/style.css'
-                            if os.path.exists(_AKStyleCSSMVC):
-                                style = codecs.open(_AKStyleCSSMVC, 'r').read()
-                            if os.path.exists('static/web/app/' + dvc + '/MasterVC/style.scss'):
-                                rawcode = codecs.open('static/web/app/' + dvc + '/MasterVC/style.scss',
-                                                      'r').read()
-                                compiled = Compiler().compile_string(rawcode)
-                                style += compiled
+                            if os.path.exists(ABSOLUTE_PATH_SCSS_STYLE_____):
+                                _style += Compiler().compile_string(codecs.open(ABSOLUTE_PATH_SCSS_STYLE_____, 'r').read())
+                            elif os.path.exists(ABSOLUTE_PATH_CSS_STYLE______):
+                                _style += codecs.open(ABSOLUTE_PATH_CSS_STYLE______, 'r').read()
 
-                            _AKStyleModuleMVC = 'static/web/app/' + dvc + '/MasterVC/module.js'
-                            _AKStyleCtrlMVC = 'static/web/app/' + dvc + '/MasterVC/controller.js'
-                            _AKStyleViewMVC = 'static/web/app/' + dvc + '/MasterVC/view.html'
+                            if os.path.exists(ABSOLUTE_PATH_SCSS_THEMESTYLE):
+                                _theme += Compiler().compile_string(codecs.open(ABSOLUTE_PATH_SCSS_THEMESTYLE, 'r').read())
+                            elif os.path.exists(ABSOLUTE_PATH_CSS_THEMESTYLE_):
+                                _theme += codecs.open(ABSOLUTE_PATH_CSS_THEMESTYLE_, 'r').read()
+
                             str_View = codecs.open(_AKStyleViewMVC, 'r').read()
                             str_Module = codecs.open(_AKStyleModuleMVC, 'r').read()
-                            str_Controller = codecs.open(_AKStyleCtrlMVC,
-                                                         'r').read()
+                            str_Controller = codecs.open(_AKStyleCtrlMVC, 'r').read()
                             _mvc = AKGantryMasterViewController.objects.get_or_create(name=name_pk,
                                                                                       title=title,
                                                                                       category=cat_sub_obj,
+                                                                                      style_css=_style,
+                                                                                      themestyle=_theme,
                                                                                       is_enabled=not_lazy)
 
                             partial_HTMLs_path = 'static/web/app/' + dvc + '/partialsHTML'
@@ -197,7 +204,7 @@ class Command(BaseCommand):
                             # clean_catagory = catagory.replace(' ', '').replace('-', '')
                             # clean_subcatagory = subcatagory.replace(' ', '').replace('-', '')
                             _mvc[0].path_to_static = 'static/web/app/' + dvc + '/'
-                            _mvc[0].style_css = style
+                            _mvc[0].style_css = _style
                             _mvc[0].view_html = str_View
                             _mvc[0].controller_js = str_Controller
                             _mvc[0].module_js = str_Module.replace("msNavigationServiceProvider.saveItem('.",
@@ -230,7 +237,7 @@ class Command(BaseCommand):
                                                               'r').read()
                                         try:
                                             KrogothGantryService.objects.get(name=srv[:-3]).delete()
-                                            print('deleting old service...')
+                                            # ------ ----- ----- print('deleting old service...')
                                         except:
                                             pass
                                         service = KrogothGantryService.objects.get_or_create(name=srv[:-3])
