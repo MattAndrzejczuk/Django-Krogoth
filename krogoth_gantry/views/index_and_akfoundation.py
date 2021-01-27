@@ -14,7 +14,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.viewsets import ModelViewSet
 from django.template import loader
 from django.http import HttpResponse
-from jawn.settings import STATIC_KROGOTH_MODE, APP_VERSION
+from jawn.settings import STATIC_KROGOTH_MODE #, APP_VERSION
 
 from krogoth_gantry.views.middleware.dj_tmpl_rendered import load_custom_css, load_krogoth_css, load_background_css, \
     load_core_css, load_core_elements_css
@@ -62,7 +62,7 @@ def index(request):
         all_applications = os.listdir('static/compiled')
         for application in all_applications:
             KrogothGantryMasterViewControllers.append('/static/compiled/' + application)
-    version_build = 'Krogoth ' + APP_VERSION
+    version_build = 'Krogoth v1.0.02'
     seo_title = "Krogoth "
     seo_description = 'description'
     seo_description += ', description - 2'

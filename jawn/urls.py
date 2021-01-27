@@ -5,7 +5,7 @@ from rest_framework.routers import DefaultRouter
 
 from krogoth_gantry.views.views_chat import UserViewSet, JawnUserViewSet
 from krogoth_gantry.views.index_and_akfoundation import index
-
+from krogoth_gantry.krogoth_modelview_pods import kg_pubstatic_interface
 
 
 router = DefaultRouter()
@@ -31,7 +31,15 @@ router.register(r'__ExamplesBasicFileUpload', BasicFileUploadViewSet, 'BasicFile
 
 urlpatterns = []
 
+
+
 registered = [
+
+    # path('global_static_interface/load_static_css/<str:name>/', kg_pubstatic_interface.LoadStaticCSS.as_view()),
+    # path('global_static_interface/admin_editor_css/<str:name>/', kg_pubstatic_interface.AdminEditorCSS.as_view()),
+    # path('global_static_interface/admin_editor_text/<str:name>/', kg_pubstatic_interface.AdminEditorTextDocument.as_view()),
+    path('global_static_interface/', include('krogoth_gantry.krogoth_modelview_pods.kg_pubstatic_interface')),
+
     
     path('admin_a9k/', admin.site.urls),
     path('moho_extractor/', include('krogoth_gantry.routes.urls_akthemes')),

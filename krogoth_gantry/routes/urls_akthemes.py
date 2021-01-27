@@ -1,6 +1,5 @@
 from django.urls import path
 from krogoth_gantry.views.middleware.included_html_js_views import NgIncludedHtmlView, KrogothFoundationView, LoadFileAsBase64View
-from krogoth_gantry.views.middleware.legacy_data_views import GenericKGData_GetOneOrCreate, GenericKGData_GetFromCategoryOne
 from krogoth_gantry.views.middleware.dj_tmpl_rendered import example_view, load_custom_css, load_krogoth_css, load_background_css, \
     load_core_css, load_core_elements_css
 
