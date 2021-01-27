@@ -44,7 +44,7 @@ except:
     SESSION_REDIS_PORT = '7070'
     POSTGRES_ENV_POSTGRES_USER = 'jawn'
     POSTGRES_ENV_POSTGRES_PASSWORD = 'xzxzf87d93a3f325574900aa2f5626e3844a903ffb64bed152ae124d2e79xzxz'
-    POSTGRES_PORT_5432_TCP_ADDR = '172.17.0.2'
+    POSTGRES_PORT_5432_TCP_ADDR = '172.17.0.3'
     POSTGRES_PORT_5432_TCP_PORT = '5432'
 
 # App will serve frontend from '/static/compiled' rather than slowly generating
@@ -105,9 +105,6 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework.authtoken',
 
-    # 'allauth.socialaccount',
-    # 'rest_framework_swagger',
-    # 'krogoth_3rdparty_api',
     'krogoth_gantry',
     'rest_auth',
 )

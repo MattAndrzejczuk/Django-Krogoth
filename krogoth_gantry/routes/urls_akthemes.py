@@ -13,12 +13,9 @@ urlpatterns = [
     path('KrogothFoundation/', KrogothFoundationView.as_view(), name='Krogoth Foundation'),
     # ✅
     path('NgIncludedHtml/', NgIncludedHtmlView.as_view(), name='NgIncludedHtml'),
-    # ✅
+    # ✅ /moho_extractor/LoadFileAsBase64?name=EpicPlanet_1.png
     path('LoadFileAsBase64/', LoadFileAsBase64View.as_view(), name='LoadFileAsBase64'),
 
-
-    path('GenericKGData_GetOneOrCreate/', GenericKGData_GetOneOrCreate.as_view(), name='GenericKGData_GetOneOrCreate'),
-    path('GenericKGData_GetFromCategoryOne/', GenericKGData_GetFromCategoryOne.as_view(), name='GenericKGData_GetFromCategoryOne'),
 
     path('example', example_view),
 
