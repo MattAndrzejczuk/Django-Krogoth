@@ -5,7 +5,7 @@ save changes to filesystem using URL:
 
  [ GET ]
 
- /krogoth_admin/SaveSQLToFileSystem/
+ /krogoth_gantry/SaveSQLToFileSystem/
 
 ...
 */

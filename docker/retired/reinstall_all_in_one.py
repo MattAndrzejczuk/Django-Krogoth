@@ -212,8 +212,7 @@ class InstallationRuntime():
         cmd_n15 = ['rm', '-R', migrations_path + 'moho_extractor/migrations']
         cmd_n16 = ['rm', '-R', migrations_path + 'kbot_lab/migrations']
 
-        MIGRATIONS = ['krogoth_chat', 'krogoth_core', 'moho_extractor', 'krogoth_3rdparty_api', 'krogoth_admin',
-                      'krogoth_social', 'kbot_lab', 'krogoth_examples', 'kbot_lab', 'krogoth_gantry']
+        MIGRATIONS = ['krogoth_gantry']
         cmd_n18 = ['docker', 'exec', '-it', 'armprime', './manage.py', 'makemigrations'] + MIGRATIONS
         cmd_n18_1 = ['docker', 'exec', '-it', 'armprime', './manage.py', 'makemigrations']
         cmd_n19 = ['docker', 'exec', '-it', 'armprime', './manage.py', 'migrate']

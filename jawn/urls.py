@@ -34,38 +34,27 @@ urlpatterns = []
 
 
 registered = [
-
-    # path('global_static_interface/load_static_css/<str:name>/', kg_pubstatic_interface.LoadStaticCSS.as_view()),
-    # path('global_static_interface/admin_editor_css/<str:name>/', kg_pubstatic_interface.AdminEditorCSS.as_view()),
-    # path('global_static_interface/admin_editor_text/<str:name>/', kg_pubstatic_interface.AdminEditorTextDocument.as_view()),
-    path('global_static_interface/', include('krogoth_gantry.krogoth_modelview_pods.kg_pubstatic_interface')),
-
-    
-    path('admin_a9k/', admin.site.urls),
-    path('moho_extractor/', include('krogoth_gantry.routes.urls_akthemes')),
-    path('krogoth_gantry/', include('krogoth_gantry.routes.urls_mvc_and_ide')),
-    path('krogoth_admin/', include('krogoth_gantry.routes.urls_manager')),
-    
-    # url(r'^ThirdParty/', include('krogoth_3rdparty_api.urls')),
+    # Example Stuff
+    path('krogoth_dashboard/', include('krogoth_gantry.routes.resource_dashboard_urls')),
+    path('generic/', include('krogoth_gantry.routes.urls_generic_features')),
     path('krogoth_social/', include('krogoth_gantry.routes.urls_forums')),
+
+    url(r'^$', index),
+    path('admin_a9k/', admin.site.urls),
+
+    path('global_static_interface/', include('krogoth_gantry.krogoth_modelview_pods.kg_pubstatic_interface')),
+    path('moho_extractor/', include('krogoth_gantry.routes.urls_mohoextractor')),
+    path('krogoth_gantry/', include('krogoth_gantry.routes.urls_krogoth_gantry')),
+
+
+
     
     # user auth, forgot_password, reset pass, etc..
     path('api/', include(router.urls)),
-    
-    # url(r'^api/channel-list/', ChannelList.as_view()),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     path('accounts/', include('allauth.urls')),
-    
-    # Admin stuff
-    path('krogoth_dashboard/', include('krogoth_gantry.routes.resource_dashboard_urls')),
-
-
-    # generics
-    path('generic/', include('krogoth_gantry.routes.urls_generic_features')),
-
-    url(r'^$', index),
 ]
 
 for url in registered:

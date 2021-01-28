@@ -1,6 +1,7 @@
 
 import os
 
+from krogoth_gantry.models import IncludedHtmlCoreTemplate
 from krogoth_gantry.models.gantry_models import KrogothGantryMasterViewController
 from krogoth_gantry.models.core_models import AKBowerComponent
 
@@ -15,9 +16,10 @@ from rest_framework.viewsets import ModelViewSet
 from django.template import loader
 from django.http import HttpResponse
 from jawn.settings import STATIC_KROGOTH_MODE #, APP_VERSION
+from django.template import Context, Template
 
-from krogoth_gantry.views.middleware.dj_tmpl_rendered import load_custom_css, load_krogoth_css, load_background_css, \
-    load_core_css, load_core_elements_css
+# from krogoth_gantry.views.middleware.dj_tmpl_rendered import load_custom_css, load_krogoth_css, load_background_css, \
+#     load_core_css, load_core_elements_css
 
 from krogoth_gantry.models.krogoth_manager import KrogothVisitorTracking
 
@@ -28,6 +30,59 @@ class AKFoundationViewSet(ModelViewSet):
     permission_classes = (AllowAny, )
     filter_backends = [DjangoFilterBackend]
     filter_fields = ('unique_name', 'first_name', 'last_name', 'ext', )
+
+
+# * * * * *
+# Any new global CSS customizations should be added here.
+# Edit the CSS document at:
+# static/web/core/html/layouts/CSS_CustomGlobals.html
+
+def load_custom_css():
+    css = IncludedHtmlCoreTemplate.objects.get(name="CSS_CustomGlobals.html")
+    template = Template(css.contents)
+    context = Context({"foo1": "bar1"})
+    rendered = template.render(context)
+    return rendered
+
+
+# * * * * *
+# non-Google CSS stylesheets:
+
+def load_krogoth_css():
+    css = IncludedHtmlCoreTemplate.objects.get(name="CSS_Krogoth.html")
+    template = Template(css.contents)
+    context = Context({"foo1": "bar1"})
+    rendered = template.render(context)
+    return rendered
+
+
+def load_background_css():
+    css = IncludedHtmlCoreTemplate.objects.get(name="CSS_Background.html")
+    template = Template(css.contents)
+    context = Context({"foo1": "bar1"})
+    rendered = template.render(context)
+    return rendered
+
+
+# * * * * *
+# core and core elements are the default AngularJS styles from Google:
+
+def load_core_css():
+    css = IncludedHtmlCoreTemplate.objects.get(name="CSS_Core.html")
+    template = Template(css.contents)
+    context = Context({"foo1": "bar1"})
+    rendered = template.render(context)
+    return rendered
+
+
+def load_core_elements_css():
+    css = IncludedHtmlCoreTemplate.objects.get(name="CSS_CoreElements.html")
+    template = Template(css.contents)
+    context = Context({"foo1": "bar1"})
+    rendered = template.render(context)
+    return rendered
+
+
 
 
 def index(request):

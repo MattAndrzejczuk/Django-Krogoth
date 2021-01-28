@@ -84,7 +84,7 @@
             $http({
                 method: 'POST',
                 data: restPayloadNewMVC,
-                url: "/krogoth_admin/createNewMasterViewController/"
+                url: "/krogoth_gantry/createNewMasterViewController/"
             }).then(function successCallback(response) {
                 //deferred.resolve(response.data);
                 vm.masters = response.data;
@@ -142,7 +142,7 @@
             //var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: "/krogoth_admin/KrogothAdministration/UncommitedSQL/"
+                url: "/krogoth_gantry/KrogothAdministration/UncommitedSQL/"
             }).then(function successCallback(response) {
                 /// Success
                 //deferred.resolve(response.data);
@@ -171,7 +171,7 @@
             vm.saveInProgress = true;
             $http({
                 method: 'GET',
-                url: "/krogoth_admin/SaveSQLToFileSystem/"
+                url: "/krogoth_gantry/SaveSQLToFileSystem/"
             }).then(function successCallback(response) {
                 /// Success
                 //deferred.resolve(response.data);
@@ -190,7 +190,7 @@
             vm.saveInProgress = true;
             $http({
                 method: 'GET',
-                url: "/krogoth_admin/CollectStatic/"
+                url: "/krogoth_gantry/CollectStatic/"
             }).then(function successCallback(response) {
                 /// Success
                 //deferred.resolve(response.data);

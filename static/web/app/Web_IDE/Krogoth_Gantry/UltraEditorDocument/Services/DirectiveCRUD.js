@@ -18,7 +18,7 @@
             payload.path_2 = path_2;
             payload.old_name = old;
             payload.new_name = new_;
-            const uri = "/krogoth_admin/renameAngularJSDirective/";
+            const uri = "/krogoth_gantry/renameAngularJSDirective/";
             $log.info(uri);
             var deferred = $q.defer();
             $http({
@@ -39,7 +39,7 @@
 
         function createDirective(payload) {
             var deferred = $q.defer();
-            const uri = "/krogoth_admin/createAngularJSDirective/";
+            const uri = "/krogoth_gantry/createAngularJSDirective/";
             $http({
                 method: 'POST',
                 data: payload,
