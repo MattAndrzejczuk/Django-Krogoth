@@ -5,7 +5,6 @@ from krogoth_gantry.views.middleware.viewsets import KrogothGantryMasterViewCont
     KrogothGantryCategoryViewSet, KrogothGantryDirectiveViewSet, KrogothGantryServiceViewSet
 from krogoth_gantry.views import index_and_akfoundation
 from krogoth_gantry.views import included_html_js_views
-from krogoth_gantry.models.krogoth_manager import UncommitedSQL
 
 from django.urls import path
 
@@ -27,7 +26,7 @@ router.register(r'IncludedJsMaster', included_html_js_views.IncludedJsMasterView
 router.register(r'AKFoundation', index_and_akfoundation.AKFoundationViewSet)
 
 routerUncommitedSQL = DefaultRouter()
-routerUncommitedSQL.register(r'UncommitedSQL', UncommitedSQLViewSet)
+routerUncommitedSQL.register(r'UncommitedSQL', manager_tasks.UncommitedSQLViewSet)
 
 urlpatterns = [
     url(r'^DynamicJavaScriptInjector/',
