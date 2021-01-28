@@ -5,7 +5,6 @@ from krogoth_gantry.views.middleware.viewsets import KrogothGantryMasterViewCont
     KrogothGantryCategoryViewSet, KrogothGantryDirectiveViewSet, KrogothGantryServiceViewSet
 from krogoth_gantry.views import index_and_akfoundation
 from krogoth_gantry.views import included_html_js_views
-from krogoth_gantry.models.krogoth_manager import UncommitedSQL
 
 from django.urls import path
 
