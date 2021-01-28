@@ -20,7 +20,7 @@
             payload.path_2 = path_2;
             payload.old_name = old;
             payload.new_name = new_;
-            const uri = "/krogoth_admin/renameAngularJSService/";
+            const uri = "/krogoth_gantry/renameAngularJSService/";
             $log.info(uri);
             var deferred = $q.defer();
             $http({
@@ -45,7 +45,7 @@
         function createService(payload) {
 
             var deferred = $q.defer();
-            const uri = "/krogoth_admin/createAngularJSService/";
+            const uri = "/krogoth_gantry/createAngularJSService/";
 
             $http({
                 method: 'POST',

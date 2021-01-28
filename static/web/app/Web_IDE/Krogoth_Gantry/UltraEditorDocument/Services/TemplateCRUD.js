@@ -21,7 +21,7 @@
             payload.old_name = old;
             payload.new_name = new_;
 
-            const uri = "/krogoth_admin/renameAngularJSTemplate/";
+            const uri = "/krogoth_gantry/renameAngularJSTemplate/";
             $log.info(uri);
             $log.info(payload);
             var deferred = $q.defer();
@@ -43,7 +43,7 @@
 
         function createTemplate(payload) {
             var deferred = $q.defer();
-            const uri = "/krogoth_admin/createAngularJSTemplate/";
+            const uri = "/krogoth_gantry/createAngularJSTemplate/";
             $log.log("POST --> [" + uri + "]");
             $http({
                 method: 'POST',
@@ -71,7 +71,7 @@
             payload.old_name = old;
             payload.new_name = new_;
 
-            const uri = "/krogoth_admin/renameJavaScriptTemplate/";
+            const uri = "/krogoth_gantry/renameJavaScriptTemplate/";
             $log.info(uri);
             $log.info(payload);
             var deferred = $q.defer();
@@ -93,7 +93,7 @@
 
         function createJSTemplate(payload) {
             var deferred = $q.defer();
-            const uri = "/krogoth_admin/createJavaScriptTemplate/";
+            const uri = "/krogoth_gantry/createJavaScriptTemplate/";
             $log.log("POST --> [" + uri + "]");
             $http({
                 method: 'POST',

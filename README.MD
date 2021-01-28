@@ -76,7 +76,7 @@ To write changes to the included components, here's some examples:
 
 #### Creating New MVC Gantry
 ```stylus
-- [22/Jan/2021 22:10:54] "POST /krogoth_admin/createNewMasterViewController/ HTTP/1.1" 201 20
+- [22/Jan/2021 22:10:54] "POST /krogoth_gantry/createNewMasterViewController/ HTTP/1.1" 201 20
 - [22/Jan/2021 22:10:54] "GET /krogoth_gantry/viewsets/Category/ HTTP/1.1" 200 1412
 ```
 
