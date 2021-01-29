@@ -18,7 +18,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: '/api/__ExamplesTextLabel/'
+                url: '/krogoth_examples/simple_api/__ExamplesTextLabel/'
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
@@ -33,7 +33,7 @@
             $http({
                 method: 'POST',
                 data: objectJson,
-                url: '/api/__ExamplesTextLabel/'
+                url: '/krogoth_examples/simple_api/__ExamplesTextLabel/'
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
@@ -47,7 +47,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'DELETE',
-                url: '/api/__ExamplesTextLabel/' + objectId + ''
+                url: '/krogoth_examples/simple_api/__ExamplesTextLabel/' + objectId + ''
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {

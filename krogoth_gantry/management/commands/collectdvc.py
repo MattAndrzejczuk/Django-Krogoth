@@ -19,23 +19,22 @@ class Command(BaseCommand):
 
         has_master = False
 
-        oldCatagories = KrogothGantryCategory.objects.all()
-        all_old_ones = AKGantryMasterViewController.objects.all()
+        oldCatagories : [KrogothGantryCategory] = KrogothGantryCategory.objects.all()
+        all_old_ones  : [AKGantryMasterViewController] = AKGantryMasterViewController.objects.all()
         for old in all_old_ones:
             old.delete()
         for old in oldCatagories:
             old.delete()
 
 
-        cat = KrogothGantryCategory()
+        cat : KrogothGantryCategory = KrogothGantryCategory()
         try:
             cat = KrogothGantryCategory(name='DVCManager')
             cat.save()
         except:
             cat = KrogothGantryCategory.objects.get(name='DVCManager')
 
-        log_last_path = ''
-        gantry_catagories = os.listdir('static/web/app')
+        gantry_catagories : [str]  = os.listdir('static/web/app')
         i = 0
         for gantry in gantry_catagories:
             i += 1
@@ -47,7 +46,7 @@ class Command(BaseCommand):
                                                          title=gantry.replace('_',' '))
                     cat_host_obj.save()
 
-                krogoth_subcats = os.listdir('static/web/app/' + gantry)
+                krogoth_subcats : [str]  = os.listdir('static/web/app/' + gantry)
                 for subcats in krogoth_subcats:
                     if subcats[0] == '.':
                         continue
@@ -65,7 +64,7 @@ class Command(BaseCommand):
                                                             parent=cat_host_obj)
                         cat_sub_obj.save()
 
-                    djangular_dvcs = os.listdir('static/web/app/' + gantry + '/' + subcats)
+                    djangular_dvcs : [str] = os.listdir('static/web/app/' + gantry + '/' + subcats)
                     num_weight = 5
                     for dvc in djangular_dvcs:
                         if dvc[0] == '.':

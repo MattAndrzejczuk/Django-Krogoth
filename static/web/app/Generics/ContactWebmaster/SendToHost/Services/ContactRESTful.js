@@ -13,7 +13,7 @@
 
         function createContactForm(payload) {
             var deferred = $q.defer();
-            const uri = "/generic/contact/create/";
+            const uri = "/krogoth_examples/generic/contact/create/";
             $http({
                 method: 'POST',
                 data: payload,

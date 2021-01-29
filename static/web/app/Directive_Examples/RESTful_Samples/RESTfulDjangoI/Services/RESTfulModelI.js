@@ -18,7 +18,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: '/api/__ExamplesFruit/'
+                url: '/krogoth_examples/simple_api/__ExamplesFruit/'
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
@@ -33,7 +33,7 @@
             $http({
                 method: 'POST',
                 data: objectJson,
-                url: '/api/__ExamplesFruit/'
+                url: '/krogoth_examples/simple_api/__ExamplesFruit/'
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
@@ -48,7 +48,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'DELETE',
-                url: '/api/__ExamplesFruit/' + objectId + ''
+                url: '/krogoth_examples/simple_api/__ExamplesFruit/' + objectId + ''
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {

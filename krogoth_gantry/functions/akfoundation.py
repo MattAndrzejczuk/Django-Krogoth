@@ -13,9 +13,6 @@ class AKFoundationSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def update(self, instance, validated_data):
-        print(bcolors.BOLD + bcolors.lightgreen + "  🛠  " +
-              str(type(self)) +
-              " \nUPDATED" + bcolors.ENDC + bcolors.ENDC)
         for key in validated_data.keys():
             setattr(instance, key, validated_data[key])
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
@@ -25,9 +22,6 @@ class AKFoundationSerializer(serializers.ModelSerializer):
         return instance
 
     def create(self, validated_data):
-        print(bcolors.BOLD + bcolors.TEAL + "  🛠  " +
-              str(type(self)) +
-              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
         log_sql = UncommitedSQL(name=validated_data['unique_name'], edited_by=jawn_user, krogoth_class="AKFoundation")
         log_sql.save()

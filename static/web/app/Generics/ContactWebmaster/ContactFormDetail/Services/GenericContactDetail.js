@@ -16,7 +16,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: '/generic/contact/detail/'+id+'/'
+                url: '/krogoth_examples/generic/contact/detail/'+id+'/'
             }).then(function successCallback(response) {
                 /// Success
                 deferred.resolve(response.data);
@@ -32,7 +32,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'DELETE',
-                url: '/generic/contact/detail/'+id+'/'
+                url: '/krogoth_examples/generic/contact/detail/'+id+'/'
             }).then(function successCallback(response) {
                 /// Success
                 deferred.resolve(response.data);

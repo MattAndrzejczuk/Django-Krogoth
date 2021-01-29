@@ -20,7 +20,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: '/api/__ExamplesTopping/'
+                url: '/krogoth_examples/simple_api/__ExamplesTopping/'
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
@@ -33,7 +33,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: '/api/__ExamplesPizza/'
+                url: '/krogoth_examples/simple_api/__ExamplesPizza/'
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
@@ -48,7 +48,7 @@
             $http({
                 method: 'POST',
                 data: objectJson,
-                url: '/api/__ExamplesPizza/'
+                url: '/krogoth_examples/simple_api/__ExamplesPizza/'
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
@@ -63,7 +63,7 @@
             $http({
                 method: 'PUT',
                 data: objectJson,
-                url: '/api/__ExamplesPizza/' + objId + '/'
+                url: '/krogoth_examples/simple_api/__ExamplesPizza/' + objId + '/'
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {
@@ -77,7 +77,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'DELETE',
-                url: '/api/__ExamplesPizza/' + objectId + ''
+                url: '/krogoth_examples/simple_api/__ExamplesPizza/' + objectId + ''
             }).then(function successCallback(response) {
                 deferred.resolve(response.data);
             }, function errorCallback(response) {

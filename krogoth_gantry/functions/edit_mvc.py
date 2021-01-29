@@ -41,9 +41,6 @@ class KrogothGantryMasterViewControllerSerializer(AbstractKrogothSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        print(bcolors.BOLD + bcolors.purple + "  🛠  " +
-              str(type(self)) +
-              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
         uncommitedChange = UncommitedSQL.objects.create(name=validated_data['name'],
                                                         edited_by=jawn_user,
@@ -61,9 +58,6 @@ class KrogothGantrySlaveViewControllerSerializer(AbstractKrogothSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        print(bcolors.BOLD + bcolors.purple + "  🛠  " +
-              str(type(self)) +
-              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
         uncommitedChange = UncommitedSQL.objects.create(name=validated_data['name'],
                                                         edited_by=jawn_user,
@@ -120,9 +114,6 @@ class KrogothGantryDirectiveSerializer(AbstractKrogothSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        print(bcolors.BOLD + bcolors.purple + "  🛠  " +
-              str(type(self)) +
-              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
         uncommitedChange = UncommitedSQL.objects.create(name=validated_data['name'],
                                                         edited_by=jawn_user,
@@ -136,9 +127,6 @@ class KrogothGantryServiceSerializer(AbstractKrogothSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        print(bcolors.BOLD + bcolors.purple + "  🛠  " +
-              str(type(self)) +
-              " \nCREATED" + bcolors.ENDC + bcolors.ENDC)
         jawn_user = JawnUser.get_or_create_jawn_user(username=self.context['request'].user.username)
         uncommitedChange = UncommitedSQL.objects.create(name=validated_data['name'],
                                                         edited_by=jawn_user,
