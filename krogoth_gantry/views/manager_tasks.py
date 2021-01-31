@@ -7,7 +7,7 @@ from rest_framework.response import Response
 import os
 
 from krogoth_gantry.models.gantry_models import KrogothGantryMasterViewController
-from krogoth_gantry.krogoth_compiler import master_compiler
+from krogoth_gantry.krogoth_compiler import MasterCompiler
 
 class UncommitedSQLViewSet(viewsets.ModelViewSet):
     queryset = UncommitedSQL.objects.all()
@@ -35,7 +35,7 @@ class CompileMVCsToStatic(APIView):
     def get(self, request, format=None):
         masters = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
         for master in masters:
-            compiler = master_compiler(username="Guest")
+            compiler = MasterCompiler(username="Guest")
             compiled_js = compiler.compiled_raw(named=master.name)
             text_file = open("static/compiled/"+master.name+".js", "w")
             text_file.write(compiled_js)

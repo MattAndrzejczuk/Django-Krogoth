@@ -2,10 +2,9 @@ from rest_framework.views import APIView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny
 from krogoth_gantry.models.gantry_models import KrogothGantryCategory, KrogothGantryMasterViewController
-from colors import ink
 
 
-class master_compiler(APIView):
+class MasterCompiler(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
 
@@ -13,7 +12,7 @@ class master_compiler(APIView):
 
     def __init__(self, username:str, *args, **kwargs):
         self.username = username
-        super(master_compiler, self).__init__(*args, **kwargs)
+        super(MasterCompiler, self).__init__(*args, **kwargs)
 
 
 
@@ -23,8 +22,6 @@ class master_compiler(APIView):
         if isinstance(named, list):
             name = named[0]
             lazy_token = named[1]
-            print("NAME: " + name)
-            print("LAZY TOKEN: " + lazy_token)
         else:
             name = named
         application = KrogothGantryMasterViewController.objects.get(name=name)
@@ -34,15 +31,10 @@ class master_compiler(APIView):
         compiled_slave = application.compileModuleSlaves
         clean_js_slate = '\n\n\n\n\n\n\t /* ════════════' + application.title + '════════════ */\n\n'
 
-
-        ink.pyellow("COMPILING SOMETHING NOW...")
         app_ctrl = application.controller_js
         for js in application.partial_js.all():
             no_ext = js.name.replace(".js", "")
-            ink.pgreen(application.name + ":")
-            ink.pblue(no_ext + "\n")
 
-            ink.pcyan("\n⚙️\n#KG" + no_ext + "\n")
             app_ctrl = app_ctrl.replace("#KG" + no_ext, "\n/*~ ~ ~ ~ ~ ~" + no_ext + "~ ~ ~ ~ ~ ~*/\n" +
                                         js.contents + "\n/*~/~/~/~/~/~" + no_ext + "~/~/~/~/~/~*/\n" + "\n")
 

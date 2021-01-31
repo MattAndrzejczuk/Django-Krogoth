@@ -1,4 +1,4 @@
-/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
+/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 HELLO HELLO ~ ~ ~ ~ ~ ~ ~ */
 (function () {
     'use strict';
 
@@ -7,23 +7,23 @@
             primary: {
                 name: 'blue',
                 hues: {
-                    'default': '900',
+                    'default': '800',
                     'hue-1': '600',
-                    'hue-2': '500',
+                    'hue-2': '400',
                     'hue-3': 'A100'
                 }
             },
             accent: {
-                name: 'orangered',
+                name: 'green',
                 hues: {
-                    'default': '500',
-                    'hue-1': '400',
+                    'default': '400',
+                    'hue-1': '300',
                     'hue-2': '600',
                     'hue-3': 'A100'
                 }
             },
             warn: {
-                name: 'deep-orange'
+                name: 'pink'
             },
             background: {
                 name: 'grey',

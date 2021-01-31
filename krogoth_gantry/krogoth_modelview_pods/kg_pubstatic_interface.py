@@ -75,7 +75,6 @@ class KPubStaticInterfaceCSS(models.Model):
 
 
 class KPublicStaticInterfaceCSS_UncommittedSQL(models.Model):
-    # tracked_uid = models.CharField(primary_key=True, max_length=25)
     document = models.ForeignKey(to=KPubStaticInterfaceCSS, on_delete=models.CASCADE, related_name='uncommitted_css')
     pub_date = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -386,9 +385,9 @@ urlpatterns = [
     path('', api_index),
     path('load_static_css/<str:name>/', LoadStaticCSS.as_view()),
     path('admin_editor_css/<str:name>/', AdminEditorCSS.as_view()),
-    path('admin_editor_text/<str:name>/', AdminEditorTextDocument.as_view()),
 
     path('save_sqldb_to_filesystem_css/<str:unique_id>/', save_sqldb_to_filesystem_css, name="Save SQL And Store Into HDD"),
     path('save_filesystem_to_sqldb_css/<str:unique_id>/', save_filesystem_to_sqldb_css, name="Save HDD And Store Into SQL"),
+    path('admin_editor_text/<str:name>/', AdminEditorTextDocument.as_view()),
 ]
 

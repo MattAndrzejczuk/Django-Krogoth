@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny
 from krogoth_gantry.models.gantry_models import KrogothGantrySlaveViewController, KrogothGantryMasterViewController
-from krogoth_gantry.krogoth_compiler import master_compiler
+from krogoth_gantry.krogoth_compiler import MasterCompiler
 
 
 class DynamicJavaScriptInjector(APIView):
@@ -15,10 +15,10 @@ class DynamicJavaScriptInjector(APIView):
 
         if 'lazy' in request.GET:
             lazy_token = request.GET['lazy']
-            raw_js = master_compiler(username=request.user.username)
+            raw_js = MasterCompiler(username=request.user.username)
             js_response = raw_js.compiled_raw(named=[name, lazy_token]).replace("_LAZY_TOKEN_", lazy_token)
         else:
-            raw_js = master_compiler(username=request.user.username)
+            raw_js = MasterCompiler(username=request.user.username)
             js_response = raw_js.compiled_raw(named=name)
         return HttpResponse(js_response, content_type='application/javascript; charset=utf-8')
 

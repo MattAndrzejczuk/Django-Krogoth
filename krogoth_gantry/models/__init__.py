@@ -9,3 +9,4 @@ from .krogoth_static_ui_models import *
 
 
 from ..krogoth_modelview_pods.kg_pubstatic_interface import KPubStaticInterfaceCSS
+from ..krogoth_modelview_pods.kg_publicstatic_text import KPubStaticInterfaceText
