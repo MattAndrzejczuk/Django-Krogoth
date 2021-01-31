@@ -20,7 +20,7 @@ from django.http import HttpResponse
 
 
 
-
+# - - - - - - MODELS
 class KPubStaticInterfaceCSS(models.Model):
     """KPubStaticInterfaceCSS
 
@@ -62,17 +62,44 @@ class KPubStaticInterfaceCSS(models.Model):
 
     ``
     """
+
     unique_id = models.CharField(primary_key=True, max_length=25)
     file_name = models.CharField(max_length=100, default='index_loading_styles.css')
     content = models.TextField(default='/* This CSS doc is empty */')
     is_enabled = models.BooleanField(default=True)
-
     pub_date = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(null=True, blank=True, default=timezone.now())
 
     def __str__(self):
         return self.unique_id
 
+
+class KPublicStaticInterfaceCSS_UncommittedSQL(models.Model):
+    # tracked_uid = models.CharField(primary_key=True, max_length=25)
+    document = models.ForeignKey(to=KPubStaticInterfaceCSS, on_delete=models.CASCADE, related_name='uncommitted_css')
+    pub_date = models.DateTimeField(auto_now_add=True, null=True)
+
+    @classmethod
+    def mark_static_interface_as_uncommitted(cls, unique_id):
+        static_interface = KPubStaticInterfaceCSS.objects.get(unique_id=unique_id)
+        should_mark = cls.objects.filter(document=static_interface)
+        if len(should_mark) < 1:
+            cls(document=static_interface).save()
+
+    def save_to_hdd_then_destroy(self):
+        document_sql : KPubStaticInterfaceCSS = KPubStaticInterfaceCSS.objects.get(unique_id=self.document.unique_id)
+        name_path: str = document_sql.unique_id + '.css'
+        path_to_doc = os.path.join('static', 'web', 'krogoth_static_interface', 'stylesheets', name_path)
+        f = open(path_to_doc, "w")
+        f.write(document_sql.content)
+        f.close()
+        self.delete()
+# - - - - - -
+
+
+
+
+# - - - - - - VIEWS
 class LoadStaticCSS(APIView):
     """LoadStaticCSS
 
@@ -137,17 +164,18 @@ class AdminEditorCSS(APIView):
             request:
             name:
         """
-        if name == "create_new":
-            new_css = KPubStaticInterfaceCSS.objects.create(
-                unique_id=request.data('doc_name'),
-                file_name=request.data('doc_name') + ".css",
-                content=request.data('css_code')
-            )
-            new_css.save()
-            with open("static/web/krogoth_static_interface/stylesheets/" + name + ".css") as documentcontents:
-                documentcontents.write(request.data('css_code'))
-                documentcontents.close()
-            return HttpResponse(new_css.unique_id + " created.", status=201)
+        # if name == "create_new":
+        new_css: KPubStaticInterfaceCSS = KPubStaticInterfaceCSS.objects.create(
+            unique_id=request.data['doc_name'],
+            file_name=request.data['doc_name'] + ".css",
+            content=request.data['content']
+        )
+        new_css.save()
+        name_path: str = request.data['doc_name'] + '.css'
+        f = open(os.path.join('static', 'web', 'krogoth_static_interface', 'stylesheets', name_path), "w")
+        f.write(request.data['content'])
+        f.close()
+        return HttpResponse(new_css.unique_id + " created.", status=201)
 
     def patch(self, request, name):
         """Required arguments:
@@ -163,12 +191,9 @@ class AdminEditorCSS(APIView):
         css_doc.content = request.data["content"]
         css_doc.date_modified = datetime.now()
         css_doc.save()
+        KPublicStaticInterfaceCSS_UncommittedSQL.mark_static_interface_as_uncommitted(unique_id=name)
         return Response({"css_doc_modified": name}, status=204)
-
-
-
-
-
+# - - - - - -
 
 
 
@@ -299,7 +324,59 @@ def api_index(request):
     ]
     return Response({"catalog": examples})
 
+import os, codecs
 
+@api_view(['GET'])
+def save_sqldb_to_filesystem_css(request, unique_id):
+    """
+
+    Copies the DB contents, saves them to
+          static/web/krogoth_static_interface/stylesheets/{unique_id}.css
+
+    http://HOST_NAME/global_static_interface/save_sqldb_to_filesystem_css/{ UNIQUE_ID }
+
+    """
+    name_path : str = unique_id + '.css'
+    document_sql : KPubStaticInterfaceCSS = KPubStaticInterfaceCSS.objects.get(unique_id=unique_id)
+    path_to_doc : str = os.path.join('static', 'web', 'krogoth_static_interface', 'stylesheets', name_path)
+    text_file = open(path_to_doc, "w")
+    text_file.write(document_sql.content)
+    text_file.close()
+    tracker : KPublicStaticInterfaceCSS_UncommittedSQL = KPublicStaticInterfaceCSS_UncommittedSQL.objects.get(document=document_sql)
+    tracker.save_to_hdd_then_destroy()
+    completed_work: [str] = [
+        document_sql.unique_id,
+        path_to_doc,
+        'Database copy saved into filesystem.',
+    ]
+    return Response({"completed_work": completed_work})
+
+
+@api_view(['GET'])
+def save_filesystem_to_sqldb_css(request, unique_id):
+    """
+
+    Copies the DB contents, saves them to
+          static/web/krogoth_static_interface/stylesheets/{unique_id}.css
+
+    http://HOST_NAME/global_static_interface/save_filesystem_to_sqldb_css/{ UNIQUE_ID }
+
+    """
+    name_path : str = unique_id + '.css'
+    document_sql : KPubStaticInterfaceCSS = KPubStaticInterfaceCSS.objects.get(unique_id=unique_id)
+    path_to_doc = os.path.join('static', 'web', 'krogoth_static_interface', 'stylesheets', name_path)
+    unsaved_work = KPublicStaticInterfaceCSS_UncommittedSQL.objects.filter(document=document_sql)
+    if len(unsaved_work) > 1:
+        return Response({"error":"YOU HAVE UNSAVED WORK ON SQL FOR " + unique_id}, status=401)
+    else:
+        document_sql.content = codecs.open(path_to_doc, 'r').read()
+        document_sql.save()
+        completed_work: [str] = [
+            document_sql.unique_id,
+            path_to_doc,
+            'Database copy saved into filesystem.',
+        ]
+        return Response({"completed_work": completed_work})
 
 
 from django.conf.urls import url, include
@@ -310,5 +387,8 @@ urlpatterns = [
     path('load_static_css/<str:name>/', LoadStaticCSS.as_view()),
     path('admin_editor_css/<str:name>/', AdminEditorCSS.as_view()),
     path('admin_editor_text/<str:name>/', AdminEditorTextDocument.as_view()),
+
+    path('save_sqldb_to_filesystem_css/<str:unique_id>/', save_sqldb_to_filesystem_css, name="Save SQL And Store Into HDD"),
+    path('save_filesystem_to_sqldb_css/<str:unique_id>/', save_filesystem_to_sqldb_css, name="Save HDD And Store Into SQL"),
 ]
 

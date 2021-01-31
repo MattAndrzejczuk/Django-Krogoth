@@ -9,7 +9,7 @@
 
 
 
-        vm.lazyToken = "_SPLIT_seed_" + (Math.floor(Math.random() * 99) + 1).toString();
+        vm.lazyToken = "_SPLIT_seed_" + (Math.floor(Math.random() * 999) + 1).toString();
 		vm.stateParameters = {};
 
         vm.lazyReloadThisCtrl = lazyReloadThisCtrl;

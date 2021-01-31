@@ -5,7 +5,7 @@
     var fuseThemes = {
         default: {
             primary: {
-                name: 'fuse-blue',
+                name: 'blue',
                 hues: {
                     'default': '900',
                     'hue-1': '600',
@@ -14,7 +14,7 @@
                 }
             },
             accent: {
-                name: 'teal',
+                name: 'orangered',
                 hues: {
                     'default': '500',
                     'hue-1': '400',

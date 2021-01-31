@@ -36,7 +36,7 @@ class CreateNewMVCView(APIView):
         if not os.path.exists(p1 + "/" + named + "/MasterVC/"):
             os.makedirs(p1 + "/" + named + "/")
             os.makedirs(p1 + "/" + named + "/MasterVC/")
-            f = open(p1 + "/" + named + "/Title.txt", "w+")
+            f = open(p1 + "/" + named + "/Title.txt", "w")
             f.write(named.replace("_", " "))
             f.close()
         #os.mknod(sys_path)
