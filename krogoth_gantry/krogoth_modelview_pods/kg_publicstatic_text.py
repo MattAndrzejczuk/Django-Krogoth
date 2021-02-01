@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from datetime import datetime
 from rest_framework.decorators import api_view
 from django.http import HttpResponse
-import os
+import os, codecs
 
 
 # - - - - - - MODELS
@@ -264,6 +264,33 @@ def save_sqldb_to_filesystem_text(request, unique_id):
     ]
     return Response({"completed_work": completed_work})
 
+
+@api_view(['GET'])
+def save_filesystem_to_sqldb_text(request, unique_id):
+    """
+
+    Copies the DB contents, saves them to
+          static/web/krogoth_static_interface/stylesheets/{unique_id}.css
+
+    http://HOST_NAME/global_static_interface/save_filesystem_to_sqldb_css/{ UNIQUE_ID }
+
+    """
+    document_sql : KPubStaticInterfaceText = KPubStaticInterfaceText.objects.get(unique_id=unique_id)
+    name_path: str = unique_id + '.' + document_sql.file_kind
+    path_to_doc = os.path.join('static', 'web', 'krogoth_static_interface', document_sql.file_kind, name_path)
+    unsaved_work = KPublicStaticInterfaceText_UncommittedSQL.objects.filter(document=document_sql)
+    if len(unsaved_work) > 1:
+        return Response({"error":"YOU HAVE UNSAVED WORK ON SQL FOR " + unique_id}, status=401)
+    else:
+        document_sql.content = codecs.open(path_to_doc, 'r').read()
+        document_sql.save()
+        completed_work: [str] = [
+            document_sql.unique_id,
+            path_to_doc,
+            'Database copy saved into filesystem.',
+        ]
+        return Response({"completed_work": completed_work})
+
 from django.urls import path
 
 urlpatterns = [
@@ -274,6 +301,6 @@ urlpatterns = [
     path('get_uncommitted_docs/', get_uncommitted_docs, name="GET uncommitted docs that are only in SQL."),
 
     path('save_sqldb_to_filesystem_text/<str:unique_id>/', save_sqldb_to_filesystem_text, name="Save SQL And Store Into HDD"),
-    # path('save_filesystem_to_sqldb_css/<str:unique_id>/', save_filesystem_to_sqldb_css, name="Save HDD And Store Into SQL"),
+    path('save_filesystem_to_sqldb_text/<str:unique_id>/', save_filesystem_to_sqldb_text, name="Save HDD And Store Into SQL"),
 
 ]
