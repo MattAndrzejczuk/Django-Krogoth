@@ -15,7 +15,7 @@ from datetime import datetime
 # Create your views here.
 from rest_framework.decorators import api_view
 from django.http import HttpResponse
-
+from django.urls import path
 
 
 
@@ -96,28 +96,43 @@ class KPublicStaticInterfaceCSS_UncommittedSQL(models.Model):
 # - - - - - -
 
 
+@api_view(['GET'])
+def load_static_css_readonly(request, unique_id):
+    """
+    Public endpoint for readonly, should only be used in  dev mode, production mode this
+    should  come from the static files like most other  normal  Django apps.
+          static/web/krogoth_static_interface/stylesheets/{unique_id}.css
+
+    http://HOST_NAME/global_static_interface/load_static_css_readonly/{ UNIQUE_ID }
+
+    """
+    document_sql : KPubStaticInterfaceCSS = KPubStaticInterfaceCSS.objects.filter(unique_id=unique_id).first()
+    if document_sql is not None:
+        return HttpResponse(document_sql.content, content_type='text/css', status=200)
+    else:
+        return HttpResponse('', content_type='text/css', status=404)
 
 
 # - - - - - - VIEWS
-class LoadStaticCSS(APIView):
-    """LoadStaticCSS
-
-    returns pure CSS code to the client.
-    """
-    permission_classes = (permissions.AllowAny,)
-    def get(self, request, name):
-        """
-        Required arguments:
-            name
-                KPubStaticInterfaceCSS.unique_id
-        """
-        text_response: str
-        if len(KPubStaticInterfaceCSS.objects.filter(unique_id=name)) > 0:
-            css_doc = KPubStaticInterfaceCSS.objects.get(unique_id=name)
-            text_response: str = css_doc.content
-        else:
-            return HttpResponse(name + " does not exist.", status=404)
-        return HttpResponse(text_response, status=200)
+# class LoadStaticCSS(APIView):
+#     """LoadStaticCSS
+#
+#     returns pure CSS code to the client.
+#     """
+#     permission_classes = (permissions.AllowAny,)
+#     def get(self, request, name):
+#         """
+#         Required arguments:
+#             name
+#                 KPubStaticInterfaceCSS.unique_id
+#         """
+#         text_response: str
+#         if len(KPubStaticInterfaceCSS.objects.filter(unique_id=name)) > 0:
+#             css_doc = KPubStaticInterfaceCSS.objects.get(unique_id=name)
+#             text_response: str = css_doc.content
+#         else:
+#             return HttpResponse(name + " does not exist.", status=404)
+#         return HttpResponse(text_response, status=200)
 
 class AdminEditorCSS(APIView):
     """LoadStaticCSS
@@ -310,16 +325,19 @@ class AdminEditorTextDocument(APIView):
 
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def api_index(request):
     """
     Just a placeholder index.
     http://HOST_NAME/global_static_interface/
     """
     examples: [str] = [
-        'load_static_css/<str:name>/ LoadStaticCSS',
-        'admin_editor_css/<str:name>/ AdminEditorCSS',
-        'admin_editor_text/<str:name>/ AdminEditorTextDocument',
+        'GET     /global_static_interface/load_static_css_readonly/<NAME_OF_CSS_DOC>/',
+        'GET     /global_static_interface/admin_editor_css/<NAME_OF_CSS_DOC>/',
+        'PATCH   /global_static_interface/admin_editor_css/<NAME_OF_CSS_DOC>/',
+        'POST    /global_static_interface/admin_editor_css/create_new/',
+        'GET     /global_static_interface/save_sqldb_to_filesystem_css/<NAME_OF_CSS_DOC>',
+        'GET     /global_static_interface/save_filesystem_to_sqldb_css/<NAME_OF_CSS_DOC>',
     ]
     return Response({"catalog": examples})
 
@@ -378,16 +396,16 @@ def save_filesystem_to_sqldb_css(request, unique_id):
         return Response({"completed_work": completed_work})
 
 
-from django.conf.urls import url, include
-from django.urls import path
+
 
 urlpatterns = [
     path('', api_index),
-    path('load_static_css/<str:name>/', LoadStaticCSS.as_view()),
+    path('load_static_css_readonly/<str:unique_id>/', load_static_css_readonly),
     path('admin_editor_css/<str:name>/', AdminEditorCSS.as_view()),
+
+# create_new_text_doc
 
     path('save_sqldb_to_filesystem_css/<str:unique_id>/', save_sqldb_to_filesystem_css, name="Save SQL And Store Into HDD"),
     path('save_filesystem_to_sqldb_css/<str:unique_id>/', save_filesystem_to_sqldb_css, name="Save HDD And Store Into SQL"),
-    path('admin_editor_text/<str:name>/', AdminEditorTextDocument.as_view()),
 ]
 

@@ -28,6 +28,7 @@ urlpatterns = [
     path('admin_a9k/', admin.site.urls),
 
     path('global_static_interface/', include('krogoth_gantry.krogoth_modelview_pods.kg_pubstatic_interface')),
+    path('global_static_text/', include('krogoth_gantry.krogoth_modelview_pods.kg_publicstatic_text')),
     path('moho_extractor/', include('krogoth_gantry.routes.urls_mohoextractor')),
     path('krogoth_gantry/', include('krogoth_gantry.routes.urls_krogoth_gantry')),
 
