@@ -1,14 +1,27 @@
 # Django Krogoth
-*Copyright (C) 2020 AquaCore*
 
-A Django Project with powerful capabilities out of the box made for rapid single page application development.
-
-
-![alt text](https://raw.githubusercontent.com/MattAndrzejczuk/Django-Krogoth/master/krogoth.png)
+Start development of a single page web application within 20 minutes or less. Edit your web app straight from the Django Admin panel, or via the custom IDE. Save your changes and test within seconds (get rid of that `clear browser cache` addon).
 
 ----
-## Quickstart On *Ubuntu 16*
-### Install Docker
+
+
+
+## Krogoth Quickstart
+
+Just three simple steps. *(Applies to any x86 machine that can run Docker)*
+
+
+1. Install Docker
+
+2. Clone Krogoth
+
+3. Run Krogoth Installer
+
+
+Step 1 applies specifically to Ubuntu 16. Ubuntu 16 uses less RAM out of the box and runs less services that utilize CPU resources as well, *(compared to later versions of Ubuntu)* but it really doesn't matter, so long as the Unix based OS can run docker, then you're good to launch. If you're running macOS, skip the first step and just install docker desktop, then proceed to step 2.
+
+### Step 1. Install Docker
+
 ```bash
 $ apt-get install -y apt-transport-https 
 
@@ -22,67 +35,44 @@ $ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu 
 $ apt-get update
 $ apt-get install docker-ce docker-ce-cli containerd.io
 ```
+
+
+
+
+### Step 2. clone
+
+```bash
+$ git clone https://github.com/MattAndrzejczuk/Django-Krogoth.git
+```
+
+
+### Step 3. install
+
+```bash
+$ cd Django-Krogoth/docker
+$ python3 install_all_in_one.py
+```
 ----
 
 
+## You're Now Live
 
+![alt text](https://raw.githubusercontent.com/MattAndrzejczuk/Django-Krogoth/master/krogoth.png)
 
+Navigate to `http://SERVER_HOSTNAME/` and see the live app. 
 
-#### ( **1** ) - Python3 Prerequisits 
-
-`$ sudo apt-get install -y python-pip`
-
-`$ sudo apt-get install -y python3-dev python3-setuptools python3-pip software-properties-common python3-software-properties python3-venv`  
-
-`$ sudo pip3 install --upgrade pip`
-
-
-#### ( **2** ) - Django Setup
-
-`$ cd krogoth`
-
-`$ python3 -m venv bevn`
-
-`$ source ./bevn/bin/activate`
-
-`$ pip3 install --upgrade pip`
-
-`$ pip3 install -r requirements.txt`
-
-`$ python3 manage.py makemigrations`
-
-`$ python3 manage.py migrate`
-
-`$ python3 manage.py installdjangular`
-
-`$ python3 manage.py collectdvc`
-
-`$ python3 manage.py runserver 0.0.0.0:8000`
-
-## Frontend Development
-
-This app uses AngularJS as the frontend which manages the js files for you automatically.
-To write changes to the included components, here's some examples:
-
- `./manage.py pushup --path "static/web/app/Primary/Required/home/MasterVC/view.html" --name "home" --kind view`
-
- `./manage.py pushup --path "static/web/app/Primary/Required/home/MasterVC/controller.html" --name "home" --kind controller`
-
- `./manage.py pushup --path "static/web/app/Directive_Examples/Another_Subcat/Element_With_Events/Directives/movieForm.js" --name "movieForm" --kind directive`
-
- `./manage.py pushup --path "static/web/app/Directive_Examples/RESTful_Samples/RESTfulModelI/Services/RESTfulModelI.js" --name "RESTfulModelI" --kind service` 
-
-
-
-#### Creating New MVC Gantry
-```stylus
-- [22/Jan/2021 22:10:54] "POST /krogoth_gantry/createNewMasterViewController/ HTTP/1.1" 201 20
-- [22/Jan/2021 22:10:54] "GET /krogoth_gantry/viewsets/Category/ HTTP/1.1" 200 1412
+### What Now?
+Remember to create a super user using the following steps:
+```bash
+$ docker exec -it armprime bash
+# ./manage.py createsuperuser
 ```
 
-##### TODO: Add These Demos
-https://tutorialzine.com/2012/02/apple-like-login-form
-https://demo.tutorialzine.com/2012/02/apple-like-login-form/
+### Try The Built In IDE
+Navigate to `http://0.0.0.0:8000/#!/Login` and log in as the superuser you've just created.
 
-https://paulrhayes.com/experiments/cube/multiCubes.html
-https://github.com/fofr/paulrhayes.com-experiments/blob/master/cube/index.html
+Then, navigate to `http://SERVER_HOSTNAME/#!/UltraEditorBrowse`
+
+Click on `Primary`, `Required`, then finally `home`.
+
+You should now be in the built-in IDE editor. from here, you can make changes to the AngularJS home page.
