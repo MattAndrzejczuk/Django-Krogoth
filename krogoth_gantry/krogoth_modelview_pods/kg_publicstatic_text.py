@@ -97,7 +97,7 @@ def load_static_text_readonly(request, unique_id, file_kind):
     """
     Public endpoint for readonly, should only be used in  dev mode, production mode this
     should  come from the static files like most other  normal  Django apps.
-          static/web/krogoth_static_interface/stylesheets/{unique_id}.css
+          static/web/krogoth_static_interface/{file_kind}/{unique_id}.{file_kind}
 
     http://HOST_NAME/global_static_interface/load_static_text_readonly/{ FILE_EXT }/{ UNIQUE_ID }
 
@@ -123,7 +123,7 @@ def get_uncommitted_docs(request):
     reply['total'] : int = len(uncommited_docs)
     reply['docs'] : [{str:str}] = []
     for doc in uncommited_docs:
-        name_path: str = doc.document.unique_id + '.' + doc.document.file_kind
+        name_path: str = doc.document.file_name
         path_to_doc = os.path.join('static', 'web', 'krogoth_static_interface', doc.document.file_kind, name_path)
         a_document = {}
         a_document['unique_id'] = doc.document.unique_id
@@ -266,14 +266,16 @@ def save_sqldb_to_filesystem_text(request, file_name):
     return Response({"completed_work": completed_work})
 
 
+
+
 @api_view(['GET'])
 def save_filesystem_to_sqldb_text(request, file_name):
     """
 
     Copies the DB contents, saves them to
-          static/web/krogoth_static_interface/stylesheets/{unique_id}.css
+          static/web/krogoth_static_interface/{FILE_EXT}/{unique_id}.{FILE_EXT}
 
-    http://HOST_NAME/global_static_interface/save_filesystem_to_sqldb_css/{ UNIQUE_ID }
+    http://HOST_NAME/global_static_text/save_filesystem_to_sqldb_text/{ UNIQUE_ID }
 
     """
     document_sql : KPubStaticInterfaceText
@@ -308,16 +310,162 @@ def save_filesystem_to_sqldb_text(request, file_name):
         ]
         return Response({"completed_work": completed_work})
 
+
+@api_view(['GET', 'POST'])
+def saveall_filesystem_to_sqldb_text(request):
+    """
+
+    Copies the DB contents, saves them to
+          static/web/krogoth_static_interface/{FILE_EXT}/{unique_id}.{FILE_EXT}
+
+    http://HOST_NAME/global_static_text/saveall_filesystem_to_sqldb_text/
+
+        request: GET   - nothing, no params or body
+
+        request: POST  -
+            body: {
+                'paths_to_include': ['JS','HTML']
+            }
+    """
+    paths_in_root = os.listdir(os.path.join('static', 'web', 'krogoth_static_interface'))
+    list_of_work = []
+    for listed_item in paths_in_root:
+        if os.path.isdir(os.path.join('static', 'web', 'krogoth_static_interface', listed_item)):
+            static_files = os.listdir(os.path.join('static', 'web', 'krogoth_static_interface', listed_item))
+
+            for file_name in static_files:
+                print(os.path.join('static', 'web', 'krogoth_static_interface', listed_item, file_name))
+                document_sql : KPubStaticInterfaceText
+                try:
+                    document_sql = KPubStaticInterfaceText.objects.get(file_name=file_name)
+                except:
+                    split_file = file_name.split('.')
+                    doc_ext = str(split_file[len(split_file) - 1]).upper()
+                    path_to_file = os.path.join('static', 'web', 'krogoth_static_interface', doc_ext, file_name)
+                    f = codecs.open(path_to_file, 'r').read()
+                    new = KPubStaticInterfaceText(
+                        unique_id=file_name.replace("."+doc_ext, ""),
+                        file_name=file_name,
+                        file_kind=str(doc_ext).upper(),
+                        content=f,
+                        pub_date=datetime.now()
+                    )
+                    new.save()
+
+                    completed_work: {str: str} = {
+                        "new.unique_id": new.unique_id,
+                        "new.file_kind": new.file_kind,
+                        "path_to_file": path_to_file,
+                        'result': 'ADDED TO SQL FROM FILESYSTEM',
+                    }
+                    list_of_work.append(completed_work)
+                    continue
+                name_path: str = file_name
+                path_to_doc = os.path.join('static', 'web', 'krogoth_static_interface', document_sql.file_kind, name_path)
+                unsaved_work = KPublicStaticInterfaceText_UncommittedSQL.objects.filter(document=document_sql)
+                if len(unsaved_work) > 1:
+                    return Response({"error":"YOU HAVE UNSAVED WORK ON SQL FOR " + file_name}, status=401)
+                else:
+                    document_sql.content = codecs.open(path_to_doc, 'r').read()
+                    document_sql.save()
+                    completed_work: {str: str} = {
+                        "document_sql.unique_id": document_sql.unique_id,
+                        "document_sql.file_kind": document_sql.file_kind,
+                        "path_to_doc": path_to_doc,
+                        'result': 'Database copy saved into filesystem.'
+                    }
+                    list_of_work.append(completed_work)
+    return Response({"completed_work": list_of_work})
+
+
+# TODO REMOVE THIS EXTRA VIEW, MIGHT NOT NEED ANYMORE
+@api_view(['GET'])
+def save_filesystem_to_sqldb_text_new(request, unique_id, doc_kind):
+    """
+
+    Copies the DB contents, saves them to
+          static/web/krogoth_static_interface/stylesheets/{unique_id}.css
+
+    http://HOST_NAME/global_static_interface/save_filesystem_to_sqldb_css/{ UNIQUE_ID }
+
+    """
+    doc_kind_formated : str = str(doc_kind).upper()
+    # document_sql : KPubStaticInterfaceText = KPubStaticInterfaceText.objects.get_or_create(
+    #     unique_id=unique_id,
+    #     file_name=unique_id + '.' + doc_kind,
+    #     file_kind=doc_kind
+    # )
+
+    name_path: str = unique_id + '.' + doc_kind_formated
+    document_sql = KPubStaticInterfaceText.objects.filter(unique_id=unique_id, file_kind=doc_kind_formated)
+    unique_id = unique_id.replace('-', '.')
+    path_to_doc = os.path.join('static', 'web', 'krogoth_static_interface', doc_kind_formated, name_path.replace('-', '.'))
+    if len(document_sql) > 0:
+
+        unsaved_work = KPublicStaticInterfaceText_UncommittedSQL.objects.filter(document=document_sql)
+        if len(unsaved_work) > 1:
+            return Response({"error":"YOU HAVE UNSAVED WORK ON SQL FOR " + unique_id}, status=401)
+        else:
+            document_sql.content = codecs.open(path_to_doc, 'r').read()
+            document_sql.save()
+            completed_work: [str] = [
+                document_sql.unique_id,
+                path_to_doc,
+                'Database copy updated from filesystem.',
+            ]
+            return Response({"completed_work": completed_work})
+    else:
+        if not os.path.exists(os.path.join('static', 'web', 'krogoth_static_interface', doc_kind_formated)):
+            os.makedirs(os.path.join("static", 'web', 'krogoth_static_interface', doc_kind_formated))
+        doc_db_ref = KPubStaticInterfaceText(
+            unique_id=unique_id,
+            file_kind=doc_kind_formated,
+            file_name=name_path,
+            content=codecs.open(path_to_doc, 'r').read(),
+            pub_date=datetime.now()
+        )
+        doc_db_ref.save()
+        return Response({"brand new SQL record made": path_to_doc})
+
+
 from django.urls import path
 
 urlpatterns = [
-    # get_uncommitted_docs
+
+"""
+curl --location --request POST 'http://localhost:8000/global_static_text/admin_editor_text/' \
+--form 'doc_name="FirstJavaScriptDoc2"' \
+--form 'content="console.log(\"hello world\");"' \
+--form 'doc_kind="js"'
+"""
     path('admin_editor_text/<str:name>/', AdminEditorText.as_view(), name="POST Create New Text Document"),
-    path('admin_editor_text/', AdminEditorTextDetail.as_view(), name="POST Create New Text Document"),
+
+"""
+curl --location --request PATCH 'http://localhost:8000/global_static_text/admin_editor_text/toolbar.controller.js/' \
+--form 'doc_name="FirstJavaScriptDoc"' \
+--form 'content="console.log(\"Hello world!\");\\n// COOL ITS GOOD. "'
+"""
+    path('admin_editor_text/', AdminEditorTextDetail.as_view(), name="PATCH Create New Text Document"),
+
+# curl --location --request GET 'http://localhost:8000/global_static_text/admin_editor_text/html/FirstJavaScriptDoc2' \
+# --form 'doc_name="HELLO6"' \
+# --form 'content="this is just a test"' \
+# --form 'doc_kind="html"'
     path('admin_editor_text/<str:file_kind>/<str:unique_id>/', load_static_text_readonly, name="GET Static Document"),
+
+# curl --location --request GET 'http://localhost:8000/global_static_text/get_uncommitted_docs' \
+# --form 'doc_name="HELLO6"' \
+# --form 'content="this is just a test"' \
+# --form 'doc_kind="html"'
     path('get_uncommitted_docs/', get_uncommitted_docs, name="GET uncommitted docs that are only in SQL."),
 
+curl --location --request GET 'http://localhost:8000/global_static_text/save_sqldb_to_filesystem_text/toolbar.controller.js'
     path('save_sqldb_to_filesystem_text/<str:file_name>/', save_sqldb_to_filesystem_text, name="Save SQL And Store Into HDD"),
+
+# curl --location --request GET 'http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/toolbar.controller.js'
     path('save_filesystem_to_sqldb_text/<str:file_name>/', save_filesystem_to_sqldb_text, name="Save HDD And Store Into SQL"),
+
+# curl --location --request GET 'http://localhost:8000/global_static_text/saveall_filesystem_to_sqldb_text'
+    path('saveall_filesystem_to_sqldb_text/', saveall_filesystem_to_sqldb_text, name="Save HDD And Store Into SQL"),
 
 ]
