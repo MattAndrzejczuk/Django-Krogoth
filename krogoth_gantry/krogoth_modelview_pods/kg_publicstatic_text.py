@@ -240,7 +240,7 @@ class AdminEditorText(APIView):
 # - - - - - -
 
 @api_view(['GET'])
-def save_sqldb_to_filesystem_text(request, unique_id):
+def save_sqldb_to_filesystem_text(request, file_name):
     """
 
     Copies the DB contents, saves them to
@@ -249,14 +249,15 @@ def save_sqldb_to_filesystem_text(request, unique_id):
     http://HOST_NAME/global_static_interface/save_sqldb_to_filesystem_text/{ UNIQUE_ID }
 
     """
-    document_sql: KPubStaticInterfaceText = KPubStaticInterfaceText.objects.get(unique_id=unique_id)
-    name_path : str = unique_id + '.' + document_sql.file_kind
+    document_sql: KPubStaticInterfaceText = KPubStaticInterfaceText.objects.get(file_name=file_name)
+    name_path : str = file_name
     path_to_doc : str = os.path.join('static', 'web', 'krogoth_static_interface', document_sql.file_kind, name_path)
     text_file = open(path_to_doc, "w")
     text_file.write(document_sql.content)
     text_file.close()
-    tracker : KPublicStaticInterfaceText_UncommittedSQL = KPublicStaticInterfaceText_UncommittedSQL.objects.get(document=document_sql)
-    tracker.save_to_hdd_then_destroy(full_path=path_to_doc)
+    tracker : KPublicStaticInterfaceText_UncommittedSQL = KPublicStaticInterfaceText_UncommittedSQL.objects.filter(document=document_sql)
+    if tracker.count() > 0:
+        KPublicStaticInterfaceText_UncommittedSQL.objects.get(document=document_sql).save_to_hdd_then_destroy(full_path=path_to_doc)
     completed_work: [str] = [
         document_sql.unique_id,
         path_to_doc,
@@ -266,7 +267,7 @@ def save_sqldb_to_filesystem_text(request, unique_id):
 
 
 @api_view(['GET'])
-def save_filesystem_to_sqldb_text(request, unique_id):
+def save_filesystem_to_sqldb_text(request, file_name):
     """
 
     Copies the DB contents, saves them to
@@ -275,12 +276,28 @@ def save_filesystem_to_sqldb_text(request, unique_id):
     http://HOST_NAME/global_static_interface/save_filesystem_to_sqldb_css/{ UNIQUE_ID }
 
     """
-    document_sql : KPubStaticInterfaceText = KPubStaticInterfaceText.objects.get(unique_id=unique_id)
-    name_path: str = unique_id + '.' + document_sql.file_kind
+    document_sql : KPubStaticInterfaceText
+    try:
+        document_sql = KPubStaticInterfaceText.objects.get(file_name=file_name)
+    except:
+        split_file = file_name.split('.')
+        doc_ext = str(split_file[len(split_file) - 1]).upper()
+        path_to_file = os.path.join('static', 'web', 'krogoth_static_interface', doc_ext, file_name)
+        f = codecs.open(path_to_file, 'r').read()
+        new = KPubStaticInterfaceText(
+            unique_id=file_name.replace("."+doc_ext, ""),
+            file_name=file_name,
+            file_kind=str(doc_ext).upper(),
+            content=f,
+            pub_date=datetime.now()
+        )
+        new.save()
+        return Response({"result": "Not in DB."}, status=403)
+    name_path: str = file_name
     path_to_doc = os.path.join('static', 'web', 'krogoth_static_interface', document_sql.file_kind, name_path)
     unsaved_work = KPublicStaticInterfaceText_UncommittedSQL.objects.filter(document=document_sql)
     if len(unsaved_work) > 1:
-        return Response({"error":"YOU HAVE UNSAVED WORK ON SQL FOR " + unique_id}, status=401)
+        return Response({"error":"YOU HAVE UNSAVED WORK ON SQL FOR " + file_name}, status=401)
     else:
         document_sql.content = codecs.open(path_to_doc, 'r').read()
         document_sql.save()
@@ -300,7 +317,7 @@ urlpatterns = [
     path('admin_editor_text/<str:file_kind>/<str:unique_id>/', load_static_text_readonly, name="GET Static Document"),
     path('get_uncommitted_docs/', get_uncommitted_docs, name="GET uncommitted docs that are only in SQL."),
 
-    path('save_sqldb_to_filesystem_text/<str:unique_id>/', save_sqldb_to_filesystem_text, name="Save SQL And Store Into HDD"),
-    path('save_filesystem_to_sqldb_text/<str:unique_id>/', save_filesystem_to_sqldb_text, name="Save HDD And Store Into SQL"),
+    path('save_sqldb_to_filesystem_text/<str:file_name>/', save_sqldb_to_filesystem_text, name="Save SQL And Store Into HDD"),
+    path('save_filesystem_to_sqldb_text/<str:file_name>/', save_filesystem_to_sqldb_text, name="Save HDD And Store Into SQL"),
 
 ]
