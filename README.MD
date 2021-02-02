@@ -48,6 +48,8 @@ $ git clone https://github.com/MattAndrzejczuk/Django-Krogoth.git
 
 ### Step 3. install
 
+BIG WARNING HERE, THIS INSTALLER AS OF RIGHT NOW WILL DESTROY ANY AND ALL DOCKER IMAGES CURRENTLY RUNNING. IT'S HIGHLY RECOMMENDED THAT YOU TRY THIS ON A FRESH VM WITH NO OTHER DOCKER IMAGES INSTALLED.
+
 ```bash
 $ cd Django-Krogoth/docker
 $ python3 install_all_in_one.py
@@ -56,6 +58,8 @@ $ python3 install_all_in_one.py
 
 
 ## You're Now Live
+
+whatever the IP of the machine is, the app is live and you can navigate to it. If you installed this locally, navigate to `http://localhost` and that's it. Kroogoth is now live and you can start adding and developing your AngularJS single page web app with ease `(the built in IDE makes this easy)`.
 
 ![alt text](https://raw.githubusercontent.com/MattAndrzejczuk/Django-Krogoth/master/krogoth.png)
 
