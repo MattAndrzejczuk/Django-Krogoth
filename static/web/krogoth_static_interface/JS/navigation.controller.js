@@ -1,5 +1,5 @@
 /*
-GET     http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/
+GET     http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/navigation.controller.js
 */
 /// weird, this requires a reload.
 (function () {
