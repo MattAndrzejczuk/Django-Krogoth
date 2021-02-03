@@ -1,3 +1,6 @@
+/*
+THIS IS BEING REMOVED
+*/
 /* ~ ~ ~ ~ ~ ~ ~ ~ TOOLBAR MODULE ~ ~ ~ ~ ~ ~ ~ ~ */
 (function ()
 {

@@ -113,6 +113,8 @@ def load_static_css_readonly(request, unique_id):
         return HttpResponse('', content_type='text/css', status=404)
 
 
+
+
 # - - - - - - VIEWS
 # class LoadStaticCSS(APIView):
 #     """LoadStaticCSS
@@ -409,3 +411,18 @@ urlpatterns = [
     path('save_filesystem_to_sqldb_css/<str:unique_id>/', save_filesystem_to_sqldb_css, name="Save HDD And Store Into SQL"),
 ]
 
+
+
+# request_method = "POST"
+# is_filtered_request = False
+# filter_folders = ['JS', 'STYLESHEETS']
+# if request_method == "POST":
+#     is_filtered_request = True
+#     # filter_folders = request.data['paths_to_include']
+#     paths_in_root = os.listdir(os.path.join('static', 'web', 'krogoth_static_interface'))
+#     for listed_item in paths_in_root:
+#         if os.path.isdir(os.path.join('static', 'web', 'krogoth_static_interface', listed_item)):
+#             static_files = os.listdir(os.path.join('static', 'web', 'krogoth_static_interface', listed_item))
+#             if listed_item.upper() in filter_folders or request_method == "GET":
+#                 for file in static_files:
+#                     print(os.path.join('static', 'web', 'krogoth_static_interface', listed_item, file))

@@ -1,6 +1,5 @@
 /*
-Save this into SQL by visiting:
-GET http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/toolbar.module.js
+GET     http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/
 */
 /* ~ ~ ~ ~ ~ ~ ~ ~ INDEX MODULE ~ ~ ~ ~ ~ ~ ~ ~ */
 (function () {

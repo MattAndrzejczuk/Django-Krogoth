@@ -116,20 +116,6 @@ class KrogothFoundationView(APIView):
         ct = 'application/javascript'
         body = js.code.replace("var vm = this",
                                "console.log('DEPENDENCY CALLED: "+ unique_name +"');var vm = this")
-
-        try:
-            if js.custom_key_values is not None:
-                for key, value in js.custom_key_values.items():
-                    p1 = 'krogoth_injected={};'
-                    obj = {}
-                    obj[key] = value
-                    print(obj)
-                    body = body.replace(p1,
-                                        'krogoth_injected=' + json.dumps(obj) + ';')
-
-        except Exception as e:
-            print("\033[92m CRITICAL ERROR: KrogothFoundationView \033[0m", end=" ~> \033[94m")
-            print(e, end="\033[0m")
         if unique_name == 'indexmodule':
             all_djangular = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
             my_apps = ''

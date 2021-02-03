@@ -91,22 +91,58 @@ class KPublicStaticInterfaceText_UncommittedSQL(models.Model):
 
 # - - - - - - VIEWS
 
+HEADER = '\033[95m'
+OKBLUE = '\033[94m'
+OKCYAN = '\033[96m'
+OKGREEN = '\033[92m'
+WARNING = '\033[93m'
+FAIL = '\033[91m'
+ENDC = '\033[0m'
+BOLD = '\033[1m'
+UNDERLINE = '\033[4m'
+
+#
+# from krogoth_gantry.models.gantry_models import KrogothGantryMasterViewController, AKFoundationAbstract
+
+from krogoth_gantry.models import KrogothGantryMasterViewController, AKFoundationAbstract
 
 @api_view(['GET'])
-def load_static_text_readonly(request, unique_id, file_kind):
+def load_static_text_readonly(request, filename):
     """
     Public endpoint for readonly, should only be used in  dev mode, production mode this
     should  come from the static files like most other  normal  Django apps.
           static/web/krogoth_static_interface/{file_kind}/{unique_id}.{file_kind}
 
-    http://HOST_NAME/global_static_interface/load_static_text_readonly/{ FILE_EXT }/{ UNIQUE_ID }
+    http://localhost:8000/global_static_text/load_static_text_readonly/index.module.js/
 
     """
-    document_sql : KPubStaticInterfaceText = KPubStaticInterfaceText.objects.filter(unique_id=unique_id).first()
+    # unique_name = str(request.GET['unique_name'])
+    # js = AKFoundationAbstract.objects.get(unique_name=unique_name)
+    # ct = 'application/javascript'
+
+    document_sql: KPubStaticInterfaceText = KPubStaticInterfaceText.objects.filter(file_name=filename).first()
+
+
+    injection = "console.log('DEPENDENCY CALLED: " + filename + "');var vm = this"
+    body = document_sql.content.replace("var vm = this", injection)
+
+    if filename == 'index.module.js':
+        all_djangular = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
+        my_apps = ''
+        for application in all_djangular:
+            my_apps += ("\t\t\t'app." + application.name + "',\n")
+        body = body.replace('/*|#apps#|*/', my_apps)
+
+    print(OKBLUE + "filename : " + OKGREEN + filename + ENDC)
+    mime = document_sql.file_kind
     if document_sql is not None:
-        return HttpResponse(document_sql.content, content_type='text/'+file_kind, status=200)
+        if mime.upper() == 'JS':
+            mime = 'javascript'
+        print(OKBLUE + "filename : " + OKGREEN + filename + ENDC)
+        return HttpResponse(content_type='text/'+mime, content=body)
     else:
-        return HttpResponse('', content_type='text/css', status=404)
+        print(FAIL + "filename : " + WARNING + filename + ENDC)
+        return HttpResponse(content_type='text/'+mime, content=body)
 
 
 @api_view(['GET'])
@@ -431,41 +467,57 @@ def save_filesystem_to_sqldb_text_new(request, unique_id, doc_kind):
 from django.urls import path
 
 urlpatterns = [
+    path('admin_editor_text/<str:name>/', AdminEditorText.as_view(), name="POST Create New Text Document"),
+    path('admin_editor_text/', AdminEditorTextDetail.as_view(), name="PATCH Create New Text Document"),
+    path('load_static_text_readonly/<str:filename>/', load_static_text_readonly, name="load_static_text_readonly"),
+    path('get_uncommitted_docs/', get_uncommitted_docs, name="get_uncommitted_docs"),
+    path('save_sqldb_to_filesystem_text/<str:file_name>/', save_sqldb_to_filesystem_text, name="Save SQL And Store Into HDD"),
+    path('save_filesystem_to_sqldb_text/<str:file_name>/', save_filesystem_to_sqldb_text, name="Save HDD And Store Into SQL"),
+    path('saveall_filesystem_to_sqldb_text/', saveall_filesystem_to_sqldb_text, name="Save HDD And Store Into SQL"),
+]
+
 
 """
 curl --location --request POST 'http://localhost:8000/global_static_text/admin_editor_text/' \
 --form 'doc_name="FirstJavaScriptDoc2"' \
 --form 'content="console.log(\"hello world\");"' \
 --form 'doc_kind="js"'
-"""
-    path('admin_editor_text/<str:name>/', AdminEditorText.as_view(), name="POST Create New Text Document"),
 
-"""
 curl --location --request PATCH 'http://localhost:8000/global_static_text/admin_editor_text/toolbar.controller.js/' \
 --form 'doc_name="FirstJavaScriptDoc"' \
 --form 'content="console.log(\"Hello world!\");\\n// COOL ITS GOOD. "'
-"""
-    path('admin_editor_text/', AdminEditorTextDetail.as_view(), name="PATCH Create New Text Document"),
 
-# curl --location --request GET 'http://localhost:8000/global_static_text/admin_editor_text/html/FirstJavaScriptDoc2' \
-# --form 'doc_name="HELLO6"' \
-# --form 'content="this is just a test"' \
-# --form 'doc_kind="html"'
-    path('admin_editor_text/<str:file_kind>/<str:unique_id>/', load_static_text_readonly, name="GET Static Document"),
+curl --location --request GET 'http://localhost:8000/global_static_text/admin_editor_text/html/FirstJavaScriptDoc2' \
+--form 'doc_name="HELLO6"' \
+--form 'content="this is just a test"' \
+--form 'doc_kind="html"'
 
-# curl --location --request GET 'http://localhost:8000/global_static_text/get_uncommitted_docs' \
-# --form 'doc_name="HELLO6"' \
-# --form 'content="this is just a test"' \
-# --form 'doc_kind="html"'
-    path('get_uncommitted_docs/', get_uncommitted_docs, name="GET uncommitted docs that are only in SQL."),
+curl --location --request GET 'http://localhost:8000/global_static_text/get_uncommitted_docs' \
+--form 'doc_name="HELLO6"' \
+--form 'content="this is just a test"' \
+--form 'doc_kind="html"'
 
 curl --location --request GET 'http://localhost:8000/global_static_text/save_sqldb_to_filesystem_text/toolbar.controller.js'
-    path('save_sqldb_to_filesystem_text/<str:file_name>/', save_sqldb_to_filesystem_text, name="Save SQL And Store Into HDD"),
 
-# curl --location --request GET 'http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/toolbar.controller.js'
-    path('save_filesystem_to_sqldb_text/<str:file_name>/', save_filesystem_to_sqldb_text, name="Save HDD And Store Into SQL"),
+curl --location --request GET 'http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/toolbar.controller.js'
 
-# curl --location --request GET 'http://localhost:8000/global_static_text/saveall_filesystem_to_sqldb_text'
-    path('saveall_filesystem_to_sqldb_text/', saveall_filesystem_to_sqldb_text, name="Save HDD And Store Into SQL"),
+curl --location --request GET 'http://localhost:8000/global_static_text/saveall_filesystem_to_sqldb_text'
 
-]
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

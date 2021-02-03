@@ -87,7 +87,7 @@ def load_core_elements_css():
 
 def index(request):
     permission_classes = (AllowAny,)
-    template = loader.get_template('index.html')
+    template = loader.get_template('index_alt.html')
     splash_title = 'Krogoth'
     font_size = 36
     splash_logo_bg_color = 'antiquewhite'
@@ -137,7 +137,7 @@ def index(request):
     context = {
         "version_build": version_build,
         "all_bowers": all_bowers,
-        "core":KrogothMainComponents,
+        "core": KrogothMainComponents,
         "message": seo_title,
         "description": seo_description,
         "KrogothGantryMasterViewControllers": KrogothGantryMasterViewControllers,
@@ -154,5 +154,6 @@ def index(request):
         "load_core_elements_css": load_core_elements_css(),
     }
     return HttpResponse(template.render(context, request))
+
 
 
