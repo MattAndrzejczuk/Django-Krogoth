@@ -136,7 +136,7 @@ def load_static_text_readonly(request, filename):
     print(OKBLUE + "filename : " + OKGREEN + filename + ENDC)
     mime = document_sql.file_kind
     if document_sql is not None:
-        if mime.upper() == 'JS':
+        if mime.upper() == 'JS' or mime.upper() == 'ES6':
             mime = 'javascript'
         print(OKBLUE + "filename : " + OKGREEN + filename + ENDC)
         return HttpResponse(content_type='text/'+mime, content=body)

@@ -1,3 +1,6 @@
+/*
+GET   http://localhost:8000/global_static_text/load_static_text_readonly/ms-scroll.directive.es6
+ */
 (function ()
 {
     'use strict';

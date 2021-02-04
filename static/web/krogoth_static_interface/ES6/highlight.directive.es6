@@ -1,4 +1,6 @@
-/* ~ ~ ~ ~ ~ ~ ~ ~ ANGULARJS 1.7.2 ~ ~ ~ ~ ~ ~ ~ ~ */
+/*
+GET   http://localhost:8000/global_static_text/load_static_text_readonly/highlight.directive.es6
+ */
 (function () {
   'use strict';
 
