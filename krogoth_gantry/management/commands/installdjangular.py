@@ -1,11 +1,6 @@
 from django.core.management.base import BaseCommand
-from krogoth_gantry.models.moho_extractor_models import IncludedHtmlCoreTemplate
-import subprocess
-import os
-from krogoth_gantry.models.core_models import *
-from django.db import IntegrityError
-from krogoth_gantry.management.ak_theme_meta import MetaGenerator
-
+import json
+# from krogoth_gantry.krogoth_modelview_pods.filesystem_to_db import KSI_Processor
 
 class bcolors:
     HEADER = '\033[95m'
@@ -32,235 +27,79 @@ class bcolors:
     lightgreen = '\033[92m'
 
 
+import codecs
+from datetime import datetime
+import os
 
-def getkrogoth_gantryBuild():
-    # GET LAZARUS BUILD VERSION:
-    bash_cmd = ['git', 'rev-list', '--count', 'master']
-    get_build_cmd = str(subprocess.check_output(bash_cmd))
-    current_build_1 = ''
-    current_build_2 = ''
-    try:
-        current_build_1 = ('0.' + str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", "")) + '.'
-        current_build_2 = (str(get_build_cmd).replace("b'", "").replace("\\n", "").replace("'", ""))[1:]
-    except:
-        print('failed to check version!!!')
-    if current_build_2 == '00':
-        current_build_2 = '0'
-    else:
-        current_build_2 = current_build_2.replace('0', '')
+from krogoth_gantry.krogoth_modelview_pods.kg_publicstatic_text import KPubStaticInterfaceText, KPublicStaticInterfaceText_UncommittedSQL
+
+
+class KSI_Processor(object):
+
+    @classmethod
+    def run_task_saveall_filesystem_to_sql(cls) -> {str: str}:
+        paths_in_root = os.listdir(os.path.join('static', 'web', 'krogoth_static_interface'))
+        list_of_work = []
+        for listed_item in paths_in_root:
+            if os.path.isdir(os.path.join('static', 'web', 'krogoth_static_interface', listed_item)):
+                static_files = os.listdir(os.path.join('static', 'web', 'krogoth_static_interface', listed_item))
+
+                for file_name in static_files:
+                    print(os.path.join('static', 'web', 'krogoth_static_interface', listed_item, file_name))
+                    document_sql: KPubStaticInterfaceText
+                    try:
+                        document_sql = KPubStaticInterfaceText.objects.get(file_name=file_name)
+                    except:
+                        split_file = file_name.split('.')
+                        doc_ext = str(split_file[len(split_file) - 1]).upper()
+                        path_to_file = os.path.join('static', 'web', 'krogoth_static_interface', doc_ext, file_name)
+                        f = codecs.open(path_to_file, 'r').read()
+                        new = KPubStaticInterfaceText(
+                            unique_id=file_name.replace("." + doc_ext, ""),
+                            file_name=file_name,
+                            file_kind=str(doc_ext).upper(),
+                            content=f,
+                            pub_date=datetime.now()
+                        )
+                        new.save()
+
+                        completed_work: {str: str} = {
+                            "new.unique_id": new.unique_id,
+                            "new.file_kind": new.file_kind,
+                            "path_to_file": path_to_file,
+                            'result': 'ADDED TO SQL FROM FILESYSTEM',
+                        }
+                        list_of_work.append(completed_work)
+                        continue
+                    name_path: str = file_name
+                    path_to_doc = os.path.join('static', 'web', 'krogoth_static_interface', document_sql.file_kind,
+                                               name_path)
+                    unsaved_work = KPublicStaticInterfaceText_UncommittedSQL.objects.filter(document=document_sql)
+                    if len(unsaved_work) > 1:
+                        return {
+                            "error": "YOU HAVE UNSAVED WORK ON SQL FOR " + file_name,
+                            "completed_work": "failed"
+                        }
+                    else:
+                        document_sql.content = codecs.open(path_to_doc, 'r').read()
+                        document_sql.save()
+                        completed_work: {str: str} = {
+                            "document_sql.unique_id": document_sql.unique_id,
+                            "document_sql.file_kind": document_sql.file_kind,
+                            "path_to_doc": path_to_doc,
+                            'result': 'Database copy saved into filesystem.'
+                        }
+                        list_of_work.append(completed_work)
+        return {"completed_work": list_of_work}
+
 
 class Command(BaseCommand):
-    help = 'prints the toolbar module and controller.'
-
-    # def add_arguments(self, parser):
-    #     parser.add_argument('mvc_id', nargs="+", type=int)
 
     def handle(self, *args, **options):
-
-        def create_html_view(named: str, at: str, file_name: str, os_path: str):
-            # CentralCheckpoint.log('create_html_view', [named, at, file_name, os_path])
-
-            # print(bcolors().OKGREEN + 'CREATED...' + (at + named) + bcolors().ENDC)
-            try:
-                new_ng = IncludedHtmlCoreTemplate(name=named,file_name=file_name,os_path=os_path)
-                meta_data = MetaGenerator.determine_meta_data(filename=file_name)
-                new_ng.meta_kind_0 = meta_data[0]
-                new_ng.meta_kind_1 = meta_data[1]
-                new_ng.meta_kind_2 = meta_data[2]
-                new_ng.contents = codecs.open(at + named + '', 'r').read()
-                new_ng.save()
-                print(bcolors().OKGREEN + 'CREATED...' + (at + named) + bcolors().ENDC)
-            except:
-                print('\033[31mNOT FOUND: ' + named + '\033[0m')
-
-
-        def get_source_class(kind: str, angular_duty: str, path: str):
-            # CentralCheckpoint.log('get_source_class', [kind, angular_duty, path])
-            new_js = AKFoundationAbstract()
-            if kind == 'altDate':
-                new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'api-resolver':
-                new_js = AKFoundationRESTful(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'toolbar':
-                new_js = AKFoundationToolbar(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'basic':
-                new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'chat-tab':
-                new_js = AKFoundationQuickPanel(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'config':
-                new_js = AKFoundationConfig(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'core':
-                new_js = AKFoundationAngularCore(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'filterByIds':
-                new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'filterByPropIds':
-                new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'fuse-config':
-                new_js = AKFoundationThemingConfiguration(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'fuse-generator':
-                new_js = AKFoundationThemingService(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'fuse-palettes':
-                new_js = AKFoundationThemingConstant(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'fuse-themes':
-                new_js = AKFoundationThemingConstant(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'fuse-theming':
-                new_js = AKFoundationThemingService(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'highlight':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'index':
-                new_js = AKFoundationIndex(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'main':
-                new_js = AKFoundationMain(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-api':
-                new_js = AKFoundationRESTful(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-card':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-datepicker-fix':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-form-wizard':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-info-bar':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-masonry':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-material-color-picker':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-nav':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-navigation':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-random-class':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-responsive-table':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-scroll':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-search-bar':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-shortcuts':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-sidenav-helper':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-splash-screen':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-stepper':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-utils':
-                new_js = AKFoundationMain(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-widget':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'ms-timeline':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'navigation':
-                new_js = AKFoundationNavigation(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'quick-panel':
-                new_js = AKFoundationQuickPanel(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'tag':
-                new_js = AKFoundationFilters(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'theme-options':
-                new_js = AKFoundationThemingConfiguration(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            elif kind == 'AKCustom':
-                new_js = AKFoundationDirectives(first_name=kind, last_name=angular_duty, ext='.js', path=path)
-            else:
-                self.stdout.write(BASE_DIR + '/static/web/core/' + bcolors().WARNING + (
-                        'UNKNOWN...' + kind + '.' + angular_duty) + bcolors().ENDC)
-
-            try:
-                if type(new_js) is not AKFoundationAbstract:
-                    new_js.is_selected_theme = True
-                    new_js.theme = BASE_DIR + '/static/web/core/'
-                    new_js.code = new_js.as_frontend_response
-                    new_js.unique_name = kind + angular_duty + ''  # str(len(AKFoundationAbstract.objects.all())) + 'v1'
-                    # print(bcolors.purple + BASE_DIR + '/static/web/core/' + new_js.get_filename + new_js.get_file_ext)
-                    new_js.save()
-                    self.stdout.write(bcolors().OKGREEN + 'CREATED...' + path + (
-                            new_js.get_filename + new_js.ext) + bcolors().ENDC)
-                else:
-                    print(new_js.first_name + '.' + new_js.last_name)
-            except IntegrityError:
-                self.stdout.write(bcolors().FAIL + path + (
-                        'ALREADY EXISTS...' + (new_js.get_filename + new_js.ext)) + bcolors().ENDC)
-
-            # print('dependency saved.')
-
-
-        path = BASE_DIR + '/static/web/core/'
-
-        key_paths_js = {
-            0: path + 'js/app_core/',
-            1: path + 'js/app_navigation/',
-            2: path + 'js/app_quick-panel/',
-            3: path + 'js/app_toolbar/',
-            4: path + 'js/fuse/'
-        }
-        key_paths_html = {
-            0: path + 'html/layouts/',
-            1: path + 'html/directives/',
-            2: path + 'html/quickpanel/'
-        }
-
-        js_files = {}
-        for k,v in key_paths_js.items():
-            print(bcolors.purple + v + bcolors.ENDC)
-            # js_files = os.listdir(v)
-            for file in os.listdir(v):
-                # print(bcolors.red + file + bcolors.ENDC)
-                # print(bcolors.OKGREEN + json.dumps(os.listdir(v), sort_keys=True, indent=2) + bcolors.ENDC)
-                count = len(file.split('/'))
-                array = file.split('/')
-                filename = str(array[count - 1])
-                arr = filename.split('.')
-                if arr[0] == arr[len(arr) - 2]:
-                    if arr[len(arr) - 1] == 'js':
-                        # p = path + arr[0] + '\033[36m.' + arr[len(arr) - 1] + '\033[0m'
-                        # _msg = path + arr[0] + '.' + arr[len(arr) - 1]
-                        # output_console(msg=_msg)
-                        js_files[filename] = v
-                        get_source_class(kind=str(arr[0]), angular_duty='AK', path=v)
-
-                else:
-                    if arr[len(arr) - 1] == 'js':
-                        js_files[filename] = v
-                        # p = path + arr[0] + '.' + arr[len(arr) - 2] + '.' + arr[len(arr) - 1]
-                        # output_console(msg=p)
-                        get_source_class(kind=str(arr[0]), angular_duty=str(arr[len(arr) - 2]), path=v)
-
-        html_files = {}
-        for k,v in key_paths_html.items():
-            # print('analyzing... ' + bcolors.blue + v + bcolors.ENDC)
-            for file in os.listdir(v):
-                count = len(file.split('/'))
-                array = file.split('/')
-                create_html_view(named=str(array[count - 1]), at=key_paths_html[k], file_name=file, os_path=v)
-                html_files[array[count - 1]] = key_paths_html[k]
-
-        # print(bcolors.OKBLUE, end='[html_files]: \n')
-        # print(json.dumps(
-        #     html_files, sort_keys=True, indent=2).replace('",', '",' + bcolors.green).replace(':', ':' + bcolors.OKBLUE),
-        #       end='')
-        # print(bcolors.ENDC)
-        # print(bcolors.green, end='[js_files]: \n')
-        # print(json.dumps(
-        #     js_files, sort_keys=True, indent=2).replace('",', '",' + bcolors.blue).replace(':',
-        #                                                                                       ':' + bcolors.lightgrey),
-        #       end='')
-        # print(bcolors.ENDC)
-
-
-        print(bcolors.OKBLUE, end='CREATING GUEST ACCOUNT...\n')
-        from django.contrib.auth.models import User
-        user=User.objects.create_user('GuestAccount', password='0001234000')
-        user.is_superuser=False
-        user.is_staff=False
-        user.save()
-
-        from krogoth_gantry.models.models_chat import JawnUser
-        ju = JawnUser(base_user=user)
-        ju.save()
-
-        from rest_framework.authtoken.models import Token
-        token, created = Token.objects.get_or_create(user=user)
-        ajsindex = AKFoundationIndex.objects.get(unique_name='indexroute')
-        ajsindex.custom_key_values = {'guest_token': token}
-        ajsindex.save()
+        outcome = KSI_Processor.run_task_saveall_filesystem_to_sql()
+        print(bcolors.OKBLUE, end='[files]: \n')
+        print(json.dumps(
+            outcome, sort_keys=True, indent=2).replace('",', '",' + bcolors.green).replace(':', ':' + bcolors.blue),
+              end='')
         print(bcolors.ENDC)
+
