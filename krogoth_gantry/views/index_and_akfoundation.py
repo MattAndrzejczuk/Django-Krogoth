@@ -147,11 +147,6 @@ def index(request):
         "width": width,
         "main_bg_color": main_bg_color,
         "font_color": font_color,
-        "load_custom_css": load_custom_css(),
-        "load_krogoth_css": load_krogoth_css(),
-        "load_background_css": load_background_css(),
-        "load_core_css": load_core_css(),
-        "load_core_elements_css": load_core_elements_css(),
     }
     return HttpResponse(template.render(context, request))
 
