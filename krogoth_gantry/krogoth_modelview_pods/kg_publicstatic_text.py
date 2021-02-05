@@ -53,8 +53,8 @@ class KPubStaticInterfaceText(models.Model):
     ``
     """
 
-    unique_id = models.CharField(primary_key=True, max_length=70)
-    file_name = models.CharField(max_length=50, default='index_loading_styles.txt')
+    unique_id = models.CharField(primary_key=True, max_length=85)
+    file_name = models.CharField(max_length=85, default='index_loading_styles.txt')
     file_kind = models.CharField(max_length=20, default='txt')
     content = models.TextField(default='/* This Text doc is empty */')
     is_enabled = models.BooleanField(default=True)
