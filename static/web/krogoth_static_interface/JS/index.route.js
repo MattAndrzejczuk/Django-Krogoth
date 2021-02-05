@@ -47,33 +47,33 @@ GET     http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/i
 
         var layouts = {
             verticalNavigation: {
-                main: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation.html',
-                toolbar: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation_toolbar.html',
-                navigation: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation_navigation.html'
+                main: '/global_static_text/load_static_text_readonly/vertical-navigation.html',
+                toolbar: '/global_static_text/load_static_text_readonly/vertical-navigation_toolbar.html',
+                navigation: '/global_static_text/load_static_text_readonly/vertical-navigation_navigation.html'
             },
             verticalNavigationFullwidthToolbar: {
-                main: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation-fullwidth-toolbar.html',
-                toolbar: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation-fullwidth-toolbar_toolbar.html',
-                navigation: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation_navigation.html'
+                main: '/global_static_text/load_static_text_readonly/vertical-navigation-fullwidth-toolbar.html',
+                toolbar: '/global_static_text/load_static_text_readonly/vertical-navigation-fullwidth-toolbar_toolbar.html',
+                navigation: '/global_static_text/load_static_text_readonly/vertical-navigation_navigation.html'
             },
             verticalNavigationFullwidthToolbar2: {
-                main: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation-fullwidth-toolbar-2.html',
-                toolbar: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation-fullwidth-toolbar-2_toolbar.html',
-                navigation: '/moho_extractor/NgIncludedHtml/?name=vertical-navigation-fullwidth-toolbar-2_navigation.html'
+                main: '/global_static_text/load_static_text_readonly/vertical-navigation-fullwidth-toolbar-2.html',
+                toolbar: '/global_static_text/load_static_text_readonly/vertical-navigation-fullwidth-toolbar-2_toolbar.html',
+                navigation: '/global_static_text/load_static_text_readonly/vertical-navigation-fullwidth-toolbar-2_navigation.html'
             },
             horizontalNavigation: {
-                main: '/moho_extractor/NgIncludedHtml/?name=horizontal-navigation.html',
-                toolbar: '/moho_extractor/NgIncludedHtml/?name=horizontal-navigation_toolbar.html',
-                navigation: '/moho_extractor/NgIncludedHtml/?name=horizontal-navigation_navigation.html'
+                main: '/global_static_text/load_static_text_readonly/horizontal-navigation.html',
+                toolbar: '/global_static_text/load_static_text_readonly/horizontal-navigation_toolbar.html',
+                navigation: '/global_static_text/load_static_text_readonly/horizontal-navigation_navigation.html'
             },
             contentOnly: {
-                main: '/moho_extractor/NgIncludedHtml/?name=content-only.html',
+                main: '/global_static_text/load_static_text_readonly/content-only.html',
                 toolbar: '',
                 navigation: ''
             },
             contentWithToolbar: {
-                main: '/moho_extractor/NgIncludedHtml/?name=content-with-toolbar.html',
-                toolbar: '/moho_extractor/NgIncludedHtml/?name=content-with-toolbar_toolbar.html',
+                main: '/global_static_text/load_static_text_readonly/content-with-toolbar.html',
+                toolbar: '/global_static_text/load_static_text_readonly/content-with-toolbar_toolbar.html',
                 navigation: ''
             }
         };
@@ -97,7 +97,7 @@ GET     http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/i
                         controller: 'NavigationController as vm'
                     },
                     'quickPanel@app': {
-                        templateUrl: '/moho_extractor/NgIncludedHtml/?name=quick-panel.html',
+                        templateUrl: '/global_static_text/load_static_text_readonly/quick-panel.html',
                         controller: 'QuickPanelController as vm'
                     }
                 }

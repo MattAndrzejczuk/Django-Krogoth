@@ -21,13 +21,13 @@
                 navigation: '/moho_extractor/NgIncludedHtml/?name=htmlNavLayout'
             },
             contentOnly: {
-                main: '/static/app/core/layouts/content-only.html',
+                main: '/global_static_text/load_static_text_readonly/content-only.html',
                 toolbar: '',
                 navigation: ''
             },
             contentWithToolbar: {
-                main: '/static/app/core/layouts/content-with-toolbar.html',
-                toolbar: '/static/app/toolbar/layouts/content-with-toolbar/toolbar.html',
+                main: '/global_static_text/load_static_text_readonly/content-with-toolbar.html',
+                toolbar: '/global_static_text/load_static_text_readonly/toolbar.html',
                 navigation: ''
             }
         };
@@ -48,7 +48,7 @@
                     controller: 'NavigationController as vm'
                 },
                 'quickPanel@app': {
-                    templateUrl: '/static/app/quick-panel/quick-panel.html',
+                    templateUrl: '/global_static_text/load_static_text_readonly/quick-panel.html',
                     controller: 'QuickPanelController as vm'
                 }
             }

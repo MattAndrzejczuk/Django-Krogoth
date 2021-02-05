@@ -378,7 +378,7 @@ GET   http://localhost:8000/global_static_text/load_static_text_readonly/ms-step
         model: '=ngModel'
       },
       transclude: true,
-      templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-stepper_horizontal.html',
+      templateUrl: '/global_static_text/load_static_text_readonly/ms-stepper_horizontal.html',
       compile: function (tElement) {
         tElement.addClass('ms-stepper');
 
@@ -441,7 +441,7 @@ GET   http://localhost:8000/global_static_text/load_static_text_readonly/ms-step
         model: '=ngModel'
       },
       transclude: true,
-      templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-stepper_vertical.html',
+      templateUrl: '/global_static_text/load_static_text_readonly/ms-stepper_vertical.html',
       compile: function (tElement) {
         tElement.addClass('ms-stepper');
 
@@ -480,7 +480,7 @@ GET   http://localhost:8000/global_static_text/load_static_text_readonly/ms-step
         hideStep: '=?'
       },
       transclude: true,
-      templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-stepper_vertical-step.html',
+      templateUrl: '/global_static_text/load_static_text_readonly/ms-stepper_vertical-step.html',
       compile: function (tElement) {
         tElement.addClass('ms-stepper-step');
 

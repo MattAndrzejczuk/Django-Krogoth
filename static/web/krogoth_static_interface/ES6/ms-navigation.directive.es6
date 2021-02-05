@@ -481,7 +481,7 @@ GET   http://localhost:8000/global_static_text/load_static_text_readonly/ms-navi
         root: '@'
       },
       controller: 'MsNavigationController as vm',
-      templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-navigation_vertical.html',
+      templateUrl: '/global_static_text/load_static_text_readonly/ms-navigation_vertical.html',
       transclude: true,
       compile: function (tElement) {
         tElement.addClass('ms-navigation');
@@ -1052,7 +1052,7 @@ GET   http://localhost:8000/global_static_text/load_static_text_readonly/ms-navi
         root: '@'
       },
       controller: 'MsNavigationController as vm',
-      templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-navigation_horizontal.html',
+      templateUrl: '/global_static_text/load_static_text_readonly/ms-navigation_horizontal.html',
       transclude: true,
       compile: function (tElement) {
         tElement.addClass('ms-navigation-horizontal');

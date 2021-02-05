@@ -324,7 +324,7 @@ GET   http://localhost:8000/global_static_text/load_static_text_readonly/ms-sear
         onExpand: '&?',
         onCollapse: '&?'
       },
-      templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-search-bar.html',
+      templateUrl: '/global_static_text/load_static_text_readonly/ms-search-bar.html',
       compile: function (tElement) {
         // Add class
         tElement.addClass('ms-search-bar');

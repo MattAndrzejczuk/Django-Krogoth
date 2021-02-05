@@ -16,7 +16,7 @@ GET   http://localhost:8000/global_static_text/load_static_text_readonly/ms-info
             restrict   : 'E',
             scope      : {},
             transclude : true,
-            templateUrl: '/moho_extractor/NgIncludedHtml/?name=ms-info-bar.html',
+            templateUrl: '/global_static_text/load_static_text_readonly/ms-info-bar.html',
             link       : function (scope, iElement)
             {
                 var body = $document.find('body'),
