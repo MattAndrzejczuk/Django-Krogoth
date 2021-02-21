@@ -10,6 +10,12 @@ from django.http import HttpResponse
 import os, codecs
 
 
+
+
+JSON_401_MSG = {"result": "YOU NEED TO BE LOGGED IN AS SUPERUSER.", "completed_work": "UNAUTHORIZED"}
+RESPONSE_UNAUTHORIZED = Response(JSON_401_MSG, status=401)
+
+
 # - - - - - - MODELS
 class KPubStaticInterfaceText(models.Model):
     """KPubStaticInterfaceCSS
@@ -27,21 +33,15 @@ class KPubStaticInterfaceText(models.Model):
         Don't touch this property
 
     content
-        the css code itself
+        the css/text/js/etx code itself
 
     is_enabled
         If set to True, uppercase the alpha characters (default: False)
 
-    pub_date
-        automatically generated
-
-    date_modified
-        automatically generated
 
     Example
 
     ``
-
         new_css = KPubStaticInterfaceCSS.objects.create(
 
                 unique_id="my_file",
@@ -253,7 +253,7 @@ class AdminEditorText(APIView):
         blocks the document from being loaded even with URL
 
     """
-    permission_classes = (permissions.AllowAny,)
+    permission_classes = (permissions.IsAdminUser,)
 
 
 
@@ -275,22 +275,30 @@ class AdminEditorText(APIView):
         return Response({"text_doc_modified": name}, status=204)
 # - - - - - -
 
+
+
+
 @api_view(['GET'])
 def save_sqldb_to_filesystem_text(request, file_name):
     """
 
     Copies the DB contents, saves them to
-          static/web/krogoth_static_interface/{file_kind}/{unique_id}.css
+          static/web/krogoth_static_interface/{file_kind}/{unique_id}.{file_kind}
 
     http://HOST_NAME/global_static_interface/save_sqldb_to_filesystem_text/{ UNIQUE_ID }
 
     """
+    if not request.user.is_superuser:
+        print(FAIL + "TODO: might want to report an unauthorised entry detected." + ENDC)
+        return RESPONSE_UNAUTHORIZED
+
     document_sql: KPubStaticInterfaceText = KPubStaticInterfaceText.objects.get(file_name=file_name)
     name_path : str = file_name
     path_to_doc : str = os.path.join('static', 'web', 'krogoth_static_interface', document_sql.file_kind, name_path)
     text_file = open(path_to_doc, "w")
     text_file.write(document_sql.content)
     text_file.close()
+
     tracker : KPublicStaticInterfaceText_UncommittedSQL = KPublicStaticInterfaceText_UncommittedSQL.objects.filter(document=document_sql)
     if tracker.count() > 0:
         KPublicStaticInterfaceText_UncommittedSQL.objects.get(document=document_sql).save_to_hdd_then_destroy(full_path=path_to_doc)
@@ -300,6 +308,8 @@ def save_sqldb_to_filesystem_text(request, file_name):
         'KPubStaticInterfaceText Database copy saved into filesystem.',
     ]
     return Response({"completed_work": completed_work})
+
+
 
 
 
@@ -314,6 +324,11 @@ def save_filesystem_to_sqldb_text(request, file_name):
     http://HOST_NAME/global_static_text/save_filesystem_to_sqldb_text/{ UNIQUE_ID }
 
     """
+
+    if not request.user.is_superuser:
+        print(FAIL + "TODO: might want to report an unauthorised entry detected." + ENDC)
+        return RESPONSE_UNAUTHORIZED
+
     document_sql : KPubStaticInterfaceText
     try:
         document_sql = KPubStaticInterfaceText.objects.get(file_name=file_name)
@@ -365,6 +380,9 @@ def saveall_filesystem_to_sqldb_text(request):
                 'paths_to_include': ['JS','HTML']
             }
     """
+    if not request.user.is_superuser:
+        print(FAIL + "TODO: might want to report an unauthorised entry detected." + ENDC)
+        return RESPONSE_UNAUTHORIZED
 
     outcome = KSI_Processor.run_task_saveall_filesystem_to_sql()
     if outcome['completed_work'] == 'failed':
@@ -372,58 +390,9 @@ def saveall_filesystem_to_sqldb_text(request):
     else:
         return Response(outcome, status=200)
 
-# TODO REMOVE THIS EXTRA VIEW, MIGHT NOT NEED ANYMORE
-@api_view(['GET'])
-def save_filesystem_to_sqldb_text_new(request, unique_id, doc_kind):
-    """
-
-    Copies the DB contents, saves them to
-          static/web/krogoth_static_interface/stylesheets/{unique_id}.css
-
-    http://HOST_NAME/global_static_interface/save_filesystem_to_sqldb_css/{ UNIQUE_ID }
-
-    """
-    doc_kind_formated : str = str(doc_kind).upper()
-    # document_sql : KPubStaticInterfaceText = KPubStaticInterfaceText.objects.get_or_create(
-    #     unique_id=unique_id,
-    #     file_name=unique_id + '.' + doc_kind,
-    #     file_kind=doc_kind
-    # )
-
-    name_path: str = unique_id + '.' + doc_kind_formated
-    document_sql = KPubStaticInterfaceText.objects.filter(unique_id=unique_id, file_kind=doc_kind_formated)
-    unique_id = unique_id.replace('-', '.')
-    path_to_doc = os.path.join('static', 'web', 'krogoth_static_interface', doc_kind_formated, name_path.replace('-', '.'))
-    if len(document_sql) > 0:
-
-        unsaved_work = KPublicStaticInterfaceText_UncommittedSQL.objects.filter(document=document_sql)
-        if len(unsaved_work) > 1:
-            return Response({"error":"YOU HAVE UNSAVED WORK ON SQL FOR " + unique_id}, status=401)
-        else:
-            document_sql.content = codecs.open(path_to_doc, 'r').read()
-            document_sql.save()
-            completed_work: [str] = [
-                document_sql.unique_id,
-                path_to_doc,
-                'Database copy updated from filesystem.',
-            ]
-            return Response({"completed_work": completed_work})
-    else:
-        if not os.path.exists(os.path.join('static', 'web', 'krogoth_static_interface', doc_kind_formated)):
-            os.makedirs(os.path.join("static", 'web', 'krogoth_static_interface', doc_kind_formated))
-        doc_db_ref = KPubStaticInterfaceText(
-            unique_id=unique_id,
-            file_kind=doc_kind_formated,
-            file_name=name_path,
-            content=codecs.open(path_to_doc, 'r').read(),
-            pub_date=datetime.now()
-        )
-        doc_db_ref.save()
-        return Response({"brand new SQL record made": path_to_doc})
 
 
 from django.urls import path
-
 urlpatterns = [
     path('admin_editor_text/<str:name>/', AdminEditorText.as_view(), name="POST Create New Text Document"),
     path('admin_editor_text/', AdminEditorTextDetail.as_view(), name="PATCH Create New Text Document"),
