@@ -1,10 +1,8 @@
-
 import os
 
 from krogoth_gantry.models import IncludedHtmlCoreTemplate
 from krogoth_gantry.models.gantry_models import KrogothGantryMasterViewController
 from krogoth_gantry.models.core_models import AKBowerComponent
-
 
 from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAdminUser
@@ -15,21 +13,23 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.viewsets import ModelViewSet
 from django.template import loader
 from django.http import HttpResponse
-from jawn.settings import STATIC_KROGOTH_MODE #, APP_VERSION
+from jawn.settings import STATIC_KROGOTH_MODE  # , APP_VERSION
 from django.template import Context, Template
 
 # from krogoth_gantry.views.middleware.dj_tmpl_rendered import load_custom_css, load_krogoth_css, load_background_css, \
 #     load_core_css, load_core_elements_css
 
-from krogoth_gantry.models.krogoth_manager import DataVisitorTracking
+import inspect
+from krogoth_gantry.models.krogoth_manager import DataVisitorTracking, DataVisitorMeta, DataServerEvents
+
 
 class AKFoundationViewSet(ModelViewSet):
     # permission_classes = [IsAdminUser]
     queryset = AKFoundationAbstract.objects.all().order_by('last_name')
     serializer_class = AKFoundationSerializer
-    permission_classes = (AllowAny, )
+    permission_classes = (AllowAny,)
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ('unique_name', 'first_name', 'last_name', 'ext', )
+    filter_fields = ('unique_name', 'first_name', 'last_name', 'ext',)
 
 
 # * * * * *
@@ -83,8 +83,6 @@ def load_core_elements_css():
     return rendered
 
 
-
-
 def index(request):
     permission_classes = (AllowAny,)
     template = loader.get_template('index_alt.html')
@@ -95,24 +93,61 @@ def index(request):
     main_bg_color = 'darkolive'
     font_color = 'black'
 
-
     try:
         usr = 'ANONYMOUS'
-        if request.user:
-            usr = request.user.username
-        count_this = KrogothVisitorTracking(remote_addr=request.META['REMOTE_ADDR'],
-                                            remote_port=request.META['REMOTE_PORT'],
-                                            http_user_agent=request.META['HTTP_USER_AGENT'],
-                                            username=usr)
+        if request.user: usr = request.user.username
+        count_this = DataVisitorTracking()
+        try: count_this.remote_addr = request.META['REMOTE_ADDR']
+        except: pass  # no value for key=[QUERY_STRING]
+        try: count_this.remote_port = request.META['REMOTE_PORT']
+        except: pass  # no value for key=[QUERY_STRING]
+        try: count_this.http_user_agent = request.META['HTTP_USER_AGENT']
+        except: pass  # no value for key=[QUERY_STRING]
+        try: count_this.username=usr
+        except: pass  # no value for key=[QUERY_STRING]
+
+
+
+        meta_val = DataVisitorMeta(tracker=count_this)
+        try: meta_val.query_string = request.META['QUERY_STRING']
+        except: pass
+        try: meta_val.content_length = request.META['CONTENT_LENGTH']
+        except: pass  # no value for key=[CONTENT_LENGTH]
+        try: meta_val.content_type = request.META['CONTENT_TYPE']
+        except: pass  # no value for key=[CONTENT_TYPE]
+        try: meta_val.http_accept = request.META['HTTP_ACCEPT']
+        except: pass  # no value for key=[HTTP_ACCEPT]
+        try: meta_val.http_accept_encoding = request.META['HTTP_ACCEPT_ENCODING']
+        except: pass  # no value for key=[HTTP_ACCEPT_ENCODING]
+        try: meta_val.http_accept_language = request.META['HTTP_ACCEPT_LANGUAGE']
+        except: pass  # no value for key=[HTTP_ACCEPT_LANGUAGE]
+        try: meta_val.http_host = request.META['HTTP_HOST']
+        except: pass  # no value for key=[HTTP_HOST]
+        try: meta_val.http_referer = request.META['HTTP_REFERER']
+        except: pass  # no value for key=[HTTP_REFERER]
+        try: meta_val.remote_host = request.META['REMOTE_HOST']
+        except: pass  # no value for key=[REMOTE_HOST]
+        try: meta_val.remote_user = request.META['REMOTE_USER']
+        except: pass  # no value for key=[REMOTE_USER]
+        try: meta_val.request_method = request.META['REQUEST_METHOD']
+        except: pass  # no value for key=[REQUEST_METHOD]
+        try: meta_val.server_name = request.META['SERVER_NAME']
+        except: pass  # no value for key=[SERVER_NAME]
+        try: meta_val.server_port = request.META['SERVER_PORT']
+        except: pass  # no value for key=[SERVER_PORT]
         count_this.save()
-    except:
-        print('\n\n\nFAILED TO TRACE\n\n\n')
+        meta_val.save()
+    except Exception as e:
+        # print('\n\n\nFAILED TO TRACE\n\n\n')
+        DataServerEvents.warn("FAILED TO TRACE " + e.__str__(),
+                              inspect.getframeinfo(inspect.stack()[1][0]))
 
     KrogothGantryMasterViewControllers = []
     if STATIC_KROGOTH_MODE == False:
         all_applications = KrogothGantryMasterViewController.objects.filter(is_enabled=True)
         for application in all_applications:
-            KrogothGantryMasterViewControllers.append('/krogoth_gantry/DynamicJavaScriptInjector/?name=' + application.name)
+            KrogothGantryMasterViewControllers.append(
+                '/krogoth_gantry/DynamicJavaScriptInjector/?name=' + application.name)
     else:
         all_applications = os.listdir('static/compiled')
         for application in all_applications:
@@ -149,6 +184,3 @@ def index(request):
         "font_color": font_color,
     }
     return HttpResponse(template.render(context, request))
-
-
-

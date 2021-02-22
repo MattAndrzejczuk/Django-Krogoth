@@ -83,9 +83,138 @@ class DataVisitorTracking(models.Model):
     remote_port = models.CharField(max_length=24, default="NONE")
     http_user_agent = models.CharField(max_length=355, default='UNKNOWN')
     remote_addr = models.CharField(max_length=100, default='NO_HOST')
+
+    """
+    query_string
+    content_length
+    content_type
+    http_accept
+    http_accept_encoding
+    http_accept_language
+    http_host
+    http_referer
+    remote_host
+    remote_user
+    request_method
+    server_name
+    server_port
+    
+    try:
+        meta_val.query_string = request.META['QUERY_STRING']
+        print('QUERY_STRING'.lower())
+    except:
+        pass # no value for key=[QUERY_STRING]
+    try:
+        meta_val.content_length = request.META['CONTENT_LENGTH']
+        print('CONTENT_LENGTH'.lower())
+    except:
+        pass # no value for key=[CONTENT_LENGTH]
+    try:
+        meta_val.content_type = request.META['CONTENT_TYPE']
+        print('CONTENT_TYPE'.lower())
+    except:
+        pass # no value for key=[CONTENT_TYPE]
+    try:
+        meta_val.http_accept = request.META['HTTP_ACCEPT']
+        print('HTTP_ACCEPT'.lower())
+    except:
+        pass # no value for key=[HTTP_ACCEPT]
+    try:
+        meta_val.http_accept_encoding = request.META['HTTP_ACCEPT_ENCODING']
+        print('HTTP_ACCEPT_ENCODING'.lower())
+    except:
+        pass # no value for key=[HTTP_ACCEPT_ENCODING]
+    try:
+        meta_val.http_accept_language = request.META['HTTP_ACCEPT_LANGUAGE']
+        print('HTTP_ACCEPT_LANGUAGE'.lower())
+    except:
+        pass # no value for key=[HTTP_ACCEPT_LANGUAGE]
+    try:
+        meta_val.http_host = request.META['HTTP_HOST']
+        print('HTTP_HOST'.lower())
+    except:
+        pass # no value for key=[HTTP_HOST]
+    try:
+        meta_val.http_referer = request.META['HTTP_REFERER']
+        print('HTTP_REFERER'.lower())
+    except:
+        pass # no value for key=[HTTP_REFERER]
+    try:
+        meta_val.remote_host = request.META['REMOTE_HOST']
+        print('REMOTE_HOST'.lower())
+    except:
+        pass # no value for key=[REMOTE_HOST]
+    try:
+        meta_val.remote_user = request.META['REMOTE_USER']
+        print('REMOTE_USER'.lower())
+    except:
+        pass # no value for key=[REMOTE_USER]
+    try:
+        meta_val.request_method = request.META['REQUEST_METHOD']
+        print('REQUEST_METHOD'.lower())
+    except:
+        pass # no value for key=[REQUEST_METHOD]
+    try:
+        meta_val.server_name = request.META['SERVER_NAME']
+        print('SERVER_NAME'.lower())
+    except:
+        pass # no value for key=[SERVER_NAME]
+    try:
+        meta_val.server_port = request.META['SERVER_PORT']
+        print('SERVER_PORT'.lower())
+    except:
+        pass # no value for key=[SERVER_PORT]
+    """
+
     date_created = models.DateTimeField(auto_now_add=True)
     username = models.CharField(max_length=100, default="ANONYMOUS")
 
+
+"""
+DataVisitorMeta
+
+QUERY_STRING – The query string, as a single (unparsed) string.
+CONTENT_LENGTH – The length of the request body (as a string).
+CONTENT_TYPE – The MIME type of the request body.
+HTTP_ACCEPT – Acceptable content types for the response.
+HTTP_ACCEPT_ENCODING – Acceptable encodings for the response.
+HTTP_ACCEPT_LANGUAGE – Acceptable languages for the response.
+HTTP_HOST – The HTTP Host header sent by the client.
+HTTP_REFERER – The referring page, if any.
+HTTP_USER_AGENT – The client’s user-agent string.
+REMOTE_USER – The user authenticated by the Web server, if any.
+REQUEST_METHOD – A string such as "GET" or "POST".
+SERVER_NAME – The hostname of the server.
+SERVER_PORT – The port of the server (as a string).
+"""
+class DataVisitorMeta(models.Model):
+    tracker = models.ForeignKey(to=DataVisitorTracking, on_delete=models.CASCADE, related_name="meta_verbose")
+    query_string = models.CharField(max_length=455, null=True, default=None,
+                                    help_text="The query string, as a single (unparsed) string.")
+    content_length = models.CharField(max_length=455, null=True, default=None,
+                                      help_text="The length of the request body (as a string).")
+    content_type = models.CharField(max_length=455, null=True, default=None,
+                                    help_text="The MIME type of the request body.")
+    http_accept = models.CharField(max_length=455, null=True, default=None,
+                                   help_text="Acceptable content types for the response.")
+    http_accept_encoding = models.CharField(max_length=455, null=True, default=None,
+                                            help_text="Acceptable encodings for the response.")
+    http_accept_language = models.CharField(max_length=455, null=True, default=None,
+                                            help_text="Acceptable languages for the response.")
+    http_host = models.CharField(max_length=455, null=True, default=None,
+                                 help_text="The HTTP Host header sent by the client.")
+    http_referer = models.CharField(max_length=455, null=True, default=None,
+                                    help_text="The referring page, if any.")
+    remote_host = models.CharField(max_length=455, null=True, default=None,
+                                   help_text="The client’s user-agent string.")
+    remote_user = models.CharField(max_length=455, null=True, default=None,
+                                   help_text="The user authenticated by the Web server, if any.")
+    request_method = models.CharField(max_length=455, null=True, default=None,
+                                      help_text="A string such as \"GET\" or \"POST\".")
+    server_name = models.CharField(max_length=455, null=True, default=None,
+                                   help_text="The hostname of the server.")
+    server_port = models.CharField(max_length=455, null=True, default=None,
+                                   help_text="The port of the server (as a string).")
 
 
 BEHAVIOR_TYPES = (
@@ -138,12 +267,6 @@ HEADER = '\033[95m'
 UNDERLINE = '\033[4m'
 
 
-BGBl = "\033[47m"
-BGCy = "\033[46m"
-"\033[44m"
-"\033[43m"
-"\033[42m"
-"\033[41m"
 
 
 
@@ -229,13 +352,9 @@ class DataServerEvents(models.Model):
             new.code_func = info.lineno
             new.save()
         except Exception as e:
-            print(FAIL + "DataServerEvents Fatal Error " + msg)
-            print(FAIL + "[!!!]" + e.__str__())
+            print(FAIL + "▓▓▓ DataServerEvents Fatal Error " + msg)
+            print(FAIL + "▓▓▓" + e.__str__())
 
-    def fuck_her2(self, info: Traceback):
-        # info: Traceback = inspect.getframeinfo(inspect.stack()[1][0])
-        self.code_file = info.filename
-        self.code_line = info.function
-        self.code_func = info.lineno
+
 
 

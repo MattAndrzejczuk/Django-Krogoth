@@ -83,6 +83,22 @@ class NgIncludedHtmlView(APIView):
     def get(self, request, format=None):
         name = str(request.GET['name'])
         error = ""
+
+        usr = 'ANONYMOUS'
+        if request.user: usr = request.user.username
+        count_this = DataVisitorBehavior()
+        count_this.name = "View Controller Did Load " + name
+        count_this.behavior_tracked = 'user_activity'
+        try: count_this.remote_addr = request.META['REMOTE_ADDR']
+        except: pass  # no value for key=[QUERY_STRING]
+        try: count_this.remote_port = request.META['REMOTE_PORT']
+        except: pass  # no value for key=[QUERY_STRING]
+        try: count_this.http_user_agent = request.META['HTTP_USER_AGENT']
+        except: pass  # no value for key=[QUERY_STRING]
+        try: count_this.username = usr
+        except: pass  # no value for key=[QUERY_STRING]
+        count_this.save()
+
         try:
             try:
                 data = str(request.GET['data'])
@@ -140,12 +156,13 @@ class KrogothFoundationView(APIView):
 
 import base64
 from jawn.settings import BASE_DIR
-
+from krogoth_gantry.models import DataVisitorBehavior
 
 class LoadFileAsBase64View(APIView):
     #authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
     def get(self, request):
+
         name = request.GET['name']
 
         path = BASE_DIR + '/static/styles/fancy_bgs/' + name
@@ -155,6 +172,34 @@ class LoadFileAsBase64View(APIView):
                 return HttpResponse(content_type='text/plain', content=encoded_string)
         else:
             msg = "FAILED TO LOAD FILE AT PATH: " + path
+
+
+
+            usr = 'ANONYMOUS'
+            if request.user: usr = request.user.username
+            count_this = DataVisitorBehavior()
+            count_this.name = "LoadFileAsBase64View " + name
+            count_this.behavior_tracked = 'client_input'
+            try:
+                count_this.remote_addr = request.META['REMOTE_ADDR']
+            except:
+                pass  # no value for key=[QUERY_STRING]
+            try:
+                count_this.remote_port = request.META['REMOTE_PORT']
+            except:
+                pass  # no value for key=[QUERY_STRING]
+            try:
+                count_this.http_user_agent = request.META['HTTP_USER_AGENT']
+            except:
+                pass  # no value for key=[QUERY_STRING]
+            try:
+                count_this.username = usr
+            except:
+                pass  # no value for key=[QUERY_STRING]
+            path = BASE_DIR + '/static/BASE64/' + name
+            count_this.save()
+
+
             return HttpResponse(content_type='text/plain', content=msg)
 
 
