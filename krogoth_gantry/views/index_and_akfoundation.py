@@ -21,7 +21,7 @@ from django.template import Context, Template
 # from krogoth_gantry.views.middleware.dj_tmpl_rendered import load_custom_css, load_krogoth_css, load_background_css, \
 #     load_core_css, load_core_elements_css
 
-from krogoth_gantry.models.krogoth_manager import KrogothVisitorTracking
+from krogoth_gantry.models.krogoth_manager import DataVisitorTracking
 
 class AKFoundationViewSet(ModelViewSet):
     # permission_classes = [IsAdminUser]

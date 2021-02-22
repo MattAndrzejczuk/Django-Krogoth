@@ -71,6 +71,10 @@ class IncludedHtmlCoreViewSet(viewsets.ModelViewSet):
     queryset = IncludedHtmlCoreTemplate.objects.all().order_by('name')
     serializer_class = IncludedHtmlCoreTemplateSerializer
 
+from krogoth_gantry.krogoth_modelview_pods import kg_publicstatic_text
+from krogoth_gantry.models import DataServerEvents
+import inspect
+
 
 class NgIncludedHtmlView(APIView):
     #authentication_classes = (TokenAuthentication,)
@@ -91,14 +95,23 @@ class NgIncludedHtmlView(APIView):
                 return HttpResponse(html_view.contents)
         except Exception as e:
 
-            error += str(e) + " \n"
-            html = '<div> <h1>Fatal Error</h1> <p>Unable to load HTML: <b>' + \
-                   name + \
-                   " TRACE: krogoth_gantry/views/middleware/included_html_js_views.py" + \
-                   '</b> </p> </div>'
-            html += '<script>alert("fatal krogoth_gantry error, unable to load HTML view: ' + name + \
-                    ' due to: ' + error + '");</script>'
-            html += '<h2>' + error + '</h2>'
+            try:
+                ksi = kg_publicstatic_text.objects.get(name=name)
+                DataServerEvents.warn("NgIncludedHtml has been deprecated",
+                                      inspect.getframeinfo(inspect.stack()[1][0]))
+                return HttpResponse(ksi.contents)
+            except:
+
+                DataServerEvents.error("NgIncludedHtml has no KSI 'kg_publicstatic_text' for " + name,
+                                       inspect.getframeinfo(inspect.stack()[1][0]))
+                error += str(e) + " \n"
+                html = '<div> <h1>Fatal Error</h1> <p>Unable to load HTML: <b>' + \
+                       name + \
+                       " TRACE: krogoth_gantry/views/middleware/included_html_js_views.py" + \
+                       '</b> </p> </div>'
+                html += '<script>alert("fatal krogoth_gantry error, unable to load HTML view: ' + name + \
+                        ' due to: ' + error + '");</script>'
+                html += '<h2>' + error + '</h2>'
             return HttpResponse(html)
 
 

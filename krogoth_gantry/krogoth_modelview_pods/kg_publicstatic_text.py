@@ -101,6 +101,24 @@ ENDC = '\033[0m'
 BOLD = '\033[1m'
 UNDERLINE = '\033[4m'
 
+BGWARN = '\033[43m'
+print('\033[0m ZERO\n')
+print('\033[107m 107m GRAY')
+print('\033[47m 47m GRAY')
+print('\033[106m 106m CYAN')
+print('\033[46m 46m CYAN')
+print('\033[105m 105m PURPLE')
+print('\033[45m 45m PURPLE')
+print('\033[104m 104m BLUE')
+print('\033[44m 44m BLUE')
+print('\033[103m 103m YELLOW')
+print('\033[43m 43m YELLOW')
+print('\033[102m 102m GREEN')
+print('\033[42m 42m GREEN')
+print('\033[101m 101m RED')
+print('\033[41m 41m RED')
+
+
 #
 # from krogoth_gantry.models.gantry_models import KrogothGantryMasterViewController, AKFoundationAbstract
 
