@@ -8,7 +8,7 @@
                 url: '/FUSE_APP_NAME/:categoryId',
                 views: {
                     'main@': {
-                        templateUrl: '/moho_extractor/NgIncludedHtml/?name=content-only.html',
+                        templateUrl: '/global_static_text/load_static_text_readonly/content-only.html',
                         controller: 'MainController as vm'
                     },
                     'content@app.FUSE_APP_NAME': {
@@ -22,7 +22,7 @@
                 url: '/slave/:categoryId/:childId',
                 views: {
                     'main@': {
-                        templateUrl: '/moho_extractor/NgIncludedHtml/?name=content-only.html',
+                        templateUrl: '/global_static_text/load_static_text_readonly/content-only.html',
                         controller: 'MainController as vm'
                     },
                     'content@app.FUSE_APP_NAME.slave': {
