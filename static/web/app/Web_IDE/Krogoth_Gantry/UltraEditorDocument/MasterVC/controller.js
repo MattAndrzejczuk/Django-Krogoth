@@ -22,7 +22,7 @@
         ///renameObjectClick
         vm.$onInit = onInit;
 
-
+ 
         vm.editorContentWillChange = editorContentWillChange;
         vm.editorContentDidChange = editorContentDidChange;
 
@@ -257,19 +257,19 @@
             lineNumbers: true,
             mode: "javascript",
             theme: "colorforth",
-            indentUnit: 4,
+            indentUnit: 2,
             indentWithTabs: false
         };
 
         function setThemeBasedOnClass(_class) {
             if (_class === "ViewHTML") {
-                vm.editorModel.setOption("theme", "rubyblue");
+                vm.editorModel.setOption("theme", "3024-night");
             } else if (_class === "ControllerJS") {
-                vm.editorModel.setOption("theme", "colorforth");
+                vm.editorModel.setOption("theme", "3024-night");
             } else if (_class === "ModuleJS") {
-                vm.editorModel.setOption("theme", "night");
+                vm.editorModel.setOption("theme", "3024-night");
             } else if (_class === "StyleCSS") {
-                vm.editorModel.setOption("theme", "icecoder");
+                vm.editorModel.setOption("theme", "3024-night");
             } else if (_class === "ThemeCSS") {
                 vm.editorModel.setOption("theme", "vibrant-ink");
             } else if (_class === "Service") {

@@ -1,115 +1,152 @@
 <!-- TESTED AND VERIFIED WITH LATEST VERSION -->
 <md-divider></md-divider>
-        <div ng-if="collapsed && node.nodes.length > 0">
-            <button class="toolbar-button" 
-					style="padding:0px; height:20px; width:20px"
-                    ng-click="vm.toggleFolder(this, $index)">
-                <span
-                    style="font-size:1.2em; margin-top:3px"
-                    ng-class="{'entypo entypo-right-open-mini': collapsed,'entypo entypo-down-open-mini': !collapsed}">
-                </span>
-                <md-tooltip>Browse {{ node.title }}</md-tooltip>
-            </button>
-            <span class="badge badge-dark">
-                {{ node.title | limitTo: 20 }}
-            </span>
-        </div>
-    <div ui-tree-handle
-		 ng-if="!collapsed"
-                   ng-class="{'parent-node-frame':node.canEdit === false,'blackbg':node.canEdit === true}"
-                   class="tree-node tree-node-content"  
-                   layout="row">
-        <div ng-if="node.nodes && node.nodes.length > 0">
-            <button class="toolbar-button" 
-					style="padding:0px; height:20px; width:20px"
-                    ng-click="vm.toggleFolder(this, $index)">
-                <span
-                    style="font-size:1.2em; margin-top:3px"
-                    ng-class="{'entypo entypo-right-open-mini': collapsed,'entypo entypo-down-open-mini': !collapsed}">
-                </span>
-                <md-tooltip>Browse {{ node.title }}</md-tooltip>
-            </button>
-        </div>
-        <span ng-if="node.icon"
-			  style="font-size:1.45em; color:white" 
-              class="mdi mdi-{{ node.icon }}"
-              style="color: rgba(255, 255, 255, 0.80)"></span>
-        <section ng-if="node.canRemove === true">
-            <span class="badge badge-dark">
-                {{ node.title | limitTo: 20 }}
-            </span>
-        </section>
-        <section ng-if="node.canRemove === false">
-            <span style="font-size:1.4em" class="font-weight-100">
-                &nbsp;{{ node.title }}
-            </span>  
-        </section>
-        <div flex></div>
-        <div ng-if="node.index !== $index"> <!-- For Debugging, alert user that the indexes are off -->
-            <span style="color:red">
-                {{ node.index }}
-            </span>
-            <span style="color:red">
-                {{ $index }}!!!
-            </span>
-        </div>
-        <div ng-if="node.hasUnsavedChanges === true">
-            <button class="toolbar-button"
-                    layout-wrap 
-                    style="padding:0px; height:15px; width:15px"
-                    ng-click="vm.saveEditorWorkToServer(node.parentIndex, $index, node)">
-                <span style="font-size:1.0em" class="entypo entypo-floppy"></span>
-                <!--            <span class="mdi mdi-circle"></span>-->
-                <md-tooltip md-visible="demo.showTooltip">
-                    Save changes of {{ node.title }} to server.
-                </md-tooltip>
-            </button>
-        </div>
-        <div ng-if="node.canEdit === true" flex="10" ng-show="vm.treeData[node.parentIndex].expanded">
-            <button class="toolbar-button"
-                    layout-wrap 
-                    style="padding:0px; height:15px; width:15px"
-                    ng-click="vm.loadFileIntoEditor(node.parentIndex, node.index, node)">
-                <span class="entypo entypo-pencil" style="font-size:1.1em" ></span>
-                <!--            <span class="mdi mdi-circle"></span>-->
-                <md-tooltip md-visible="demo.showTooltip">
-                    Open {{ node.title }} in editor
-                </md-tooltip>
-            </button>
-        </div>
-		<div ng-if="node.openInOtherBrowser || node.wasSavedInOtherBrowser">
-			<span style="font-size:1.45em" 
-				  class="entypo entypo-lock"
-				  style="color: rgba(255, 255, 0, 0.99)"></span>
-			&nbsp;&nbsp;&nbsp;
-                <md-tooltip md-visible="demo.showTooltip">
-                    This document has been altered in a different browser window.
-                </md-tooltip>
-		</div>
-        <div ng-if="node.canAdd === true">
-            <button class="toolbar-button" 
-                    ng-if="node.canAdd === true"
-                    layout-wrap
-                    data-max-depth="1"
-                    ng-click="vm.createNewComponentClick($event, node)"
-                    style="margin-right: 8px; padding:0px; height:20px; width:20px">
-                <span style="font-size:1.2em; margin-top:3px" class="entypo entypo-plus-squared"></span> 
-                <md-tooltip md-visible="demo.showTooltip">
-                    Add new component to {{ node.class }}
-                </md-tooltip>
-            </button>
-        </div>
-    </div>  
-<!-- ng-class="{hidden: collapsed }"  -->
-    <ol data-nodrag
-		ui-tree-nodes="" 
-		ng-model="node.nodes" 
-		ng-class="{'not_expanded_s':collapsed, 'expanded_s':!collapsed }">
-        <li ng-repeat="node in node.nodes" 
-			ng-class="{ 'loadedNodeFile': (node.isLoaded === true), 'openedByOtherBrowser': (node.openInOtherBrowser), 'savedByOtherBrowser': (node.wasSavedInOtherBrowser) }"
-			ui-tree-node 
-			data-nodrag 
-			ng-include="'nodes_renderer.html'">
+<div ng-if="collapsed && node.nodes.length > 0">
+    <button class="toolbar-button" 
+            style="padding:0px; height:20px; width:20px"
+            ng-click="vm.toggleFolder(this, $index)">
+        <span
+              style="font-size:1.2em; margin-top:3px"
+              ng-class="{'entypo entypo-right-open-mini': collapsed,'entypo entypo-down-open-mini': !collapsed}">
+        </span>
+        <md-tooltip>Browse {{ node.title }}</md-tooltip>
+    </button>
+    <span class="badge badge-dark">
+        {{ node.title | limitTo: 20 }}
+    </span>
+</div>
 
-        </li>
-    </ol>
+	<style>
+        .BG_UNSAVEDCHNGES {
+            background-color:rgba(100,185,50, 0.95) !important;
+        }
+    	.BG_OPENDOCUMENT {
+            background-color:rgba(45,115,255, 0.95) !important;
+            color: white !important;
+    	}
+        .BG_OPENUNSAVED {
+            background-color:rgba(5,195,200, 0.99) !important;
+    	}
+        .BG_OPENANDEDITED_ELSEWHERE {
+            background-color:rgba(255,115,25, 0.95) !important;
+            color: white !important;
+    	}
+        .BG_OPENED_ELSEWHERE {
+            background-color:rgba(255,255,60, 0.99) !important;
+    	}
+    </style>
+
+
+<div ui-tree-handle
+     ng-if="!collapsed"
+     ng-class="
+               {
+               'BG_UNSAVEDCHNGES' : node.hasUnsavedChanges, 
+               'parent-node-frame':node.canEdit === false,
+               'BG_OPENDOCUMENT': vm.loadedParentIndex === node.parentIndex && vm.loadedIndex === node.index,
+               'BG_OPENUNSAVED': vm.loadedParentIndex === node.parentIndex && vm.loadedIndex === node.index && node.hasUnsavedChanges,
+               'BG_OPENED_ELSEWHERE': node.openInOtherBrowser ,
+               'BG_OPENANDEDITED_ELSEWHERE': node.wasSavedInOtherBrowser,
+               'blackbg':node.canEdit === true}
+               "
+     class="tree-node tree-node-content"  
+     layout="row">
+    <div ng-if="node.nodes && node.nodes.length > 0">
+        <button class="toolbar-button" 
+                style="padding:0px; height:20px; width:20px"
+                ng-click="vm.toggleFolder(this, $index)">
+            <span
+                  style="font-size:1.2em; margin-top:3px"
+                  ng-class="{'entypo entypo-right-open-mini': collapsed,'entypo entypo-down-open-mini': !collapsed}">
+            </span>
+            <md-tooltip>Browse {{ node.title }}</md-tooltip>
+        </button>
+    </div>
+    <span ng-if="node.icon"
+          style="font-size:1.45em; color:white" 
+          class="mdi mdi-{{ node.icon }}"
+          style="color: rgba(255, 255, 255, 0.80)"></span>
+    <section ng-if="node.canRemove === true">
+        <span class="badge badge-dark">
+            {{ node.title | limitTo: 20 }}
+        </span>
+    </section>
+    
+    
+    
+    <section ng-if="node.canRemove === false" >
+        
+        <span style="font-size:1.4em" 
+              class="font-weight-100">
+            &nbsp;{{ node.title }}
+        </span>  
+    </section>
+    <div flex></div>
+    <div ng-if="node.index !== $index"> <!-- For Debugging, alert user that the indexes are off -->
+        <span style="color:red">
+            {{ node.index }}
+        </span>
+        <span style="color:red">
+            {{ $index }}!!!
+        </span>
+    </div>
+    <div ng-if="node.hasUnsavedChanges === true">
+        <button class="toolbar-button"
+                layout-wrap 
+                style="padding:0px; height:25px; width:25px"
+                ng-click="vm.saveEditorWorkToServer(node.parentIndex, $index, node)">
+            <span style="font-size:1.0em" class="entypo entypo-floppy"></span>
+            <!--            <span class="mdi mdi-circle"></span>-->
+            <md-tooltip md-visible="demo.showTooltip">
+                Save changes of {{ node.title }} to server.
+            </md-tooltip>
+        </button>
+    </div>
+    <div ng-if="node.canEdit === true" flex="10" ng-show="vm.treeData[node.parentIndex].expanded">
+        <button class="toolbar-button"
+                layout-wrap 
+                ng-if="!node.wasSavedInOtherBrowser"
+                style="padding:0px; height:25px; width:25px"
+                ng-click="vm.loadFileIntoEditor(node.parentIndex, node.index, node)">
+            <span class="entypo entypo-pencil" style="font-size:1.1em" ></span>
+            <!--            <span class="mdi mdi-circle"></span>-->
+            <md-tooltip md-visible="demo.showTooltip">
+                Open {{ node.title }} in editor
+            </md-tooltip>
+        </button>
+    </div>
+    <div ng-if="node.openInOtherBrowser || node.wasSavedInOtherBrowser">
+        <span style="font-size:1.45em" 
+              class="entypo entypo-lock"
+              style="color: rgba(255, 255, 0, 0.99)"></span>
+        &nbsp;&nbsp;&nbsp;
+        <md-tooltip md-visible="demo.showTooltip">
+            This document has been altered in a different browser window.
+        </md-tooltip>
+    </div>
+    <div ng-if="node.canAdd === true">
+        <button class="toolbar-button" 
+                ng-if="node.canAdd === true"
+                layout-wrap
+                data-max-depth="1"
+                ng-click="vm.createNewComponentClick($event, node)"
+                style="margin-right: 8px; padding:0px; height:20px; width:20px">
+            <span style="font-size:1.2em; margin-top:3px" class="entypo entypo-plus-squared"></span> 
+            <md-tooltip md-visible="demo.showTooltip">
+                Add new component to {{ node.class }}
+            </md-tooltip>
+        </button>
+    </div>
+</div>  
+<!-- ng-class="{hidden: collapsed }"  -->
+<ol data-nodrag
+    ui-tree-nodes="" 
+    ng-model="node.nodes" 
+    ng-class="{'not_expanded_s':collapsed, 'expanded_s':!collapsed }">
+    <li ng-repeat="node in node.nodes" 
+        ng-class="{ 'loadedNodeFile': (node.isLoaded === true), 'openedByOtherBrowser': (node.openInOtherBrowser), 'savedByOtherBrowser': (node.wasSavedInOtherBrowser) }"
+        ui-tree-node 
+        data-nodrag 
+        ng-include="'nodes_renderer.html'">
+
+    </li>
+</ol>

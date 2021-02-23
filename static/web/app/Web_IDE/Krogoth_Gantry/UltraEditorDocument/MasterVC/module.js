@@ -19,6 +19,7 @@
                 }
             });
 
+        
         $ocLazyLoadProvider.config({
             events: true
         });
