@@ -9,7 +9,7 @@ GET     http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/q
     .controller('QuickPanelController', QuickPanelController);
 
   /** @ngInject */
-  function QuickPanelController(msApi) {
+  function QuickPanelController() {
     var vm = this;
 
     // Data
@@ -20,26 +20,7 @@ GET     http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/q
       retro: true
     };
 
-    msApi.request('quickPanel.activities@get', {},
-      // Success
-      function (response) {
-        vm.activities = response.data;
-      }
-    );
 
-    msApi.request('quickPanel.events@get', {},
-      // Success
-      function (response) {
-        vm.events = response.data;
-      }
-    );
-
-    msApi.request('quickPanel.notes@get', {},
-      // Success
-      function (response) {
-        vm.notes = response.data;
-      }
-    );
 
     // Methods
 

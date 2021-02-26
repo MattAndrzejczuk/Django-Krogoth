@@ -1,2 +1,22 @@
-<h1>{{ vm.viewName }}</h1>
 
+<section class="bg-section-primary">
+
+
+    <!-- EXAMPLE BLOCK 3 -->
+    <div layout="row" layout-wrap="">
+        <span class="md-display-1"class="bg-alt-02">Use of Responsive Flex Directives within Responsive Layouts</span>
+    </div>
+
+    <div layout="column" layout-gt-sm="row">
+        <div flex-gt-sm="33"class="bg-alt-03">
+            column layout on mobile, <br>flex 33% on gt-sm devices.
+        </div>
+        <div flex-gt-sm="66"class="bg-alt-04">
+            <md-button class="md-raised md-warn" ng-click="vm.lazyReloadThisCtrl()">lazy reload</md-button>
+            column layout on mobile, <br>flex 66% on gt-sm devices.
+        </div>
+    </div>
+
+
+
+</section>

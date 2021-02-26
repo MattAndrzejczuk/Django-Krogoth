@@ -15,9 +15,7 @@ GET     http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/i
 
         /* $locationProvider.html5Mode(true); */
 
-
-		const krogoth_injected={};
-
+        const krogoth_injected={};
 
 
         $locationProvider.hashPrefix('!');
@@ -31,8 +29,9 @@ GET     http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/i
          * styles like in the demo, you can set one manually by
          * typing the template urls into the `State definitions`
          * area and remove this code
-         */
-            // Inject $cookies
+         */// Inject $cookies
+
+
         var $cookies;
 
         angular.injector(['ngCookies']).invoke([
@@ -107,7 +106,6 @@ GET     http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/i
         /// $httpProvider.interceptors.push(interceptor);
         var tokenDefaultSetter = function ($q) {
             return {
-
                 request: function (req) {
                     if ($cookies.get('token')) {
                         /// Using Access Token From Cookie
