@@ -1,5 +1,0 @@
-With this text file, Krogoth will not load this
-AngularJS module. It doesn't exist until activated
-By using:
-
-$ocLazyLoad.load('/krogoth_gantry/DynamicJavaScriptInjector/?name=LAZYMVC_UNLOADED&ov=file.js');
