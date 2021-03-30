@@ -1,4 +1,15 @@
 /*
+
+curl --location --request GET 'http://localhost:8000/global_static_text/save_sqldb_to_filesystem_text/toolbar.controller.js'
+
+curl --location --request GET 'http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/toolbar.controller.js'
+
+curl --location --request PATCH 'http://localhost:8000/global_static_text/admin_editor_text/toolbar.controller.js/' \
+--form 'doc_name="FirstJavaScriptDoc"' \
+--form 'content="console.log(\"Hello world!\");\\n// COOL ITS GOOD. "'
+
+
+
 GET     http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/toolbar.controller.js
 * */
 (function () {

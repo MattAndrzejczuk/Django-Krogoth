@@ -142,22 +142,22 @@ WSGI_APPLICATION = 'jawn.wsgi.application'
 # WSGI_APPLICATION = 'jawn.wsgi_no_docker.application'
 
 db_name = 'jawn'
+#DATABASES = {
+    #'default': {
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'NAME': db_name,
+        #'USER': POSTGRES_ENV_POSTGRES_USER,
+        #'PASSWORD': POSTGRES_ENV_POSTGRES_PASSWORD,
+        #'HOST': POSTGRES_PORT_5432_TCP_ADDR,
+        #'PORT': POSTGRES_PORT_5432_TCP_PORT,
+    #}
+#}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': db_name,
-        'USER': POSTGRES_ENV_POSTGRES_USER,
-        'PASSWORD': POSTGRES_ENV_POSTGRES_PASSWORD,
-        'HOST': POSTGRES_PORT_5432_TCP_ADDR,
-        'PORT': POSTGRES_PORT_5432_TCP_PORT,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR + '/db.sqlite3',
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR + '/db.sqlite3',
-#     }
-# }
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
