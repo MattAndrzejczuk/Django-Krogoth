@@ -10,7 +10,10 @@ from django.http import HttpResponse
 import os, codecs
 
 
-
+DEBUG_AUTH_BYPASS = True
+print('\033[103m WARNING - DEBUG_AUTH_BYPASS IS ENABLED')
+print('\033[41m ')
+print(" ")
 
 JSON_401_MSG = {"result": "YOU NEED TO BE LOGGED IN AS SUPERUSER.", "completed_work": "UNAUTHORIZED"}
 RESPONSE_UNAUTHORIZED = Response(JSON_401_MSG, status=401)
@@ -102,21 +105,22 @@ BOLD = '\033[1m'
 UNDERLINE = '\033[4m'
 
 BGWARN = '\033[43m'
-print('\033[0m ZERO\n')
-print('\033[107m 107m GRAY')
-print('\033[47m 47m GRAY')
-print('\033[106m 106m CYAN')
-print('\033[46m 46m CYAN')
-print('\033[105m 105m PURPLE')
-print('\033[45m 45m PURPLE')
-print('\033[104m 104m BLUE')
-print('\033[44m 44m BLUE')
-print('\033[103m 103m YELLOW')
-print('\033[43m 43m YELLOW')
-print('\033[102m 102m GREEN')
-print('\033[42m 42m GREEN')
-print('\033[101m 101m RED')
-print('\033[41m 41m RED')
+
+# print('\033[0m ZERO\n')
+# print('\033[107m 107m GRAY')
+# print('\033[47m 47m GRAY')
+# print('\033[106m 106m CYAN')
+# print('\033[46m 46m CYAN')
+# print('\033[105m 105m PURPLE')
+# print('\033[45m 45m PURPLE')
+# print('\033[104m 104m BLUE')
+# print('\033[44m 44m BLUE')
+# print('\033[103m 103m YELLOW')
+# print('\033[43m 43m YELLOW')
+# print('\033[102m 102m GREEN')
+# print('\033[42m 42m GREEN')
+# print('\033[101m 101m RED')
+# print('\033[41m 41m RED')
 
 
 #
@@ -131,7 +135,7 @@ def load_static_text_readonly(request, filename):
     should  come from the static files like most other  normal  Django apps.
           static/web/krogoth_static_interface/{file_kind}/{unique_id}.{file_kind}
 
-    http://localhost:8000/global_static_text/load_static_text_readonly/index.module.js/
+    http://127.0.0.1/global_static_text/load_static_text_readonly/index.module.js/
 
     """
     # unique_name = str(request.GET['unique_name'])
@@ -271,9 +275,10 @@ class AdminEditorText(APIView):
         blocks the document from being loaded even with URL
 
     """
-    permission_classes = (permissions.IsAdminUser,)
-
-
+    if not DEBUG_AUTH_BYPASS:
+        permission_classes = (permissions.IsAdminUser,)
+    else:
+        permission_classes = (permissions.AllowAny,)
 
     def patch(self, request, name):
         """Required arguments:
@@ -306,7 +311,7 @@ def save_sqldb_to_filesystem_text(request, file_name):
     http://HOST_NAME/global_static_interface/save_sqldb_to_filesystem_text/{ UNIQUE_ID }
 
     """
-    if not request.user.is_superuser:
+    if not request.user.is_superuser and not DEBUG_AUTH_BYPASS:
         print(FAIL + "TODO: might want to report an unauthorised entry detected." + ENDC)
         return RESPONSE_UNAUTHORIZED
 
@@ -331,7 +336,7 @@ def save_sqldb_to_filesystem_text(request, file_name):
 
 
 
-
+# TAKE SPECIFIC HTML/JS/CSS FROM FILESYSTEM, SAVE TO SQL
 @api_view(['GET'])
 def save_filesystem_to_sqldb_text(request, file_name):
     """
@@ -343,7 +348,7 @@ def save_filesystem_to_sqldb_text(request, file_name):
 
     """
 
-    if not request.user.is_superuser:
+    if not request.user.is_superuser and not DEBUG_AUTH_BYPASS:
         print(FAIL + "TODO: might want to report an unauthorised entry detected." + ENDC)
         return RESPONSE_UNAUTHORIZED
 
@@ -381,7 +386,7 @@ def save_filesystem_to_sqldb_text(request, file_name):
 
 from .filesystem_to_db import KSI_Processor
 
-
+# TAKE ALL HTML/JS/CSS FROM FILESYSTEM, SAVE TO SQL
 @api_view(['GET', 'POST'])
 def saveall_filesystem_to_sqldb_text(request):
     """
@@ -398,7 +403,8 @@ def saveall_filesystem_to_sqldb_text(request):
                 'paths_to_include': ['JS','HTML']
             }
     """
-    if not request.user.is_superuser:
+
+    if not request.user.is_superuser and not DEBUG_AUTH_BYPASS:
         print(FAIL + "TODO: might want to report an unauthorised entry detected." + ENDC)
         return RESPONSE_UNAUTHORIZED
 
@@ -423,30 +429,27 @@ urlpatterns = [
 
 
 """
-curl --location --request POST 'http://localhost:8000/global_static_text/admin_editor_text/' \
+curl --location --request POST 'http://127.0.0.1/global_static_text/admin_editor_text/' \
 --form 'doc_name="FirstJavaScriptDoc2"' \
 --form 'content="console.log(\"hello world\");"' \
 --form 'doc_kind="js"'
 
-curl --location --request PATCH 'http://localhost:8000/global_static_text/admin_editor_text/toolbar.controller.js/' \
+curl --location --request PATCH 'http://127.0.0.1/global_static_text/admin_editor_text/FirstJavaScriptDoc2.js/' \
 --form 'doc_name="FirstJavaScriptDoc"' \
 --form 'content="console.log(\"Hello world!\");\\n// COOL ITS GOOD. "'
 
-curl --location --request GET 'http://localhost:8000/global_static_text/admin_editor_text/html/FirstJavaScriptDoc2' \
+curl --location --request GET 'http://127.0.0.1/global_static_text/admin_editor_text/js/FirstJavaScriptDoc2.JS' \
 --form 'doc_name="HELLO6"' \
 --form 'content="this is just a test"' \
 --form 'doc_kind="html"'
 
-curl --location --request GET 'http://localhost:8000/global_static_text/get_uncommitted_docs' \
---form 'doc_name="HELLO6"' \
---form 'content="this is just a test"' \
---form 'doc_kind="html"'
+curl --location --request GET 'http://127.0.0.1/global_static_text/get_uncommitted_docs'
 
-curl --location --request GET 'http://localhost:8000/global_static_text/save_sqldb_to_filesystem_text/toolbar.controller.js'
+curl --location --request GET 'http://127.0.0.1/global_static_text/save_sqldb_to_filesystem_text/toolbar.controller.js'
 
-curl --location --request GET 'http://localhost:8000/global_static_text/save_filesystem_to_sqldb_text/toolbar.controller.js'
+curl --location --requestar GET 'http://127.0.0.1/global_static_text/save_filesystem_to_sqldb_text/toolbar.controller.js'
 
-curl --location --request GET 'http://localhost:8000/global_static_text/saveall_filesystem_to_sqldb_text'
+curl --location --request GET 'http://127.0.0.1/global_static_text/saveall_filesystem_to_sqldb_text'
 
 """
 
@@ -460,7 +463,33 @@ curl --location --request GET 'http://localhost:8000/global_static_text/saveall_
 
 
 
+"""
 
+
+
+
+curl --location --request POST 'http://127.0.0.1/global_static_text/admin_editor_text/' \
+--form 'doc_name="Test_1"' \
+--form 'content="console.log(\"hello world, I WAS MADE IN POST.\");"' \
+--form 'doc_kind="js"'
+
+
+
+
+
+
+curl --location --request PATCH 'http://127.0.0.1/global_static_text/admin_editor_text/Test_1.js/' \
+--form 'doc_name="Test_1"' \
+--form 'content="console.log(\"PATCHED THIS, NOW DIFFERENT. Hello world!\");\\n// COOL ITS GOOD. Test_1"'
+
+
+
+
+curl --location --request GET 'http://127.0.0.1/global_static_text/get_uncommitted_docs'
+
+
+
+"""
 
 
 
