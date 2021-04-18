@@ -1,20 +1,4 @@
-"""
-
- * KROGOTH v0.9.53
- * Copyright (C) 2019 Matt Andrzejczuk < matt@jawn.it >
-
- * KROGOTH can not be copied and/or distributed without the express
- * permission of Matt Andrzejczuk.
-
- * February, 2019
-
-"""
-print('\033[94m\033[1mLoading Krogoth Settings...\033[0m\033[0m')
 import os
-import socket
-import subprocess
-
-from django.core.mail import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -136,10 +120,8 @@ TEMPLATES = [
         },
     },
 ]
-# USE WITH DOCKER ONLY:
-WSGI_APPLICATION = 'jawn.wsgi.application'
-# USE WITHOUT DOCKER:
-# WSGI_APPLICATION = 'jawn.wsgi_no_docker.application'
+WSGI_APPLICATION = 'jawn.wsgi.application' # USE WITH DOCKER ONLY
+# WSGI_APPLICATION = 'jawn.wsgi_no_docker.application' # USE WITHOUT DOCKER
 
 db_name = 'jawn'
 #DATABASES = {
@@ -169,7 +151,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 STATIC_ROOT = ('/usr/src/volatile/static/')
-MEDIA_ROOT = '/usr/src/persistent/media/' # user uploads root path
+MEDIA_ROOT = '/usr/src/app/media/' # user uploads root path
 MEDIA_URL = '/media/'
 SITE_ID = 2
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -178,9 +160,7 @@ REST_AUTH_SERIALIZERS = {
 }
 APPEND_SLASH = True
 
-
-# <WebSocket Config>
-#    - WebSocket messages are stored in a Redis DB, not in PostgreSQL DB.
+# - - - - - - <WebSocket Config> - - - - - -
 CACHES = {
     # "default": {
     #     "BACKEND": "django_redis.cache.RedisCache",
@@ -203,16 +183,10 @@ WS4REDIS_EXPIRE = 2
 WS4REDIS_HEARTBEAT = '--heartbeat--'
 WS4REDIS_PREFIX = 'demo'
 
-### DEFAULTS:
-# WS4REDIS_CONNECTION = getattr(settings, 'WS4REDIS_CONNECTION', {
-#     'host': 'localhost',
-#     'port': 6379,
-#     'db': 0,
-#     'password': None,
-# })
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_PREFIX = 'session'
-# </WebSocket Config>
+# - - - - - - </WebSocket Config> - - - - - -
+
 
 WS4REDIS_CONNECTION = {
     'host': SESSION_REDIS_HOST,
