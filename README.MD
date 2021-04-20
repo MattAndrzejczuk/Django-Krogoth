@@ -25,17 +25,17 @@ Step 1 applies specifically to Ubuntu 16. Ubuntu 16 uses less RAM out of the box
 ### Step 1. Install Docker
 
 ```bash
-$ apt-get install -y apt-transport-https 
+# apt-get install -y apt-transport-https 
 
-$ apt-get install -y ca-certificates 
-$ apt-get install -y curl 
-$ apt-get install -y gnupg-agent 
-$ apt-get install -y software-properties-common
+# apt-get install -y ca-certificates 
+# apt-get install -y curl 
+# apt-get install -y gnupg-agent 
+# apt-get install -y software-properties-common
 
-$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-$ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-$ apt-get update
-$ apt-get install docker-ce docker-ce-cli containerd.io
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+# add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+# apt-get update
+# apt-get install docker-ce docker-ce-cli containerd.io
 ```
 
 
