@@ -79,7 +79,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django.contrib.postgres',
+ # ---- ----- ---- ----- ----- ---- ---- ---- ----- ---- ---- ----     NO-DOCKER MODE. SQLIGHT ONLY
+    # 'django.contrib.postgres',
+# ---- ----- ---- ----- ----- ---- ---- ---- ----- ---- ---- ----      POSTGRES NOT ACTIVE. PROBABLY DEVELOPMENT MODE PYCHARM
 
     'django.contrib.sites',
     'django_filters',
@@ -120,6 +122,10 @@ TEMPLATES = [
         },
     },
 ]
+
+
+
+
 WSGI_APPLICATION = 'jawn.wsgi.application' # USE WITH DOCKER ONLY
 # WSGI_APPLICATION = 'jawn.wsgi_no_docker.application' # USE WITHOUT DOCKER
 
@@ -141,6 +147,9 @@ DATABASES = {
     }
 }
 
+
+
+
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
@@ -151,7 +160,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 STATIC_ROOT = ('/usr/src/volatile/static/')
-MEDIA_ROOT = '/usr/src/app/media/' # user uploads root path
+MEDIA_ROOT = '/usr/src/app/media/'  # user uploads root path
 MEDIA_URL = '/media/'
 SITE_ID = 2
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

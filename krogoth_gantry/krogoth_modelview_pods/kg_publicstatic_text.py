@@ -11,9 +11,11 @@ import os, codecs
 
 
 DEBUG_AUTH_BYPASS = True
-print('\033[103m WARNING - DEBUG_AUTH_BYPASS IS ENABLED')
-print('\033[41m ')
-print(" ")
+# if jawn.settings.debug == True:
+#     print('\033[103m WARNING - DEBUG_AUTH_BYPASS IS ENABLED')
+#     print('\033[41m ')
+#     print(" ")
+#     print('\033[0m ')
 
 JSON_401_MSG = {"result": "YOU NEED TO BE LOGGED IN AS SUPERUSER.", "completed_work": "UNAUTHORIZED"}
 RESPONSE_UNAUTHORIZED = Response(JSON_401_MSG, status=401)
