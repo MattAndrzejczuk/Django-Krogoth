@@ -145,7 +145,8 @@ def load_static_text_readonly(request, filename):
     # ct = 'application/javascript'
 
     document_sql: KPubStaticInterfaceText = KPubStaticInterfaceText.objects.filter(file_name=filename).first()
-
+    if document_sql is None:
+        return Response('404 KGI NOT FOUND', content_type='text/html', status=404)
 
     injection = "console.log('DEPENDENCY CALLED: " + filename + "');var vm = this"
     body = document_sql.content.replace("var vm = this", injection)
